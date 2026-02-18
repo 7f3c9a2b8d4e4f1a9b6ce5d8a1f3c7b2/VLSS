@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: flash_loan_fee_rate] [Flash Loan Fee Bypass] If flash_loan_fee_rate is checked only at the start of a flash loan but not enforced at repayment, can an attacker modify flash_loan_fee_rate mid-transaction to repay with zero fees? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_469358a2-3a1c-4c1b-a2a7-ff1650e413c4?mode=deep",
+    "timestamp": "2026-02-18 21:25:24.540325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: flash_loan_fee_rate] [Fee Rate Bounds] Does the protocol enforce that flash_loan_fee_rate <= MAX_FEE_RATE (e.g., 10000 bps), or can it be set to u64::MAX causing all flash loan repayments to fail due to fee overflow, effectively DoS'ing flash loans? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e1b63b0-4c97-4522-a54c-bcea4850d7d8?mode=deep",
+    "timestamp": "2026-02-18 21:25:37.616428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: protocol_fee_share] [Protocol Fee Extraction] Can protocol_fee_share be set > 100% (e.g., if denominator is 10000 and protocol_fee_share > 10000), causing protocol fees to exceed total swap fees collected, resulting in negative LP fees and fund loss? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9b8a0f0-c231-4444-94eb-17571c7f963a?mode=deep",
+    "timestamp": "2026-02-18 21:25:51.947951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: protocol_fee_share] [Fee Share Timing Attack] If protocol_fee_share is updated between fee accrual and fee distribution, can an attacker time their swap to occur when protocol_fee_share is low, then increase it before fee distribution to extract more protocol fees than intended? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f39c50b8-c9cd-4340-a2b5-aa9bbbee3710?mode=deep",
+    "timestamp": "2026-02-18 21:26:06.211441",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: protocol_flash_loan_fee_share] [Flash Loan Fee Share Manipulation] Can protocol_flash_loan_fee_share be modified to redirect all flash loan fees to the protocol (protocol_flash_loan_fee_share=100%), causing LPs to receive zero fees and disincentivizing liquidity provision? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b14b30e9-28cf-4089-9fd1-549d0f1401db?mode=deep",
+    "timestamp": "2026-02-18 21:26:22.085044",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: protocol_fee_x] [Protocol Fee Overflow] When accruing swap fees to protocol_fee_x, does the implementation check if protocol_fee_x + new_fee > u64::MAX, or can overflow cause protocol_fee_x to wrap around to zero, losing accumulated fees? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fc7ca883-b959-41c4-afc6-485733cd9dcf?mode=deep",
+    "timestamp": "2026-02-18 21:26:39.113986",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: protocol_fee_y] [Fee Collection Race] If protocol_fee_y is collected (withdrawn) simultaneously with fee accrual from a swap, can a race condition cause protocol_fee_y to be decremented below the withdrawn amount, resulting in incorrect protocol fee tracking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d03c1c00-de80-47a3-b5a5-b88770a1b117?mode=deep",
+    "timestamp": "2026-02-18 21:26:57.734312",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: protocol_fee_x()] [Fee Getter Manipulation] Does protocol_fee_x() return the actual protocol_fee_x value, or can it be manipulated to return a different value for external integrations, causing incorrect fee accounting in protocols that rely on this getter? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8c598f82-f7a0-4ac5-9ac5-46d4746ff0a1?mode=deep",
+    "timestamp": "2026-02-18 21:27:17.128822",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: swap_fee_rate()] [Fee Rate Caching] If swap_fee_rate() returns a cached value instead of the current pool.swap_fee_rate, can an attacker exploit stale fee rate data to perform swaps with outdated fees? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fc48caf7-fb6b-457a-82cd-993d2a648152?mode=deep",
+    "timestamp": "2026-02-18 21:27:38.859004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: fee_growth_global_x] [Fee Growth Overflow] When updating fee_growth_global_x as (fee_amount * Q128 / liquidity), does the implementation check for u128 overflow, or can large fee_amount or small liquidity values cause overflow and incorrect fee distribution to LPs? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_53a5a720-ad33-4e8c-b4a4-12588b2c7e52?mode=deep",
+    "timestamp": "2026-02-18 21:28:01.431731",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: fee_growth_global_y] [Fee Growth Underflow] If fee_growth_global_y is decremented during fee collection (instead of being strictly increasing), can it underflow and cause positions to receive incorrect fee calculations, potentially draining the pool? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6589637e-833e-4102-a951-2cde55fb3bbf?mode=deep",
+    "timestamp": "2026-02-18 21:28:23.364628",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: fee_growth_global_x] [Zero Liquidity Division] When liquidity=0 and fees are collected, does the fee_growth_global_x update check for division by zero, or can this cause a transaction abort, effectively locking fees until liquidity is added? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3876cd8e-41af-49ff-9c28-01eba6dd720d?mode=deep",
+    "timestamp": "2026-02-18 21:28:46.456754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: fee_growth_global_x()] [Fee Growth Snapshot Attack] Can an attacker snapshot fee_growth_global_x immediately before a large swap, mint a position to capture all accumulated fees, then burn the position to extract fees without providing meaningful liquidity? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50fa7e24-0846-46b8-8a6c-a4c99e9b3678?mode=deep",
+    "timestamp": "2026-02-18 21:29:08.081592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: fee_growth_global_y()] [Fee Growth Inconsistency] If fee_growth_global_y() returns a different value than what's stored in pool.fee_growth_global_y due to calculation logic, can this cause positions to have inconsistent fee claims? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f0908ee1-b25f-41ee-8f0a-3c045a40d35c?mode=deep",
+    "timestamp": "2026-02-18 21:29:29.520755",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: ticks] [Tick Data Corruption] If ticks Table<I32, TickInfo> allows multiple concurrent writes to the same tick during position updates, can race conditions corrupt tick.liquidity_net or tick.liquidity_gross, causing incorrect cross-tick updates? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e547649e-ff40-4e00-a25b-f7d356f85385?mode=deep",
+    "timestamp": "2026-02-18 21:29:49.391652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: ticks] [Tick Initialization Attack] Can an attacker pre-initialize ticks in the ticks table with malicious TickInfo data (e.g., liquidity_gross=u128::MAX) before the pool is actively used, causing subsequent position operations to fail or overflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b4417a7-10a8-4fad-8dbe-b98beb4c0220?mode=deep",
+    "timestamp": "2026-02-18 21:30:10.839700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: tick_bitmap] [Bitmap Flip Race] When tick_bitmap is updated to flip a bit during position mint/burn, can concurrent transactions cause the bit to be flipped multiple times, resulting in an incorrect bitmap state where initialized ticks appear uninitialized? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c3cf25ab-8051-42ba-8a59-4c4a452d2770?mode=deep",
+    "timestamp": "2026-02-18 21:30:30.525172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: tick_bitmap] [Bitmap Overflow] Does tick_bitmap handle tick indices outside the valid range by using proper modulo arithmetic, or can negative tick indices or ticks > MAX_TICK cause incorrect bitmap word selection, corrupting unrelated bitmap entries? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4bdd4633-6fd3-4f9a-8a5e-010b419af766?mode=deep",
+    "timestamp": "2026-02-18 21:30:51.773688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: borrow_ticks()] [Tick Mutation via Borrow] Does borrow_ticks() return an immutable reference to prevent external mutation, or can callers mutate TickInfo data outside position management functions, bypassing liquidity accounting invariants? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a19522f6-65ef-48fe-aff7-c6cacc89f31c?mode=deep",
+    "timestamp": "2026-02-18 21:31:12.629719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: borrow_tick_bitmap()] [Bitmap Direct Manipulation] If borrow_tick_bitmap() returns a mutable reference or allows external modification, can an attacker directly flip bits to make uninitialized ticks appear initialized, causing swap logic to access non-existent TickInfo? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8890c98b-7c35-45ee-9755-b5cd4e7e4fc6?mode=deep",
+    "timestamp": "2026-02-18 21:31:32.245615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: ticks] [Tick Fee Growth Overflow] If TickInfo stores fee_growth_outside_x/y as u128, when a tick is crossed multiple times, can accumulated fee growth overflow, causing incorrect fee distribution to positions spanning that tick? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_81159f35-28b1-45ee-b81b-367d880b3818?mode=deep",
+    "timestamp": "2026-02-18 21:31:54.138532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: tick_bitmap] [Next Initialized Tick Search] When searching tick_bitmap for the next initialized tick during a swap, if the search doesn't find an initialized tick within valid bounds, can it return an invalid tick index causing the swap to fail or access out-of-bounds memory? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_89357a69-bef2-4d6c-a269-06432280a029?mode=deep",
+    "timestamp": "2026-02-18 21:32:17.398304",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: reward_infos] [Reward Vector Overflow] Can reward_infos vector grow unbounded by repeatedly adding new reward tokens without removing old ones, causing excessive gas costs or storage DoS when iterating over rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d636d0d-6a84-49fe-b5c3-06f700b47d1e?mode=deep",
+    "timestamp": "2026-02-18 21:32:41.334280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [StructDef: PoolRewardInfo] [Reward Timing Manipulation] If PoolRewardInfo.last_update_time is not updated atomically with reward distribution, can an attacker claim rewards multiple times for the same time period by calling update between snapshot and distribution? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6a396e10-fe20-4552-b771-52918917d31e?mode=deep",
+    "timestamp": "2026-02-18 21:33:05.066157",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [StructDef: PoolRewardInfo] [Reward Overflow] When calculating rewards as (time_elapsed * reward_per_seconds), does the implementation check for u128 overflow, or can large reward_per_seconds or time_elapsed values cause overflow and incorrect reward amounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_222631fa-d5f6-4018-a0f5-b7492e03a6e7?mode=deep",
+    "timestamp": "2026-02-18 21:33:28.203968",
+    "report_generated": false
+  }
+]
