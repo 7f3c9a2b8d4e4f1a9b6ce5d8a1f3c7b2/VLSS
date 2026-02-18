@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: deposit_coin()] [Authorization Bypass] Can an attacker bypass pause checks by calling deposit_coin() directly as a friend module when storage is paused, since deposit_coin() doesn't verify pause status before calling base_deposit()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9a84033-a5da-451f-8bc1-b66bb48eb7b5?mode=deep",
+    "timestamp": "2026-02-18 20:01:13.676318",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: withdraw_coin()] [Authorization Bypass] Can friend modules call withdraw_coin() to bypass pause enforcement, allowing withdrawals during emergency pause by skipping the when_not_paused check in storage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0927f06-4d5b-4497-b57d-a5e9c2dd7da3?mode=deep",
+    "timestamp": "2026-02-18 20:01:26.268029",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: borrow_coin()] [Authorization Bypass] Can a malicious friend module exploit borrow_coin() to extract funds when protocol is paused, since friend functions don't independently verify pause state? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c30ca233-0772-4bc8-9901-f9e2d5153e59?mode=deep",
+    "timestamp": "2026-02-18 20:01:40.292166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: repay_coin()] [Authorization Bypass] Can friend modules call repay_coin() during paused state to manipulate debt positions before unpause, bypassing intended pause restrictions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_94b77b8c-3f56-4a5a-a4e2-680b27d99de5?mode=deep",
+    "timestamp": "2026-02-18 20:01:53.935881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_deposit()] [Version Control] If storage::version_verification() fails at line 185, what happens to the already-transferred deposit_balance, and can this cause fund loss? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d5992677-aff9-4026-afec-ab8986e129ff?mode=deep",
+    "timestamp": "2026-02-18 20:02:08.524082",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_withdraw()] [Version Control] Can an attacker exploit version mismatch scenarios by calling base_withdraw() after storage upgrade but before pools are migrated, causing accounting corruption? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2510bb05-6edb-45eb-ab4f-d4b968c606bc?mode=deep",
+    "timestamp": "2026-02-18 20:02:25.468744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_borrow()] [Version Control] If version_verification at line 276 passes but internal storage structures changed, can this lead to incorrect borrow amount calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d88568ef-b35c-42e8-a52c-fe009da095bf?mode=deep",
+    "timestamp": "2026-02-18 20:02:42.087954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_repay()] [Version Control] Can version mismatch between storage and pool cause normal_repay_amount calculation at line 325 to use wrong conversion factors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee38c7a0-f9f8-4f9a-a5b4-a5ce396adbbd?mode=deep",
+    "timestamp": "2026-02-18 20:03:00.312199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_deposit()] [Accounting Error] Can rounding errors in pool::normal_amount() at line 190 cause loss of precision when converting deposit_amount, allowing attackers to deposit less but receive more shares? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b667bed4-5af5-4280-98e0-1f9f8249e440?mode=deep",
+    "timestamp": "2026-02-18 20:03:18.705064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_withdraw()] [Accounting Error] Does the conversion from normal_withdraw_amount (line 228) to normal_withdrawable_amount (line 229-236) and back to withdrawable_amount (line 238) introduce rounding that allows users to withdraw more than deposited? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f10e40a1-c16e-41c0-9c14-29fc30e0b502?mode=deep",
+    "timestamp": "2026-02-18 20:03:39.005502",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_borrow()] [Accounting Error] If pool::normal_amount() at line 278 rounds down but logic::execute_borrow() expects exact amounts, can an attacker borrow more than their collateral supports? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b6f8972a-cd1f-4da2-b042-f2bfac913e0a?mode=deep",
+    "timestamp": "2026-02-18 20:03:58.708033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_repay()] [Accounting Error] Can the double conversion at lines 325 (normal_amount) and 328 (unnormal_amount) create exploitable rounding differences allowing debt to be repaid with less than owed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_04e0f47a-bada-453d-9a11-515ed061ce4f?mode=deep",
+    "timestamp": "2026-02-18 20:04:17.362634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Accounting Error] Do the three unnormal_amount conversions at lines 442, 446, 450 use consistent rounding modes, or can liquidators exploit inconsistencies to gain extra collateral? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cb78ab7e-ed49-48d4-b248-fc7e6b9d2455?mode=deep",
+    "timestamp": "2026-02-18 20:04:36.725793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_withdraw()] [Type Confusion] Can casting normal_withdrawable_amount from u256 to u64 at line 238 cause overflow if withdrawable amount exceeds u64::MAX? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0eb6f658-0ee8-4539-9dd1-77919a7ab7de?mode=deep",
+    "timestamp": "2026-02-18 20:04:56.037213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_borrow()] [Type Cast Vulnerability] Does casting normal_borrow_amount from u64 to u256 at line 279 prevent detection of manipulation where amount is artificially inflated before casting? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b222d8d2-a8ab-47fe-b048-ed28bdfbbb3c?mode=deep",
+    "timestamp": "2026-02-18 20:05:16.484595",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_repay()] [Type Cast Vulnerability] Can the u256-to-u64 cast of normal_excess_amount at line 328 silently truncate large excess values, preventing users from receiving their full refund? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1aa6ac8-b780-453d-bf9a-b620ea3b79fd?mode=deep",
+    "timestamp": "2026-02-18 20:05:37.255018",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Type Cast Vulnerability] Are the casts from u256 to u64 at lines 442, 446, 450 safe when liquidating large positions, or can overflow cause incorrect collateral/debt calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5981a41d-f116-4286-b926-3c572071af40?mode=deep",
+    "timestamp": "2026-02-18 20:05:57.966985",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_deposit()] [Precision Loss] If normal_deposit_amount at line 190 loses precision due to normalization, does this accumulated precision loss across many deposits enable share inflation attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_473c9595-9276-4d61-a437-90e2aadb4489?mode=deep",
+    "timestamp": "2026-02-18 20:06:20.831018",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: flash_loan_with_ctx()] [Reentrancy] Can an attacker use flash_loan_with_ctx() at line 539 to borrow funds, then reenter through deposit_coin() to manipulate pool state before repaying via flash_repay_with_ctx()? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aeec2b7c-9120-480c-a6d6-8f9b4c648c39?mode=deep",
+    "timestamp": "2026-02-18 20:06:42.040890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: flash_loan_with_account_cap()] [Reentrancy] Can flash_loan_with_account_cap() at line 543 be exploited with malicious AccountCap to perform cross-function reentrancy attacks on liquidation functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b75c874-2230-4fa9-85ef-88c0b1d02c82?mode=deep",
+    "timestamp": "2026-02-18 20:07:04.353546",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_flash_loan()] [Fee Bypass] Does base_flash_loan() at line 531 properly enforce flash loan fees, or can an attacker manipulate the FlashLoanConfig to reduce/eliminate fees? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_701397a6-e38f-4985-886a-fbb732f7577c?mode=deep",
+    "timestamp": "2026-02-18 20:07:26.096377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_flash_repay()] [Fee Bypass] Can base_flash_repay() at line 535 be called with manipulated receipt to bypass fee payment while still returning the loan? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6916c091-813d-4d13-ba6a-2b9a7211c15b?mode=deep",
+    "timestamp": "2026-02-18 20:07:48.693785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: flash_repay_with_ctx()] [Receipt Forgery] Can an attacker forge or duplicate FlashLoanReceipt to call flash_repay_with_ctx() multiple times, draining the pool? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_26c7c0b4-7c96-42cb-8d92-7e4d4c2bdc3c?mode=deep",
+    "timestamp": "2026-02-18 20:08:12.138414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: flash_repay_with_account_cap()] [Authorization Confusion] Can flash_repay_with_account_cap() at line 551 be exploited where receipt owner differs from account_cap owner, allowing one user to repay another's flash loan with wrong funds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dc4cf44c-fbde-42b2-aeb4-3836e5539e48?mode=deep",
+    "timestamp": "2026-02-18 20:08:35.090019",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: flash_loan_with_ctx()] [Pool Drain] Can an attacker call flash_loan_with_ctx() requesting amount equal to entire pool balance, causing DoS for other users even if they repay correctly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f8882d83-f89b-45a9-b384-28749d251376?mode=deep",
+    "timestamp": "2026-02-18 20:08:57.574929",
+    "report_generated": false
+  }
+]
