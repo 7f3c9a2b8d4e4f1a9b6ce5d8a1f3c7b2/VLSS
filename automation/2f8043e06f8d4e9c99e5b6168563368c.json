@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: process_qty()] [Error Handling] At line 88-94, does ERateLimitExceeded provide enough information for callers to handle the error, or can it cause unexpected transaction failures? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f9a289f-d272-4132-87ee-61aeda2c5f5c?mode=deep",
+    "timestamp": "2026-02-18 21:51:16.978788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Error Codes] [Error Handling] Are the error codes (EInvalidConfig=0, EInvalidTime=1, ERateLimitExceeded=2) distinct enough to diagnose issues, or can they be confused with other protocol errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_33849209-2a2d-4208-98bb-631b0b9c6e8b?mode=deep",
+    "timestamp": "2026-02-18 21:51:29.561142",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: process_qty()] [Accumulation] Can calling process_qty() with very small quantities many times bypass rate limits due to decimal precision loss in accumulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22ec43a2-90b0-470c-bcc7-40cb01f0d78d?mode=deep",
+    "timestamp": "2026-02-18 21:51:43.264050",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: process_qty()] [Accumulation] At line 86, does add(cur_qty, qty) maintain sufficient precision when accumulating thousands of small transactions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2b02ea6-3769-4e49-9e64-ee883c6bce8f?mode=deep",
+    "timestamp": "2026-02-18 21:51:57.110850",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: update_internal()] [Accumulation] When prev_qty is set to cur_qty at line 52, can accumulated rounding errors propagate across multiple windows? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_efe99dd8-bb2c-4a3d-83c1-f1834393fd5e?mode=deep",
+    "timestamp": "2026-02-18 21:52:11.987955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: current_outflow()] [Accumulation] Does the weighted sum at lines 76-79 accurately represent total outflow when both prev_qty and cur_qty contain many accumulated transactions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_43dfd42c-6265-4d66-af09-ebe05c31d622?mode=deep",
+    "timestamp": "2026-02-18 21:52:27.395230",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: process_qty()] [DoS] Can an attacker intentionally consume all rate limit capacity by calling process_qty with max_outflow quantity, denying service to legitimate users? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c6bf3b77-27fd-466f-a74e-08b430f75cf4?mode=deep",
+    "timestamp": "2026-02-18 21:52:43.968511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: new_config()] [DoS] Can a malicious admin set window_duration to u64::MAX, effectively making the rate limiter never reset and permanently limiting outflows? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c3c91d58-621f-4b49-8ae5-251d8d58e1ca?mode=deep",
+    "timestamp": "2026-02-18 21:53:01.647954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: update_internal()] [DoS] Can providing cur_time values that cause overflow in arithmetic operations at lines 48-61 trigger assertion failures, causing DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7bedf780-fa27-4ff4-a0fb-a4b723fc104f?mode=deep",
+    "timestamp": "2026-02-18 21:53:19.876176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: remaining_outflow()] [DoS] Can repeatedly calling remaining_outflow with future cur_time values cause excessive window transitions and state updates? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1666062c-bb3e-4064-923a-8f4121c24862?mode=deep",
+    "timestamp": "2026-02-18 21:53:39.757973",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Module Integration] If rate_limiter is used to protect withdrawals in Volo Vault, can attackers bypass protection by using alternative withdrawal methods not protected by the rate limiter? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_edadafd3-dd62-4b28-9e7a-403f016ad98c?mode=deep",
+    "timestamp": "2026-02-18 21:54:00.529957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Module Integration] Can the rate limiter's public functions (new, new_config) be called by unauthorized parties to create parallel rate limiters with different configurations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0200d858-8bba-4d6b-8bac-3c2936e73e11?mode=deep",
+    "timestamp": "2026-02-18 21:54:21.006542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Module Integration] If multiple rate limiters are used simultaneously with different window_durations, can attackers exploit timing differences to extract value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6a7f32fa-2a58-4417-b25b-1ac140be4969?mode=deep",
+    "timestamp": "2026-02-18 21:54:39.455486",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Module Integration] Does the rate limiter properly coordinate with Volo Vault's operation status transitions (normal/during operation/disabled) to prevent rate limit bypass during operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7bd8bea6-6168-46d0-b4e9-96085a93b908?mode=deep",
+    "timestamp": "2026-02-18 21:54:59.296904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Struct: RateLimiter] [Capabilities] With copy, drop, store abilities, can rate limiters be cloned to create parallel instances that don't share state, bypassing global rate limits? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02e75d27-f1ed-4286-ab90-9f99c6dc8838?mode=deep",
+    "timestamp": "2026-02-18 21:55:19.532121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Struct: RateLimiter] [Capabilities] Can the store ability allow rate limiters to be transferred to malicious contracts that manipulate their state externally? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28c5965e-358f-4fea-9d14-3912edb3ac0c?mode=deep",
+    "timestamp": "2026-02-18 21:55:39.977655",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Struct: RateLimiterConfig] [Capabilities] With copy, drop, store, can configurations be duplicated and modified outside the rate_limiter module, breaking invariants? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fff815b9-2c68-45c7-9ccc-ead030197fbb?mode=deep",
+    "timestamp": "2026-02-18 21:56:00.435516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Struct: RateLimiter] [Capabilities] Can the drop ability cause rate limiters to be accidentally destroyed, losing all accumulated rate limit state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4b45cf74-5ca8-4217-b4a7-aa03b5cdd984?mode=deep",
+    "timestamp": "2026-02-18 21:56:20.845901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: update_internal()] [Timing Attack] Can attackers observe pending transactions and submit their own transactions with cur_time values just before window transitions to maximize their outflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d3a279f-f4bb-4d34-b4a3-1f20562ffcb6?mode=deep",
+    "timestamp": "2026-02-18 21:56:43.100105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: current_outflow()] [Timing Attack] By calling remaining_outflow repeatedly with incrementing cur_time values, can attackers determine the exact microsecond when window transitions occur? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7dc91f1f-6abe-4f07-9073-f18fbffd1fab?mode=deep",
+    "timestamp": "2026-02-18 21:57:02.405532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: process_qty()] [Timing Attack] Can attackers bundle multiple process_qty calls in a single transaction to bypass per-transaction rate limits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db3220b1-9dc4-4e4e-9256-c72f5e349a1a?mode=deep",
+    "timestamp": "2026-02-18 21:57:23.009452",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: update_internal()] [Timing Attack] At lines 51-55, can attackers exploit the exact window boundary to submit transactions that execute just after transition, gaining fresh rate limit capacity? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0be63288-bf98-4c1f-88b6-0a1e465da450?mode=deep",
+    "timestamp": "2026-02-18 21:57:43.620436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: current_outflow()] [Weight Calculation] At line 68-74, can the prev_weight calculation result in values greater than 1, causing prev_qty to be weighted more than it should? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e53d3b71-059e-42e7-9f29-ff966ea3b4c2?mode=deep",
+    "timestamp": "2026-02-18 21:58:05.196950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: current_outflow()] [Weight Calculation] If window_duration is very small (e.g., 1), can the weight calculation at line 73 cause division to produce incorrect weights due to integer precision? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_73a1feaf-fe6a-4e69-8882-60e7c3471bd6?mode=deep",
+    "timestamp": "2026-02-18 21:58:27.754974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: current_outflow()] [Weight Calculation] At line 69-72, can the sub() operation result in a very small positive value that gets amplified when divided by window_duration? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_641c69fa-2ae3-4617-a674-29e0b9c219c2?mode=deep",
+    "timestamp": "2026-02-18 21:58:50.950609",
+    "report_generated": false
+  }
+]
