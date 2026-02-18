@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Timestamp Check] At line 482, if (now > distribution.last_updated) - can this be exploited if clock timestamp goes backwards or is manipulated? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dedbc6ba-b948-4006-b223-fe6e2e7e5b6f?mode=deep",
+    "timestamp": "2026-02-18 22:22:00.330258",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Time Delta Overflow] At line 498, (now - last_update_time) is cast to u256 - can this overflow if last_update_time is in the far future? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe3e51a8-0682-4875-8d67-1bf960c0a37e?mode=deep",
+    "timestamp": "2026-02-18 22:22:12.895652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: set_reward_rate()] [Last Update Timing] At line 433, update_reward_buffer is called before rate change - can an attacker manipulate clock to maximize rewards before rate decrease? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f90c0ae7-6221-4550-b875-7591b4fca708?mode=deep",
+    "timestamp": "2026-02-18 22:22:26.098173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: create_reward_buffer_distribution()] [Initial Timestamp] At line 258 and 298, last_updated is set to clock.timestamp_ms() - is there validation that this timestamp is reasonable? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b1463a5-2496-4e87-a2df-1f9d72882b35?mode=deep",
+    "timestamp": "2026-02-18 22:22:39.910213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_balance()] [Balance Join Safety] At line 363, reward_balance.join(reward) merges balances - can this fail silently if balance types mismatch? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ad63e07-14cf-416f-bc43-5213eeb4236b?mode=deep",
+    "timestamp": "2026-02-18 22:22:53.600199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Insufficient Balance] At line 628, assert checks reward_amount <= balance, but is there a race condition where multiple claims drain the balance simultaneously? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1fa21fe5-27da-40b2-9b33-4e279b8b3b22?mode=deep",
+    "timestamp": "2026-02-18 22:23:09.453874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Balance Split Failure] At line 638, vault_reward_balance.split(reward_amount) is called - what happens if this fails after unclaimed_rewards was already reset? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_35131764-cdcb-41dd-95f0-90a28331bed7?mode=deep",
+    "timestamp": "2026-02-18 22:23:26.098835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: retrieve_undistributed_reward()] [Balance Mismatch] At lines 687-698, reward is split from reward_balances but buffer accounting is decreased separately - can this lead to balance/accounting desync? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bceec518-e2e6-4f1a-8f3f-89e77b30d0d6?mode=deep",
+    "timestamp": "2026-02-18 22:23:43.289754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_to_buffer()] [Balance Storage] At lines 402-405, reward balance is joined to reward_balances but not tracked in buffer separately - is this intentional or could it cause confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1be8e080-6822-4b1d-a257-dfcfa8d7cbc0?mode=deep",
+    "timestamp": "2026-02-18 22:24:01.220068",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffers() + claim_reward()] [State Race] At line 613, update_reward_buffers is called before claim - can an attacker sandwich this with add_reward_to_buffer to manipulate claimable amounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_746da061-6cf8-45d2-8115-c97d9cbd8c99?mode=deep",
+    "timestamp": "2026-02-18 22:24:19.984499",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_new_reward_type() + add_reward_balance()] [Initialization Gap] If add_new_reward_type adds a type with zero balance at line 245, can add_reward_balance be called immediately causing issues with minimum amount checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_233566f5-aebb-486f-87a5-37b047da30db?mode=deep",
+    "timestamp": "2026-02-18 22:24:39.157583",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: remove_reward_buffer_distribution() + set_reward_rate()] [Buffer Removal Race] Can set_reward_rate be called for a reward type while remove_reward_buffer_distribution is removing it, causing inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e665e3f7-d430-4411-b64c-c8dc51ec8cef?mode=deep",
+    "timestamp": "2026-02-18 22:24:59.870696",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_indices() + update_receipt_reward()] [Index Sync] When update_reward_indices increases global index at line 580, but update_receipt_reward hasn't been called yet, can users lose rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_01e11217-eb0b-4b50-98a8-4bd3e8123f10?mode=deep",
+    "timestamp": "2026-02-18 22:25:20.912412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_balance()] [Zero Reward] If reward.value() is 0 at line 352, does to_decimals(0) pass the minimum_reward_amount check, potentially allowing spam transactions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d7a5e5e-fd83-437f-9c8e-4fe3f0645181?mode=deep",
+    "timestamp": "2026-02-18 22:25:42.165393",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: set_reward_rate()] [Maximum Rate] At line 428, rate < u256::max_value!() / 86_400_000 limits rate, but is 86_400_000 the correct divisor for millisecond-based timestamps? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_53395cec-4b7a-44e8-a87f-dee080efe973?mode=deep",
+    "timestamp": "2026-02-18 22:26:04.566496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Zero Rate Period] At lines 483-489, if rate is 0, no rewards distribute - can this be exploited to freeze rewards indefinitely by setting rate to 0? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e225ddc-ea72-41dd-a83f-1893cba977b1?mode=deep",
+    "timestamp": "2026-02-18 22:26:24.918243",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Remaining Zero Check] At line 504, if remaining_reward_amount == 0, last_updated advances but no distribution occurs - can this cause time-based reward loss? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_16169aab-1e7f-4505-a738-4416319b51ee?mode=deep",
+    "timestamp": "2026-02-18 22:26:45.414357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Zero Claim] If reset_unclaimed_rewards returns 0 at line 622, does split(0) at line 638 succeed, and is this gas-efficient? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50bba89f-06e8-455f-87af-39d610f6c702?mode=deep",
+    "timestamp": "2026-02-18 22:27:06.155442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: retrieve_undistributed_reward()] [Exact Amount] At lines 682-683, operator can retrieve exact amount - is there validation this doesn't leave buffer in broken state with non-zero rate but zero amount? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af966dd3-6a8f-423b-9ca9-fc07330b2a27?mode=deep",
+    "timestamp": "2026-02-18 22:27:27.059569",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: check_version()] [Version Enforcement] At line 187, version must equal VERSION constant - but is check_version called in all critical functions, or can some be bypassed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ce5591f-3b4b-44cc-9f71-c189b155e696?mode=deep",
+    "timestamp": "2026-02-18 22:27:48.886456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: upgrade_reward_manager()] [Downgrade Prevention] At line 193, assert!(self.version < VERSION) prevents downgrades, but can VERSION constant be manipulated in package upgrades? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2140c0a3-98a0-4ebe-9f25-546b4f1019ea?mode=deep",
+    "timestamp": "2026-02-18 22:28:11.088014",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: upgrade_reward_manager()] [State Migration] At lines 190-200, version is simply incremented - is there state migration logic needed for data structure changes between versions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5faaf8b-2895-492b-be4e-fa450445bbfe?mode=deep",
+    "timestamp": "2026-02-18 22:28:32.784543",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: create_reward_manager()] [Initial Version] At line 166, version is set to VERSION constant - what happens if RewardManager is created with wrong version during package upgrade transition? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e19c7137-275b-4d2f-a19b-21992997713d?mode=deep",
+    "timestamp": "2026-02-18 22:28:56.173564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_indices()] [Index Increment] At line 578, add_index is added to current index - can extremely large reward_amount values cause index to grow unboundedly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cd1dafda-5668-4814-a4fe-c2100ac84a75?mode=deep",
+    "timestamp": "2026-02-18 22:29:19.880975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_receipt_reward()] [Index Application] At line 658, vault_receipt_mut.update_reward applies new index - is there protection against index decreases or manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d60684f2-bef5-4d2a-bda3-e5fcf6f147b0?mode=deep",
+    "timestamp": "2026-02-18 22:29:42.495639",
+    "report_generated": false
+  }
+]
