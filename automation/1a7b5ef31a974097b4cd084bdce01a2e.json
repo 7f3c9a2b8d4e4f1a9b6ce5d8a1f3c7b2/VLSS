@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: create_reserve()] [Oracle Manipulation] Can an attacker provide a malicious PriceInfoObject during reserve creation that passes the EInvalidPrice check but contains extreme price values, allowing initialization with manipulated market_value calculations that persist until first update? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e06aff3-5ae8-4f96-a179-217721d6ec85?mode=deep",
+    "timestamp": "2026-02-18 20:46:20.787179",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: is_price_fresh()] [Staleness Bypass] The PRICE_STALENESS_THRESHOLD_S constant is set to 0, meaning price staleness is never enforced. Can this allow operations using severely outdated oracle prices during network disruptions, enabling arbitrage or incorrect liquidations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aba1684b-a029-44c8-be87-1315c43294fd?mode=deep",
+    "timestamp": "2026-02-18 20:46:33.490826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: update_price()] [Price Feed Hijacking] When update_price() is called, it only checks price_identifier match but doesn't verify the PriceInfoObject authenticity. Can an attacker provide a fake PriceInfoObject with matching identifier but manipulated price data? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_618aa502-b873-44a1-b1f1-bfa466393a75?mode=deep",
+    "timestamp": "2026-02-18 20:46:47.049907",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: price_lower_bound()] [Price Manipulation] The function returns min(reserve.price, reserve.smoothed_price) without time-weighted checks. Can an attacker exploit flash price updates where reserve.price spikes briefly, then use the lower smoothed_price for favorable borrow/liquidation calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83cddab2-d345-4720-9eea-85fa176f1c9e?mode=deep",
+    "timestamp": "2026-02-18 20:47:00.591648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: price_upper_bound()] [Price Bound Asymmetry] If smoothed_price lags significantly behind current price during volatile markets, can borrowers exploit the upper bound to borrow more than safe limits, while depositors receive lower valuations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d114f74-e6b7-4126-838c-4b8292ede6b2?mode=deep",
+    "timestamp": "2026-02-18 20:47:15.645753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: market_value()] [Decimal Precision Loss] The division by decimal::from(std::u64::pow(10, reserve.mint_decimals)) could cause precision loss for tokens with high decimals. Can this be exploited through repeated small operations to drain value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8926f6f8-7cf7-41ec-8174-414f04f5b8b1?mode=deep",
+    "timestamp": "2026-02-18 20:47:31.113532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: change_price_feed()] [Price Feed Switch Attack] The change_price_feed() function allows switching price_identifier without validating price continuity. Can an attacker switch to a manipulated feed mid-operation to exploit price discrepancies? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fcc20a9e-bafa-4d82-b527-55a1bebee669?mode=deep",
+    "timestamp": "2026-02-18 20:47:47.931654",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: update_price()] [Timestamp Manipulation] The price_last_update_timestamp_s uses clock::timestamp_ms(clock) / 1000 without validating clock object. Can a malicious clock object be provided to manipulate timestamp checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_31d7a94c-b2f8-47e2-a7c8-73496254e6ca?mode=deep",
+    "timestamp": "2026-02-18 20:48:06.276589",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: compound_interest()] [Interest Front-Running] If compound_interest() is not called for extended periods (time_elapsed_s is large), the compounded_borrow_rate calculation using pow() could overflow. Can an attacker avoid triggering interest updates to cause overflow in subsequent operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_df34c82a-bd21-466d-bad8-6115bae5cec4?mode=deep",
+    "timestamp": "2026-02-18 20:48:25.145582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: compound_interest()] [Zero Time Elapsed Bypass] The function returns early if time_elapsed_s == 0. Can an attacker manipulate clock to ensure timestamp_ms matches interest_last_update_timestamp_s, bypassing interest accrual indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf4b0495-78f9-44f1-8b22-2702de96cc6e?mode=deep",
+    "timestamp": "2026-02-18 20:48:45.344811",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: compound_interest()] [Spread Fee Manipulation] The spread_fee is calculated as mul(net_new_debt, spread_fee(config(reserve))). If spread_fee config is updated mid-epoch, can this cause incorrect fee accounting where old debt uses new rates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_49827084-b2b2-4926-91b0-f23e0dfa4253?mode=deep",
+    "timestamp": "2026-02-18 20:49:06.250492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: simulated_compound_interest()] [Simulation Mismatch] The simulated version doesn't update reserve state but uses same calculations. Can discrepancies between simulated and actual compound_interest() be exploited if external code relies on simulation for decisions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_09c9c03c-6edb-4a97-8f46-f1cf639c4933?mode=deep",
+    "timestamp": "2026-02-18 20:49:28.304713",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: calculate_utilization_rate()] [Division by Zero] If both available_amount and borrowed_amount are zero (edge case during initialization), the function returns decimal::from(0). But can this zero utilization lead to incorrect APR calculations in compound_interest()? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_16f0ccd1-303e-4a84-bd2c-4266d8e1cdd7?mode=deep",
+    "timestamp": "2026-02-18 20:49:50.438622",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: compound_interest()] [Cumulative Rate Overflow] The cumulative_borrow_rate is multiplied by compounded_borrow_rate each period. Over many epochs, can this accumulator overflow Decimal bounds, causing incorrect debt tracking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_49e2c254-fcd2-409d-954c-b813405a6788?mode=deep",
+    "timestamp": "2026-02-18 20:50:13.092286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: compound_interest()] [Net Debt Underflow] When calculating net_new_debt = mul(borrowed_amount, sub(compounded_borrow_rate, decimal::from(1))), if compounded_borrow_rate < 1 due to config error, can this cause underflow and negative debt? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f87ce376-afef-48b3-a9d9-b59131303109?mode=deep",
+    "timestamp": "2026-02-18 20:50:35.524355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: ctoken_ratio()] [First Depositor Attack] When ctoken_supply == 0, ratio returns decimal::from(1). Can the first depositor donate dust amount, then have an attacker deposit large amount to manipulate the ratio for subsequent users? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_288ed7ed-6c4b-4435-8b1b-271383c8db1d?mode=deep",
+    "timestamp": "2026-02-18 20:50:58.759554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: ctoken_ratio()] [Total Supply Manipulation] The ratio uses total_supply() which includes borrowed_amount minus unclaimed_spread_fees. Can an attacker inflate borrowed_amount through repeated small borrows to manipulate ratio before depositing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_066b2408-c311-4a8f-8c07-e608eb1190be?mode=deep",
+    "timestamp": "2026-02-18 20:51:22.268388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: deposit_liquidity_and_mint_ctokens()] [CToken Inflation via Rounding] The new_ctokens calculation uses floor(div(liquidity_value, ctoken_ratio)). Can an attacker repeatedly deposit amounts that round down significantly, diluting existing ctoken holders? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b6561ac0-40d4-4777-8f14-5eb764248843?mode=deep",
+    "timestamp": "2026-02-18 20:51:44.601485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: redeem_ctokens()] [Rounding Loss Exploitation] The liquidity_amount uses floor(mul(ctoken_amount, ctoken_ratio)). Can an attacker redeem ctokens in specific amounts to consistently round in their favor, stealing dust from the protocol? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ffcb3aa-c0aa-4035-a74c-791642bc0a1f?mode=deep",
+    "timestamp": "2026-02-18 20:52:04.548791",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: deposit_liquidity_and_mint_ctokens()] [Deposit Limit Race Condition] The deposit limits are checked AFTER updating available_amount and ctoken_supply. Can an attacker race to deposit when near limit, causing the reserve to exceed limits before revert? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_031992ea-d943-429d-af0f-0860237e4185?mode=deep",
+    "timestamp": "2026-02-18 20:52:24.538512",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: total_supply()] [Unclaimed Fees Subtraction] The function subtracts unclaimed_spread_fees from supply. If unclaimed_spread_fees > available_amount + borrowed_amount due to accounting bug, can this cause underflow and corrupted total_supply? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_135579f0-d1bf-418c-9378-2ff2d469ec55?mode=deep",
+    "timestamp": "2026-02-18 20:52:45.945557",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: simulated_ctoken_ratio()] [Temporal Arbitrage] The simulated ratio uses projected interest but actual operations use current ratio. Can an attacker front-run interest updates by using simulation to predict favorable ratios, then executing deposits/redeems? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_770c2065-16a4-488e-af75-8b57d4b0bd5c?mode=deep",
+    "timestamp": "2026-02-18 20:53:08.024438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Constant: MIN_AVAILABLE_AMOUNT] [Rounding Attack Prevention] The MIN_AVAILABLE_AMOUNT is set to 100 to prevent rounding attacks. Is this sufficient for all token decimals, or can tokens with 18 decimals still be exploited with dust amounts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b74229e-d068-49ab-babe-e746cada3d55?mode=deep",
+    "timestamp": "2026-02-18 20:53:30.381637",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: redeem_ctokens()] [MIN_AVAILABLE_AMOUNT Bypass] The function asserts available_amount >= MIN_AVAILABLE_AMOUNT after redemption. Can an attacker redeem exactly to MIN_AVAILABLE_AMOUNT, then manipulate the reserve state to make it unredeemable for others? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea253196-085a-469b-b14c-42ff9379e4bb?mode=deep",
+    "timestamp": "2026-02-18 20:53:52.960008",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: borrow_liquidity()] [Double MIN Check] Both available_amount and ctoken_supply must be >= MIN_AVAILABLE_AMOUNT. Can asymmetric conditions where one is minimal but other is large create edge cases in ratio calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d38cf38f-75ce-4ab5-bef7-f83d0d7de1e5?mode=deep",
+    "timestamp": "2026-02-18 20:54:15.465506",
+    "report_generated": false
+  }
+]
