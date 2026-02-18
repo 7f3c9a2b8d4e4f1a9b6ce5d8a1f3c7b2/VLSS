@@ -1,0 +1,122 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Upgrade Path] During a module upgrade, if the new version of run() is incompatible with existing Queue objects, can this cause permanent DoS for fee type additions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c4ad1a2-b46a-4186-aac3-9af981e770b1?mode=deep",
+    "timestamp": "2026-02-18 23:12:47.340186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Constant: EXPECTED_QUEUE_VERSION] [Migration Risk] If queues need to migrate from version 1 to version 2, is there a safe migration path that doesn't allow attackers to exploit version mismatch during transition? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a868f908-2408-4f07-be6c-b933903ce32c?mode=deep",
+    "timestamp": "2026-02-18 23:12:59.825832",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Version Deprecation] If version 1 queues are deprecated but EXPECTED_QUEUE_VERSION is not updated, will legitimate queues be unable to add fee types indefinitely? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e468a378-cf25-43c6-b3b1-93851acb5b78?mode=deep",
+    "timestamp": "2026-02-18 23:13:12.984909",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [State Atomicity] If validate() reads queue state and actuate() modifies it, can another transaction modify the queue between these two operations to violate validation assumptions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6a2fd569-0269-4e65-90e5-9e2ce633ae94?mode=deep",
+    "timestamp": "2026-02-18 23:13:26.876177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [State Persistence] If queue.add_fee_type<T>() succeeds but the transaction fails before event::emit() completes, will the fee_types vector be in an inconsistent state with no event record? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c41621bb-302d-42d3-9c96-157b8162e9e1?mode=deep",
+    "timestamp": "2026-02-18 23:13:41.595704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Cross-Module Auth] If another module in the switchboard package can modify queue.authority or grant temporary authority capabilities, can this bypass the has_authority() check in validate()? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb717126-0d7e-4c6a-be00-b8432898a124?mode=deep",
+    "timestamp": "2026-02-18 23:13:57.576100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Friend Module Exploit] Can friend modules of switchboard call actuate() directly without going through validate(), bypassing version and authority checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0656774c-1072-4d85-86a3-154ef3076be7?mode=deep",
+    "timestamp": "2026-02-18 23:14:14.105770",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Missing Checks] Does validate() check if the queue object itself is valid (not null, not corrupted), or only version and authority? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_985f650f-5cf7-42a1-9ff3-926aa6a4b40b?mode=deep",
+    "timestamp": "2026-02-18 23:14:32.672512",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Null Reference] If queue parameter is somehow null or points to invalid memory, will run() panic gracefully or cause undefined behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db2705b6-6878-47d3-9e22-566832b0371c?mode=deep",
+    "timestamp": "2026-02-18 23:14:52.360052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Queue Lifecycle] Does validate() check if the queue is in an active state (not destroyed, not frozen), or can run() modify destroyed queues? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_644e2cf6-27ae-4d02-a141-44e8202ad9eb?mode=deep",
+    "timestamp": "2026-02-18 23:15:12.371872",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Event Timing] If the event is emitted after add_fee_type(), can monitoring systems miss the state change if they process events out of order with on-chain state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_921d36e9-2955-4905-af67-06975e68812b?mode=deep",
+    "timestamp": "2026-02-18 23:15:34.494653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Struct: QueueFeeTypeAdded] [Event Completeness] Does the QueueFeeTypeAdded event contain sufficient information for off-chain systems to validate the operation, or can malicious events with valid queue_id but wrong fee_type mislead systems? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b526928a-4e16-4ba9-86fd-e4846b541e53?mode=deep",
+    "timestamp": "2026-02-18 23:15:56.351659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Type Constraint] Does Move's type system enforce that T in run<T>() must be a valid coin type, or can arbitrary types be passed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9d34cb0-f441-4f42-91d6-70e80ef9d1e5?mode=deep",
+    "timestamp": "2026-02-18 23:16:16.889558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Generic Bounds] If T is unconstrained, can an attacker pass a type that causes type_name::get<Coin<T>>() to produce unexpected results or panic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9445df0a-cb9f-457c-a9a6-692da41c61cb?mode=deep",
+    "timestamp": "2026-02-18 23:16:38.667085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Unbounded Growth] Is there a maximum limit on the number of fee types that can be added to a queue, or can fee_types grow indefinitely causing storage DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9f7c8b67-b5a3-49d6-bf76-3ba3b09a0f7b?mode=deep",
+    "timestamp": "2026-02-18 23:17:01.078846",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Memory Exhaustion] Can an attacker add fee types with extremely long TypeNames (e.g., deeply nested generics) to exhaust storage and cause transaction failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c6965580-c51c-4053-b262-aa29f5c00b1f?mode=deep",
+    "timestamp": "2026-02-18 23:17:22.427083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Authority Transition] If queue authority is transferred mid-transaction, can the new authority immediately call run() or is there a settlement period that validate() should enforce? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da0d2029-30b3-4d22-84c8-7fcd8d348beb?mode=deep",
+    "timestamp": "2026-02-18 23:17:42.156886",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Authority Revocation] If authority is revoked (set to a burn address), can validate() detect this and prevent run() from executing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21dccb6a-97b9-4267-8ee8-92fd2f6c3bfd?mode=deep",
+    "timestamp": "2026-02-18 23:18:03.050769",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Shared Object] If Queue is a shared object, can multiple transactions call run() simultaneously causing race conditions in add_fee_type()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_33c9daaf-f46f-48c2-b61d-912fedef8b21?mode=deep",
+    "timestamp": "2026-02-18 23:18:24.209599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Object Locking] Does Sui's consensus properly lock the Queue object during run() execution to prevent concurrent modifications\n\n### Citations\n\n**File:** volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move (L1-47)\n```text\nmodule switchboard::queue_add_fee_coin_action;\n \nuse sui::coin::Coin;\nuse sui::event;\nuse std::type_name::{Self, TypeName};\nuse switchboard::queue::Queue;\n\nconst EXPECTED_QUEUE_VERSION: u8 = 1;\n\n#[error]\nconst EInvalidAuthority: vector<u8> = b",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_88508cea-6501-4cd1-8638-1fff5922aeba?mode=deep",
+    "timestamp": "2026-02-18 23:18:44.511057",
+    "report_generated": false
+  }
+]
