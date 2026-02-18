@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: type_y] [Type Reversal Attack] Can an attacker create a Pool<X,Y> where type_x and type_y are intentionally swapped, causing external integrations to incorrectly interpret which reserve corresponds to which token? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_364549aa-b22e-493b-b02e-ba47b3e36b57?mode=deep",
+    "timestamp": "2026-02-18 20:50:15.610121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: type_x()] [TypeName Consistency] Does type_x() always return the same TypeName that was set at initialization, or can it be manipulated to return a different type, breaking external protocol integrations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4fa4d089-0a45-4094-9e68-16bbd3f739cd?mode=deep",
+    "timestamp": "2026-02-18 20:50:28.265252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: type_y()] [Type Getter Manipulation] If type_y() can be overridden or shadowed by a malicious module, can attackers trick external protocols into interacting with the wrong pool or token type? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ffea1a8f-3616-4506-8198-726ca4efd09e?mode=deep",
+    "timestamp": "2026-02-18 20:50:41.532779",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: initialize()] [Missing Authorization Check] Does initialize() require an admin capability or pool creator capability, or can any user call initialize() on any Pool object, allowing unauthorized initialization or re-initialization? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b94b21c-28dd-46b1-b590-c03058dc9bde?mode=deep",
+    "timestamp": "2026-02-18 20:50:55.383174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Event: PoolPausedEvent] [Pause Bypass] If PoolPausedEvent is emitted but the pool state doesn't enforce the pause flag, can swaps and liquidity operations continue while the pool is supposedly paused, violating emergency shutdown procedures? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a09b17cb-e59b-484b-837c-78633c34da9c?mode=deep",
+    "timestamp": "2026-02-18 20:51:09.829946",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Event: ToggleTradingEvent] [Trading Toggle Race] If ToggleTradingEvent indicates trading is disabled but the toggle is not applied atomically, can attackers front-run the toggle to execute swaps that should be blocked? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c83550f7-8b8a-4c96-b674-c34b5b25dfee?mode=deep",
+    "timestamp": "2026-02-18 20:51:25.387432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: transfer()] [Unauthorized Pool Transfer] Does transfer() check that the caller has appropriate authority before sharing/transferring the Pool object, or can any address call transfer() to take control of pool administration? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_39975418-befa-4898-90b9-5260aaeb00cb?mode=deep",
+    "timestamp": "2026-02-18 20:51:42.352927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: flash_loan_fee_rate] [Flash Loan Reentrancy] If flash loan callbacks don't include reentrancy guards, can an attacker take a flash loan, recursively call the flash loan function again in the callback, and compound borrows to extract more than available reserves? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c5e105c-d034-4476-9495-1829e830517b?mode=deep",
+    "timestamp": "2026-02-18 20:52:00.936597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: reserve_x] [Flash Loan Reserve Depletion] If flash loans withdraw from reserve_x without checking that reserve_x.value() >= borrowed_amount + fee, can the pool become insolvent if the borrower doesn't repay? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b8c7b53-c541-4123-a1ca-b57afc464efa?mode=deep",
+    "timestamp": "2026-02-18 20:52:20.443642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: protocol_flash_loan_fee_share] [Flash Loan Fee Theft] Can an attacker manipulate protocol_flash_loan_fee_share to redirect flash loan fees to themselves instead of the protocol, extracting protocol revenue? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f960e3d-b5ed-4354-9ef8-23a22af8cc0a?mode=deep",
+    "timestamp": "2026-02-18 20:52:41.491454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: reserve_y] [Flash Loan Cross-Reserve Attack] If a flash loan borrows reserve_x but repayment is validated against reserve_y balance, can an attacker repay with the wrong token and still pass the repayment check? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4227a230-44e9-4231-a784-42140b8fb34d?mode=deep",
+    "timestamp": "2026-02-18 20:53:03.528772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: liquidity] [Global Liquidity Bypass] When minting positions, if position liquidity is added to ticks but not properly aggregated into pool.liquidity, can the global liquidity diverge from sum of active position liquidities, breaking swap calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_121dca41-dc65-4cee-b12c-033d02a048d2?mode=deep",
+    "timestamp": "2026-02-18 20:53:26.229685",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: liquidity] [Liquidity Sandwich Attack] Can an attacker observe a pending large liquidity addition, front-run with a swap to move the price, mint their position after the liquidity is added at favorable terms, then back-run to restore the price and extract value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da7b0358-efbe-4560-b6be-938210240dbd?mode=deep",
+    "timestamp": "2026-02-18 20:53:47.874137",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: max_liquidity_per_tick()] [Liquidity Cap Query Manipulation] If max_liquidity_per_tick() returns a cached or outdated value, can position minting logic make incorrect decisions about whether to allow a new position, bypassing liquidity caps? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9684ddc0-d23d-497b-bc8f-aa61a70ca420?mode=deep",
+    "timestamp": "2026-02-18 20:54:10.299667",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: liquidity()] [Liquidity Getter Inconsistency] Does liquidity() return the actual current pool.liquidity after accounting for cross-tick updates, or can it return a stale value during multi-tick swaps, causing incorrect slippage calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_251d3d55-06d5-4413-98c9-eb318364c996?mode=deep",
+    "timestamp": "2026-02-18 20:54:32.716626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: sqrt_price()] [Price Snapshot Attack] If sqrt_price() can be read during a swap before sqrt_price is updated, can an attacker use the stale price to calculate favorable swap amounts in a separate transaction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ec19233-86b7-4c9d-a2e0-946949046014?mode=deep",
+    "timestamp": "2026-02-18 20:54:55.889168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: tick_index_current()] [Tick Index Inconsistency] Does tick_index_current() always match the tick_index derived from current sqrt_price, or can they diverge, causing position crossing logic to malfunction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_95f831da-5b7f-4778-90c6-958956df7972?mode=deep",
+    "timestamp": "2026-02-18 20:55:15.848061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: tick_spacing()] [Spacing Immutability Violation] If tick_spacing() returns a value that differs from pool.tick_spacing due to external manipulation, can this cause position validation to accept invalid tick ranges? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4bb87f61-15c5-487b-b76d-14e95d171a28?mode=deep",
+    "timestamp": "2026-02-18 20:55:36.453610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: get_friendly_ticks()] [Sqrt Price to Tick Conversion Error] If get_friendly_ticks() uses a different sqrt_price to tick conversion formula than the swap logic, can positions be created at ticks that are never actually crossed by swaps, resulting in unused liquidity? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bcbdc189-7f66-407e-9e34-c44e782c92f1?mode=deep",
+    "timestamp": "2026-02-18 20:55:56.317959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: sqrt_price] [Price Impact Bypass] If swaps don't check that the price impact (final_sqrt_price - initial_sqrt_price) is within acceptable bounds, can an attacker perform a swap that moves the price by more than the intended slippage tolerance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f379dbab-963f-41b0-90d6-04d429375a43?mode=deep",
+    "timestamp": "2026-02-18 20:56:17.788515",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: reserve_x] [Swap Reserve Underflow] During a swap that outputs token X, if reserve_x is decremented before validating that reserve_x >= amount_out, can the reserve underflow and allow the attacker to extract more tokens than available? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4613193b-3f39-4a0c-911f-0a6d3eca165d?mode=deep",
+    "timestamp": "2026-02-18 20:56:39.732871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: fee_growth_global_x] [Swap Fee Distribution Timing] If fee_growth_global_x is updated after reserves are modified but before liquidity is updated, can there be a window where fees are distributed to incorrect liquidity amounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e45e312-6622-4cf3-b555-5ad5356300b2?mode=deep",
+    "timestamp": "2026-02-18 20:57:02.424410",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Struct Field: swap_fee_rate] [Zero Fee Swap] If swap_fee_rate can be set to zero by the pool creator, can this be used to attract volume at the expense of LPs, effectively allowing the creator to extract value by routing their own trades through the pool? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ddffb8fe-4a10-4ae1-b44c-222324e12f07?mode=deep",
+    "timestamp": "2026-02-18 20:57:25.037617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: protocol_fee_x()] [Fee Collection Without Validation] If protocol fees are collected by withdrawing protocol_fee_x amount from reserve_x without checking reserve_x.value() >= protocol_fee_x, can this cause reserve underflow? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be76c415-1588-402e-9794-6b325fc0d83e?mode=deep",
+    "timestamp": "2026-02-18 20:57:47.568824",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: protocol_fee_y()] [Concurrent Fee Collection] If protocol_fee_y is collected simultaneously from multiple transactions, can race conditions cause more fees to be withdrawn than accumulated, depleting reserves? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_080e62f9-860e-4d0a-96fb-9d61d02eff2d?mode=deep",
+    "timestamp": "2026-02-18 20:58:09.657093",
+    "report_generated": false
+  }
+]
