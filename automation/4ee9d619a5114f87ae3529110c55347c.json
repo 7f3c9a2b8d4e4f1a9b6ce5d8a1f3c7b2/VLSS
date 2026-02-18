@@ -1,0 +1,98 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: actuate()] [Weak Key Attack] Can secp256k1_key at line 55 be set to known weak keys (e.g., low-order points, identity point), and without cryptographic validation, could this allow trivial signature forgery? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_577eecc6-2a12-450c-b6d7-bd8925893409?mode=deep",
+    "timestamp": "2026-02-18 23:26:42.638204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: run()] [Key Curve Validation] Does run() at line 77 validate that secp256k1_key is a valid point on the secp256k1 curve, or can invalid curve points be accepted causing signature verification to fail or behave unexpectedly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_15b0847c-0ea7-4604-901f-c247224b5702?mode=deep",
+    "timestamp": "2026-02-18 23:26:55.527855",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: actuate()] [Enclave Measurement Trust] Does mr_enclave at line 56 need to be on an allowlist of trusted measurements, or can any enclave measurement be accepted, allowing malicious enclave code to provide oracle data? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4c4591ae-68c5-4721-a51d-f66bc38d847b?mode=deep",
+    "timestamp": "2026-02-18 23:27:09.561921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: run()] [Public Key Compression] If secp256k1_key at line 77 can be either compressed (33 bytes) or uncompressed (65 bytes), does downstream signature verification handle both formats, or could format mismatch cause verification failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7587512-f534-440d-959d-42000a62856d?mode=deep",
+    "timestamp": "2026-02-18 23:27:23.698267",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Queue-Oracle Binding] After validate() confirms oracle.queue() == queue.id() at line 41, can oracle.queue field be modified before actuate() executes, breaking the queue-oracle binding invariant? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_952d839c-d608-4382-9a9a-2e6ad677f809?mode=deep",
+    "timestamp": "2026-02-18 23:27:38.751933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: actuate()] [Key-Enclave Consistency] Is there any validation that secp256k1_key and mr_enclave at lines 55-56 match (i.e., key was generated within that specific enclave), or can mismatched key-enclave pairs be accepted? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_35b9b0dd-aaae-4515-bcff-66adaf9a6964?mode=deep",
+    "timestamp": "2026-02-18 23:27:55.768395",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Queue Key Consistency] Does validate() at line 40 ensure queue_key is cryptographically bound to queue identity, or can queue_key be arbitrary values enabling queue impersonation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c60cc91a-3f38-42d8-a9e9-51a4e421befa?mode=deep",
+    "timestamp": "2026-02-18 23:28:12.948073",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: actuate()] [Oracle Validity Invariant] After oracle.enable_oracle() at line 54, does oracle become immediately usable or does it need additional activation steps, and could race conditions allow use of partially-configured oracles? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e9254f6-717d-4128-9d54-dbe878bf6e8f?mode=deep",
+    "timestamp": "2026-02-18 23:28:31.239831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: actuate()] [Timestamp Precision] Does clock.timestamp_ms() at line 60 have sufficient precision to prevent timestamp collisions when multiple overrides occur in same block, potentially overwriting each other's timestamps? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8283ab1b-c9b9-488e-a3f2-3c294844ab82?mode=deep",
+    "timestamp": "2026-02-18 23:28:51.103043",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: run()] [Expiration Race] Can an attacker time run() call so expiration_time_ms at line 79 expires immediately after enable_oracle(), creating oracle that's technically valid but practically unusable? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f96738fe-ed3f-4b16-843e-b5feda63a04a?mode=deep",
+    "timestamp": "2026-02-18 23:29:11.810350",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: actuate()] [Clock Drift] If multiple Sui validators have clock drift, can clock.timestamp_ms() at line 60 vary across validators, causing queue.last_queue_override_ms to have different values in different validator executions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_00388549-bca4-49f1-85c6-0a78c26d57ff?mode=deep",
+    "timestamp": "2026-02-18 23:29:33.559824",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [No Oracle Owner Check] Does validate() check if oracle has an owner/authority field separate from queue authority, and if not, can queue authority override oracles they shouldn't control? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18f32eaf-af45-48eb-857b-1a7cd66e2354?mode=deep",
+    "timestamp": "2026-02-18 23:29:54.894916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: run()] [No Capability Required] Since run() at line 74 only checks queue authority via has_authority(), could more fine-grained capabilities (e.g., OracleOverrideCap) prevent authority address compromise from being catastrophic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1282d4b5-29f3-4c40-8258-7443818fbb78?mode=deep",
+    "timestamp": "2026-02-18 23:30:16.681002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Guardian Queue Bypass] Does validate() check if queue is a guardian queue versus regular queue at lines 32-44, and can guardian queue authority override regular queue oracles or vice versa? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_145dcbe0-dcc4-4f86-ade7-42ba1adde862?mode=deep",
+    "timestamp": "2026-02-18 23:30:39.031297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Version Migration] When upgrading from version 1 to version 2, will all existing queues/oracles need to be migrated before queue_override_oracle_action works again given hardcoded version checks at lines 38-39? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46e7d14c-89ea-474c-af75-51f3882cfcc4?mode=deep",
+    "timestamp": "2026-02-18 23:31:01.032615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: run()] [Module Upgrade Safety] If queue_override_oracle_action module is upgraded, can new version introduce breaking changes to validate() or actuate() logic that affect existing oracles? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0693ddab-14da-419b-914c-2e7cbcc940ef?mode=deep",
+    "timestamp": "2026-02-18 23:31:23.155028",
+    "report_generated": false
+  }
+]
