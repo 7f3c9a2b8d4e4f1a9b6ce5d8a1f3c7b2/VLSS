@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: add_to_epoch()] [Table Contains] Can table::contains check at line 102 race with concurrent insertions, causing duplicate key errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e506db34-65cf-49d4-9506-361a14d62489?mode=deep",
+    "timestamp": "2026-02-18 22:23:33.909099",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: add_to_epoch()] [Borrow Mut] Can table::borrow_mut at line 103 panic if key is removed between contains check and borrow? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a2b0ceda-d129-43d5-9bdc-a56194e572f3?mode=deep",
+    "timestamp": "2026-02-18 22:23:46.899913",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: get_max_supply_for_2epochs()] [Table Borrow] Does table::borrow at lines 86, 90 panic if keys don't exist despite contains check? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ed74842-f18f-483a-8a39-ba1d373f5f63?mode=deep",
+    "timestamp": "2026-02-18 22:24:00.082295",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: add_to_epoch()] [Table Add] Can table::add at line 106 panic if key already exists due to race condition? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_72af9ffb-a660-47b0-9b38-ed8221f0fcb2?mode=deep",
+    "timestamp": "2026-02-18 22:24:13.911259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: get_max_supply_for_2epochs()] [Epoch Zero] Does line 89 checking current_epoch > 0 properly prevent underflow when accessing current_epoch - 1? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_053bda59-ae26-4113-8b09-b395dce6d29b?mode=deep",
+    "timestamp": "2026-02-18 22:24:28.811208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Object Creation] Can object::new at line 117 fail or return duplicate IDs, causing ticket ID collisions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_176b3d50-fdd1-4900-911c-e7fbd4bb3edd?mode=deep",
+    "timestamp": "2026-02-18 22:24:44.663311",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Object Deletion] Does object::delete at line 154 properly clean up all ticket resources, or can UIDs leak storage? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_afb9d697-a4c1-4cd8-b778-e9cc5fb03f77?mode=deep",
+    "timestamp": "2026-02-18 22:25:02.930861",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Struct Destructuring] Can destructuring UnstakeTicket at lines 138-143 fail if struct layout changes, breaking unwrap logic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee026873-08b0-4cb8-bbf8-0e3839235b3d?mode=deep",
+    "timestamp": "2026-02-18 22:25:22.792252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [UID Conversion] Can object::uid_to_inner at line 123 be exploited to forge ticket IDs in events? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0fd1fce8-6098-4b51-ad99-f85eaec7903f?mode=deep",
+    "timestamp": "2026-02-18 22:25:42.227396",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket_for_testing()] [Test Exposure] Is wrap_unstake_ticket_for_testing at line 132-134 properly gated with #[test_only], or can it be called in production? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e65bc18e-5357-4acf-9b29-d7aa1681a899?mode=deep",
+    "timestamp": "2026-02-18 22:26:03.323766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket_for_testing()] [Test Bypass] Can unwrap_unstake_ticket_for_testing at line 159-161 bypass unlock_epoch validation in test environments? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_485fddee-432c-46ec-8076-d3bb4cda7db4?mode=deep",
+    "timestamp": "2026-02-18 22:26:22.399260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: transfer_for_testing()] [Test Transfer] Does transfer_for_testing at line 168-170 provide backdoor transfer capabilities in test builds? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_84bbe5fa-55c9-4a93-b9b1-73e4f50b3842?mode=deep",
+    "timestamp": "2026-02-18 22:26:41.036606",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: test_create()] [Test Metadata] Can test_create at line 173-175 create unauthorized Metadata objects in testing, affecting test integrity? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_750cdada-25a5-47e2-bceb-c2136058d6cc?mode=deep",
+    "timestamp": "2026-02-18 22:27:00.313393",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Reentrancy] Can wrap_unstake_ticket be called recursively or reentrantly during its execution at lines 111-129, causing double-counting in total_supply? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74411590-9dd2-492f-8449-1d8e5c87c27e?mode=deep",
+    "timestamp": "2026-02-18 22:27:21.072886",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Race Condition] Can two unwrap_unstake_ticket calls on same ticket race, causing double-spend if ticket is cloned or duplicated? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_de59ff01-2ffd-4bdf-b266-64e90678d901?mode=deep",
+    "timestamp": "2026-02-18 22:27:41.654211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: add_to_epoch()] [Concurrent Updates] If multiple threads call add_to_epoch for same epoch, can table updates at lines 103-104 be lost? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab10ee3d-a229-403c-9b45-6e4277a48ba2?mode=deep",
+    "timestamp": "2026-02-18 22:28:01.631049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Atomic Operations] Are operations at lines 112 (add_to_epoch) and 114 (total_supply++) atomic, or can they be interrupted? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f93aa82-ce43-4740-8979-c2281337d8e5?mode=deep",
+    "timestamp": "2026-02-18 22:28:21.509766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Atomic Burn] Is total_supply decrement at line 145 atomic with ticket destruction at line 154? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e6f5e971-9286-440c-af83-fd92efbe21c7?mode=deep",
+    "timestamp": "2026-02-18 22:28:41.934235",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Fee Attack] Can attacker create tickets with value=1, unstake_fee=u64::MAX to drain fees during bulk ticket processing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4d55d512-7307-469f-9fe0-28513e03efbf?mode=deep",
+    "timestamp": "2026-02-18 22:29:00.802163",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Value Extraction] If unstake_fee > value, does unwrap return negative net value, causing protocol to lose funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_278dceff-6316-427b-9ba6-f5a5873ed66b?mode=deep",
+    "timestamp": "2026-02-18 22:29:20.920797",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Supply Manipulation] Can attacker mint millions of small-value tickets to inflate total_supply and manipulate supply-based calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_06eee1c0-f272-4283-b78e-b0cc64f014ea?mode=deep",
+    "timestamp": "2026-02-18 22:29:41.919198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: get_max_supply_for_2epochs()] [Limit Bypass] Can attacker time ticket minting across epoch boundaries to bypass max_supply_for_2epochs restrictions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c30c29ae-13ae-4c5a-bfc0-35b347c2cfda?mode=deep",
+    "timestamp": "2026-02-18 22:30:03.047324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Resource Exhaustion] Can attacker create millions of dust-value tickets to exhaust storage in max_history_value table? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5dd8fb6e-ce5e-4b0c-8360-0cd7f1818c67?mode=deep",
+    "timestamp": "2026-02-18 22:30:23.242580",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Caller Trust] Does wrap_unstake_ticket at line 111 trust calling module to validate parameters, enabling parameter injection attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e301c66a-528b-4e5c-83f6-676f4bde9bd1?mode=deep",
+    "timestamp": "2026-02-18 22:30:42.771464",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Module Responsibility] Which module should validate unlock_epoch before calling unwrap_unstake_ticket? Can this responsibility gap be exploited? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f12872b2-991e-4995-ae21-0cc9c83030f1?mode=deep",
+    "timestamp": "2026-02-18 22:31:02.232175",
+    "report_generated": false
+  }
+]
