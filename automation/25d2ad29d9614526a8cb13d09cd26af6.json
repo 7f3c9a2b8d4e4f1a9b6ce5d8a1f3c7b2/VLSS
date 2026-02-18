@@ -1,0 +1,128 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Guardian Self-Attestation] Can a guardian oracle attest for itself by passing the same object as both oracle and guardian parameters at lines 44, 46, creating circular attestations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9c9b809d-d13a-497e-a073-6743fbeea1aa?mode=deep",
+    "timestamp": "2026-02-18 21:14:46.902743",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Enable Oracle Idempotency] If enable_oracle at line 123 is not idempotent and run() is called multiple times after threshold is reached, can repeated enablement corrupt oracle state or expiration times? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cff80281-093e-4036-a583-e88bb70e9d28?mode=deep",
+    "timestamp": "2026-02-18 21:15:00.327605",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: run()] [Parameter Ordering] The parameter order in run() at lines 136-143 must match validate() and actuate() - can parameter confusion lead to passing wrong objects to validation or actuation functions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_80b1efb3-bd52-497f-a4da-1d7e9fcc14fc?mode=deep",
+    "timestamp": "2026-02-18 21:15:14.112381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate() vs actuate()] [State Assumption] Validate at line 43 takes &mut Oracle but actuate at line 95 also takes &mut Oracle - can validate modify state that actuate depends on, creating inconsistent execution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_77f91bd9-6893-4b27-bcdc-51e5e594b4e1?mode=deep",
+    "timestamp": "2026-02-18 21:15:27.927052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Missing Actuation Checks] Validate only checks signature and timeouts but doesn't verify oracle state - can oracles in invalid states (e.g., already enabled) pass validation and cause issues in actuate? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a30f3e6f-2ad7-4a1b-b711-c87a79bc6dd2?mode=deep",
+    "timestamp": "2026-02-18 21:15:42.463901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Constants: ATTESTATION_VALIDITY_MS] [Time Window] The 10-minute validity window (line 41: 1000 * 60 * 60 * 10) seems incorrect (36000000ms = 10 hours, not 10 minutes) - can this extended window allow replay attacks or stale attestations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e105f3d3-17a2-4a93-815c-88cb8cd5acd2?mode=deep",
+    "timestamp": "2026-02-18 21:16:00.023688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Constants: EXPECTED_ORACLE_VERSION] [Version Lock] EXPECTED_ORACLE_VERSION = 1 at line 10 - can this prevent legitimate protocol upgrades, or allow version 1 oracles with known vulnerabilities to continue operating? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7632c6b2-0fd5-4deb-8e26-756f353da652?mode=deep",
+    "timestamp": "2026-02-18 21:16:16.784648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Constants: EXPECTED_QUEUE_VERSION] [Version Lock] EXPECTED_QUEUE_VERSION = 1 at line 11 - if queue protocol is upgraded to version 2, will all attestations fail until this constant is updated? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4c67862c-bebd-4552-9d9f-ca5598b4a530?mode=deep",
+    "timestamp": "2026-02-18 21:16:35.854787",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Error Codes] [Assertion Failures] All validations use assertions (lines 55, 58, 61, 64, 67, 70, 73, 92) that abort transactions - can assertion failures leak sensitive information about oracle state or configuration? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_92f3b170-b4b2-4874-88a0-5422b0d29684?mode=deep",
+    "timestamp": "2026-02-18 21:16:56.252259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Error: EGuardianInvalid] [Misleading Error] Line 67 uses EGuardianInvalid but checks oracle expiration, not guardian - can this error message confusion lead to incorrect debugging or security assumptions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_40ab56c9-c12b-47df-950f-c1153f71254c?mode=deep",
+    "timestamp": "2026-02-18 21:17:18.241979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Error Handling] [No Partial Success] If validation passes but actuate fails, the entire transaction aborts - can this create scenarios where valid attestations are lost due to temporary actuation issues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aacb9047-7ff3-4794-ac0a-c8b6bff11a14?mode=deep",
+    "timestamp": "2026-02-18 21:17:38.252910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Timestamp Units Confusion] The parameter is timestamp_seconds at line 47 but it's multiplied by 1000 at line 73 to convert to milliseconds - can caller confusion about units lead to timestamps being off by 1000x? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cba7b6a3-82a2-49a0-aa82-1ef0c5627e9d?mode=deep",
+    "timestamp": "2026-02-18 21:18:00.000792",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Timestamp Precision Loss] Converting timestamp_seconds to milliseconds at line 107 assumes second-level precision - can sub-second timestamp variations cause attestation collisions or ordering issues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_315fc819-46df-49e6-81ba-4e3d8b033c12?mode=deep",
+    "timestamp": "2026-02-18 21:18:22.481771",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Clock Drift] The comparison at line 73 relies on clock.timestamp_ms() being accurate - can clock drift or manipulation across validators create inconsistent attestation acceptance? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_24f6da10-050a-464e-bc95-dd5b643870a3?mode=deep",
+    "timestamp": "2026-02-18 21:18:46.725760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Signature Recovery ID] The hardcoded recovery_id=1 at line 88 may not be correct for all signatures - can valid signatures with recovery_id 0, 2, or 3 be incorrectly rejected? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_92289c7c-296e-4288-817f-b68416ef4db4?mode=deep",
+    "timestamp": "2026-02-18 21:19:11.072407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Compressed Pubkey Format] Line 88 returns compressed pubkey which is then decompressed at line 89 - can this two-step process introduce vulnerabilities if intermediate format is manipulated? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0eead05-c2d1-4112-b3aa-bed5437b2186?mode=deep",
+    "timestamp": "2026-02-18 21:19:34.633038",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Pubkey Offset] The check_subvec at line 92 starts comparison at offset 1 - is this intentionally skipping the first byte of the pubkey, and can this be exploited? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_602a39fd-97fa-4c46-8017-15998d8d2eb9?mode=deep",
+    "timestamp": "2026-02-18 21:19:56.907379",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Guardian Queue ID] Line 64 checks guardian.queue() against queue.guardian_queue_id() - can a malicious queue object with incorrect guardian_queue_id pass validation by matching compromised guardian configuration? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f739680f-0744-4398-a4bc-ae886277fccf?mode=deep",
+    "timestamp": "2026-02-18 21:20:21.923211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Min Attestations Manipulation] The queue.min_attestations() value at line 121 is read without validation - can a malicious or misconfigured queue have min_attestations set to 1, allowing single-guardian oracle enablement? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f0fb1db-43d6-4090-b1ae-feec0832ee1f?mode=deep",
+    "timestamp": "2026-02-18 21:20:47.430717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Oracle Validity Configuration] The queue.oracle_validity_length_ms() at line 122 determines oracle lifetime - can excessively long validity periods allow stale or compromised oracles to remain active indefinitely? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6a017cdf-fb82-4bb9-b5af-d8cd903598c7?mode=deep",
+    "timestamp": "2026-02-18 21:21:11.749819",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Oracle Key Extraction] Lines 76-77 extract keys from oracle object without validation - can\n\n### Citations\n\n**File:** volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move (L1-164)\n```text\nmodule switchboard::oracle_attest_action;\n \nuse sui::clock::Clock;\nuse sui::ecdsa_k1;\nuse sui::event;\nuse switchboard::hash;\nuse switchboard::queue::Queue;\nuse switchboard::oracle::{Self, Oracle};\n\nconst EXPECTED_ORACLE_VERSION: u8 = 1;\nconst EXPECTED_QUEUE_VERSION: u8 = 1;\n\n#[error]\nconst EInvalidGuardianQueue: vector<u8> = b",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d55dcaa7-bd7c-4d67-bd8d-d78db6e5dcdc?mode=deep",
+    "timestamp": "2026-02-18 21:21:33.963113",
+    "report_generated": false
+  }
+]
