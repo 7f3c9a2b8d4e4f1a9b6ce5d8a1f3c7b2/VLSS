@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: get_amount_out()] [Fee Order] At lines 618-626, fees are deducted before conversion. But does this match the actual stake/unstake flow where fees are deducted after conversion, causing get_amount_out() to return misleading previews? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7aae4231-f5c8-42c8-8a8b-afed4b00c27e?mode=deep",
+    "timestamp": "2026-02-18 21:22:12.154754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: sui_amount_to_lst_amount()] [u128 Downcasting] At line 644, (u128 result) is cast to u64. Can large stake amounts cause the u128 result to exceed u64::MAX, silently truncating and returning incorrect LST amount? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d5b79823-e41f-4657-8fa9-c76013177e5f?mode=deep",
+    "timestamp": "2026-02-18 21:22:24.872499",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: lst_amount_to_sui_amount()] [u128 Downcasting] At line 661, (u128 result) is cast to u64. Can large unstake amounts cause truncation, allowing attackers to unstake LST for less SUI than entitled, effectively stealing from the pool? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b09c762-a0cf-45a5-bd47-d47635b36c62?mode=deep",
+    "timestamp": "2026-02-18 21:22:37.862922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: sui_amount_to_lst_amount()] [Precision Loss] The division at line 642 (total_lst_supply * sui_amount / total_sui_supply) loses precision when sui_amount is small. Can attackers exploit this to stake dust amounts repeatedly, accumulating rounding errors in their favor? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_536361bc-643d-4e20-bcd3-7357585146c0?mode=deep",
+    "timestamp": "2026-02-18 21:22:52.433963",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: lst_amount_to_sui_amount()] [Precision Loss] The division at line 658 (total_sui_supply * lst_amount / total_lst_supply) loses precision. Can attackers unstake dust amounts repeatedly, extracting more SUI than entitled through accumulated rounding errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1094f4a-54f7-44c6-889b-d7bfe803c5ae?mode=deep",
+    "timestamp": "2026-02-18 21:23:06.885896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: get_amount_out()] [Boolean Logic] At line 619, sui2lst flag determines conversion direction. Can incorrect boolean usage by integrations cause them to call with sui2lst=true when unstaking, applying wrong fee and returning incorrect amounts? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a081355-6e30-46a8-aebc-db045dfefad6?mode=deep",
+    "timestamp": "2026-02-18 21:23:22.613868",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: deposit_boosted_balance()] [Operator Authority] Can OperatorCap deposit boosted_balance without AdminCap approval, allowing malicious operators to artificially inflate rewards and manipulate LST ratio to extract value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a0f876ad-3908-410b-b7d2-a22254acfcce?mode=deep",
+    "timestamp": "2026-02-18 21:23:39.177077",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: deposit_boosted_balance()] [Balance Tracking] At line 482, coin.split(amount) is joined to boosted_balance. If amount > coin.value(), does split() panic, or can this be used to DoS the deposit_boosted_balance() function? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_045f31b0-62c1-432c-867d-be5607274830?mode=deep",
+    "timestamp": "2026-02-18 21:23:58.047300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: deposit_boosted_balance()] [Event Emission] At lines 483-486, DepositBoostedBalanceEvent is emitted. Can attackers monitor these events to front-run refresh() calls, staking right before boosted rewards are distributed to maximize their share? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fc8a1284-1a3a-473a-aa8a-2ff080abc38f?mode=deep",
+    "timestamp": "2026-02-18 21:24:17.189615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: update_boosted_reward_amount()] [Consistency Check] At line 448, boosted_reward_amount is updated without checking if boosted_balance is sufficient. Can this cause refresh() at line 531 to attempt distributing more rewards than available, causing panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6cb88700-0af1-46b7-b5fc-c9370467fe03?mode=deep",
+    "timestamp": "2026-02-18 21:24:38.614722",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: refresh()] [Boosted Reward Cap] At line 531, boosted_reward_amount is min-capped. If set_reward_amount is reduced after boosted_balance is deposited, can the unused boosted_balance remain locked, never distributed to LST holders? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_092efac4-1cfd-4251-b05c-237b3a9875ba?mode=deep",
+    "timestamp": "2026-02-18 21:25:00.620113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: deposit_boosted_balance()] [Version Check] At line 480, check_version() is called. If version is migrated after boosted_balance is deposited but before refresh(), can the boosted funds become inaccessible due to version incompatibility? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e4dad52-57b0-4545-b404-670613de3e16?mode=deep",
+    "timestamp": "2026-02-18 21:25:23.467211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: set_validator_weights()] [Weight Manipulation] Can OperatorCap set validator_weights to assign 100% weight to a validator controlled by the operator, enabling censorship of user unstake requests or extraction of MEV? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eabad6ac-b8cc-460d-a6c4-53de131156ab?mode=deep",
+    "timestamp": "2026-02-18 21:25:45.888286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: set_validator_weights()] [Refresh Dependency] At line 461, refresh() is called before set_validator_weights(). If refresh() distributes rewards based on old weights, then weights are updated, can this cause unfair reward distribution to validators? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_abd69e78-2856-4d03-8801-5265c3d2317f?mode=deep",
+    "timestamp": "2026-02-18 21:26:08.038938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: set_validator_weights()] [Weight Validation] Does validator_pool.set_validator_weights() at line 462 validate that weights sum to a consistent total, or can OperatorCap set weights summing to 0 or exceeding expected maximum, breaking stake distribution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd6256c9-79e8-4047-ac82-e9bfec1137f5?mode=deep",
+    "timestamp": "2026-02-18 21:26:30.081877",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: set_validator_weights()] [Empty Weights] Can OperatorCap pass an empty VecMap for validator_weights, causing validator_pool to have no active validators and breaking all future stake/unstake operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ab17bad-4501-4147-b997-9f967731da03?mode=deep",
+    "timestamp": "2026-02-18 21:26:51.044624",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: set_validator_weights()] [Validator Address Validation] Are validator addresses in validator_weights validated against system_state active validator set, or can OperatorCap assign weights to non-existent validators? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4c2462c8-a471-4bc6-90a7-2cdb695898c9?mode=deep",
+    "timestamp": "2026-02-18 21:27:12.624600",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: set_validator_weights()] [Concurrent Updates] If multiple OperatorCap holders call set_validator_weights() concurrently, can the last write win without validation, causing unexpected weight distributions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9dc10dfc-74a0-402c-9d94-f2f3c42aa564?mode=deep",
+    "timestamp": "2026-02-18 21:27:32.502826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: create_stake_pool()] [Operator Cap Distribution] At lines 144-145, two OperatorCaps are minted and transferred to ctx.sender(). Can the initial sender be a malicious actor, gaining operator privileges from genesis? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e975d463-0f03-4771-ad7d-fd3ba10b126c?mode=deep",
+    "timestamp": "2026-02-18 21:27:51.484017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: init()] [Package Claim] At line 130, package::claim_and_keep() is called. Can an attacker front-run initialization to claim the package capability and prevent legitimate deployment? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_317fe46f-e3e6-49a8-918d-5837686e74b2?mode=deep",
+    "timestamp": "2026-02-18 21:28:11.074456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: create_lst_with_validator_pool()] [Validator Pool Initialization] At line 150, validator_pool is passed as parameter. Can an attacker pass a malicious ValidatorPool instance with pre-compromised state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a0f8122b-806a-4e8c-8a02-728f585ce0e9?mode=deep",
+    "timestamp": "2026-02-18 21:28:32.530929",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: join_to_sui_pool()] [Package Visibility] At line 552, join_to_sui_pool() is marked public(package). Can other modules in liquid_staking package call this to inject SUI without proper accounting, inflating the pool? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a4837b9e-e951-4f94-b154-82d14065966b?mode=deep",
+    "timestamp": "2026-02-18 21:28:53.609583",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Struct: StakePool] [Extra Fields Bag] At line 52, extra_fields is a Bag. Can untrusted modules insert malicious data into this bag, causing future version upgrades to fail or introducing state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87cd27fc-ac0e-40b3-8b0f-81d06ad41911?mode=deep",
+    "timestamp": "2026-02-18 21:29:15.045194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Struct: StakePool] [Storage Layout] If StakePool struct fields are reordered in a future version, can existing shared objects become incompatible, causing all operations to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b806c57-9ad7-4cda-a3ef-4427e57424c1?mode=deep",
+    "timestamp": "2026-02-18 21:29:37.085492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: stake()] [Fee Calculation] At line 239, calculate_stake_fee() is called. Can fee_config return a fee exceeding sui_balance.value(), causing balance.split() at line 240 to panic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d42582dd-5499-48c1-bba4-6b0ddf61a69b?mode=deep",
+    "timestamp": "2026-02-18 21:29:58.472366",
+    "report_generated": false
+  }
+]
