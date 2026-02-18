@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: repay_on_behalf_of_user()] [Excess Return] Line 569 calls base_repay which returns excess balance at line 579 - if excess > 0, who receives it: sender or user? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74363557-c845-4d8f-97ee-6cf2b277f65b?mode=deep",
+    "timestamp": "2026-02-18 20:51:37.326797",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: repay_on_behalf_of_user()] [Event Amount Calculation] Line 576 emits value - balance_value, but if balance_value > value due to logic error, this underflows - are event emissions unchecked? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f12b8a7a-6638-4706-ac49-fe7d7aa22d29?mode=deep",
+    "timestamp": "2026-02-18 20:51:50.542334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_withdraw()] [Oracle Price Staleness] Line 218 passes oracle to execute_withdraw, but no timestamp check in this function - can attacker withdraw when oracle price is stale, bypassing collateral ratio checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_69bc0393-c21e-4ceb-a562-c9d45b1eaa61?mode=deep",
+    "timestamp": "2026-02-18 20:52:04.919831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_borrow()] [Borrow Oracle Timing] Line 268 passes oracle to execute_borrow - if oracle price is outdated, can attacker borrow more than collateral allows by exploiting stale prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4d112b66-3b8d-41f8-8f52-f62d9ee731d0?mode=deep",
+    "timestamp": "2026-02-18 20:52:19.105196",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_repay()] [Repay Oracle Check] Line 312 passes oracle but repay shouldn't need oracle for debt calculation - is oracle used to verify collateral unlock, and can stale price prevent valid repayment? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_533107fb-e9d4-43b2-a291-9dc86e38e6ed?mode=deep",
+    "timestamp": "2026-02-18 20:52:34.014319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Liquidation Oracle Manipulation] Lines 453-457 fetch oracle prices after liquidation execution - can attacker manipulate oracle price between liquidation and price fetch to extract more collateral than justified? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c3ebccb0-1885-4141-9040-a899cb8ba8aa?mode=deep",
+    "timestamp": "2026-02-18 20:52:50.213218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Oracle ID Mismatch] Lines 453-454 get oracle_id from storage, but what if oracle_id is updated between liquidation and price fetch - can mismatched oracle IDs cause price for wrong asset to be used? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83ef94ce-e1c4-4411-b836-31dd7c0d845c?mode=deep",
+    "timestamp": "2026-02-18 20:53:07.579493",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_deposit()] [Clock Parameter Unused] Line 177 accepts clock parameter but no visible timestamp check in lending.move - if logic::execute_deposit doesn't use clock, can interest accrue incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_36c01f08-08e6-4856-aeea-2a49392c2d3a?mode=deep",
+    "timestamp": "2026-02-18 20:53:26.782351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_withdraw()] [Withdraw Timing] Line 217 passes clock to execute_withdraw - if clock is manipulated or transaction is delayed, can user withdraw at favorable interest rate? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b046bb89-653f-453d-a3ee-e4be9541cd03?mode=deep",
+    "timestamp": "2026-02-18 20:53:48.740307",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_borrow()] [Borrow Timestamp] Line 267 uses clock for execute_borrow - can attacker batch multiple borrows in same timestamp to pay interest once but borrow multiple times? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3d7bcc5-dbb8-4f6d-be68-876876beb568?mode=deep",
+    "timestamp": "2026-02-18 20:54:10.700347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_flash_repay()] [Flash Loan Clock] Line 535 passes clock to flash_loan::repay - if flash loan fee accrues based on time, can attacker delay repay transaction to minimize timestamp difference and pay less fee? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_562d537e-a9ca-4498-84d9-3f242d4914a6?mode=deep",
+    "timestamp": "2026-02-18 20:54:33.811438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_deposit()] [CoinType Mismatch] Generic CoinType in base_deposit at line 176 must match pool type, but no explicit check - can attacker call with mismatched types if type safety is not enforced at compile time? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c013792-ce7e-4dca-8f1e-47ecde577093?mode=deep",
+    "timestamp": "2026-02-18 20:54:54.789545",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Dual CoinType Safety] Lines 408-409 use DebtCoinType and CollateralCoinType - if these are the same type, can attacker liquidate debt with same asset as collateral, bypassing price conversion checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5f0ba6c6-668c-4fe9-b764-2aa23c0f18f3?mode=deep",
+    "timestamp": "2026-02-18 20:55:18.092359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: liquidation()] [Type Inference] Line 345 calls base_liquidation_call with generic types - can type inference fail if debt_coin type doesn't match debt_pool type, or are these checked at compile time? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a26c6c6a-b540-48e5-bb67-0a808b01a674?mode=deep",
+    "timestamp": "2026-02-18 20:55:39.009709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_deposit()] [Asset ID Bounds] Line 180 accepts asset: u8 parameter but no range validation - can attacker pass invalid asset ID (e.g., 255) to access uninitialized storage slots? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_65831f94-c7d2-4f58-a8a4-4c9d626badc7?mode=deep",
+    "timestamp": "2026-02-18 20:56:01.970701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_withdraw()] [Asset ID Injection] Line 221 asset parameter is not validated against storage's supported assets - can attacker withdraw from non-existent asset pool causing storage corruption? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e0f28414-37a4-4f65-b202-c4b83f0a50a5?mode=deep",
+    "timestamp": "2026-02-18 20:56:24.739309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Collateral Asset Validation] Lines 412, 415 accept debt_asset and collateral_asset as u8 - if these are equal, does liquidation logic correctly handle same-asset liquidation or cause re-entrancy? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8795619-5084-49ff-94d0-34b1800a017e?mode=deep",
+    "timestamp": "2026-02-18 20:56:48.154912",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Oracle ID Lookup] Lines 453-454 call storage::get_oracle_id with asset IDs - if asset ID is invalid, does get_oracle_id revert or return zero/default, leading to wrong price? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_255e7e8e-950b-4d00-8426-109469ce7628?mode=deep",
+    "timestamp": "2026-02-18 20:57:11.400969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: deposit_coin()] [Zero Amount Deposit] Line 167 accepts amount parameter but no zero check - can attacker deposit zero to emit DepositEvent at line 193-197 spamming event logs? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a1928f8e-e07a-4662-8915-daea231219ce?mode=deep",
+    "timestamp": "2026-02-18 20:57:32.667949",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: withdraw_coin()] [Zero Amount Withdrawal] Line 207 accepts amount with no minimum - if amount is zero, does execute_withdraw succeed emitting WithdrawEvent at line 240-245 with zero amount? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d6ca0e7e-46b6-42ec-9291-651a6319bf1c?mode=deep",
+    "timestamp": "2026-02-18 20:57:54.844333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: borrow_coin()] [Zero Borrow] Line 257 accepts amount without validation - can zero borrow succeed, emitting BorrowEvent and updating user state unnecessarily? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4d7c35e-40da-4727-bd2d-6e6d9cc318a6?mode=deep",
+    "timestamp": "2026-02-18 20:58:17.847910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: repay_coin()] [Zero Repay] Line 299 amount can be zero - does base_repay at line 304 handle zero repay gracefully or waste gas updating state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1997309a-3da8-44cc-83e5-bf06756dd451?mode=deep",
+    "timestamp": "2026-02-18 20:58:39.744172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_deposit()] [Maximum Amount Overflow] Line 187 reads balance::value which returns u64, then line 190-191 converts to u256 - can attacker deposit u64::MAX causing overflow in normal_deposit_amount calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_555ef514-992c-489c-8f00-10267dfbdc44?mode=deep",
+    "timestamp": "2026-02-18 20:59:01.659974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_borrow()] [Borrow Amount Ceiling] Line 272 amount is u64, but no check against pool's available liquidity - can attacker request borrow exceeding pool capacity causing withdrawal at line 281 to fail after debt is recorded at line 279? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0442b69-16b3-40cb-80f9-869b03f5d4e4?mode=deep",
+    "timestamp": "2026-02-18 20:59:25.360401",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: liquidation()] [Liquidate Amount Limit] Line 355 accepts liquidate_amount but no cap on maximum liquidation - can attacker liquidate entire position in one transaction bypassing any partial liquidation safety limits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ed3c8231-7d75-4ad0-a6d2-9af97532ac31?mode=deep",
+    "timestamp": "2026-02-18 20:59:46.543658",
+    "report_generated": false
+  }
+]
