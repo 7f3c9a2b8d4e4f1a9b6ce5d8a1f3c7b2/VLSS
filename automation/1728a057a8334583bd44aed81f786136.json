@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price_for_testing()] [Test Function Exposure] The test function at line 186 is marked #[test_only] but accepts arbitrary price/timestamp inputs - if this attribute is bypassed or misconfigured, can anyone inject fake prices in production? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29ca547c-4a2d-4e97-a438-6d1159c4632c?mode=deep",
+    "timestamp": "2026-02-18 20:37:24.552790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price_for_testing()] [Abort Code Information Leak] The function aborts with codes 1-4 at lines 208, 236, 245, 255 - do these abort codes leak internal state information that could aid exploitation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_855c7e83-27ab-4623-8881-07ac8e7b8773?mode=deep",
+    "timestamp": "2026-02-18 20:37:37.707930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price_for_testing()] [Validation Skip] The test version bypasses actual oracle adaptor calls - can test infrastructure accidentally be used in production, accepting unvalidated prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1f1dba34-2d26-4a5b-987c-5b25323416e0?mode=deep",
+    "timestamp": "2026-02-18 20:37:51.588495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_prices_for_testing()] [Batch Atomicity] The batch update iterates over all feeds at lines 274-283 - if one feed update fails, does the entire batch revert, or can partial updates create inconsistent oracle state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_924d2c35-d650-48f1-a0e7-eb0dfd621baf?mode=deep",
+    "timestamp": "2026-02-18 20:38:05.524434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_prices_for_testing()] [Vector Length Mismatch] If input vectors (prices, timestamps) have different lengths than vec_feeds, can out-of-bounds access occur, or will silent truncation cause some feeds to not update? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e619d278-3165-40c0-b2de-e9536b67d735?mode=deep",
+    "timestamp": "2026-02-18 20:38:20.886181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_prices_for_testing()] [Non-Abort Version] The function calls update_single_price_for_testing_non_abort which returns error codes instead of aborting - can error returns be ignored, allowing failed updates to appear successful? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a447df5-0d45-422a-832f-3d29039c6d0b?mode=deep",
+    "timestamp": "2026-02-18 20:38:37.191809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price_for_testing_non_abort()] [Error Code Confusion] Return codes 0-5 indicate different states - but if caller misinterprets these codes, can failed updates be treated as successes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2229e53d-9b8e-44dc-a48f-66b06154b46d?mode=deep",
+    "timestamp": "2026-02-18 20:38:54.443880",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price_for_testing_non_abort()] [Severity Return Ambiguity] At line 337, severity is returned as (severity + 10) for non-warning levels - can this arithmetic cause code confusion if severity values are near u8::MAX? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d59f2ce0-982e-44d6-a7cc-59b1be9d6f87?mode=deep",
+    "timestamp": "2026-02-18 20:39:11.882549",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price_for_testing_non_abort()] [Success Code Zero] Return value 0 at line 368 indicates success - but can this be confused with default/uninitialized return values in calling code? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_181e2906-dd07-4a4a-9955-af17081d46ad?mode=deep",
+    "timestamp": "2026-02-18 20:39:31.383592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Reentrancy via Events] Events are emitted at multiple points (lines 106, 123, 126, 129, 140) - can event listeners create reentrancy by calling back into update_single_price with manipulated parameters? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9726f03-d49a-4b51-a41b-bd7c8062fca3?mode=deep",
+    "timestamp": "2026-02-18 20:39:52.377466",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Config Mutation During Update] The function reads from OracleConfig multiple times - if config is mutated by another transaction between reads, can inconsistent config values be used within a single update? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e23c5908-9f9a-447b-9822-1ed836d8d943?mode=deep",
+    "timestamp": "2026-02-18 20:40:11.745107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Price Oracle Shared State] The PriceOracle is passed as &mut and updated at line 164 - can concurrent updates to different feeds cause race conditions in the underlying oracle storage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_358db7d5-bb39-40e3-9028-30a09bf51c33?mode=deep",
+    "timestamp": "2026-02-18 20:40:30.239371",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Clock Object Trust] The Clock object is passed by reference and accessed multiple times - if the Clock is a shared object, can clock manipulation between calls cause inconsistent timestamps? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ce81589c-0520-4ce8-bc7f-70f4210fb635?mode=deep",
+    "timestamp": "2026-02-18 20:40:49.999173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Supra Oracle Manipulation] The OracleHolder from SupraOracle is an external dependency - can the Supra protocol upgrade or change its data format, breaking the adaptor without error detection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0cd34a95-6c12-4036-8f31-306dee8b4e1e?mode=deep",
+    "timestamp": "2026-02-18 20:41:07.820655",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Pyth PriceInfoObject Staleness] Pyth PriceInfoObject is passed as reference - but does this contain timestamp validation, or can stale Pyth price objects be passed to update_single_price? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e85a8f2-4ce8-43da-b8cd-9cc726d75f98?mode=deep",
+    "timestamp": "2026-02-18 20:41:27.548766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: get_price_from_adaptor()] [Adaptor Version Skew] The adaptors (adaptor_supra, adaptor_pyth) are in separate modules - can version mismatches between oracle_pro and adaptors cause type confusion or ABI incompatibility? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_355d70f9-4026-4ce8-9397-7c45a4eabda4?mode=deep",
+    "timestamp": "2026-02-18 20:41:48.999173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Strategy Module Trust] strategy::validate_price_difference and validate_price_range_and_history are external functions - can bugs in the strategy module cause oracle_pro to accept invalid prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_669554dc-6541-484a-bdf7-98292adf904b?mode=deep",
+    "timestamp": "2026-02-18 20:42:09.855186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Config Module Authority] config::get_price_feed_mut at line 59 returns mutable reference - can this be exploited to modify config state in unexpected ways if config module has vulnerabilities? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3160c6e1-6989-4265-9af1-1ad4bb21eeb9?mode=deep",
+    "timestamp": "2026-02-18 20:42:31.116920",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [U256 Price Comparison] Prices are u256 but thresholds are u64 - in strategy::validate_price_difference, can u64 threshold comparisons with u256 prices cause overflow or incorrect validation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bfce315d-c701-46ea-b0ed-c8a26430d751?mode=deep",
+    "timestamp": "2026-02-18 20:42:53.041845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Timestamp Subtraction Underflow] Multiple timestamp subtractions occur (e.g., current_timestamp - primary_updated_time) - if timestamps are manipulated to cause underflow, can this bypass freshness checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bf1d52fb-1789-4a61-8f9d-5b74e6bd63ca?mode=deep",
+    "timestamp": "2026-02-18 20:43:14.936672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Price Amplitude Calculation] strategy::calculate_amplitude is called on u256 prices - can extreme price ratios cause numerical instability or precision loss in amplitude calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_13772175-845f-40d5-a764-31af72c6f3e3?mode=deep",
+    "timestamp": "2026-02-18 20:43:37.847612",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Zero Price Handling] If final_price is 0 (from oracle failure), does the code properly reject it, or can zero prices be written to PriceOracle, breaking all dependent protocols? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_090af630-edd8-4dae-8394-f0dea0511959?mode=deep",
+    "timestamp": "2026-02-18 20:44:01.067203",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Decimal Scaling Edge Cases] When target_decimal is very small (e.g., 0) or very large (e.g., 18), can the decimal conversion in adaptors cause prices to round to zero or overflow to u256::MAX? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3f970a8f-d9f7-41f6-892c-42a5478b16bd?mode=deep",
+    "timestamp": "2026-02-18 20:44:23.842198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Oracle Sandwich Attack] Can an attacker observe pending update_single_price transactions, front-run with config changes to max_timestamp_diff or thresholds, manipulate price acceptance, then back-run to restore config? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f69bbbd1-b5df-4b38-bb85-16b77a7f5962?mode=deep",
+    "timestamp": "2026-02-18 20:44:47.234063",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Feed Address Collision] If feed_address at line 59 can collide or be substituted, can an attacker update wrong feeds or cause DoS by targeting non-existent feed addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d40960a-c3d1-4f9d-9c69-be7c67052d15?mode=deep",
+    "timestamp": "2026-02-18 20:45:11.009784",
+    "report_generated": false
+  }
+]
