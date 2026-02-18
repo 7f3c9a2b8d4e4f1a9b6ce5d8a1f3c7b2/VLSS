@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: flash_loan_with_account_cap()] [Cross-Account Exploitation] Can malicious AccountCap holder use flash_loan_with_account_cap() to extract funds on behalf of the cap owner without their consent? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fbcafbc1-1f4f-4858-8bc5-5b741ac49f19?mode=deep",
+    "timestamp": "2026-02-18 20:15:37.217722",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_flash_repay()] [Clock Manipulation] Does base_flash_repay() at line 535 verify clock timestamp to prevent flash loans spanning multiple blocks, enabling price manipulation attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d6d89a3-9dfd-4962-8db3-1de7542b440f?mode=deep",
+    "timestamp": "2026-02-18 20:15:50.149553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: flash_repay_with_ctx()] [Excess Balance Handling] If flash_repay_with_ctx() returns excess balance at line 547, can an attacker manipulate repay_balance to extract more than borrowed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d7ad9d8-eafc-40e2-99aa-3bc2bdc65681?mode=deep",
+    "timestamp": "2026-02-18 20:16:04.232080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Oracle Manipulation] Can an attacker manipulate oracle prices between lines 453-457 to increase obtainable_amount and bonus beyond legitimate liquidation rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63cfa8c8-af98-4434-9e96-7f003659710e?mode=deep",
+    "timestamp": "2026-02-18 20:16:17.883944",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: liquidation()] [Authorization] Can liquidation() at line 345 be called by anyone to liquidate positions that aren't actually underwater, since there's no health factor check in this function itself? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db4cac59-0bcf-4269-b7a4-7265d92bc93a?mode=deep",
+    "timestamp": "2026-02-18 20:16:32.722688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: liquidation_non_entry()] [Authorization] Does liquidation_non_entry() at line 377 allow friend modules to bypass liquidation health checks, enabling unfair liquidations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9d542a8c-de70-45c5-9231-5726947560fc?mode=deep",
+    "timestamp": "2026-02-18 20:16:48.308397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Pause Bypass] Can liquidation execute at line 408 even when protocol is paused, potentially at manipulated prices during pause period? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cfd8cb95-2610-4217-aaa2-7f4f5a269d66?mode=deep",
+    "timestamp": "2026-02-18 20:17:05.624430",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Treasury Extraction] Can an attacker exploit treasury_amount calculation at line 442 to minimize treasury fees and maximize liquidator bonus? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1070225-34ec-4c0d-ae29-810a58004022?mode=deep",
+    "timestamp": "2026-02-18 20:17:24.300878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Collateral Theft] If obtainable_amount at line 446 is calculated incorrectly due to unnormal conversion, can liquidator extract more collateral than deserved? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83a3382e-8d99-4ff9-a97a-f36a0a0e878e?mode=deep",
+    "timestamp": "2026-02-18 20:17:43.542417",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Excess Debt Return] Can the excess_amount calculation at line 450 be manipulated to return more debt than was provided, draining the debt pool? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a4c2116-db9b-4438-afb9-7d5d577a29fc?mode=deep",
+    "timestamp": "2026-02-18 20:18:04.085071",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: liquidation()] [Balance Handling] Does liquidation() properly handle the returned balances at line 374, or can attacker cause balance destruction leading to fund loss? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9fb1b3b-37a2-4672-90e9-1a04e696cd2c?mode=deep",
+    "timestamp": "2026-02-18 20:18:24.665921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: liquidation_non_entry()] [Balance Handling] Can liquidation_non_entry() at line 377 be exploited by passing manipulated debt_balance to extract more collateral than debt value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3afd2838-e92d-4a5b-b7b8-4486bf02ccf3?mode=deep",
+    "timestamp": "2026-02-18 20:18:45.145190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Price Staleness] Are oracle prices at lines 456-457 checked for staleness before use in liquidation calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_037d7a96-e951-461c-932b-f58936bb8669?mode=deep",
+    "timestamp": "2026-02-18 20:19:03.793049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Self-Liquidation] Can a user self-liquidate by calling base_liquidation_call() with executor = liquidate_user to avoid proper liquidation penalties? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b0b8ecb-a111-41fd-ab88-b928e1bccd3a?mode=deep",
+    "timestamp": "2026-02-18 20:19:22.899866",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Partial Liquidation Manipulation] Does logic::execute_liquidate() at line 431 properly enforce maximum liquidation amounts, or can liquidator repeatedly liquidate small amounts to maximize bonuses? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_229b33fa-baf0-4b56-84ec-e8e19f1abaac?mode=deep",
+    "timestamp": "2026-02-18 20:19:42.065204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: create_account()] [Unauthorized Creation] Can create_account() at line 475 be called by anyone to create unlimited AccountCaps, potentially for Sybil attacks or resource exhaustion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e59b223-de37-40b3-97f7-4c6124d473a3?mode=deep",
+    "timestamp": "2026-02-18 20:20:02.836881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: delete_account()] [Fund Lock] Does delete_account() at line 479 abort(0) always, meaning AccountCaps can never be deleted and associated positions are permanently locked? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f96fb655-fc4b-4fb9-b161-28cf8c006634?mode=deep",
+    "timestamp": "2026-02-18 20:20:22.962559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: deposit_with_account_cap()] [Authorization Confusion] Can deposit_with_account_cap() at line 483 be exploited by depositing to account_cap owner's account using attacker's funds, then immediately borrowing against it? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4b34b45e-ce57-4417-b436-bb8d80f3ef92?mode=deep",
+    "timestamp": "2026-02-18 20:20:44.091864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: withdraw_with_account_cap()] [Authorization] Does withdraw_with_account_cap() at line 494 properly verify that caller owns the AccountCap, or can stolen/borrowed AccountCap enable unauthorized withdrawals? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fdacfc69-6abd-426e-923c-d0bd1cb8d180?mode=deep",
+    "timestamp": "2026-02-18 20:21:04.480847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: borrow_with_account_cap()] [Authorization] Can borrow_with_account_cap() at line 506 be exploited by malicious friend module to borrow on behalf of AccountCap owner without their consent? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9efd714-3ff9-41b1-99ad-e4d279114a3b?mode=deep",
+    "timestamp": "2026-02-18 20:21:26.512412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: repay_with_account_cap()] [Authorization] Does repay_with_account_cap() at line 518 allow anyone holding the AccountCap to repay debt using attacker's funds, potentially to manipulate account state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f22ebab-f8c9-450c-87c7-788fd03eec2c?mode=deep",
+    "timestamp": "2026-02-18 20:21:48.099985",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: deposit_with_account_cap()] [Pause Bypass] Can deposit_with_account_cap() bypass pause checks since it directly calls base_deposit() which checks pause, but timing issues might exist? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_55565074-25d6-4950-b0af-58eb4838732e?mode=deep",
+    "timestamp": "2026-02-18 20:22:11.179972",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: withdraw_with_account_cap()] [Collateral Manipulation] Can an attacker use withdraw_with_account_cap() to withdraw collateral right before liquidation, front-running liquidators? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_629efe30-904e-4732-876f-d4527ecac71d?mode=deep",
+    "timestamp": "2026-02-18 20:22:36.067504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: borrow_with_account_cap()] [Debt Inflation] Can borrow_with_account_cap() be called repeatedly to inflate debt position beyond safe limits before health checks trigger? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6466d4ce-b1d4-4c83-811e-c77f2e3e53cf?mode=deep",
+    "timestamp": "2026-02-18 20:23:01.047668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: repay_with_account_cap()] [Cross-User Attack] Can repay_with_account_cap() enable cross-user attacks where attacker repays victim's debt to manipulate their position or health factor? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b92071a-d1df-4da6-9c8e-ef5dde334b39?mode=deep",
+    "timestamp": "2026-02-18 20:23:26.009839",
+    "report_generated": false
+  }
+]
