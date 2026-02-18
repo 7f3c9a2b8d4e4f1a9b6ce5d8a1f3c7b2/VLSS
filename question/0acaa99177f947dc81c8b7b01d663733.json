@@ -1,7 +1,0 @@
-[
-  "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Multiple Functions] [Clock Division] clock::timestamp_ms(clock) / 1000 used for rate limiter - can this lose precision if timestamp_ms is not multiple of 1000? (Low)",
-  "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: refresh_reserve_price()] [Clock Consistency] Each function receives Clock parameter - can passing different Clock objects cause time inconsistencies in same transaction? (Low)",
-  "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: deposit_liquidity_and_mint_ctokens()] [CToken Creation] Returns Coin<CToken<P, T>> - can type parameters P and T be manipulated to create fake ctokens? (High)",
-  "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: redeem_ctokens_and_withdraw_liquidity_request()] [CToken Consumption] Destroys ctokens via into_balance - is there any scenario where ctokens are destroyed but liquidity_request fails, causing loss? (Medium)",
-  "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: liquidate()] [Protocol Fee Deduction] reserve::deduct_liquidation_fee() deducts fees from ctokens - are these fees tracked and claimable via claim_fees()? (Medium)"
-]
