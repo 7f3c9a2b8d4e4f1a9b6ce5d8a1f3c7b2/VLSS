@@ -1,0 +1,92 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Function: get_pool_from_funds_pool()] [Linear Search] Lines 354-367 linear search through pool_objs; could this become O(n) bottleneck in large deployments? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_469a03cd-7f4b-4936-a2e7-6c0401efea5d?mode=deep",
+    "timestamp": "2026-02-18 19:54:38.652290",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Event: CreateFundsPool] [Force Parameter] Line 82 includes force parameter in event but force logic not implemented; could this confuse monitoring systems? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_73189d54-48f9-4020-b15f-ab9aaa4b15ed?mode=deep",
+    "timestamp": "2026-02-18 19:54:52.260689",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Event: RewardsClaimed] [Per-Pool Event] Line 331-335 emits event for each pool in loop; could transaction with 50 pool claims create spam events? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a530490f-a187-4471-bbb9-58d09f843cb2?mode=deep",
+    "timestamp": "2026-02-18 19:55:05.765348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Event: IncreasedFunds] [Balance Exposure] Line 88 emits exact balance before/after; could this leak information for MEV arbitrage? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f4ee829-8cce-4d8b-9b40-defb9918578a?mode=deep",
+    "timestamp": "2026-02-18 19:55:20.143591",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Function: create_funds_pool()] [Shared Object] Line 133 calls share_object on IncentiveFundsPool; could this create race condition if multiple transactions access it before table entry is added? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90d3a268-3f5e-46e9-abb0-fff2a5bd52ab?mode=deep",
+    "timestamp": "2026-02-18 19:55:35.646555",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Function: create_incentive()] [Shared Incentive] Line 195 shares Incentive object; could concurrent pool creation cause table corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a14351c5-55d3-4812-be66-d84729f03d18?mode=deep",
+    "timestamp": "2026-02-18 19:55:51.425001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Function: create_incentive_pool()] [Pool Storage] Pool stored in both table (line 242) and vector (line 243); could these become inconsistent? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4379a4e0-cb1d-4f83-a343-08fa1695c183?mode=deep",
+    "timestamp": "2026-02-18 19:56:07.981351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Struct: IncentiveFundsPoolInfo] [Duplicate Info] Lines 71-75 store oracle_id and coin_type separately from IncentiveFundsPool; could these diverge? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c52e1c40-904e-41dc-b3c1-ad018d69ed72?mode=deep",
+    "timestamp": "2026-02-18 19:56:26.344667",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Function: claim_reward()] [Transfer Hook] Line 277 transfers coin to sender; if T has malicious transfer hook, could it reenter and claim again? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc09dfd1-9682-497d-bdcc-38ba165f6696?mode=deep",
+    "timestamp": "2026-02-18 19:56:46.564128",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Function: withdraw_funds()] [Public Transfer] Line 174 uses public_transfer which could trigger receiver hooks; could malicious receiver reenter? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_60ef6536-ed2a-414c-b4fb-5648e8e7889d?mode=deep",
+    "timestamp": "2026-02-18 19:57:06.692858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Function: base_claim_reward()] [Update Before Transfer] update_reward called at line 298 before decrease_balance at line 341; could state be inconsistent if transaction aborts between these? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f07e621-6c38-4fac-9001-6b5c8ad6bffd?mode=deep",
+    "timestamp": "2026-02-18 19:57:27.443351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Struct: IncentiveFundsPool] [Oracle ID] oracle_id at line 66 stored but never validated against actual oracle; could invalid oracle_id cause issues in external systems? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ac8e941-2541-4d56-81e4-00545af0bf81?mode=deep",
+    "timestamp": "2026-02-18 19:57:50.207478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Function: update_reward()] [Storage Dependency] Line 385 calls storage::get_user_balance; if storage is compromised, could this return manipulated values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bdd6caa4-566d-4947-a1ad-f44a165539c6?mode=deep",
+    "timestamp": "2026-02-18 19:58:12.194448",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Function: update_reward()] [Total Supply Query] Line 386 calls get_total_supply; could stale or manipulated total supply cause incorrect reward distribution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e23f8e2-7896-4193-9e98-3c0664e43fc2?mode=deep",
+    "timestamp": "2026-02-18 19:58:34.587079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move] [Function: create_incentive()] [Empty Initialization] Lines 187-195 create empty Incentive with no pools; could users interact with empty incentive and cause unexpected behavior? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f1c1a5f-d94e-4677-9451-4f82457992bf?mode=deep",
+    "timestamp": "2026-02-18 19:58:57.914711",
+    "report_generated": false
+  }
+]
