@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Integer Overflow] At line 69, total_borrow_usd_value accumulation could overflow if the account has massive borrows across reserves - is this checked? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9550bfa-2c79-4359-b9ab-ed1b8ff2ef9a?mode=deep",
+    "timestamp": "2026-02-18 19:57:32.642126",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Underflow Protection] At line 78, the subtraction total_supply_usd_value - total_borrow_usd_value is protected by the check at line 74 - but can rounding errors cause the condition to pass while still causing underflow? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_47cab085-d11c-4d2d-83d3-6e0f2296642f?mode=deep",
+    "timestamp": "2026-02-18 19:57:45.796227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Precision Loss] mul_with_oracle_price() at lines 65-66 divides by ORACLE_DECIMALS (1e18) - can this cause precision loss for small balances, incorrectly reporting 0 value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_367de6e4-32d2-425e-8daf-860e19306a4a?mode=deep",
+    "timestamp": "2026-02-18 19:57:59.284460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Rounding Error] When converting supply_scaled and borrow_scaled from u256 to u256 at lines 65-66, can casting cause truncation for very large ray_math values? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca742b55-e413-4af0-92d7-058676b3a987?mode=deep",
+    "timestamp": "2026-02-18 19:58:14.038766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Multiplication Overflow] At lines 65-66, supply_scaled * price could overflow u256 before division by ORACLE_DECIMALS in mul_with_oracle_price() - is this possible? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5454f73d-f041-4b75-bef4-b78ec21cae52?mode=deep",
+    "timestamp": "2026-02-18 19:58:29.147553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Zero Division] If ORACLE_DECIMALS is somehow 0, mul_with_oracle_price() would divide by zero at lines 65-66 - is this constant immutable? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ef45f4e-f1af-4c8b-abdd-c75136d50fa8?mode=deep",
+    "timestamp": "2026-02-18 19:58:45.824497",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Negative Value] Lines 74-76 check if total_supply < total_borrow and return 0 - but does this hide insolvency, allowing underwater positions to be valued as 0 instead of negative? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3426c9b-c9b3-4f12-8873-2db1d0cb8972?mode=deep",
+    "timestamp": "2026-02-18 19:59:04.697965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Off-by-One Error] The loop at line 43 starts with i = storage.get_reserves_count() and checks 'while (i > 0)' then uses 'i - 1' - could this skip reserve 0 or access invalid reserve i? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6d2179f-eb3a-4a81-a175-dd04aada0d73?mode=deep",
+    "timestamp": "2026-02-18 19:59:24.575975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Loop Bounds] At line 37, get_reserves_count() returns the count - if this is 0, the loop never executes and returns 0 value even if positions exist - is this correct? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_11c37fe5-5fdf-4f0e-b454-ac4701ccae41?mode=deep",
+    "timestamp": "2026-02-18 19:59:44.308110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Infinite Loop] If i somehow doesn't decrement properly at line 71, could the loop become infinite causing DoS? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_89363866-1729-4478-aa22-094771c6f3d4?mode=deep",
+    "timestamp": "2026-02-18 20:00:05.233882",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Skip Logic] Lines 58-61 skip when supply == 0 && borrow == 0 - but what if only one is 0? Will it still process, or should it skip to save gas? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_542f4ef2-37ec-49f0-9967-53896719868f?mode=deep",
+    "timestamp": "2026-02-18 20:00:27.478884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Loop DoS] If storage.get_reserves_count() is very large (thousands of reserves), will the loop consume excessive gas causing transaction failure? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0e83774-6c6b-46f5-ab29-8add7002af15?mode=deep",
+    "timestamp": "2026-02-18 20:00:49.970274",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Reserve Ordering] The loop iterates from highest to lowest reserve index (line 43 decrements i) - does this order matter, or could it affect accumulation results? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_16be2fc0-df23-4eb3-9342-c3613bf86e81?mode=deep",
+    "timestamp": "2026-02-18 20:01:11.145423",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Continue Statement] Line 60 uses 'continue' after decrementing i - could this skip important state updates or cause inconsistencies? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b087fa6c-dacf-4eb3-aed0-eb2be04486c9?mode=deep",
+    "timestamp": "2026-02-18 20:01:32.397574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Reserve Skip] If get_user_balance() at line 44 returns (0, 0) for all reserves, the function returns 0 - is this distinguishable from an account with no positions vs all positions closed? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5ab10fd1-b4f7-44ab-8165-24996e92e28a?mode=deep",
+    "timestamp": "2026-02-18 20:01:55.279338",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Reentrancy] Storage is passed as &mut at line 34 and accessed multiple times (lines 44, 48-52, 56) - can an attacker exploit reentrancy if any of these calls allow external interactions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be034980-d037-4f13-93be-92fa2b450c28?mode=deep",
+    "timestamp": "2026-02-18 20:02:19.134568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [State Consistency] If storage is modified during the loop (e.g., another transaction updates reserves), could this cause inconsistent valuations between iterations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2fb20dfc-2e6a-4031-9a8d-543459dce930?mode=deep",
+    "timestamp": "2026-02-18 20:02:43.815457",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [Storage Mutation] Vault is passed as &mut at line 14 - can an attacker call this function multiple times concurrently to create race conditions in vault state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3d2aa78-a0c1-44f6-90b5-a803e9394c65?mode=deep",
+    "timestamp": "2026-02-18 20:03:08.758270",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Index Manipulation] dynamic_calculator::calculate_current_index() at lines 48-52 takes &mut Storage - can it modify storage state in a way that affects subsequent loop iterations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ba76f57e-a2b1-46dd-8234-e390f34dc60d?mode=deep",
+    "timestamp": "2026-02-18 20:03:34.080747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Storage Corruption] If get_user_balance(), calculate_current_index(), or get_coin_type() fail midway through the loop, is storage left in a consistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74555332-a857-466e-b939-1c3eb0437f33?mode=deep",
+    "timestamp": "2026-02-18 20:03:59.448606",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [Account Ownership] account_cap.account_owner() at line 22 returns the Navi account address - but does it verify that this account actually belongs to the vault and not an external account? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_625aeccd-5186-46f7-a9fd-36aeea4f475d?mode=deep",
+    "timestamp": "2026-02-18 20:04:25.717798",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Address Spoofing] The account parameter at line 32 is passed directly to storage.get_user_balance() - can an attacker pass an arbitrary account address to value someone else's position? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_36d38abe-9976-450a-809d-3d0f62f1e335?mode=deep",
+    "timestamp": "2026-02-18 20:04:51.795250",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [AccountCap Validation] Does get_defi_asset() at line 20 verify that the NaviAccountCap's account_owner() matches the vault's expected account, preventing attackers from substituting a different account? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21143766-d795-4423-8db4-4661c6d7c871?mode=deep",
+    "timestamp": "2026-02-18 20:05:17.351276",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Zero Address] If the account parameter at line 32 is address(0) or an invalid address, will get_user_balance() return 0 or fail? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e00febf-75e7-452e-93b9-89acc8b9c039?mode=deep",
+    "timestamp": "2026-02-18 20:05:42.919349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [Value Update Race] finish_update_asset_value() at line 28 updates the vault's asset value - can an attacker race multiple update calls to overwrite values in a specific order for advantage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98a96fec-2434-46e6-a91c-c10f05fe2e6f?mode=deep",
+    "timestamp": "2026-02-18 20:06:06.190414",
+    "report_generated": false
+  }
+]
