@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Edge Case] When to_target_decimal_value() is called with both decimal and target_decimal equal to 255 (u8::MAX), does the function handle this gracefully or cause unexpected behavior? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_023da926-096a-4b0b-906d-cdb72d7c812b?mode=deep",
+    "timestamp": "2026-02-18 21:54:08.679041",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Edge Case] Can calculate_amplitude() handle the case where both a and b are 1, returning amplitude=0, and is this correctly interpreted as no deviation in downstream vault logic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4d0cb79-cd71-4328-9415-795ca8195f31?mode=deep",
+    "timestamp": "2026-02-18 21:54:21.729706",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Edge Case] If sui::address::max() returns a value smaller than expected in a future Move upgrade, can this break the overflow check in calculate_amplitude(), allowing exploitable overflows? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bbbbd75b-838a-493f-98a2-1fc0ee7e55d8?mode=deep",
+    "timestamp": "2026-02-18 21:54:36.550970",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Reentrancy] While these are pure functions, can an attacker exploit the lack of state checks by calling these functions from different contexts (e.g., during vs outside operations) to create inconsistent oracle valuations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_31c09a60-a0e4-461a-8a65-b07d0626e18a?mode=deep",
+    "timestamp": "2026-02-18 21:54:50.497362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [State Consistency] If vault caches results from to_target_decimal_value_safe() but later oracle decimals change, can stale cached conversions be exploited to claim assets at old incorrect prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_292e32cd-6380-4a6e-8f3c-c1399ebf73d5?mode=deep",
+    "timestamp": "2026-02-18 21:55:05.587818",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [State Consistency] Can an attacker exploit the pure nature of these functions by pre-computing favorable conversion results off-chain and only submitting transactions when on-chain execution would match their pre-computed values? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e2042b91-8185-421a-9846-f2647c90e6ed?mode=deep",
+    "timestamp": "2026-02-18 21:55:22.406620",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Gas DoS] Can an attacker force vault to process oracle prices requiring maximum decimal conversions (e.g., 0→255 or 255→0), consuming excessive gas and potentially hitting block limits during critical operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_697861f3-2d30-492c-a71e-04a8ed4c5bb9?mode=deep",
+    "timestamp": "2026-02-18 21:55:40.754504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Gas DoS] If calculate_amplitude() is called repeatedly in a loop for multiple asset pairs, can the accumulated gas cost exceed block limits, preventing vault rebalancing operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ed2633e7-cc92-4378-b415-f83f45f08d3f?mode=deep",
+    "timestamp": "2026-02-18 21:55:59.864229",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Gas Optimization] Does using iterative loops instead of exponentiation for decimal conversion waste gas unnecessarily, and can this be exploited to make oracle updates economically non-viable? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_41cd6e2e-046f-4f20-85ee-e6334e6c3a91?mode=deep",
+    "timestamp": "2026-02-18 21:56:21.198922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Type Safety] The module uses both u8 and u64 for decimal parameters across different functions, can type confusion between these lead to incorrect conversions when vault code mixes calls to both functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9590c02e-cdac-4757-a68c-92a83ec39855?mode=deep",
+    "timestamp": "2026-02-18 21:56:42.587167",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Type Safety] When casting amplitude from u256 to u64, is the comparison amplitude > U64MAX sufficient, or can casting a u256 value between U64MAX and u256::MAX cause truncation bugs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fc75c7ac-7bfa-483f-ab6b-c7a65367d7a3?mode=deep",
+    "timestamp": "2026-02-18 21:57:04.651975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Type Safety] If constants::multiple() were to return a value larger than u64::MAX in a future upgrade, would calculate_amplitude() handle this correctly or overflow during multiplication? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b30bbabc-de82-4186-af41-c38112f4b504?mode=deep",
+    "timestamp": "2026-02-18 21:57:26.143128",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Oracle Manipulation] Can an attacker manipulate external oracle prices to values that maximize rounding errors in to_target_decimal_value_safe(), enabling them to extract value through deposit/withdraw cycles? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ac4708f-2fcf-4028-b247-e041661a5af3?mode=deep",
+    "timestamp": "2026-02-18 21:57:48.462864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Oracle Manipulation] If calculate_amplitude() is used as a circuit breaker, can an attacker manipulate one of the two prices (a or b) to exactly trigger U64MAX return, causing all vault operations to halt? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28e399fb-d6be-429d-b177-01faa155610c?mode=deep",
+    "timestamp": "2026-02-18 21:58:11.381444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Oracle Manipulation] Can an attacker exploit the fact that amplitude divides by 'a' not 'b' by ensuring they control which price becomes 'a' in vault logic, manipulating amplitude to their advantage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5474df08-7e82-4556-8b29-4a103fe2c5eb?mode=deep",
+    "timestamp": "2026-02-18 21:58:36.168692",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Oracle Manipulation] When vault uses multiple oracle sources, can an attacker exploit decimal conversion differences between sources to create arbitrage opportunities between similarly priced assets? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_14e5a1b3-ea73-492d-b513-db79a74c85f1?mode=deep",
+    "timestamp": "2026-02-18 21:58:59.568674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Constants] The U64MAX constant is defined as 18446744073709551615, but is this value correctly used everywhere, or could integer literals in other parts of vault code have typos creating security issues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_59effc6a-3e47-4d9d-ac93-b967a5d21660?mode=deep",
+    "timestamp": "2026-02-18 21:59:24.084107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Constants] constants::multiple() returns 10000 for basis points, but is this assumption documented in vault code that uses calculate_amplitude(), or can misinterpretation enable exploits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca96db9d-68a4-435f-b1a7-70620def34f1?mode=deep",
+    "timestamp": "2026-02-18 21:59:48.882814",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Configuration] The comment mentions 'production env: max target_decimal = 16', but nothing enforces this limit, can passing target_decimal > 16 break vault assumptions and enable exploits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aa9457c7-b1da-408c-9536-fc4af331337c?mode=deep",
+    "timestamp": "2026-02-18 22:00:12.509154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Configuration] constants::default_decimal_limit() returns 16, but to_target_decimal_value_safe() doesn't validate against this, can exceeding the limit cause undefined behavior in vault price calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_772192ea-9b71-47c7-bea7-8c900ca30bba?mode=deep",
+    "timestamp": "2026-02-18 22:00:34.310499",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Upgradability] If oracle::oracle_constants is upgraded to return different values for multiple(), will existing vault state using old amplitude calculations become incompatible with new calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ecbeeecc-9639-4215-a76f-b1ee48ad03ad?mode=deep",
+    "timestamp": "2026-02-18 22:00:57.906756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Upgradability] Can changes to Move language semantics around integer overflow/underflow in future versions break the assumptions in these functions, requiring vault redeployment? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0265b096-9616-4d7c-b683-eb1be077775d?mode=deep",
+    "timestamp": "2026-02-18 22:01:22.510592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Upgradability] If sui::address::max() changes in a Sui protocol upgrade, will the overflow check in calculate_amplitude() still work correctly, or require immediate patching? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_80f4bda1-8d57-452b-a0ed-4562ed9959f6?mode=deep",
+    "timestamp": "2026-02-18 22:01:48.185112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Standards Compliance] Do these functions correctly handle all standard decimal values used in DeFi (6 for USDC, 8 for BTC, 9 for SUI, 18 for ETH), or can edge cases in specific decimal ranges be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab638da1-8f30-4262-9677-07bb25172159?mode=deep",
+    "timestamp": "2026-02-18 22:02:15.222249",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Standards Compliance] If a new asset with non-standard decimals (e.g., 21 or 0) is added to vault, can the decimal conversion functions handle this without breaking existing operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f73bb7d3-4bea-4ce3-b98b-4391eff01afa?mode=deep",
+    "timestamp": "2026-02-18 22:02:42.631361",
+    "report_generated": false
+  }
+]
