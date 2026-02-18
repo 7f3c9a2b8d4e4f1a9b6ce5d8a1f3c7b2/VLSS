@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [Recursive Call Risk] Does calculate_user_reward call any functions that could recursively call it back, creating infinite loop? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd26c6c9-5091-40cd-9b11-1bf064a0b2c3?mode=deep",
+    "timestamp": "2026-02-18 21:37:13.196069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Asset Type String] Asset types are returned as String (line 49) - can these strings be manipulated or contain special characters that break claim logic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9b8d5ee-124d-473c-a742-a0854e8378da?mode=deep",
+    "timestamp": "2026-02-18 21:37:25.529094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Reward Type String] Reward types are String from line 50 - can different coin types have identical string representations causing confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e1090e6-29bf-47a4-9392-fdb96dd7b2ed?mode=deep",
+    "timestamp": "2026-02-18 21:37:39.242828",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: verify_rule_id_config()] [Generic Type Parameter] The function uses RewardCoinType generic - can this be instantiated with non-coin types to bypass checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56deb278-44ec-4d92-8b35-b187e0df8610?mode=deep",
+    "timestamp": "2026-02-18 21:37:53.710261",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Snapshot Consistency] The function takes snapshots of pools, rules, balances at different times - can state changes between snapshots cause inconsistent reward calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e0220d7a-a2d8-452d-82ad-48fbc3f74137?mode=deep",
+    "timestamp": "2026-02-18 21:38:08.126054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Rule State Snapshot] Rule state is read at line 74 - can rule be modified after this point but before calculation completes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_94e1a06f-cc4d-4145-917e-2308159200ba?mode=deep",
+    "timestamp": "2026-02-18 21:38:23.822584",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [Multi-Read Consistency] The function reads from rule multiple times (lines 94, 102, 103) - are these reads guaranteed to be consistent? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe2fd026-15b1-4a6b-8e5c-f5fb7fcf894a?mode=deep",
+    "timestamp": "2026-02-18 21:38:40.363519",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Nested Loop Complexity] The nested while loops (lines 23-56, 32-55) have O(n*m) complexity - can this cause gas exhaustion for users with many pool/rule combinations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_048c1d65-b785-402e-b147-4be65416fccc?mode=deep",
+    "timestamp": "2026-02-18 21:38:57.858275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Loop Variable Mutation] pool_keys and rules_keys are mutated during iteration - can this cause elements to be skipped or processed twice? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ece868eb-4249-43b4-acad-f98021ae6a9b?mode=deep",
+    "timestamp": "2026-02-18 21:39:16.356527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Break Condition] The while loops check vector length each iteration - can vector length change during iteration causing early exit? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b9a3420-ee19-4872-bf0a-f54efb3bd02b?mode=deep",
+    "timestamp": "2026-02-18 21:39:35.538103",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Supply/Borrow Switch] The function switches between total_supply and total_borrow based on option - can option be manipulated to use wrong total? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9859a2b0-d24b-406a-80ee-87cabf816f7f?mode=deep",
+    "timestamp": "2026-02-18 21:39:54.645228",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [User Balance Type] The function switches between user_effective_supply and user_effective_borrow - can these be mixed up causing incorrect rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b9c3693-fbfb-445c-8d5a-e69f80444568?mode=deep",
+    "timestamp": "2026-02-18 21:40:14.119804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Supply/Borrow Mixing] The function calculates both supply and borrow in one call (line 30) - can rewards be claimed for both simultaneously in ways not intended? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_afa2e41f-aa11-4812-affc-cc2aca7934d4?mode=deep",
+    "timestamp": "2026-02-18 21:40:32.585915",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Effective Balance Source] The function uses get_effective_balance from incentive_v3 module - can effective balance differ from actual balance in exploitable ways? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f1ff314d-31fe-47dc-9024-62ebf20c9e56?mode=deep",
+    "timestamp": "2026-02-18 21:40:52.183662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Total Balance Accuracy] Total_supply and total_borrow are used for global calculations - are these guaranteed to be sum of all user effective balances? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2bde751-9fd7-47e2-ab95-87219f612ce4?mode=deep",
+    "timestamp": "2026-02-18 21:41:15.007198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [Balance Consistency] User effective balance is calculated outside this function - can there be mismatch between when balance is read vs when rewards are calculated? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3dff12fd-c938-4367-bf68-3fe27974f2ed?mode=deep",
+    "timestamp": "2026-02-18 21:41:36.589070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Claimed Rewards Retrieval] The function gets user_claimed_reward at line 40 - can this value be manipulated or incorrectly tracked? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_41d5998c-04ac-415c-a800-42c91129a638?mode=deep",
+    "timestamp": "2026-02-18 21:41:58.904207",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Total vs Claimed Comparison] Lines 42-46 compare total and claimed rewards - can integer overflow in total make it appear less than claimed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_199949dc-3909-44bb-a2a8-965adab71da5?mode=deep",
+    "timestamp": "2026-02-18 21:42:23.599578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [Total Rewards Retrieval] User total rewards are retrieved at line 103 - is this value updated atomically with claimed rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_55a20eb5-2a35-4220-9edf-7432b63cd3c8?mode=deep",
+    "timestamp": "2026-02-18 21:42:48.162687",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: verify_rule_id_config()] [Asset ID Validation] The function validates asset ID at line 65 - can malicious admin set wrong asset ID for rule? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_99039e2d-9dd2-40b6-9a55-e5a4dded9522?mode=deep",
+    "timestamp": "2026-02-18 21:43:12.671544",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: verify_rule_id_config()] [Option Validation] The function validates option at line 69 - can option be changed after rule creation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1004bd3e-2f4f-42fe-b961-a4c6f91aa20d?mode=deep",
+    "timestamp": "2026-02-18 21:43:38.688203",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: verify_rule_id_config()] [Rule ID Uniqueness] Does rule_id need to be unique across all pools, or can same rule_id exist in different pools causing confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a9dc1464-c1e3-4b4f-90e4-64b63f544569?mode=deep",
+    "timestamp": "2026-02-18 21:44:04.879066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Module: incentive_v3_getter] [Read-Only Safety] The entire module is read-only (no state modifications) - can this be abused as oracle by malicious contracts? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3db533f3-8690-42fb-9993-74507b54fe3b?mode=deep",
+    "timestamp": "2026-02-18 21:44:32.798111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Module: incentive_v3_getter] [View Function Gas] The functions perform heavy computations - can attackers cause DoS by calling these repeatedly in view context? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a6e47159-e10b-408e-83ec-0721e907c15f?mode=deep",
+    "timestamp": "2026-02-18 21:45:01.776124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Module: incentive_v3_getter] [Public API Surface] All helper functions are public - should some be internal to prevent misuse? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6487a0dd-85a1-4e99-98d8-2295193550e6?mode=deep",
+    "timestamp": "2026-02-18 21:45:31.875927",
+    "report_generated": false
+  }
+]
