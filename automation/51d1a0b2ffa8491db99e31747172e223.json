@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Oracle Secp256k1 Empty Key] If oracle.secp256k1_key() returns empty vector, would hash::check_subvec() at line 91 falsely pass allowing any recovered key? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0423c691-97b5-4412-9b0c-274d871d033f?mode=deep",
+    "timestamp": "2026-02-18 23:37:39.264611",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Oracle Expiration Boundary] Line 63 uses strict inequality (>). At exactly expiration_time_ms == clock.timestamp_ms(), does oracle become immediately invalid causing legitimate in-flight transactions to fail? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cd896d48-b0bc-41bb-a009-f2f53fda3c1e?mode=deep",
+    "timestamp": "2026-02-18 23:37:51.625049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Multiple Queue Oracles] If multiple oracles service same queue with different keys, could an attacker oracle submit malicious data as long as it has valid queue membership? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3859e5ee-f6e4-45ee-bd15-dba2d7018395?mode=deep",
+    "timestamp": "2026-02-18 23:38:05.186916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Signature All Zeros] If signature is 65 zero bytes, would secp256k1_ecrecover at lines 83-88 fail gracefully or produce exploitable output? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ff1e2d15-e44a-4532-9e28-a3503b68483c?mode=deep",
+    "timestamp": "2026-02-18 23:38:18.572701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Signature Max Values] If signature contains max byte values (0xFF...), could this cause recovery to invalid curve points enabling forge attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d5eb7e0-d418-42ec-b456-58bdafda2760?mode=deep",
+    "timestamp": "2026-02-18 23:38:32.756077",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Recovery ID Hardcoded] Line 86 uses recovery_id=1 always. Does this restrict valid signature space to only half of possible signatures, or could wrong recovery_id be exploited? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f8362eb1-b973-4655-a3d9-46b1a6588e67?mode=deep",
+    "timestamp": "2026-02-18 23:38:49.935542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: run()] [Decimal Constructor Validation] Line 144 calls decimal::new(value, neg) directly. Does new() validate value bounds or could extreme values cause Decimal struct invariant violations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7506d3d7-66f3-4803-89b7-5a791867a359?mode=deep",
+    "timestamp": "2026-02-18 23:39:06.352427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: run()] [Neg Flag Abuse] Line 144 allows arbitrary neg flag. For always-positive prices, could neg=true with large value cause underflow in downstream arithmetic consuming the Decimal? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ddad114-94e2-44bd-884c-78cc3be0a03b?mode=deep",
+    "timestamp": "2026-02-18 23:39:23.921977",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Queue Fee Manipulation] Line 95 reads queue.fee() value. If queue admin can modify fee mid-transaction, could fee increase after validation causing actuate() to transfer more than validated? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b4ff137-00d5-4640-8766-9a968024f057?mode=deep",
+    "timestamp": "2026-02-18 23:39:42.175917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Queue Fee Type Change] Line 94 checks queue.has_fee_type<T>(). If queue supports multiple fee types, could switching fee type mid-transaction cause type mismatch attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b7634b68-be69-4b23-a2e8-63faf3d0987e?mode=deep",
+    "timestamp": "2026-02-18 23:40:01.464502",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: actuate()] [Queue Fee Recipient Change] Line 120 transfers to queue.fee_recipient(). Could queue admin change recipient after validation, redirecting fees to attacker address? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_27a2e2bc-5976-4381-ada8-6a64cc2e0289?mode=deep",
+    "timestamp": "2026-02-18 23:40:21.996171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Max Variance Manipulation] Line 77 reads aggregator.max_variance() for message generation. If max_variance changes after signature creation, could valid signatures become invalid or vice versa? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e9ae68bd-ed43-4677-ba29-b7e505feaa8d?mode=deep",
+    "timestamp": "2026-02-18 23:40:43.866702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Min Responses Reduction] Line 78 uses aggregator.min_responses() in message. If min_responses is reduced from 5 to 1 after signature, could single-oracle manipulation become possible? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e99a9d71-1aa3-4f3c-877b-df99300e5b77?mode=deep",
+    "timestamp": "2026-02-18 23:41:04.834697",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Max Staleness Extension] Line 66 uses aggregator.max_staleness_seconds(). If admin extends staleness window from 1min to 1day, could old invalid signatures suddenly become valid enabling stale price injection? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c3418dc9-d311-4dc4-b313-b70815fdf39f?mode=deep",
+    "timestamp": "2026-02-18 23:41:24.312238",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Feed Hash Change] Line 75 uses aggregator.feed_hash(). If feed_hash is updated, do all existing oracle signatures become invalid requiring resigning, potentially causing price feed downtime? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_57845ee4-cc18-4b08-ab53-00e6ceac3483?mode=deep",
+    "timestamp": "2026-02-18 23:41:44.655880",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: run()] [Gas Cost Griefing] Lines 133-147 perform expensive operations (ECDSA recovery, decompression). Could attacker spam with invalid signatures consuming gas from oracles/users while failing validation late? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ee2a04c-cd71-4beb-a6ca-bf8f65e8209d?mode=deep",
+    "timestamp": "2026-02-18 23:42:07.774253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Signature Verification DoS] Lines 83-88 perform ECDSA recovery on every call. Could high-frequency invalid submissions DoS the aggregator by exhausting computational resources? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9b8a5a1-61d4-4f8c-a195-5c7ef33837f0?mode=deep",
+    "timestamp": "2026-02-18 23:42:29.802554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: actuate()] [Event Spam] Line 123 emits event on every submission. Could attacker flood event logs with valid updates causing monitoring system DoS? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2617dc1c-15a3-4acc-ba91-eb3e93bb5c31?mode=deep",
+    "timestamp": "2026-02-18 23:42:50.322676",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: actuate()] [Transfer Callback] Line 120 calls public_transfer which may trigger recipient callbacks. Could malicious fee_recipient exploit callback to reenter and manipulate aggregator state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe544e0c-564d-429f-a3d8-b78c2e46705e?mode=deep",
+    "timestamp": "2026-02-18 23:43:10.928721",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: actuate()] [Add Result Reentrancy] Lines 112-117 call aggregator.add_result(). If add_result has callbacks or events, could reentrancy cause state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d92c0a68-e29c-4d63-8437-54302e5f68dc?mode=deep",
+    "timestamp": "2026-02-18 23:43:29.332101",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: run()] [Generic Type Confusion] Type parameter <T> is used for Coin type throughout. Could caller provide incompatible T types between validate and actuate causing type safety violations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ff87f6c2-331d-43c6-b1ca-7c7ccee0a5e1?mode=deep",
+    "timestamp": "2026-02-18 23:43:47.703867",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Fee Type Existence] Line 94 checks queue.has_fee_type<T>() but doesn't verify T is legitimate fee token. Could fake token types pass check enabling free updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb9a440e-ce72-4785-a02c-42e576cf156d?mode=deep",
+    "timestamp": "2026-02-18 23:44:06.612323",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Key Compromise] If oracle secp256k1_key at line 91 is compromised, could attacker sign arbitrary price updates with no rate limiting or fraud proof mechanism? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b59b0ab5-2b7d-4b3a-be45-29828b81e30b?mode=deep",
+    "timestamp": "2026-02-18 23:44:27.112849",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Key Rotation Gap] Between oracle key rotation, could there be a window where both old and new keys are valid causing double-submission vulnerabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5e1df96-9584-4466-9987-cf07932e2f27?mode=deep",
+    "timestamp": "2026-02-18 23:44:48.264998",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Partial Key Match] Line 91 uses check_subvec starting at index 1. Could this accept keys where only 64/65 bytes match enabling impersonation attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_148dc19f-c760-4d23-9eb5-189df1e6e1b9?mode=deep",
+    "timestamp": "2026-02-18 23:45:08.895276",
+    "report_generated": false
+  }
+]
