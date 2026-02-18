@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: new()] [Missing Validation] The constructor accepts arbitrary request_id without validation - can an attacker manipulate request ordering or create duplicate IDs if called directly from package code, potentially causing request_id collision in the withdraw_requests table? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea998ecd-e022-43cc-b61e-858588d080fb?mode=deep",
+    "timestamp": "2026-02-18 20:39:11.414148",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: new()] [Missing Validation] The constructor accepts zero or maximum u256 shares without bounds checking - can this lead to share accounting overflow when executing withdrawals, or allow users to request withdrawal of more shares than exist? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e19a6c8-91af-4aff-bbf2-44a16d77e93a?mode=deep",
+    "timestamp": "2026-02-18 20:39:23.979578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: new()] [Missing Validation] The constructor accepts arbitrary expected_amount (u64) without correlation to shares (u256) - can users set expected_amount=0 to bypass slippage protection in execute_withdraw, receiving less than they should? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f0dd0fab-887b-4bd2-9531-a50cde0b0fbc?mode=deep",
+    "timestamp": "2026-02-18 20:39:37.774500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: new()] [Missing Validation] The constructor allows receipt_id = address::from_u256(0) - can this create confusion with the special zero-address recipient logic used for manual claim vs auto-transfer, potentially routing funds incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8aa15f08-2ffe-4797-8465-c12a0dbad42b?mode=deep",
+    "timestamp": "2026-02-18 20:39:51.613377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: new()] [Missing Validation] The constructor accepts vault_id without validating it matches the actual vault being used - can cross-vault withdrawal requests be created, breaking the invariant that requests belong to specific vaults? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ffd7960e-27ea-4f76-a36f-f08283eab298?mode=deep",
+    "timestamp": "2026-02-18 20:40:06.254039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: new()] [Missing Validation] The constructor accepts timestamp parameter directly - if clock.timestamp_ms() is not used consistently, can past or future timestamps be injected to bypass locking_time_for_cancel_request checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9d69b2e9-8819-4976-b732-c8f199b02f51?mode=deep",
+    "timestamp": "2026-02-18 20:40:21.614766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: new()] [Missing Validation] The recipient parameter accepts any address including zero - if recipient validation is not enforced elsewhere, can funds be sent to burn addresses or invalid recipients? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c222499e-a300-48c2-a5a9-d170ae5dd946?mode=deep",
+    "timestamp": "2026-02-18 20:40:38.473496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest] [Type Mismatch] The shares field is u256 but expected_amount is u64 - when shares_to_withdraw * ratio produces USD value, can this overflow u64 bounds during price conversion in execute_withdraw, causing reverts or incorrect withdrawal amounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_09647862-6ec7-41bc-8bc8-8fec507803b7?mode=deep",
+    "timestamp": "2026-02-18 20:40:57.130039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest] [Type Limitation] The expected_amount field is u64 (max ~18.4 * 10^18) - for high-value principal tokens with low decimals, can legitimate withdrawal amounts exceed u64::MAX, making large withdrawals impossible? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7be02bb-4281-4d46-8fdb-66fb7a004071?mode=deep",
+    "timestamp": "2026-02-18 20:41:17.197426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest] [Type Limitation] The request_time field is u64 timestamp_ms - when adding locking_time_for_cancel_request in cancel_withdraw, can this overflow if locking_time is set to near u64::MAX, permanently locking cancellation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_208971fe-a560-4722-9cce-7b3e3b8ad4f8?mode=deep",
+    "timestamp": "2026-02-18 20:41:37.073800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: shares()] [Type Conversion Risk] Getter returns u256 shares directly - when this is used in math operations with u64 amounts in execute_withdraw, can mixed-precision arithmetic cause truncation or unexpected wrapping? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9cae981b-157c-4715-8348-5a58372824ee?mode=deep",
+    "timestamp": "2026-02-18 20:41:57.920830",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest] [Ability: copy] The struct has 'copy' ability - can requests be duplicated in package code, allowing the same request to be executed multiple times if proper deletion isn't enforced? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5127353d-977f-4445-ab71-751a393af8d2?mode=deep",
+    "timestamp": "2026-02-18 20:42:19.989382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest] [Ability: drop] The struct has 'drop' ability - can requests be silently dropped without proper cleanup of receipt pending_withdraw_shares, leaving receipts in inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_73b5fbda-d3dc-4d35-83d0-9d78b1bc1372?mode=deep",
+    "timestamp": "2026-02-18 20:42:41.364604",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest] [Ability: store] The struct has 'store' ability allowing table storage - can requests be stored in unauthorized locations outside request_buffer, bypassing request lifecycle controls? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dc58fbbf-5c17-4769-89cd-4636effa92ce?mode=deep",
+    "timestamp": "2026-02-18 20:43:02.544265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest] [Missing State Field] The struct lacks a 'cancelled' or 'executed' status field - can cancelled or executed requests be re-processed if not deleted from the table, allowing double-withdrawal? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_409c8c30-8f87-4e30-93ca-28d523e2b6b9?mode=deep",
+    "timestamp": "2026-02-18 20:43:23.185327",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest] [Missing Field] No expiration_time field exists - can requests remain in the buffer indefinitely, allowing execution at arbitrary future share ratios that may be manipulated? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b190751-e745-4214-96c2-7d3f92663e96?mode=deep",
+    "timestamp": "2026-02-18 20:43:43.299583",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest] [Missing Field] No max_slippage_bps field - users must rely solely on expected_amount for slippage protection, but can operators exploit this by timing execution when share_ratio is exactly at expected_amount, still giving users worst-case outcomes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e859329-9981-44d6-a485-097c632e59b5?mode=deep",
+    "timestamp": "2026-02-18 20:44:04.518339",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest] [Missing Validation Field] No signature or authorization proof - requests stored in table rely on prior checks, but can package functions create requests bypassing user authorization? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e82cb3f9-158c-4054-9b95-bd56b4cffb93?mode=deep",
+    "timestamp": "2026-02-18 20:44:26.209701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: new()] [Missing Return Validation] The constructor returns WithdrawRequest directly without checking invariants - can malformed requests with shares=0 or mismatched IDs be created and stored? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6cb5350f-47e7-47a7-9cbc-74e5f95ba84f?mode=deep",
+    "timestamp": "2026-02-18 20:44:47.709660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Functions: request_id(), receipt_id(), vault_id()] [Public Visibility] All getters are public - can external contracts read sensitive request details and front-run withdraw executions by monitoring request_time and expected_amount? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8dfbad50-6001-4ec4-8946-1a7f084b927a?mode=deep",
+    "timestamp": "2026-02-18 20:45:10.539434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: recipient()] [Address Exposure] Public getter exposes recipient address - can this leak privacy about which addresses are withdrawing, enabling MEV attacks or targeted DoS? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_856cc21a-a77f-4cf7-aa02-633fa205a9bc?mode=deep",
+    "timestamp": "2026-02-18 20:45:32.737699",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: expected_amount()] [Slippage Exposure] Public getter exposes expected_amount - can operators or arbitrageurs monitor this to execute withdrawals only when market conditions give them maximal benefit at user expense? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86cd065e-577a-4a2e-b095-35169ca26ab3?mode=deep",
+    "timestamp": "2026-02-18 20:45:56.105878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest] [Cross-Module Risk] The struct is package-visible only through 'new()' but stored in public table - if table access isn't properly gated in volo_vault.move, can unauthorized actors read/write requests? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3368579b-a3ee-4137-b506-cc1d52c11beb?mode=deep",
+    "timestamp": "2026-02-18 20:46:19.108141",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: new()] [Package Visibility] Constructor is package-visible - can other package modules create requests without going through request_withdraw(), bypassing receipt ownership and share balance checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b45633af-3dd5-4f93-a0e9-7fb1f489045a?mode=deep",
+    "timestamp": "2026-02-18 20:46:44.557750",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest] [Receipt Binding] Only receipt_id is stored, not receipt object reference - can requests persist after receipts are destroyed, creating dangling requests that reference non-existent receipts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd58c445-9625-4ca0-97f9-170afd862581?mode=deep",
+    "timestamp": "2026-02-18 20:47:08.922491",
+    "report_generated": false
+  }
+]
