@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: execute_deposit()] [Reward Buffer Manipulation] Can an attacker manipulate reward_manager or vault state between `update_reward_buffers()` and `execute_deposit()` to claim extra rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_27e915b5-6b28-4554-adbf-122b5195a043?mode=deep",
+    "timestamp": "2026-02-18 22:21:06.613276",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: execute_deposit()] [Receipt Mismatch] If deposit_request.receipt_id() doesn't match the actual receipt in reward_manager, can update_receipt_reward() update wrong receipt or fail silently? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f6d02e1-5501-4f98-a784-e9928d94c5ad?mode=deep",
+    "timestamp": "2026-02-18 22:21:19.393940",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: execute_deposit()] [Max Shares Slippage Bypass] Can an attacker execute deposits with max_shares_received=0 or very high value to accept any number of shares, including unfavorable rates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b726ea11-e196-4b1a-b817-8811deb9eaaf?mode=deep",
+    "timestamp": "2026-02-18 22:21:33.087294",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: execute_deposit()] [Request ID Collision] Can an attacker reuse or forge request_id to execute deposits for requests they don't own, stealing shares? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6c4f80fa-6cb3-4180-8309-41dc44bba2a7?mode=deep",
+    "timestamp": "2026-02-18 22:21:46.764477",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: execute_deposit()] [Oracle Price Manipulation] Can stale or manipulated oracle data in config cause incorrect share minting during deposit execution? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b8bf4f6-40ff-4a8c-bbd3-287971ce46f7?mode=deep",
+    "timestamp": "2026-02-18 22:22:02.279736",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: execute_deposit()] [Frozen Operator Bypass] If operator freeze status changes between batch deposits, can a frozen operator complete some deposits before being blocked? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_45a9f8f7-dd49-4170-9e25-5eb65d8f0e73?mode=deep",
+    "timestamp": "2026-02-18 22:22:18.414093",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: batch_execute_deposit()] [Array Index Out of Bounds] If request_ids and max_shares_received vectors have different lengths, can the index lookup (line 430) cause out-of-bounds access or use wrong slippage values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51d79262-2ff0-401e-9d71-f632257bed18?mode=deep",
+    "timestamp": "2026-02-18 22:22:36.095060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: batch_execute_deposit()] [Reward Update Once Attack] Since update_reward_buffers() is called once for all deposits, can early deposits in the batch get unfair reward allocation compared to later ones? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74d6701d-a292-427b-ae41-7a3c90fbd05c?mode=deep",
+    "timestamp": "2026-02-18 22:22:54.063818",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: batch_execute_deposit()] [Request ID Reuse in Batch] Can the same request_id appear multiple times in the vector, causing double-execution and share inflation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_374bbcc1-2a63-4845-9b8c-3dd9f8491324?mode=deep",
+    "timestamp": "2026-02-18 22:23:15.276815",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: batch_execute_deposit()] [Index_of Failure] If request_id is not found in the vector, does index_of() panic or return invalid index, causing wrong max_shares_received usage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_80cbd6f9-aa26-41aa-9764-32731dc07186?mode=deep",
+    "timestamp": "2026-02-18 22:23:36.853703",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: batch_execute_deposit()] [Partial Execution Atomicity] If one deposit in the batch fails, do all previous successful deposits get reverted, or can partial execution occur leaving inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ac8c937-9c55-43c9-ad35-77afe33c1bfa?mode=deep",
+    "timestamp": "2026-02-18 22:23:59.084547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: batch_execute_deposit()] [Gas Limit DoS] Can an attacker create a batch with hundreds of deposits causing out-of-gas failure, preventing legitimate deposits? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9353666f-1b94-4630-ab96-063211c2a468?mode=deep",
+    "timestamp": "2026-02-18 22:24:22.437279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: cancel_user_deposit()] [Recipient Mismatch] Can an operator specify a different recipient address than the deposit owner, redirecting cancelled funds to attacker? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18877968-11b3-4c58-98af-15ba488f318b?mode=deep",
+    "timestamp": "2026-02-18 22:24:46.317645",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: cancel_user_deposit()] [Receipt ID Verification] If receipt_id doesn't match the deposit request's receipt, can cancel_deposit() still succeed allowing cancellation of wrong requests? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_44386b34-48be-4d1e-8e3f-44b6e4fb3743?mode=deep",
+    "timestamp": "2026-02-18 22:25:11.191987",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: cancel_user_deposit()] [Time Lock Bypass] Can operators cancel deposits during locking windows when users shouldn't be able to cancel, violating locking invariants? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc32a081-e8e5-4915-b1ce-bccb68ca06bc?mode=deep",
+    "timestamp": "2026-02-18 22:25:35.714899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: cancel_user_deposit()] [Clock Manipulation] Can passing manipulated clock parameter allow cancellation outside allowed time windows? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aa730571-05e9-4bdf-a1a9-8a05af7d0af4?mode=deep",
+    "timestamp": "2026-02-18 22:26:00.769757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: cancel_user_deposit()] [Transfer to Zero Address] Can recipient be address(0) causing funds to be burned instead of returned? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc45fe4b-ef46-487f-9581-141026652f38?mode=deep",
+    "timestamp": "2026-02-18 22:26:26.210673",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: execute_withdraw()] [Zero Address Recipient] If recipient is address::from_u256(0), funds go to claimable_principal. Can this be abused to lock funds or create accounting issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c65b635c-c787-4182-85f3-6cd8e56e01c0?mode=deep",
+    "timestamp": "2026-02-18 22:26:49.191605",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: execute_withdraw()] [Max Amount Slippage Attack] Can users set max_amount_received to very high values accepting unfavorable withdrawal rates due to oracle manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bed45117-a74a-4909-8495-2eb3043e52c2?mode=deep",
+    "timestamp": "2026-02-18 22:27:10.044520",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: execute_withdraw()] [Reward Update Race] Can attacker manipulate vault state between update_reward_buffers() and execute_withdraw() to claim unearned rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d93c3737-5047-4a4e-853e-87143fdc75c2?mode=deep",
+    "timestamp": "2026-02-18 22:27:30.306673",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: execute_withdraw()] [Receipt Reward Mismatch] If withdraw_request.receipt_id() is stale or manipulated, can update_receipt_reward() update wrong receipts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3a77802-58da-4e3a-8b96-76b17c3a36ec?mode=deep",
+    "timestamp": "2026-02-18 22:27:50.094441",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: execute_withdraw()] [Recipient Address Spoofing] Can operator change recipient address during execution to redirect withdrawals? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_737ad34f-f5ed-441f-b5b3-356af726e6b1?mode=deep",
+    "timestamp": "2026-02-18 22:28:11.448928",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: execute_withdraw()] [Claimable Principal Overflow] If many withdrawals go to claimable_principal, can repeated add_claimable_principal() calls cause overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7243f5e0-20c1-4b9f-8eb0-db3a01d410ef?mode=deep",
+    "timestamp": "2026-02-18 22:28:33.123855",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: batch_execute_withdraw()] [Vector Length Mismatch] If request_ids and max_amount_received have different lengths, can index lookup (line 505) cause incorrect slippage values or panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee97ed22-b788-4dd9-a408-f2829e55df27?mode=deep",
+    "timestamp": "2026-02-18 22:28:53.476741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: batch_execute_withdraw()] [Duplicate Request IDs] Can the same request_id appear multiple times causing double-withdrawal and vault principal drain? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1c856e3f-8e0a-4666-9b2e-adba0a9f66cf?mode=deep",
+    "timestamp": "2026-02-18 22:29:14.388468",
+    "report_generated": false
+  }
+]
