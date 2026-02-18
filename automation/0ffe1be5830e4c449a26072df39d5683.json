@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: parse_suilend_obligation()] [Zero Borrows] If borrowed_amount() is zero but the borrow entry exists, does the multiplication by rate ratio handle this edge case correctly? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02fcdce8-7116-4c15-81c0-110bdce5aa38?mode=deep",
+    "timestamp": "2026-02-18 20:27:18.873542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: parse_suilend_obligation()] [Very Small Values] For obligations with dust amounts (< 1 USD), does the DECIMAL division round these to 0, potentially hiding many small positions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d5f12c21-45ce-430a-a83c-c62e39859c8c?mode=deep",
+    "timestamp": "2026-02-18 20:27:31.674934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: parse_suilend_obligation()] [Very Large Values] For whale positions with billions in USD value, can u256 operations still overflow despite the large type, especially in intermediate calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_250c5b39-2d37-4da7-a037-e73c051324b5?mode=deep",
+    "timestamp": "2026-02-18 20:27:45.455281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: update_suilend_position_value()] [Clock Object Validity] Can an attacker pass a malicious Clock object that returns manipulated timestamps to bypass freshness checks or affect interest calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_338f9de4-0e2a-4f39-b2f2-73426f3f3e58?mode=deep",
+    "timestamp": "2026-02-18 20:27:58.907948",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: parse_suilend_obligation()] [Freshness Window] What is the freshness threshold in assert_price_is_fresh, and can attackers time their calls to exploit the edges of the window? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c198502f-28de-40d5-85c3-b6ca5115816e?mode=deep",
+    "timestamp": "2026-02-18 20:28:13.138568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: suilend_compound_interest()] [Timestamp Dependency] Does compound_interest use clock timestamp for interest calculation, and can time-based attacks (e.g., waiting for advantageous timestamps) be exploited? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a0ce5b39-5242-486e-8218-e9f5469f342d?mode=deep",
+    "timestamp": "2026-02-18 20:28:28.697953",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: update_suilend_position_value()] [Timestamp Overflow] Can clock.timestamp_ms() overflow if called far in the future, causing incorrect staleness tracking in finish_update_asset_value? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb353b20-5307-4826-9753-1f31c7a3da8b?mode=deep",
+    "timestamp": "2026-02-18 20:28:45.449705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: update_suilend_position_value()] [DoS via Assert] If assert_price_is_fresh fails for any reserve, does the entire update revert, allowing an attacker to DoS position updates by letting one price go stale? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3903e5e-349f-4094-818b-f555d3cab665?mode=deep",
+    "timestamp": "2026-02-18 20:29:03.732094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: parse_suilend_obligation()] [DoS via Large Obligation] Can an attacker create an obligation with maximum allowed deposits/borrows to make parse_suilend_obligation consume excessive gas and DoS the vault? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8cafd110-78d0-4525-b122-9e7bc0952a28?mode=deep",
+    "timestamp": "2026-02-18 20:29:24.516086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: suilend_compound_interest()] [DoS via Compound Failure] If compounding one reserve fails or requires excessive gas, can this block all position updates for that asset? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d291a157-1169-44c2-8210-0fcb1d4fe599?mode=deep",
+    "timestamp": "2026-02-18 20:29:45.343777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: get_reserve_array_indicies()] [DoS via Vector Size] Can the vector of reserve indices grow unbounded, causing memory or computation DoS when iterating? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b8ee148-c409-4a50-be2f-7f8210ff155e?mode=deep",
+    "timestamp": "2026-02-18 20:30:06.579027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: parse_suilend_obligation()] [Underwater Position Masking] By returning 0 when borrows exceed deposits, does the adaptor hide insolvency, allowing the vault to continue operations when it should trigger loss tolerance or liquidation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e21d5097-2dd7-45ba-acae-8fa2fa2f3b1a?mode=deep",
+    "timestamp": "2026-02-18 20:30:28.314319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: update_suilend_position_value()] [Value Deflation Attack] Can an attacker manipulate Suilend state to deflate the usd_value calculated, then withdraw from the vault before correction, stealing from other depositors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b7a00860-0f81-4b1b-b1d6-f16106f9873a?mode=deep",
+    "timestamp": "2026-02-18 20:30:51.232358",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: parse_suilend_obligation()] [Collateral Overvaluation] If ctoken_market_value overvalues deposits due to price manipulation or stale data, can this enable over-borrowing that leads to bad debt? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_417b8d83-8941-4452-942a-275789b3097a?mode=deep",
+    "timestamp": "2026-02-18 20:31:13.768975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: parse_suilend_obligation()] [Debt Undervaluation] If the borrow rate calculation underestimates debt due to rate manipulation or staleness, can borrowers extract more value than their collateral should allow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4145720-d8c8-41e2-9a95-5edc1067353a?mode=deep",
+    "timestamp": "2026-02-18 20:31:37.665946",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: update_suilend_position_value()] [Asset Type Mismatch] If the asset_type parameter doesn't match the actual type of the obligation cap stored in the vault, will get_defi_asset fail cleanly or cause silent corruption? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e4d9e36d-c69c-4580-adfb-64b127f30204?mode=deep",
+    "timestamp": "2026-02-18 20:32:01.457291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: parse_suilend_obligation()] [Obligation ID Corruption] If obligation_cap.obligation_id() returns an invalid or corrupted ID, will lending_market.obligation() handle this safely? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aae29065-19a8-4ce1-9748-355a4b696d9f?mode=deep",
+    "timestamp": "2026-02-18 20:32:26.167646",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: get_reserve_array_indicies()] [Index Consistency] Are reserve_array_index values guaranteed to remain valid for the lifetime of the obligation, or can reserve reordering invalidate stored indices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_17322679-1c69-4672-85d6-17d08b88f70f?mode=deep",
+    "timestamp": "2026-02-18 20:32:48.629767",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: update_suilend_position_value()] [Missing Price Update] The comment at lines 12-19 states prices must be updated first, but the function doesn't enforce this - can forgetting to update prices lead to exploits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3140ce2e-985e-48f7-a1a7-a8b1f3227cca?mode=deep",
+    "timestamp": "2026-02-18 20:33:12.496469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: update_suilend_position_value()] [Documentation Mismatch] Does the actual implementation match the documented requirement for calling refresh_reserve_price first, or is there a gap that creates security risk? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3f48850b-1a08-4af5-a2ae-432cf3ede459?mode=deep",
+    "timestamp": "2026-02-18 20:33:36.711074",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: parse_suilend_obligation()] [Cumulative Rate Division] In new_cumulative_borrow_rate.div(cumulative_borrow_rate), if cumulative_borrow_rate is 1 and new_cumulative_borrow_rate is very small due to precision, does this cause incorrect multiplier? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e94a567-f37e-455f-995b-8cd2271821ca?mode=deep",
+    "timestamp": "2026-02-18 20:34:01.077945",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: parse_suilend_obligation()] [Market Value Scaling] If to_scaled_val() returns values in basis points (1e4) instead of expected precision, dividing by DECIMAL (1e9) would undervalue by 5 orders of magnitude - is this validated? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_96b347c3-21cf-4fe6-9297-a263d23fddba?mode=deep",
+    "timestamp": "2026-02-18 20:34:26.066309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: parse_suilend_obligation()] [Precision Cascade] Do multiple sequential operations with precision loss (rate calculation, market value, to_scaled_val, DECIMAL division) compound errors to significant levels? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d79837c-9cbf-462b-804b-4b38ea1026d9?mode=deep",
+    "timestamp": "2026-02-18 20:34:49.799429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: parse_suilend_obligation()] [Subtraction Safety] The check at line 85 prevents underflow, but is this check performed at the right precision level (before or after DECIMAL division)? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_968d83ba-0e83-40ae-99dd-962b84d0cae4?mode=deep",
+    "timestamp": "2026-02-18 20:35:13.808706",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/suilend_adaptor.move] [Function: update_suilend_position_value()] [Get Asset Validation] Does vault.get_defi_asset validate that the asset exists and is of the correct type, or can it return a default/empty cap? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_05f0ffe9-cd1a-47c6-9654-f7a58a676b8a?mode=deep",
+    "timestamp": "2026-02-18 20:35:38.778595",
+    "report_generated": false
+  }
+]
