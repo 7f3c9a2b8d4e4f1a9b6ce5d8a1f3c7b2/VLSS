@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_claim_principal()] [Excessive Claim Amount] If amount > self.claimable_principal, does underflow occur and wrap claimable_principal to u64::MAX, and can subsequent claims drain vault using this inflated claimable amount? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_71cde59d-1569-4887-b40c-1799818561ac?mode=deep",
+    "timestamp": "2026-02-18 21:35:05.319333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_claim_principal()] [Partial Claim Tracking] If amount < self.claimable_principal (partial claim), is remaining claimable_principal correctly preserved, and can attacker exploit multiple partial claims to exceed total claimable amount through rounding errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aa33c63a-d22d-49cd-9f8c-f80ea25a0d30?mode=deep",
+    "timestamp": "2026-02-18 21:35:17.944783",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_claim_principal()] [Double Claim Race] Can two simultaneous update_after_claim_principal() calls for same amount both succeed if external vault doesn't properly lock, enabling attacker to double-claim the same claimable_principal? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cbb02e36-b4de-484d-9c0f-38825134b4cc?mode=deep",
+    "timestamp": "2026-02-18 21:35:31.713610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_claim_principal()] [Zero Amount Claim] If amount = 0, does function no-op correctly, or can zero claims be used to manipulate state or emit misleading events? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5df6e5e4-f569-4afe-9ff8-2bb3a5c79213?mode=deep",
+    "timestamp": "2026-02-18 21:35:45.476729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Multiple Functions] [Deposit-Withdraw Race] If update_after_request_deposit() and update_after_request_withdraw() are called in quick succession, can status ping-pong between PENDING_DEPOSIT_STATUS and PENDING_WITHDRAW_STATUS, and does this break assumptions in external vault logic about operation exclusivity? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c730de42-3946-4789-8c52-ef803b7b581c?mode=deep",
+    "timestamp": "2026-02-18 21:36:00.457518",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Multiple Functions] [Execute Without Status Check] Since none of update_after_execute_deposit/withdraw() explicitly verify current status matches expected pending state, can execute functions be called in wrong state, causing shares and pending balances to become desynchronized? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c26aae72-b61f-4f31-868f-68569f2b7c46?mode=deep",
+    "timestamp": "2026-02-18 21:36:16.209122",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Multiple Functions] [Cancel-Execute Ordering] If update_after_cancel_deposit() is called after update_after_execute_deposit() processes same pending deposit, does cancelled_deposit_balance underflow from 0 causing pending_deposit_balance to wrap to u64::MAX? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bde8975c-3c25-4e21-92f0-c6d548f5b1c6?mode=deep",
+    "timestamp": "2026-02-18 21:36:33.779453",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Multiple Functions] [Reward Update During Pending Operations] Can update_reward() be called while status is PENDING_DEPOSIT or PENDING_WITHDRAW, and if shares are used in reward calculation while pending operations are active, can this cause reward over/under-allocation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7dcd00a-3fcf-4229-a32a-7d8cfa88b253?mode=deep",
+    "timestamp": "2026-02-18 21:36:52.289148",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Multiple Functions] [Share Inflation Via Deposit-Reward Timing] If attacker calls update_after_request_deposit(), then external vault calls update_reward() before execute_deposit(), are rewards calculated on old shares or new shares, and can attacker game timing to claim rewards on shares they don't yet own? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e9d55e0a-6ffa-4dbd-9b2d-233877a172bf?mode=deep",
+    "timestamp": "2026-02-18 21:37:11.153167",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Multiple Functions] [Claim During Pending Withdrawal] Can update_after_claim_principal() be called while status is PENDING_WITHDRAW_STATUS, and if claimable_principal from previous withdrawal exists, can user claim it while simultaneously having active pending withdrawal, effectively double-withdrawing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_14f144c9-f282-474b-b4df-364c2bf321a5?mode=deep",
+    "timestamp": "2026-02-18 21:37:32.061939",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Multiple Functions] [Simultaneous Pending Operations] Since pending_deposit_balance and pending_withdraw_shares can both be non-zero simultaneously (if requests are made but not executed/cancelled), can this create logic errors in external vault when trying to determine user's true position? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc0e3e8f-c877-4125-aa81-6616eed53e29?mode=deep",
+    "timestamp": "2026-02-18 21:37:53.709751",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_request_deposit()] [Zero Deposit Request] Can pending_deposit_balance parameter be 0, and if so, does this waste gas and pollute status by setting PENDING_DEPOSIT_STATUS without actual deposit, potentially blocking legitimate operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7c5b211-6bba-431b-8bb2-fe25dfdac9af?mode=deep",
+    "timestamp": "2026-02-18 21:38:15.605490",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_request_withdraw()] [Zero Withdraw Request] Can pending_withdraw_shares parameter be 0, setting status to PENDING_WITHDRAW but with no actual pending withdrawal, blocking user from making legitimate deposit until they cancel the phantom withdrawal? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_831efb52-c57a-4969-8489-0e91d66cb0db?mode=deep",
+    "timestamp": "2026-02-18 21:38:38.304903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_execute_deposit()] [Zero Share Execution] If new_shares = 0 and executed_deposit_balance > 0, does user permanently lose their deposit funds without receiving any shares, and is this exploitable for fund theft? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9bfe863-1c8d-4033-a28d-d06ba8d237a5?mode=deep",
+    "timestamp": "2026-02-18 21:39:01.255300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_execute_withdraw()] [Zero Share Withdrawal] If executed_withdraw_shares = 0 but claimable_principal > 0, does user receive principal without burning shares, enabling infinite withdrawal attack? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_99c04f14-7bf7-47e3-8264-1fd6fe4e0bce?mode=deep",
+    "timestamp": "2026-02-18 21:39:25.586055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_claim_principal()] [Zero Claim] Can amount = 0 in update_after_claim_principal(), and if so, does this allow meaningless state updates or event emissions that confuse off-chain systems? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b9a3105-7bcf-4713-9f0e-4a0ba6ec30e5?mode=deep",
+    "timestamp": "2026-02-18 21:39:49.512439",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: new_vault_receipt_info()] [Missing Table Initialization] If reward_indices and unclaimed_rewards Tables are passed in empty, does first update_reward() call correctly initialize them, or can race conditions occur if multiple reward types are added concurrently? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c654a322-2dfb-4007-ac81-f9def2f114e6?mode=deep",
+    "timestamp": "2026-02-18 21:40:13.276030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Struct: VaultReceiptInfo] [Field Invariant Violation] Is there an invariant that pending_withdraw_shares ≤ shares, and if so, can it be violated through race conditions in request/cancel/execute calls, enabling user to withdraw more than they own? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0fa07b40-c10e-46cb-bb65-02192205acee?mode=deep",
+    "timestamp": "2026-02-18 21:40:38.745979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Struct: VaultReceiptInfo] [Pending Balance Invariant] Should pending_deposit_balance only be non-zero when status is PENDING_DEPOSIT_STATUS, and can this invariant be violated through cancel/execute race conditions leaving orphaned pending balance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_059c1a80-82fc-4dde-93df-9508435c20cd?mode=deep",
+    "timestamp": "2026-02-18 21:41:03.680212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Struct: VaultReceiptInfo] [Pending Withdraw Invariant] Should pending_withdraw_shares only be non-zero when status is PENDING_WITHDRAW_STATUS or PENDING_WITHDRAW_WITH_AUTO_TRANSFER_STATUS, and can invariant violation leave orphaned pending withdrawals? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c08488c6-ae66-4d93-b279-e634ebc1bf7c?mode=deep",
+    "timestamp": "2026-02-18 21:41:28.114626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Struct: VaultReceiptInfo] [Claimable Principal Source] Should claimable_principal only exist if prior execute_withdraw occurred, and can claimable_principal be non-zero with PENDING_DEPOSIT_STATUS, creating impossible state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_283e12d0-2b3b-4f1a-a2a6-9543a185b4ab?mode=deep",
+    "timestamp": "2026-02-18 21:41:51.100985",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_reward()] [TypeName Collision] Can two different reward token types hash to same TypeName causing Table key collision, and if so, do rewards get mixed up enabling attacker to claim high-value reward by depositing low-value reward type? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_76c7f228-ec10-466c-bd87-375b7e0c6838?mode=deep",
+    "timestamp": "2026-02-18 21:42:11.643229",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: get_receipt_reward()] [Missing Key Handling] If reward_type doesn't exist in unclaimed_rewards Table, function returns 0, but should it differentiate between 'no reward type registered' vs 'reward is actually 0', to prevent confusion about which rewards are available? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_97f44422-37e5-4071-87d0-9b34225806f0?mode=deep",
+    "timestamp": "2026-02-18 21:42:31.628126",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: reset_unclaimed_rewards()] [Type Parameter Mismatch] If RewardCoinType generic doesn't match any existing TypeName in unclaimed_rewards Table, does borrow_mut panic, and can attacker cause DoS by claiming non-existent reward type? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ef877a65-2626-494f-a03c-ab51cea956cd?mode=deep",
+    "timestamp": "2026-02-18 21:42:52.992367",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: reward_indices_mut()] [Mutable Reference Leak] Since reward_indices_mut() returns mutable reference to entire Table, can external code directly manipulate indices without going through update_reward(), corrupting reward accounting and enabling theft? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_81601032-5bc6-4b49-b2d9-3bb6af5946ac?mode=deep",
+    "timestamp": "2026-02-18 21:43:13.610261",
+    "report_generated": false
+  }
+]
