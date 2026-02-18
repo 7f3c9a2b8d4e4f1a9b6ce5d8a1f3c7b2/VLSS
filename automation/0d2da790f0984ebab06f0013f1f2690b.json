@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: increase_supply_balance()] [Rounding Error Exploitation] ray_div(amount, supply_index) at line 329 - can attacker exploit rounding to receive more scaled_amount than deserved? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fcf2d6f-b843-43b0-8ded-2e64c8d14c27?mode=deep",
+    "timestamp": "2026-02-18 20:17:47.258125",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: increase_supply_balance()] [Supply Index Zero] If supply_index is 0 or extremely small, ray_div will panic or produce massive scaled_amount - can this be exploited? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_23c57bba-59c6-4dce-b6bc-4555f8b1a8a9?mode=deep",
+    "timestamp": "2026-02-18 20:18:00.283760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: decrease_supply_balance()] [Insufficient Balance Check] No check if user has sufficient balance before decrease - can attacker trigger underflow in storage module? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21f9a215-bb04-4b09-aa7f-b7da107ae91f?mode=deep",
+    "timestamp": "2026-02-18 20:18:14.386946",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: decrease_supply_balance()] [Scaled Amount Precision] Using same ray_div as increase - can rounding differences cause imbalance between deposits and withdrawals? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_925f822d-7573-49f8-8628-a4169e50cbf2?mode=deep",
+    "timestamp": "2026-02-18 20:18:28.814487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: increase_borrow_balance()] [Borrow Index Manipulation] ray_div(amount, borrow_index) at line 343 - can attacker borrow when borrow_index is artificially low to get more scaled_amount? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0630d1bd-a7ba-4ba1-802f-05dc930844ac?mode=deep",
+    "timestamp": "2026-02-18 20:18:44.275530",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: increase_borrow_balance()] [Borrow Index Zero] If borrow_index is 0, division will panic - can initialization error cause DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_846cd676-ffad-4e74-9110-663d1d62d903?mode=deep",
+    "timestamp": "2026-02-18 20:19:01.646388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: decrease_borrow_balance()] [Repayment Rounding] Rounding in ray_div may cause user to repay slightly less than actual debt - can this accumulate over time? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac99901b-9994-4c96-a950-c30eabd24508?mode=deep",
+    "timestamp": "2026-02-18 20:19:20.395263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: decrease_borrow_balance()] [Negative Balance Risk] No explicit check for sufficient borrow balance - can decrease cause underflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b0434e0-b2bd-41eb-8665-f04abcd4beea?mode=deep",
+    "timestamp": "2026-02-18 20:19:39.982480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: is_health()] [Health Factor Threshold] health_factor >= ray() check - can attacker exploit boundary condition where health_factor equals exactly ray()? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd276ef5-72de-48cc-ac7f-34e8338ca302?mode=deep",
+    "timestamp": "2026-02-18 20:20:00.527808",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: is_health()] [Oracle Staleness] No staleness check on oracle prices - can attacker exploit stale oracle data to appear healthy when actually unhealthy? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28e41897-06b5-4179-a00b-5b6dd3c5f497?mode=deep",
+    "timestamp": "2026-02-18 20:20:21.536312",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_factor()] [Division by Zero] If health_loan_value is 0, returns address::max() - can attacker manipulate loan value to 0 to avoid liquidation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_626031e5-144a-442e-8c6e-78c0d43c19da?mode=deep",
+    "timestamp": "2026-02-18 20:20:43.562425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_factor()] [Ray Math Precision] Nested ray_div and ray_mul operations - can accumulated rounding errors cause incorrect health factor? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_942629a2-b28d-4640-ac95-c9b524fc89b6?mode=deep",
+    "timestamp": "2026-02-18 20:21:07.339896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_factor()] [Collateral Value Manipulation] health_collateral_value calculated from oracle - can attacker manipulate oracle to inflate health factor? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_805fe805-eeaa-4880-abaa-75b2473efd61?mode=deep",
+    "timestamp": "2026-02-18 20:21:32.716762",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_factor()] [Liquidation Threshold Manipulation] dynamic_liquidation_threshold used in calculation - can attacker exploit threshold calculation to avoid liquidation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_34e90bb9-7595-414b-b423-72acb56342db?mode=deep",
+    "timestamp": "2026-02-18 20:21:59.140951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_factor_batch()] [Gas Limit DoS] Loops through all users in vector - can attacker provide massive user list to cause out-of-gas? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bbe617ce-86b4-4ee0-9b33-5365eb004ea1?mode=deep",
+    "timestamp": "2026-02-18 20:22:26.382655",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: dynamic_liquidation_threshold()] [Division by Zero] If collateral_value is 0, function returns 0 - can this cause unexpected behavior in health factor calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6fe84878-7782-46c4-b5bf-59ad961ebfa4?mode=deep",
+    "timestamp": "2026-02-18 20:22:54.490242",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: dynamic_liquidation_threshold()] [Collateral Weight Manipulation] Threshold weighted by collateral value - can attacker deposit low-threshold assets to lower overall threshold? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a6a18fbf-8fea-4c74-a2a4-8d750f4302f9?mode=deep",
+    "timestamp": "2026-02-18 20:23:21.702149",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: dynamic_liquidation_threshold()] [Ray Math Overflow] ray_mul(user_collateral_value, threshold) accumulated - can sum overflow with many collateral assets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_71b8bcba-7646-4860-86db-9c66ffdd2073?mode=deep",
+    "timestamp": "2026-02-18 20:23:48.315255",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: dynamic_liquidation_threshold()] [Asset Order Dependency] Loops through collaterals in storage order - can attacker manipulate order to affect threshold calculation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4888e613-e7a0-46e5-b626-60b74240c198?mode=deep",
+    "timestamp": "2026-02-18 20:24:13.672652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_collateral_value()] [Value Accumulation Overflow] Sums collateral values in loop - can attacker deposit many assets causing value overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_66c3fb64-1bdd-4aae-806d-d4edd805110a?mode=deep",
+    "timestamp": "2026-02-18 20:24:39.545045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_collateral_value()] [Oracle Price Manipulation] Calls user_collateral_value which uses oracle - can attacker manipulate prices during loop iteration? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6fbfca14-0bba-423f-a3ee-1c8e08ec2385?mode=deep",
+    "timestamp": "2026-02-18 20:25:03.394668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_loan_value()] [Loan Value Accumulation] Sums all loan values - can overflow occur with many borrowed assets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4845595b-f70e-4121-ba12-ed83aee29dc3?mode=deep",
+    "timestamp": "2026-02-18 20:25:27.563547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_loan_value()] [Oracle Dependency] Uses calculator::calculate_value with oracle - can oracle manipulation inflate/deflate loan value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d896d9cf-1768-459e-97ff-c5dda14da452?mode=deep",
+    "timestamp": "2026-02-18 20:25:51.616568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_collateral_value()] [Balance Calculation Timing] Uses user_collateral_balance which may be stale - can attacker exploit timing between balance update and value calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_655fa9c5-f301-49d6-83dd-8eb8d4ed9682?mode=deep",
+    "timestamp": "2026-02-18 20:26:15.912271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_collateral_balance()] [Index Multiplication Overflow] ray_mul(supply_balance, supply_index) - can scaled balance overflow with high index values? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b4732a57-5b04-46b9-8da1-f799e368ea66?mode=deep",
+    "timestamp": "2026-02-18 20:26:37.930791",
+    "report_generated": false
+  }
+]
