@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: remove_reward_buffer_distribution()] [Premature Removal] At line 324, assert!(remaining_reward_amount == 0) checks buffer is empty, but what if rewards were just added in the same transaction before removal? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c240d301-6d26-453a-883b-c8947acce115?mode=deep",
+    "timestamp": "2026-02-18 23:02:19.320612",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Timestamp Manipulation] At lines 482-489, if distribution.rate == 0, last_updated is set to now - can this be exploited to skip reward distribution periods by setting rate to 0 temporarily? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_407085e4-b41e-41c6-a881-1731a40d6ae9?mode=deep",
+    "timestamp": "2026-02-18 23:02:31.806130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Zero Shares Case] At line 524, if total_shares > 0 is checked but can become 0 during execution, causing rewards to be lost without proper tracking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_15eb4f43-2631-4713-968d-f4f6ce145958?mode=deep",
+    "timestamp": "2026-02-18 23:02:45.873001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffers()] [Partial Update Failure] At lines 457-462, if update_reward_buffer fails for one reward type, are the already updated buffers left in an inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e05b72eb-df58-43c2-a816-9072b8d830e6?mode=deep",
+    "timestamp": "2026-02-18 23:03:00.138653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: retrieve_undistributed_reward()] [Buffer Drain] At lines 681-685, undistributed rewards can be retrieved by operator - can this be abused to drain all buffer rewards before they're distributed to users? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83f03c41-019a-449f-9a12-d47ebc76060c?mode=deep",
+    "timestamp": "2026-02-18 23:03:14.324381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: issue_receipt()] [Receipt Forgery] At lines 204-211, issue_receipt only checks version but not vault status - can receipts be issued when vault is disabled or during operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5f3f1e0-63a3-4197-8025-a7fb39a9f7ee?mode=deep",
+    "timestamp": "2026-02-18 23:03:29.625195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: issue_vault_receipt_info()] [State Initialization] At lines 220-224, unclaimed_rewards is created as empty Table and reward_indices is cloned - can mismatches between these cause reward calculation errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ded9952c-2c1e-4cbb-aa24-5d25a7674905?mode=deep",
+    "timestamp": "2026-02-18 23:03:46.294804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_receipt_reward()] [Index Desync] At lines 656-659, receipt reward indices are updated for all reward types, but what if new reward types were added after receipt creation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dee9e681-a420-4221-b647-85e922a32866?mode=deep",
+    "timestamp": "2026-02-18 23:04:04.370449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_receipt_reward()] [Missing Validation] At line 651, vault_receipt_info_mut is obtained without status checks - can rewards be updated for receipts in invalid states? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4db08be4-02a3-4cc9-9d17-35bd473651cf?mode=deep",
+    "timestamp": "2026-02-18 23:04:23.368338",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Receipt Status Check] At line 610, status must be NORMAL_STATUS, but is this constant properly defined and can it be bypassed through status manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5bb359d-561d-4ffc-8ba4-0f5da35c88ab?mode=deep",
+    "timestamp": "2026-02-18 23:04:41.414206",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Receipt ID Mismatch] At lines 604 and 607, receipt vault matching is done but receipt_id extraction happens at line 607 - can these be inconsistent? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e35427c-5db4-4727-94f9-7a7cc8397ee0?mode=deep",
+    "timestamp": "2026-02-18 23:05:01.509493",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Double Claim Prevention] After reset_unclaimed_rewards at line 622, can the same receipt claim again in the same transaction through reentrancy? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90e4ee38-a8e8-4d45-bd56-dc887fe4b8f3?mode=deep",
+    "timestamp": "2026-02-18 23:05:22.227545",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_balance()] [Decimal Conversion] At line 352, to_decimals converts reward value to u256 with extra 9 decimals - can this cause overflow for large reward amounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2e426b2-1a28-4a6f-95f0-1a83cb7d5e2c?mode=deep",
+    "timestamp": "2026-02-18 23:05:42.450992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_to_buffer()] [Decimal Consistency] At line 392, to_decimals is used for buffer rewards - is this consistent with the reward_balances which store original decimals per line 134 comment? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c910702-95ae-4418-9d28-e17cffaa4098?mode=deep",
+    "timestamp": "2026-02-18 23:06:02.833904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Decimal Conversion Loss] At lines 621-623, from_decimals converts u256 to u64 which could lose precision - is there a check to prevent claiming dust amounts that round to zero? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3cdb6aa-70b0-4aca-be7c-fb4352d2b60a?mode=deep",
+    "timestamp": "2026-02-18 23:06:24.580076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_indices()] [Index Precision] At lines 574-577, div_with_oracle_price creates 18 decimal index - can precision loss in this division lead to reward calculation errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82d5ef1d-e530-4755-8a16-03a6c1939c67?mode=deep",
+    "timestamp": "2026-02-18 23:06:47.199310",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: retrieve_undistributed_reward()] [Amount Conversion] At line 681, to_decimals converts u64 amount to u256 - is there validation that the converted amount doesn't cause issues with buffer accounting? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_287add3b-3827-4607-acdf-dbd35fabe9d9?mode=deep",
+    "timestamp": "2026-02-18 23:07:11.348409",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_new_reward_type()] [Type Collision] At lines 243-247, a new reward type is added to multiple data structures - can type collision occur if the same RewardCoinType is added twice through different calls? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1a570444-713f-4f0e-9172-c3745d75f702?mode=deep",
+    "timestamp": "2026-02-18 23:07:33.547460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_new_reward_type()] [Buffer Creation Race] At lines 249-267, if with_buffer is true, both reward_amounts and distributions are created - can inconsistency arise if this partially fails? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_224b2768-0091-4fc6-b678-73b72003bfce?mode=deep",
+    "timestamp": "2026-02-18 23:07:56.601659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_balance()] [Type Validation] At line 351, reward_type is extracted from generic type - is there validation that this type was previously added via add_new_reward_type? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_09159d47-de7c-40e8-8a5f-9d57c83d66be?mode=deep",
+    "timestamp": "2026-02-18 23:08:18.756625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_indices()] [Type Existence Check] At line 561, assert checks reward type exists in reward_amounts - but does this guarantee it exists in all other data structures (indices, balances)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_296bec6b-1829-484d-a772-dcd7e507454f?mode=deep",
+    "timestamp": "2026-02-18 23:08:41.277425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Type Mismatch] Generic type RewardCoinType is used at line 596 and 617 - can there be a mismatch between the generic parameter and the actual reward type in the receipt? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82928ba8-2e89-47e6-a169-9a13744bb679?mode=deep",
+    "timestamp": "2026-02-18 23:09:02.462111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_balance()] [Event Before State] At lines 370-375, RewardBalanceAdded event is emitted after state updates - if transaction reverts after event, is state rolled back properly? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc46a141-359c-4d59-ac82-78bf2fa3139a?mode=deep",
+    "timestamp": "2026-02-18 23:09:23.301020",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_indices()] [Event Data Consistency] At lines 582-589, event includes reward_amount and indices - can these values be manipulated to show incorrect data while actual state differs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b65c6866-95f0-4bae-bf95-9ccc246cad3e?mode=deep",
+    "timestamp": "2026-02-18 23:09:45.351919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Event Emission Timing] At lines 630-636, RewardClaimed event is emitted before actual balance split at line 638 - can this lead to event/state mismatch if split fails? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9fa972c-71cc-43b6-892f-22f87c6da2b5?mode=deep",
+    "timestamp": "2026-02-18 23:10:07.028807",
+    "report_generated": false
+  }
+]
