@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [Fee Bypass] If Volo Vault charges fees on coin splits but relies on split_coin to handle the fee deduction, and an attacker directly calls coin::split instead of this wrapper, could they bypass fee collection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2408299-0307-46da-b717-e3662805ced6?mode=deep",
+    "timestamp": "2026-02-18 20:02:32.931807",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance] [Oracle Price Manipulation] If the vault uses oracle prices to value the balance returned by split_coin_to_balance, and the balance is created during a price update window, could an attacker exploit timing to get favorable pricing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_17a21fad-1a47-40b1-8a04-489ff4b13a41?mode=deep",
+    "timestamp": "2026-02-18 20:02:45.584593",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [Adaptor Asset Return Failure] If split_coin is used by vault adaptors (Navi, Suilend, Cetus) to return borrowed assets, and the remainder transfer at line 24 fails, could this leave the adaptor in an inconsistent state with missing collateral? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8880791d-5ea1-4064-b83e-2cb8a9989928?mode=deep",
+    "timestamp": "2026-02-18 20:02:58.762031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance] [Health Factor Bypass] If split_coin_to_balance is used in health limiter calculations for Navi positions, and the balance value is manipulated post-conversion, could an attacker bypass health factor checks and over-leverage? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b7d5940-65e2-4ac6-a9f6-2b809ecbeca6?mode=deep",
+    "timestamp": "2026-02-18 20:03:12.272384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [Assert Ordering] The assertion at line 13 checks amount > 0 before line 14 checks coin_value >= amount - if amount is MAX_U64, could line 14's comparison overflow before the assertion is evaluated, causing a panic instead of clean error? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_01d20b34-dd3f-46d2-bdb8-e5e5fb65ccd6?mode=deep",
+    "timestamp": "2026-02-18 20:03:27.034308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [Error Message Leakage] Error constants at lines 7-8 could reveal internal implementation details - if an attacker repeatedly triggers these errors with crafted amounts, could they infer coin balances or vault states for exploitation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8dabfc61-6b46-4035-bd79-83d856d7b1ef?mode=deep",
+    "timestamp": "2026-02-18 20:03:43.677504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [Destroy Zero Assumption] Line 19 assumes coin::destroy_zero succeeds for zero-value coins - if the Coin type has custom destroy logic that aborts even for zero values, does this DoS the split_coin function permanently? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab1c7de1-9134-406c-9da3-7f237f0489bc?mode=deep",
+    "timestamp": "2026-02-18 20:04:00.089496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance] [Balance Drop] If the returned balance at line 34 is not consumed by the caller and is dropped, does Move's linear type system prevent this, or could a buggy caller lose funds by dropping the balance? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4339014e-be48-400a-8d62-4afc6c3c5fec?mode=deep",
+    "timestamp": "2026-02-18 20:04:18.872370",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [PTB Ordering Attack] In a Programmable Transaction Block, if an attacker sequences split_coin calls with precise timing, could they cause the transfer at line 24 to execute after a subsequent operation that relies on the remainder, creating a use-after-free scenario? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e1d33955-edea-4f36-ba1b-e3fa4b8fe4fd?mode=deep",
+    "timestamp": "2026-02-18 20:04:38.586483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [Coin Merge Exploit] If split_coin is called and the returned split_ is immediately merged with another coin before being used, could the merge operation bypass vault accounting that expects distinct split coins? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90236d73-292c-4b69-b729-3638c686f290?mode=deep",
+    "timestamp": "2026-02-18 20:04:58.720972",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance] [Balance Join Attack] After receiving balance from split_coin_to_balance, if an attacker joins it with a compromised balance of the same type, could the combined balance exceed expected vault limits and enable over-withdrawal? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea21714c-73ce-4e19-83ce-6d0d7dc8ccdc?mode=deep",
+    "timestamp": "2026-02-18 20:05:18.889439",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [Flash Loan Integration] If split_coin is used within a flash loan transaction where the coin is borrowed, split, and must be returned in the same transaction, could the remainder transfer at line 24 violate the flash loan atomicity requirement? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6bb8c360-cdb2-48fa-ac2f-84fb5cddc12b?mode=deep",
+    "timestamp": "2026-02-18 20:05:39.012256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance] [Balance Mutation] After balance is created at line 33, if there's a way to mutate its value before returning (e.g., through reflection or unsafe code), could an attacker inflate the balance to steal vault funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_39a42e84-2cd1-46ad-a7de-d57a680cb3e4?mode=deep",
+    "timestamp": "2026-02-18 20:06:00.317392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Module: utils] [Dependency Confusion] The module imports coin, balance, transfer from sui - if there's a malicious module with the same name in the dependency graph, could it shadow the legitimate Sui modules and provide backdoored implementations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_41108ff7-dee9-4322-80aa-1fa9ae2fa920?mode=deep",
+    "timestamp": "2026-02-18 20:06:20.737258",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Module: utils] [Public Function Exposure] Both functions are public - should they be public(friend) to restrict access to trusted Volo modules only, preventing external contracts from misusing them in unexpected ways? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d4fd93e-5c6e-4e98-8531-f8cc6581b6e6?mode=deep",
+    "timestamp": "2026-02-18 20:06:41.189740",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Module: utils] [Missing Access Control] Neither function has capability checks or admin restrictions - could this allow permissionless access in scenarios where only vault operators should split coins? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2acf892c-ce41-40f6-86cf-fc4bace8106f?mode=deep",
+    "timestamp": "2026-02-18 20:07:01.076366",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Module: utils] [No Event Emission] Functions don't emit events for coin splits or transfers - does this create audit trail gaps that prevent detecting malicious split operations in the vault? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8bc6846-36ca-4c6c-9679-2f2908a1fcdc?mode=deep",
+    "timestamp": "2026-02-18 20:07:20.354795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Module: utils] [Version Compatibility] If Sui framework's coin, balance, or transfer modules change in future versions, could breaking changes cause split_coin or split_coin_to_balance to behave incorrectly without runtime detection? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eef89f90-b86b-42d9-b971-83699b93bff0?mode=deep",
+    "timestamp": "2026-02-18 20:07:41.134406",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [Precision Loss] When splitting coins with very large values (near u64::MAX), could precision loss in the split operation at line 17 cause the sum of split_ and split_coin to be less than original coin_value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5214a7a-955c-4a44-a951-a06e4d9d34aa?mode=deep",
+    "timestamp": "2026-02-18 20:08:02.917480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [Amount Validation] The assertion at line 14 only checks coin_value >= amount - should it also verify that amount is not so large that it causes downstream operations (like vault share calculations) to overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_32b7bb52-4b3f-4d4e-ba05-54e4bdeb5e0c?mode=deep",
+    "timestamp": "2026-02-18 20:08:25.884734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [Minimum Split Amount] There's no check for a minimum split amount - could splitting 1 unit from a large coin create economic inefficiency or enable dust attacks that bloat vault storage? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_afbf87c3-9efe-4219-a305-5cc5e43e251a?mode=deep",
+    "timestamp": "2026-02-18 20:08:48.876807",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance] [Balance Overflow] If the balance created at line 33 is later joined with other balances in the vault, could the cumulative balance exceed u64::MAX and overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3c418676-1c5e-4469-bea1-1b079f44b7af?mode=deep",
+    "timestamp": "2026-02-18 20:09:11.901386",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [Invariant: Total Supply] Does split_coin maintain the invariant that total coin supply across all holders remains constant, or could the destroy_zero at line 19 or transfer at line 24 create/destroy supply unexpectedly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ef489b67-c6dc-4936-a8b8-eda4701af90d?mode=deep",
+    "timestamp": "2026-02-18 20:09:35.092888",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance] [Invariant: Balance Equality] Does the conversion guarantee that the Balance value equals the original Coin value pre-conversion, or could coin::into_balance introduce discrepancies? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b544825-3e7b-4152-a3cb-33b4f1bb59d0?mode=deep",
+    "timestamp": "2026-02-18 20:09:56.689600",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [State Consistency] If split_coin fails mid-execution (between line 17 split and line 24 transfer), could the coin be left in a partially-split state that violates vault accounting invariants? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6041e6f9-b55a-4a4e-b648-af92b38f961d?mode=deep",
+    "timestamp": "2026-02-18 20:10:17.555559",
+    "report_generated": false
+  }
+]
