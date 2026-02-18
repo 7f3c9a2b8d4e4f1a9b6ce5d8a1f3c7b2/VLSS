@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Overflow Detection Bypass] Can an attacker cause integer overflow by passing a=u256::MAX and b=1, where the addition wraps to 0, but the assertion c >= a would pass (0 >= u256::MAX is false), properly catching the overflow? Verify assertion logic handles MAX boundary. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_30a4a63d-ae00-43ed-aead-41bf4b80b9a3?mode=deep",
+    "timestamp": "2026-02-18 22:57:01.376777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Assertion Bypass] If a=u256::MAX-1 and b=2, does c=u256::MAX+1 wrap to 0 in Move's u256 arithmetic before the assertion check, allowing overflow to pass undetected? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d6b2c11-948d-4d70-8fba-5e3b44d1c25a?mode=deep",
+    "timestamp": "2026-02-18 22:57:14.307674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Share Inflation] When calculating total shares in vault deposit requests using add(), can an attacker deposit maximum values repeatedly to cause accumulated overflow that inflates their share proportion beyond deposited amount? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_290c92c9-5a66-4252-a25d-17cd1b365c49?mode=deep",
+    "timestamp": "2026-02-18 22:57:28.431487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Fee Accumulation] When adding boosted balance fees across multiple epochs, can accumulated fees overflow u256 limit causing fee collection to abort and lock rewards permanently? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_edfbacab-c999-4518-83c9-5709fe73b21c?mode=deep",
+    "timestamp": "2026-02-18 22:57:42.444742",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Oracle Price Aggregation] When aggregating multiple oracle prices using add() for total_usd_value calculation, can strategically timed large price feeds cause overflow that aborts operations during critical vault rebalancing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_343a28fc-0732-4908-b3b9-a8dde69d2595?mode=deep",
+    "timestamp": "2026-02-18 22:57:57.940900",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Request Buffer Overflow] When adding pending deposit amounts in request buffers, can an attacker submit multiple max-value deposits to overflow buffer accounting and corrupt withdrawal queue? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5caee1a-63e6-493f-bc88-1affa9457015?mode=deep",
+    "timestamp": "2026-02-18 22:58:14.622505",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Validator Weight Sum] When summing validator weights across all validators in liquid staking pool, can overflow in total weight calculation cause incorrect delegation proportions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8a78a66-1050-4b36-8632-bd7be01b9c76?mode=deep",
+    "timestamp": "2026-02-18 22:58:32.221016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Loss Tolerance Bypass] Can an attacker cause overflow when adding loss_tolerance values across multiple operations to bypass per-epoch loss limits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_640a6f2d-4bdd-4a85-ae2a-a7e084ee897d?mode=deep",
+    "timestamp": "2026-02-18 22:58:51.789995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Gas Griefing] Can an attacker repeatedly trigger add() with values near MAX to cause assertion failures that consume gas and DoS vault operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0fef5e3e-ff7f-4db9-b102-932dfb5ec45c?mode=deep",
+    "timestamp": "2026-02-18 22:59:12.926903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Reward Accrual] When adding epoch rewards to boosted balances, can overflow cause reward distribution to fail and lock user funds indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ff4d446-b420-4e13-9853-b178a8e05ac0?mode=deep",
+    "timestamp": "2026-02-18 22:59:34.431377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Multi-Asset Value Sum] When calculating total vault value across multiple DeFi positions (Navi, Suilend, Cetus, Momentum), can adding asset values overflow and report incorrect total_usd_value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ac4faa0-e9b2-46b6-b5f5-f1a5198ae615?mode=deep",
+    "timestamp": "2026-02-18 22:59:58.073919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Fee BPS Accumulation] When adding multiple fee basis points (protocol fee + performance fee + management fee), can overflow cause fees to wrap to zero and allow fee-free operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2f8faa81-6077-4619-b23b-dd4bd66c52b0?mode=deep",
+    "timestamp": "2026-02-18 23:00:22.967917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Migration Balance Transfer] During volo_v1 to v2 migration, can adding old and new balance values overflow and corrupt migrated balances? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aa315a44-6c9a-4b33-aef2-a2d87b3c61c3?mode=deep",
+    "timestamp": "2026-02-18 23:00:47.030679",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Adaptor Asset Return] When adding returned asset amounts from multiple adaptors, can overflow cause asset accounting mismatch and allow theft? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46de5bfc-583c-4bed-b1c5-4c14fa232f6b?mode=deep",
+    "timestamp": "2026-02-18 23:01:12.282064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Health Factor Calculation] In Navi limiter health factor computation, can adding collateral values overflow and falsely pass health checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ae7e2952-0d00-4b88-8dfb-afd7a419169b?mode=deep",
+    "timestamp": "2026-02-18 23:01:36.792186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: sub()] [Underflow Attack] Can an attacker pass a=0 and b=1 to cause underflow that wraps to u256::MAX, and does the assertion b <= a properly catch this before subtraction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_61e6619e-32ce-4101-98e2-552d230460c1?mode=deep",
+    "timestamp": "2026-02-18 23:02:01.579056",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: sub()] [Assertion Order] Is checking b <= a before subtraction sufficient, or can concurrent operations between assertion and subtraction cause race condition leading to underflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_687536a2-7fe5-4a86-af37-f67d271486a9?mode=deep",
+    "timestamp": "2026-02-18 23:02:25.158641",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: sub()] [Share Burn Underflow] When burning shares during withdrawal, can an attacker provide withdrawal amount larger than their shares to underflow share accounting and steal other users' funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9dc84612-a27d-4282-9612-25225b5d9013?mode=deep",
+    "timestamp": "2026-02-18 23:02:48.269799",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: sub()] [Fee Deduction Underflow] When deducting fees from deposit amounts, can zero or negative balance cause underflow that wraps to huge positive value, inflating shares? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_67d81bb6-4057-4ace-b2b2-bc23a79aced3?mode=deep",
+    "timestamp": "2026-02-18 23:03:10.701490",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: sub()] [Validator Unstake] When calculating unstake amount by subtracting from staked balance, can providing amount > staked cause underflow that corrupts validator pool accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec55351c-ea04-44fb-a4ab-d604a69f310d?mode=deep",
+    "timestamp": "2026-02-18 23:03:33.692021",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: sub()] [Loss Calculation] When subtracting current value from previous total_usd_value snapshot to calculate losses, can underflow occur if value increases and variables are reversed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9d8a541-da00-49c8-ab76-b18ff9fc6289?mode=deep",
+    "timestamp": "2026-02-18 23:03:57.072058",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: sub()] [Request Cancellation] When canceling deposit request and subtracting from buffer, can underflow corrupt request queue if amount was already partially processed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_16292dec-9be4-418d-a685-97a982445a71?mode=deep",
+    "timestamp": "2026-02-18 23:04:20.436588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: sub()] [Oracle Price Delta] When calculating price change delta using sub(), can underflow occur in volatile market causing operations to abort? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ba254d9d-52d8-4381-8618-30e4d8e686ee?mode=deep",
+    "timestamp": "2026-02-18 23:04:43.809642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: sub()] [Adaptor Borrow Tracking] When subtracting returned assets from borrowed amount tracking, can underflow allow returning less than borrowed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea5bd830-fcdc-4039-916a-aa8ef2bbbdc7?mode=deep",
+    "timestamp": "2026-02-18 23:05:07.475062",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: sub()] [Locking Window] When subtracting timestamps to check locking window elapsed, can underflow due to clock skew bypass withdrawal locks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6fd84101-b654-450c-8370-83f76a1a29e4?mode=deep",
+    "timestamp": "2026-02-18 23:05:31.035978",
+    "report_generated": false
+  }
+]
