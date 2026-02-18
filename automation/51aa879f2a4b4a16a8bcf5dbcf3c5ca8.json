@@ -1,0 +1,74 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [All Functions] [Max Values] Can any u64 or u256 field reach maximum value causing overflow in arithmetic operations (addition, multiplication) throughout the module? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa98d990-fbac-4188-81d6-865ad4d857a2?mode=deep",
+    "timestamp": "2026-02-18 23:35:37.834160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [All Functions] [Zero Balance] Can users with zero balance cause division by zero or return incorrect zero rewards when they should show available pools? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a50b7372-9183-4922-af22-516e6c8682b3?mode=deep",
+    "timestamp": "2026-02-18 23:35:50.366044",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools()] [Gas Limit] Can the while loop at lines 46-87 iterate hundreds of times if user has many pools, causing gas exhaustion and DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2775df2c-2f17-42d3-9278-6f876f7c7015?mode=deep",
+    "timestamp": "2026-02-18 23:36:03.770513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Gas Limit] Can nested loops at lines 103-185 and 121-176 cause O(n*m) complexity gas exhaustion when there are many reserves and pools? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5977618-7b46-4316-b43f-5e06564f1152?mode=deep",
+    "timestamp": "2026-02-18 23:36:17.269222",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Gas Limit] Can the loop at lines 272-334 combined with insert_pools() nested loop cause gas exhaustion for large pool sets? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63ce6556-5120-422e-a1e3-f8a8f8e3d93b?mode=deep",
+    "timestamp": "2026-02-18 23:36:31.346723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: insert_pools()] [Gas Inefficiency] Can the O(n) search loop at lines 343-353 cause performance degradation when there are many phase groups? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1dde5e71-6411-4de9-92fc-1e90147bba1d?mode=deep",
+    "timestamp": "2026-02-18 23:36:48.955179",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [All Functions] [External Calls] Can multiple external calls to storage, oracle, and incentive modules in loops cause cumulative gas costs to exceed limits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb174caa-f47d-4192-9108-76cbe0c24d22?mode=deep",
+    "timestamp": "2026-02-18 23:37:05.342155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Type Cast] Can `(end_at - start_at) as u256` at line 163 lose data if the difference is extremely large, though unlikely given timestamp ranges? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_77bf2703-7d24-42f1-898a-1b95a1bae8ec?mode=deep",
+    "timestamp": "2026-02-18 23:37:25.230892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Type Cast] Can `(MsPerYear as u256)` at line 165 cause issues if MsPerYear calculation overflows u64 before cast? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_977f52e0-7c8c-40f6-859e-f7f19af27ff0?mode=deep",
+    "timestamp": "2026-02-18 23:37:45.345485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Type Cast] Can `(normal_total_supply as u256)` at line 153 lose precision or fail if conversion is improper? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f0a5bb49-bf93-43ca-a8ac-556742a92c40?mode=deep",
+    "timestamp": "2026-02-18 23:38:05.521651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Type Cast] Can `(end_at - start_at) as u256` at line 239 and `(MsPerYear as u256)` at line 242 cause unexpected behavior with edge case values? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee5ee44c-535f-41b4-8524-7711576693ce?mode=deep",
+    "timestamp": "2026-02-18 23:38:27.066779",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Type Cast] Can `(normal_total_supply as u256)` at line 230 fail if normal_total_supply is at u64 maximum? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2691c8d6-09d1-4581-97d7-e89ba1a5f2f5?mode=deep",
+    "timestamp": "2026-02-18 23:38:48.058984",
+    "report_generated": false
+  }
+]
