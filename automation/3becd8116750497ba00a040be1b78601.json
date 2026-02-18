@@ -1,0 +1,146 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: new_aggregator()] [Test Function Exposure] new_aggregator() at lines 628-668 creates Aggregator without sharing - if accessible in production, can attacker create private aggregators bypassing security? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_73a65732-124e-4092-9da4-a67225cd58e6?mode=deep",
+    "timestamp": "2026-02-18 22:29:15.173127",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Module Import decimal] Aggregator relies on switchboard::decimal module - if decimal::new(), decimal::zero(), decimal::lt(), decimal::sub() have vulnerabilities, does aggregator inherit them? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5f2970a5-d6c5-4111-952f-509b496e77e2?mode=deep",
+    "timestamp": "2026-02-18 22:29:28.561371",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: median_result()] [Decimal lt() Method] At line 531, update.result.lt() is called - if lt() has precision errors or negative number bugs, can it produce incorrect partition? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ce9ba8d-b879-47b6-a175-1d3fac96fee5?mode=deep",
+    "timestamp": "2026-02-18 22:49:54.608119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: add_result()] [Timestamp Future Attack] At line 246, timestamp_ms parameter can be future timestamp - can attacker submit updates with timestamp far in future, making all other updates appear stale? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d844c403-130b-4383-8f9a-442d7a6abd6f?mode=deep",
+    "timestamp": "2026-02-18 22:50:08.001563",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: valid_update_indices()] [Timestamp Overflow in Staleness] At line 574, if result.timestamp_ms is near u64::MAX and max_staleness_ms is large, does addition overflow causing wraparound to 0, making future update appear stale? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7df7775c-3133-405f-ac8a-b4c093fd11f2?mode=deep",
+    "timestamp": "2026-02-18 22:50:22.661133",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Timestamp Comparison] At lines 391-392, min and max timestamps are computed but not validated against now_ms - can timestamp be from far future causing incorrect staleness perception? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56272429-21f9-463f-aa21-450ed64bfa96?mode=deep",
+    "timestamp": "2026-02-18 22:50:36.954137",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: add_result()] [Clock Manipulation] add_result() depends on Clock object at line 248 - if Clock can be manipulated or is from test context, can attacker bypass staleness checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d228ccb-4019-4579-80a1-aecde3173c6d?mode=deep",
+    "timestamp": "2026-02-18 22:50:52.388986",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [now_ms Parameter] compute_current_result() takes now_ms parameter but add_result() passes clock.timestamp_ms() - can caller pass arbitrary now_ms to compute_current_result() directly to manipulate staleness? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_808449e1-874a-4056-aecb-478e5a28ca23?mode=deep",
+    "timestamp": "2026-02-18 22:51:10.205719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Struct Aggregator] Aggregator is shared object (line 218) allowing concurrent access - are all mutations properly synchronized or can race conditions corrupt state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c057658a-f235-4bbb-8db7-5e9b0e43d6e3?mode=deep",
+    "timestamp": "2026-02-18 22:51:28.485390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: add_result()] [Option Extract Panic] At line 254, option.extract() is called after is_some() check - but between check and extract, can concurrent transaction invalidate option causing panic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e7109e6-81a1-4c2f-8934-08e9b0161359?mode=deep",
+    "timestamp": "2026-02-18 22:51:47.521997",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: valid_update_indices()] [Empty Results Vector] At line 567-569, if results.length() == 0, returns empty valid_updates - does caller handle empty vector correctly or can it cause division by zero in median calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2ee8056-f1ba-4c3e-86c1-333b74f2b389?mode=deep",
+    "timestamp": "2026-02-18 22:52:08.595797",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_authority()] [Unauthorized Transfer] set_authority() at lines 223-225 has no event emission - can authority be silently transferred without off-chain monitoring detecting it? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6a6adadc-727e-4ef5-9717-0321d9d77620?mode=deep",
+    "timestamp": "2026-02-18 22:52:30.440913",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_authority()] [Transfer to Zero Address] Can new_authority be set to @0x0 or invalid address, permanently locking out legitimate authority? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5246139e-fa53-4319-bd49-7a524b55e119?mode=deep",
+    "timestamp": "2026-02-18 22:52:52.915728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_authority()] [Transfer to Self] If authority transfers to same address (self), does this reset any state or create unexpected behavior? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_592413ba-cb50-4915-9134-adf1cd7924e7?mode=deep",
+    "timestamp": "2026-02-18 22:53:15.847807",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_configs()] [No Event Emission] set_configs() at lines 227-240 updates critical parameters without events - can malicious config changes go undetected? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a2a166c2-1902-4622-b9d4-5694c90d2f06?mode=deep",
+    "timestamp": "2026-02-18 22:53:38.620136",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_configs()] [Immediate Effect] Config changes take effect immediately without delay - can attacker time config change right before add_result() to manipulate acceptance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_946f8602-5177-48f1-9e52-9338d063aea5?mode=deep",
+    "timestamp": "2026-02-18 22:54:02.250454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_configs()] [No Bounds Validation] set_configs() accepts any u64/u32 values without validation - can max_staleness_seconds be set to 1ms causing all updates to be stale? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_37bfa20a-e7fe-4c3f-97c6-b56a68c16b8d?mode=deep",
+    "timestamp": "2026-02-18 22:54:26.834156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_configs()] [Feed Hash Change Mid-Operation] Can feed_hash be changed while valid updates exist in buffer, mixing data from different feeds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e23fa03-c342-409d-8f46-90c5862df373?mode=deep",
+    "timestamp": "2026-02-18 22:54:51.903344",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [All Updates Same Value] If all valid updates have identical value, stdev should be 0 - does Welford's algorithm handle this correctly or can m2 accumulate rounding errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_763d629b-cf28-4ff2-bb7a-3590843bb672?mode=deep",
+    "timestamp": "2026-02-18 22:55:14.785723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Extreme Value Ranges] If min_result is 1 and max_result is u128::MAX, does range calculation overflow or produce correct u128 result? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4787652a-a86f-4510-a29c-9afdc04c1773?mode=deep",
+    "timestamp": "2026-02-18 22:55:37.222910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Negative Decimal Values] If oracle submits negative Decimal values, do min/max comparisons work correctly or can negative be treated as positive? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aaa80247-2a1a-4fa8-9050-87d8b67612fe?mode=deep",
+    "timestamp": "2026-02-18 22:55:58.648550",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Mean vs Median Divergence] mean is calculated via Welford (line 383) and median via quickselect (line 398) - for skewed distributions, can large mean-median divergence indicate manipulation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63929269-5199-46b8-9aaf-ab607bdad7e2?mode=deep",
+    "timestamp": "2026-02-18 22:56:19.178468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Stdev Zero Division] If stdev ends up as 0 (all same values), are there any downstream divisions by stdev that would panic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_471c48e1-9806-42a3-853a-8584fafe446e?mode=deep",
+    "timestamp": "2026-02-18 22:56:39.187480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: valid_update_indices()] [Sybil Attack] With MAX_RESULTS = 16 and no oracle authorization check, can attacker create 16 fake oracle IDs, fill buffer, and control 100% of median? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d11982ec-17c5-469b-809b-5afc6b0cd3a6?mode=deep",
+    "timestamp": "2026-02-18 22:57:00.705942",
+    "report_generated": false
+  }
+]
