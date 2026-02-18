@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: close_pool_reward()] [Bag Destruction] At line 167, bag::destroy_empty is called on additional_fields. If the bag is not actually empty (contains other dynamic fields), can this panic and prevent pool_reward closure? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fed53b10-d5a2-4de7-aafd-c47906e83845?mode=deep",
+    "timestamp": "2026-02-18 21:17:55.367820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: close_pool_reward()] [Balance Removal] At lines 162-165, Balance<T> is removed from the bag. If the balance was already removed by another path (e.g., via bag manipulation), can this cause a panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_984edc02-da49-4e54-b269-cefadfabfbc4?mode=deep",
+    "timestamp": "2026-02-18 21:18:12.496670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: cancel_pool_reward()] [Balance Mutation] At lines 196-201, balance::split is called on a mutable reference to Balance<T> in the bag. Can an attacker gain mutable access to the same bag concurrently to manipulate the balance during split? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8552292-8510-44ce-a927-7980574688e6?mode=deep",
+    "timestamp": "2026-02-18 21:18:25.893553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: claim_rewards()] [Balance Split] At line 402, balance::split is called with claimable_rewards. If claimable_rewards > balance::value(reward_balance), can this cause a panic or return insufficient funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c46d5a4f-0729-4bbb-90e1-44653e7eb78e?mode=deep",
+    "timestamp": "2026-02-18 21:18:39.623465",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: add_pool_reward()] [RewardBalance Key] At line 122, RewardBalance<T>{} is used as the key. Can an attacker predict this key and add malicious entries to the bag before the PoolReward is created? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d08f24d5-11f3-4e78-810c-40be5f47bf94?mode=deep",
+    "timestamp": "2026-02-18 21:18:55.092270",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: change_user_reward_manager_share()] [Arithmetic Underflow] At line 363-364, total_shares = total_shares - user_reward_manager.share + new_share. If user_reward_manager.share > total_shares, can this underflow and wrap around to u64::MAX? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87ff86d4-30ad-4446-87cb-0eca670c1c2a?mode=deep",
+    "timestamp": "2026-02-18 21:19:11.674119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: change_user_reward_manager_share()] [Overflow] At line 363-364, when adding new_share, if total_shares - user_reward_manager.share + new_share > u64::MAX, can this overflow and cause incorrect total_shares accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c53d6229-71e1-440b-a58a-b2b3af2c3960?mode=deep",
+    "timestamp": "2026-02-18 21:19:28.642982",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: add_pool_reward()] [Balance Value] At line 116, total_rewards is set to balance::value(&rewards). If balance value is u64::MAX, can subsequent calculations overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5f759c82-c16f-44a6-b575-b6849839ce93?mode=deep",
+    "timestamp": "2026-02-18 21:19:46.932329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: update_pool_reward_manager()] [Time Arithmetic] At lines 233-235, time_passed_ms involves multiple min/max operations. Can carefully crafted timestamp values cause the final subtraction to underflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b02cb64e-923e-4f80-8072-b26e505f56ac?mode=deep",
+    "timestamp": "2026-02-18 21:20:06.252722",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: update_pool_reward_manager()] [Multiplication Overflow] At line 239, decimal::from(pool_reward.total_rewards) is multiplied by decimal::from(time_passed_ms). Can this overflow the Decimal type if both values are near maximum? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab8795bf-87bf-4f0d-8548-49321c23fe69?mode=deep",
+    "timestamp": "2026-02-18 21:20:27.260627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: claim_rewards()] [Subtraction Underflow] At line 386, earned_rewards = sub(earned_rewards, decimal::from(claimable_rewards)). If claimable_rewards > earned_rewards due to a bug, can this underflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a976d0c0-45e4-446f-9548-6a642e3c0a23?mode=deep",
+    "timestamp": "2026-02-18 21:20:48.951365",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: add_pool_reward()] [Campaign Spam] Can an attacker add MAX_REWARDS (50) campaigns all starting in the future, then immediately cancel them to grief other users by preventing legitimate campaigns from being added? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90d340c6-2484-4297-bae7-4f8d15238e67?mode=deep",
+    "timestamp": "2026-02-18 21:21:09.539553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: close_pool_reward()] [Griefing] At line 160, close requires num_user_reward_managers == 0. Can an attacker create a UserRewardManager with 0 share but never claim, permanently preventing campaign closure and locking dust rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_734d2c74-6e40-4439-9cf9-7ee5eeb459e3?mode=deep",
+    "timestamp": "2026-02-18 21:21:30.319899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: cancel_pool_reward()] [Early Cancellation] The function can be called anytime by the package owner. Can an owner cancel a campaign immediately after users deposit shares, stealing rewards that users expected to earn? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2fde0eda-1ea7-47b4-a415-95737ce17515?mode=deep",
+    "timestamp": "2026-02-18 21:21:50.258325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: cancel_pool_reward()] [Reward Recovery] At lines 186-201, unallocated rewards are returned. Can an owner repeatedly add and cancel campaigns to extract value through rounding errors in the allocation math? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5117e47-ff37-410c-b5ca-848cd5ed1999?mode=deep",
+    "timestamp": "2026-02-18 21:22:12.076282",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: update_pool_reward_manager()] [Campaign Skip] At lines 225-231, campaigns are skipped if certain time conditions aren't met. Can an attacker manipulate clock time to cause campaigns to be permanently skipped, locking rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87503260-91e2-4937-81ab-06366ea27cb0?mode=deep",
+    "timestamp": "2026-02-18 21:22:33.570279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: add_pool_reward()] [Reward Period Boundary] If start_time_ms is set to exactly the current timestamp and end_time_ms is start_time_ms + MIN_REWARD_PERIOD_MS, can the first update at line 233-235 result in time_passed_ms = 0, wasting gas? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6317b89c-4e33-40b8-baeb-f6c199366cc8?mode=deep",
+    "timestamp": "2026-02-18 21:22:56.740668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: new_user_reward_manager()] [Initialization Timing] At line 346, last_update_time_ms is set to current timestamp. If multiple campaigns exist with different start times, can rewards be lost for campaigns that started before this timestamp? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf821cfb-1d53-479b-aab1-393fe59d4bf7?mode=deep",
+    "timestamp": "2026-02-18 21:23:18.562999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: new_user_reward_manager()] [Share Zero] The function creates a UserRewardManager with share = 0 at line 344. Can an attacker create many zero-share managers to inflate num_user_reward_managers, preventing pool_reward closure? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_343ef4bd-d422-41e3-82ec-3961ca6753dd?mode=deep",
+    "timestamp": "2026-02-18 21:23:37.586601",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: update_user_reward_manager()] [New User Flag] At line 265, a new_user_reward_manager boolean parameter controls update behavior. Can an attacker repeatedly create and destroy UserRewardManagers to exploit different update paths? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c15969b4-dae8-4a7b-b430-09e3d35c081e?mode=deep",
+    "timestamp": "2026-02-18 21:23:57.385032",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: update_user_reward_manager()] [Time Check Skip] At lines 274-276, updates are skipped if timestamps match and new_user_reward_manager is false. Can an attacker call this with new_user_reward_manager = true to force updates even when time hasn't changed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3acfde6-5683-4844-b793-d272557845df?mode=deep",
+    "timestamp": "2026-02-18 21:24:17.101983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: update_user_reward_manager()] [Reward Vector Growth] At lines 288-290, the rewards vector grows unboundedly. Can an attacker cause memory exhaustion by triggering growth of this vector through many pool_reward additions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b51be01a-3a01-4829-8719-5e6378349f8b?mode=deep",
+    "timestamp": "2026-02-18 21:24:36.540206",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: update_user_reward_manager()] [Earned Rewards Initialization] At lines 299-309, earned_rewards for new users is calculated differently based on last_update_time_ms vs start_time_ms. Can an attacker manipulate timing to get free rewards or skip reward periods? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_effe9530-c8ef-44c0-802e-1d29fdb23e0d?mode=deep",
+    "timestamp": "2026-02-18 21:24:57.259643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: change_user_reward_manager_share()] [Front-Running] An attacker can observe pending reward distributions and front-run by increasing their share just before update, then decreasing after. Can this allow reward farming without actually holding shares during accumulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29d29956-1d91-4c5b-8d82-7db7ebe0b3f3?mode=deep",
+    "timestamp": "2026-02-18 21:25:18.548417",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: change_user_reward_manager_share()] [Flash Share Attack] Can an attacker borrow large amounts, increase share to maximum, trigger update, claim rewards, then decrease share and repay, all in one transaction to extract disproportionate rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2fdb9525-25c4-4d4c-8759-f2e805cbce74?mode=deep",
+    "timestamp": "2026-02-18 21:25:40.817176",
+    "report_generated": false
+  }
+]
