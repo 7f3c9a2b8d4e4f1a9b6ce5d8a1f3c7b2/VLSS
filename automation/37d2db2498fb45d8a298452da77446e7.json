@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: new()] [Hasher Reuse] Since Hasher has 'copy' ability, can a single Hasher instance be copied and reused with different inputs, causing hash computation to accumulate data from previous uses and produce incorrect hashes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9df63d29-966e-4791-b5a9-d66370fd25a6?mode=deep",
+    "timestamp": "2026-02-18 22:18:12.149751",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: finalize()] [Hash Finalization Side Effects] Does finalize() consume the Hasher or allow it to be reused? Can an attacker call finalize() multiple times on the same buffer state to generate multiple valid signatures for different messages? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c3c89c3-5d1f-4739-b7cb-dd9116abff46?mode=deep",
+    "timestamp": "2026-02-18 22:18:25.020003",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u8()] [Single Byte Injection] Can carefully placed push_u8() calls inject control bytes or field delimiters into the hash buffer, allowing message structure manipulation that bypasses signature verification? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2195a930-9383-4ae1-8c7d-d07ddc90c1a2?mode=deep",
+    "timestamp": "2026-02-18 22:18:39.536204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Struct: Hasher] [Buffer Capacity] Is there a maximum buffer size limit? Can an attacker trigger memory exhaustion by continuously appending data via push functions, causing DoS in oracle message generation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e76e029-47b8-43b8-9ec9-2bf594b5ccb7?mode=deep",
+    "timestamp": "2026-02-18 22:18:53.602289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Timestamp Overflow] When push_u64_le(timestamp) is called, can a timestamp value near u64::MAX cause overflow in downstream timestamp arithmetic while maintaining a valid hash signature? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec0d1c1d-2c85-4d40-9a46-a47165810b92?mode=deep",
+    "timestamp": "2026-02-18 22:19:08.317085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Timestamp Replay] Since timestamp is hashed but not validated for freshness in generate_attestation_msg(), can old attestation messages be replayed with expired timestamps while maintaining valid signatures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ad5f415-00cc-4906-91cc-87e405757bc7?mode=deep",
+    "timestamp": "2026-02-18 22:19:24.954269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Timestamp Manipulation] Can an attacker provide a future timestamp in generate_update_msg() that gets hashed and signed, then later use it to inject oracle updates with apparent future validity? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2c015db6-ac90-447c-8cd9-3db24711b7dc?mode=deep",
+    "timestamp": "2026-02-18 22:19:43.190946",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Timestamp Zero] If timestamp is set to 0, does this create a special case hash that could collide with uninitialized or default message states, enabling oracle data injection? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b7135945-4d42-42d7-aa23-af6c12795a5b?mode=deep",
+    "timestamp": "2026-02-18 22:20:02.457354",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Max Variance Bypass] Since max_variance is hashed as u64 via push_u64_le(), can an attacker set max_variance to u64::MAX to effectively disable variance checking while maintaining valid message signatures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c2639fc4-528d-4085-b7a6-8778c2a0a483?mode=deep",
+    "timestamp": "2026-02-18 22:20:22.658186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Min Responses Zero] Can min_responses be set to 0 in generate_update_msg(), creating a hash that validates oracle updates with no actual oracle responses, bypassing consensus requirements? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_152a8e66-8713-4e67-bbe5-c47255669ebf?mode=deep",
+    "timestamp": "2026-02-18 22:20:42.657979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Min Responses Overflow] If min_responses exceeds the actual number of available oracles, does the hash still validate, potentially causing DoS by requiring impossible consensus thresholds? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cb1e4b1c-3414-4fed-acf1-b02f11da90ae?mode=deep",
+    "timestamp": "2026-02-18 22:21:02.391855",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Variance-Price Relationship] Can the combination of a very high max_variance and extreme price value create hashes that validate price updates far outside acceptable bounds while appearing cryptographically valid? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_71ff7c44-9853-4cc8-b196-ecc6f93319c2?mode=deep",
+    "timestamp": "2026-02-18 22:21:23.867795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: finalize()] [SHA2-256 Collision] While SHA2-256 is collision-resistant, can the specific message construction in generate_update_msg() or generate_attestation_msg() create structured inputs vulnerable to chosen-prefix collision attacks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3010e9cb-e7e9-41b5-9576-5add8de11e6d?mode=deep",
+    "timestamp": "2026-02-18 22:21:46.042788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: finalize()] [Preimage Attack] Can an attacker who knows a valid hash output from finalize() construct a different message that produces the same hash, allowing oracle message forgery? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_661abd9e-f257-4929-8f9d-295ab3908a1e?mode=deep",
+    "timestamp": "2026-02-18 22:22:08.043932",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Birthday Attack] With multiple oracle feeds and frequent updates, can birthday attack probabilities become significant, allowing hash collisions between different oracle update messages? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a19f4bdd-0a92-4909-8da3-f5b9cc505f6c?mode=deep",
+    "timestamp": "2026-02-18 22:22:30.612793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: check_subvec()] [Length Extension] Can an attacker append extra data after a valid message that passes check_subvec() verification, creating extended messages with the same hash prefix for length extension attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f7d30330-f0ad-4618-91ac-7ed11e850efe?mode=deep",
+    "timestamp": "2026-02-18 22:22:55.465236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u32()] [BCS Encoding Consistency] Does bcs::to_bytes() produce consistent byte representations across different Move VM versions? Can encoding differences cause hash mismatches between oracle message producers and validators? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_636dc966-57eb-4080-8825-6a4337d9d185?mode=deep",
+    "timestamp": "2026-02-18 22:23:21.046446",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u64()] [BCS Byte Reversal] When BCS-encoded bytes are reversed for big-endian, can this create non-canonical representations that differ from expected formats in signature verification? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0ccd64c-3426-4ccf-9df9-99791f8c77d8?mode=deep",
+    "timestamp": "2026-02-18 22:23:47.361295",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u128()] [BCS 128-bit Edge Cases] Can BCS encoding of u128 values produce different byte lengths for different value ranges, causing hash inputs to vary in size and break message structure assumptions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e36c21e-b437-467c-aba3-8c3e7b9231b2?mode=deep",
+    "timestamp": "2026-02-18 22:24:13.156872",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_i128()] [BCS Signed Value] Does BCS encoding of the transformed signed_value maintain semantic correctness, or can the encoding introduce artifacts that alter the hashed value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_67bcdcd6-e759-4f97-a7ea-33da15a8e911?mode=deep",
+    "timestamp": "2026-02-18 22:24:37.917926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [ECDSA Recovery ID] The test uses recovery ID 1 for secp256k1_ecrecover - can incorrect recovery IDs be used with valid hashes to recover different public keys, allowing oracle impersonation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_73fcd758-a5f8-4e30-8fd8-e64d4a1793de?mode=deep",
+    "timestamp": "2026-02-18 22:25:01.733809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Signature Malleability] Can the message hash produced by generate_update_msg() be used with malleable ECDSA signatures to create multiple valid signature variants for the same message? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_24e6436f-1296-44bc-9ba7-ae669e0d20c3?mode=deep",
+    "timestamp": "2026-02-18 22:25:26.399660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Public Key Decompression] After ecrecover, does decompression of the public key introduce vulnerabilities where different compressed forms decompress to the same key but produce different hashes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ccc13822-5c0b-44a8-bc82-c32e153f6f4b?mode=deep",
+    "timestamp": "2026-02-18 22:25:49.629432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Attestation Replay] Can attestation messages generated by generate_attestation_msg() be replayed across different queues if queue_key is manipulated while maintaining hash validity? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b03a8c6-ff7e-414a-b9c0-17e3fc4e91c9?mode=deep",
+    "timestamp": "2026-02-18 22:26:12.707895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: check_subvec()] [Length Overflow] If start_idx + v2.length() overflows u64, does the check 'v1.length() < start_idx + v2.length()' behave correctly, or can it be bypassed to access out-of-bounds memory? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ff34271-c17a-4086-b111-c05eab84b22b?mode=deep",
+    "timestamp": "2026-02-18 22:26:35.459851",
+    "report_generated": false
+  }
+]
