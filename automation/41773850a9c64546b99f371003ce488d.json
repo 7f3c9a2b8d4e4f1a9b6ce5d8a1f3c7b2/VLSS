@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: pair_id_to_vector()] [Type Conversion Collision] When converting u32 pair_id to u256 by casting, the u256 will have 224 leading zero bits - could this cause hash collisions or confusion with other address formats that use different bit patterns? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fbee8abd-38f4-4063-a779-c18b1daf2c83?mode=deep",
+    "timestamp": "2026-02-18 22:46:10.744489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: pair_id_to_vector()] [Address Format Vulnerability] The function converts u32 -> u256 -> address -> vector<u8> - could this multi-step conversion introduce vulnerabilities if Sui's address format changes or if addresses are interpreted differently in different contexts? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ccc3a81e-0e7f-4b25-a82f-611d57800f81?mode=deep",
+    "timestamp": "2026-02-18 22:46:23.318444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: pair_id_to_vector()] [Endianness Issues] Does the address encoding preserve the numerical value of the pair_id correctly across different endianness systems, or could big-endian vs little-endian cause pair ID mismatches? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_13d00e80-c73b-4a96-bada-b394c6153dac?mode=deep",
+    "timestamp": "2026-02-18 22:46:37.211877",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: pair_id_to_vector()] [Storage Inefficiency] Storing a u32 value as a 32-byte vector through address conversion is highly inefficient - could this create storage DOS vectors where attackers create many oracle configs to exhaust storage? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d5b2010d-d4f9-4f67-9c27-eae97c8b784d?mode=deep",
+    "timestamp": "2026-02-18 22:46:51.203040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: pair_id_to_vector()] [Pair ID Overflow] When casting u32 to u256, there's no risk of overflow, but are there any validation checks that the u32 pair_id is within the valid range of Supra oracle pairs? An invalid pair_id stored as vector could cause downstream failures. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b165dd0-5526-475d-b91a-1af94260308b?mode=deep",
+    "timestamp": "2026-02-18 22:47:06.449038",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: pair_id_to_vector()] [Configuration Corruption] If this vector representation of pair_id is stored in oracle configuration and later retrieved, could any mutation or corruption of the vector bytes cause it to decode to a different pair_id, causing price mismatching? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_40444850-31aa-47ab-95c7-f809ed900d48?mode=deep",
+    "timestamp": "2026-02-18 22:47:23.592924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: pair_id_to_vector()] [Integration Risk with oracle_manage] When oracle_manage::create_supra_oracle_provider_config() calls this function to store pair_id, could an admin accidentally specify the wrong pair_id integer, causing all subsequent price fetches to use incorrect price feeds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b6472fe-83f4-48b9-957b-adf2ba96a263?mode=deep",
+    "timestamp": "2026-02-18 22:47:40.841992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: vector_to_pair_id()] [Type Conversion Truncation] When converting vector<u8> -> address -> u256 -> u32, the final cast to u32 truncates the upper 224 bits of the u256 - could a maliciously crafted vector with non-zero upper bits be truncated to a valid but different pair_id, causing price oracle substitution? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_80628ef4-2401-476b-b873-c01f5f02d2ca?mode=deep",
+    "timestamp": "2026-02-18 22:47:59.478504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: vector_to_pair_id()] [Vector Length Validation] Does sui::address::from_bytes() validate that the input vector is exactly 32 bytes? If it accepts shorter or longer vectors, could this cause parsing errors or truncation issues? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c58cda2-fb42-42e3-a246-ce0919208ff5?mode=deep",
+    "timestamp": "2026-02-18 22:48:18.511092",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: vector_to_pair_id()] [Invalid Vector Handling] If the vector contains arbitrary bytes that don't represent a valid pair_id (e.g., non-zero in upper bits), does the function still return a u32 value that appears valid but points to wrong or non-existent price feed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_01132a75-6e4c-4bdf-9b5a-65ab542534b9?mode=deep",
+    "timestamp": "2026-02-18 22:48:38.719535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: vector_to_pair_id()] [Roundtrip Consistency] Is it guaranteed that pair_id_to_vector(x) -> vector_to_pair_id() returns exactly x for all valid u32 values? Could there be values that don't roundtrip correctly, causing configuration mismatches? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9821930-2f75-46a3-8b88-65ac8eebdc48?mode=deep",
+    "timestamp": "2026-02-18 22:48:59.604454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: vector_to_pair_id()] [Oracle Config Tampering] If the vector representation stored in oracle config is modified (either through storage corruption or an exploit), could this function decode it to a different pair_id, causing the vault to use wrong price feeds without detection? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_59dc8a59-3e9f-478a-9127-d110659a50d7?mode=deep",
+    "timestamp": "2026-02-18 22:49:20.838961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: vector_to_pair_id()] [Integration Risk with oracle_pro] When oracle_pro::get_price_from_adaptor() calls this function to decode stored pair_id, could any error in the stored vector cause it to decode to pair_id=0 or another default, causing systematic mispricing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b22b0bfe-4418-491b-94c8-311ee060825f?mode=deep",
+    "timestamp": "2026-02-18 22:49:41.293316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: vector_to_pair_id()] [Address Space Collision] Could there be collisions between legitimate pair_id encodings and other address-based identifiers in the protocol, causing confusion between oracle configs? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e587f1e4-d74f-43f2-b955-3b51f8c87b7d?mode=deep",
+    "timestamp": "2026-02-18 22:50:03.003499",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Function: vector_to_pair_id()] [Truncation Silent Failure] Since the u256 to u32 cast silently truncates without error, could an attacker exploit this by providing vectors that encode large u256 values, causing unpredictable pair_id selection? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_12c33a6b-758f-4f18-92ba-c15fb250bd05?mode=deep",
+    "timestamp": "2026-02-18 22:50:25.158572",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Module: adaptor_supra] [Access Control] All functions are public with no access control - could an attacker call these functions directly to query prices without proper authorization checks, potentially using them to front-run vault operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea2501fb-5de0-4b56-85c7-258ce8e188c2?mode=deep",
+    "timestamp": "2026-02-18 22:50:49.028410",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Module: adaptor_supra] [Missing Validation] None of the functions validate their inputs (OracleHolder, pair_id, target_decimal) - could an attacker supply malicious inputs to cause undefined behavior in downstream calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5118b37-31cd-48df-9fa0-9ff31a53e0c8?mode=deep",
+    "timestamp": "2026-02-18 22:51:11.994595",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Module: adaptor_supra] [Reentrancy] While Move has reentrancy protections, could an attacker exploit the fact that these functions make external calls to the Supra oracle module, potentially manipulating state between the call and return? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b04d0180-ac69-4f7c-bcae-4b6674c7a146?mode=deep",
+    "timestamp": "2026-02-18 22:51:33.464032",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Module: adaptor_supra] [Oracle Dependency Risk] The module has a hard dependency on SupraOracle::SupraSValueFeed - if this external module is upgraded with breaking changes, could it cause all price feeds using this adaptor to fail, freezing vault operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87b3ba1a-8ab9-4166-85d1-7565005dc2d2?mode=deep",
+    "timestamp": "2026-02-18 22:51:55.706397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Module: adaptor_supra] [Price Feed Substitution] Could an attacker who compromises oracle configuration replace the pair_id of a high-value asset with the pair_id of a low-value asset, causing systematic underpricing and enabling theft through deposit/withdrawal arbitrage? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08290624-1313-478a-b632-f00547b0e685?mode=deep",
+    "timestamp": "2026-02-18 22:52:16.425810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Integration: oracle_pro] When oracle_pro::get_price_from_adaptor() calls adaptor_supra functions, could the lack of error handling cause the entire oracle system to fail if Supra oracle has issues for one pair? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e1ce3701-fc5e-4af9-8ff9-d3fbae0c510a?mode=deep",
+    "timestamp": "2026-02-18 22:52:39.129463",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Integration: oracle_manage] When oracle_manage sets up Supra configs using pair_id_to_vector(), could an admin accidentally configure the same pair_id for multiple assets, causing price correlation and arbitrage opportunities? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b42df8e-c66c-44d1-937e-9f465aa5affd?mode=deep",
+    "timestamp": "2026-02-18 22:53:03.133175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Integration: Vault Operations] If the vault uses Supra prices for critical decisions (deposits/withdrawals/liquidations), could the lack of price sanity checks in this adaptor enable oracle manipulation attacks that drain the vault? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6bd54843-b1df-4bdf-b657-05b32fc6a4f5?mode=deep",
+    "timestamp": "2026-02-18 22:53:25.941492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Module: adaptor_supra] [Timestamp Validation] None of the functions validate that timestamps are reasonable (not in the future, not too old) - could this allow acceptance of manipulated timestamps that bypass staleness checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3fc23866-8725-4b4a-9a80-4de39e47d6c1?mode=deep",
+    "timestamp": "2026-02-18 22:53:49.031144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Module: adaptor_supra] [Price Bounds Validation] None of the functions validate that prices are within reasonable bounds - could extremely high or low prices (including 0 or max u128) cause overflow/underflow in vault accounting? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_33f84840-3a30-4b7a-aae4-5d38f8b9ba76?mode=deep",
+    "timestamp": "2026-02-18 22:54:12.562145",
+    "report_generated": false
+  }
+]
