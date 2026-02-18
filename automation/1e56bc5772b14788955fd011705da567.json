@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: create()] [Authorization Bypass] Can an attacker call create() multiple times from a malicious package module to create duplicate ValidatorSet objects, breaking the singleton assumption and causing state inconsistency? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4caa60c5-77d5-4abd-b5ea-e0ff77352625?mode=deep",
+    "timestamp": "2026-02-18 20:52:41.453377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: add_stake()] [Authorization Bypass] Since add_stake() is public(package), can a malicious module in the same package call it directly to add arbitrary StakedSui objects to validators, bypassing proper staking flow and fee collection? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bef6614d-9d2c-4827-afa1-300d0199fbd3?mode=deep",
+    "timestamp": "2026-02-18 20:52:54.972798",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: remove_stakes()] [Authorization Bypass] Can an attacker create a malicious module in the same package to call remove_stakes() directly and withdraw stakes without proper authorization checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_84dd3ce9-39e4-4183-adbb-a0a1cd22bed8?mode=deep",
+    "timestamp": "2026-02-18 20:53:08.738345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: update_validators()] [Authorization Bypass] Since update_validators() is public(package), can a compromised or malicious package module manipulate validator priorities to direct all stakes to attacker-controlled validators? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2567758d-26bb-4241-8986-9e23883c69bd?mode=deep",
+    "timestamp": "2026-02-18 20:53:22.843800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: sort_validators()] [Authorization Bypass] Can an attacker call sort_validators() from a package module at arbitrary times to manipulate validator ordering before critical operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_60d32d05-35cd-4695-bb4f-87b5d1e633e5?mode=deep",
+    "timestamp": "2026-02-18 20:53:38.059395",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: export_stakes_from_v1()] [Authorization Bypass] Can an attacker exploit the migration function export_stakes_from_v1() to drain all stakes from the v1 system by calling it repeatedly without proper access control? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe01bee7-23d8-48f0-8f02-b8010486ccb7?mode=deep",
+    "timestamp": "2026-02-18 20:53:56.040224",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Test Functions] [Authorization Bypass] Can the test_only functions add_stake_for_testing() and remove_stakes_for_testing() be accessible in production if compilation flags are misconfigured, allowing unauthorized stake manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78169667-9575-470f-a43e-11922abaa18a?mode=deep",
+    "timestamp": "2026-02-18 20:54:15.010480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: add_stake()] [Accounting Error] When adding a stake to an existing vault, can an integer overflow occur in 'vault.total_staked = vault.total_staked + value' if accumulated stakes exceed u64::MAX, corrupting total stake tracking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9da0fa1-0530-4882-966f-1eb6e7e44589?mode=deep",
+    "timestamp": "2026-02-18 20:54:35.458434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: add_stake()] [Accounting Error] Can 'vault.length = vault.length + 1' overflow if more than u64::MAX stakes are added, causing length to wrap to zero and corrupting gap management logic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f1b4271-a2ff-4597-a409-0403432cf8b6?mode=deep",
+    "timestamp": "2026-02-18 20:54:57.793031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: remove_stakes()] [Accounting Error] In 'vault_mut_ref.total_staked = vault_mut_ref.total_staked - total_withdrawn_principal_value', can underflow occur if total_withdrawn_principal_value > total_staked due to rewards accumulation miscalculation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_71fff3a0-b983-4ea7-90ab-71c8f85fe7b3?mode=deep",
+    "timestamp": "2026-02-18 20:55:19.872627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: remove_stakes()] [Accounting Error] When splitting StakedSui, if 'principal_value - rest_requested_amount >= MIST_PER_SUI' but rewards have accrued, can the actual withdrawn amount exceed principal_value, causing total_withdrawn_principal_value undercount? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_38a1418a-7349-4040-b543-40152535cdc3?mode=deep",
+    "timestamp": "2026-02-18 20:55:40.948397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: remove_stakes()] [Accounting Error] In reward calculation 'withdrawn_reward = balance::value(&total_withdrawn) - total_withdrawn_principal_value', can underflow occur if total_withdrawn is less than principal due to protocol fees or slashing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5fba4c93-4010-4ac0-8105-9b314c8940a4?mode=deep",
+    "timestamp": "2026-02-18 20:56:01.951791",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: add_stake()] [State Inconsistency] If multiple threads/transactions call add_stake() concurrently for the same validator, can race conditions in vault.length increment cause StakedSui objects to overwrite each other in the ObjectTable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_365b2afd-d85c-4c32-8d24-d5f0db6eb7f7?mode=deep",
+    "timestamp": "2026-02-18 20:56:24.443437",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: remove_stakes()] [State Inconsistency] Can the gap be incremented without removing the StakedSui object if an error occurs during withdrawal, leaving orphaned objects and corrupting gap tracking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6098428e-1648-4ef2-ba7b-56a4a4008581?mode=deep",
+    "timestamp": "2026-02-18 20:56:46.974030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: remove_stakes()] [Invariant Violation] When 'vault_mut_ref.gap == vault_mut_ref.length', the assertion 'assert!(vault_mut_ref.total_staked == 0, E_BAD_CONDITION)' is checked, but can partial withdrawals leave total_staked non-zero while gap==length, causing assertion failure and DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_877f48af-1c1e-40b4-8f31-6d3624e4688c?mode=deep",
+    "timestamp": "2026-02-18 20:57:09.602328",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: update_validator()] [State Inconsistency] Can concurrent calls to update_validator() for the same validator address cause race conditions in vec_map updates, resulting in lost priority updates or duplicate entries? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e15b764-d8b5-4858-9d2d-6948d9c21e15?mode=deep",
+    "timestamp": "2026-02-18 20:57:32.432271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: update_validators()] [Logic Error] The assertion 'assert!(length < MAX_VLDRS_UPDATE, E_TOO_MANY_VLDRS)' uses '<' instead of '<=', can an attacker update exactly MAX_VLDRS_UPDATE (16) validators to bypass the limit check? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6222b20d-a659-46ab-bd98-aeb9fb0f0ec8?mode=deep",
+    "timestamp": "2026-02-18 20:57:55.771106",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: update_validators()] [Logic Error] After updating validators, is_sorted is set to false, but if no validators were actually updated (length==0), can this unnecessarily trigger expensive re-sorting operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_453cf7a5-b7e1-4815-a5ff-55fe293f73d8?mode=deep",
+    "timestamp": "2026-02-18 20:58:17.780511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: update_validators()] [DoS Attack] Can an attacker repeatedly call update_validators() with MAX_VLDRS_UPDATE-1 validators to set is_sorted=false, forcing expensive sort_validators() calls before each stake operation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_81998272-063d-47d4-8fd1-4025fa66915a?mode=deep",
+    "timestamp": "2026-02-18 20:58:41.264752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: update_validators()] [Validation Bypass] The final check 'assert!(vec_map::size(&self.validators) < MAX_VLDRS_UPDATE, E_TOO_MANY_VLDRS)' occurs after updates, can validators be added up to the limit and then one more update succeed if it's an existing validator? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8329f8fa-6a94-430d-9124-19af43c86caa?mode=deep",
+    "timestamp": "2026-02-18 20:59:06.252572",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: sort_validators()] [Algorithm Vulnerability] The insertion sort algorithm uses 'if (*j_vldr_prior < vldr_prior)' to determine position, can validators with equal priorities have unstable ordering that changes between sorts, affecting stake distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_69193d5f-636d-4564-af1e-717032d764bc?mode=deep",
+    "timestamp": "2026-02-18 20:59:31.667021",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: sort_validators()] [Special Case Handling] Validators with zero priority are placed at the end ('if (vldr_prior == 0 || sorted_len == 0)'), can an attacker set all validators to priority=1 except one at priority=0 to force all stakes to the priority=1 validators even if they're malicious? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc6840be-c251-4b87-8547-f33f1faa8449?mode=deep",
+    "timestamp": "2026-02-18 20:59:53.437060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: get_top_validator()] [DoS Attack] The function asserts validators exist but doesn't check is_sorted flag, can calling get_top_validator() when is_sorted=false return incorrect validator, directing stakes to wrong validator? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7f73adb-7f24-4e43-9690-06892fa63dc8?mode=deep",
+    "timestamp": "2026-02-18 21:00:13.219991",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: get_bad_validators()] [Logic Error] The function only returns validators with priority==0, but does not verify they have no active stakes, can validators with zero priority but active stakes be incorrectly marked as removable? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_54851848-5a5d-4900-80f3-0d9a28ac585e?mode=deep",
+    "timestamp": "2026-02-18 21:00:34.239205",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: get_validators()] [Information Leak] The function returns the internal sorted_validators vector without checking is_sorted flag, can external callers receive stale/incorrect validator ordering? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_875b7da2-8b36-40e2-8181-16f0dc449d17?mode=deep",
+    "timestamp": "2026-02-18 21:00:57.458592",
+    "report_generated": false
+  }
+]
