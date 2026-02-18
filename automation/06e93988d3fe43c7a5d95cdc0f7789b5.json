@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Version Logic: Downgrade Prevention] No version comparison logic exists. Could a malicious operator downgrade the protocol to a vulnerable version, reintroducing patched exploits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec722048-d03e-4c4b-997a-4f802e87067b?mode=deep",
+    "timestamp": "2026-02-18 19:59:46.284753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Version Logic: Skip Detection] Could version upgrades skip numbers (1.0 -> 1.5 -> 2.0), leaving gaps that break assumptions in dependent code expecting sequential versions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e12e3e88-15de-4cbc-a4e5-9e03e4ea889b?mode=deep",
+    "timestamp": "2026-02-18 19:59:59.233009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Access Control: Public Functions] All version query functions (value_major, value_minor) are public but abort. If made functional, could unrestricted public access leak version information useful for exploit timing? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d1578867-8687-4326-9680-3b1ae40c877b?mode=deep",
+    "timestamp": "2026-02-18 20:00:12.473809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Access Control: Upgrade Functions] Upgrade functions are public entry points requiring VersionCap. If made functional without additional checks, could this allow automated bots or scripts to perform upgrades? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1815bb3d-7f1f-4b71-8638-c21c8e04af24?mode=deep",
+    "timestamp": "2026-02-18 20:00:26.355800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Access Control: set_version Override] set_version allows arbitrary version setting with only VersionCap. Could this bypass the intended major/minor upgrade flow, allowing jumps to incompatible versions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87b8216d-4400-49da-89c7-8a7c53e626a7?mode=deep",
+    "timestamp": "2026-02-18 20:00:41.329715",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Cross-Module: Adaptor Safety] If Cetus, Navi, Suilend, or Momentum adaptors call version functions for safety checks, could the abort cause adaptors to fail, preventing all DeFi interactions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0a1f2ddd-3be9-4bbb-9c39-954f07d0832b?mode=deep",
+    "timestamp": "2026-02-18 20:00:57.747191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Cross-Module: Vault Core] If vault core operations call assert_supported_version at startup, could this create a complete denial of service where no vault operations can execute? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ab06d10-f633-4dc3-a585-69c592316bfd?mode=deep",
+    "timestamp": "2026-02-18 20:01:15.667399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Cross-Module: Request Processing] If deposit/withdraw request processing verifies version compatibility, could users' requests be permanently stuck in pending state due to abort? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f09b0a43-2dc5-4ab2-bbb3-088dfc427f89?mode=deep",
+    "timestamp": "2026-02-18 20:01:35.496656",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Cross-Module: Math Libraries] If MMT v3 math functions depend on version checks for selecting appropriate algorithms, could the abort cause wrong math to be used, leading to calculation errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f65d4492-a7d0-40b4-9588-86fc24064fe8?mode=deep",
+    "timestamp": "2026-02-18 20:01:55.348199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Cross-Module: Oracle Integration] If Switchboard oracle price validation uses version checks to ensure compatible data formats, could the abort cause price feed failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29363d41-4809-4bfd-b250-6122764e0894?mode=deep",
+    "timestamp": "2026-02-18 20:02:17.006511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Cross-Module: Health Factor] If health limiter checks MMT version before calculating Navi health factors, could the abort prevent health checks, allowing over-leveraged positions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3ccb8c9-ac22-4614-95f9-f8d3c405cef9?mode=deep",
+    "timestamp": "2026-02-18 20:02:38.281598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Cross-Module: Fee Config] If fee configuration updates verify MMT version for basis point calculation compatibility, could the abort prevent fee updates, locking in potentially exploitative fee rates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dcc3c384-ee58-4c21-be4b-6ac85d698985?mode=deep",
+    "timestamp": "2026-02-18 20:03:01.546501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Cross-Module: Validator Pool] If liquid staking validator pool operations check MMT version, could the abort affect staking/unstaking flows even though they shouldn't depend on AMM versions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1073811-7565-4c1e-bc60-957099e2c923?mode=deep",
+    "timestamp": "2026-02-18 20:03:22.822606",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [State: Version Singleton] If Version is supposed to be a singleton shared object, but init aborts, could multiple Version objects be created through exploits, causing version check inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_155946c1-dc2c-4957-b008-944dd359b0b3?mode=deep",
+    "timestamp": "2026-02-18 20:03:45.798607",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [State: Mutation Atomicity] If upgrade functions were functional, could partial failures leave Version in an inconsistent state with only major OR minor updated? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3f703e76-2185-4281-a988-3890ab907e4e?mode=deep",
+    "timestamp": "2026-02-18 20:04:07.667254",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [State: Race Conditions] If concurrent transactions call upgrade functions, could race conditions result in lost updates or corrupted version state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21e20ae1-fe09-4030-82d5-ecfae32616b7?mode=deep",
+    "timestamp": "2026-02-18 20:04:29.795156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Error: Abort Semantics] All aborts use code 0. In Move, is abort 0 distinguishable from other errors? Could this mask the root cause when debugging transaction failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc564954-e9b0-4b0f-82f7-2a7a1da98427?mode=deep",
+    "timestamp": "2026-02-18 20:04:50.416579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Error: Missing Constants] No error constants like EVersionTooOld, EUnauthorized exist. Would adding these improve error clarity if functions were implemented? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_643c1b61-2d7a-46cc-a4e4-b93720dcaba1?mode=deep",
+    "timestamp": "2026-02-18 20:05:13.563396",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Error: Stack Traces] Do Move stack traces identify which function aborted? If not, could uniformly using abort 0 make it impossible to identify failing functions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a779de33-ea6a-44b4-b87c-4675cf6da6ed?mode=deep",
+    "timestamp": "2026-02-18 20:05:34.846689",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Documentation: Missing Comments] No doc comments explain the module's purpose or why functions abort. Could this indicate rushed development or placeholder code? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_187436e1-d6db-48f6-8731-1b67c11d7ba6?mode=deep",
+    "timestamp": "2026-02-18 20:05:55.374972",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Documentation: Function Signatures] Function signatures suggest clear intent (upgrade_major, assert_supported_version) but implementations contradict this. Could this confusion lead to integration errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_37bffa47-5c5d-4f64-bb03-03fd9943c5dc?mode=deep",
+    "timestamp": "2026-02-18 20:06:16.361692",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Documentation: TODO Markers] No TODOs or FIXMEs exist. Could this indicate the stub is intentional rather than incomplete? If so, what is the intended use case? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e76e8d0-db36-4e1e-b5f1-ac26219390fb?mode=deep",
+    "timestamp": "2026-02-18 20:06:36.788278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Migration: From volo_v1] If Volo Vault migrates from volo_v1 and expects MMT v3 version checks, could the stub cause migration transactions to abort, preventing users from accessing v2 features? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_00ee253a-bcf1-4373-a9e6-b37162c9ce9d?mode=deep",
+    "timestamp": "2026-02-18 20:06:57.626849",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Migration: Version Bumps] If protocol upgrades require version bumps, could the non-functional upgrade_major/minor prevent the protocol from signaling breaking changes to integrators? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9bd9ada2-373a-40f6-8aa9-767d70575c94?mode=deep",
+    "timestamp": "2026-02-18 20:07:18.931611",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Migration: Backward Compatibility] If the protocol needs to maintain backward compatibility with old versions, could lack of version tracking allow incompatible old code to interact with new deployments? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_77e34de5-6a20-413a-a6b8-a6ae3045c3c7?mode=deep",
+    "timestamp": "2026-02-18 20:07:38.412989",
+    "report_generated": false
+  }
+]
