@@ -1,0 +1,104 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Alternative] [Exponentiation Method] Instead of iterative multiplication/division by 10, could pow(10, diff) be used? Would this be safer or introduce new overflow risks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_020fedf8-195f-4a18-813c-cf5b43e852d4?mode=deep",
+    "timestamp": "2026-02-18 21:00:05.917480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Alternative] [Fixed-Point Library] Should this module use a battle-tested fixed-point math library instead of custom implementations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5513cf26-6a54-44aa-9491-08d5d9660366?mode=deep",
+    "timestamp": "2026-02-18 21:00:18.714728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Line 11-19] [Loop Condition] The while loop checks 'decimal != target_decimal && value != 0'. If value becomes 0 during iteration (impossible with current logic but could happen with future modifications), the loop exits early. Can this create incorrect partial conversions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_587fdd76-b5ed-45e9-b23e-be8e8caf9807?mode=deep",
+    "timestamp": "2026-02-18 21:00:33.133880",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Line 47] [Address Max Usage] Using sui::address::max() instead of u256::MAX for overflow detection is unusual. Can this create a security vulnerability where values larger than address::max() but smaller than u256::MAX pass the check but still overflow? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e6c1769b-fca7-4f68-a02d-79f3ba826877?mode=deep",
+    "timestamp": "2026-02-18 21:00:47.778114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Line 51] [Multiple Division] The division by 'a' happens after multiplication by constants::multiple(). If 'a' is very small (but non-zero), can this create extremely large amplitude values that then get clamped to U64MAX, losing important information? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9574ad78-cb37-4d5e-b656-dda440097225?mode=deep",
+    "timestamp": "2026-02-18 21:01:04.375353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Line 56] [Cast Safety] The final cast (amplitude as u64) assumes amplitude <= U64MAX after the check on line 52. But can any logic path reach line 56 with amplitude > U64MAX? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2c9499fa-1a9b-4bf9-af4c-5118e1873391?mode=deep",
+    "timestamp": "2026-02-18 21:01:21.636893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Overflow] [Chained Conversions] If a value is converted from decimal A to B, then B to C, can the intermediate conversions accumulate overflow risks that wouldn't exist in a direct A to C conversion? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9a82905-13dd-4dcd-a565-819e9bb16787?mode=deep",
+    "timestamp": "2026-02-18 21:01:39.779920",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Overflow] [Multiple Scaling] In calculate_amplitude(), the multiplication by constants::multiple() could overflow even if ab_diff alone doesn't. Is the overflow check on line 47 sufficient for all possible values of constants::multiple()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc99cda0-f5b7-4ce4-9ecf-383d8c426366?mode=deep",
+    "timestamp": "2026-02-18 21:01:58.629764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Overflow] [U256 Limits] While u256 is very large, can specific combinations of max values in decimal conversion cause overflow in intermediate calculations before the final result? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca39caff-361d-42fb-8852-680c0b50c997?mode=deep",
+    "timestamp": "2026-02-18 21:02:18.011215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Missing Feature] [Reverse Conversion] There's no function to reverse a decimal conversion. Can this lead to inconsistencies where forward and backward conversions don't match? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cd80e4ed-d303-476d-a33a-9d32b4881e04?mode=deep",
+    "timestamp": "2026-02-18 21:02:38.577736",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Missing Feature] [Conversion Validation] There's no function to validate that a conversion was correct. Can corrupted conversions go undetected? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf06bfb4-93a9-4a51-a557-5aec944f4369?mode=deep",
+    "timestamp": "2026-02-18 21:02:59.746569",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Missing Feature] [Batch Conversion] For multiple price conversions, no batch function exists. Can this lead to consistency issues when prices need to be converted atomically? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0240d933-431d-44f2-8f18-1a7cdba550ed?mode=deep",
+    "timestamp": "2026-02-18 21:03:21.004561",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Module Dependency] [Constants Module] The module depends on oracle::oracle_constants for the multiple() value. If that module has vulnerabilities or can be upgraded maliciously, can it compromise amplitude calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b94db94d-d81a-4835-80ff-4f3e93e81ccc?mode=deep",
+    "timestamp": "2026-02-18 21:03:43.333425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Module Dependency] [Sui Address Module] The dependency on sui::address::max() is unusual for math operations. Can updates to the Sui standard library change this value and break amplitude overflow checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b11601a-4894-4f33-b6d6-2c2b560049da?mode=deep",
+    "timestamp": "2026-02-18 21:04:07.544416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Final Vector] [Oracle Manipulation Combined with Decimal Exploit] Can an attacker manipulate external oracle prices to specific values that, when processed through these decimal conversions with carefully chosen decimals, result in favorable rounding that enables vault drainage? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56148440-d4d3-40cb-ab06-e063dbc21693?mode=deep",
+    "timestamp": "2026-02-18 21:04:31.282154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Final Vector] [Amplitude Threshold Gaming] If the vault uses amplitude to reject suspicious price updates, can an attacker learn the exact threshold and keep manipulated prices just below it to avoid detection while stealing value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98808b6a-fffb-427c-b84c-63bce165fccd?mode=deep",
+    "timestamp": "2026-02-18 21:04:56.685964",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Final Vector] [Decimal Confusion in Multi-Asset Vault] In a vault with multiple assets using different native decimals, can an attacker exploit conversion errors to make one asset appear more valuable than another, enabling unfavorable swaps? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_489f465a-edb0-4c1c-8ebf-8093ea88faa6?mode=deep",
+    "timestamp": "2026-02-18 21:05:20.959290",
+    "report_generated": false
+  }
+]
