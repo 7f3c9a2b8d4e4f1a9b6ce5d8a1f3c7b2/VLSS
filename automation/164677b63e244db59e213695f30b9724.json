@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: calculate_amplitude()] [Multiple Constant] The function multiplies by constants::multiple() which is presumably a scaling factor. Can an attacker who controls or influences this constant value (even indirectly) manipulate amplitude calculations to always return U64MAX, disabling price validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_97971bef-5a64-4a8c-834b-ed5a717ffa38?mode=deep",
+    "timestamp": "2026-02-18 20:35:32.584435",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: calculate_amplitude()] [Integer Truncation] The final cast (amplitude as u64) truncates from u256 to u64. If amplitude is between u64::MAX and u256::MAX after the check, can the cast silently truncate high bits, returning an incorrect amplitude value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_64c72271-2412-4113-bb8f-4e9d53256f62?mode=deep",
+    "timestamp": "2026-02-18 20:35:45.858255",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: calculate_amplitude()] [Asymmetric Check] The function checks ab_diff * constants::multiple() against address::max() but checks amplitude against U64MAX. Can this asymmetry allow values that pass the first check but fail the second, and vice versa, creating exploitable edge cases? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_899321a4-117b-4d0f-a965-8cc4c1e06e3f?mode=deep",
+    "timestamp": "2026-02-18 20:36:00.129570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: calculate_amplitude()] [Zero Price Attack] When b=0 (malicious oracle feed returns zero price), the function returns U64MAX. Can an attacker use this to trigger emergency shutdown mechanisms repeatedly, causing DoS by making the vault think prices are constantly invalid? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cd9f7115-9d74-40f1-b118-3ce3c3db5d89?mode=deep",
+    "timestamp": "2026-02-18 20:36:14.446112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: calculate_amplitude()] [Early Return Bypass] The function has early returns for a=0, b=0, and overflow. Can an attacker craft inputs that barely avoid these checks but still cause logical errors in the amplitude calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e64613a-ae2f-49d1-a2d8-179ad295c423?mode=deep",
+    "timestamp": "2026-02-18 20:36:29.740037",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: calculate_amplitude()] [abs_sub Dependency] The function relies on abs_sub(a,b). If abs_sub has any bugs or precision issues, can those propagate to amplitude calculation and be exploited to manipulate price deviation measurements? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a12aa782-a5f0-4a80-8863-a58915542b1a?mode=deep",
+    "timestamp": "2026-02-18 20:36:46.480161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: calculate_amplitude()] [Ratio Manipulation] The amplitude is calculated as (a-b)/a * multiple. Can an attacker manipulate the ratio by choosing specific values of a and b that cause maximum rounding error accumulation over multiple calls? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7dca898f-769a-4e08-aa7a-0d6a49c4cdd2?mode=deep",
+    "timestamp": "2026-02-18 20:37:04.473114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: calculate_amplitude()] [Public Access Risk] This is a public function. Can external attackers call it with extreme values to measure gas costs or response times, then use this information to time attacks on the oracle system? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_39b9acd1-7d66-48f7-aef7-8d6eee313a2a?mode=deep",
+    "timestamp": "2026-02-18 20:37:24.380086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: abs_sub()] [Underflow Vulnerability] Although u256 subtraction in Move should check for underflow, can an attacker exploit edge cases where a=b and the function returns 0, causing downstream divide-by-zero errors in amplitude calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ac2a93f-1cfe-473c-832a-ab6dd2914048?mode=deep",
+    "timestamp": "2026-02-18 20:37:44.852616",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: abs_sub()] [Precision Loss] When a and b are very close (differ by 1), the absolute difference is minimal. Can this lead to precision issues when the result is used in subsequent multiplications/divisions in calculate_amplitude()? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7101f1ad-4657-4607-b453-804483513235?mode=deep",
+    "timestamp": "2026-02-18 20:38:05.917393",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: abs_sub()] [Equal Values] When a=b, the function returns 0. Can an attacker exploit oracle price manipulation to make two price feeds identical temporarily, causing ab_diff=0 and breaking amplitude checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ada0721-6845-4987-9ce2-e2368c03db23?mode=deep",
+    "timestamp": "2026-02-18 20:38:25.985340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: abs_sub()] [Max Value Handling] When a=u256::MAX and b=0 (or vice versa), abs_sub returns u256::MAX. Can this maximum value cause overflow in subsequent operations that multiply it by constants::multiple()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a1f0a509-239f-4156-b6cd-b7a8e7b06a98?mode=deep",
+    "timestamp": "2026-02-18 20:38:49.812382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Cross-Function] [Type Consistency] The file uses both u8 and u64 for decimal parameters in different functions. Can an attacker exploit this inconsistency by converting decimals through one function and using the result in another, causing type confusion vulnerabilities? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be17cb95-7353-4c9f-b961-96e94d4cc0ef?mode=deep",
+    "timestamp": "2026-02-18 20:39:11.676303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Cross-Function] [Precision Accumulation] When multiple price conversions are chained (e.g., to_target_decimal_value() followed by calculate_amplitude()), can rounding errors accumulate to create exploitable deviations from true values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28e13499-091b-4b55-b0cd-8eda17e1eeaf?mode=deep",
+    "timestamp": "2026-02-18 20:39:34.016202",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Cross-Function] [Error Propagation] If to_target_decimal_value() returns an overflowed value that wraps to a small number, can this corrupted price feed into calculate_amplitude() and return an incorrect amplitude, bypassing safety checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2f8b1b80-b791-46b5-8205-7cc487d45842?mode=deep",
+    "timestamp": "2026-02-18 20:39:58.571593",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Cross-Function] [Gas Cost Manipulation] Can an attacker deliberately choose parameters that maximize gas consumption across multiple function calls (e.g., large decimal differences in conversions + complex amplitude calculations) to cause DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0bc0a6c1-a17e-4cf8-aef3-4af76d2828ad?mode=deep",
+    "timestamp": "2026-02-18 20:40:22.051566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Constant: U64MAX] [Value Correctness] U64MAX is defined as 18446744073709551615. Is this the correct value for u64::MAX in Move? Can an off-by-one error here cause boundary condition bugs in overflow checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9a5fb1b-ed95-413f-95cc-b8d240c41983?mode=deep",
+    "timestamp": "2026-02-18 20:40:44.524246",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Dependency: oracle_constants] [Multiple Value] The calculate_amplitude() function depends on constants::multiple(). If this value is incorrectly set (too high or too low), can it cause systematic over/underestimation of price amplitudes, breaking safety mechanisms? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82527836-096a-41bc-9dcc-5fef4b6f6ff2?mode=deep",
+    "timestamp": "2026-02-18 20:41:05.023390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Dependency: sui::address] [Type Misuse] The code uses sui::address::max() in overflow checks. This is designed for address types, not u256 arithmetic. Can this mismatch cause incorrect overflow detection, allowing values that should overflow to pass through? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6cab4780-8e2c-4255-b091-2e4a2f27c910?mode=deep",
+    "timestamp": "2026-02-18 20:41:25.235094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Edge Case] [Maximum Values] When value=u256::MAX in to_target_decimal_value_safe(), and decimal < target_decimal requiring multiplication, the first value * 10 will overflow. Does the 'safe' variant actually detect this, or is the naming misleading? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29d10173-5eff-4d77-b663-03780792ee17?mode=deep",
+    "timestamp": "2026-02-18 20:41:47.459294",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Edge Case] [Minimum Values] When value=1 and converting from high decimal to low decimal with significant difference, repeated division by 10 will quickly truncate to 0. Can this be exploited to force zero-price scenarios? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e86d5d1-59c3-410e-9050-0075f6cbefec?mode=deep",
+    "timestamp": "2026-02-18 20:42:11.050679",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Edge Case] [Decimal Difference] What is the maximum safe difference between decimal and target_decimal before overflow occurs in to_target_decimal_value()? Can an attacker exploit values near this boundary? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3936fd02-5af1-491f-b4a3-c627db6e8578?mode=deep",
+    "timestamp": "2026-02-18 20:42:35.642289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Edge Case] [Same Decimal] When decimal == target_decimal initially in either conversion function, the while loop never executes. Can an attacker use this to bypass validation logic that expects transformation to occur? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b00bf3eb-1bb0-4884-9d17-b47966e41792?mode=deep",
+    "timestamp": "2026-02-18 20:42:59.826265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Integration] [Caller Assumptions] These utility functions are public and assume correct parameters from callers. Can malicious or buggy callers in the broader oracle/vault system pass invalid parameters that exploit these functions' lack of comprehensive validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_de3c2b5b-d492-4084-bf3a-f35b0b7e37c7?mode=deep",
+    "timestamp": "2026-02-18 20:43:23.535820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Integration] [Price Feed Corruption] If these functions are used to process prices from multiple oracle sources (Switchboard, Pyth, etc.), can an attacker corrupt one price feed to exploit rounding/overflow in these utilities and affect aggregated price calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c516e95c-4c73-4515-b6c5-2764dfb9f9b0?mode=deep",
+    "timestamp": "2026-02-18 20:43:49.827273",
+    "report_generated": false
+  }
+]
