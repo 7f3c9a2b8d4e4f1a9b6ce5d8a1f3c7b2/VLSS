@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: find_available_index()] [Vector Growth] At line 417, a new None option is pushed to the vector if no empty slot is found. Can an attacker spam this function to grow the pool_rewards vector indefinitely until it causes memory exhaustion DoS? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2408145e-daa9-4de3-a3e1-12379f3f5073?mode=deep",
+    "timestamp": "2026-02-18 20:20:14.238562",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: update_user_reward_manager()] [Vector Initialization] At lines 288-290, the rewards vector is grown with None values if it's too short. Can an attacker exploit the timing to claim from an uninitialized slot before it's filled with a valid UserReward? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7f5910e9-33c4-49e6-ad15-8d7f606f2d2a?mode=deep",
+    "timestamp": "2026-02-18 20:20:27.413893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: pool_reward_id()] [Index Bounds] At line 73, vector::borrow is called with an arbitrary index parameter. If the caller provides index >= vector length, will this panic or return an incorrect value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eed121da-00b5-462a-a35b-697e0ac8c168?mode=deep",
+    "timestamp": "2026-02-18 20:20:40.855927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: close_pool_reward()] [Index Validity] At line 141, vector::borrow_mut is called with the provided index. Can an attacker provide an out-of-bounds index or an index pointing to a None option to cause a panic or extract wrong rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_62350469-24f8-40b4-bf94-51c64e62c21c?mode=deep",
+    "timestamp": "2026-02-18 20:20:54.841782",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: cancel_pool_reward()] [Index Validity] At lines 181-183, option::borrow_mut is called on the result of vector::borrow_mut without checking if the option is Some. Can this panic if the index points to a None slot? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7b2cf19-8ef6-4b4e-94fe-0bbe93bdb2ee?mode=deep",
+    "timestamp": "2026-02-18 20:21:10.053997",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: close_pool_reward()] [Option Extract] At line 153, option::extract is called to remove the PoolReward. If another transaction already extracted this option (making it None), can this cause a panic and DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d21dad3f-992e-4fc4-80b2-5ddaed82e1e1?mode=deep",
+    "timestamp": "2026-02-18 20:21:26.920480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: close_pool_reward()] [Premature Close] At lines 159-160, the function checks if end_time_ms has passed and num_user_reward_managers is 0. Can an attacker prevent closure by ensuring at least one user never claims, effectively locking dust rewards forever? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ad8a2ce0-5fab-48c9-b014-d20958a5f09b?mode=deep",
+    "timestamp": "2026-02-18 20:21:44.754168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: close_pool_reward()] [User Count Manipulation] At line 160, the assertion requires num_user_reward_managers == 0. Can an attacker create multiple UserRewardManagers with zero shares just to prevent pool_reward closure, even after the campaign ends? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e3e5d49f-6195-4e6f-ae39-42fceebd3ac1?mode=deep",
+    "timestamp": "2026-02-18 20:22:03.284890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: cancel_pool_reward()] [Unallocated Rewards] At lines 186-191, unallocated_rewards is calculated as total_rewards minus allocated_rewards. Can this value be negative if allocated_rewards exceeds total_rewards due to rounding errors, causing floor() to panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_648a8602-eae9-485f-bdd5-0771bf8a8293?mode=deep",
+    "timestamp": "2026-02-18 20:22:23.157335",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: cancel_pool_reward()] [State Mutation] At lines 193-194, end_time_ms is set to cur_time_ms and total_rewards to 0. Does this break invariants for users who haven't claimed yet, allowing them to claim from a campaign that appears ended but still has allocated_rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3322b745-42af-4aab-b5c7-2ca3b12aa051?mode=deep",
+    "timestamp": "2026-02-18 20:22:43.272192",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: update_pool_reward_manager()] [Option Check] At lines 218-222, the function checks if optional_pool_reward is None and continues. However, between lines 217 and 224, can the option be extracted by another transaction, causing option::borrow_mut at line 224 to panic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c647bd64-3f14-453d-b6c5-afed0f9ac388?mode=deep",
+    "timestamp": "2026-02-18 20:23:02.653027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: update_user_reward_manager()] [Option State] At lines 292-316, new UserRewards are created if the option is None and certain time conditions are met. Can an attacker manipulate last_update_time_ms to skip reward initialization for profitable campaigns while claiming from others? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ac56bf7-be72-46d7-8b5e-021da7e3e50a?mode=deep",
+    "timestamp": "2026-02-18 20:23:25.008979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: claim_rewards()] [Option Extract After Claim] At lines 393-399, if the current time is >= end_time_ms, the UserReward is extracted from the option. Can an attacker claim multiple times in the same transaction before the option is extracted, draining rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5480c798-0e5f-4466-b398-0948410cd12d?mode=deep",
+    "timestamp": "2026-02-18 20:23:46.281877",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: add_pool_reward()] [Type Registration] At line 113, coin_type is set to type_name::get<T>(). Can an attacker add multiple pool rewards with the same generic type T but different actual tokens, causing type confusion when claiming? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e5a9bd7-15bc-408a-bb48-63d5bfe789e2?mode=deep",
+    "timestamp": "2026-02-18 20:24:09.574004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: add_pool_reward()] [Balance Type Mismatch] At line 122, Balance<T> is stored in the bag with key RewardBalance<T>{}. If another pool_reward uses the same type T, can there be key collision in the bag? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b6a9a938-4bda-4abe-b369-4bbceea7ce8e?mode=deep",
+    "timestamp": "2026-02-18 20:24:31.920543",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: close_pool_reward()] [Type Parameter] At line 162, Balance<T> is removed from the bag. If the caller provides wrong generic type T that doesn't match the stored type, can this allow withdrawal of wrong tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f39eb185-2cd9-4dfa-b7c6-9363922d2425?mode=deep",
+    "timestamp": "2026-02-18 20:24:52.974897",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: cancel_pool_reward()] [Type Safety] At line 196, Balance<T> is borrowed mutably from the bag. If T doesn't match the pool_reward's coin_type, can the type system still allow this operation, leading to type confusion? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ffb014f-d357-499e-992b-b0783c296831?mode=deep",
+    "timestamp": "2026-02-18 20:25:13.863351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: claim_rewards()] [Type Check] At line 379, the function asserts pool_reward.coin_type == type_name::get<T>(). However, this check happens after update_user_reward_manager at line 374. Can an attacker exploit the delay by front-running with a different type? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f58b4d22-c1b0-4cd4-b8cc-af79e914895c?mode=deep",
+    "timestamp": "2026-02-18 20:25:37.101329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: claim_rewards()] [Type Assertion Bypass] At line 379, if coin_type comparison can be manipulated (e.g., through move's type system), can an attacker claim rewards of type A using type parameter B, effectively stealing cross-type rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5016dc19-99b5-4639-865b-f13757ffeaec?mode=deep",
+    "timestamp": "2026-02-18 20:25:59.743768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: update_user_reward_manager()] [ID Mismatch] At lines 267-270, the function checks if pool_reward_manager_id matches object::id(pool_reward_manager). Can an attacker create a malicious PoolRewardManager with the same ID to bypass this check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9d2eb6e2-d951-4501-a3a2-30494711732f?mode=deep",
+    "timestamp": "2026-02-18 20:26:22.266166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: add_pool_reward()] [ID Storage] At line 112, pool_reward_manager_id is stored in the PoolReward. If the PoolRewardManager is destroyed and recreated with a different UID but UserRewardManagers still reference the old ID, can this cause permanent reward lock? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_857b6f0b-cd50-417d-9705-fc02d019fb7e?mode=deep",
+    "timestamp": "2026-02-18 20:26:43.637385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: update_user_reward_manager()] [Reward ID Check] At line 298, pool_reward_id is stored as object::id(pool_reward). However, at line 318, the reward is retrieved without verifying the ID matches. Can an attacker substitute a different pool_reward with matching index? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b1e4906-f773-4884-9594-9a221c8e81cc?mode=deep",
+    "timestamp": "2026-02-18 20:27:04.022088",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: new_user_reward_manager()] [ID Capture] At line 343, pool_reward_manager_id is captured when creating a new UserRewardManager. If the pool_reward_manager is transferred to another object after this, does the ID still remain valid? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e0a0bb5-3f4f-43f1-89d9-d30bd4890c73?mode=deep",
+    "timestamp": "2026-02-18 20:27:26.256586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: claim_rewards()] [Reward Index Mismatch] The function takes reward_index as parameter but doesn't verify that user_reward_manager.rewards[reward_index] corresponds to pool_reward_manager.pool_rewards[reward_index]. Can an attacker exploit index misalignment? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_85852961-cfe5-43b4-8ed4-63f4dcd589b4?mode=deep",
+    "timestamp": "2026-02-18 20:27:48.487259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move] [Function: add_pool_reward()] [Bag Initialization] At lines 120-124, a new Bag is created and Balance<T> is added. Can an attacker add multiple entries to this bag with different types before it's used, corrupting the state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ea963d1-cdfe-4794-8d70-5bae99c18b94?mode=deep",
+    "timestamp": "2026-02-18 20:28:09.832277",
+    "report_generated": false
+  }
+]
