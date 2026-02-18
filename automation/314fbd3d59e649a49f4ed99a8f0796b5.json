@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: from()] [Integer Overflow] If from() receives u64::MAX (18446744073709551615), the multiplication (v as u256) * WAD will produce 18446744073709551615000000000000000000, which when used in vault share calculations could cause incorrect share minting. Can an attacker exploit this by providing maximum u64 values in vault deposit amounts to inflate their shares? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_133a5d35-8e3d-4100-ab17-3454bb58fde8?mode=deep",
+    "timestamp": "2026-02-18 22:01:29.133016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: from_u128()] [Integer Overflow] The from_u128() multiplies u128 by WAD without overflow checks. If a caller passes u128::MAX, the result exceeds safe calculation bounds. In the vault's total_usd_value calculation, could this cause incorrect asset valuation leading to loss tolerance bypass or incorrect withdrawal amounts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6431734b-9761-427d-a38b-e0e35bf80499?mode=deep",
+    "timestamp": "2026-02-18 22:01:42.076130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: from_percent()] [Precision Loss] from_percent() divides by 100 after multiplication, potentially losing precision for values that don't divide evenly. If vault fee rates use this function and the precision loss accumulates over many operations, could fees be systematically undercollected, causing protocol revenue loss? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_62daff91-b1d3-4678-8384-167871b6016c?mode=deep",
+    "timestamp": "2026-02-18 22:01:55.113495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: from_percent_u64()] [Integer Overflow] from_percent_u64() accepts u64 but divides by 100, allowing values up to u64::MAX/100. If a malicious operator sets fee percentages using values near u64::MAX, the multiplication by WAD could overflow. Could this be exploited to set impossibly high fees that wrap around to zero? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02f865bd-d8ac-4afd-845d-3aa8a89eb93e?mode=deep",
+    "timestamp": "2026-02-18 22:02:09.031931",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: from_bps()] [Precision Loss] from_bps() converts basis points (1/10000) by dividing by 10000. For BPS values less than 10000, precision loss occurs in the division. If LST fee_config uses this for protocol_fee_bps (capped at 1000 bps), could rounding errors cause systematic fee underpayment over many stake/unstake operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e48c597e-eaa3-400c-be39-390edaf6d855?mode=deep",
+    "timestamp": "2026-02-18 22:02:23.948119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: from_bps()] [Input Validation] from_bps() doesn't validate that input is <= 10000. If a vault operator mistakenly passes 50000 bps (500%) as a fee rate, it would be converted to Decimal representing 5.0. Could this cause vault operations to charge 5x the intended amount or break fee cap validations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_941a1127-2b6e-4fdf-b666-88031141249f?mode=deep",
+    "timestamp": "2026-02-18 22:02:40.138853",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: add()] [Integer Overflow] add() performs unchecked addition a.value + b.value. If two large Decimal values from vault asset valuations are added, overflow could wrap to a small value. Could an attacker manipulate oracle prices or asset amounts to cause addition overflow in total_usd_value calculations, bypassing loss_tolerance checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bea89fa0-f068-477d-896d-05f05984fc6e?mode=deep",
+    "timestamp": "2026-02-18 22:02:57.098735",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: sub()] [Integer Underflow] sub() performs unchecked subtraction a.value - b.value without validating a >= b. If vault withdrawal calculations subtract a larger amount from a smaller balance, underflow causes a wrap to a huge value. Could this be exploited to withdraw more assets than entitled? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c786e35d-4c25-4226-8afa-2c2c94fada4a?mode=deep",
+    "timestamp": "2026-02-18 22:03:15.154200",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: saturating_sub()] [Logic Error] saturating_sub() returns 0 if a < b, but for financial calculations this masks critical errors. If vault share burn calculations use saturating_sub and user's shares are less than burn amount, returning 0 could allow withdrawals without burning shares. Does the vault rely on errors instead of silent saturation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ece15c32-88fd-4021-be15-ab01dffd93bc?mode=deep",
+    "timestamp": "2026-02-18 22:03:34.283245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: mul()] [Precision Loss] mul() performs (a.value * b.value) / WAD, losing precision in the division. When calculating vault share prices (total_assets * 1e18 / total_shares), repeated multiplications accumulate error. Over many epochs, could this precision loss allow share price manipulation or fee extraction via rounding? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1a750b11-f44e-4897-be48-3c987a42b9e1?mode=deep",
+    "timestamp": "2026-02-18 22:03:54.482729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: mul()] [Integer Overflow Before Division] mul() multiplies two u256 values before dividing by WAD. If both operands are near u256::MAX/2, the multiplication overflows before division. In vault operations multiplying large USD values by price ratios, could overflow cause incorrect asset valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c7705d89-831c-4f22-aa36-a9a2e9592edb?mode=deep",
+    "timestamp": "2026-02-18 22:04:16.120670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div()] [Division by Zero] div() divides by b.value without checking if b is zero. If oracle price feeds return zero or a vault share supply becomes zero, division will abort. Could an attacker force zero denominators in critical calculations to DoS vault operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_55c8e29b-e633-4dca-8209-e96a513d255e?mode=deep",
+    "timestamp": "2026-02-18 22:04:37.116688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div()] [Precision Loss] div() performs (a.value * WAD) / b.value, losing precision in division. When calculating share prices or exchange rates, the remainder is discarded. Could attackers exploit rounding by performing many small operations that accumulate favorable rounding errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2fa4aea3-107e-46fa-811c-23d7f40c1437?mode=deep",
+    "timestamp": "2026-02-18 22:04:58.180744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div()] [Integer Overflow Before Division] div() multiplies a.value by WAD before dividing. If a.value > u256::MAX/WAD, overflow occurs. In vault calculations dividing large asset amounts, could this cause incorrect share prices leading to arbitrage opportunities? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2218f34-7f4b-47c1-952c-ba68edd14a28?mode=deep",
+    "timestamp": "2026-02-18 22:05:19.123303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: pow()] [Gas DoS] pow() uses a loop iterating up to e times with no gas limit check. If vault interest calculations use pow() with a large exponent (e.g., compound interest over many periods), could an attacker provide huge exponents to exhaust gas and DoS operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac5d087c-37cb-4105-b060-ec95cedc4606?mode=deep",
+    "timestamp": "2026-02-18 22:05:42.028987",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: pow()] [Precision Accumulation] pow() repeatedly calls mul() which loses precision each iteration. For compound interest over many epochs (e.g., 365+ days), accumulated precision loss could significantly underestimate returns. Could this be exploited to underpay rewards to LST holders? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22e77f72-4e42-4f13-8692-b2377c243a79?mode=deep",
+    "timestamp": "2026-02-18 22:06:04.313789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: pow()] [Overflow in Repeated Multiplication] pow() repeatedly multiplies cur_base by itself without overflow checks. For bases > 1.0, large exponents cause overflow. If interest rate calculations use pow() with rates > 1.0, could overflow wrap to small values, breaking reward distribution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6c40489-e87f-45cd-b8b2-1478fe440f9d?mode=deep",
+    "timestamp": "2026-02-18 22:06:26.940827",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: pow()] [Zero Base Edge Case] pow() doesn't handle base = 0 specially. If b.value is 0 and e > 0, the result should be 0, but the implementation returns from(1) initially. Could incorrect zero handling in interest calculations cause non-zero returns on zero balances? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_42299308-27d4-4104-8ab9-dcb2dd7e2574?mode=deep",
+    "timestamp": "2026-02-18 22:06:50.116703",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: pow()] [Exponent Zero Edge Case] pow() returns from(1) when e = 0, which is correct mathematically. But if vault calculations mistakenly pass e=0 in interest compounding, all balances would be multiplied by 1 (no interest). Could this be exploited to skip interest accrual in specific epochs? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5f3927f-e116-49de-bc16-dd6c3cb84c91?mode=deep",
+    "timestamp": "2026-02-18 22:07:12.619660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: floor()] [Truncation to u64] floor() casts (a.value / WAD) to u64 without overflow check. If a.value / WAD > u64::MAX, the cast truncates. When converting large vault USD valuations to token amounts, could truncation cause incorrect withdrawal amounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5535180-93e2-4371-a2be-9ee5dc050132?mode=deep",
+    "timestamp": "2026-02-18 22:07:34.569652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: floor()] [Precision Loss] floor() discards all fractional parts. In vault share calculations, if shares are computed via floor(), users lose fractional shares on every operation. Over many deposits/withdrawals, could this systematic rounding-down allow vault to accumulate excess assets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5dd66647-c6f1-4e1a-93d7-c1fc51b17694?mode=deep",
+    "timestamp": "2026-02-18 22:07:56.864705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: saturating_floor()] [Constant Bound Check] saturating_floor() checks if a.value > U64_MAX * WAD and returns U64_MAX. But U64_MAX is defined as u256 18446744073709551615. If the constant is incorrect or the check has an off-by-one error, could values slightly above u64::MAX be incorrectly floored? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f9951bc-92d2-4c7d-b33a-bd0f43ec2006?mode=deep",
+    "timestamp": "2026-02-18 22:08:18.589681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: saturating_floor()] [Information Loss] saturating_floor() silently caps at U64_MAX without error. If vault total_usd_value exceeds u64::MAX (unlikely but possible with 18 decimals), operations using saturating_floor would proceed with capped values. Could this cause incorrect asset accounting in extremely large vaults? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b37f74fa-235c-4b7f-97a8-1d6d1acea321?mode=deep",
+    "timestamp": "2026-02-18 22:08:40.913350",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: ceil()] [Integer Overflow] ceil() computes (a.value + WAD - 1) / WAD then casts to u64. If a.value is near u256::MAX, adding WAD-1 could overflow. When calculating minimum withdrawal amounts or fee ceilings, could overflow cause incorrect values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9e3a084-c479-414f-a8d2-4828e7f90d92?mode=deep",
+    "timestamp": "2026-02-18 22:09:02.598235",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: ceil()] [Truncation on Cast] ceil() casts the result to u64 without checking overflow. If the ceiling value exceeds u64::MAX, truncation occurs. In vault calculations requiring ceiling (e.g., minimum shares to mint), could truncation allow operations with insufficient amounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_76616b45-6766-4b8e-9b58-afc263393c5a?mode=deep",
+    "timestamp": "2026-02-18 22:09:25.790710",
+    "report_generated": false
+  }
+]
