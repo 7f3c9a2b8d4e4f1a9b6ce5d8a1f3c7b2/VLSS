@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Test: test_from_ok] [Expected Behavior] Test expects from(0) and from(10) to succeed - if implementation incorrectly rejects small positive values, could vault fail to initialize with zero balance? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db240fcf-f0e6-4235-b754-44e8cd922716?mode=deep",
+    "timestamp": "2026-02-18 23:51:11.219821",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Test: test_from_overflow] [Expected Behavior] Test expects from(MIN_AS_U32) to fail - if implementation allows this, could create ambiguous value interpretable as either large positive or MIN negative? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eea1c26b-623b-4e44-8c7f-c0192709f281?mode=deep",
+    "timestamp": "2026-02-18 23:51:24.177262",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Test: test_neg_from] [Expected Behavior] Test expects neg_from(1) = 0xffffffff (two's complement of -1) - if implementation produces different result, could all negative numbers be wrong? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_13b48a47-4123-4e14-a9e5-5d56693cd7a6?mode=deep",
+    "timestamp": "2026-02-18 23:51:37.861402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Test: test_neg_from_overflow] [Expected Behavior] Test expects neg_from(0x80000001) to abort - if allowed, could create positive value beyond range? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_280c252b-d335-43c9-bed4-75a4aaab2dd7?mode=deep",
+    "timestamp": "2026-02-18 23:51:52.055960",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Test: test_abs] [Expected Behavior] Test shows abs(neg_from(0x7fffffff)) = 0x7fffffff - if implementation doesn't handle this edge case, could vault loss magnitude calculations be wrong? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8f14ef1-9e75-4133-a8ff-d14a844ebb52?mode=deep",
+    "timestamp": "2026-02-18 23:52:07.561260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Test: test_wrapping_add] [Expected Behavior] Test extensively checks wrapping behavior - if vault code accidentally uses wrapping_add instead of add, could silent wrapping occur without overflow abort? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_726279d0-8978-4a7c-87d4-a099d032373b?mode=deep",
+    "timestamp": "2026-02-18 23:52:24.569329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Test: test_wrapping_sub] [Expected Behavior] Test shows wrapping_sub allows underflow - if vault withdrawal calculation uses this, could amount wrap and allow theft? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fdd54712-dfff-4e71-999a-4af36dfe22aa?mode=deep",
+    "timestamp": "2026-02-18 23:52:42.941992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Test: test_mul] [Expected Behavior] Test shows mul(neg, pos) = neg and mul(neg, neg) = pos - if sign logic wrong, could vault fee calculations on negative balances produce wrong sign? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3e62c334-0131-4201-9490-889d08c465b1?mode=deep",
+    "timestamp": "2026-02-18 23:53:02.666840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Test: test_div] [Expected Behavior] Test shows div(neg_from(MIN_AS_U32), from(1)) = MIN_AS_U32 (special case) - if implementation handles this wrongly, could MIN / 1 overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4455047a-eb21-4fff-b896-08b79e5d2ee8?mode=deep",
+    "timestamp": "2026-02-18 23:53:23.234637",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Test: test_shl] [Expected Behavior] Test shows shl(from(10), 31) = 0 - if implementation doesn't handle large shifts, could vault scaling calculations produce garbage values? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bbfe1e64-dcd3-4b94-82ad-446a8a97d1ca?mode=deep",
+    "timestamp": "2026-02-18 23:53:45.671752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Test: test_shr] [Expected Behavior] Test shows arithmetic right shift with sign extension - if implementation uses logical shift, could negative price deltas shift to positive? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63c0b71e-5129-4bd4-ae19-f95aab5d263a?mode=deep",
+    "timestamp": "2026-02-18 23:54:09.614349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Test: test_sign] [Expected Behavior] Test checks sign(neg_from(10)) = 1 and sign(from(10)) = 0 - if reversed, could break all conditional logic on number sign in vault? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c7312dc8-ec96-4113-90f9-9b65cae73794?mode=deep",
+    "timestamp": "2026-02-18 23:54:34.776991",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Test: test_cmp] [Expected Behavior] Test shows neg_from(MIN_AS_U32) < from(MAX_AS_U32) - if comparison treats bits as unsigned, this would be reversed, breaking vault request priority queues? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78774ead-b9e5-428d-8d62-97aecdb4beb3?mode=deep",
+    "timestamp": "2026-02-18 23:54:57.313929",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Test: test_mod] [Expected Behavior] Test shows mod preserves dividend sign - if vault uses mod for hash bucket selection assuming positive output, could crash on negative bucket index? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dee95543-830a-4529-a797-2607588f26b0?mode=deep",
+    "timestamp": "2026-02-18 23:55:19.750041",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: add()] [Attack: Vault Value Manipulation] If attacker can trigger add(from(MAX_AS_U32), from(1)) during op_value_update, overflow causes abort - but if vault incorrectly uses wrapping_add, could wrap from max profit to min loss, allowing theft via loss_tolerance bypass? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_015f78bf-e795-472e-a6be-bc94b3e019dd?mode=deep",
+    "timestamp": "2026-02-18 23:55:39.096499",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: sub()] [Attack: Share Inflation] If vault share calculation does sub(expected_shares_signed, actual_shares_signed) and underflows from MIN-1, wrapping_sub would produce MAX - could attacker manipulate to mint excess shares? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7a506ea9-b935-44f3-ae86-b6103c0a0ae1?mode=deep",
+    "timestamp": "2026-02-18 23:56:00.175190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: mul()] [Attack: Fee Bypass] If fee calculation does mul(fee_rate_signed, amount_signed) and overflows, wrapping behavior could reduce fee to zero - can attacker craft amounts to trigger this and avoid fees? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9bc45ca0-7695-46f8-b8d9-3029216ca13f?mode=deep",
+    "timestamp": "2026-02-18 23:56:22.432256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: div()] [Attack: Price Manipulation] If oracle price delta is computed as div(new_price - old_price, old_price) and numerator is MIN while denominator is -1, overflow occurs - could attacker manipulate prices to trigger DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_10175f91-c53f-400a-a56d-8faa0402061a?mode=deep",
+    "timestamp": "2026-02-18 23:56:47.783967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: cmp()] [Attack: Priority Queue Manipulation] If vault deposit requests are sorted by timestamp using cmp(), wrong implementation that compares bits as unsigned would reverse order of negative vs positive timestamps - could attacker exploit to jump queue? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e69d9e4-85cb-45c9-bbe7-4cf7e69dcde0?mode=deep",
+    "timestamp": "2026-02-18 23:57:10.331061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: abs()] [Attack: Loss Tolerance Bypass] If vault checks abs(total_value_delta) <= loss_tolerance and abs(MIN) overflows to 0 or wraps, could attacker create MAX loss that appears as zero loss? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2fcd3074-0eee-4bd7-bc6d-53d14e0deb0b?mode=deep",
+    "timestamp": "2026-02-18 23:57:35.242921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: from_u32()] [Attack: Type Confusion] If vault converts oracle price from u32 to I32 using from_u32() without checking range, could price = 0x80000000 be treated as negative, flipping profit to loss? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ceded27e-ef65-47a9-8bba-45638d074645?mode=deep",
+    "timestamp": "2026-02-18 23:57:58.627729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: neg_from()] [Attack: Balance Inversion] If vault tracks borrowed asset balance as negative using neg_from() and implementation allows neg_from(MIN_AS_U32 + 1) when it should abort, could create invalid negative value that wraps on operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f8df6eb3-de3d-42af-8453-760cfb2efb5f?mode=deep",
+    "timestamp": "2026-02-18 23:58:19.936838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: as_u32()] [Attack: Negative Balance Conversion] If vault converts I32 balance to u32 for transfer using as_u32() on negative value without checking sign, could negative debt appear as large positive balance, allowing debt theft? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_13a6754c-00b3-47ba-ab95-98983dea04b2?mode=deep",
+    "timestamp": "2026-02-18 23:58:41.189879",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: is_neg()] [Attack: Condition Bypass] If vault checks is_neg(balance) to enforce withdrawal restrictions and implementation is wrong, could attacker withdraw from negative balance (debt)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fed03d7a-5cc6-43c9-8b6b-3c1131c4e9bf?mode=deep",
+    "timestamp": "2026-02-18 23:59:02.871859",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: shl()] [Attack: Fixed-Point Manipulation] If vault scales oracle price using shl(price, decimals) and shift >= 31 produces 0, could attacker trigger price underflow to buy shares for zero cost? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90c12d6e-f634-470d-9211-661882a95baf?mode=deep",
+    "timestamp": "2026-02-18 23:59:26.193945",
+    "report_generated": false
+  }
+]
