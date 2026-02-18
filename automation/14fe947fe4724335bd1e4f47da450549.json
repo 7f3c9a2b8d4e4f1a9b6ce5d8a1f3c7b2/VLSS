@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_repay()] [Debt Forgiveness] If repay operations only check option_type==4 without verifying actual token transfers, can attackers trigger debt forgiveness by calling repay functions with zero amounts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dbcaa778-a87e-482c-9459-77356a4bb168?mode=deep",
+    "timestamp": "2026-02-18 20:34:16.700916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_repay()] [Interest Accumulation] Can attackers exploit the timing of option_type_repay() checks to repay principal before interest accrual finalizes, avoiding interest payments? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f09ea38-2fed-447b-a284-96b8513630b1?mode=deep",
+    "timestamp": "2026-02-18 20:34:29.616734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_repay()] [Incentive Stacking] Does option_type 4 for repay allow stacking with other incentive types, enabling attackers to claim multiple incentive streams for a single repayment action? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca64e824-f751-4a53-99d8-f3a0e174a1db?mode=deep",
+    "timestamp": "2026-02-18 20:34:43.793337",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: max_number_of_reserves()] [DOS Attack] Can an attacker create exactly 255 reserves to hit max_number_of_reserves(), preventing any new legitimate reserves from being added and permanently freezing protocol expansion? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_10a64ec4-ea48-486a-ad86-b7922a3aacf2?mode=deep",
+    "timestamp": "2026-02-18 20:34:57.639920",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: max_number_of_reserves()] [Off-by-One Error] Does the protocol correctly handle the boundary at 255, or can exactly 255 or 256 reserves cause array index overflows in reserve iteration loops? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29748422-3919-4c83-a6c5-16082667957f?mode=deep",
+    "timestamp": "2026-02-18 20:35:12.586942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: max_number_of_reserves()] [Gas Exhaustion] With 255 reserves possible, can operations that iterate over all reserves (like price updates or health checks) exceed transaction gas limits, causing DOS? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c8a0d368-a850-4ff0-b31a-e4a870a4d34a?mode=deep",
+    "timestamp": "2026-02-18 20:35:29.295544",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: max_number_of_reserves()] [Type Overflow] As a u8 returning 255 (max u8 value), can incrementing this value in checks cause overflow to 0, bypassing reserve count limits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da6ad232-d294-4cc1-8cfa-a5e3e7770421?mode=deep",
+    "timestamp": "2026-02-18 20:35:46.200834",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: max_number_of_reserves()] [Memory Exhaustion] Can creating 255 reserves with large metadata exhaust object storage limits or memory, causing protocol instability? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_889626c6-ec5d-472b-99cc-aececf118578?mode=deep",
+    "timestamp": "2026-02-18 20:36:05.361930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: max_number_of_reserves()] [Admin Griefing] Can a malicious admin create 255 dummy reserves to prevent addition of legitimate assets, forcing a protocol migration? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fc551686-7f8e-4566-9326-720e644ee1fd?mode=deep",
+    "timestamp": "2026-02-18 20:36:25.606547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: max_number_of_reserves()] [Index Collision] With 255 possible reserves using u8 indices, can reserve ID collisions occur if deletion and recreation cycles reuse indices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_25465e5b-2201-4082-9891-03267240415b?mode=deep",
+    "timestamp": "2026-02-18 20:36:47.003440",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: max_number_of_reserves()] [Upgrade Path] If the protocol needs more than 255 reserves in future, can this constant be upgraded without breaking existing reserve index references? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2342592c-ef68-4801-af37-f15a3a19b27a?mode=deep",
+    "timestamp": "2026-02-18 20:37:10.349174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: version()] [Version Downgrade] Can version()==13 be manipulated in an upgrade to a lower version number, enabling attackers to exploit old vulnerabilities by forcing the protocol to use outdated logic paths? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_85144f12-1283-412f-8d9e-ccf5dbf677ce?mode=deep",
+    "timestamp": "2026-02-18 20:37:33.802105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: version()] [Migration Bypass] If migration logic checks for version()==13, can attackers create objects with fake version numbers to bypass migration requirements and maintain access to deprecated features? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4d6bd054-b4ae-4577-8e1c-3a7a8422d054?mode=deep",
+    "timestamp": "2026-02-18 20:37:57.219962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: version()] [Compatibility Check] Does the protocol properly handle version mismatches when interacting with Volo Vault or other components, or can version 13 in lending_core conflict with different versions in vault logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_280ba79b-777b-41e2-bf09-32ae20925178?mode=deep",
+    "timestamp": "2026-02-18 20:38:19.875495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: version()] [Hardcoded Version] Is version 13 hardcoded causing upgrade complexity, where all modules must be upgraded atomically or risk version mismatch exploits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8150e0c2-4c34-45ed-8746-001cf4c8f6e6?mode=deep",
+    "timestamp": "2026-02-18 20:38:43.659385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: version()] [Version Overflow] Can version number increments beyond u64 max (18+ quintillion) cause overflow in future upgrades, though this is practically impossible? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be929354-424b-4fb7-8d95-72d463596b5b?mode=deep",
+    "timestamp": "2026-02-18 20:39:05.775703",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: version()] [Backward Compatibility] If version 13 breaks compatibility with version 12 data structures, can this brick user funds that were created in earlier versions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8edc8b35-ca03-4703-91cb-d25a0ec5998b?mode=deep",
+    "timestamp": "2026-02-18 20:39:29.283917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: version()] [Fork Detection] Can the version() constant be used to detect unauthorized forks, and if not, can attackers deploy modified versions with same version number to confuse users? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7f24378-6392-48cf-9cd9-b0fd675becea?mode=deep",
+    "timestamp": "2026-02-18 20:39:52.883460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: FlashLoanMultiple()] [Fee Calculation Overflow] When calculating flash loan fees as (amount * fee) / FlashLoanMultiple() where FlashLoanMultiple()==10000, can large loan amounts cause the multiplication to overflow before division, reverting legitimate large loans? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f6ce385-1e80-4959-89d3-aa87f79b572b?mode=deep",
+    "timestamp": "2026-02-18 20:40:15.081873",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: FlashLoanMultiple()] [Fee Bypass] Can attackers structure flash loans just under the size that would cause overflow in fee calculation, effectively borrowing large amounts with zero or minimal fees? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8563115c-e215-4023-9ae0-c8570f6855ee?mode=deep",
+    "timestamp": "2026-02-18 20:40:39.340371",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: FlashLoanMultiple()] [Precision Loss] If flash loan fees are calculated as (small_amount * fee_bps) / 10000, can rounding down allow attackers to take flash loans smaller than 10000 wei with zero fees? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb5569d4-2f45-4a62-bd9d-ca117b8d05fa?mode=deep",
+    "timestamp": "2026-02-18 20:41:03.538861",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: FlashLoanMultiple()] [Basis Points Assumption] Does FlashLoanMultiple()==10000 assume basis points (0.01% precision), and can this assumption break if fee rates need higher precision for competitive pricing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c6cae65e-af27-4153-a26e-bcf9773fb2e8?mode=deep",
+    "timestamp": "2026-02-18 20:41:27.025042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: FlashLoanMultiple()] [Division Order] If fee calculation divides by FlashLoanMultiple() before multiplying by amount, can this cause all fees to round to zero for amounts less than 10000? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fede6838-dec3-4ce4-b00e-0392718f4a2b?mode=deep",
+    "timestamp": "2026-02-18 20:41:50.350445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: FlashLoanMultiple()] [Multiple Flash Loans] Can attackers split a large flash loan into multiple smaller loans each just under precision loss thresholds, paying significantly reduced total fees? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f714db93-fb2f-46c0-ac0d-b69d18718201?mode=deep",
+    "timestamp": "2026-02-18 20:42:12.917537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: FlashLoanMultiple()] [Repayment Check] Does repayment validation use FlashLoanMultiple() correctly to ensure (repaid >= borrowed + fee), or can off-by-one errors allow repayment of 1 wei less than required? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51d5cb20-2f2b-4337-a70d-c38c950605f2?mode=deep",
+    "timestamp": "2026-02-18 20:42:36.855445",
+    "report_generated": false
+  }
+]
