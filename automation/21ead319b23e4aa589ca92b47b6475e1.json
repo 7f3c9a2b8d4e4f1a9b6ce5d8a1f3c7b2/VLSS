@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: process_qty()] [Decimal Conversion] At line 91, does decimal::from(max_outflow) accurately represent u64 max_outflow, or can precision loss allow slightly exceeding the limit? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5233936-4006-4106-8dba-b5d609358aa2?mode=deep",
+    "timestamp": "2026-02-18 21:00:52.827568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: process_qty()] [Rate Limit Check] Can an attacker call process_qty with qty exactly equal to (max_outflow - current_outflow), then immediately call again in the same window to exceed the limit? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_13626152-608a-496f-93f6-9ff09e3c8793?mode=deep",
+    "timestamp": "2026-02-18 21:01:05.973939",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: remaining_outflow()] [Concurrent Modification] Can remaining_outflow() return stale values if called between another transaction's update_internal() and process_qty(), misleading users about available capacity? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_88a995a6-bb89-4034-88fa-1eca301b6d24?mode=deep",
+    "timestamp": "2026-02-18 21:01:19.351993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: remaining_outflow()] [Saturating Subtraction] At lines 99-102, does saturating_sub() hide negative remaining capacity, allowing queries to return zero instead of revealing over-limit conditions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af2184b1-a46f-493e-8841-2439d4c89e54?mode=deep",
+    "timestamp": "2026-02-18 21:01:34.147825",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: remaining_outflow()] [Information Leakage] Can attackers call remaining_outflow() to precisely determine when window transitions occur and time their transactions to maximize outflow before limits apply? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1a3397a-e767-4195-9bca-a913b31eb829?mode=deep",
+    "timestamp": "2026-02-18 21:01:49.515611",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: remaining_outflow()] [State Modification] Does remaining_outflow() being mutable (takes &mut) allow unintended state changes through update_internal() that should be read-only? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_785ffbb8-38a5-445f-9204-122a0ad5350f?mode=deep",
+    "timestamp": "2026-02-18 21:02:07.134537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: update_internal()] [Edge Case] When window_duration is 1 and cur_time advances by 1, does the system correctly transition windows, or can off-by-one errors cause window skipping? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_59bf665b-3227-49c1-9e6d-8227e55b86f4?mode=deep",
+    "timestamp": "2026-02-18 21:02:24.829166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: current_outflow()] [Edge Case] When cur_time equals window_start exactly, does (cur_time - window_start + 1) equal 1, causing prev_weight to be maximum and incorrectly weighing old outflows? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83c2e329-d99f-4129-9b18-430a7349181c?mode=deep",
+    "timestamp": "2026-02-18 21:02:42.247675",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: current_outflow()] [Edge Case] At the exact moment when cur_time equals window_start + window_duration - 1, does the weight calculation become zero, ignoring prev_qty entirely? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_270ccdcd-e498-4a43-9898-e14b14f12bf5?mode=deep",
+    "timestamp": "2026-02-18 21:03:02.674858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: update_internal()] [Edge Case] Can setting window_duration to u64::MAX / 2 cause the multiplication by 2 at line 51 to overflow, breaking window transition logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3ec9f0bf-dea1-4504-b0e8-9aac0ae3abe2?mode=deep",
+    "timestamp": "2026-02-18 21:03:22.910870",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: new_config()] [Edge Case] If max_outflow is set to 1 and quantities are fractional Decimals less than 1, can attackers make unlimited tiny withdrawals that never trigger rate limits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ff8a4b9c-f509-4982-8a03-b05e3f54ce69?mode=deep",
+    "timestamp": "2026-02-18 21:03:44.946888",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Struct: RateLimiter] [State Invariant] Can prev_qty ever exceed max_outflow after window transitions, indicating historical rate limit violations that went undetected? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec1a34fb-293e-43f5-a724-1965709338a4?mode=deep",
+    "timestamp": "2026-02-18 21:04:07.335716",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Struct: RateLimiter] [State Invariant] Can cur_qty accumulate beyond max_outflow if process_qty() is called with a quantity that causes exactly equal comparison at line 89-92 due to decimal precision? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8cde0671-d5f4-4173-951d-396b758b90af?mode=deep",
+    "timestamp": "2026-02-18 21:04:29.911407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: update_internal()] [State Invariant] After window transition at lines 52-55, does setting cur_qty to zero lose information about outflows that occurred just before the transition? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_75edbe31-227e-4d38-9999-3b3eac362b65?mode=deep",
+    "timestamp": "2026-02-18 21:04:51.913535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: update_internal()] [State Invariant] Can window_start ever become greater than cur_time in any execution path, violating the assertion at line 45 in subsequent calls? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_346d43ca-a039-447f-a776-eb2692f6e269?mode=deep",
+    "timestamp": "2026-02-18 21:05:13.577123",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Struct: RateLimiter] [State Invariant] If config is updated externally (since it has copy, drop, store), can mismatched window_duration cause update_internal() to behave incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c947b847-e3b0-46f9-af58-ae63d8590f6b?mode=deep",
+    "timestamp": "2026-02-18 21:05:34.970839",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Module Dependency] Can vulnerabilities in the imported decimal module (add, sub, mul, div, le, saturating_sub) propagate to rate_limiter causing unexpected behavior? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_666a7f26-1ea1-4be7-8442-14b46931accc?mode=deep",
+    "timestamp": "2026-02-18 21:05:57.772953",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: current_outflow()] [Decimal Precision] Does the decimal module use sufficient precision to accurately represent outflows, or can rounding errors accumulate across multiple windows? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_54eb5e67-6a70-45cb-a387-db25e63db892?mode=deep",
+    "timestamp": "2026-02-18 21:06:20.851586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: process_qty()] [Decimal Comparison] At line 89-92, does the le() function correctly handle equality cases, or can exact matches to max_outflow be incorrectly rejected? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec090a64-4824-4af0-8f9e-ce2d813f95cd?mode=deep",
+    "timestamp": "2026-02-18 21:06:43.384974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: remaining_outflow()] [Decimal Saturation] If current_outflow exceeds max_outflow due to precision errors, does saturating_sub return zero instead of error, hiding the violation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d22a747-f4f3-447e-8ba9-75a56e51103a?mode=deep",
+    "timestamp": "2026-02-18 21:07:08.056439",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: current_outflow()] [Decimal Operations] Can the sequence of div(), mul(), and add() operations at lines 68-79 lose precision in a way that systematically underestimates current_outflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0639df4c-caa3-4c35-a0ff-e1a5e42b24ad?mode=deep",
+    "timestamp": "2026-02-18 21:07:33.202094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: process_qty()] [Time Manipulation] Can an attacker provide cur_time values that are slightly behind actual time to avoid window transitions and accumulate unlimited outflows in the current window? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87cc1ceb-84e5-4eca-94b7-6ca37f1c1818?mode=deep",
+    "timestamp": "2026-02-18 21:07:57.848599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: update_internal()] [Time Manipulation] By carefully choosing cur_time values, can an attacker cause the rate limiter to skip windows at lines 57-61, resetting accumulated quantities prematurely? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56d1c38e-618a-4edc-9c55-542cd2e7a69b?mode=deep",
+    "timestamp": "2026-02-18 21:08:20.809753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: current_outflow()] [Time Manipulation] At line 71, can providing cur_time values that create large (cur_time - window_start) values cause integer overflow before decimal conversion? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a18c8cb6-fced-4bad-a8c4-9c64986fe2a0?mode=deep",
+    "timestamp": "2026-02-18 21:08:42.157249",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move] [Function: process_qty()] [Timestamp Dependency] If Sui blockchain timestamps can be manipulated by validators, can they bypass rate limits by controlling cur_time values? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db4bdd8d-354a-4c52-92bf-3f5d9f4d25e9?mode=deep",
+    "timestamp": "2026-02-18 21:09:02.096030",
+    "report_generated": false
+  }
+]
