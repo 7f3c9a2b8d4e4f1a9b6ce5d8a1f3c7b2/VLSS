@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: seconds_per_year()] [Mathematical Error] Does the calculation 60*60*24*365 = 31,536,000 incorrectly assume non-leap years, causing interest rate calculations to accumulate ~0.27% error annually over 4-year cycles, enabling economic exploitation through compounding precision drift? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8dbfb9f0-bc5d-49cf-9a76-32715e801d31?mode=deep",
+    "timestamp": "2026-02-18 22:47:09.830988",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: seconds_per_year()] [Overflow Risk] Can the multiplication chain 60*60*24*365 overflow when used in subsequent calculations with large principal amounts or extended time periods, causing interest calculations to wrap around to near-zero values and enabling attackers to borrow without paying interest? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22f0a5c0-484e-48ed-8892-a3a74fc6741f?mode=deep",
+    "timestamp": "2026-02-18 22:47:22.799465",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: seconds_per_year()] [Type Conversion] When seconds_per_year() returns u256 but downstream modules cast to u64 or u128, can the conversion truncate high-order bits in edge cases, causing incorrect interest accrual calculations that favor borrowers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dafc8be4-2ead-406b-9ed7-63f0bee4c4f0?mode=deep",
+    "timestamp": "2026-02-18 22:47:36.902331",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: seconds_per_year()] [Precision Loss] If interest rate formulas divide by seconds_per_year() before multiplying by principal, can precision loss occur for small amounts or short durations, allowing attackers to accumulate dust amounts that bypass fee collection? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51ed6c74-b719-4ae3-aaa7-851f22eadef5?mode=deep",
+    "timestamp": "2026-02-18 22:47:51.111607",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: seconds_per_year()] [Economic Attack] Can attackers exploit the 365-day assumption by timing operations around leap years, gaining an extra day of interest accumulation without corresponding payment, enabling systematic value extraction? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3a6000b5-05cd-4d1f-9c02-0c9c0ff74e4f?mode=deep",
+    "timestamp": "2026-02-18 22:48:05.917745",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: seconds_per_year()] [Division by Zero Guard] If calling code divides by seconds_per_year() but the constant is ever changed to 0 in an upgrade, can this cause transaction aborts that DOS the entire lending protocol? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b0a7f163-3d61-4637-a7a8-fa5d98685a7f?mode=deep",
+    "timestamp": "2026-02-18 22:48:23.251656",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: seconds_per_year()] [Hardcoded Value] Is the hardcoded 365-day year incompatible with blockchain timestamp drift or validator clock skew, causing interest calculations to diverge from real time and enabling arbitrage between protocol expectations and actual epoch durations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a99560b-6de6-4fda-a639-a7ad1987254c?mode=deep",
+    "timestamp": "2026-02-18 22:48:40.967143",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: seconds_per_year()] [Rate Calculation] When annualized rates are converted to per-second rates by dividing by this constant, can rounding errors accumulate over multiple compounding periods, causing the effective APY to differ materially from advertised rates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7728ef04-face-47ac-9637-22cd0a451753?mode=deep",
+    "timestamp": "2026-02-18 22:49:00.778044",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: seconds_per_year()] [Timestamp Overflow] If timestamp calculations add seconds_per_year() to current epoch time repeatedly, can this overflow u64 timestamp limits (max ~584 billion years) in theoretical long-duration calculations, causing wraparound exploits? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c565b6a4-6105-4a6a-b950-5b290aaee786?mode=deep",
+    "timestamp": "2026-02-18 22:49:21.088618",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: seconds_per_year()] [Cross-Module Inconsistency] If other modules in the Volo protocol use different year assumptions (e.g., 360-day financial year), can this create arbitrage opportunities between liquid staking rewards and vault interest calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4551e09c-eefd-4abc-83eb-0c2cffb872b9?mode=deep",
+    "timestamp": "2026-02-18 22:49:41.332220",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_supply()] [Type Collision] Can the u8 value 1 for supply operations collide with other protocol enum values if modules don't properly namespace their type identifiers, allowing attackers to trigger supply incentives when performing other operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c77a7801-d25a-481c-8d8d-3509e57b5531?mode=deep",
+    "timestamp": "2026-02-18 22:50:01.365111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_supply()] [Missing Validation] If calling code doesn't validate that option_type is within the valid range 1-4, can attackers pass arbitrary u8 values that bypass incentive checks or trigger undefined behavior? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0cddaf6f-329b-47ea-b2c8-88a1898354b3?mode=deep",
+    "timestamp": "2026-02-18 22:50:22.661523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_supply()] [Type Safety] Can the lack of a proper enum type (using raw u8 instead) allow incorrect option types to be passed across module boundaries, enabling supply operations to be misclassified as withdrawals in incentive calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be9bae33-fba5-45e4-ad64-5c2db016de78?mode=deep",
+    "timestamp": "2026-02-18 22:50:45.005623",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_supply()] [Zero Handling] Does the protocol properly handle the fact that 0 is not a valid option type, or can attackers pass 0 to bypass incentive distribution entirely? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a2500deb-f417-41cb-94be-36b022afe14c?mode=deep",
+    "timestamp": "2026-02-18 22:51:08.330916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_supply()] [Range Exhaustion] With only 4 defined option types (1-4), can future protocol upgrades run out of valid u8 values if more operation types are needed, forcing breaking changes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_07d39503-1235-4751-957a-e600d92db7b8?mode=deep",
+    "timestamp": "2026-02-18 22:51:31.911553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_withdraw()] [Incentive Bypass] Can attackers misuse option_type_withdraw()==2 by triggering withdraw incentives without actually withdrawing funds, exploiting reward distribution logic that only checks option type? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b58772f-c6ce-4f3a-9869-27e762a00a05?mode=deep",
+    "timestamp": "2026-02-18 22:51:55.022758",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_withdraw()] [Type Confusion] If withdraw operations use value 2 but other protocol modules interpret 2 differently, can this cause state corruption where withdrawals are recorded as deposits in accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_735b2c4f-a901-49cc-93c4-9638ab61dabc?mode=deep",
+    "timestamp": "2026-02-18 22:52:17.903716",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_withdraw()] [Sequential Assumption] Does the protocol assume option_type values are sequential (1,2,3,4), and can gaps or reordering in these values break switch-case logic or array indexing in incentive calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a4f85940-343d-492c-a621-f770afbfbb75?mode=deep",
+    "timestamp": "2026-02-18 22:52:40.666223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_withdraw()] [Bitwise Operations] If incentive masks use bitwise operations on option types, can the value 2 (binary 10) cause incorrect bit masking that enables or disables wrong incentives? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9267e3c-9ac2-40a2-8ac6-7a85040410e8?mode=deep",
+    "timestamp": "2026-02-18 22:53:01.936374",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_borrow()] [Borrow Tracking] Can the option_type_borrow()==3 value be manipulated to record borrows as supplies in incentive tracking, allowing attackers to earn supply incentives while actually borrowing and extracting value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e11477d9-0713-4dbe-9a4e-82901e08fef6?mode=deep",
+    "timestamp": "2026-02-18 22:53:23.934829",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_borrow()] [Health Factor Bypass] If borrow operations check option_type==3 but don't validate health factor limits separately, can attackers bypass collateral checks by passing incorrect option types? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b433ea99-208b-408b-8083-3b3833219756?mode=deep",
+    "timestamp": "2026-02-18 22:53:46.325016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_borrow()] [Interest Calculation] Does using option_type 3 for borrows correctly trigger interest accrual, or can attackers exploit timing where borrow type is checked before interest is calculated to avoid paying interest? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ead129cb-de9b-48cc-8324-acdcc936a611?mode=deep",
+    "timestamp": "2026-02-18 22:54:10.167089",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_borrow()] [Flash Loan Confusion] Can flash loans misuse option_type_borrow() to avoid flash loan fees by registering as regular borrows that are quickly repaid within the same transaction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50f834e3-46ef-4c51-8483-72ecba4011e5?mode=deep",
+    "timestamp": "2026-02-18 22:54:33.932146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_borrow()] [Double Incentive] If both borrow and supply incentives can be active simultaneously, can attackers craft transactions that claim both incentive types by manipulating option_type checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_187af088-f43b-4b5a-834d-04b1198c9c7e?mode=deep",
+    "timestamp": "2026-02-18 22:54:58.084024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Function: option_type_repay()] [Partial Repayment] Can option_type_repay()==4 be used to mark partial repayments as full repayments in incentive logic, allowing attackers to claim repayment rewards without fully clearing debt? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2486b417-beb4-4fa0-8818-f7ff8a9dbd36?mode=deep",
+    "timestamp": "2026-02-18 22:55:21.752231",
+    "report_generated": false
+  }
+]
