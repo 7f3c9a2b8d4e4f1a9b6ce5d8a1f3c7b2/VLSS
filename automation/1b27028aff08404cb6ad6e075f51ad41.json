@@ -1,0 +1,62 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [All Functions] [Stub Implementation] If this is intended as stub to be replaced before mainnet but is accidentally deployed as-is, can all vault operations depending on signed math be permanently broken? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ad6ceeb-e9a6-46ac-aa40-bb8e953bb4d0?mode=deep",
+    "timestamp": "2026-02-18 20:48:19.520749",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [All Functions] [Test Mocking] If this module is test-only mock that shouldn't be in production build but build configuration error includes it, can production vault use non-functional math? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c4740421-9c9d-45f8-8c42-e08fe5f1322f?mode=deep",
+    "timestamp": "2026-02-18 20:48:32.165207",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Test Functions] [Test Execution] Tests validate expected behavior - but if tests are never run or test environment differs from production, can implementation bugs go undetected? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_40e9b64f-c665-4823-950a-12cf29485d12?mode=deep",
+    "timestamp": "2026-02-18 20:48:45.692496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Test: Line 194] [Wrapping Edge] Test validates wrapping_add(MAX, 1) wraps to MIN - if vault relies on this wrapping behavior for range cycling and implementation is wrong, can cyclic calculations break? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ae432c13-50ae-41ed-adb2-84e66fb980d9?mode=deep",
+    "timestamp": "2026-02-18 20:48:59.153279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Test: Line 248] [Subtraction Edge] Test shows sub(MAX, neg(-1)) wraps to neg(MIN) - if vault uses this pattern for calculating deltas and implementation differs, can delta calculations be wrong? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af8a4b9f-e7df-4c37-b186-7ac54bc8fca5?mode=deep",
+    "timestamp": "2026-02-18 20:49:13.554144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Test: Line 297] [Multiplication Edge] Test shows mul(MIN/2, neg(2)) returns neg(MIN) - if vault multiplies positions by negative factors and this edge case fails, can position sizing be wrong? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_674de9f7-8c35-4602-a017-3b7445855368?mode=deep",
+    "timestamp": "2026-02-18 20:49:29.200356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Test: Line 315] [Division Edge] Test shows div(neg(MIN), 1) returns MIN unchanged - if vault divides minimum loss and expects positive result, can sign preservation cause confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cbb834e3-b328-4029-9c9a-84a2e7d1a597?mode=deep",
+    "timestamp": "2026-02-18 20:49:45.396423",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Test: Line 357] [Shift Edge] Test shows shr(neg(MIN), 63) returns -1 (all bits set) - if vault expects zero from maximum shift and gets -1, can this break shift-based scaling? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e2dd8232-9cda-4ff3-84ac-2d77e7625c74?mode=deep",
+    "timestamp": "2026-02-18 20:50:03.155788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: add()] [Vault PnL Overflow] If vault accumulates profits using add() and profit exceeds MAX_AS_U64, does add() abort preventing vault from accepting more profit, or does it overflow creating accounting error? If aborts, can attacker intentionally push vault to MAX profit then DoS future deposits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e4f90671-2a83-43d2-8837-1b4e19abaaab?mode=deep",
+    "timestamp": "2026-02-18 20:50:20.326561",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: sub()] [Vault Loss Underflow] If vault tracks cumulative losses using sub() and losses exceed MIN_AS_U64 magnitude, does sub() abort preventing loss recording, or underflow wrapping to positive? If abort, can attacker intentionally push vault to MAX loss then DoS loss recording? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_293f6b00-3232-4d70-a5ee-6913053b3cc7?mode=deep",
+    "timestamp": "2026-02-18 20:50:39.989777",
+    "report_generated": false
+  }
+]
