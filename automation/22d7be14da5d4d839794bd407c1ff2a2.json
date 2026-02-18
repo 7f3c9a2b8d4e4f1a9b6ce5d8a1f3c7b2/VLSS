@@ -1,0 +1,44 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Struct: PoolInfo] [Last Update Time Initialization] last_update_time is initialized to 0 - can this cause first update to calculate rewards from Unix epoch (timestamp 0) to start_time? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8972fa3c-5448-47a4-9079-5d86ba5d13ba?mode=deep",
+    "timestamp": "2026-02-18 21:06:52.015500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: claim_reward()] [Transfer to Zero Address] If account parameter is @0x0, public_transfer at line 296 sends coins to zero address - can this cause permanent fund loss? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be10fa1b-2c6a-4b22-9d84-97bc3a9ea0e4?mode=deep",
+    "timestamp": "2026-02-18 21:07:05.007765",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: earned()] [Calculation Without State Update] earned() calculates rewards without calling update_reward first - can displayed earned amount differ from actual claimable amount? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_05cbabf3-8c81-4596-aea0-444411c463fd?mode=deep",
+    "timestamp": "2026-02-18 21:07:18.301974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: add_pool()] [Missing Asset Validation] asset parameter is u8 (0-255) but not validated against supported asset types - can invalid asset IDs cause downstream failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7194d8a2-d9a7-44d4-9ee3-c5d5eeb7646b?mode=deep",
+    "timestamp": "2026-02-18 21:07:32.101588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Index Array Mismatch] current_idx from IncentiveBal is used without checking if it's within bounds of pool vectors - can corrupted current_idx cause vector index panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e987778-1fae-42b2-addc-3d547cef1a42?mode=deep",
+    "timestamp": "2026-02-18 21:07:47.116844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Supply Balance Precision] supply_balance is u256 but represents token amount - if token has 0 decimals and balance is huge, can multiplications at line 274 overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c926851f-994b-40c1-9cd7-38bde772a5ef?mode=deep",
+    "timestamp": "2026-02-18 21:08:04.272642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: update_reward()] [Conditional Table Contains] Line 191: if (table::contains(&incentive.pools, asset)) - but if pool doesn't exist, function silently returns - can this hide errors where update is expected but doesn't happen? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e659166-e0ef-49de-9b2c-a1b76b745f40?mode=deep",
+    "timestamp": "2026-02-18 21:08:21.720564",
+    "report_generated": false
+  }
+]
