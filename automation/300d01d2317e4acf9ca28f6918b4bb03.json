@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [User Index Staleness] If get_user_index_by_rule() at line 102 returns a stale index that hasn't been updated, can this cause user_index_diff to be artificially large, inflating rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a76bdbf1-31bc-42d4-b82f-f2647efd6fef?mode=deep",
+    "timestamp": "2026-02-18 21:53:27.865372",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [Supply/Borrow Selection] Can the balance selection logic at lines 95-100 incorrectly select user_effective_borrow when option is supply (or vice versa) due to constant value confusion? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c1dc2222-02a0-4632-83a8-49e9558526b5?mode=deep",
+    "timestamp": "2026-02-18 21:53:41.424626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [Ray Math Precision] Does ray_math::ray_mul() at line 104 properly handle edge cases where user_index_diff is very small, potentially losing precision in reward calculation across many users? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2bab9e1-fa26-4653-9688-f3eb27353a0e?mode=deep",
+    "timestamp": "2026-02-18 21:53:56.201968",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [Negative Index Diff] If global_index can decrease (through admin action or bug), can user_index_diff at line 102 wrap around in u256, producing an enormous positive value and stealing all rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b352f7e-f3f7-443b-af53-8cc89b3ebb70?mode=deep",
+    "timestamp": "2026-02-18 21:54:11.104235",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [User Address Spoofing] Can the user address parameter at line 93 be spoofed to query another user's index and reward amounts, leaking sensitive financial information? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ce029cbe-9e12-4f8c-a34d-3c4c87dd0678?mode=deep",
+    "timestamp": "2026-02-18 21:54:27.544520",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [Concurrent Reward Updates] If get_user_total_rewards_by_rule() at line 103 is being updated concurrently, can this cause race conditions where the addition at line 104 uses stale values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51f76a8c-689c-47bb-89a6-04fb597412f5?mode=deep",
+    "timestamp": "2026-02-18 21:54:45.326663",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Cross-Function Consistency] Can inconsistencies between calculate_global_index() and calculate_user_reward() (called at lines 38-39) cause the same user to receive different reward amounts when queried at different times with same state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b98a3334-6812-4757-afeb-d22be9b75401?mode=deep",
+    "timestamp": "2026-02-18 21:55:03.584979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Timestamp Dependency] Does the function's reliance on Clock at line 73 create MEV opportunities where miners can manipulate block timestamps to inflate index calculations for their benefit? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_147d9aa1-1c29-463d-9d98-d104e877eb9c?mode=deep",
+    "timestamp": "2026-02-18 21:55:26.069606",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [State Mutation During Query] Since the function takes `&mut Storage` at line 13, can querying rewards for one user affect calculations for another user through shared state mutations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e7710d3-e37f-4d6e-bf8d-b41c7ef49ad2?mode=deep",
+    "timestamp": "2026-02-18 21:55:47.395424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: verify_rule_id_config()] [Config Race Window] Between verifying rule configuration at line 61 and actual reward claim, can rule parameters be changed, making the verification meaningless and allowing claims with wrong parameters? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d260520c-bbff-4475-b634-364e2b2bafd8?mode=deep",
+    "timestamp": "2026-02-18 21:56:11.240999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Module: incentive_v3_getter] [Module-Level Access] Does the module export these functions as public without proper access control, allowing any contract to query and potentially exploit reward calculation logic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e03ac717-a298-4afb-84df-9f678cc64fa5?mode=deep",
+    "timestamp": "2026-02-18 21:56:37.176178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Index Staleness Propagation] If this function returns a stale global_index due to zero duration (line 85), does this stale index propagate through calculate_user_reward() causing compounding errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ad606cb3-d7b8-4280-ab5e-db3361d66bec?mode=deep",
+    "timestamp": "2026-02-18 21:57:02.557951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Batch Operation Attack] Can an attacker craft storage state where iterating all pools/rules causes different users to see radically different claimable_reward values when queried simultaneously? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_38236255-76ad-416e-800f-06afbcd60345?mode=deep",
+    "timestamp": "2026-02-18 21:57:28.089163",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [External Call Safety] Does incentive_v3::get_effective_balance() at line 30 properly handle failure cases, or can it return corrupted balance data that cascades through reward calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_80a3128f-84b0-44da-9256-6fea450c3b44?mode=deep",
+    "timestamp": "2026-02-18 21:57:56.050638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [Ray Math Dependency] If ray_math::ray_mul() at line 104 has a bug or uses different precision than expected, can this cause systematic over or under-payment of rewards to all users? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3a15aa2d-1741-4017-b18a-01a4f99e3cd9?mode=deep",
+    "timestamp": "2026-02-18 21:58:23.013119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Incentive Module Trust] Does the code safely handle malicious or corrupted data from incentive_v3 module calls (lines 21, 27, 36, 40, 41), or assume all returned data is valid? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f1bb0bf-9594-4c39-835f-34f46022e541?mode=deep",
+    "timestamp": "2026-02-18 21:58:46.298729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: verify_rule_id_config()] [Type Name Reliability] Can type_name::get<RewardCoinType>() at line 70 return incorrect type names due to compiler bugs or type system exploits, bypassing reward type verification? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1af7fec5-09a4-4774-937b-854eda2fd30e?mode=deep",
+    "timestamp": "2026-02-18 21:59:08.480279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Constants Module Dependency] Can the constants::option_type_supply() and constants::option_type_borrow() values at lines 75-78 be changed after deployment, breaking existing option type comparisons? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ae770d81-6577-4395-a378-e20c77e751e9?mode=deep",
+    "timestamp": "2026-02-18 21:59:31.018309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Vec Map Safety] Does vec_map module properly handle concurrent access when multiple threads query vec_map::get() at lines 25, 34, making the returned data potentially stale or corrupted? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3ba70f11-0cf0-40cc-9a7e-30d6e9d2f236?mode=deep",
+    "timestamp": "2026-02-18 21:59:52.558381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Clock Module Trust] Can the clock::timestamp_ms() call at line 83 be manipulated by the Sui network validators to favor certain users' reward accrual over others? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_821b3beb-4707-4e03-83dc-3abcb7689d9a?mode=deep",
+    "timestamp": "2026-02-18 22:00:17.295121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Vector Capacity] Do the five parallel vectors initialized at lines 15-19 have capacity limits, and can they cause memory allocation failures when user has rewards across many pools? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_89915c65-5dd7-412c-bf11-b80d8620d1f4?mode=deep",
+    "timestamp": "2026-02-18 22:00:44.348097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Vector Index Alignment] If any of the push_back operations at lines 49-53 fail partially, can this leave vectors with misaligned lengths, causing array index errors in consuming code? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aac6010e-43a0-41d0-b841-32ea3c16006e?mode=deep",
+    "timestamp": "2026-02-18 22:01:11.062586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Pool Key Type Safety] Is the pool_key of type String at line 24 properly validated to prevent type confusion when used as asset_type at line 49 for downstream operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6262ff5e-76cf-4836-91cc-51d966826296?mode=deep",
+    "timestamp": "2026-02-18 22:01:38.216350",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: get_user_atomic_claimable_rewards()] [Rule ID Type Safety] Is rule_id of type address at line 33 guaranteed to be a valid rule identifier, or can arbitrary addresses be injected when pushed at line 52? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_76e03e65-1abf-471d-a53c-f7b5ecd80e93?mode=deep",
+    "timestamp": "2026-02-18 22:02:07.625521",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: verify_rule_id_config()] [String Type Validation] Does the String type for check_asset_type at line 61 properly validate ASCII encoding, or can malformed strings cause comparison failures at line 63? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ce34177b-0334-40a7-ae63-e57466a30799?mode=deep",
+    "timestamp": "2026-02-18 22:02:37.013547",
+    "report_generated": false
+  }
+]
