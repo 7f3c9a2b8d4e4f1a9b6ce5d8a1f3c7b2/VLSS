@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Authorization Bypass] If queue.has_authority(ctx) check can be bypassed through a compromised Queue module or malicious fork, could an attacker override oracle credentials with their own TEE keys, manipulating all price feeds and causing vault liquidations or incorrect valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ccf22d97-6c0d-4bbc-8118-bd272b17786e?mode=deep",
+    "timestamp": "2026-02-18 23:10:46.458148",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Access Control] Can an attacker front-run legitimate queue authority changes to call run() with malicious secp256k1_key and mr_enclave before proper authority is revoked, permanently corrupting oracle attestation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3caf8be1-3bd7-4c03-b116-b8b727915cd6?mode=deep",
+    "timestamp": "2026-02-18 23:10:59.267614",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: run()] [Authorization Timing] If has_authority check passes in validate() but authority is revoked before actuate() executes (multi-sig delay, consensus lag), could the oracle override still complete, violating authorization invariants? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f761e2f4-0234-41d7-bc1f-6b2609a2c3d7?mode=deep",
+    "timestamp": "2026-02-18 23:11:12.649808",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Multi-Party Auth] Does has_authority support multi-sig requirements? If single authority can override oracles, could a compromised key enable complete price feed takeover affecting all vaults? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_61191230-c725-4042-8d6f-8eecb761ff7b?mode=deep",
+    "timestamp": "2026-02-18 23:11:26.494142",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Authority Escalation] Can an attacker exploit validator pool delegation or operator caps in the broader Volo system to gain queue authority indirectly, bypassing intended access controls for oracle overrides? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4dc36bdb-cdcd-4157-ae30-5b7f7384a4b2?mode=deep",
+    "timestamp": "2026-02-18 23:11:41.223786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Version Mismatch] If EXPECTED_ORACLE_VERSION or EXPECTED_QUEUE_VERSION are hardcoded to 1, but upgraded oracle/queue contracts use version 2+, would legitimate override operations fail, causing DoS on critical price feed updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b353d8af-e9b1-42a1-b883-490ab722e677?mode=deep",
+    "timestamp": "2026-02-18 23:11:57.605363",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Version Downgrade] If an attacker can deploy or reference legacy Oracle v1 contracts when the system expects v2+, could they bypass security improvements and exploit old vulnerabilities through version validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4bf7bdf0-8dd2-4e15-a099-567c6edaf498?mode=deep",
+    "timestamp": "2026-02-18 23:12:14.253229",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Version Immutability] Since version checks are equality-based, not range-based, does protocol upgrade require redeploying this action module? Could version lock-in delay critical security patches? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a9177ebc-9d6c-4958-9692-720570a6c400?mode=deep",
+    "timestamp": "2026-02-18 23:12:32.145440",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Version Race] If queue.version() or oracle.version() can be updated mid-transaction through reentrancy, could TOCTOU (Time-Of-Check-Time-Of-Use) allow version validation bypass? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_69cfe153-075b-44f0-ab4d-f15c91a278d5?mode=deep",
+    "timestamp": "2026-02-18 23:12:51.559450",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Queue Key Mismatch] If queue.queue_key() != oracle.queue_key() check can be satisfied with colliding keys (hash collision, weak key generation), could attacker bind oracle to wrong queue, mixing price feeds across unrelated protocols? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_578e46ea-2b2e-49d5-a531-fefe5f2b2e6f?mode=deep",
+    "timestamp": "2026-02-18 23:13:11.871019",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Queue ID Spoofing] If queue.id() == oracle.queue() can be satisfied through ID manipulation or object wrapping, could attacker override oracles belonging to different queues, causing cross-vault price corruption? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_407ce05d-2226-4581-ba8b-362fffdd72b6?mode=deep",
+    "timestamp": "2026-02-18 23:13:32.933161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Orphaned Oracle] If an oracle's queue reference becomes stale (queue deleted, ID reused), but validation passes due to ID collision, could override operation corrupt unrelated queue's oracle state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68c9dd24-db39-481a-bd02-6dc5e959e599?mode=deep",
+    "timestamp": "2026-02-18 23:13:55.068561",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Queue-Oracle Desync] Between queue_key and queue_id checks, if either queue or oracle state mutates through reentrancy, could TOCTOU enable binding oracle to mismatched queue? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f4c4949-127b-4057-a1cd-a4673d5acbd8?mode=deep",
+    "timestamp": "2026-02-18 23:14:15.387793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Multiple Queue Binding] Can a single oracle be bound to multiple queues by satisfying validation with different queue objects in separate transactions, enabling one oracle to serve conflicting price feeds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ebfa47d-74c1-4ffa-8244-0f6e6dd0f24d?mode=deep",
+    "timestamp": "2026-02-18 23:14:36.573142",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Expiration Time Underflow] Validation only checks expiration_time_ms > 0, but if clock.timestamp_ms() can overflow or expiration_time_ms can be set to u64::MAX, could oracle credentials never expire, violating TEE key rotation security requirements? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a4264ab6-4a8d-448b-afc1-20d51ba24458?mode=deep",
+    "timestamp": "2026-02-18 23:14:59.980383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Expiration Too Short] If expiration_time_ms = 1ms is technically valid (>0), could attacker set ultra-short expiration causing immediate oracle invalidation and vault operation DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2742abfb-5d92-49a5-945c-0e41a26bc4b4?mode=deep",
+    "timestamp": "2026-02-18 23:15:23.090072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [No Upper Bound] Since only lower bound (>0) is checked, could expiration_time_ms be set centuries into future, permanently locking in potentially compromised TEE credentials? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5bfa419e-baa0-42c6-9cc7-caaf7a16f82f?mode=deep",
+    "timestamp": "2026-02-18 23:15:45.900129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Expiration vs Clock] Validation doesn't compare expiration_time_ms against current clock.timestamp_ms(). Could attacker set expiration in the past, creating immediately-expired oracle that passes validation but fails in use? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b249318-64c4-4142-8907-1311835b3341?mode=deep",
+    "timestamp": "2026-02-18 23:16:09.476593",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: actuate()] [Expiration Semantics] Is expiration_time_ms an absolute timestamp or duration? If semantic confusion exists between validation and enable_oracle(), could timing vulnerabilities emerge? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e63287ec-e2f0-489a-b091-e90d2a5bf938?mode=deep",
+    "timestamp": "2026-02-18 23:16:33.581478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [No Key Validation] secp256k1_key vector is never validated for length, format, or cryptographic validity. Could attacker pass empty vector, invalid curve point, or malformed key causing oracle failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7f409d1-bfce-470f-a600-2742c33833ac?mode=deep",
+    "timestamp": "2026-02-18 23:16:58.410628",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [No Enclave Validation] mr_enclave (measurement register) is never validated against approved TEE measurements. Could attacker register oracle with arbitrary/malicious enclave, bypassing trusted execution guarantees? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_342b830e-c3f2-43e9-a807-6f743885f00a?mode=deep",
+    "timestamp": "2026-02-18 23:17:21.849142",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: actuate()] [Empty Key Attack] If secp256k1_key is empty vector and enable_oracle() doesn't validate, could oracle be registered without valid attestation key, enabling unauthenticated price updates? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9c4a8ed2-78fb-4b84-83a4-ae8d50ad3ee6?mode=deep",
+    "timestamp": "2026-02-18 23:17:44.085013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: run()] [Key Reuse] No check prevents reusing same secp256k1_key across multiple oracles. Could key compromise affect multiple oracles simultaneously? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e399b274-55d0-41e4-bb8f-b0f9903337c0?mode=deep",
+    "timestamp": "2026-02-18 23:18:05.517583",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: actuate()] [Enclave Revocation] If mr_enclave is later found vulnerable or compromised, no revocation mechanism exists. Could stale enclave measurements remain active indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_708bd5a6-3bf2-466c-9fc9-4b0654090595?mode=deep",
+    "timestamp": "2026-02-18 23:18:27.147135",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_override_oracle_action.move] [Function: validate()] [Key Length Attack] If secp256k1_key vector exceeds expected 33/65 bytes (compressed/uncompressed), could excessive length cause storage bloat or overflow in enable_oracle()? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b59c7731-5efb-4080-83ca-8d42d83d1eb0?mode=deep",
+    "timestamp": "2026-02-18 23:18:47.614138",
+    "report_generated": false
+  }
+]
