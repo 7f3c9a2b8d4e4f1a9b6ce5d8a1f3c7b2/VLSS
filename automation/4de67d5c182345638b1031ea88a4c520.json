@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [Volo Vault Integration] If Volo Vault's Suilend adaptor references lending markets through the registry, could an attacker create a malicious market with the same type parameter to redirect vault funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea2c83ec-fa02-45e8-afa8-4f7134c4ce71?mode=deep",
+    "timestamp": "2026-02-18 23:22:55.109710",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [Market Discovery] Without a public lookup function, how do Volo Vault adaptors find the correct lending market ID? Could this lead to integration errors or security issues? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3f743b0-b9db-4d83-8c93-ffc28dcf9f31?mode=deep",
+    "timestamp": "2026-02-18 23:23:08.201002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [Cross-Protocol Attack] If multiple protocols rely on the same registry, could an attacker create a market that exploits differences in how protocols validate market legitimacy? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f8634605-5adf-45a1-b28f-594b36c80a12?mode=deep",
+    "timestamp": "2026-02-18 23:23:21.068403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Struct: Registry] [Single Registry Assumption] The code assumes a single global registry. Could multiple registry deployments cause confusion or enable market spoofing attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_daf6aafc-1452-4e1c-b570-f271b32abd48?mode=deep",
+    "timestamp": "2026-02-18 23:23:34.859772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [No Pause Mechanism] There's no way to pause market creation. Could this prevent emergency response during an active exploit? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_31957432-45bd-46c3-9e63-81174161aa01?mode=deep",
+    "timestamp": "2026-02-18 23:23:49.510209",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Struct: Registry] [No Market Validation] The registry doesn't validate market properties before registration. Could malicious markets with extreme parameters (e.g., 100% interest rates) be registered? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e953c31b-493a-4b43-b40b-27f631ad34e3?mode=deep",
+    "timestamp": "2026-02-18 23:24:04.822866",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [No Whitelist] There's no whitelist of allowed type parameters. Could this enable registration of markets for unsupported or dangerous asset types? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3eee2d1a-b392-4ca8-b067-20890c533cd1?mode=deep",
+    "timestamp": "2026-02-18 23:24:20.939875",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Struct: Registry] [No Market Count Limit] The registry has no limit on the number of markets. Could unlimited market creation strain system resources? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6efe8183-5786-4006-959e-917a888f1769?mode=deep",
+    "timestamp": "2026-02-18 23:24:38.561715",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [No Event Emission] The function doesn't emit any events. Could this make monitoring for malicious market creation difficult? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d118e919-5337-415f-bbce-5c67a38759e0?mode=deep",
+    "timestamp": "2026-02-18 23:24:57.172510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Struct: Registry] [No Query Functions] There are no public functions to query registered markets. Could this force users to interact with untrusted off-chain indexers? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a4e5350-715e-4cdb-92c1-a47334b415e2?mode=deep",
+    "timestamp": "2026-02-18 23:25:17.581257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [No Market Metadata] The registry only stores IDs, no metadata like creator, creation timestamp, or validation status. Could this make auditing and governance difficult? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7cc39136-2d97-4a40-82d9-9fa41f7d486a?mode=deep",
+    "timestamp": "2026-02-18 23:25:38.635588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: init()] [Single Initialization] The init function can only be called once during module publication. Could this make testing or upgrades difficult? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2f5d2450-1708-43dc-8c21-3c20dab98c59?mode=deep",
+    "timestamp": "2026-02-18 23:26:01.318117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: init()] [No Setup Validation] The init function creates an empty registry without any validation. Could this allow deployment with incorrect configuration? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_58980f15-19ed-42ef-8495-04af323b74be?mode=deep",
+    "timestamp": "2026-02-18 23:26:23.663175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: init()] [Immediate Sharing] The registry is shared immediately without any setup period. Could this allow exploitation before proper monitoring is in place? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_340efb66-1d92-403a-b93b-87cd3546c338?mode=deep",
+    "timestamp": "2026-02-18 23:26:46.166822",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [Front-Running] Could an attacker monitor mempool for legitimate market creation transactions and front-run them to register the type first? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7159e8bc-27f3-40fc-ad23-5590d60b5c94?mode=deep",
+    "timestamp": "2026-02-18 23:27:08.643115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [Squatting Attack] Could an attacker pre-register markets for all popular asset types, then demand payment to transfer the OwnerCaps? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74db1cd0-4654-43b3-86d4-0c7a4ad30897?mode=deep",
+    "timestamp": "2026-02-18 23:27:31.390246",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [Market Monopolization] The first creator of a market for type P has permanent control. Could this lead to monopolistic behavior or rent-seeking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d0683a6-8d7f-4f46-b398-55772eec464d?mode=deep",
+    "timestamp": "2026-02-18 23:27:53.090881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [DoS by First Registration] Could an attacker register markets with unfavorable terms for all viable asset types, preventing legitimate market creation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_72b826a4-fda2-4cb3-89c5-9f1eca5fdf4b?mode=deep",
+    "timestamp": "2026-02-18 23:28:13.455150",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [Version Upgrade Path] If CURRENT_VERSION increases, existing markets become inaccessible. Is there a migration path for market owners? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b451b319-177b-4ff6-8f67-46875bcb9d7e?mode=deep",
+    "timestamp": "2026-02-18 23:28:32.225883",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Struct: Registry] [Registry Upgrade] If the Registry struct needs new fields, how can it be upgraded without breaking existing references? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_35abaadb-d9fc-46e0-808e-c0d9e774a023?mode=deep",
+    "timestamp": "2026-02-18 23:28:50.098292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [Module Upgrade] If the lending_market_registry module is upgraded, could it break existing OwnerCaps or LendingMarkets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f72ffd3c-746d-4c9b-a84c-0eb45d098729?mode=deep",
+    "timestamp": "2026-02-18 23:29:09.753121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Struct: Registry] [Table Migration] If the table structure needs to change, is there a way to migrate existing entries? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86b85907-7d19-440a-ba6b-f1e0c5cc099b?mode=deep",
+    "timestamp": "2026-02-18 23:29:30.379817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [TxContext Usage] The function passes TxContext to lending_market::create_lending_market. Could the lending_market module misuse transaction context data (sender, epoch, etc.)? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e547d7c-7207-4541-9116-169bd4be9b48?mode=deep",
+    "timestamp": "2026-02-18 23:29:50.295542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [Sender Assumption] The function doesn't validate tx_context::sender(). Could contracts or multi-sig wallets create markets with unexpected ownership models? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78f8efc5-db77-4726-803f-b9828ba7339b?mode=deep",
+    "timestamp": "2026-02-18 23:30:10.724114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: init()] [Init Context] The init function uses ctx without validation. Could this allow deployment with incorrect initial parameters? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cd0f681b-d67b-4863-8dac-92207d21fbe7?mode=deep",
+    "timestamp": "2026-02-18 23:30:32.393768",
+    "report_generated": false
+  }
+]
