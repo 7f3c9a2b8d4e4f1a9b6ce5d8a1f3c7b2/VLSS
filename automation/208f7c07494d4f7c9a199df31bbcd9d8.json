@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Configuration] If threshold1 = threshold2, the middle range (threshold1 < diff <= threshold2) becomes empty, potentially breaking time-based escalation logic. Is this validated? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e31a1b16-2d83-496a-8c4f-bf09d7fe971a?mode=deep",
+    "timestamp": "2026-02-18 20:56:20.241227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Configuration] If max_duration_within_thresholds = 0, the addition at line 15 becomes ratio2_usage_start_time. Can current_timestamp ever be less than ratio2_usage_start_time in normal operation, or does this configuration disable duration checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8725b9c7-6430-408b-b1d5-5e7bf20c940c?mode=deep",
+    "timestamp": "2026-02-18 20:56:32.707362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Configuration] If minimum_effective_price > maximum_effective_price (when maximum_effective_price > 0), all prices will be rejected. Is there initialization validation to prevent this? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5ab553e-8057-4e31-aeaf-e31c46156999?mode=deep",
+    "timestamp": "2026-02-18 20:56:45.733629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Configuration] If maximum_allowed_span_percentage = 0, any historical price deviation causes rejection at line 47-49. Can this be exploited to DoS price updates during normal volatility? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8d86e63-372a-41f5-aeaa-4d814a1ade36?mode=deep",
+    "timestamp": "2026-02-18 20:56:59.829831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: is_oracle_price_fresh()] [Configuration] If max_timestamp_diff = 1, only prices from the exact same timestamp pass. Can this cause all practical oracle updates to fail due to timestamp granularity? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e4096c9c-b136-4be8-89dd-712c89ba6610?mode=deep",
+    "timestamp": "2026-02-18 20:57:13.782972",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [State Consistency] If ratio2_usage_start_time is updated between calls, can this cause inconsistent severity levels for the same price pair, allowing an attacker to cherry-pick favorable outcomes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e0aa4bc-1721-44ec-8f0d-a20496e4fd12?mode=deep",
+    "timestamp": "2026-02-18 20:57:29.769184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [State Consistency] If historical_price and historical_updated_time are updated separately (not atomically), can a race condition cause validation against mismatched historical data? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_608b6619-af10-4a0f-8469-4c108e122521?mode=deep",
+    "timestamp": "2026-02-18 20:57:46.073990",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [State Consistency] If minimum_effective_price and maximum_effective_price are updated separately, can a temporary state where minimum > maximum cause all prices to be rejected? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_66e87da1-8209-4920-8c9c-d1bf7bda92ad?mode=deep",
+    "timestamp": "2026-02-18 20:58:03.736461",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Zero Value] If primary_price = 0 and secondary_price = 0, calculate_amplitude returns U64MAX. Does this correctly handle the case where both oracles report zero? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a43a5cc7-53b3-45b9-9517-3ca84abe0a40?mode=deep",
+    "timestamp": "2026-02-18 20:58:22.169658",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Zero Value] If threshold1 = 0 and threshold2 = 0, line 12 will never trigger (diff < 0 is impossible) and line 13 will never trigger (diff > 0 with any divergence). Does this break all severity logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6c2981b6-5bdd-45b6-bc62-8ca4a6c5827b?mode=deep",
+    "timestamp": "2026-02-18 20:58:42.426676",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Zero Value] If price = 0 and minimum_effective_price = 0, line 39 triggers (0 < 0 is false, so doesn't return false) and validation continues. Can zero prices pass when they should be rejected? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28898b0c-d6cd-43c4-8ad4-ea36efe9162f?mode=deep",
+    "timestamp": "2026-02-18 20:59:01.457726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Zero Value] If historical_price = 0, calculate_amplitude returns U64MAX at line 45, likely causing rejection. Does this prevent any price from being accepted if historical_price was ever 0? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_25d1c8a5-cf49-4365-ad5a-a3b4adc0c557?mode=deep",
+    "timestamp": "2026-02-18 20:59:22.954112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: is_oracle_price_fresh()] [Zero Value] If current_timestamp = 0 and oracle_timestamp = 0, line 56 returns false (0 < 0). Is returning false correct for both timestamps being 0, or should this be a special case? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_df06426c-61bb-41f5-8043-deb72654ceae?mode=deep",
+    "timestamp": "2026-02-18 20:59:43.122634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Max Value] If primary_price = U256MAX and secondary_price = U256MAX - 1, the difference is 1, but as a percentage may be 0 due to division. Can this hide significant absolute differences? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c2f0a045-f958-43fc-b81b-4c5915c248c0?mode=deep",
+    "timestamp": "2026-02-18 21:00:05.265172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Max Value] If current_timestamp = U64MAX, the addition at line 15 will overflow. Does this cause the comparison to fail and return level_warning when level_major is warranted? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3018d72e-e8d9-473d-be9b-e35d713d80e4?mode=deep",
+    "timestamp": "2026-02-18 21:00:25.683690",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Max Value] If maximum_effective_price = U256MAX, line 34 will never trigger. If this is used to disable the upper bound check, is this documented and intended? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_edad1571-aa1d-4836-8908-c867e026d0d7?mode=deep",
+    "timestamp": "2026-02-18 21:00:46.096610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Max Value] If historical_updated_time = U64MAX, the subtraction at line 44 could underflow if current_timestamp < U64MAX. Is this properly guarded? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0bf80ae7-7836-40a2-a862-ca29bf8afb0e?mode=deep",
+    "timestamp": "2026-02-18 21:01:08.278513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: is_oracle_price_fresh()] [Max Value] If oracle_timestamp = U64MAX, line 56 will always return false (unless current_timestamp is also U64MAX). Can this cause permanent rejection of oracle data? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22cebab6-aadb-44ba-aed0-cbc3edfeb9b0?mode=deep",
+    "timestamp": "2026-02-18 21:01:30.716117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Return Value] The function can return 4 different u8 values (0, 1, 2, 3). If calling code only checks for specific values and not the full range, can unexpected values cause incorrect behavior? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ae61a11-dba7-47ed-a0ed-1896c75972d4?mode=deep",
+    "timestamp": "2026-02-18 21:01:52.996749",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Return Value] The function returns bool where true = valid. If calling code uses this in a double-negative context (!validate_price_range_and_history), can logic confusion occur? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_019a0047-33e5-4bbb-b518-110ce00ae078?mode=deep",
+    "timestamp": "2026-02-18 21:02:14.721213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: is_oracle_price_fresh()] [Return Value] Returns bool where true = fresh. If calling code expects the opposite convention (true = stale), can this cause accepting stale prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9a440ef-262d-448e-9345-f712ec986b18?mode=deep",
+    "timestamp": "2026-02-18 21:02:37.299556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Multi-Condition] If diff is between threshold1 and threshold2, AND ratio2_usage_start_time = 0, the function returns level_warning. If subsequently ratio2_usage_start_time is set but duration hasn't passed, it still returns level_warning. Can this delayed configuration cause accepting divergent prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8c6d055b-ee1b-4289-8310-19a72a96f372?mode=deep",
+    "timestamp": "2026-02-18 21:03:01.229831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Multi-Condition] If diff > threshold2 (critical), the function immediately returns at line 13 without checking time-based conditions. Should time-based escalation override critical level in any scenario? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b4d0265-9f37-4ee5-a660-ae4410e1a692?mode=deep",
+    "timestamp": "2026-02-18 21:03:25.723729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Multi-Condition] A price must pass maximum check, minimum check, AND historical check. If maximum is disabled (=0) but minimum and historical checks are strict, can this create an asymmetric risk where overvalued prices pass but undervalued don't? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2f81ac36-f648-4fb6-8c81-76e309ed374c?mode=deep",
+    "timestamp": "2026-02-18 21:03:49.066026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Multi-Condition] If historical data is stale (line 44 false), the function returns true without historical amplitude check. Should stale historical data cause rejection instead of bypass? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_068d1cdf-1661-4050-9ee4-7ef0251ea933?mode=deep",
+    "timestamp": "2026-02-18 21:04:09.163912",
+    "report_generated": false
+  }
+]
