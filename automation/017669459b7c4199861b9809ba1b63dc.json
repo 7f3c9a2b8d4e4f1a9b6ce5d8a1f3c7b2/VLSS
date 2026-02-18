@@ -1,0 +1,56 @@
+[
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Edge Case: No aggregators] What happens if operations are attempted with no aggregators configured? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9e189ce-9f4b-4735-af8f-91555581aade?mode=deep",
+    "timestamp": "2026-02-18 19:41:20.104894",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Edge Case: All operators frozen] If all operators are frozen, can vault still function? Is there emergency mechanism? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2998f0f-fa93-4751-aa22-e34562301747?mode=deep",
+    "timestamp": "2026-02-18 19:41:32.804157",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Edge Case: Fee at max cap] If fees are set to MAX_FEE_RATE caps, can any deposits/withdrawals still be profitable? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2bd3968d-357b-48ce-a339-b5a12b7d3b5f?mode=deep",
+    "timestamp": "2026-02-18 19:41:46.271089",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Edge Case: Loss tolerance max] If loss_tolerance is u256::MAX, does this overflow in loss calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5117bde-080f-45eb-8812-0e503305665b?mode=deep",
+    "timestamp": "2026-02-18 19:41:59.717941",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Edge Case: Multiple reward managers] If create_reward_manager() is called twice, how are multiple reward managers handled? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dc7bde07-30ef-42f1-855f-8f28e1c041d8?mode=deep",
+    "timestamp": "2026-02-18 19:42:13.982891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Edge Case: Oracle after operation start] If oracle config changes after start_op() but before end_op(), which oracle is used? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46cf69dc-9a04-4f7e-b0eb-f7b323ccacc2?mode=deep",
+    "timestamp": "2026-02-18 19:42:29.216741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Edge Case: Capability destruction] Can AdminCap or OperatorCap be destroyed leaving vault unmanageable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ef20cdd-2426-48df-8a5a-d26ee2a9512c?mode=deep",
+    "timestamp": "2026-02-18 19:42:45.598375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Edge Case: Vault migration] Is there migration path if manage.move is upgraded? How are existing capabilities handled? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ceaf26c5-108e-4506-90a2-9a9fad6d74fb?mode=deep",
+    "timestamp": "2026-02-18 19:43:03.989801",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Edge Case: Clock dependency] Do time-sensitive functions fail if Clock object is not provided or is stale? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_850c5d10-7eb2-41b6-a1d3-5c58ca2c579c?mode=deep",
+    "timestamp": "2026-02-18 19:43:24.321411",
+    "report_generated": false
+  }
+]
