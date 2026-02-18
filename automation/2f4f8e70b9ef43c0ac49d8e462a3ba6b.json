@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: init()] [Treasury Cap Destruction] init() destroys treasury_cap via coin::treasury_into_supply(). This permanently removes standard minting authority. Could this design choice conflict with future protocol needs for emergency minting or supply adjustments? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e030b4f5-0ed0-4fff-ae69-66ccf3bad175?mode=deep",
+    "timestamp": "2026-02-18 21:48:34.841175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: init()] [Supply Initialization] init() creates Supply<CERT> from treasury_cap without initial supply. If protocol logic elsewhere assumes initial supply > 0 for ratio calculations, could 0 initial supply cause division by zero? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f7df9abc-4c13-45b5-a02f-b4fec8cbdbce?mode=deep",
+    "timestamp": "2026-02-18 21:48:47.652297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Struct: Metadata] [Shared Object] Metadata<CERT> is shared via transfer::share_object(). Could concurrent modifications to metadata.total_supply from multiple transactions cause race conditions in supply accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_197920ae-df03-4356-a1bc-5f2192cbda70?mode=deep",
+    "timestamp": "2026-02-18 21:49:01.091362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: init()] [URL Safety] init() uses url::new_unsafe_from_bytes() for icon URL. Could malicious bytes in the URL field (if init were somehow called by attacker in test environments) cause issues in UI/wallets parsing the metadata? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4beb1aea-bcc4-4f86-bf12-b24dfd861d83?mode=deep",
+    "timestamp": "2026-02-18 21:49:16.143598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Constant: DECIMALS] [Decimal Mismatch] DECIMALS is set to 9 matching SUI. If stake_pool logic assumes different decimals for ratio calculations, or if external integrations expect 18 decimals, could this cause conversion errors and value loss? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_216ac061-b4ce-429e-95f3-425297b2b279?mode=deep",
+    "timestamp": "2026-02-18 21:49:31.453132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: init()] [Witness Pattern] init() consumes CERT witness. If the witness can be reconstructed or duplicated (through module bugs), could attacker call coin::create_currency again to create duplicate token types? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3f5b0cb-bf2d-4f52-86ee-342f90fb55b2?mode=deep",
+    "timestamp": "2026-02-18 21:49:48.456305",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: get_total_supply()] [Public Read] get_total_supply() returns reference to Supply<CERT>. While Supply is read-only externally, could exposing supply reference enable side-channel attacks or information leakage for arbitrage/MEV bots? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ad8aa7cd-904f-49b2-8d94-235b19a78873?mode=deep",
+    "timestamp": "2026-02-18 21:50:06.424442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: get_total_supply_value()] [Public Calculation] get_total_supply_value() is public and includes BURNED_CERT_AMOUNT subtraction. Could external contracts depend on this value for critical calculations, and if BURNED_CERT_AMOUNT becomes non-zero in future versions, break those contracts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_843ae8d8-046b-4520-b121-2e09d93108a4?mode=deep",
+    "timestamp": "2026-02-18 21:50:25.160050",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Module: cert] [Package Visibility] All minting/burning functions use public(package) visibility. Could a compromised or buggy module in the liquid_staking package (e.g., a new adaptor or utility module) gain unintended minting authority? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9dd9837-df02-4610-be96-6d9dee99ac49?mode=deep",
+    "timestamp": "2026-02-18 21:50:44.674978",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: mint()] [No Caps Required] mint() doesn't require any capability objects, only public(package) visibility. Could this design allow any future module added to liquid_staking package to mint tokens, violating principle of least privilege? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a7e4842-3948-481a-9bfb-a0cd518053c9?mode=deep",
+    "timestamp": "2026-02-18 21:51:06.104259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: migrate()] [OwnerCap Check] migrate() requires &OwnerCap but doesn't consume it or check specific OwnerCap properties. Could a borrowed or duplicated OwnerCap (if bugs exist in ownership module) be used to migrate maliciously? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c455c59-043e-4bad-9c0f-cbe82fca0aaf?mode=deep",
+    "timestamp": "2026-02-18 21:51:28.532578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: migrate()] [Entry Function] migrate() is an entry function callable directly in transactions. Could attacker with stolen OwnerCap rapidly migrate version to lock out legitimate owner before they notice the theft? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_12bc588b-df5b-4027-9b73-675e80ac22bb?mode=deep",
+    "timestamp": "2026-02-18 21:51:48.898724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Struct: Metadata] [Supply Field] Metadata.total_supply is mutable and accessed by multiple functions. Could race conditions during concurrent mint/burn operations cause supply to become out of sync with actual circulating tokens? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0fa82f21-1d22-4ff7-af66-3f5e5e4c8e28?mode=deep",
+    "timestamp": "2026-02-18 21:52:09.883993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Functions: mint() & burn_coin()] [Atomic Operations] mint() increases supply then creates coin, while burn_coin() converts coin then decreases supply. Could transaction failures between these steps leave supply in inconsistent state (supply increased but coin creation failed)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db658202-219d-435d-a1e3-97f11dcc5bea?mode=deep",
+    "timestamp": "2026-02-18 21:52:30.817340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: get_total_supply_value()] [Supply Snapshot] get_total_supply_value() reads supply at call time. Could TOCTOU (time-of-check-time-of-use) issues occur if caller reads supply, makes decisions, then mints/burns before executing, causing calculation errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83398e56-8ed5-452f-be04-1ab6bfabd91a?mode=deep",
+    "timestamp": "2026-02-18 21:52:53.108140",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Constant: BURNED_CERT_AMOUNT] [Accounting Offset] BURNED_CERT_AMOUNT creates a permanent offset in supply calculations. If protocol burns tokens early (before this constant was considered), could the offset become incorrect, showing wrong circulating supply? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_421d0459-b0a3-4c3e-a1e4-09596ac478dd?mode=deep",
+    "timestamp": "2026-02-18 21:53:16.081582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: burn_coin()] [Return Value] burn_coin() returns u64 amount burned. If calling code ignores this return value or doesn't validate it matches expected burn, could silent burn failures accumulate supply accounting errors over time? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_188b4fc7-5bd3-415c-8b37-5cb799554307?mode=deep",
+    "timestamp": "2026-02-18 21:53:37.836056",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: burn_balance()] [Return Value] burn_balance() returns u64 but calling code might not check. Could partial burns (if balance::decrease_supply can fail partially) cause accounting drift between expected and actual supply? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1dd0a400-ee61-4e0e-96d9-0f17ee0947bc?mode=deep",
+    "timestamp": "2026-02-18 21:53:59.386714",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: mint()] [U64 Overflow] mint() parameter shares is u64. If caller passes u64::MAX and current supply is already high, could balance::increase_supply overflow internally, wrapping to small supply value and breaking all ratio calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_960e96be-99ce-4453-a708-a519430fa0d2?mode=deep",
+    "timestamp": "2026-02-18 21:54:21.862959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: get_total_supply_value()] [Subtraction Underflow] Subtraction balance::supply_value() - BURNED_CERT_AMOUNT could underflow if supply somehow becomes less than BURNED_CERT_AMOUNT. Does Sui Move abort on underflow, or would it wrap? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0020c247-86b1-4682-baf1-d16dbc5b4a00?mode=deep",
+    "timestamp": "2026-02-18 21:54:44.284935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: burn_coin()] [Balance Conversion] coin::into_balance() converts Coin to Balance. Could discrepancies between Coin value and Balance value (if conversion has bugs) cause amount returned from burn_coin() to not match actual supply decrease? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_689aeab8-7cfc-4208-800d-05a193c46bcc?mode=deep",
+    "timestamp": "2026-02-18 21:55:07.871302",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: mint()] [Zero Shares] mint() doesn't prevent shares=0. Could minting 0 shares repeatedly cause unintended state changes, event spam, or consume gas without purpose, enabling griefing attacks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f7fbeb61-4a7e-483e-afb4-3aa8eb351a4a?mode=deep",
+    "timestamp": "2026-02-18 21:55:31.895338",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: burn_balance()] [Zero Balance] burn_balance() doesn't validate balance is non-zero. Could burning empty balance cause accounting issues or unexpected return values that break calling code's invariants? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d46354c3-013c-4b2a-98d2-719b702043e8?mode=deep",
+    "timestamp": "2026-02-18 21:55:57.193445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Struct: Metadata] [Shared Mutability] Metadata is a shared object modified by mint/burn. Could concurrent transactions minting and burning simultaneously cause the version check to pass twice but supply modifications to interleave incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_504dee81-8f93-405c-9db9-44dc66c037aa?mode=deep",
+    "timestamp": "2026-02-18 21:56:21.167336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: assert_version()] [Version Consistency] assert_version() checks version before operations. Could the version be migrated mid-transaction (in a parallel transaction) causing version mismatch between start of transaction and mint/burn execution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_69df4afb-6902-403d-ba1d-7bacc619c2d2?mode=deep",
+    "timestamp": "2026-02-18 21:56:43.745407",
+    "report_generated": false
+  }
+]
