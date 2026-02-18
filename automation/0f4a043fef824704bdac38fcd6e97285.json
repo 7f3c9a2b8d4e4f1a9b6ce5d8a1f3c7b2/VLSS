@@ -1,0 +1,110 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: current_version()] [Test Abuse] Can test code set VERSION to arbitrary values and if accidentally deployed to mainnet, does this bypass all version checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e609030-6137-4a21-aab0-2f39d25c87cd?mode=deep",
+    "timestamp": "2026-02-18 20:26:37.277055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: new()] [Test Init] If test code creates Manage with paused=false for easier testing, can this test-only change accidentally be deployed, removing safety default? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_277f761a-cc5b-4b45-a59c-7e2fa17499b2?mode=deep",
+    "timestamp": "2026-02-18 20:26:50.094265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_not_paused()] [Liquidity Trap] Can admin pause pool when LST price is high, trapping users until price drops, then unpause for admin to buy cheap LST? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9ea2fd2-a628-4e49-a463-0a38b096d121?mode=deep",
+    "timestamp": "2026-02-18 20:27:03.207013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Migration Frontrun] Can whales who learn about impending migration unstake before it happens to avoid any migration-related losses or risks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_70ce87a5-bdcf-4311-8781-785fd8df3728?mode=deep",
+    "timestamp": "2026-02-18 20:27:16.896106",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Volo Vault] Does Volo Vault adapter check StakePool version before depositing LST, or can version mismatch cause vault to accept deprecated LST tokens? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db3438ec-13b3-4564-ad46-b01a725052d4?mode=deep",
+    "timestamp": "2026-02-18 20:27:31.703900",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Vault Lockup] If StakePool is paused while Volo Vault holds LST, can vault users withdraw their shares when underlying LST is frozen? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c15129a5-319f-4606-a2cc-c457589c373b?mode=deep",
+    "timestamp": "2026-02-18 20:27:47.866699",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Metadata Sync] Does CERT metadata track version separately, and can desync between StakePool version and Metadata version enable double-spend via mismatched mint/burn operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e3c05c5-bac7-4f3a-a876-2ee6a5612f0b?mode=deep",
+    "timestamp": "2026-02-18 20:28:04.462771",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_not_paused()] [Mint Bypass] Can metadata.mint() be called directly bypassing check_not_paused() in stake(), creating unbacked LST supply? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_53e12bb0-440c-485a-b8aa-5a96340a190f?mode=deep",
+    "timestamp": "2026-02-18 20:28:22.724646",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Concurrent Calls] If two admins simultaneously call migrate_version() from different transactions, can double-migration occur or cause state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_edfbca87-9bd6-4213-87fc-5bc3787f0ffb?mode=deep",
+    "timestamp": "2026-02-18 20:28:42.074179",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Toggle Spam] Can rapid pause/unpause toggling disrupt validator delegation flows or cause accounting errors in epoch reward calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ef642282-af44-4d91-a35b-d181bfc038ab?mode=deep",
+    "timestamp": "2026-02-18 20:29:02.689262",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Assert Panic] Does assert! in check_version() cause entire transaction to revert cleanly, or can partial state changes before the check persist? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7cfa6b20-8ea8-479b-9013-d32d4ed35fcd?mode=deep",
+    "timestamp": "2026-02-18 20:29:23.442643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_not_paused()] [Assert Order] If check_version() is called after check_not_paused() in some functions, can wrong version code run in paused state before version check catches it? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bbe22f8c-da0b-4e60-a1fd-874e63801db2?mode=deep",
+    "timestamp": "2026-02-18 20:29:42.899357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Struct: Manage] [Version Rollback] Can a malicious package upgrade set self.version to 0 and VERSION to 1, effectively rolling back to pre-v2 vulnerable state? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46c23313-17ad-490d-9181-4af98fccca9a?mode=deep",
+    "timestamp": "2026-02-18 20:30:02.555228",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: new()] [Multiple Pools] Can multiple StakePool instances coexist with different Manage versions, and does this create arbitrage opportunities or confusion about canonical pool? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9f7fc5d4-9ee9-49fc-9cca-b5be8afa84be?mode=deep",
+    "timestamp": "2026-02-18 20:30:23.857259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Extra Fields] Does migration account for extra_fields bag contents, or can bag data from old version become incompatible with new version code? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21deb543-9d93-4f2f-b108-43fe4a5f8882?mode=deep",
+    "timestamp": "2026-02-18 20:30:44.998249",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Emergency Response] If a critical vulnerability is found, can admin pause fast enough before attackers drain funds, or does transaction ordering allow front-running? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3a85279-7582-4402-aaff-fda40e6cdf69?mode=deep",
+    "timestamp": "2026-02-18 20:31:06.610908",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Client Library] Do off-chain SDKs enforce version checks before submitting transactions, or can outdated clients bypass on-chain version checks via crafted inputs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f17f720b-0e5e-4b8e-909c-78f4401c9536?mode=deep",
+    "timestamp": "2026-02-18 20:31:27.343384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Constants: VERSION] [Hardcoded] Is VERSION=2 hardcoded in multiple files, and if one file is updated but others aren't, can this create version inconsistency across modules? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86fcdf2f-08a4-43e9-aca9-9377c07ae307?mode=deep",
+    "timestamp": "2026-02-18 20:31:48.908779",
+    "report_generated": false
+  }
+]
