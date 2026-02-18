@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: migrate()] [Access Control] Can an attacker front-run the migration transaction to perform operations on the old version before owner migrates, causing state inconsistency between version checks across different functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3098fbd7-b2ae-4f78-831f-61f0cd2f2cf7?mode=deep",
+    "timestamp": "2026-02-18 22:58:52.052576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: migrate()] [Version Check] If lending_market.version is exactly CURRENT_VERSION - 1, can the owner call migrate() multiple times to increment version beyond CURRENT_VERSION, bypassing all version assertions in other functions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3daf1e2f-b112-4b2c-b356-e70210963db4?mode=deep",
+    "timestamp": "2026-02-18 22:59:05.386562",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: create_lending_market()] [Initialization] The initial rate_limiter is set with config(1, U64_MAX) at timestamp 0 - can this cause immediate rate limiting failures if operations happen within the same second of market creation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_efd8cef7-da93-46b4-8e2c-5b28e8034b4d?mode=deep",
+    "timestamp": "2026-02-18 22:59:18.843954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: create_lending_market()] [Fee Configuration] Initial fee_receiver is set to tx_context::sender() but then immediately overridden with set_fee_receivers() - can this deprecated field be exploited if any legacy code still references it? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d1a871b0-f5b0-4811-ae58-4c12b7190617?mode=deep",
+    "timestamp": "2026-02-18 22:59:33.106703",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Lines: 207-211] [Version Check Bypass] All public functions check version == CURRENT_VERSION but migrate() checks version <= CURRENT_VERSION - 1, creating a gap where version could be CURRENT_VERSION - 1 and operations still fail - is this intended or a DoS vector? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4847da14-78e6-41df-bf79-7a76b74d8733?mode=deep",
+    "timestamp": "2026-02-18 22:59:48.328961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: redeem_ctokens_and_withdraw_liquidity_request()] [Rate Limiter Bypass] If rate_limiter_exemption.amount >= ctoken_amount, the exemption is consumed but rate limiter is bypassed - can an attacker repeatedly liquidate small positions to accumulate large exemptions and drain reserves without rate limiting? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d369ebf-8620-42f6-93b3-83cd163c6d1b?mode=deep",
+    "timestamp": "2026-02-18 23:00:05.050513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: redeem_ctokens_and_withdraw_liquidity_request()] [Exemption Validation] The exemption amount is checked but never decremented when partially used (exemption.amount >= ctoken_amount) - can an attacker reuse the same exemption for multiple redemptions in the same transaction? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6402601-d55a-4f6f-8f58-f8014aec070d?mode=deep",
+    "timestamp": "2026-02-18 23:00:21.027769",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: borrow_request()] [Rate Limiter] Borrow uses reserve::market_value_upper_bound() for rate limiting but redemptions use ctoken_market_value_upper_bound() - can price manipulation cause asymmetric rate limiting allowing faster drainage via borrows? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9d70fe0b-f44e-45c5-bd3e-24dc68757199?mode=deep",
+    "timestamp": "2026-02-18 23:00:38.188338",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: update_rate_limiter_config()] [Configuration Attack] Owner can set rate_limiter to arbitrary config including window=1 and max=U64_MAX, effectively disabling rate limiting - can this be exploited during flash loan attacks to drain protocol? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68e711c5-add5-482e-b580-fdf18a46f42c?mode=deep",
+    "timestamp": "2026-02-18 23:00:59.033632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: liquidate()] [Rate Limiter Exemption Creation] RateLimiterExemption is created with amount = balance::value(&ctokens) after protocol fee deduction - can liquidator manipulate liquidation size to maximize exemption amount and bypass rate limits on subsequent operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7f8ce856-9d97-47cb-a817-a10f816b35b4?mode=deep",
+    "timestamp": "2026-02-18 23:01:20.123287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: max_borrow_amount()] [Rate Limiter Calculation] Uses min(remaining_outflow_usd, decimal::from(1_000_000_000)) capping at 1B USD - can this artificial cap cause incorrect max_borrow calculations when actual remaining outflow is higher? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_adf6fb44-1044-4dd0-a939-0c7e77e562cb?mode=deep",
+    "timestamp": "2026-02-18 23:01:41.644890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: max_withdraw_amount()] [Rate Limiter Calculation] Similar 1B USD cap applied - can attacker exploit timing where cap causes withdrawal to fail but should succeed based on actual rate limiter state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c621f092-a289-411b-8f09-a273801c09df?mode=deep",
+    "timestamp": "2026-02-18 23:02:03.530388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Lines: 314-316] [Timestamp Conversion] Rate limiter uses clock::timestamp_ms(clock) / 1000 for seconds conversion - can integer division truncation cause off-by-one second errors in rate window calculations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b9690b7-c48c-4b96-a403-6a6d7d6f41a8?mode=deep",
+    "timestamp": "2026-02-18 23:02:25.227044",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: refresh_reserve_price()] [Price Freshness] Function updates price but doesn't validate if price_info timestamp is recent - can attacker use stale PriceInfoObject to manipulate reserve valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_44299f8e-2f66-4798-84cd-4e2b6841452f?mode=deep",
+    "timestamp": "2026-02-18 23:02:44.473151",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: refresh_reserve_price()] [Oracle Bypass] No version check before calling reserve::update_price() - can this be exploited during migration window to update prices without proper authorization? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d71950c-aa4b-4b0c-87b5-8ea69d7910fa?mode=deep",
+    "timestamp": "2026-02-18 23:03:06.336920",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: borrow_request()] [Stale Oracle Check] Calls obligation::assert_no_stale_oracles() but only after refresh - can race condition between refresh and assert allow using stale prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f034e8fc-616d-45f7-a25b-9dce13b65b24?mode=deep",
+    "timestamp": "2026-02-18 23:03:27.416137",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: withdraw_ctokens()] [Missing Oracle Check] Calls obligation::refresh() and stores exist_stale_oracles but never calls assert_no_stale_oracles() - can attacker withdraw with stale prices to extract more collateral than allowed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a6925ba-6178-4fc8-a3b6-e263fe9f78af?mode=deep",
+    "timestamp": "2026-02-18 23:03:48.611985",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: liquidate()] [Oracle Validation] Calls obligation::assert_no_stale_oracles() but reserves used in liquidation calculation may have stale prices - can attacker profit from price staleness asymmetry? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6630ac1-ade8-4ba1-938c-5de2e7d4a660?mode=deep",
+    "timestamp": "2026-02-18 23:04:11.082531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: change_reserve_price_feed()] [Price Feed Migration] Owner can change price feed but no validation that new feed price is within reasonable range of old feed - can sudden price change cause mass liquidations or insolvencies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2cc127b9-dc35-4c49-a38a-53db9a1b7da8?mode=deep",
+    "timestamp": "2026-02-18 23:04:35.164980",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: borrow_request()] [Price Check Timing] Calls reserve::assert_price_is_fresh() after compound_interest() but before borrow - can compound_interest update invalidate freshness check? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_07f3e7ca-0852-42ee-89ee-8bc2996f27b7?mode=deep",
+    "timestamp": "2026-02-18 23:04:59.087378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Lines: 405-406] [Oracle Refresh Order] Obligation is refreshed against all reserves but then only repay_reserve is checked for freshness - can borrow_reserve have stale price enabling over-borrowing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_11ca1bf6-05ee-48a5-a37b-a4ebf243b6c6?mode=deep",
+    "timestamp": "2026-02-18 23:05:23.667632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: deposit_liquidity_and_mint_ctokens()] [Zero Amount Check] Checks deposit > 0 and ctoken > 0 but what if reserve exchange rate causes ctoken to round to 0 for small deposits - can attacker steal deposits by donating liquidity to manipulate rates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca1bc5cf-0885-4e3d-98c7-483232789533?mode=deep",
+    "timestamp": "2026-02-18 23:05:47.253504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: redeem_ctokens_and_withdraw_liquidity_request()] [Rounding Errors] No validation that liquidity_request_amount > 0 before returning - can rounding in ctoken->liquidity conversion allow burning ctokens for 0 liquidity? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dca3314d-1184-4c4d-84c1-49d7218a237e?mode=deep",
+    "timestamp": "2026-02-18 23:06:10.949013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: borrow_request()] [Fee Calculation] Fee is added to borrow amount in reserve::borrow_liquidity() but rate limiter sees post-fee amount - can attacker exploit fee to bypass rate limits by borrowing just under limit repeatedly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7058a72-59fc-4e8a-820f-7dbac3cc6ee1?mode=deep",
+    "timestamp": "2026-02-18 23:06:34.583117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: max_borrow_amount()] [Fee Rounding] Calculates max_borrow_amount then fee = ceil(max * fee_rate), then checks if max + fee > max_including_fees and subtracts 1 - can off-by-one error cause borrow to fail unexpectedly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dde77a7d-0087-41c6-a075-016bdfa6dcf9?mode=deep",
+    "timestamp": "2026-02-18 23:06:59.889008",
+    "report_generated": false
+  }
+]
