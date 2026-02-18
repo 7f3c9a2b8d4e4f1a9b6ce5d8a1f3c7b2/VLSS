@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: shl()] [Negative Left Shift] Test shows shl(neg_from(10), 1) doubles magnitude maintaining sign - but if implementation doesn't preserve sign bit correctly during shift, can vault scaling operations on negative balances produce wrong results? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_94773d17-ee03-4e83-bc37-44a2a433ed26?mode=deep",
+    "timestamp": "2026-02-18 21:23:37.350993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: shl()] [Large Shift] Test shows shl with shift=63 - but if implementation doesn't validate shift amount and vault uses shift >= 64, can undefined behavior or wraparound occur? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4fbdf5bc-5529-4a8a-93fe-05bac49edb37?mode=deep",
+    "timestamp": "2026-02-18 21:23:50.294247",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: shr()] [Right Shift Sign Extension] Test shows shr(neg_from(MIN), 32) performs arithmetic right shift preserving sign - but if implementation uses logical shift instead, can negative vault balances become positive when scaled down? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ccbd502c-418a-4b69-b929-aa7336c3eca5?mode=deep",
+    "timestamp": "2026-02-18 21:24:04.875417",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: shr()] [Right Shift to Zero] Test shows shr(from(MAX), 63) returns 0 - but if vault scales down large positions and implementation has off-by-one error, can minimum non-zero values be incorrectly zeroed? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa7cbaed-3be1-4cea-afb5-94de92373989?mode=deep",
+    "timestamp": "2026-02-18 21:24:18.715954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: shr()] [Negative Right Shift] Test shows shr(neg_from(MIN), 63) returns 0xffffffffffffffff (all ones, representing -1) - but if implementation doesn't sign-extend correctly, can final bit be wrong? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2d67df7-58ed-4fd5-b4ea-c3ef302b50e8?mode=deep",
+    "timestamp": "2026-02-18 21:24:33.855677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: from()] [Positive Conversion] Test shows from() should abort for values >= MIN_AS_U64 - if vault converts large u64 balance to signed and implementation doesn't validate upper bound, can values with sign bit set be misinterpreted as negative? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fa7c865-6c79-4331-a481-6a8b0b880535?mode=deep",
+    "timestamp": "2026-02-18 21:24:49.826631",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: from()] [Max Valid Value] Test shows from(MAX_AS_U64) should work but from(MIN_AS_U64) should abort - if implementation has off-by-one error at exactly MAX boundary, can vault conversions fail for maximum positive values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2f037115-3031-462e-97ad-539fcc8ec644?mode=deep",
+    "timestamp": "2026-02-18 21:25:09.962899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: neg_from()] [Negative Conversion] Test shows neg_from(MIN_AS_U64) returns MIN_AS_U64 unchanged - but if vault converts MIN_AS_U64 expecting to negate it, can the special case where -MIN == MIN cause confusion in loss tracking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_37b7ff1c-26c5-443e-8650-3e9f97a1110f?mode=deep",
+    "timestamp": "2026-02-18 21:25:28.589930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: neg_from()] [Conversion Overflow] Test shows neg_from(MIN_AS_U64 + 1) should abort - if vault attempts to negate values > MIN_AS_U64, can overflow occur because negation would exceed MAX representable positive? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0cc0955e-ec45-479b-8c0d-63025f98d2a5?mode=deep",
+    "timestamp": "2026-02-18 21:25:47.469719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: neg_from()] [Zero Negation] Test shows neg_from(0) returns 0 - but if implementation has special case bug for zero, can vault balance adjustments fail when converting zero to negative? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a6e2dce8-4d12-486e-abf4-e789122163e5?mode=deep",
+    "timestamp": "2026-02-18 21:26:07.675332",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: as_u64()] [Negative to Unsigned] Function converts I64 to u64 - if vault calls as_u64() on negative value and implementation returns two's complement bits directly, can caller misinterpret large unsigned value as small positive instead of negative? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ee51833-462e-4ca4-aa69-343e5fc02dda?mode=deep",
+    "timestamp": "2026-02-18 21:26:28.304050",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: as_u64()] [Range Check] Should as_u64() abort for negative values or return bits? If vault expects abort on negative but implementation returns bits, can negative losses be misread as huge profits? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f07f5ef-3d4e-4a13-af07-d8315accf2ba?mode=deep",
+    "timestamp": "2026-02-18 21:26:49.133014",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: from_u64()] [Redundant Function] Both from() and from_u64() exist - if vault code inconsistently uses different functions expecting same behavior but implementations diverge, can this cause subtle conversion bugs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_84db86e5-b94e-4ae1-8e30-9ef5214e5d12?mode=deep",
+    "timestamp": "2026-02-18 21:27:11.021426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: sign()] [Sign Extraction] Returns 0 for non-negative, 1 for negative - but if implementation checks wrong bit or has off-by-one error, can vault sign checks misidentify profit vs loss? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_554bf4f9-79fc-4c27-b29b-1415e6058124?mode=deep",
+    "timestamp": "2026-02-18 21:27:33.339364",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: is_neg()] [Negativity Check] Should return true only for negative - but if implementation incorrectly treats zero as negative, can vault refuse zero-profit operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3d69110-35af-46a1-a01c-b576ffff42ac?mode=deep",
+    "timestamp": "2026-02-18 21:27:55.322209",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: is_neg()] [MIN Special Case] is_neg(MIN_AS_U64) should be true - but if implementation has special handling that's incorrect, can vault fail to recognize maximum loss? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_10052ae8-3b5e-4944-9c2c-81b9f1b5d59f?mode=deep",
+    "timestamp": "2026-02-18 21:28:12.859105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Struct: I64.bits] [Two's Complement] Stores signed value in u64 bits - if vault directly accesses .bits field instead of using accessors and interprets bits incorrectly, can reading negative values as unsigned cause massive accounting errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_920821ad-f047-42f0-97f2-721c7108251a?mode=deep",
+    "timestamp": "2026-02-18 21:28:31.411061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: or()] [Bitwise OR] Performs bitwise OR on signed values - if vault uses OR for flag combinations and implementation doesn't preserve sign bit correctly, can sign be unexpectedly flipped? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_54ee444b-2aae-423f-b462-97ba7abba94d?mode=deep",
+    "timestamp": "2026-02-18 21:28:52.855890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: and()] [Bitwise AND] Performs bitwise AND on signed values - if vault uses AND for masking and implementation doesn't handle sign bit, can negative values become positive after masking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ffc7d144-8a34-40ee-a839-5a8499467a52?mode=deep",
+    "timestamp": "2026-02-18 21:29:14.032488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: or()/and()] [Sign Bit Manipulation] OR/AND could manipulate sign bit directly - if vault uses bitwise ops expecting sign preservation but implementation doesn't protect sign bit, can arithmetic results be corrupted? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_10386ff0-17b6-42cd-b8fe-dde11172771f?mode=deep",
+    "timestamp": "2026-02-18 21:29:34.015412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: u64_neg()] [Private Negation] Private u64 negation helper - if implementation incorrectly computes two's complement (should be ~bits + 1), can all operations using this helper produce wrong results? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ca9a35a-a48d-4088-832f-09a58e442b4d?mode=deep",
+    "timestamp": "2026-02-18 21:29:53.159985",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: u8_neg()] [Unused u8 Negation] Defined but appears unused - if this is accidentally called in type conversion path and has bugs, can narrow-type conversions fail? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_39a0ad88-72d4-440a-9095-e4d5d1892e64?mode=deep",
+    "timestamp": "2026-02-18 21:30:13.517402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Constant: MIN_AS_U64] [Minimum Value] Defined as 1 << 63 = 0x8000000000000000 - if vault logic hardcodes different MIN value or miscalculates bit shift, can boundary checks fail? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac5ab8a6-2958-4021-affc-1ba992755e7e?mode=deep",
+    "timestamp": "2026-02-18 21:30:34.993142",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Constant: MAX_AS_U64] [Maximum Value] Defined as 0x7fffffffffffffff - if vault assumes MAX is different value or uses unsigned MAX instead, can range validation be wrong? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b109b57a-7371-4263-a5b5-f3a0622f0945?mode=deep",
+    "timestamp": "2026-02-18 21:30:56.032265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Constant: EOverflow] [Error Code] Defined but never used since all functions abort - if actual implementation forgets to use this error code, can overflow conditions be indistinguishable from other errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e7377a90-e4b2-4127-9eea-1296bfc3741c?mode=deep",
+    "timestamp": "2026-02-18 21:31:14.507439",
+    "report_generated": false
+  }
+]
