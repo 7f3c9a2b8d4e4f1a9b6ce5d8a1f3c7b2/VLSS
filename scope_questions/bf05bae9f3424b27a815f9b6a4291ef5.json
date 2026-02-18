@@ -1,0 +1,127 @@
+[
+  {
+    "question": "volo-vault/local_dependencies/protocol/lending_core/sources/storage.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_8568f90c-2cda-4064-9f9c-7b8913db95aa?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/lending_core/sources/error.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_0bdeb283-69bc-48eb-b3fb-6b64a712302a?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/lending_core/sources/version.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_14549975-658f-46b8-a89f-35e1dc40ca29?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/lending_core/sources/constants.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_884a9d62-84ef-4662-b08a-01c01df87ed3?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_fe3ea9d5-6186-4d1f-9106-4db3d716b639?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_08d1748c-4f04-4003-b448-f98b8228e90c?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_f5fbda6b-9dde-4886-86ae-f374506e0cb5?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v2.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_401e6703-b1c2-483b-bfb7-8fb483399fff?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_4a3fd01b-23fe-42fd-8c7c-1a4c84bbce8e?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_8b178953-e98a-4e80-970f-38d12ac242b4?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/lending_ui/sources/calculate.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_c8833ae8-bea2-48cb-b262-e0694b249ee1?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_774f11b5-7370-4a8e-bfb3-4c0e183df006?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_8c96a122-3748-4949-a83e-2c7e7c6d0c9c?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_525cf5ad-dbed-4300-ae12-8cba5b1172cc?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_ce33a5d1-fed3-47ae-8e9f-0d4c9e014f62?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/oracle_error.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_0ba7b495-5944-4251-b98f-df86da283021?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_54989945-7331-4246-97f9-b15fff8c052a?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_15004e46-57fd-4270-b44f-791a1b9bb2c7?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_09ecd97b-6641-4b6d-a4c0-5bdc3d3fdff4?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/strategy.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_7cc076fd-5e0c-4abf-8752-6d468933a55c?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_28d29efa-87ac-41ac-b76d-4ad008d6d779?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/config.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_01293fcd-0974-4701-b93f-39dac4ddb517?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_31cbbc0f-ad9f-44f1-a9a3-f4fe1b32dd79?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_f2103b7b-f831-4f56-8cc0-c9320353ac14?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/oracle.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_e79a17d8-082a-488a-be98-5cc05b3e3dcc?mode=deep",
+    "questions_generated": false
+  }
+]
