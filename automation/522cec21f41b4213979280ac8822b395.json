@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: shr()] [Attack: Fee Rounding] If vault fee calculation uses shr(fee_amount, precision) for division and rounds down, could attacker structure amounts to minimize fees via rounding? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_418cda10-d24f-46a6-8f31-b13bcfa7dd09?mode=deep",
+    "timestamp": "2026-02-18 23:40:34.775121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: mod()] [Attack: Reward Distribution] If vault distributes rewards using mod(timestamp, period) for bucketing and negative timestamps produce negative buckets, could attacker manipulate to skip distributions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c1c4dce-232e-45e5-acae-1286f5b757d7?mode=deep",
+    "timestamp": "2026-02-18 23:40:47.558608",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: or()] [Attack: Permission Escalation] If vault merges operator permissions using or(caps1, caps2) and implementation is wrong, could attacker lose permission bits and bypass operator_freeze checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_770b3409-5e3c-45f5-a498-c07b48a633af?mode=deep",
+    "timestamp": "2026-02-18 23:41:01.358738",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: and()] [Attack: Status Gating Bypass] If vault checks operation_allowed using and(current_status, required_status) and implementation is wrong, could attacker execute operations during disabled state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d806f56-ee0f-483e-9ee2-5d7c6d2ae46e?mode=deep",
+    "timestamp": "2026-02-18 23:41:15.382656",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Integration: Cetus CLMM] [Tick Calculation] CLMM uses signed i32 for tick indices - if Cetus adaptor calls i32::from() with tick value and aborts, are all Cetus position operations broken? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b683762-8782-400f-bd1e-f92550b69b19?mode=deep",
+    "timestamp": "2026-02-18 23:41:30.720308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Integration: Cetus CLMM] [Price Delta] If Cetus adaptor computes sqrtPrice delta using i32::sub() and aborts, can vault never exit Cetus positions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_09a0e457-b6f4-4342-a8a6-9b7248aa11e4?mode=deep",
+    "timestamp": "2026-02-18 23:41:47.201983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Integration: Oracle] [Price Deviation] If Switchboard oracle aggregator validation computes signed price deviation using i32::sub() and aborts, can vault never update prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_44be05fe-3ee1-4c13-8688-009d50ad529a?mode=deep",
+    "timestamp": "2026-02-18 23:42:04.032999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Integration: Health Limiter] [Health Factor Delta] If Navi health limiter computes health_factor_change using i32::sub() to check degradation and aborts, are all Navi operations blocked? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5856387-a1dd-41b2-9930-67d7a8bcd2d4?mode=deep",
+    "timestamp": "2026-02-18 23:42:21.514412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Integration: Vault Operations] [Value Delta Calculation] If op_value_update computes total_usd_value_delta = i32::sub(new_value, snapshot_value) and aborts, can operations never complete? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f31bbc71-3c5a-4792-beef-17fc6400397b?mode=deep",
+    "timestamp": "2026-02-18 23:42:40.471889",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Integration: Loss Tolerance] [Comparison Logic] If vault checks i32::abs(value_delta) <= loss_tolerance_i32 using i32::lte() and aborts, does this brick loss enforcement? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0b94d9b-8166-41a0-a35e-92cc2450649b?mode=deep",
+    "timestamp": "2026-02-18 23:43:00.254450",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Integration: Fee Calculation] [Signed Fees] If boosted rewards accrue negative fees (penalties) tracked as I32 and any arithmetic aborts, can reward distribution fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7960209a-77e6-49a9-a8fd-a4c43356e5f3?mode=deep",
+    "timestamp": "2026-02-18 23:43:21.301267",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Integration: Share Math] [Delta Tracking] If deposit buffer tracks share_delta as I32 to handle cancellations and i32::add() aborts, can deposits never process? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_20fca997-4b74-4af8-b6cb-d117c4a4b820?mode=deep",
+    "timestamp": "2026-02-18 23:43:41.774830",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Integration: Validator Weights] [Weight Adjustment] If liquid staking validator pool adjusts weights using signed deltas via i32::add() and aborts, can validator rebalancing fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2882d6ef-257e-424d-be08-d5d75db975c4?mode=deep",
+    "timestamp": "2026-02-18 23:44:02.337326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Integration: Epoch Tracking] [Epoch Delta] If vault locking_window computation uses i32::sub(current_epoch, unlock_epoch) and aborts, can withdrawal timing checks fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bfbf37c9-0ad4-48da-a95b-7015a4105fd2?mode=deep",
+    "timestamp": "2026-02-18 23:44:23.242922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Integration: Momentum Adaptor] [Position Value] If Momentum position value change is tracked as I32 and arithmetic aborts, can Momentum operations never complete? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3d68244-b979-4d56-9760-a6cc83e9bdd9?mode=deep",
+    "timestamp": "2026-02-18 23:44:45.589263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Integration: Suilend Adaptor] [Obligation Delta] If Suilend obligation borrow/repay amounts are differenced using i32::sub() and aborts, can borrowed assets never be returned? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_181ba6da-0182-4178-9c76-ada048d281df?mode=deep",
+    "timestamp": "2026-02-18 23:45:07.922779",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Integration: Navi Adaptor] [Account Balance] If Navi account balance changes are tracked as signed deltas using I32 arithmetic and aborts, can borrowed assets be lost? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c86dfda3-090e-4573-93ca-1bbf18ffcedf?mode=deep",
+    "timestamp": "2026-02-18 23:45:28.586271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: div()] [Precision Loss] Signed integer division truncates toward zero - if vault price calculation uses i32::div() for ratio, could truncation allow rounding exploits favoring attacker? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_66f9350a-7181-4188-984e-cc47cd8199a5?mode=deep",
+    "timestamp": "2026-02-18 23:45:50.045137",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: shr()] [Precision Loss] Right shift loses low bits - if vault uses i32::shr() instead of proper division for share calculations, could repeated shifts accumulate rounding errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_32fb5964-5ca7-42cf-834c-c83a7476532f?mode=deep",
+    "timestamp": "2026-02-18 23:46:11.715592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: mul()] [Intermediate Overflow] If vault computes (a * b) / c where a*b overflows i32 but final result fits, current API can't handle - could force vault to use lower precision and lose fees? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2461ee73-1423-4061-845f-0b34ad90c1c1?mode=deep",
+    "timestamp": "2026-02-18 23:46:33.368324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: abs_u32()] [Range Reduction] Converting signed to unsigned loses negative range - if vault uses abs_u32() for magnitude but later needs sign, could information loss cause logic errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5d0cbe62-98cd-473f-93c6-98d5c3dfd1b4?mode=deep",
+    "timestamp": "2026-02-18 23:46:56.897935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: All] [Gas Cost] Every function call currently costs gas then aborts - if vault accidentally calls these in hot path, could gas griefing occur before abort? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_35036a8a-bc50-476f-b451-511cc8215983?mode=deep",
+    "timestamp": "2026-02-18 23:47:20.116123",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: wrapping_add/sub] [Algorithmic Complexity] If implementation uses branching for overflow detection, could be slower than native ops - can attacker spam operations using i32 math to cause gas DoS? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_245c4a88-d798-434e-a1cb-0857d4eae6bf?mode=deep",
+    "timestamp": "2026-02-18 23:47:42.876964",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: from() vs from_u32()] [API Confusion] Two functions to create from u32 with same signature - if vault uses wrong one, could behavior differ? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_613b7eb8-2c32-47b8-98fe-7e851a23b213?mode=deep",
+    "timestamp": "2026-02-18 23:48:04.251381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: abs() vs abs_u32()] [Return Type Confusion] abs() returns I32, abs_u32() returns u32 - if vault expects I32 but gets u32, could type mismatch cause compilation or logic errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_79902afb-38a7-486f-8067-9589d23aa61a?mode=deep",
+    "timestamp": "2026-02-18 23:48:24.205570",
+    "report_generated": false
+  }
+]
