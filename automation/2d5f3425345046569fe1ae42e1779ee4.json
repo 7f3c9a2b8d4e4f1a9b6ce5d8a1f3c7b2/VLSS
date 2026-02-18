@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Cross-Function] [Operator Cap Sharing] If multiple operators share same OperatorCap object, can they interfere with each other's operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6fd03102-7506-499c-808f-27f3ad5da46b?mode=deep",
+    "timestamp": "2026-02-18 21:34:05.851444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Cross-Function] [Reward Manager Desync] If RewardManager updates are not atomic with vault state changes, can rewards be calculated on stale total_shares value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b32487ca-5cba-4b39-b957-fbe200fc48da?mode=deep",
+    "timestamp": "2026-02-18 21:34:18.514757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Cross-Function] [Oracle Config Injection] If OracleConfig is passed as parameter rather than fetched from vault storage, can attacker provide manipulated config? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_37daa9af-17be-46bc-afab-b1e40ff19cc0?mode=deep",
+    "timestamp": "2026-02-18 21:34:32.499895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Cross-Function] [Clock Drift] If Clock timestamp can go backwards due to bug or manipulation, do time-dependent checks (locking windows, epoch boundaries) break? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dce4b109-3ede-4475-8f8d-dab5a4130176?mode=deep",
+    "timestamp": "2026-02-18 21:34:46.418841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Cross-Function] [Asset Type Removal Race] If remove_coin_type_asset() is called during active operation using that asset type, does operation fail on asset return? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_05b905fa-ea8a-4c5b-aa5a-bdbe92ba384a?mode=deep",
+    "timestamp": "2026-02-18 21:35:01.532129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Cross-Function] [Batch Atomicity] Do batch operations (batch_execute_deposit, batch_execute_withdraw) execute atomically, or can partial execution occur on failure? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e87e0a21-3eee-4d12-9d64-6f0a0adf347d?mode=deep",
+    "timestamp": "2026-02-18 21:35:17.570580",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Type Safety] [Generic T Confusion] Multiple functions use generic PrincipalCoinType - can attacker instantiate function with wrong type and bypass type checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_89923d4e-884a-4f30-815b-6fd2b6ee7e76?mode=deep",
+    "timestamp": "2026-02-18 21:35:34.990824",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Type Safety] [CoinType Parameter] Functions take CoinType generic separate from PrincipalCoinType - can CoinType be same as PrincipalCoinType causing double-accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec5d1da2-0997-4af6-b8bd-51a7adc11ae2?mode=deep",
+    "timestamp": "2026-02-18 21:35:53.686598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Type Safety] [ObligationType Wildcard] ObligationType in SuilendObligationOwnerCap - can attacker use wildcard or wrong obligation type to access other vaults' obligations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_04702cf4-7701-475d-bf80-2cec9e1796f9?mode=deep",
+    "timestamp": "2026-02-18 21:36:12.988152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Type Safety] [Asset Type Casting] If AssetType in add_new_defi_asset is not properly validated, can attacker add non-asset types (e.g., Coin) as DeFi assets? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_abe9b3e9-ee1d-494a-9ba4-3658c4a64083?mode=deep",
+    "timestamp": "2026-02-18 21:36:33.028709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Type Safety] [TypeName Collision] type_name::get<T>() comparisons at lines 118, 126, 132, 147, 155 - can different types have same TypeName due to generics? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_031b6905-2ce6-4ae7-8485-f12d81c88bb6?mode=deep",
+    "timestamp": "2026-02-18 21:36:54.413073",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Type Safety] [Balance Type Mismatch] If principal_balance is Balance<T> but vault expects different principal type, does return_free_principal() catch the type error? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e36b795c-31bc-49b1-847d-8dcf0dc9152c?mode=deep",
+    "timestamp": "2026-02-18 21:37:16.738103",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Math] [Share Calculation Precision] When shares are minted in execute_deposit, if principal amount is very small and share price is very high, can rounding cause zero shares to be minted? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4d00ffe-b61c-42ad-8a09-b8a59ec551f7?mode=deep",
+    "timestamp": "2026-02-18 21:37:40.690259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Math] [Loss Underflow] At line 362, loss calculation subtracts total_usd_value_after from before - if both are near u256 max, can underflow occur? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b7a6bdbd-005c-4297-952d-2c7e5b38327f?mode=deep",
+    "timestamp": "2026-02-18 21:38:05.891907",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Math] [USD Value Overflow] get_total_usd_value() returns u256 - if vault holds massive amounts, can USD value calculation overflow internally? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b23582e6-a8ed-44cc-8f14-8530bb3bac5c?mode=deep",
+    "timestamp": "2026-02-18 21:38:33.128787",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Math] [Share Total Invariant] total_shares comparison at line 366 - if shares are burned in claimable_principal redemption flow, does this break the invariant check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_72d6c0ad-e3f5-4c1c-a89b-d65e258dc40b?mode=deep",
+    "timestamp": "2026-02-18 21:38:58.456069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Math] [Principal Amount Precision] If principal_amount at line 164 is near u64::MAX, can arithmetic operations overflow when converting to u256 for share math? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0392ecf8-b52c-4ba2-99b3-6e715fd893b0?mode=deep",
+    "timestamp": "2026-02-18 21:39:23.212488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Math] [Slippage Boundary] max_shares_received and max_amount_received checks - if set to u256::MAX or 0, do they effectively disable slippage protection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_37b1faab-21b5-4e3a-8952-06bbfe8a7939?mode=deep",
+    "timestamp": "2026-02-18 21:39:48.489511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Math] [Tolerance Accumulation] update_tolerance() called with loss at line 363 - if called multiple times in same epoch, does tolerance accumulate correctly per epoch limit? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_443afafa-d2bd-4a4f-9309-617a99becb39?mode=deep",
+    "timestamp": "2026-02-18 21:40:12.737166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Asset Management] [Navi Asset Duplicate Keys] parse_key<NaviAccountCap> at line 119 and 121 called twice - if both return same key, is NaviAccountCap added to Bag twice? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6342356f-fa2f-4e87-bcf5-1969596204ec?mode=deep",
+    "timestamp": "2026-02-18 21:40:38.773032",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Asset Management] [Cetus Position Liquidity] When CetusPosition is borrowed, is liquidity validation performed to ensure position has value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_558f35f3-c96b-4c64-9b45-ddca0ec53f7f?mode=deep",
+    "timestamp": "2026-02-18 21:41:05.962001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Asset Management] [Suilend Obligation Debt] When SuilendObligationOwnerCap is borrowed, is obligation debt/collateral ratio checked to prevent unhealthy borrows? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2afc1edc-a3bb-4b2e-b5e5-6eebd7072416?mode=deep",
+    "timestamp": "2026-02-18 21:41:30.333017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Asset Management] [Momentum Position State] MomentumPosition might have internal state - is state validated when borrowed and returned to ensure consistency? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8eadb7fb-db49-4fbd-be5c-eeefe0e08b91?mode=deep",
+    "timestamp": "2026-02-18 21:41:51.814872",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Asset Management] [Receipt Validity] Receipt borrowed at line 157 - does vault validate Receipt hasn't expired or been consumed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cfbaaf94-04be-4447-80a5-0e3f23559309?mode=deep",
+    "timestamp": "2026-02-18 21:42:13.942310",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Asset Management] [Asset Type Evolution] If external protocol upgrades asset type (e.g., NaviAccountCap V2), does vault's type checking break? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a1ea725-9f3f-494e-b4da-d189a76f4146?mode=deep",
+    "timestamp": "2026-02-18 21:42:36.659007",
+    "report_generated": false
+  }
+]
