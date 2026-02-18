@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u32()] [Endianness Confusion] Can an attacker exploit the big-endian byte reversal to create hash collisions by crafting u32 values that produce identical hashes after reversal, potentially allowing oracle update message replay or signature reuse across different intended values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_73d848c7-7cf2-4e3d-a912-2796b22743ec?mode=deep",
+    "timestamp": "2026-02-18 20:47:01.864937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u64()] [Endianness Manipulation] If push_u64() reverses bytes for big-endian but callers expect little-endian, can timestamp values in generate_update_msg() be misinterpreted, allowing stale oracle data to pass validation by timestamp confusion? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_659d91aa-9afb-4dac-8b24-5bcbace12b60?mode=deep",
+    "timestamp": "2026-02-18 20:47:14.798140",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u32() vs push_u32_le()] [Endianness Mixing] Can mixing big-endian push_u32() and little-endian push_u32_le() in message construction create ambiguous hash inputs where the same logical value produces different hashes depending on function choice, breaking signature verification invariants? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_97c782c6-0912-4948-bdf8-26a544fe1f61?mode=deep",
+    "timestamp": "2026-02-18 20:47:28.944576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u64() vs push_u64_le()] [Byte Order Attack] In generate_update_msg() where push_u64_le() is used for max_variance and timestamp, can an attacker craft payloads that exploit endianness differences to bypass max_variance checks while maintaining valid signatures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_27dcb67a-d81d-4316-abb2-e5d00cd54083?mode=deep",
+    "timestamp": "2026-02-18 20:47:42.788746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u128()] [Large Integer Endianness] Does the byte reversal in push_u128() create vulnerabilities when hashing 128-bit values where specific byte patterns after reversal could collide with other reversed patterns, enabling oracle price manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82209c2d-5602-4353-ae12-c2f32f278879?mode=deep",
+    "timestamp": "2026-02-18 20:47:57.526244",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_i128()] [Two's Complement Overflow] When computing two's complement as 'u128::max_value!() - value + 1', can integer overflow occur if value equals 0 and neg is true, potentially causing incorrect hash computation for negative zero in oracle price feeds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d19de41e-cff3-4419-af23-d8195b1ec3c4?mode=deep",
+    "timestamp": "2026-02-18 20:48:14.219846",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_i128()] [Negative Value Boundary] Can an attacker exploit the boundary condition where value equals u128::max_value!() with neg=true, causing the two's complement calculation to underflow or wrap, producing unexpected hash values for extreme negative oracle prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90ef59ce-2a6a-4281-9be6-aee82684badb?mode=deep",
+    "timestamp": "2026-02-18 20:48:30.661491",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_i128_le()] [Signed Zero Ambiguity] Since push_i128_le() uses the same two's complement logic, can the representation of negative zero (value=0, neg=true) differ from positive zero (value=0, neg=false), creating distinct hashes for mathematically equivalent values and breaking oracle consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_735a0728-b6e6-4f09-b346-268c5684d09f?mode=deep",
+    "timestamp": "2026-02-18 20:48:49.541340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_i128()] [Sign Bit Manipulation] If neg flag is incorrectly set during Decimal unpacking, can positive values be hashed as negative (or vice versa), allowing oracle data to be misrepresented while maintaining valid cryptographic signatures? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_547da01f-f77f-4f0d-ac3e-a1f4332d0bba?mode=deep",
+    "timestamp": "2026-02-18 20:49:10.779918",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_i128_le()] [Two's Complement Endianness] Does the little-endian variant create different two's complement representations than big-endian, potentially causing the same signed value to produce different hashes depending on which function is called? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ba8ab60-29e7-4206-b050-d57b6599777a?mode=deep",
+    "timestamp": "2026-02-18 20:49:33.330139",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_decimal()] [Decimal Unpacking Trust] Since push_decimal() directly unpacks Decimal without validation, can malformed Decimal values with inconsistent sign flags or magnitude bypass oracle price validation by producing valid hashes for invalid price data? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1dd27d0c-6632-44ac-8677-bb5ffe4bac5b?mode=deep",
+    "timestamp": "2026-02-18 20:49:55.942132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_decimal_le()] [Precision Loss] When push_decimal_le() unpacks and hashes Decimal values, can precision loss or rounding errors in the Decimal representation cause the hash to differ from the actual value used in vault calculations, creating oracle-vault value mismatches? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dae8c3df-ce0e-4686-bbc2-c43a3c4141bd?mode=deep",
+    "timestamp": "2026-02-18 20:50:17.312523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Decimal Scale Confusion] If the Decimal value in generate_update_msg() has different scale/exponent than expected by vault consumers, can the hash remain valid while the interpreted price value differs, enabling price manipulation attacks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d9a60ff-b1e9-416e-ae68-fefa21c29563?mode=deep",
+    "timestamp": "2026-02-18 20:50:38.543359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_decimal()] [Sign Flag Injection] Can an attacker inject a Decimal with an incorrect neg flag that gets hashed via push_decimal(), allowing negative prices to be signed as positive or vice versa, breaking vault collateral calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e458c4a-d803-4236-9117-4fb0fc9defc2?mode=deep",
+    "timestamp": "2026-02-18 20:51:00.258986",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Field Ordering Dependency] Since generate_update_msg() constructs messages in a specific order (queue_key, feed_hash, value, slothash, max_variance, min_responses, timestamp), can reordering these fields while maintaining the same hash allow oracle data substitution or replay attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a42e070a-08b4-452b-ab41-ead722e8e93d?mode=deep",
+    "timestamp": "2026-02-18 20:51:22.620576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Message Boundary Ambiguity] Can an attacker craft inputs where the concatenated byte boundaries in generate_update_msg() are ambiguous, such that different logical messages produce the same hash due to lack of field separators or length prefixes? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a66e753-fb45-464e-b520-d87dee61e1ea?mode=deep",
+    "timestamp": "2026-02-18 20:51:45.191124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Attestation Field Collision] In generate_attestation_msg(), can carefully crafted inputs cause field boundaries to overlap (e.g., end of mr_enclave bleeding into start of slothash), creating hash collisions that allow unauthorized oracle attestations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_785a40e8-819e-492e-8c54-4ce159fc376b?mode=deep",
+    "timestamp": "2026-02-18 20:52:08.899001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Fixed-Length Assumption] Since queue_key, feed_hash, and slothash are asserted to be 32 bytes, can an attacker exploit this fixed-length assumption by prepending/appending data to other variable-length fields to create collision attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ced40ff-8bfe-4ace-9bc8-c0a870ba9ef2?mode=deep",
+    "timestamp": "2026-02-18 20:52:33.150408",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Secp256k1 Key Padding] With secp256k1_key required to be exactly 64 bytes, can padding or compression schemes create multiple valid representations of the same key that produce different hashes, breaking oracle identity verification? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5bfc6d3a-2a7d-4860-bbd7-1cbc22b4f09e?mode=deep",
+    "timestamp": "2026-02-18 20:52:58.057073",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Queue Key Length Bypass] Can the assertion 'queue_key.length() == 32' be bypassed by providing a vector that appears to have length 32 but contains malicious padding or control characters, allowing unauthorized queue access? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_62315f6b-3435-4ca0-9c7a-2143e1ec6199?mode=deep",
+    "timestamp": "2026-02-18 20:53:22.935177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Feed Hash Truncation] If feed_hash length validation fails, does the error abort cleanly, or can partial message construction expose buffer state or allow timing attacks to leak valid feed hashes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0975ab9e-4e91-4244-8281-0352c735ad72?mode=deep",
+    "timestamp": "2026-02-18 20:53:48.022380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Slothash Zero Padding] Can an attacker provide a slothash with leading/trailing zeros that passes the 32-byte check but represents a different logical value, allowing slot number manipulation in oracle updates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_38369190-f71b-4eb7-bcea-a1fc84a0eb22?mode=deep",
+    "timestamp": "2026-02-18 20:54:09.638288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Oracle Key Collision] Can two different oracle identities produce the same 32-byte oracle_key through hash collision, allowing one oracle to impersonate another when generating attestation messages? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_151193a2-f8e4-4a8c-8a96-650bc3873e1f?mode=deep",
+    "timestamp": "2026-02-18 20:54:31.246054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [MR Enclave Validation Gap] Does the 32-byte length check for mr_enclave verify that it represents a valid SGX measurement, or can arbitrary 32-byte values be used to forge trusted execution attestations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a872b57-b935-442e-b0fe-b2d47c885814?mode=deep",
+    "timestamp": "2026-02-18 20:54:49.737131",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_bytes()] [Buffer Append Race] If push_bytes() is called multiple times with overlapping or aliased vectors, can buffer.append() create corruption or duplicate data in the hash input, breaking message integrity? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_951eb0e8-a028-4953-92c8-48223a8a8cd5?mode=deep",
+    "timestamp": "2026-02-18 20:55:08.926105",
+    "report_generated": false
+  }
+]
