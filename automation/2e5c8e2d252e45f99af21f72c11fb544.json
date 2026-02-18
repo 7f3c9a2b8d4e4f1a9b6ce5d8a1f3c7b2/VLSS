@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Multi-Step Claim] Function performs multiple state updates - if any step fails, are previous steps rolled back atomically? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea62a2a4-9f89-4419-8d74-a31032846420?mode=deep",
+    "timestamp": "2026-02-18 21:42:41.909214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: update_reward()] [External Storage Call] Line 251 calls external storage module - could storage module call back into incentive causing reentrancy? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ef61be17-1fce-4803-8d70-6315f7dde9a9?mode=deep",
+    "timestamp": "2026-02-18 21:42:54.869620",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Balance Split Timing] Line 335 splits balance after state updates - could this enable drain attacks if claim is called recursively? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6c607d66-c20f-4ea7-ae4b-be1f664e71ef?mode=deep",
+    "timestamp": "2026-02-18 21:43:08.218424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: init()] [Single Initialization] init creates one shared Incentive - could multiple initializations create parallel incentive systems? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50b044b7-3b8b-4a62-90ba-7c2fe564ca75?mode=deep",
+    "timestamp": "2026-02-18 21:43:21.883785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: init()] [Creator Privilege] Creator gets permanent control - is there any mechanism to transfer creator role? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e59da4fd-49bc-4e12-8fdf-871736f8eb20?mode=deep",
+    "timestamp": "2026-02-18 21:43:36.582922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: init_for_testing()] [Test Function Exposure] init_for_testing is public - could this be called in production to create test incentive objects? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9053a72-718a-4960-a6c0-ee1e61a32178?mode=deep",
+    "timestamp": "2026-02-18 21:43:52.304070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Struct: IncentiveOwnerCap] [Unused Capability] IncentiveOwnerCap is defined but never used in functions - is this dead code or missing functionality? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d880883-954b-4716-a97f-0250cfc8e92f?mode=deep",
+    "timestamp": "2026-02-18 21:44:09.333525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Struct: IncentiveAdminCap] [Unused Capability] IncentiveAdminCap is defined but never checked in functions - are caps meant to gate operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f402c20b-e317-4d3a-a440-501b3d183ba0?mode=deep",
+    "timestamp": "2026-02-18 21:44:28.283592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Struct: IncentiveOwnerCap] [Cap Creation] No function creates IncentiveOwnerCap - how are caps distributed and could attackers mint fake caps? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9645e616-42bd-45b2-a49e-1f5bddeb2186?mode=deep",
+    "timestamp": "2026-02-18 21:44:47.361754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: set_owner()] [Event Only Logging] Lines 106-109 emit event but don't enforce any on-chain consequence - could events be spoofed? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b2558e7-87e0-44e7-b220-33d68e08cf0e?mode=deep",
+    "timestamp": "2026-02-18 21:45:04.316401",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: set_admin()] [Event Content] Event includes sender but sender is already known as creator - is redundant data exploitable? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63d0c7f5-a3ac-407c-af73-de0026d8229b?mode=deep",
+    "timestamp": "2026-02-18 21:45:23.120535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: add_pool()] [Missing Event] add_pool doesn't emit event - could lack of events hide malicious pool additions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a215aaae-2fa0-43cd-8cc6-db124149dd2e?mode=deep",
+    "timestamp": "2026-02-18 21:45:42.185733",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: claim_reward()] [Missing Event] No event emitted on successful claim - could this hide reward theft? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d205aea-abc9-440c-ac3c-d951924bfe32?mode=deep",
+    "timestamp": "2026-02-18 21:46:02.035781",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: add_pool()] [Rate Precision] Line 167 uses ray_div for high precision - but could precision loss accumulate over many reward calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f1c4c73f-0d3a-43f9-b3bf-f96f380e62e6?mode=deep",
+    "timestamp": "2026-02-18 21:46:22.267906",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Ray Division Rounding] Line 329 divides by ray() - does rounding always favor protocol or could users lose dust amounts? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ed60d20-ce66-48d7-afc3-3dd9327c13a2?mode=deep",
+    "timestamp": "2026-02-18 21:46:42.975489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Integer Division] Line 255 performs integer division - could rounding cause cumulative reward loss? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_237408c3-f3e3-48f9-91e7-1db26a5fd834?mode=deep",
+    "timestamp": "2026-02-18 21:47:02.888559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: add_pool()] [Asset ID Collision] Multiple assets use u8 ID - only 256 possible assets, could ID exhaustion or reuse cause confusion? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4b0608f3-774c-4998-bc13-eaef4b7f6c76?mode=deep",
+    "timestamp": "2026-02-18 21:47:24.921523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: update_reward()] [Asset Isolation] Function updates single asset - are rewards properly isolated between different assets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_27dfe170-9ae2-4388-8aec-0db5f9ef9781?mode=deep",
+    "timestamp": "2026-02-18 21:47:46.036001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Struct: Incentive] [Assets Vector] assets vector tracks which assets have pools - could removing pools leave stale entries causing memory leak? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ef6687d-ebc1-48cd-974d-7ad613593d7d?mode=deep",
+    "timestamp": "2026-02-18 21:48:05.208613",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: add_pool()] [Oracle ID Storage] Line 172 stores oracle_id but never validates it - could invalid oracle_id cause downstream failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9369b4e-7a97-4e33-b3df-3e6d5ab400af?mode=deep",
+    "timestamp": "2026-02-18 21:48:25.235376",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: get_pool_info()] [Oracle ID Return] Line 356 returns oracle_id - how is this ID used and could returning wrong ID cause oracle manipulation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bcf14526-5732-4e41-950f-e8f2ef762ff3?mode=deep",
+    "timestamp": "2026-02-18 21:48:47.268455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: earned()] [Oracle IDs Vector] Line 388 returns oracle_ids - are these IDs used to price rewards and could mismatch cause incorrect valuations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e2c63b22-6352-440f-8c0b-60bfe1836e02?mode=deep",
+    "timestamp": "2026-02-18 21:49:08.934012",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Early User Advantage] First users get rewards before total_supply grows - could early entrants extract disproportionate rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_930b3a5a-3f25-470d-8c4b-fa1ec8d8a3b8?mode=deep",
+    "timestamp": "2026-02-18 21:49:31.363591",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: update_reward()] [Update Timing] Rewards only update when update_reward is called - could users who never trigger updates lose rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6fdf7e5d-2819-4501-baa3-3575d4245a2d?mode=deep",
+    "timestamp": "2026-02-18 21:49:54.930666",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Claim Timing] Users can claim anytime - could optimal claiming times be exploited for maximum rewards? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28ebe4f5-f20a-48a7-80bd-5bd11b9645a5?mode=deep",
+    "timestamp": "2026-02-18 21:50:18.682654",
+    "report_generated": false
+  }
+]
