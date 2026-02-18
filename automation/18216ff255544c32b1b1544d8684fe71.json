@@ -1,0 +1,140 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Migration: Emergency Patches] If a critical vulnerability is discovered requiring immediate version bump, could the abort prevent emergency upgrade procedures from executing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6e6adef-4426-43f5-9be1-dcdeccbfbc68?mode=deep",
+    "timestamp": "2026-02-18 20:41:18.800745",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Economic: Fee Changes] If fee structure changes are gated by version checks, could the abort prevent deploying new fee models, locking in economically unviable rates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aaaa669c-a44d-457e-9463-d8a817a14d16?mode=deep",
+    "timestamp": "2026-02-18 20:41:32.071947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Economic: Reward Distribution] If boosted balance rewards depend on version-specific calculation logic, could the abort cause incorrect reward distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6270d4a4-b713-4248-a297-861665b7db44?mode=deep",
+    "timestamp": "2026-02-18 20:41:46.323541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Economic: Loss Tolerance] If version affects loss tolerance calculations, could the abort allow operations that should be blocked by tolerance limits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cb4b4cbd-aaaa-4339-bde9-1e105b054173?mode=deep",
+    "timestamp": "2026-02-18 20:42:00.886043",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Timing: Epoch Rollover] If epoch rollover in liquid staking checks MMT version, could the abort prevent rewards distribution or validator weight updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_182e887f-a92e-4840-bbe2-89216d834bc5?mode=deep",
+    "timestamp": "2026-02-18 20:42:17.104780",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Timing: Lock Windows] If withdrawal locking window enforcement depends on version checks, could the abort allow premature withdrawals or prevent valid ones? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_de60ecf5-8252-4b04-b302-19a3d640c1dc?mode=deep",
+    "timestamp": "2026-02-18 20:42:34.644080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Oracle: Price Decimals] If MMT version determines oracle price decimal handling (1e9 vs 1e18), could the abort cause decimal mismatches in vault USD value calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_136d9be0-1455-4b68-8f10-2b624aaa357e?mode=deep",
+    "timestamp": "2026-02-18 20:42:54.096553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Oracle: Staleness Checks] If version affects oracle staleness thresholds, could the abort allow stale prices to be used, violating vault safety invariants? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b554e968-916e-486e-89be-b16afa4edafc?mode=deep",
+    "timestamp": "2026-02-18 20:43:15.628729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Staking: Validator Weights] If validator weight updates check MMT version for compatibility with delegation logic, could the abort prevent rebalancing, leading to suboptimal staking distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a6faa181-68a5-48ea-9dc3-d9261663c581?mode=deep",
+    "timestamp": "2026-02-18 20:43:37.604397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Staking: Delegation Path] If stake delegation to specific validators verifies version compatibility, could the abort cause delegation failures, leaving SUI unstaked and unrewarded? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_629b4411-f657-4300-882e-3035a2734ee1?mode=deep",
+    "timestamp": "2026-02-18 20:44:00.495392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Math: Version-Dependent Algorithms] If different MMT versions use different AMM math algorithms, could lack of version checking cause wrong algorithms to be applied, breaking swap pricing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_92ed9e0d-e100-43c8-8fbc-14813f44fe70?mode=deep",
+    "timestamp": "2026-02-18 20:44:24.331163",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Math: Precision Handling] If version affects fixed-point math precision (e.g., different decimal places), could the abort allow mixing precision levels, causing rounding errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_222ed2fb-43ed-4256-83d1-4eb15dbe78c0?mode=deep",
+    "timestamp": "2026-02-18 20:44:50.472192",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Security: Defense in Depth] If version checks are a defense layer against incompatible protocol interactions, could their complete absence reduce security to single points of failure? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_45048280-7996-4b00-8c87-76c08fdd92c1?mode=deep",
+    "timestamp": "2026-02-18 20:45:15.841523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Security: Fail-Safe Design] Abort-on-call could be interpreted as fail-safe (deny by default). But is denying ALL operations safer than allowing some? Could this overly restrictive approach be worse than selective checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3a5f300-d474-4f56-afdb-6371a54e3d13?mode=deep",
+    "timestamp": "2026-02-18 20:45:40.147085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Composability: External Callers] If external protocols or UIs call version functions to check Volo compatibility, could the abort prevent integration, limiting Volo's ecosystem reach? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e522c92-2dda-487f-9702-53a1814f63e8?mode=deep",
+    "timestamp": "2026-02-18 20:46:04.794648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Composability: Flash Loans] If flash loan operations check version for reentrancy protection patterns, could the abort prevent complex DeFi strategies involving Volo Vault? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_49b57ab3-c495-4c29-b2f4-d12d62fa0d69?mode=deep",
+    "timestamp": "2026-02-18 20:46:29.256643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Governance: Admin Actions] If admin cap functions verify protocol version before privileged operations, could the abort prevent admins from executing emergency actions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bde54988-0b39-4741-909b-65ccfb0a4906?mode=deep",
+    "timestamp": "2026-02-18 20:46:54.865400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Governance: Operator Limits] If operator freeze map updates check version, could the abort prevent operators from freezing malicious actors during attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8f08ba1-d972-49bd-9a0c-2b02904120e2?mode=deep",
+    "timestamp": "2026-02-18 20:47:22.181998",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Receipt: Vault Receipt Alignment] If vault receipt creation verifies MMT version for receipt format compatibility, could the abort cause receipt/vault ID mismatches, breaking deposit tracking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8505083c-47e8-488f-ac2a-003aa5a14c25?mode=deep",
+    "timestamp": "2026-02-18 20:47:50.346125",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Receipt: Reward Manager] If reward manager operations check version before distributing rewards, could the abort prevent users from claiming their earned rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6c1f0399-0700-4fb6-9218-fbadd09f1503?mode=deep",
+    "timestamp": "2026-02-18 20:48:19.965277",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Edge Case: Zero Version] Could Version be created with major=0 and minor=0? Would this be valid or indicate uninitialized state? The code provides no validation. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a368e2da-324e-4e66-a24d-8ba6d7d19807?mode=deep",
+    "timestamp": "2026-02-18 20:48:50.737728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Edge Case: Version Equality] If two Version objects with identical major/minor values exist, how should comparison work? Without ID checking, could this cause confusion? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_59862991-a502-4d2b-9eae-79d3a1a633ec?mode=deep",
+    "timestamp": "2026-02-18 20:49:22.010806",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Edge Case: VersionCap Loss] If the single VersionCap is accidentally destroyed (sent to 0x0 or similar), could version management become permanently impossible? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_91f74552-1fc8-4a2a-8116-43583a839be1?mode=deep",
+    "timestamp": "2026-02-18 20:49:55.574138",
+    "report_generated": false
+  }
+]
