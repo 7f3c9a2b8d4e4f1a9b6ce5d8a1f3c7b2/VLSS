@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: update_reward_state_by_asset()] [Rule Iteration Order] update_reward_state_by_asset() pops rules from back - can iteration order affect reward calculation if rules have interdependencies? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a27cc3d7-b4d4-44aa-9cb8-ed6c6c44cd66?mode=deep",
+    "timestamp": "2026-02-18 23:44:48.800483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: update_reward_state_by_rule_and_balance()] [Index Update Race] update_reward_state_by_rule_and_balance() calculates new_global_index then new_user_total_reward - if global_index is updated between these calculations, can user receive incorrect rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ed79f17b-f2cf-4a87-bbf7-52fa4050f0bd?mode=deep",
+    "timestamp": "2026-02-18 23:45:01.610732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: update_reward_state_by_rule_and_balance()] [Table Add vs Borrow] update_reward_state_by_rule_and_balance() checks table::contains() before add/borrow_mut - can race between check and add allow duplicate adds causing panic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1981b422-5256-416a-9ed9-1dd0e2c30cdb?mode=deep",
+    "timestamp": "2026-02-18 23:45:15.380224",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: update_reward_state_by_rule_and_balance()] [Timestamp Not Monotonic] update_reward_state_by_rule_and_balance() updates rule.last_update_at without verifying clock::timestamp_ms() > rule.last_update_at - can non-monotonic timestamps cause negative durations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f19f088-4cb1-4b5a-803b-46dd535b8066?mode=deep",
+    "timestamp": "2026-02-18 23:45:29.031143",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: update_reward_state_by_rule_and_balance()] [Global Index Overflow] update_reward_state_by_rule_and_balance() updates rule.global_index = new_global_index - if new_global_index overflows u256, does assignment wrap or panic? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f27aaebe-eb73-4016-8968-b3373c30e30c?mode=deep",
+    "timestamp": "2026-02-18 23:45:43.375324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_global_index()] [Option Type Validation] calculate_global_index() checks rule.option against supply/borrow constants then aborts on else - can new option types added later cause all index calculations to abort, DoSing rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1a2fd402-1e6e-42c3-9fbf-af8b5102f5ff?mode=deep",
+    "timestamp": "2026-02-18 23:45:59.390052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_global_index()] [Duration Overflow] calculate_global_index() computes duration = now - last_update_at without overflow check - if now < last_update_at due to clock manipulation, does subtraction underflow causing massive duration? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5850387-d890-4c78-9c74-b4377851f976?mode=deep",
+    "timestamp": "2026-02-18 23:46:16.533414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_global_index()] [Zero Total Balance] calculate_global_index() returns index_increased=0 if total_balance=0 - can attacker drain all supply/borrow to freeze global_index, preventing rewards from accruing to future users? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e3b18fb-14a7-4e34-b504-f41552ecf54a?mode=deep",
+    "timestamp": "2026-02-18 23:46:35.561049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_global_index()] [Rate Multiplication Overflow] calculate_global_index() computes (rule.rate * duration) / total_balance - can very large rate or duration cause overflow before division? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5515a380-2965-4cb3-9ccd-aa77889bd772?mode=deep",
+    "timestamp": "2026-02-18 23:46:55.056693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_global_index()] [Index Addition Overflow] calculate_global_index() returns rule.global_index + index_increased - if addition overflows u256, does it wrap or panic, and can attacker trigger this to DoS rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0ebf605-8e2e-4ad6-aa64-b5f47c3f3f47?mode=deep",
+    "timestamp": "2026-02-18 23:47:13.824492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_global_index()] [Zero Duration Check] calculate_global_index() returns index_increased=0 if duration==0 - can attacker call update functions multiple times in same timestamp to avoid index increases? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d71999fa-b513-48dc-9e54-be9451f2f3bf?mode=deep",
+    "timestamp": "2026-02-18 23:47:32.853394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_user_reward()] [Index Diff Underflow] calculate_user_reward() computes user_index_diff = global_index - get_user_index_by_rule() - if user_index > global_index due to bug, does subtraction underflow causing massive diff? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b6b9f294-682e-497a-9976-3262784bb9af?mode=deep",
+    "timestamp": "2026-02-18 23:47:54.424275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_user_reward()] [Ray Mul Precision Loss] calculate_user_reward() uses ray_mul(user_balance, user_index_diff) - can precision loss in ray_mul() allow attacker to manipulate user_balance to extract more rewards than entitled? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4df646ea-96a9-4044-bbd2-f57de73c6abf?mode=deep",
+    "timestamp": "2026-02-18 23:48:14.755849",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_user_reward()] [Reward Addition Overflow] calculate_user_reward() returns user_reward + ray_mul(...) - if addition overflows u256, can attacker trigger overflow to wrap rewards back to small value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a65e84f-fd06-4a44-91db-f3aa60a75b85?mode=deep",
+    "timestamp": "2026-02-18 23:48:35.801040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_user_index_by_rule()] [Zero Default Value] get_user_index_by_rule() returns 0 if user not in table - can new users with index=0 receive excessive rewards when global_index is large? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46f9ae83-6130-4a8e-9098-019f1e46fb41?mode=deep",
+    "timestamp": "2026-02-18 23:48:57.387496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_user_total_rewards_by_rule()] [Stale Rewards] get_user_total_rewards_by_rule() reads table value without updating - can external function read stale rewards and make decisions based on outdated data? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d3cdea8-1b43-4cce-8a7d-642b376757c4?mode=deep",
+    "timestamp": "2026-02-18 23:49:19.584530",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_deposit()] [Dual Incentive Update] entry_deposit() updates both incentive_v2 and incentive_v3 - can inconsistency between v2 and v3 state allow user to game rewards by manipulating update order? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fdb5491f-368b-4c2b-8966-c8cada81d011?mode=deep",
+    "timestamp": "2026-02-18 23:49:41.514468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: deposit_with_account_cap()] [No Amount Validation] deposit_with_account_cap() doesn't validate deposit_coin amount - can zero deposits pollute storage and trigger reward updates wastefully? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_351c206e-4f0c-4c8f-9cd7-eec8684facbb?mode=deep",
+    "timestamp": "2026-02-18 23:50:05.244294",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_deposit_on_behalf_of_user()] [Front-Running Risk] entry_deposit_on_behalf_of_user() updates rewards for user parameter - can attacker front-run deposits to update stale user state and claim rewards that shouldn't exist yet? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca207fdc-b961-4236-a78b-6178ef2a1c87?mode=deep",
+    "timestamp": "2026-02-18 23:50:26.221322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_withdraw()] [Oracle Manipulation] entry_withdraw() uses oracle for pricing - can attacker manipulate oracle price between reward update and withdrawal to extract value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6140eb29-f215-42f1-8dd9-2c9da65529bc?mode=deep",
+    "timestamp": "2026-02-18 23:50:47.211551",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: withdraw_with_account_cap()] [Reward Update Timing] withdraw_with_account_cap() updates rewards before withdrawal - can attacker withdraw immediately after deposit to avoid negative rewards from borrow incentives? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1a6b9ee-107a-44ac-bb1a-90e58ceb17b0?mode=deep",
+    "timestamp": "2026-02-18 23:51:09.564836",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_borrow()] [Fee Calculation Before Update] entry_borrow() calculates borrow fee before updating rewards - can fee amount change during reward update causing inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e164d86-ae56-4f4b-ac18-7921e748d24a?mode=deep",
+    "timestamp": "2026-02-18 23:51:33.529606",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: borrow_with_account_cap()] [Fee Deposit After Borrow] borrow_with_account_cap() borrows amount+fee then deposits fee - if borrow succeeds but deposit_borrow_fee() fails, is fee lost causing accounting error? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_738dcbb1-3abf-4869-9228-db149b7b1ff4?mode=deep",
+    "timestamp": "2026-02-18 23:51:59.177425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: borrow()] [Fee Extraction from Balance] borrow() splits fee from borrowed balance - can attacker manipulate balance object between borrow and fee split to avoid fee? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac77110f-d401-4a10-a7c8-307a9a016b88?mode=deep",
+    "timestamp": "2026-02-18 23:52:23.398543",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_repay()] [Excess Balance Handling] entry_repay() transfers excess balance back to sender - if transfer fails, is excess balance lost? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b171fb38-bd20-416b-af1d-59e73b6f0117?mode=deep",
+    "timestamp": "2026-02-18 23:52:45.692022",
+    "report_generated": false
+  }
+]
