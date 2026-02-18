@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: repay()] [Repay Amount Calculation] obligation::repay() returns repay_amount as Decimal, then ceil() is used to split coins - can ceiling cause repaying MORE than actually owed, giving free money to protocol? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cd33399d-6ea6-4af5-99e8-1b817807ec12?mode=deep",
+    "timestamp": "2026-02-18 21:47:14.458412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: repay()] [Partial Repayment] max_repay_coins is mut reference - what happens if repay_amount > coin::value(max_repay_coins), does it revert cleanly or leave obligation in inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e1046ef-a920-4c2d-a4b0-c5c91d589ad0?mode=deep",
+    "timestamp": "2026-02-18 21:47:27.076739",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: fulfill_liquidity_request()] [Request Fulfillment] LiquidityRequest is consumed here - can an attacker create a request in one reserve and fulfill from different reserve by passing wrong reserve_array_index? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_91fd2048-77f0-47fd-ac4a-3ec381a2943f?mode=deep",
+    "timestamp": "2026-02-18 21:47:41.112267",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: liquidate()] [Liquidation Calculation] obligation::liquidate() returns (withdraw_ctoken_amount, required_repay_amount) - can rounding in required_repay_amount allow liquidator to repay LESS than debt value while receiving full collateral? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b7a2814-a1cb-4ced-80c0-c75147f7cd0c?mode=deep",
+    "timestamp": "2026-02-18 21:47:55.088486",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: liquidate()] [Repay Coin Split] coin::split(repay_coins, ceil(required_repay_amount)) - if ceil() rounds up by large amount due to decimal precision, can liquidator lose excess coins without compensation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_299ddfe1-90fc-4b91-92e1-09b4a8a5456a?mode=deep",
+    "timestamp": "2026-02-18 21:48:09.873858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: liquidate()] [Fee Deduction] reserve::deduct_liquidation_fee() modifies ctokens balance - is protocol_fee deducted from liquidator's reward, allowing protocol to effectively steal liquidation bonus? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da273eb4-1ad3-438e-9e3a-c18e0f316e20?mode=deep",
+    "timestamp": "2026-02-18 21:48:27.208108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: liquidate()] [Health Check Timing] exist_stale_oracles is checked via assert_no_stale_oracles() - can oracle price update between this check and liquidation calculation, allowing liquidation of now-healthy position? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51f58909-faa9-45e7-b832-bf361fe25bbc?mode=deep",
+    "timestamp": "2026-02-18 21:48:44.648504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: liquidate()] [Reserve Borrowing] Two different borrows of reserves vector (mut then immut) - can this cause borrow checker issues if repay_reserve_array_index == withdraw_reserve_array_index? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6923bfd1-d456-43e4-9f9d-c5468e8d0188?mode=deep",
+    "timestamp": "2026-02-18 21:49:02.629349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: liquidate()] [Exemption Amount] RateLimiterExemption amount = balance::value(&ctokens) after fee deduction - does this match actual ctokens liquidator receives, or can mismatch cause redemption to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ad413dbf-d6e4-41af-81e8-a7b9c35014ac?mode=deep",
+    "timestamp": "2026-02-18 21:49:22.582853",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: forgive()] [Debt Forgiveness] Owner can forgive debt up to max_forgive_amount - does this reduce borrow amounts in obligation without burning ctokens from collateral, creating undercollateralized positions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_47871381-8c48-4dd2-82b2-c34f6c99741f?mode=deep",
+    "timestamp": "2026-02-18 21:49:41.657117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: forgive()] [Reserve State] reserve::forgive_debt() updates reserve state - can this create negative available_liquidity or break reserve accounting invariants? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f2d6240-7cd8-49cb-8d0e-e95bc6c15c46?mode=deep",
+    "timestamp": "2026-02-18 21:50:01.884212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: forgive()] [Bad Debt Tracking] bad_debt_usd and bad_debt_limit_usd fields are marked unused - is forgiven debt tracked anywhere to prevent unlimited forgiveness attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_764ccc3c-57c2-4a88-82d6-086c72e39079?mode=deep",
+    "timestamp": "2026-02-18 21:50:23.346054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_rewards()] [Reward Type Restriction] Specific hardcoded restriction on SUILEND_POINT_2 type - can an attacker mint tokens with similar but slightly different type names to bypass this check? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4302511-01cc-4db6-bea2-4afd08e2d022?mode=deep",
+    "timestamp": "2026-02-18 21:50:46.288411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_rewards_and_deposit()] [Permissionless Griefing] Anyone can call this for any obligation_id - can attacker repeatedly call this with dust rewards to spam deposits and increase gas costs for obligation owner? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0a29a2d6-c02f-49bc-a08f-f98a6901d4eb?mode=deep",
+    "timestamp": "2026-02-18 21:51:08.661955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_rewards_and_deposit()] [Reward Routing] If expected_ctokens == 0, rewards are joined to fees - can attacker claim tiny rewards repeatedly to drain user rewards into protocol fees? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bf43d5e0-9daf-4e61-8f7a-98299aeb7bce?mode=deep",
+    "timestamp": "2026-02-18 21:51:33.152815",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_rewards_and_deposit()] [Borrow Repayment Logic] Checks if gt(borrowed_amount, 0) then repays - can this fail if user has multiple borrow types but rewards are only of one type, leaving partial repayment? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6a48e79a-a0c9-4426-8ae4-4af1ee4ea730?mode=deep",
+    "timestamp": "2026-02-18 21:51:56.996373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_rewards_and_deposit()] [Deposit vs Repay Priority] Rewards are first used to repay, then deposited - can attacker manipulate this to force deposits instead of repays by frontrunning with full repayment? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_241b36fe-cfc8-418c-90f2-df773c06a129?mode=deep",
+    "timestamp": "2026-02-18 21:52:19.498852",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_rewards_by_obligation_id()] [Reward Period Check] fail_if_reward_period_not_over flag can skip period check - does regular claim_rewards() allow claiming before period ends, breaking reward distribution model? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d06d3d00-eba8-4a3a-815f-32cd66595c2c?mode=deep",
+    "timestamp": "2026-02-18 21:52:42.264308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: add_reserve()] [Reserve Duplication] assert checks reserve_array_index == vector::length() to prevent duplicates - can race condition allow two add_reserve() calls to add same type if length check happens before push_back? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec19ac1f-71cd-45d4-a5ce-99e41cce7ecc?mode=deep",
+    "timestamp": "2026-02-18 21:53:05.198897",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: add_reserve()] [Initial Price] reserve::create_reserve() uses price_info for initial price - can admin add reserve with manipulated initial price to enable immediate profitable borrows? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_03ca87c4-ddd2-4048-8f4e-389bba765195?mode=deep",
+    "timestamp": "2026-02-18 21:53:27.802226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: update_reserve_config()] [Config Validation] No validation of ReserveConfig parameters - can admin set interest rates to 0 or MAX, breaking reserve economics? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c736afc9-2566-44dc-8237-5d58d656f63b?mode=deep",
+    "timestamp": "2026-02-18 21:53:51.021436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: change_reserve_price_feed()] [Price Feed Change] Owner can change price feed to different PriceInfoObject - can this be exploited mid-operation to manipulate prices for liquidations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4e59d2f-3773-4e82-a0a6-96f52f062283?mode=deep",
+    "timestamp": "2026-02-18 21:54:12.124746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: add_pool_reward()] [Reward Timing] start_time_ms and end_time_ms are not validated against current clock - can admin add rewards with past time periods, causing immediate claiming? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ce35e3b-4d02-44c2-b54b-c080fb509f30?mode=deep",
+    "timestamp": "2026-02-18 21:54:30.824708",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: cancel_pool_reward()] [Reward Cancellation] Returns unallocated_rewards to caller (owner) - does this properly account for already-claimed rewards, or can owner cancel and reclaim partially-distributed rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_754badfb-518b-46d1-97c2-000611a49d3d?mode=deep",
+    "timestamp": "2026-02-18 21:54:51.080131",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: close_pool_reward()] [Reward Closure] Similar to cancel but called after period - can close be called before period ends via ERewardPeriodNotOver bypass to steal unclaimed rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3fc56dd-5839-4495-8ac3-b756a8f5f50b?mode=deep",
+    "timestamp": "2026-02-18 21:55:12.927703",
+    "report_generated": false
+  }
+]
