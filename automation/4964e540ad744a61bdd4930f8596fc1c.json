@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [Missing Validation] The validate() function is completely empty with no validation logic. Can an attacker with AdminCap set an arbitrary, non-existent, or malicious oracle_queue_id that breaks all oracle-dependent operations in Volo vault, causing incorrect price feeds and potential fund loss? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29cfe37c-4224-4f53-9b92-0a2e549ba950?mode=deep",
+    "timestamp": "2026-02-18 23:11:32.547850",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [Missing Type Check] The validate() function performs no type checking on the oracle_queue_id parameter. Can an attacker pass an ID of a non-OracleQueue object (e.g., a user account, random object, or malicious contract), causing all oracle price queries to fail and DoS the entire Volo vault system? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_69a9b440-ddce-4742-9184-27e2c86a0c3b?mode=deep",
+    "timestamp": "2026-02-18 23:11:45.289775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [Missing Existence Check] The validate() function does not verify that the provided oracle_queue_id corresponds to an existing object on-chain. Can an attacker set a deleted, never-created, or future object ID, causing all oracle operations to abort and freezing vault operations that depend on price feeds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19dcc5fd-321a-482d-8b2e-5cc0d6cf0daf?mode=deep",
+    "timestamp": "2026-02-18 23:11:58.815182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [Missing Ownership Verification] The validate() function does not check whether the oracle queue is owned by the correct package or has proper permissions. Can an attacker set an oracle_queue_id pointing to a malicious oracle queue they control, returning manipulated prices that enable theft from Volo vault through incorrect asset valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_131d757a-d65c-40aa-833e-c5dd097c214e?mode=deep",
+    "timestamp": "2026-02-18 23:12:13.482291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [Missing Configuration Validation] The validate() function does not verify oracle queue configuration parameters (e.g., minimum oracle count, update frequency, staleness thresholds). Can an attacker set an oracle_queue_id with unsafe configurations (e.g., single oracle, no staleness checks), enabling price manipulation attacks on Volo vault? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5eb9e52-d0eb-4d45-9bf4-d6d738c94d3d?mode=deep",
+    "timestamp": "2026-02-18 23:12:28.350272",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [Missing Zero Address Check] The validate() function does not prevent setting oracle_queue_id to the zero address (0x0). Can an attacker set the oracle queue to zero address, causing all price queries to fail and DoS all vault operations requiring oracle prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc5314b1-7cfe-45e6-bb80-c27b3dc9939c?mode=deep",
+    "timestamp": "2026-02-18 23:12:45.232061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [Missing Previous Value Check] The validate() function does not compare the new oracle_queue_id with the current value. Can an attacker repeatedly call run() with the same ID, spamming events and wasting gas, or set the same malicious ID multiple times to hide evidence of oracle manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21432bb3-811e-433f-bcdd-2dd4d5be16c3?mode=deep",
+    "timestamp": "2026-02-18 23:13:02.566495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [Missing Initialization Check] The validate() function does not verify that the State object has been properly initialized. Can an attacker call run() immediately after State creation when oracle_queue is still set to 0x0, replacing it with a malicious queue before any security checks are established? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d301ab0-30de-4a3b-9880-1f7d9fed7a74?mode=deep",
+    "timestamp": "2026-02-18 23:13:21.418915",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [Missing Active Status Check] The validate() function does not verify that the target oracle queue is active and operational. Can an attacker set an oracle_queue_id pointing to a deprecated, paused, or sunset oracle queue, causing all price feeds to become stale or incorrect? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_103e2d91-8cf6-4cff-bd8a-da093421580c?mode=deep",
+    "timestamp": "2026-02-18 23:13:43.019942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [Missing Compatibility Check] The validate() function does not check version compatibility between the State object and the target oracle queue. Can an attacker set an oracle_queue_id from an incompatible version, causing type mismatches or runtime aborts in all oracle-dependent operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4c279496-a7c7-45f0-a958-63943e8a9ef6?mode=deep",
+    "timestamp": "2026-02-18 23:14:04.543968",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Authorization Bypass] The run() function requires AdminCap by reference, not by value. If AdminCap is compromised, transferred to an attacker, or stolen through a vulnerability in another module, can the attacker gain permanent ability to manipulate oracle_queue_id and control all price feeds for Volo vault? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa7428b4-f239-48de-8f41-e71d9f76f1e6?mode=deep",
+    "timestamp": "2026-02-18 23:14:27.498272",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Capability Transfer Attack] The run() function takes AdminCap by reference but does not verify who holds the capability. If an attacker obtains AdminCap through social engineering, key compromise, or multisig manipulation, can they immediately change the oracle queue to a malicious one they control? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1594ce17-5965-43b7-bd79-b73bc17c64c2?mode=deep",
+    "timestamp": "2026-02-18 23:14:51.295349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [No Rate Limiting] The run() function has no rate limiting or cooldown period between oracle queue changes. Can an attacker with AdminCap rapidly switch between different oracle queues, causing chaos in price feeds and enabling sandwich attacks on vault operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c550c7b-e442-4ef3-8dd2-c8acf71e37cb?mode=deep",
+    "timestamp": "2026-02-18 23:15:15.467365",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [No Multi-Sig Requirement] The run() function requires only a single AdminCap reference with no multi-signature or timelock mechanism. Can a single compromised admin key immediately redirect all oracle queries to a malicious queue, bypassing any security review process? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6be9828e-780f-4b00-8a37-34729dc27020?mode=deep",
+    "timestamp": "2026-02-18 23:15:38.774313",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [No Emergency Stop] The run() function has no emergency stop or pause mechanism. If a malicious oracle queue is set and begins returning incorrect prices, can it cause cascading losses in Volo vault before a recovery transaction can be submitted? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9be7a0c7-beea-4a21-ad4f-416148f64597?mode=deep",
+    "timestamp": "2026-02-18 23:16:01.636036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Missing AdminCap Validation] The run() function accepts any AdminCap reference without verifying its authenticity or origin. If multiple AdminCap objects exist (e.g., from upgrade bugs or initialization errors), can an attacker use a fake or duplicated AdminCap to change the oracle queue? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f58d943-1c1f-4a78-b8cf-3f748878c52e?mode=deep",
+    "timestamp": "2026-02-18 23:16:24.904686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [No Capability Revocation] The run() function has no mechanism to revoke or blacklist compromised AdminCap objects. If an AdminCap is known to be compromised, can the attacker continue using it indefinitely to manipulate oracle queues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3ec2bb29-716f-4a36-b74c-90006f2aed58?mode=deep",
+    "timestamp": "2026-02-18 23:16:47.743169",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Malicious Queue Injection] The actuate() function directly sets state.oracle_queue to any provided ID without validation. Can an attacker with AdminCap set oracle_queue_id to a queue they control, returning manipulated prices (e.g., inflated asset values) to drain Volo vault through favorable borrows or withdrawals? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3a86fce5-b510-4bc5-9742-a68f90bdc719?mode=deep",
+    "timestamp": "2026-02-18 23:17:09.101863",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Price Feed Manipulation] The actuate() function allows changing the oracle queue that provides price feeds for all Volo vault operations. Can an attacker switch to a low-quality oracle queue with fewer oracles or lower security, enabling price manipulation attacks during the window when the vault uses the compromised feed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e49b42d-46b0-4fb2-9ef1-310a3f1ed765?mode=deep",
+    "timestamp": "2026-02-18 23:17:32.379442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Non-Existent Queue DoS] The actuate() function accepts any ID including non-existent objects. Can an attacker set oracle_queue_id to a non-existent object ID, causing all subsequent oracle price queries to abort and DoS all vault deposit/withdrawal/operation functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52d47002-f92e-4070-a536-fa49827b7e3b?mode=deep",
+    "timestamp": "2026-02-18 23:17:56.382142",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Wrong Object Type] The actuate() function does not enforce that oracle_queue_id points to an OracleQueue object. Can an attacker set it to a different object type (e.g., a GuardianQueue, State object, or user account), causing type errors and runtime aborts in all oracle operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_55127b38-b8a1-4883-9853-71fd7046e695?mode=deep",
+    "timestamp": "2026-02-18 23:18:19.349516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Stale Queue Attack] The actuate() function allows switching to any oracle queue regardless of its update frequency or data freshness. Can an attacker switch to a queue with infrequent updates or stale data, enabling arbitrage attacks when vault operations use outdated prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4438995f-d1c1-4d1d-b53b-9302fdfe524f?mode=deep",
+    "timestamp": "2026-02-18 23:18:42.589002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Cross-Network Queue] The actuate() function does not verify that the oracle queue is on the same network (mainnet/testnet). Can an attacker set a testnet oracle queue ID on mainnet State, causing price queries to fail or return test data? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_67baed51-85b6-45bc-9f76-1e501a7b7c15?mode=deep",
+    "timestamp": "2026-02-18 23:19:06.348923",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Deleted Queue Persistence] The actuate() function allows setting oracle_queue_id to a deleted object's ID. Can an attacker reference a recently deleted oracle queue, causing all price queries to fail once the object is fully garbage collected? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7dd47fce-3f46-43b4-b5f8-579144801dcd?mode=deep",
+    "timestamp": "2026-02-18 23:19:29.078154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Atomic State Inconsistency] The actuate() function emits an event after calling on_demand::set_oracle_queue_id(). If the event emission fails or is reverted, can the State object be left in an inconsistent state where oracle_queue is changed but no event was recorded? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b65589b-1044-4d12-a8ad-c88f8712e141?mode=deep",
+    "timestamp": "2026-02-18 23:19:52.393336",
+    "report_generated": false
+  }
+]
