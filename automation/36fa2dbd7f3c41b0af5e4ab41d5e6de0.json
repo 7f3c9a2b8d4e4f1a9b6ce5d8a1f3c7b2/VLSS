@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: add_switchboard_aggregator()] [Malicious Aggregator] Can admin add a malicious switchboard aggregator that returns manipulated prices to drain vault? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2a7d19d4-e85d-44ee-8f1f-f160199fe8ae?mode=deep",
+    "timestamp": "2026-02-18 22:16:28.127692",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: add_switchboard_aggregator()] [Type Confusion] Can asset_type String contain special characters or very long strings that break oracle lookups? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0defd356-188f-4a70-8150-063e861553ce?mode=deep",
+    "timestamp": "2026-02-18 22:16:41.066632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: add_switchboard_aggregator()] [Aggregator Validation] Does add_switchboard_aggregator() validate that aggregator is active and returning prices before adding? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e8096fe-3500-4fea-8a80-ec01e36a44c0?mode=deep",
+    "timestamp": "2026-02-18 22:16:55.347000",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: add_switchboard_aggregator()] [Clock Staleness] Does add_switchboard_aggregator() use clock parameter to check aggregator staleness? Can stale aggregator be added? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be9af64a-b345-488d-beae-c5b5b6404f5c?mode=deep",
+    "timestamp": "2026-02-18 22:17:09.809872",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: remove_switchboard_aggregator()] [Remove Active Asset] Can remove_switchboard_aggregator() be called for asset_type that vault currently holds, causing subsequent operations to fail? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eddcb536-393b-4093-87f6-ff3f9ca2fe27?mode=deep",
+    "timestamp": "2026-02-18 22:17:25.229212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: remove_switchboard_aggregator()] [In-Operation Removal] If remove_switchboard_aggregator() is called during active operation, can this break mid-operation price checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98109d5d-f2fc-45c5-acbb-6f55ad2ec421?mode=deep",
+    "timestamp": "2026-02-18 22:17:42.407286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: remove_switchboard_aggregator()] [Non-existent Asset] What happens if remove_switchboard_aggregator() is called for asset_type that doesn't exist? DoS or silent success? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5064bd7-a58f-438c-bff7-9531b7222e76?mode=deep",
+    "timestamp": "2026-02-18 22:17:59.384319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: remove_switchboard_aggregator()] [Oracle DoS] Can admin remove all aggregators to DoS vault operations requiring price feeds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0bb58315-8947-4cb7-b831-df3307d7759b?mode=deep",
+    "timestamp": "2026-02-18 22:18:18.490914",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: change_switchboard_aggregator()] [Price Jump] Can change_switchboard_aggregator() cause sudden price jump between old and new aggregator, exploitable for sandwich attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8439f06d-1135-4430-848f-cfcb8eaa5ece?mode=deep",
+    "timestamp": "2026-02-18 22:18:39.308411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: change_switchboard_aggregator()] [Mid-Operation Change] If aggregator is changed during active operation, which price feed is used for end_op() valuation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a8cfe4bf-f3b0-4170-ab0e-0a9e438da490?mode=deep",
+    "timestamp": "2026-02-18 22:19:01.806020",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: change_switchboard_aggregator()] [Decimals Change] Can change_switchboard_aggregator() change to aggregator with different decimals without updating decimals field? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_31a29495-4c1e-4a68-bdda-e0769c45f0e2?mode=deep",
+    "timestamp": "2026-02-18 22:19:24.826911",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: change_switchboard_aggregator()] [Atomicity] Is aggregator change atomic with respect to operations using it? Can race condition cause mixed old/new prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_758e31c4-1702-410d-9d6d-01bb803f0564?mode=deep",
+    "timestamp": "2026-02-18 22:19:48.066102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_update_interval()] [Zero Interval] Can set_update_interval(0) disable staleness checks entirely, allowing infinitely stale prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_698449fa-2c9c-4f32-aea1-6c56484db1e0?mode=deep",
+    "timestamp": "2026-02-18 22:20:12.830701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_update_interval()] [Too Large Interval] Can setting update_interval to u64::MAX make all prices permanently stale? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2709987e-0679-47f6-bb91-0ea082eec2dc?mode=deep",
+    "timestamp": "2026-02-18 22:20:37.411934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_update_interval()] [Retroactive Interval] Does changing update_interval retroactively validate existing cached prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3c32302d-3719-48c0-96f2-26664ed92e9c?mode=deep",
+    "timestamp": "2026-02-18 22:21:01.290574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_update_interval()] [Operation Impact] Can attacker front-run operation by having admin set update_interval very high to accept stale prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a151688-d884-443d-8f0e-f6de64c88ee8?mode=deep",
+    "timestamp": "2026-02-18 22:21:24.348939",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_dex_slippage()] [Excessive Slippage] Can set_dex_slippage() be set to 100% or higher, allowing adaptors to accept any price for DEX swaps? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3a6759a7-a162-4c99-b95d-ffa0cb144793?mode=deep",
+    "timestamp": "2026-02-18 22:21:46.972023",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_dex_slippage()] [Zero Slippage] Can set_dex_slippage(0) brick all DEX operations that need minimum slippage tolerance? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d1e8f95-666d-4c87-82f6-957397e76b76?mode=deep",
+    "timestamp": "2026-02-18 22:22:10.558294",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_dex_slippage()] [Slippage Manipulation] Can admin time set_dex_slippage() calls to enable favorable DEX trades for specific operator transactions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1be67d41-120e-47af-b992-c4de8d12b461?mode=deep",
+    "timestamp": "2026-02-18 22:22:34.889346",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_dex_slippage()] [Type Confusion] Is dex_slippage a u64 or u256? Can overflow occur in slippage calculations with large values? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_083a765d-a0cc-4f90-abaf-931a786564ef?mode=deep",
+    "timestamp": "2026-02-18 22:22:58.466999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: retrieve_deposit_withdraw_fee()] [Drain Attack] Can admin call retrieve_deposit_withdraw_fee() for entire fee balance during active operation, affecting vault value calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29a64bb2-f8cb-40da-ac45-d38ee84a8528?mode=deep",
+    "timestamp": "2026-02-18 22:23:23.465610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: retrieve_deposit_withdraw_fee()] [Amount Validation] Does retrieve_deposit_withdraw_fee() validate that amount doesn't exceed deposit_withdraw_fee_collected balance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_58c7e659-e184-4eb7-8c9f-a9c07e130014?mode=deep",
+    "timestamp": "2026-02-18 22:23:49.300122",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: retrieve_deposit_withdraw_fee()] [Zero Amount] Can retrieve_deposit_withdraw_fee(0) be called to emit events without actual transfer? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e53a63d-1241-45f5-b740-c56b7fc3a84d?mode=deep",
+    "timestamp": "2026-02-18 22:24:16.487994",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: retrieve_deposit_withdraw_fee()] [Balance Underflow] If amount > deposit_withdraw_fee_collected, can this cause balance underflow or abort? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_93bd087e-8f71-47b9-a6a1-d85501cd5103?mode=deep",
+    "timestamp": "2026-02-18 22:24:43.474046",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: retrieve_deposit_withdraw_fee()] [Concurrent Retrieval] Can admin and operator both call retrieve functions simultaneously to drain more than available fees? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5893599f-6ef0-4abc-aab5-d8b6fabc9192?mode=deep",
+    "timestamp": "2026-02-18 22:25:10.355291",
+    "report_generated": false
+  }
+]
