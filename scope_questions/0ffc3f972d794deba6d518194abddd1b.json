@@ -1,0 +1,127 @@
+[
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/config.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_a0ec4af9-d5ad-483a-8794-78d0e6c1ba98?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_4b8f2ee9-ad64-4b47-8d2a-547c96780cd4?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_508c027f-0662-408e-a1f7-1fd72747c20a?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/oracle.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_83be3c34-291b-4384-92d0-b839a0def085?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_211d2bfc-6b39-4786-9c9f-f7df74fe9717?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/utils/sources/utils.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_04637a59-a1e1-4818-8b3c-ce276a9b41fb?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/math/sources/ray_math.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_520988e6-9f80-4b0a-8a47-4e69972abc46?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/protocol/math/sources/safe_math.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_99fa59a2-8d5f-40da-a4cc-1f3c42456b6c?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_08c247d5-edb2-4fcd-a6ab-b17123e3fda6?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_9b84c025-6569-472f-8c67-c6a13927befe?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/suilend_d/suilend/sources/liquidity_mining.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_101c47fd-c216-46fa-920e-5d91cd22affb?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_01a3c54c-0899-4494-a082-9b8a30aa9d49?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_b692b058-6e66-411a-b537-dd05c9ec5f7e?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_631c1fe8-e16e-494a-8525-85bf7013c288?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/suilend_d/suilend/sources/rate_limiter.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_13604cbb-f312-40f3-8e98-42f1887f2339?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_e91c6c0f-840c-4757-8d56-d501722a9880?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/suilend_d/suilend/sources/cell.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_2ce89455-7086-4af0-9030-2c1eb59910ff?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_5507fcd4-f7ea-4b54-a4fc-fbaa874de592?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_3ab03734-f562-4773-b181-d631012d8ded?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_f224bbcb-06ed-47d9-b0a6-3fb57a222e10?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "volo-vault/local_dependencies/suilend_d/suilend/sources/suilend.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_41159f1c-2feb-49e9-a636-b32840e4854b?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "liquid_staking/sources/stake_pool.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_648fb765-d90e-4edc-b824-4a3578c74a6a?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "liquid_staking/sources/manage.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_df171bcc-858a-4a64-87e0-7e6ff8af5a44?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "liquid_staking/sources/fee_config.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_b9513220-8ab6-4583-89d2-2ebcbe72cee4?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "liquid_staking/sources/volo_v1/native_pool.move",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_209af3cd-d376-448b-b0c8-e204d413583b?mode=deep",
+    "questions_generated": false
+  }
+]
