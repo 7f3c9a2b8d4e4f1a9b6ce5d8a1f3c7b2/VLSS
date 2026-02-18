@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: validate()] [Staleness Attack] Line 47 only checks max_staleness_seconds > 0, so can an attacker set it to 1 second, causing all oracle updates older than 1 second to be rejected in valid_update_indices at aggregator.move line 574, resulting in constant 'no valid updates' failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e1c3c42a-cf82-4bd9-88ce-21a3e9fe8787?mode=deep",
+    "timestamp": "2026-02-18 21:04:32.916643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: validate()] [Price Manipulation] Can an attacker set max_staleness_seconds to MAX_U64 (effectively infinite), allowing the aggregator to accept oracle data from months or years ago, enabling attacks where manipulated historical prices are used for current vault valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_629f201b-7a12-4347-a69f-f213108fe75d?mode=deep",
+    "timestamp": "2026-02-18 21:04:46.025967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: actuate()] [Staleness Conversion] When max_staleness_seconds is multiplied by 1000 to convert to milliseconds at aggregator.move line 341, can setting max_staleness_seconds close to MAX_U64/1000 cause overflow in the multiplication, wrapping to a very small staleness window? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_beec8f89-0372-49a0-ae88-e0a5a0111293?mode=deep",
+    "timestamp": "2026-02-18 21:05:00.672837",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: validate()] [Staleness Bypass] If max_staleness_seconds is set to 1 and then immediately increased to 1000000, can an attacker exploit the window where legitimate updates were rejected to force the vault to rely on their manipulated price feed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c69d75bb-e3a5-4231-9c4e-317b165449d4?mode=deep",
+    "timestamp": "2026-02-18 21:05:14.241934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: run()] [Clock Manipulation] Since valid_update_indices compares (timestamp_ms + max_staleness_ms) < now_ms, can an attacker set max_staleness_seconds to 0 (fails at line 47) but what if they set it to 1, effectively making now_ms checks always exclude valid recent updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b23f790-d91c-4716-8713-5cfc6354127e?mode=deep",
+    "timestamp": "2026-02-18 21:05:30.303850",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: run()] [TOCTOU] Between validate() reading aggregator state at line 86-93 and actuate() modifying it at line 95-102, can a concurrent transaction call add_result() changing current_result, causing config updates to apply to a different aggregator state than was validated? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ba2890c9-4a5a-41aa-b107-c97326da5325?mode=deep",
+    "timestamp": "2026-02-18 21:05:48.615800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: run()] [Race Condition] Can two authority transactions call run() simultaneously on the same shared aggregator, both passing validate() with version=1, but the second transaction's actuate() applies configs assuming a state that was already modified by the first transaction? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_07ca8882-6dee-4bdf-be3c-832f5afdce3a?mode=deep",
+    "timestamp": "2026-02-18 21:06:06.855813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: actuate()] [State Mutation] Since actuate() is not public entry and can only be called by run(), does this prevent reentrancy, or can a malicious module in the same package call actuate() directly after validate() but before run() completes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98bf1ef5-8cd6-4f83-a1b0-9f98ec66503a?mode=deep",
+    "timestamp": "2026-02-18 21:06:26.630297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: run()] [Atomicity] Is the validate-then-actuate pattern atomic in Sui's execution model? Can a transaction abort after validate() succeeds but before actuate() completes, leaving the aggregator in a partially validated state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7212179e-d8ca-4c67-82f6-ea0daa7d047d?mode=deep",
+    "timestamp": "2026-02-18 21:06:47.668223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: actuate()] [Event Suppression] If event::emit at line 66 fails silently or is ignored, can config changes at line 58 occur without any on-chain event record, allowing authority to secretly manipulate aggregator configs without detection? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ad7d3e4-78ff-4ca2-9108-9873cd3271ec?mode=deep",
+    "timestamp": "2026-02-18 21:07:09.780071",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: actuate()] [Event Ordering] Can an attacker front-run legitimate config updates, causing AggregatorConfigsUpdated events to be emitted out of order, confusing off-chain systems that track config changes chronologically? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c7b1d024-1536-4907-8624-f3ee8cebf368?mode=deep",
+    "timestamp": "2026-02-18 21:07:34.080207",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: actuate()] [Event Data Integrity] The event at lines 66-73 includes the new config values - if set_configs at line 58 partially fails but event still emits, can the event show config values that were never actually applied to the aggregator? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_938a21cd-0af9-4ae6-a43a-42b0c9dca60c?mode=deep",
+    "timestamp": "2026-02-18 21:07:58.714839",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: actuate()] [Event Replay] Can an attacker observe historical AggregatorConfigsUpdated events and replay the transaction with the same parameters, causing unnecessary config changes that revert important security updates? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b9a89fd-0790-424b-93a0-460d6a0ed51a?mode=deep",
+    "timestamp": "2026-02-18 21:08:23.563944",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: run()] [Deletion Race] Can an attacker call aggregator_delete_action concurrently with run(), causing set_configs at line 58 to be applied to an aggregator that's being deleted, potentially corrupting deletion cleanup or causing undefined behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3be26519-f3c3-40e7-8ed4-e86259e51883?mode=deep",
+    "timestamp": "2026-02-18 21:08:47.415038",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: validate()] [Authority Race] If aggregator_set_authority_action is called between has_authority check at line 42 and set_configs at line 58, can the new authority's config update be rejected even though they should have permission? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_adbcb1d6-c26a-4ded-9ecf-34110377ab51?mode=deep",
+    "timestamp": "2026-02-18 21:09:07.735493",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: run()] [Result Pollution] If add_result() is called with malicious oracle data during the run() execution, can the new configs validate that malicious data retroactively by changing min_sample_size or max_variance to accept the bad results? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a6f23f0-385f-4ea8-b4d7-6c597de276e3?mode=deep",
+    "timestamp": "2026-02-18 21:09:29.485950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: run()] [Queue Mismatch] Since validate() doesn't check if the feed_hash matches the aggregator's queue, can an attacker set configs for a feed_hash that belongs to a different queue, causing oracle routing errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be5f5e49-a842-4925-86a1-c7aba3b9640f?mode=deep",
+    "timestamp": "2026-02-18 21:09:50.267276",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: validate()] [Integer Overflow] When max_staleness_seconds is converted to milliseconds via multiplication by 1000 in valid_update_indices, can setting max_staleness_seconds > MAX_U64/1000 cause silent overflow resulting in a tiny staleness window instead of intended large one? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4ff94e6-2428-40d6-9b8d-28dcaabb7527?mode=deep",
+    "timestamp": "2026-02-18 21:10:09.337196",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: validate()] [Type Limits] Since min_responses is u32 but compared against u64 lengths in compute_current_result, can setting min_responses = MAX_U32 = 4294967295 create inconsistencies with min_sample_size which uses u64 range? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4960ad11-9984-4a5b-bf5e-be11af66ebd7?mode=deep",
+    "timestamp": "2026-02-18 21:10:24.732601",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: actuate()] [Numeric Bounds] Can max_variance be set to values that cause arithmetic overflow in variance computation at aggregator.move line 395 where m2/(count-1) could overflow u256? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8710c80-107f-4334-abf2-6f318187da4c?mode=deep",
+    "timestamp": "2026-02-18 21:10:43.188506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: run()] [Manipulation Setup] Can an attacker with authority: 1) set min_sample_size=1 and min_responses=1 via run(), 2) collude with one oracle to submit manipulated price, 3) use that price in Volo Vault operations before legitimate oracles can update? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aaa8338b-a566-4f7e-a32d-820736f6ff44?mode=deep",
+    "timestamp": "2026-02-18 21:11:03.013840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: run()] [Price Freeze Attack] Can an attacker: 1) set max_staleness_seconds=1 via run(), 2) DoS oracle update transactions to prevent any updates, 3) force Volo Vault to use increasingly stale current_result until operations fail or revert to outdated prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_17bcb09b-cb0c-43ca-9090-24d574d3bb4e?mode=deep",
+    "timestamp": "2026-02-18 21:11:23.601449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: run()] [Variance Manipulation] Can an attacker: 1) set max_variance=MAX_U64 via run(), 2) submit fake oracle updates with extreme variance, 3) cause compute_current_result to accept manipulated mean/stdev that misrepresent actual consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f502b32f-45ea-4bb1-a5ed-d96e0bf9dd08?mode=deep",
+    "timestamp": "2026-02-18 21:11:45.972564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: run()] [Feed Swap Attack] Can an attacker: 1) create two aggregators with different feeds (SUI/USD and attacker-controlled feed), 2) swap feed_hash on the production aggregator to point to their feed, 3) control vault price oracle without anyone noticing until vault operations execute? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b0e95dd3-dbe6-470f-b575-401ae27cdcbb?mode=deep",
+    "timestamp": "2026-02-18 21:12:08.830412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_configs_action.move] [Function: run()] [Vault Oracle DoS] If this aggregator is used by Volo Vault's oracle price config and authority sets min_sample_size higher than available oracle count, does the vault's get_price() fail, blocking all deposits/withdrawals/operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02bd982f-74ee-42fe-b48a-6679ea9b634e?mode=deep",
+    "timestamp": "2026-02-18 21:12:31.907378",
+    "report_generated": false
+  }
+]
