@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Oracle DoS] Can get_normalized_asset_price at lines 59-63 revert or timeout, causing get_receipt_value to fail and block all receipt valuations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9eb0e997-b444-4668-b743-1393021a4476?mode=deep",
+    "timestamp": "2026-02-18 22:32:34.975787",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: update_receipt_value()] [Adaptor Consistency] Are other adaptors (Navi, Cetus, Suilend, Momentum) implemented consistently with receipt_adaptor, or can differences be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b7576034-5b8f-43c6-934f-5600b406e2a7?mode=deep",
+    "timestamp": "2026-02-18 22:32:47.695024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: update_receipt_value()] [Module Dependencies] If vault_oracle, vault_utils, or receipt modules have bugs, how does it affect receipt_adaptor security? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9120dcf9-57b8-4682-acb9-665e1eebc0ff?mode=deep",
+    "timestamp": "2026-02-18 22:33:01.179974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Oracle Config Mismatch] If the OracleConfig passed at line 19 doesn't match receipt_vault's actual oracle config, can this cause valuation discrepancies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d931d967-6f36-4464-b38b-71c96b36c9ea?mode=deep",
+    "timestamp": "2026-02-18 22:33:14.962356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Zero Share Ratio] If get_share_ratio at line 49 returns zero (total shares is zero), does mul_d at line 65 handle it correctly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5f90d363-d1b9-419d-9f9a-416bbe579845?mode=deep",
+    "timestamp": "2026-02-18 22:33:29.946629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Zero Price] If principal_price from get_normalized_asset_price at lines 59-63 is zero, does mul_with_oracle_price at lines 66-69 and 70-73 return zero correctly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4faa7208-bc73-4670-a78b-ac433183b480?mode=deep",
+    "timestamp": "2026-02-18 22:33:46.229995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Maximum Values] If all value components (shares, pending_deposit, claimable_principal) are at maximum, can the summation at line 75 overflow u256? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e782c1f3-8eef-49de-9324-1edaa5b0b1ba?mode=deep",
+    "timestamp": "2026-02-18 22:34:04.501267",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [All Zero Values] If shares, pending_deposit_balance, and claimable_principal are all zero, does get_receipt_value correctly return zero? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f914dc14-7e75-48c3-8dd0-45b014bb0a80?mode=deep",
+    "timestamp": "2026-02-18 22:34:23.487459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: update_receipt_value()] [First Update] On the first call to update_receipt_value for a new receipt asset, can uninitialized state cause issues in finish_update_asset_value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_acfe280d-1500-4a9a-bf8b-152fe72567f5?mode=deep",
+    "timestamp": "2026-02-18 22:34:43.996625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: update_receipt_value()] [Timestamp Ordering] If clock.timestamp_ms() at line 35 is less than the previous update timestamp, can it corrupt value freshness tracking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3178de76-0195-4608-878a-35a7a1c6bbc1?mode=deep",
+    "timestamp": "2026-02-18 22:35:05.448739",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Clock Consistency] If different Clock objects are passed to update_receipt_value and get_receipt_value, can timestamp inconsistencies cause issues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_59600a3f-e673-4f15-9ed2-0de727b0ddb6?mode=deep",
+    "timestamp": "2026-02-18 22:35:28.000573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Share Ratio Attack] Can an attacker manipulate the vault's total_shares or total_usd_value before get_share_ratio at line 49 to inflate share_ratio and increase receipt value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6bc55aca-409e-4182-be36-7d9e6b062498?mode=deep",
+    "timestamp": "2026-02-18 22:35:52.584967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Share Ratio Staleness] If get_share_ratio at line 49 uses stale asset values, can outdated share_ratio cause incorrect receipt valuations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3ba4efa6-b8b2-4730-b4fa-a3802b53838f?mode=deep",
+    "timestamp": "2026-02-18 22:36:18.058612",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Share Ratio Zero Division] If total_shares in the vault is zero when get_share_ratio is called at line 49, does it revert or return a default value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d57c202d-2040-4ba3-82a9-58b4229703bf?mode=deep",
+    "timestamp": "2026-02-18 22:36:44.099794",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Pending Deposit Inflation] Can an attacker artificially inflate pending_deposit_balance at line 67 to increase receipt value without actually depositing assets? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e1f1535d-e1dd-49d7-93aa-c2bbe9d15feb?mode=deep",
+    "timestamp": "2026-02-18 22:37:11.448867",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Claimable Principal Manipulation] Can an attacker manipulate claimable_principal at line 71 to increase receipt value without legitimate claims? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4d3e081b-7871-4d79-80c2-7b6bc2aaaf27?mode=deep",
+    "timestamp": "2026-02-18 22:37:38.280626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Component Imbalance] If pending_deposit_value is very large but shares is zero, can this create an imbalanced valuation that's exploitable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_30ad8825-9d22-4299-929d-83fc3627ab15?mode=deep",
+    "timestamp": "2026-02-18 22:38:04.895653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Oracle Decimals] Does get_normalized_asset_price at lines 59-63 guarantee 1e18 decimals, or can incorrect decimals cause mul_with_oracle_price to compute wrong values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_931e7805-b88b-4aef-86d8-beb5424347b9?mode=deep",
+    "timestamp": "2026-02-18 22:38:30.400747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Oracle Type Safety] Can type_name::get<T>().into_string() at line 62 produce unexpected strings that don't match oracle config entries? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f1d1e1ba-3de9-4bdd-b43d-6dde19717f3b?mode=deep",
+    "timestamp": "2026-02-18 22:38:55.002802",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Missing Oracle Price] If get_normalized_asset_price at lines 59-63 fails to find a price for type T, does it abort or return zero? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_70f6decd-7960-4fa8-bb58-3fef73d6c112?mode=deep",
+    "timestamp": "2026-02-18 22:39:19.922695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: update_receipt_value()] [Oracle Config Manipulation] Can an attacker pass a malicious OracleConfig at line 19 that hasn't been validated by the vault system? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50cc8017-2e72-4d23-a426-91ea7b54692a?mode=deep",
+    "timestamp": "2026-02-18 22:39:45.586001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [mul_d Precision] Does mul_d at line 65 correctly handle the 1e9 decimals for share_ratio, or can precision loss cause value leakage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_55024203-b404-4cc7-a8b2-c89216161236?mode=deep",
+    "timestamp": "2026-02-18 22:40:11.691864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [mul_with_oracle_price Overflow] Can mul_with_oracle_price at lines 66-69 overflow when multiplying large balances with high prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e0e52c8-71ef-425a-980a-a3d4d0be50d1?mode=deep",
+    "timestamp": "2026-02-18 22:40:36.373637",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Decimal Mismatch] The mix of mul_d (1e9) at line 65 and mul_with_oracle_price (1e18) at lines 66-73 - can decimal inconsistency cause summation errors at line 75? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e15f260-eb98-484a-b20b-cb332dba4c19?mode=deep",
+    "timestamp": "2026-02-18 22:41:00.898876",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: update_receipt_value()] [Value Update Bypass] Can finish_update_asset_value at line 35 be bypassed or fail silently, causing asset values to become stale? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c1f1f5a6-9fb8-4a46-bf3e-19cd890015db?mode=deep",
+    "timestamp": "2026-02-18 22:41:24.410745",
+    "report_generated": false
+  }
+]
