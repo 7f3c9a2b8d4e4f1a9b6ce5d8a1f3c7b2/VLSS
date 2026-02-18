@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Integration: storage::get_user_balance()] [Storage Module Reentrancy] If storage module allows reentrancy and get_user_balance() triggers interest accrual with callbacks, could attacker reenter through this getter to manipulate state mid-query? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5dadd43-7d3b-40bc-89d9-59b9f857002e?mode=deep",
+    "timestamp": "2026-02-18 22:39:40.910379",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Integration: storage::get_reserves_count()] [Dynamic Reserve Addition] If reserves can be added/removed while get_reserve_data() executes, could iterator skip new reserves or access deleted ones causing incomplete data or panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_185b057a-5219-4754-86e7-e43d79b5bda8?mode=deep",
+    "timestamp": "2026-02-18 22:39:54.069795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Integration: storage::get_current_rate()] [Rate Staleness] If storage doesn't auto-update rates before returning them, could callers get outdated rates that don't reflect current utilization, enabling rate arbitrage strategies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a070ac3e-0bcb-4eb0-9aa5-a602d01297c4?mode=deep",
+    "timestamp": "2026-02-18 22:40:07.464032",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Integration: storage::get_index()] [Index Update Timing] If indices are updated asynchronously and getter returns stale values, could there be temporal window where user balances don't reflect accrued interest, allowing interest-free borrowing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63c936dc-dc0e-4057-9ee0-2cb29817ab35?mode=deep",
+    "timestamp": "2026-02-18 22:40:22.708221",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Integration: storage::get_total_supply()] [Supply Accounting] If total_supply includes pending deposits not yet processed, could double-counting occur when users query state and simultaneously process deposits in same transaction? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a24def45-4f93-4d81-a1f6-e3894f9f8297?mode=deep",
+    "timestamp": "2026-02-18 22:40:38.214851",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Integration: storage::get_liquidation_factors()] [Factor Update Race] If liquidation factors can be updated by governance while getter executes, could returned values be inconsistent (old ratio with new bonus) breaking liquidation math? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c2a86be-be76-4443-93a5-1c0b646d96f8?mode=deep",
+    "timestamp": "2026-02-18 22:40:54.526063",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Integration: Multiple Storage Calls] [Consistency Guarantee] Function makes 15+ separate storage calls for reserve data - are these atomic? Could storage state change between calls returning inconsistent reserve snapshot? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3349f6e-e2e7-4e5a-86cd-15db2a5e3a59?mode=deep",
+    "timestamp": "2026-02-18 22:41:12.116375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Integration: Clock Parameter] [Clock Validation] Functions accept Clock reference but don't validate it - could malicious contracts pass fake Clock objects with manipulated timestamps to get incorrect oracle prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5493193f-1eca-4c49-beb9-1b6274c0383c?mode=deep",
+    "timestamp": "2026-02-18 22:41:31.750792",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Integration: PriceOracle Parameter] [Oracle Validation] get_oracle_info() accepts PriceOracle reference without validation - could attackers pass malicious oracle objects returning fake prices to poison off-chain systems? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52f9a614-cd10-48b3-b011-7c2f99be18c0?mode=deep",
+    "timestamp": "2026-02-18 22:41:52.515226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Vault Integration: Price Oracle] If Volo Vault uses get_oracle_info() for adaptor pricing and valid flag is ignored, could vault proceed with operations using invalid prices leading to catastrophic losses in Navi/Suilend/Cetus positions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db45467a-55d0-4a0e-9e7f-2f13935057e2?mode=deep",
+    "timestamp": "2026-02-18 22:42:15.073489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Vault Integration: User Balance] If vault adaptors query user state to check borrow capacity and indices are stale, could vault over-leverage Navi positions exceeding health factor limits causing unexpected liquidations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8edee71e-7951-4610-9407-8e819364b7f3?mode=deep",
+    "timestamp": "2026-02-18 22:42:38.834695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Vault Integration: Reserve Data] If vault uses get_reserve_data() to determine deposit caps but data is stale, could vault attempt deposits exceeding actual caps causing transaction failures and DoS during operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8d02ec8-e967-42a0-9eca-75c41999afce?mode=deep",
+    "timestamp": "2026-02-18 22:43:02.613250",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Vault Integration: LTV Values] If vault calculates maximum borrowing using LTV from getter but actual storage has different values, could health limiter checks fail causing vault operations to revert or violate safety invariants? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_913281e9-eb47-47d6-8f6b-17dfaed88884?mode=deep",
+    "timestamp": "2026-02-18 22:43:26.442446",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Vault Integration: Interest Rates] If vault projects APY using rates from getter but rates change before operation execution, could vault lock funds at worse rates than expected violating loss tolerance parameters? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9822c7d-536c-4f73-9f25-39514613fcef?mode=deep",
+    "timestamp": "2026-02-18 22:43:50.788316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Vault Integration: Oracle Decimals] If vault assumes fixed decimals (e.g., 1e9) but oracle returns different decimals per asset, could vault USD value calculations be off by orders of magnitude causing incorrect share minting/burning? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b03c8e5-d00b-4070-b36c-1b8b0b8185d9?mode=deep",
+    "timestamp": "2026-02-18 22:44:16.331109",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Vault Integration: Treasury Balance] If vault tracks protocol revenue using treasury_balance but this includes pending not-yet-withdrawn fees, could vault double-count revenue in total value calculations inflating share prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_faa59f36-68f5-4ac5-bc6a-f0e2247d9613?mode=deep",
+    "timestamp": "2026-02-18 22:44:39.617838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Vault Integration: Liquidation Threshold] If vault health limiter uses liquidation_threshold from getter for Navi positions but Navi has updated thresholds, could mismatch cause vault to exceed safe leverage ratios? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e1f557cf-fdaf-41a0-89b6-74ca28884e6f?mode=deep",
+    "timestamp": "2026-02-18 22:45:02.824986",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Vault Integration: Borrow Index] If vault calculates debt amounts using borrow_index but doesn't account for index growth during multi-step operations, could vault underestimate debt and violate health factor requirements? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4b9d491-0b81-49e6-82dc-6dccda3a2a69?mode=deep",
+    "timestamp": "2026-02-18 22:45:25.650198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Vault Integration: Reserve Count] If vault iterates reserves using get_reserves_count() but count changes mid-operation due to new reserve additions, could vault miss processing some reserves in rebalancing operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b159931-e4f1-4735-8f38-bba82641aa03?mode=deep",
+    "timestamp": "2026-02-18 22:45:53.741786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Edge Case: Empty Protocol] If protocol has zero reserves configured, all getter functions return empty vectors - could vault operations panic or proceed with invalid assumptions when no reserve data is available? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_626a908a-856f-4003-b361-cf477c3edc2c?mode=deep",
+    "timestamp": "2026-02-18 22:46:18.229512",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Edge Case: Maximum Reserves] If protocol has 255 reserves (u8 max), could asset_id arithmetic wrap to 0 causing ID collision or infinite loop when processing reserve 255? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_217db100-a55d-4d1e-96d3-fd0bd0034525?mode=deep",
+    "timestamp": "2026-02-18 22:46:44.828222",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Edge Case: Zero Oracle Price] If oracle returns price=0 for an asset (delisted or broken feed), could vault value calculations divide by zero or treat asset as worthless enabling theft of collateral? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2146a90a-b57f-4377-856c-7e2a8ab3cd5c?mode=deep",
+    "timestamp": "2026-02-18 22:47:11.056002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Edge Case: MAX_U256 Values] If any storage getter returns u256::MAX (indicating error or uninitialized state), could arithmetic operations overflow immediately or cause all subsequent calculations to fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86013c8f-cbae-451f-83f6-cb78b75efa6f?mode=deep",
+    "timestamp": "2026-02-18 22:47:34.588079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Edge Case: User With No Positions] If get_user_state() is called for address with no positions, still returns entries with zero balances - could this cause off-chain systems to misinterpret user as having stale positions rather than no positions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ffccce5-85b3-4cb3-8239-8748fb2c07c1?mode=deep",
+    "timestamp": "2026-02-18 22:48:00.528308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Edge Case: Newly Added Reserve] If reserve is added but not fully initialized, could get_reserve_data() return partially valid data with zero/default values causing vault to attempt operations on unusable reserve? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dddbfbe1-76b6-40d2-832e-60a4ae305377?mode=deep",
+    "timestamp": "2026-02-18 22:48:27.147716",
+    "report_generated": false
+  }
+]
