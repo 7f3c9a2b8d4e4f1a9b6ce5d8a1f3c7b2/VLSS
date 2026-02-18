@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_supra_oracle_provider_config()] [Pair ID Conversion] Does adaptor_supra::pair_id_to_vector() properly convert u32 pair_id to vector<u8>, or can overflow/truncation cause wrong Supra feeds to be referenced? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fbb88921-3426-4428-8626-5ed7d0674d03?mode=deep",
+    "timestamp": "2026-02-18 23:31:59.389944",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_supra_oracle_provider_config()] [Duplicate Supra] Can both Pyth and Supra configs be created for the same feed_id, and if so, which takes precedence if both are enabled as primary? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_45d6401c-9325-4dd7-b4ed-2bfdd0ee95fa?mode=deep",
+    "timestamp": "2026-02-18 23:32:12.419459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_pyth_price_oracle_provider_pair_id()] [Pair ID Switch] Can pair_id be changed while the provider is actively serving as primary, causing price lookups to fail or return wrong asset prices mid-operation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0688d0cf-ddc6-42df-aa1b-c779e0535562?mode=deep",
+    "timestamp": "2026-02-18 23:32:25.887240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_supra_price_source_pair_id()] [Invalid Vector] Can set_supra_price_source_pair_id() be called with a pair_id vector that's empty or has wrong length, bypassing the u32 conversion and causing Supra lookups to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7579a013-72c5-4f83-8308-f52f5ea488b4?mode=deep",
+    "timestamp": "2026-02-18 23:32:40.833429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: enable_pyth_oracle_provider()] [No Config Check] Can enable_pyth_oracle_provider() be called before create_pyth_oracle_provider_config(), causing config::set_oracle_provider_config_enable() to fail or create inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5d973724-ce92-4d5b-ab78-e8e1295cb6f0?mode=deep",
+    "timestamp": "2026-02-18 23:32:55.770412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: disable_pyth_oracle_provider()] [Primary Disable] Can disable_pyth_oracle_provider() successfully disable a provider that's currently set as primary, breaking price feed functionality without proper fallback? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_505486d7-eeea-409b-8bee-17b109bb765b?mode=deep",
+    "timestamp": "2026-02-18 23:33:12.358042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: disable_supra_oracle_provider()] [Disable All] Can an attacker disable both Pyth and Supra providers leaving no valid price sources, causing permanent DoS for that feed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0a0ef6d-e8e6-4cd3-acb9-04ff50b78763?mode=deep",
+    "timestamp": "2026-02-18 23:33:29.089745",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: enable_pyth_oracle_provider()] [Race Condition] Can enable/disable be called in rapid succession causing state inconsistencies where oracle_provider_configs.enable doesn't match the actual usage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b10ffa94-6691-4ed7-9bb1-f9618ed2f59a?mode=deep",
+    "timestamp": "2026-02-18 23:33:49.103805",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: enable_supra_oracle_provider()] [Invalid Enable] Can a provider be enabled even if its pair_id is invalid or the external oracle contract doesn't exist, causing runtime failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a8efbb82-98af-4fdf-823a-d1e0d0ec298e?mode=deep",
+    "timestamp": "2026-02-18 23:34:10.301156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_primary_oracle_provider()] [Disabled Provider] Can set_primary_oracle_provider() set a disabled provider as primary, bypassing the enable check in config::set_primary_oracle_provider()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d687e727-de07-4228-82a4-4aadd60f693e?mode=deep",
+    "timestamp": "2026-02-18 23:34:32.256695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_primary_oracle_provider()] [Nonexistent Config] Can set_primary_oracle_provider() be called with a provider that has no config created, causing table lookup failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4d0c6154-5651-4915-b90d-ce5252bbda94?mode=deep",
+    "timestamp": "2026-02-18 23:34:56.453173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_secondary_oracle_provider()] [Empty Provider] Can set_secondary_oracle_provider() set an empty provider (oracle_provider::new_empty_provider()) as secondary, and does this properly indicate no fallback is available? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3434b547-419a-487d-b427-78a7fe1802da?mode=deep",
+    "timestamp": "2026-02-18 23:35:19.588274",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_secondary_oracle_provider()] [Same Provider] Can primary and secondary be set to the same provider, defeating the purpose of having a fallback and creating circular dependency? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_24d64894-5986-4769-b0be-a7dd20e6e368?mode=deep",
+    "timestamp": "2026-02-18 23:35:41.072876",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_primary_oracle_provider()] [Provider Switch] Can primary provider be switched while price fetches are in progress, causing inconsistent reads where some operations use old provider and others use new? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9de096d-dbd4-4a73-ba98-d725cb46a076?mode=deep",
+    "timestamp": "2026-02-18 23:36:04.014481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_secondary_oracle_provider()] [No Enable Check] Does config::set_secondary_oracle_provider() skip enable checks if provider is not empty, allowing a disabled secondary to be set? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5fad787-1c66-45d4-a18e-d87bb8ee3b98?mode=deep",
+    "timestamp": "2026-02-18 23:36:26.025492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_primary_oracle_provider()] [Early Return] Does the early return 'if (price_feed.primary == provider) return' in config allow re-setting the same primary without validation, potentially skipping important checks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b6d831ce-6995-4304-9c8b-87873df46e95?mode=deep",
+    "timestamp": "2026-02-18 23:36:48.082552",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_enable_to_price_feed()] [Invalid Feed ID] Can feed_id parameter be a non-existent address causing config::set_enable_to_price_feed() to abort, or can it reference an object that's not actually a price feed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0264cb1e-7cf1-43d2-bf01-a291f38a2c31?mode=deep",
+    "timestamp": "2026-02-18 23:37:10.545699",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [All Setter Functions] [Feed Existence] Do all functions that take feed_id parameter properly validate that table::contains(&cfg.feeds, feed_id) before operations, or can some bypass this check? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9c77457-b25c-4a19-bb73-680e44ff79aa?mode=deep",
+    "timestamp": "2026-02-18 23:37:31.952475",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_max_timestamp_diff_to_price_feed()] [Wrong Feed] Can feed_id point to a price feed for a different coin type than intended, causing configuration to be applied to the wrong asset? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6366c844-026a-4829-82a4-eb2079563160?mode=deep",
+    "timestamp": "2026-02-18 23:37:54.327342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_price_feed()] [Feed ID Collision] Can the generated feed_id (object::uid_to_address(&uid)) collide with an existing feed_id if object IDs are predictable or manipulated? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_034f1d50-7bc8-4833-8ff4-074ab736d362?mode=deep",
+    "timestamp": "2026-02-18 23:38:17.494871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_price_diff_threshold1_to_price_feed()] [Atomic Update] Can threshold1 and threshold2 be updated in separate transactions, creating a window where threshold1 > threshold2 violating invariants? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e0633cd9-094a-433f-a98f-c42bc2574301?mode=deep",
+    "timestamp": "2026-02-18 23:38:43.237245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_maximum_effective_price_to_price_feed()] [Bound Race] Can maximum and minimum prices be updated non-atomically, creating a window where maximum < minimum causing all prices to be rejected? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_096d69f1-f9fa-4c27-8ba8-1984ecc3fea1?mode=deep",
+    "timestamp": "2026-02-18 23:39:05.804513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: version_migrate()] [Concurrent Migration] Can version_migrate() be called multiple times concurrently on the same oracle_config, causing version to be set inconsistently? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf279c46-d311-4c9c-8f92-53de2c4ab0f4?mode=deep",
+    "timestamp": "2026-02-18 23:39:27.527310",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_pause()] [Pause Race] Can set_pause() and price update operations race, causing some operations to see paused state while others don't, leading to inconsistent oracle behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82bcbdf3-1ec6-4e21-adc4-f0b1bfc362e9?mode=deep",
+    "timestamp": "2026-02-18 23:39:50.398025",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_price_feed()] [Concurrent Creation] Can multiple create_price_feed() calls be executed concurrently for different CoinTypes, and does config::is_price_feed_exists() properly prevent race conditions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc8d513a-bfd2-4bcd-877c-539d06d5c1cb?mode=deep",
+    "timestamp": "2026-02-18 23:40:12.251334",
+    "report_generated": false
+  }
+]
