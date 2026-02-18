@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Oracle] If vault_oracle::get_asset_price returns 0 for a valid token, can this cause division by zero in line 52 or incorrect value calculation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f95d63ee-27cb-4fba-9d23-7034c3913c91?mode=deep",
+    "timestamp": "2026-02-18 21:59:03.858531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Oracle] Can oracle prices be manipulated via Switchboard vote mechanisms to stay within slippage tolerance while being significantly wrong? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74c8f309-c022-433b-bad9-c1344fd7cb6e?mode=deep",
+    "timestamp": "2026-02-18 21:59:16.820625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Oracle] If coin_decimals returns incorrect values (e.g., swapped decimals_a and decimals_b), how does this affect sqrt_price_x64_to_price accuracy? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7dbb4ec3-ce77-4d1e-858b-77bf9cb82c14?mode=deep",
+    "timestamp": "2026-02-18 21:59:29.837400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Oracle] Can normalized prices from get_normalized_asset_price differ in decimal precision from get_asset_price, causing calculation inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0da8aa37-45f5-46da-9952-3d62582ceac8?mode=deep",
+    "timestamp": "2026-02-18 21:59:43.355164",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Oracle] If oracle prices have different staleness limits for different tokens, can this be exploited to use stale price_a with fresh price_b? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e758023-1b59-42cc-be7c-44617cc296c1?mode=deep",
+    "timestamp": "2026-02-18 21:59:57.710939",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Oracle] Can an attacker provide a clock with manipulated timestamp to bypass oracle freshness checks within vault_oracle module? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_387b3ad8-f275-485d-929f-8549c054eca8?mode=deep",
+    "timestamp": "2026-02-18 22:00:13.181064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: update_cetus_position_value()] [Type Safety] Can type parameter mismatches between PrincipalCoinType, CoinA, CoinB cause runtime errors or silent failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2972ec4-7af8-471b-9446-1f12de5287eb?mode=deep",
+    "timestamp": "2026-02-18 22:00:27.870480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Type Safety] Can CoinTypeA or CoinTypeB be non-coin types (e.g., NFT types) causing get<T>() to return unexpected type names? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e266cd76-4ecd-421d-8373-edb9a5805539?mode=deep",
+    "timestamp": "2026-02-18 22:00:45.020741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Type Safety] If CetusPosition doesn't actually contain liquidity for CoinTypeA/CoinTypeB pool, does get_position_amounts fail gracefully? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18e5d47a-9d45-4049-8522-076fc60ca256?mode=deep",
+    "timestamp": "2026-02-18 22:01:03.142937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: update_cetus_position_value()] [Type Safety] Can asset_type String contain special characters or formatting that causes parse_key failures in vault_utils? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_93e31d63-b591-4f87-927c-f1b7d97ec829?mode=deep",
+    "timestamp": "2026-02-18 22:01:22.875858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Slippage] Can slippage be configured to 0, making the assertion in line 63-66 impossible to pass for any real pool? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e61643c6-064d-41f5-826d-b689ca9503f0?mode=deep",
+    "timestamp": "2026-02-18 22:01:43.862022",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Slippage] Can slippage be configured to 10000 (100%), making the assertion always pass regardless of price manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2c52c917-22bd-4ed8-b3cc-a43ab510a675?mode=deep",
+    "timestamp": "2026-02-18 22:02:05.228358",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Slippage] Does the slippage check use absolute difference or percentage difference, and can this be gamed with extreme prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_23e62b2c-5c45-4f56-a69f-4468a948ca3c?mode=deep",
+    "timestamp": "2026-02-18 22:02:27.807647",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Slippage] Can the diff() function implementation handle negative differences, or does it assume pool_price > relative_price_from_oracle? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_395ad68f-6cdd-4948-b183-0099357270c8?mode=deep",
+    "timestamp": "2026-02-18 22:02:50.972011",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Slippage] Is the slippage check symmetric (same tolerance for over/under oracle price), or can asymmetry be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1dab314d-d957-4323-80d8-92bbe94efca1?mode=deep",
+    "timestamp": "2026-02-18 22:03:13.878026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Slippage] Can an attacker stay exactly at slippage threshold across multiple updates to slowly drain value without triggering assertion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e0a1b8c-4a0e-49d3-b381-b2b7f145e233?mode=deep",
+    "timestamp": "2026-02-18 22:03:38.686829",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Logic] Should slippage check happen before or after fetching normalized prices to prevent using potentially manipulated pool state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5ce8409f-e23e-4864-a2db-04ef95e109ae?mode=deep",
+    "timestamp": "2026-02-18 22:04:03.775469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Logic] Can fetching normalized_price_a and normalized_price_b after slippage check allow attacker to manipulate these values separately? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7d55b50d-5236-4c44-ac40-35b2e2202c72?mode=deep",
+    "timestamp": "2026-02-18 22:04:28.987027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Logic] Why are both get_asset_price and get_normalized_asset_price called - can discrepancies between them be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_278db430-c542-4e3c-aa59-a2a27c5f4eb5?mode=deep",
+    "timestamp": "2026-02-18 22:04:53.592742",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Logic] Does the conditional logic (lines 83-87) correctly handle all cases of decimal_a vs decimal_b relationships? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3a07f032-c405-407e-b72b-4cd26418a82a?mode=deep",
+    "timestamp": "2026-02-18 22:05:16.941046",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Error Handling] If get_position_amounts fails for an invalid position_id, does it revert clearly or return (0,0) silently? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4be7aa5d-d98f-41cc-8655-3da6bf07295f?mode=deep",
+    "timestamp": "2026-02-18 22:05:41.060119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Error Handling] If oracle calls revert due to missing price data, is the entire transaction rolled back or does it fail gracefully? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2beecc7d-6d72-4f0b-8fb9-6ee110695605?mode=deep",
+    "timestamp": "2026-02-18 22:06:05.297994",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Error Handling] Are there any assertions or checks that could cause unexpected reverts with specific input combinations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_282f0766-683f-474e-a2b2-7bd474e3082f?mode=deep",
+    "timestamp": "2026-02-18 22:06:31.272882",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: update_cetus_position_value()] [Error Handling] If finish_update_asset_value fails, can this leave the vault in an inconsistent state with partially updated values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e0c3b20-51b2-445c-b48e-29d9031319ee?mode=deep",
+    "timestamp": "2026-02-18 22:06:57.184905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Gas] Can very large positions with extreme amounts cause excessive gas consumption in get_position_amounts or price calculations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ed1482a8-63a4-4e88-bc27-45657f672a92?mode=deep",
+    "timestamp": "2026-02-18 22:07:21.009899",
+    "report_generated": false
+  }
+]
