@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Type Parameter Mismatch] Receipt<CoinType> must match Pool<CoinType> at repay - can attacker exploit type erasure to pass receipt from SUI loan to USDC pool repay? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a84ba61-9c5d-4ce5-a59e-8044c766a46a?mode=deep",
+    "timestamp": "2026-02-18 22:44:21.044197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: get_asset()] [Generic Return Type] Line 237 function signature has <T> but returns non-generic tuple - can caller pass wrong type parameter to retrieve asset config for unintended coin type? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_119d5834-51fd-4a7c-8343-756bcca8334b?mode=deep",
+    "timestamp": "2026-02-18 22:44:33.851750",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Type Name Collision] Line 143 uses type_name::into_string to lookup config - can two coin types from different packages have identical string representations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dddd0851-789a-48ca-b0b9-d624168221c3?mode=deep",
+    "timestamp": "2026-02-18 22:44:47.064087",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: create_asset()] [Table Add Failure] Line 130 adds to assets table and line 131 adds to support_assets - if first succeeds but second fails, can this create orphaned asset config? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_435f7f35-35d8-4048-af3c-551c6360679c?mode=deep",
+    "timestamp": "2026-02-18 22:45:02.900860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Table Key Format] Line 145 uses *ascii::as_bytes(&str_type) as table key - can different string encodings or byte representations cause lookup failures for valid assets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9d75830-945a-400f-94ce-4e66618d096a?mode=deep",
+    "timestamp": "2026-02-18 22:45:17.630607",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: get_asset_config_by_coin_type()] [Borrow Mut Safety] Line 286 borrows config.assets mutably - can multiple concurrent calls deadlock or create undefined behavior in table access? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48e798b8-7e32-4136-9288-2a39d8438308?mode=deep",
+    "timestamp": "2026-02-18 22:45:33.540953",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Double Lookup] Lines 145 and 146 perform two table lookups (support_assets then assets) - can state change between lookups cause asset_id to become invalid? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_396e76f4-8a08-4d02-be61-c5a79fb2665a?mode=deep",
+    "timestamp": "2026-02-18 22:45:50.488075",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: create_asset()] [Support Assets Key] Line 131 uses *ascii::as_bytes(&_coin_type) as key - can byte vector representation change for same coin type string due to encoding differences? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_168104ab-0758-4dcd-94ce-16f6693d33ef?mode=deep",
+    "timestamp": "2026-02-18 22:46:07.362519",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Reserve Not Found] Line 144 aborts with error::reserve_not_found() if asset not in config - can this be triggered by attacker to DoS flash loan service for specific assets? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0c96d52-f219-4661-aef2-1b5c69abedeb?mode=deep",
+    "timestamp": "2026-02-18 22:46:25.995872",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Invalid Amount] Line 149 aborts if loan amount outside min/max bounds - can admin front-run user's flash loan by adjusting min/max to force abort? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_005ecdae-8621-4030-a649-ab11fefc7f30?mode=deep",
+    "timestamp": "2026-02-18 22:46:46.377340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Invalid Pool] Line 150 aborts if pool_id mismatch - can attacker cause confusion by creating multiple pools for same coin type? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c03b3376-28fa-4ef4-ba9b-f2d6ba34b9e6?mode=deep",
+    "timestamp": "2026-02-18 22:47:07.820462",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Invalid User] Line 177 aborts if receipt.user != _user - can this be bypassed if receipt.user field was corrupted during loan? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_60db1cfa-4086-4009-8d95-e68db58a57bd?mode=deep",
+    "timestamp": "2026-02-18 22:47:29.826114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Insufficient Repay] Line 194 aborts if repay_amount < amount + fees - can rounding errors in fee calculation cause valid repays to abort? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_23214226-eaaf-437b-9579-e8d7deb3277d?mode=deep",
+    "timestamp": "2026-02-18 22:47:51.435176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: get_storage_asset_id_from_coin_type()] [Not Found Abort] Line 223 aborts if coin type not found in storage - can mismatched type strings between config and storage cause repay to always abort? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_12330138-77a7-4d45-92f7-4800f301333a?mode=deep",
+    "timestamp": "2026-02-18 22:48:13.259802",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: verify_config()] [Config Validation] Lines 291-292 abort if config is invalid - can these checks be bypassed by directly modifying config struct fields outside setter functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b084b94-8951-436e-82fd-7c7767347b5e?mode=deep",
+    "timestamp": "2026-02-18 22:48:34.769325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Logic Module Trust] Lines 182, 189-190 call logic::update_state_of_all, logic::cumulate_to_supply_index, logic::update_interest_rate - can malicious or buggy logic module implementations corrupt flash loan accounting? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb557bd0-7d10-4ca4-b333-082452fa0fad?mode=deep",
+    "timestamp": "2026-02-18 22:48:55.260273",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Storage Module Dependency] Line 186 calls storage::get_index and line 183 uses storage::get_coin_type - can storage module state corruption cause flash loan repay to use wrong indices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a0d89eb3-c21e-4430-8463-6e88f39a5dd8?mode=deep",
+    "timestamp": "2026-02-18 22:49:15.333873",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Pool Module Trust] Line 155 calls pool::withdraw_balance and line 197 calls pool::deposit_balance - can buggy pool module allow withdrawal without corresponding deposit? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_76e573c8-ab0e-4a67-bc25-1abcf07d0662?mode=deep",
+    "timestamp": "2026-02-18 22:49:35.074478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Math Module Precision] Line 187 uses ray_math::ray_div from math module - can rounding errors in ray_div accumulate across many flash loans to drain protocol? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8dfe32fe-5ead-4409-a031-744874c9c992?mode=deep",
+    "timestamp": "2026-02-18 22:49:55.333920",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: version_verification()] [Version Module Dependency] Line 52 calls version::pre_check_version - can version module be upgraded to break backward compatibility with existing flash loan configs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2a2ae568-ea7d-4d4e-b28c-4df6b60cd416?mode=deep",
+    "timestamp": "2026-02-18 22:50:16.124325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Constants Module] Lines 152-153 use constants::FlashLoanMultiple() - can constants module be modified to change FlashLoanMultiple mid-operation, breaking fee calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2cca3bd3-a0fb-498d-80a9-07ed3fb84a57?mode=deep",
+    "timestamp": "2026-02-18 22:50:38.163093",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Clock Manipulation] Line 175 accepts Clock parameter for update_state_of_all - can attacker provide manipulated Clock object to affect interest accrual during repay? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7d5c1aa0-fb96-418b-98f0-dcda7fa142ff?mode=deep",
+    "timestamp": "2026-02-18 22:50:58.402121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Time-Based State] Clock is used in logic::update_state_of_all at line 182 - can flash loan be held across epoch boundaries to exploit interest rate changes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ce2fed9-6763-425c-93bf-33698955940b?mode=deep",
+    "timestamp": "2026-02-18 22:51:19.165533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Fee Economics] Flash loan fees are calculated as percentage of loan amount - can attacker exploit low fee rates (rate=1) to get nearly free flash loans for arbitrage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_caeb013b-208b-445f-847a-d8b1bd1c0663?mode=deep",
+    "timestamp": "2026-02-18 22:51:39.859177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Supplier Reward Gaming] Scaled fees are added to supply index at line 189 - can attacker time flash loans to maximize their own supplier rewards while minimizing cost? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bf925e35-56f6-4946-af4d-231dc8e819c8?mode=deep",
+    "timestamp": "2026-02-18 22:52:01.242682",
+    "report_generated": false
+  }
+]
