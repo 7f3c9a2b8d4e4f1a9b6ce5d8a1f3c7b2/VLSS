@@ -1,0 +1,8 @@
+[
+  "[File: liquid_staking/sources/cert.move] [Testing: Migration Path] [Upgrade Safety] Has migrate() been tested with actual state from production Metadata? Could real-world data contain edge cases that cause migration to fail or corrupt state? (High)",
+  "[File: liquid_staking/sources/cert.move] [Sui: Shared Object] [Locking] Does Sui's shared object consensus guarantee atomic mint/burn operations, or could validator disagreement cause supply inconsistencies? (Medium)",
+  "[File: liquid_staking/sources/cert.move] [Sui: TxContext] [Context Manipulation] mint() uses TxContext to create coins. Could manipulating transaction properties (sender, epoch, ids) create coins with exploitable properties? (Low)",
+  "[File: liquid_staking/sources/cert.move] [Sui: Entry Function] [Permission Model] migrate() is an entry function requiring OwnerCap. Does Sui's capability model guarantee OwnerCap can't be cloned/forged, or could PTB (programmable transaction blocks) enable capability duplication? (High)",
+  "[File: liquid_staking/sources/cert.move] [Standard: Coin Module] [Deviation] Standard coin pattern uses TreasuryCap for minting. By destroying it and using custom Metadata, could this create incompatibilities with wallets/tools expecting standard Coin<T> interface? (Low)",
+  "[File: liquid_staking/sources/cert.move] [Standard: Upgradeable Pattern] [Best Practice] The version-based upgrade pattern requires manual migration. Could using Sui's built-in package upgrade features be safer, or does custom Metadata need this manual approach? (Medium)"
+]

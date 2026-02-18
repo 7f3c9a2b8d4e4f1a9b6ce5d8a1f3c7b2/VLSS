@@ -1,0 +1,5 @@
+[
+  "[File: volo-vault/sources/utils.move] [Function: div_d()] [Exact DECIMALS] Does div_d(x, DECIMALS) correctly recover original value, or introduce rounding? (Low)",
+  "[File: volo-vault/sources/utils.move] [Function: decimals()] [Constant Usage] Can calling decimals() in tight loops cause gas issues vs. hardcoding 1e9? (Low)",
+  "[File: volo-vault/sources/utils.move] [Function: parse_key()] [Empty Type] Can generic type with empty name produce invalid keys like '0', '1' that collide? (Medium)"
+]

@@ -1,0 +1,4 @@
+[
+  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: valid_update_indices()] [Oracle Censorship] Loop at lines 571-595 processes oracles in specific order - can attacker manipulate curr_idx to ensure victim oracle is processed last and filtered out? (Medium)",
+  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: add_result()] [Result Spamming] add_result() has no rate limiting - can attacker spam updates from same oracle, causing curr_idx to wrap rapidly and evict other oracles' data? (High)"
+]

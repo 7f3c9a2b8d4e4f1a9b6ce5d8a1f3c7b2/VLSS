@@ -1,0 +1,8 @@
+[
+  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw()] [Event Order] Is the PoolWithdraw event emitted before or after the actual withdrawal, and can this timing be exploited for front-running? (Medium)",
+  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw_balance()] [Event Order] Similarly, can the event emission order in withdraw_balance() enable MEV attacks? (Medium)",
+  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw_treasury()] [Missing Event] Does withdraw_treasury() emit an event to track treasury withdrawals, or can these operations go undetected? (Medium)",
+  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw_reserve_balance()] [Event Completeness] Does the PoolWithdrawReserve event capture all necessary information for audit and reconciliation purposes? (Low)",
+  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw()] [Recipient Validation] Can withdraw() transfer funds to address(0) or other invalid addresses, effectively burning the tokens? (Medium)",
+  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw_reserve_balance()] [Recipient Validation] Can the admin specify any arbitrary recipient address, including contracts that might reject the transfer? (Low)"
+]

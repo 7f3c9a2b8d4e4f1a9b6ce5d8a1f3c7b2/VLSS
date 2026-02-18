@@ -1,0 +1,3 @@
+[
+  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Supply Snapshot] Uses current total_supply but rewards based on time since last update - could supply changes between updates cause unfair distribution? (High)"
+]

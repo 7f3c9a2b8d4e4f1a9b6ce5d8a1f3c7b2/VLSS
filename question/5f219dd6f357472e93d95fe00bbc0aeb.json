@@ -1,0 +1,14 @@
+[
+  "[File: liquid_staking/sources/volo_v1/math.move] [Function: from_shares()] [Last Withdrawer Problem] When the last user unstakes, does rounding cause them to receive less than their fair share of remaining SUI? (High)",
+  "[File: liquid_staking/sources/volo_v1/math.move] [Function: mul_div()] [MEV Exploitation] Can MEV bots exploit the rounding behavior in mul_div() to extract value through precisely-timed transactions? (Medium)",
+  "[File: liquid_staking/sources/volo_v1/math.move] [Function: All functions] [Oracle Manipulation] If calling code uses oracle prices for tvl calculation, can oracle manipulation exploits affect the math functions' outputs? (High)",
+  "[File: liquid_staking/sources/volo_v1/math.move] [Function: ratio()] [Supply Inflation Attack] Can an attacker mint shares through another vulnerability and inflate supply to manipulate the ratio for profit? (Critical)",
+  "[File: liquid_staking/sources/volo_v1/math.move] [Module Dependencies] [External Calls] This module has no imports and is purely mathematical. But can calling code misuse these functions by providing incorrect supply or tvl values? (High)",
+  "[File: liquid_staking/sources/volo_v1/math.move] [Function: All functions] [Access Control] These are all public functions. Should any of them be restricted to prevent misuse by malicious contracts? (Medium)",
+  "[File: liquid_staking/sources/volo_v1/math.move] [Function: ratio()] [State Consistency] The ratio is calculated from supply and tvl. If these values are stored separately and become desynced, can the ratio be exploited? (High)",
+  "[File: liquid_staking/sources/volo_v1/math.move] [Function: to_shares()] [Supply Update Timing] After to_shares() calculates shares, must the calling code immediately update supply? What happens if there's a delay? (High)",
+  "[File: liquid_staking/sources/volo_v1/math.move] [Function: from_shares()] [TVL Update Timing] After from_shares() calculates amount, must the calling code immediately update tvl? Can delayed updates cause inconsistency? (High)",
+  "[File: liquid_staking/sources/volo_v1/math.move] [Function: All functions] [Atomic Operations] Do calling functions ensure atomic updates of supply, tvl, and share balances, or can partial updates cause exploits? (Critical)",
+  "[File: liquid_staking/sources/volo_v1/math.move] [Function: ratio()] [Cache Invalidation] If ratio is cached in calling code for gas optimization, can stale cached ratios be exploited? (High)",
+  "[File: liquid_staking/sources/volo_v1/math.move] [Function: mul_div()] [Caller Validation] Since mul_div() is public, can any external contract call it with malicious parameters to cause issues? (Low)"
+]

@@ -1,0 +1,7 @@
+[
+  "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Struct: CToken<P, T>] [Phantom Type Parameter P] The P parameter represents the protocol/pool. Can two different pools have ctokens that are indistinguishable at type level, causing cross-contamination? (Critical)",
+  "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Struct: Reserve<P>] [Single Phantom Parameter] Reserve only has phantom P, not T. Can this allow a Reserve to handle multiple coin types incorrectly if functions don't validate coin_type field? (High)",
+  "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: balances()] [Type Parameter Mismatch] Function signature requires correct T but implementation uses dynamic field borrow. Can type system be bypassed to borrow wrong Balances<P, T>? (Critical)",
+  "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: market_value()] [Decimal Division Order] Divides mul(price, liquidity_amount) by pow(10, decimals). Can alternative orderings reduce precision loss or prevent overflow? (Low)",
+  "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: compound_interest()] [APR Calculation Precision] Divides APR by seconds_in_year then uses pow. Can this lose precision compared to calculating (1 + APR)^(time/year)? (Medium)"
+]

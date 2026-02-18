@@ -1,0 +1,4 @@
+[
+  "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/calculate.move] [Function: dynamic_liquidation_threshold()] [Boolean Logic] Can is_increase parameter affect which assets are included in the calculation, allowing an attacker to selectively include/exclude assets to manipulate threshold? (High)",
+  "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/calculate.move] [Function: dynamic_liquidation_threshold()] [Precision Loss] Can ray_math::ray_div() at line 256 lose precision when collateral_health_value is much smaller than collateral_value, understating the threshold? (Medium)"
+]

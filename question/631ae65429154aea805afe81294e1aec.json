@@ -1,0 +1,7 @@
+[
+  "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [U64 Timestamp Overflow] All timestamps are u64 milliseconds - can timestamp overflow after year 2262 cause all freshness checks to fail? (Low)",
+  "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [U256 Price MAX Value] If a price is set to u256::MAX, can subsequent arithmetic in validation functions overflow or produce unexpected results? (Medium)",
+  "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Empty Feed Vector] If vec_feeds is empty when update_single_price is called, can this cause assertion failures or unexpected behavior? (Low)",
+  "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: get_price_from_adaptor()] [Target Decimal 0] If target_decimal is 0, can price conversion cause all prices to round to 0, making all assets appear worthless? (Critical)",
+  "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: get_price_from_adaptor()] [Target Decimal 255] If target_decimal is u8::MAX (255), can the 10^255 scaling factor cause immediate overflow in decimal conversion? (High)"
+]

@@ -1,0 +1,8 @@
+[
+  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: finalize()] [Finalization Failure] Can finalize() fail for any reason (e.g., hash function error), and if so, how does it report the failure? (Low)",
+  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u32()] [Vector Reverse Mutation] Does vector::reverse() mutate the input vector or create a copy? Can mutation affect caller state when bytes is borrowed? (Low)",
+  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_bytes()] [Vector Append Safety] Can buffer.append() fail if buffer is near maximum capacity, causing message construction to abort mid-process? (Low)",
+  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: check_subvec()] [Vector Indexing] Is vector indexing with v1[start_idx + idx] bounds-checked? Can it panic on out-of-bounds access? (Low)",
+  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: check_subvec()] [Vector Length Consistency] Can v1 or v2 lengths change during iteration, causing check_subvec() to produce incorrect results? (Low)",
+  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/\n\n### Citations\n\n**File:** volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move (L1-265)\n```text\nmodule switchboard::hash;\n \nuse std::hash;\nuse std::bcs;\nuse std::u128;\nuse switchboard::decimal::{Self, Decimal};\n\n#[error]\nconst EWrongFeedHashLength: vector<u8> = b"
+]

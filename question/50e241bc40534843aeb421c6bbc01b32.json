@@ -1,0 +1,6 @@
+[
+  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Import: sui::event] [Dependency Risk] The event::emit call relies on Sui framework - can framework changes break event emission without compile-time errors? (Low)",
+  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: run()] [Context Injection] The TxContext parameter is user-controlled - can ctx manipulation in custom transactions bypass intended security checks? (Medium)",
+  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: validate()] [Assert Abuse] The asserts at lines 24-25 use EInvalidQueueVersion and EOracleKeyExists - can error message injection or manipulation confuse error handling logic? (Low)",
+  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: actuate()] [Object Sharing] The oracle is shared via oracle::new - can this create a situation where the oracle is immediately modified by another transaction before add_existing_oracle? (High)"
+]

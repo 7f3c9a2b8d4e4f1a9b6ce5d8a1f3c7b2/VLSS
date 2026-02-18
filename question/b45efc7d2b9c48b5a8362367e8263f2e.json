@@ -1,0 +1,4 @@
+[
+  "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Cache Poisoning] If callers cache the returned prices, could stale cached values be used after the MAX_STALENESS_SECONDS window has passed? (High)",
+  "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [TOCTOU] Between checking confidence/staleness and returning the price, could the underlying PriceInfoObject be modified in a concurrent transaction? (Medium)"
+]

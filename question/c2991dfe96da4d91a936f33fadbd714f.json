@@ -1,0 +1,4 @@
+[
+  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [Queue Capacity Limits] If the new guardian queue has insufficient capacity or different operational limits than the old queue, could this cause oracle update failures or degraded performance? (Medium)",
+  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Guardian Reward Distribution] When guardian_queue_id changes, how are pending guardian rewards from the old queue handled - could guardians lose rewards, creating incentive misalignment? (Low)"
+]

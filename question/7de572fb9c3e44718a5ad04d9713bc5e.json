@@ -1,0 +1,8 @@
+[
+  "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Liquidity Attack] Can positions with zero liquidity return non-zero amounts due to rounding in liquidity_math? (High)",
+  "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Liquidity Attack] Can extremely high liquidity values cause amount_a or amount_b to overflow u64? (Critical)",
+  "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Liquidity Edge Case] Can liquidity be set to MAX_U128 causing calculation errors in get_amounts_for_liquidity? (Medium)",
+  "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Tick Attack] Can malformed tick indices cause tick_math::get_sqrt_price_at_tick to panic or return invalid prices? (High)",
+  "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Tick Range] Can extremely narrow tick ranges (tick_upper - tick_lower = 1) cause precision issues in amount calculation? (Medium)",
+  "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Tick Range] Can extremely wide tick ranges spanning full price range cause overflow in liquidity_math calculations? (High)"
+]

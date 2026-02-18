@@ -1,0 +1,7 @@
+[
+  "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Gas Griefing] Constructor is cheap to call - could attacker spam request creation to exhaust operator gas budget executing invalid requests? (Low)",
+  "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Cancellation Exploit] Recipient check only in cancel - could attacker transfer receipt ownership after request, then cancel using old recipient to steal coins? (High)",
+  "[File: volo-vault/sources/requests/deposit_request.move] [Function: request_time()] [Cancellation Exploit] Request_time is public - could attacker observe pending requests and frontrun cancellations after locking time expires to grief users? (Low)",
+  "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Integration Attack] No protocol version field - could mixing requests from different protocol versions cause compatibility issues during execution? (Medium)",
+  "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Integration Attack] No chain_id or network identifier - could requests be replayed across different Sui networks if struct is copied? (Low)"
+]

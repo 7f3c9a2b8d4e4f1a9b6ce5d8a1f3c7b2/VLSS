@@ -1,0 +1,23 @@
+[
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: export_stakes_from_v1()] [Iteration Limit] max_iterations parameter limits gas, but can malicious validators with many stakes monopolize all iterations, starving other validators? (Medium)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: remove_stakes()] [Empty Vault] If validator has vault but gap == length initially, does the function correctly return zero values without unnecessary operations? (Low)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: remove_stakes()] [Zero Requested] If requested_amount is 0, does the function handle it gracefully, or can it cause division by zero or infinite loops? (Low)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: add_stake()] [Zero Amount] If StakedSui has 0 staked_sui_amount, does add_stake() handle it correctly, or can it corrupt accounting? (High)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: update_validators()] [Empty Vectors] If empty validators/priorities vectors are passed, does the function correctly skip updates and maintain state consistency? (Low)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: sort_validators()] [Single Validator] If only one validator exists, does sorting logic handle it correctly without array access errors? (Low)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: export_stakes_from_v1()] [Max Iterations Zero] If max_iterations is 0, does export_stakes_from_v1() correctly return without operations, or can it cause errors? (Low)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 194] [Integer Overflow] vault.total_staked + value can overflow u64 if extremely large stakes are added; is there overflow protection? (Critical)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 195] [Integer Overflow] vault.length + 1 can overflow u64 if billions of stakes exist; is this realistic, and is there overflow protection? (Low)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 226] [Loop Condition] Complex while loop condition with two checks; can short-circuit evaluation cause unexpected early exit? (Low)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 237] [Underflow] requested_amount - balance::value(&total_withdrawn) can underflow if total_withdrawn > requested_amount; is this possible? (Medium)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 241] [Split Condition] Complex condition for split decision; can carefully crafted principal_value cause split logic to always/never trigger? (Medium)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 247] [Gap Increment] gap incremented only when full stake removed, but split case doesn't increment; is this correct, or can it cause desync? (High)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 256] [Reward Calculation] Withdrawn reward calculated as balance minus principal; can this be negative if fees are deducted, causing underflow? (High)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 257] [Total Staked Update] total_staked decremented by principal_value; if principal calculation is wrong, can this corrupt accounting permanently? (Critical)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 262] [Assertion] Assert total_staked == 0 when gap == length; what if rounding errors leave dust amounts, causing legitimate abort? (Medium)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 274] [Swap Remove] swap_remove on sorted_validators; does this invalidate is_sorted flag, or is it safe because validator has priority 0? (High)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 277-278] [Reset Logic] Resetting gap and length to 0 for active validators; does this orphan remaining ObjectTable entries? (Critical)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 329] [Array Access] Direct index access validators[i] after borrow at line 321; is this safe, or can indices be out of sync? (High)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 356] [Gap Increment Export] gap incremented in export but total_staked not updated; is this intentional for migration, or accounting bug? (Critical)",
+  "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: remove_stakes()] [Precision Loss] When splitting stakes, can precision be lost in principal_value calculations, causing total_staked to drift from actual holdings? (Medium)"
+]

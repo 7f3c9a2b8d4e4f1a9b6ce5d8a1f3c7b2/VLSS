@@ -1,0 +1,11 @@
+[
+  "[File: volo-vault/sources/manage.move] [Edge Case: No aggregators] What happens if operations are attempted with no aggregators configured? (High)",
+  "[File: volo-vault/sources/manage.move] [Edge Case: All operators frozen] If all operators are frozen, can vault still function? Is there emergency mechanism? (High)",
+  "[File: volo-vault/sources/manage.move] [Edge Case: Fee at max cap] If fees are set to MAX_FEE_RATE caps, can any deposits/withdrawals still be profitable? (Medium)",
+  "[File: volo-vault/sources/manage.move] [Edge Case: Loss tolerance max] If loss_tolerance is u256::MAX, does this overflow in loss calculations? (Medium)",
+  "[File: volo-vault/sources/manage.move] [Edge Case: Multiple reward managers] If create_reward_manager() is called twice, how are multiple reward managers handled? (High)",
+  "[File: volo-vault/sources/manage.move] [Edge Case: Oracle after operation start] If oracle config changes after start_op() but before end_op(), which oracle is used? (Critical)",
+  "[File: volo-vault/sources/manage.move] [Edge Case: Capability destruction] Can AdminCap or OperatorCap be destroyed leaving vault unmanageable? (High)",
+  "[File: volo-vault/sources/manage.move] [Edge Case: Vault migration] Is there migration path if manage.move is upgraded? How are existing capabilities handled? (Medium)",
+  "[File: volo-vault/sources/manage.move] [Edge Case: Clock dependency] Do time-sensitive functions fail if Clock object is not provided or is stale? (Medium)"
+]

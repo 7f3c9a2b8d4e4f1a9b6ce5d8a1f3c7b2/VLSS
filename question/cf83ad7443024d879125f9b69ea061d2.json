@@ -1,0 +1,9 @@
+[
+  "[File: volo-vault/sources/operation.move] [Asset Management] [Bag Key Collision] Bag uses String keys from parse_key() - can two different asset types produce same String key? (Critical)",
+  "[File: volo-vault/sources/operation.move] [Asset Management] [Asset Destruction] If borrowed asset is accidentally destroyed during operation, does return fail gracefully or cause vault corruption? (High)",
+  "[File: volo-vault/sources/operation.move] [Events] [Event Ordering] If OperationStarted and OperationEnded events are emitted out of order due to tx failures, can off-chain indexers get confused? (Low)",
+  "[File: volo-vault/sources/operation.move] [Events] [Event Data Integrity] defi_asset_ids and defi_asset_types in events - if vectors are modified before event emission, does event show incorrect data? (Low)",
+  "[File: volo-vault/sources/operation.move] [Events] [Value Update Event] OperationValueUpdateChecked event emits loss - if loss is 0 due to rounding but actual loss occurred, is this misleading? (Medium)",
+  "[File: volo-vault/sources/operation.move] [Events] [Missing Events] Are there operations that modify vault state but don't emit events, causing off-chain systems to miss critical updates? (Low)",
+  "[File: volo-vault/sources/operation.move] [Authorization] [Operator Cap Validation] assert_operator_not_freezed checks freeze status but not cap ownership - can stolen/transferred cap be used? (Critical)"
+]

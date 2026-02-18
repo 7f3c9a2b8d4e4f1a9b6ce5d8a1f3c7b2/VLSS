@@ -1,0 +1,10 @@
+[
+  "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [DoS via Destroy Zero] If an attacker repeatedly creates scenarios where destroy_zero aborts (e.g., non-zero dust), could they DoS vault operations that rely on split_coin? (Medium)",
+  "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [DoS via Transfer Failure] Could an attacker cause transfer::public_transfer to fail by deleting their address object, locking the split_coin function? (Medium)",
+  "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance] [DoS via Conversion Failure] If coin::into_balance can fail under certain conditions, could an attacker trigger this to DoS vault deposits/withdrawals? (Medium)",
+  "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [Resource Exhaustion] Could an attacker call split_coin in a loop with minimal amounts, exhausting transaction gas and preventing legitimate operations? (Low)",
+  "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [Coin Ownership] Does split_coin verify that the caller owns the split_coin input, or could a shared object scenario allow unauthorized splits? (Critical)",
+  "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance] [Balance Custody] After creating the balance, who has custody - is it immediately transferred to vault storage, or could it be intercepted in a PTB? (Critical)",
+  "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin] [Remainder Recipient Verification] The remainder always goes to tx_context::sender - if this is used in cross-contract calls, could the sender be a malicious intermediate contract? (Critical)",
+  "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance] [Balance Joinability] Could the returned balance be joined with balances from different sources, violating vault segregation requirements? (High)"
+]

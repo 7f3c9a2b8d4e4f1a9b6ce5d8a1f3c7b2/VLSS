@@ -1,0 +1,6 @@
+[
+  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_deposit()] [U256 Cast Safety] Line 191 casts normal_deposit_amount from u64 to u256 - is cast safe for all u64 values, or can maximum u64 cause overflow in u256 arithmetic in execute_deposit? (Low)",
+  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_withdraw()] [U256 Return Cast] Line 236 logic returns normal_withdrawable_amount as u256, but pool::unnormal_amount at line 238 expects u64 - is cast from u256 to u64 safe or can overflow if withdrawable amount exceeds u64::MAX? (High)",
+  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_borrow()] [Borrow U256 Cast] Line 279 casts normal_borrow_amount to u256 - if execute_borrow performs interest calculations in u256 and result exceeds u64::MAX, can this cause silent overflow when casting back? (Medium)",
+  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_repay()] [Excess U256 to U64] Line 328 casts normal_excess_amount from u256 to u64 - if excess exceeds u64::MAX due to interest accrual, does cast truncate high bits causing user to lose excess funds? (High)"
+]
