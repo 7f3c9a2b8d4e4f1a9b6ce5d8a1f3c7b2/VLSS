@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: init_objects()] [Authorization Bypass] Can an attacker call init_objects() multiple times before mark_cap_created() is executed, creating multiple MigrationCap objects and bypassing single-migration enforcement? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3d05957-8b1a-40ca-8c7f-c72d6a274509?mode=deep",
+    "timestamp": "2026-02-18 21:39:50.566752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: init_objects()] [Race Condition] If mark_cap_created() execution fails after MigrationCap creation but before transaction commits, can init_objects() be called again to create duplicate migration infrastructure? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e95c607c-b067-4537-ad94-30b0fd11552e?mode=deep",
+    "timestamp": "2026-02-18 21:40:03.626443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: init_objects()] [Double Migration] The assertion at line 74 checks mut_collected_rewards() != 0, but what if collected_rewards is legitimately 0 before any migration? Can this prevent valid first migrations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_88c67977-7084-45ce-850d-d01c66c4de6d?mode=deep",
+    "timestamp": "2026-02-18 21:40:17.606718",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: init_objects()] [Authorization] Does OwnerCap validation in init_objects() properly verify ownership, or can a malicious actor with a valid OwnerCap from a different pool trigger migration on the wrong pool? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9a3bba1-4fac-4acb-8d92-021cc67a7f01?mode=deep",
+    "timestamp": "2026-02-18 21:40:32.074199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: init_objects()] [Cap Transfer] MigrationCap is transferred to ctx.sender() at line 90 - can an attacker frontrun this transaction to become the recipient if sender() is predictable? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d6a903da-3c4e-46ff-b6fd-01c324d71853?mode=deep",
+    "timestamp": "2026-02-18 21:40:47.302811",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: init_objects()] [Pause Timing] If set_pause(owner_cap, true) at line 75 fails but transaction continues, can stake/unstake operations continue during migration, corrupting state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bba11165-7746-490f-9fc1-e6fe17849026?mode=deep",
+    "timestamp": "2026-02-18 21:41:04.622801",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: init_objects()] [State Corruption] If mark_cap_created() adds a dynamic field but init_objects() is called again with a different native_pool, can multiple pools share migration state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e61da7a9-7def-45f1-becc-7cd4e5e130da?mode=deep",
+    "timestamp": "2026-02-18 21:41:23.487337",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: init_objects()] [Sanity Check Bypass] Can collected_rewards be manipulated to exactly 0 before init_objects() to bypass the assertion at line 74 and enable double migration? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c2853891-2154-4021-b498-f6dfc76e2bd9?mode=deep",
+    "timestamp": "2026-02-18 21:41:43.983620",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: init_objects()] [Object Sharing] MigrationStorage is shared at line 89 - can multiple entities access and corrupt the shared object during concurrent migration steps? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19ff22b1-3c89-402e-8283-faf304c86d9d?mode=deep",
+    "timestamp": "2026-02-18 21:42:03.597582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: init_objects()] [Cap Ownership] If MigrationCap transfer at line 90 fails but MigrationStorage is already shared, can the storage be accessed without proper authorization? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8584b044-8ea7-4104-85d8-645f1cdffba5?mode=deep",
+    "timestamp": "2026-02-18 21:42:23.396972",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: create_stake_pool()] [State Flag Bypass] Can pool_created flag be manipulated after assertion at line 98 but before line 99 executes, allowing multiple stake pools to be created? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7a277167-5263-49c3-a4d4-9436697ff852?mode=deep",
+    "timestamp": "2026-02-18 21:42:44.784311",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: create_stake_pool()] [Reentrancy] If stake_pool::create_stake_pool() at line 100 calls back into migration module, can pool_created flag be checked again before being set to true? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e5bae1b-3ab9-4281-9d14-35dc3f7d139e?mode=deep",
+    "timestamp": "2026-02-18 21:43:07.120342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: create_stake_pool()] [Authorization] MigrationCap is only read at line 95 - can an attacker with a valid MigrationCap from a different migration session create pools in this migration? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c4b9ba95-34f9-4772-95d8-8b87368c0e13?mode=deep",
+    "timestamp": "2026-02-18 21:43:29.501561",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: create_stake_pool()] [Ordering] If create_stake_pool() is called before init_objects() completes, can it create a pool without proper migration initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ab98419-20f8-4642-aae7-3c2d0d9dee71?mode=deep",
+    "timestamp": "2026-02-18 21:43:51.124065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: create_stake_pool()] [State Inconsistency] If stake_pool::create_stake_pool() fails after pool_created is set to true, does the flag remain true preventing retry? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a09eaa2b-ed70-49e4-947f-2ab3626de18f?mode=deep",
+    "timestamp": "2026-02-18 21:44:15.442409",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: create_stake_pool()] [Cap Validation] Does the function verify that MigrationCap.id matches the expected migration session to prevent cross-migration attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_529e50cd-ec03-41ba-84f2-f996f5edc0a0?mode=deep",
+    "timestamp": "2026-02-18 21:44:37.772483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Reentrancy] Can export_stakes_from_v1() at line 114 reenter export_stakes() before exported_count update at line 117, causing double-counting of exports? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9231df9-e1fe-4a56-a412-194afcb778a7?mode=deep",
+    "timestamp": "2026-02-18 21:45:01.065308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Integer Overflow] Can exported_count at line 117 overflow if export_stakes() is called repeatedly with large max_iterations values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b4bda3d5-483d-48c5-8dde-f0bf9bd5b4b4?mode=deep",
+    "timestamp": "2026-02-18 21:45:24.101263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Balance Accounting] If exported_sui.join() at line 116 fails after export_stakes_from_v1() executes, are the exported stakes lost or double-counted? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8edde0d-1b7d-4f68-be99-3fbee71655a7?mode=deep",
+    "timestamp": "2026-02-18 21:45:47.636204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Pending Withdrawal] The withdraw_all() at line 121 empties pending balance - can this be exploited by depositing into pending right before export to steal migration funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_53f087db-559f-4f0b-a7c7-f6d013536245?mode=deep",
+    "timestamp": "2026-02-18 21:46:10.331829",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Max Iterations] Can max_iterations parameter be set to 0 or u64::MAX to cause DoS or bypass export limits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48dd7831-d792-4de1-951b-90d9edba45b5?mode=deep",
+    "timestamp": "2026-02-18 21:46:33.493421",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Authorization] MigrationCap is only read (_) at line 106 - can any holder of any MigrationCap trigger exports for any migration session? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_80d7f9f7-979e-445c-92b9-3149611bc6f5?mode=deep",
+    "timestamp": "2026-02-18 21:46:58.112819",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Event Data] Can exported_count in ExportedEvent at line 128 be manipulated to show incorrect export progress? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_adbcebaa-9591-484b-93c5-def25f75de09?mode=deep",
+    "timestamp": "2026-02-18 21:47:21.969288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Multiple Calls] Can export_stakes() be called multiple times to incrementally export - does this allow manipulation of exported_count vs actual stake count? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5def8c41-b4c3-4944-bdfb-614028c5ee33?mode=deep",
+    "timestamp": "2026-02-18 21:47:44.111768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Balance Mismatch] If exported_sui_amount != exported_sui.value(), can this discrepancy be exploited to report incorrect balances in events? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b18bb66e-21ed-498f-99b1-2d2c988603a9?mode=deep",
+    "timestamp": "2026-02-18 21:48:06.460696",
+    "report_generated": false
+  }
+]
