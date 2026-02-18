@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Module Integration: AdminCap usage] Are all admin functions consistently checking AdminCap ownership? Can AdminCap be transferred breaking access control? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_841036a1-cec1-451a-aa4e-9f4b17778671?mode=deep",
+    "timestamp": "2026-02-18 21:59:47.974274",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Module Integration: OperatorCap usage] Do operator functions verify OperatorCap hasn't been frozen before allowing operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82ef6aa0-3ef6-477c-968f-201685d206d8?mode=deep",
+    "timestamp": "2026-02-18 22:00:00.892813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Module Integration: vault module] Do wrapper functions in manage.move properly propagate all error conditions from vault module? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c3a50180-0502-4972-a052-c1d83b448400?mode=deep",
+    "timestamp": "2026-02-18 22:00:14.648247",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Module Integration: reward_manager] Is there proper synchronization between vault shares and reward_manager accounting after configuration changes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5d321df7-6445-4ad5-a66a-6a688c254ab6?mode=deep",
+    "timestamp": "2026-02-18 22:00:28.283851",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Module Integration: oracle_config] Do oracle configuration changes immediately affect ongoing operations or are prices cached? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3931685-b77c-4165-8ed0-107e77765ee8?mode=deep",
+    "timestamp": "2026-02-18 22:00:43.070750",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Parameter: deposit_fee] Does set_deposit_fee() accept u64::MAX? Can this cause overflow in fee calculation (amount * fee / RATE_SCALING)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a92d5d75-6300-41b8-8a12-56be9f9b366f?mode=deep",
+    "timestamp": "2026-02-18 22:00:58.967514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Parameter: withdraw_fee] Can withdraw_fee be set equal to RATE_SCALING (100%), causing entire withdrawal to be fee? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f0a48f7d-f490-482b-8ac1-1afada5f4fce?mode=deep",
+    "timestamp": "2026-02-18 22:01:15.735075",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Parameter: loss_tolerance] Can loss_tolerance u256 parameter overflow in multiplication with usd_value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ff16663-79d6-43c1-ad4e-b036fb4fca79?mode=deep",
+    "timestamp": "2026-02-18 22:01:35.419998",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Parameter: locking_time] Can locking_time parameters be set such that locking_time_for_cancel > locking_time_for_withdraw, creating illogical flow? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_afe36116-b16e-455b-ae62-e8262be1ba6b?mode=deep",
+    "timestamp": "2026-02-18 22:01:55.918853",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Parameter: asset_type] Can asset_type String be empty string or contain null bytes breaking oracle lookups? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52552e4a-e534-4823-9250-4a2575ea7798?mode=deep",
+    "timestamp": "2026-02-18 22:02:17.105143",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Parameter: decimals] Can decimals parameter be 0 or >18 causing price conversion errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_57dffad9-b1ef-41ef-bf02-66830f55886a?mode=deep",
+    "timestamp": "2026-02-18 22:02:40.145524",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Parameter: update_interval] If update_interval overflows when added to timestamp, can this break staleness checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02372cd8-78bc-4d35-8122-ff63fb9ed19e?mode=deep",
+    "timestamp": "2026-02-18 22:03:02.474931",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Parameter: amount in retrieve_fee] Can amount=u64::MAX cause arithmetic overflow in balance operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb1ee599-2817-4475-b61a-47b305e34018?mode=deep",
+    "timestamp": "2026-02-18 22:03:23.499558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Parameter: op_cap_id] Can op_cap_id be zero address (0x0) to DoS freeze/unfreeze operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19cbec94-ba9d-4095-bbd2-89686e7e149a?mode=deep",
+    "timestamp": "2026-02-18 22:03:44.302069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Parameter: enabled bool] Is there validation that enabled parameter is actually needed (checking current status before changing)? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3c0dd8c-9b8f-48dc-a89a-4408051b3c04?mode=deep",
+    "timestamp": "2026-02-18 22:04:07.472618",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Access Control: AdminCap] Can AdminCap be stored in a shared object accessible by multiple parties, weakening admin security? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3e671702-7415-48d6-a2b7-4827788e7a45?mode=deep",
+    "timestamp": "2026-02-18 22:04:30.405226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Access Control: OperatorCap] After create_operator_cap(), can OperatorCap be wrapped in another object to bypass freeze checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e6223c74-481b-489c-8542-11ff50a6d283?mode=deep",
+    "timestamp": "2026-02-18 22:04:52.840065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Access Control: Cap lifecycle] Is there any mechanism to revoke or expire AdminCap/OperatorCap? If not, can compromised caps persist indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_262498a5-de00-4536-a993-7b6c52c9222d?mode=deep",
+    "timestamp": "2026-02-18 22:05:16.517281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Access Control: Function visibility] Are all functions appropriately marked public vs public(package)? Can external contracts call sensitive functions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8d484dc-386b-4467-9ac0-0791ba206b2d?mode=deep",
+    "timestamp": "2026-02-18 22:05:41.222292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Access Control: Parameter injection] Can attacker pass malicious vault/operation/oracle_config objects to functions to affect wrong vault? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f7b3bd6-ca62-4731-8dcb-25ef0ee26b0c?mode=deep",
+    "timestamp": "2026-02-18 22:06:05.501589",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Access Control: Capability cloning] Can sui::object::id(cap) be reused to create duplicate capabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_66ff43ae-17ed-4b3f-a525-a3b04c146caa?mode=deep",
+    "timestamp": "2026-02-18 22:06:30.690685",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Authorization: Mixed caps] Can operator call admin functions by crafting capability objects with same ID? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5a8187d-0aba-4edf-878c-88d78de25cc2?mode=deep",
+    "timestamp": "2026-02-18 22:06:55.504904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Authorization: Cap transfer] Can capabilities be transferred to contracts that auto-execute admin operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_016f2bcc-20d7-470b-bdb1-9b60e0233bfb?mode=deep",
+    "timestamp": "2026-02-18 22:07:16.726839",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [State: Vault status] Are vault status transitions properly gated? Can vault go from DISABLED directly to DURING_OPERATION? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_acb0b94d-4c4b-4691-85b8-7a571fe452c0?mode=deep",
+    "timestamp": "2026-02-18 22:07:37.236324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [State: Operation lifecycle] If vault status changes mid-operation, are operation lifecycle checks still valid? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_55ba97f7-c822-4cbb-adb4-bdf13a6d8c5d?mode=deep",
+    "timestamp": "2026-02-18 22:07:58.479589",
+    "report_generated": false
+  }
+]
