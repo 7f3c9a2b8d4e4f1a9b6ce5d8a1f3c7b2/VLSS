@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Friend: lending] [Trust Assumption] Module trusts lending_core::lending as friend - what prevents lending module from maliciously calling update_reward with manipulated parameters? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c2eb3c9d-8142-4332-82d8-2c5940dbd62a?mode=deep",
+    "timestamp": "2026-02-18 19:56:11.420176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Friend: incentive_v2] [Migration Risk] incentive_v2 is friend - could incentive_v2 bypass security checks during migration, draining rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ae39a29d-4c22-4a6c-9bf0-7b3be1fbc685?mode=deep",
+    "timestamp": "2026-02-18 19:56:25.284503",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Friend: update_reward] [Parameter Validation] update_reward trusts friend callers to provide valid asset and account - what if invalid values cause state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_096971cd-0fa1-4f34-9958-0e7d64b191b0?mode=deep",
+    "timestamp": "2026-02-18 19:56:39.955577",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Storage Dependency] Line 251 calls storage::get_total_supply - if storage is corrupted or returns wrong values, could rewards be miscalculated? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f28a3d6f-37c3-450d-9c17-c59ea15f5085?mode=deep",
+    "timestamp": "2026-02-18 19:56:55.190323",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [User Balance] Line 273 calls storage::get_user_balance - if user balance is manipulated between update_reward and claim, could rewards be inflated? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4422e0d1-e5a9-48f2-b037-24e26eab278f?mode=deep",
+    "timestamp": "2026-02-18 19:57:12.057256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: update_reward()] [Storage Mutation] Function takes mutable storage reference - could concurrent storage access cause race conditions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d1f5492-6381-4f85-86c2-c171c19aeb6c?mode=deep",
+    "timestamp": "2026-02-18 19:57:31.131076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: add_pool()] [Zero Amount] What happens if amount=0 is passed to add_pool - will rate be 0 and no rewards ever accrue? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf299da4-0ee2-49f2-9a6b-2df37ee128d3?mode=deep",
+    "timestamp": "2026-02-18 19:57:50.615403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: add_pool()] [Start Time Equals End Time] If start_time == end_time - 1, duration is 1ms - will ray_div produce infinite rate? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83c6965d-280a-4e77-ade9-07e009f2a695?mode=deep",
+    "timestamp": "2026-02-18 19:58:13.183376",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: add_pool()] [Far Future Times] If end_time is set to MAX_U64, could time_diff calculations overflow when computing rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d82601f9-38ee-4349-888b-71ff757dbd88?mode=deep",
+    "timestamp": "2026-02-18 19:58:36.649539",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [All Users Withdraw] If total_supply becomes 0 after pool start, line 254-256 sets index_increase=0 - are rewards lost forever or redistributed later? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_15b6d164-9aed-4394-b987-bb9c19c11da1?mode=deep",
+    "timestamp": "2026-02-18 19:59:01.107544",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Claim After Pool End] If user claims after end_time, are rewards properly calculated for the full period or could late claims receive less? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_833371af-10a2-4eea-ae69-acbb7b8e92a3?mode=deep",
+    "timestamp": "2026-02-18 19:59:28.100247",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Maximum Reward] If user_acc_reward reaches u256::MAX, could further reward accrual overflow and wrap to 0? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f58daaca-2e4d-43e8-ac3b-8f0513b79ba5?mode=deep",
+    "timestamp": "2026-02-18 19:59:54.834422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: update_reward()] [First Update] When last_update_time=0 (initial state), lines 238-241 use start_time directly - could this cause double-counting if start_time is in past? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eee6b9f1-db68-4788-86e2-5cdfebe6343f?mode=deep",
+    "timestamp": "2026-02-18 20:00:21.882473",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: update_reward()] [Loop Gas Cost] Lines 200-220 loop through all pools for an asset - if asset has many pools, could this exceed gas limits causing DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_10b1fc26-8987-49e6-9640-578438b96463?mode=deep",
+    "timestamp": "2026-02-18 20:00:46.959830",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: earned()] [Loop Complexity] Lines 379-391 loop through all pools - could attacker create many pools to make earned() uncomputable? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a360cd98-096c-4f1a-ad9e-0b1ff1ce7f14?mode=deep",
+    "timestamp": "2026-02-18 20:01:12.689743",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: add_pool()] [Table Growth] Each pool creates 3 new tables - unbounded pool creation could exhaust storage? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_97b33b27-ef14-44e2-b295-bfada751c745?mode=deep",
+    "timestamp": "2026-02-18 20:01:37.108460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Struct: PoolInfo] [Vector Growth] All PoolInfo vectors grow with each pool addition - is there a maximum pool count to prevent storage DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_20f8de37-00f2-4827-abc5-66b2114825be?mode=deep",
+    "timestamp": "2026-02-18 20:02:03.250523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: add_pool()] [CoinType Generic] Function takes any CoinType - could attacker create pools with malicious coin types that break reward claiming? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_afe4fbd2-94d6-4d71-9ac7-293678ea0f8a?mode=deep",
+    "timestamp": "2026-02-18 20:02:28.773961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: claim_reward()] [CoinType Mismatch] If caller provides IncentiveBal<CoinTypeA> but Incentive pool expects CoinTypeB, will type system catch mismatch? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9419865a-0f94-414e-8ef5-35b327ec9dac?mode=deep",
+    "timestamp": "2026-02-18 20:02:55.245556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Struct: IncentiveBal] [Generic Type Storage] IncentiveBal<CoinType> is stored by type - could type confusion attacks drain wrong balances? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c972c5e1-9058-457b-a4ac-30dc5fb76352?mode=deep",
+    "timestamp": "2026-02-18 20:03:21.197531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: create_and_transfer_ownership()] [Abort 0] Line 92 always aborts with code 0 - is this intentional disabled function or incomplete implementation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd6873ae-24bc-406e-ae89-51df0fcbf090?mode=deep",
+    "timestamp": "2026-02-18 20:03:47.040040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: add_pool()] [Validation Errors] Function uses custom error codes from error module - are all error cases handled or could unexpected states cause silent failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bbfcc4d0-5eef-4762-a8eb-9b5dec1f627b?mode=deep",
+    "timestamp": "2026-02-18 20:04:11.169349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: get_pool_info()] [Invalid Pool Assert] Line 349 asserts pool exists - will this abort transaction or return error that can be caught? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_25a0db0f-d737-40a7-b42c-5d930e48fc6d?mode=deep",
+    "timestamp": "2026-02-18 20:04:36.760109",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Insufficient Balance Assert] Line 332 asserts sufficient balance - if assertion fails during claim, are any state changes rolled back properly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e3692d5-2d3c-4612-9abc-32aa4acb9c41?mode=deep",
+    "timestamp": "2026-02-18 20:05:01.207535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: claim_reward()] [Transfer Call] Line 296 calls transfer::public_transfer - could recipient's receive hook cause reentrancy? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fd6b6f9-067b-4f4f-a2c0-48c66439a3c4?mode=deep",
+    "timestamp": "2026-02-18 20:05:24.190518",
+    "report_generated": false
+  }
+]
