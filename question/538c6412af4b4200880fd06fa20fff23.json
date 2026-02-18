@@ -1,8 +1,0 @@
-[
-  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: guardian_queue()] [Validation Layer] If guardian_queue provides secondary price validation - could its compromise create single point of failure when combined with oracle_queue attack? (Critical)",
-  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_guardian_queue_id()] [Security Downgrade] Could attacker with package access set guardian_queue to null/dummy object effectively removing price validation layer? (High)",
-  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: on_demand_package_id()] [Version Tracking] Package ID exposed but no version checking - could outdated consumers use incompatible oracle interface after package upgrade? (Medium)",
-  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_on_demand_package_id()] [Upgrade Path] Package ID mutable but no migration logic - could premature update break compatibility with existing oracle aggregator objects? (Medium)",
-  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Struct: State] [Shared Mutation] Multiple vaults reading same State concurrently - could setter call during vault operation cause operation to use mixed old/new oracle sources? (Medium)",
-  "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Functions: set_oracle_queue_id(), set_guardian_queue_id(), set_on_demand_package_id()] [Atomic Updates] No transaction atomicity across multiple setter calls - could system be left in intermediate state if transaction aborts mid-update sequence? (Medium)"
-]
