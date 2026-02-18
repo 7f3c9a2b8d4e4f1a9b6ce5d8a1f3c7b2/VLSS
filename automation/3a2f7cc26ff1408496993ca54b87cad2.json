@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: has_authority()] [Authorization Bypass] Can an attacker bypass authority checks by calling package-level functions directly from another module in the same package, since has_authority() only checks sender but package functions don't enforce this check? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ffc64783-9761-4388-876c-9202520b7a63?mode=deep",
+    "timestamp": "2026-02-18 22:25:26.088003",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: set_authority()] [Authority Takeover] Can the current authority be changed to address(0x0) or an invalid address through set_authority(), permanently locking the queue from any authority-required operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1a68f73c-6a1d-4055-a6a0-6e8f106c9a7e?mode=deep",
+    "timestamp": "2026-02-18 22:25:38.693078",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: set_authority()] [Authorization Chain Break] If authority is transferred to a new address, can the old authority still perform actions during the same transaction before the transfer completes, creating a race condition? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fce6d81e-e583-4c96-adba-94514b823165?mode=deep",
+    "timestamp": "2026-02-18 22:25:51.820478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: has_authority()] [Sender Spoofing] Does has_authority() correctly handle cases where ctx.sender() might be manipulated through programmable transaction blocks with multiple signers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4dbd1c4d-66db-4991-bb9f-1c56ce517757?mode=deep",
+    "timestamp": "2026-02-18 22:26:06.199833",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: new()] [Initial Authority Lock] Can the authority address be set to an address that doesn't have a private key during queue creation, permanently locking administrative functions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d169af7c-f2a7-49de-9373-ec07594cd5fd?mode=deep",
+    "timestamp": "2026-02-18 22:26:20.658044",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: add_existing_oracle()] [Duplicate Oracle] Can add_existing_oracle() be called multiple times with the same oracle_key to overwrite existing oracle mappings, potentially replacing legitimate oracles with malicious ones? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f991457d-0e6e-4c03-9adc-52663df56bc9?mode=deep",
+    "timestamp": "2026-02-18 22:26:36.349787",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: add_existing_oracle()] [Oracle ID Mismatch] Can an attacker provide an oracle_id that doesn't match the actual oracle object, creating inconsistencies between oracle_key and oracle_id mappings? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3a00df09-397c-41a0-82e9-fabd36c2b021?mode=deep",
+    "timestamp": "2026-02-18 22:26:53.002686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: add_existing_oracle()] [Table Overflow] What happens if the existing_oracles table grows unbounded? Can this cause DoS through excessive gas costs or table size limits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_049dbd75-670f-41fd-8c1b-3dc217ff46b7?mode=deep",
+    "timestamp": "2026-02-18 22:27:10.788299",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: existing_oracles_contains()] [Key Collision] Can two different oracle public keys hash to the same vector<u8> representation, causing oracle_key collisions in the table? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d9839ef-8698-4b69-823c-69ad7153b610?mode=deep",
+    "timestamp": "2026-02-18 22:27:30.425014",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: add_existing_oracle()] [Empty Key Attack] Can oracle_key be an empty vector (vector::empty()), allowing multiple oracles to map to the same empty key and overwrite each other? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d494cd54-002e-44b4-bd55-294d5f9565c0?mode=deep",
+    "timestamp": "2026-02-18 22:27:50.489165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: add_existing_oracle()] [Oracle Removal] Is there any function to remove an oracle from existing_oracles? If not, can malicious oracles be permanently stuck in the queue? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_77e94089-576b-42ca-a87e-ea15a7b6b985?mode=deep",
+    "timestamp": "2026-02-18 22:28:10.989997",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: set_configs()] [Fee Overflow] Can the fee parameter be set to u64::MAX causing overflow when fees are calculated (fee * number_of_operations)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_32215389-c55c-494f-88c8-cc2f3637c2a0?mode=deep",
+    "timestamp": "2026-02-18 22:28:33.550173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: set_configs()] [Zero Fee Recipient] Can fee_recipient be set to address(0x0), causing collected fees to be sent to an inaccessible address? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a9ec77c-6e82-4ec9-bfe9-bf1e8a62cbc6?mode=deep",
+    "timestamp": "2026-02-18 22:28:55.194045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: set_configs()] [Min Attestations Zero] Can min_attestations be set to 0, allowing oracles to submit data without any threshold, compromising data integrity? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_152cee8e-3070-4dae-acc7-33a9edfb0b7d?mode=deep",
+    "timestamp": "2026-02-18 22:29:17.106799",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: set_configs()] [Oracle Validity Zero] Can oracle_validity_length_ms be set to 0, making all oracle submissions immediately invalid/stale? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9518b6eb-3a8d-4660-94ca-a88a77ee472c?mode=deep",
+    "timestamp": "2026-02-18 22:29:36.788242",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: set_configs()] [Oracle Validity Overflow] Can oracle_validity_length_ms be set to u64::MAX, causing timestamp overflow when checking (current_time + oracle_validity_length_ms)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_81eb871d-820d-458a-a596-bafc6be756f2?mode=deep",
+    "timestamp": "2026-02-18 22:29:57.056965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: set_configs()] [Fee Recipient Front-running] Can authority change fee_recipient right before fees are collected to redirect fees to themselves? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_81c7a9fa-08e4-4ef5-8a5c-5014b8e17680?mode=deep",
+    "timestamp": "2026-02-18 22:30:16.670293",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: set_configs()] [Min Attestations Manipulation] Can min_attestations be lowered to 1 temporarily to allow single oracle submissions, then raised back after malicious data is submitted? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_014c41f5-0b4f-4c15-9783-5af72c7efdbf?mode=deep",
+    "timestamp": "2026-02-18 22:30:38.532111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: set_configs()] [Extreme Validity Period] Can oracle_validity_length_ms be set to an extremely long period (e.g., 100 years), allowing stale data to be considered valid indefinitely? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2bbf7d91-2797-4b5a-9ce4-38036f2f5e35?mode=deep",
+    "timestamp": "2026-02-18 22:30:58.681377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: new()] [Guardian Self-Reference] When is_guardian_queue is true, guardian_queue_id is set to its own ID - can this create circular dependencies or infinite recursion in guardian checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a99381dc-c86c-4d8c-b378-a909dc1d9562?mode=deep",
+    "timestamp": "2026-02-18 22:31:19.637185",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: new()] [Guardian Queue Impersonation] Can a regular queue be created with guardian_queue_id pointing to itself, making it appear as a guardian queue without proper initialization? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_599ac1eb-6def-4ebb-a568-c4ade1a0c941?mode=deep",
+    "timestamp": "2026-02-18 22:31:41.008152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: set_guardian_queue_id()] [Guardian Replacement] Can guardian_queue_id be changed to point to a malicious guardian queue, compromising the entire oracle network's security model? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_72037d31-6646-4b0f-9248-0450c5572b62?mode=deep",
+    "timestamp": "2026-02-18 22:32:04.206150",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: set_guardian_queue_id()] [Invalid Guardian ID] Can guardian_queue_id be set to an ID that doesn't correspond to any actual Queue object? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83dbf02c-a744-4a4f-bc18-fb267ee39346?mode=deep",
+    "timestamp": "2026-02-18 22:32:24.102599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: new()] [Guardian Queue Authority] Does the guardian queue created with is_guardian_queue=true have proper authority validation, or can it be controlled differently? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_26f320a4-1c8f-4d29-aab1-dcf18cff36dc?mode=deep",
+    "timestamp": "2026-02-18 22:32:44.210558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/queue.move] [Function: add_fee_type()] [Fee Type Duplication] Can add_fee_type() be called with the same type T multiple times, and while it returns early, could concurrent calls race to both add the type? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_690df6e0-7ee1-4f6f-8144-e2da4c47a28b?mode=deep",
+    "timestamp": "2026-02-18 22:33:04.105758",
+    "report_generated": false
+  }
+]
