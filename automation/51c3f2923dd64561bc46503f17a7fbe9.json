@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Field: fee_amount_tick_spacing] [Partial Updates] If fee rate is added but transaction fails before completion, could table be in partial state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7af6c4f-79c0-4f38-a579-bc7856ad6807?mode=deep",
+    "timestamp": "2026-02-18 23:36:49.796552",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Commented test_only] [Production Use] The commented init_ is marked test_only suggesting it shouldn't be in production. Is production code using test initialization logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_71a692ac-f6a1-4499-b0ee-9f3bbbed71c6?mode=deep",
+    "timestamp": "2026-02-18 23:37:02.508850",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Module: global_config] [No Assertions] No assert! statements exist for validation. Could invalid inputs pass through without checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_44a19451-6ce5-45d4-baa5-eefb4945d4c1?mode=deep",
+    "timestamp": "2026-02-18 23:37:16.181146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Field: fee_amount_tick_spacing] [Fee Competition] Could multiple fee tiers for similar rates enable fee competition, fragmenting liquidity and reducing capital efficiency? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d4eb51ea-1f05-4baa-8cce-8b1521e246e4?mode=deep",
+    "timestamp": "2026-02-18 23:37:29.582378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Commented Fee Values] [LP Returns] With fees of 1bp to 100bp (0.01% to 1%), could low fees discourage liquidity providers, causing pool insolvency? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2bfc21c8-0506-437d-a3a4-3838d8f51374?mode=deep",
+    "timestamp": "2026-02-18 23:37:44.157190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Module: global_config] [Momentum Position Value] Vault adaptor calculates Momentum position values. If tick_spacing affects position valuation, could wrong tick spacing cause incorrect vault share prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_acd96ffb-120e-456c-b2cb-2e16c0909d1a?mode=deep",
+    "timestamp": "2026-02-18 23:38:00.854156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: get_tick_spacing()] [Liquidity Range] Tick spacing determines liquidity range granularity. Could inappropriate spacing cause vault's Momentum positions to be out-of-range, earning no fees? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f1607d03-059e-4667-990d-89b189256fc3?mode=deep",
+    "timestamp": "2026-02-18 23:38:17.309853",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Field: fee_amount_tick_spacing] [Rebalancing Cost] Vault rebalances require closing/opening positions. Could fee rate changes force expensive rebalancing, draining vault value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_23ce538a-4605-4533-8721-0e04347ec7c3?mode=deep",
+    "timestamp": "2026-02-18 23:38:35.756967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: init()] [Repeated Init] Could attacker repeatedly call init() causing abort storm, degrading network performance for all users? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_959a98c6-e5be-4cac-8756-3389c589ba22?mode=deep",
+    "timestamp": "2026-02-18 23:38:55.427298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: contains_fee_rate()] [Query DoS] Could attacker spam contains_fee_rate() with random values, each aborting and wasting validator resources? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b4ac70d9-c507-423a-9490-92c704f6562f?mode=deep",
+    "timestamp": "2026-02-18 23:39:14.377858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Field: fee_amount_tick_spacing] [Unbounded Growth] Table has no size limit. Could attacker add arbitrary fee rates until storage costs make GlobalConfig uneconomical to maintain? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b347e48-3bf5-4cf0-9bd1-568b5afb8d0a?mode=deep",
+    "timestamp": "2026-02-18 23:39:32.094217",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Struct: GlobalConfig] [Storage Rebate] When GlobalConfig is deleted, is storage rebate calculated correctly? Could large table cause rebate overflow? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2cac0f4a-2ec1-4c35-83df-416d95a74797?mode=deep",
+    "timestamp": "2026-02-18 23:39:50.468000",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Struct: GlobalConfig] [Object ID Exhaustion] Each GlobalConfig has unique UID. Could creating many GlobalConfig objects exhaust object ID space? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ba1f915b-2d03-49e8-bb63-8a2d6284763d?mode=deep",
+    "timestamp": "2026-02-18 23:40:10.409275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Line 37: share_object] [Consensus Impact] Shared objects affect consensus performance. Could GlobalConfig become bottleneck for protocol throughput? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d1e06e03-f73e-48f0-b262-fe6d6b2793ea?mode=deep",
+    "timestamp": "2026-02-18 23:40:30.899840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Struct: GlobalConfig] [Dynamic Fields] Could GlobalConfig use dynamic fields instead of Table? Would this prevent storage DoS but enable other attacks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6cb60098-49d0-424f-94c9-81bd5cb08c64?mode=deep",
+    "timestamp": "2026-02-18 23:40:52.159230",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Module: global_config] [No Integration Tests] All functions abort, suggesting no integration tests passed. Could this indicate incomplete testing leaving vulnerabilities? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3fc71c26-5ef5-4f69-85dd-95f37acaaf33?mode=deep",
+    "timestamp": "2026-02-18 23:41:13.543007",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Commented init_] [Test vs Production] Test init and production init differ. Could production deployment use wrong initialization parameters? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74b1acc1-6651-42c6-b5cf-53c4a4a45274?mode=deep",
+    "timestamp": "2026-02-18 23:41:35.948275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Field: fee_amount_tick_spacing] [Fee Denominator] Fee rates lack explicit denominator. If assumed 1e6 but actually 1e4, fees would be 100x wrong. Where is denominator defined? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_585733fe-edf0-40f1-81e0-eb54e7ba1112?mode=deep",
+    "timestamp": "2026-02-18 23:41:58.351698",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Commented Fee Values] [Basis Points] Values 100, 500, 3000, 10000 suggest bps (basis points) but no documentation confirms. Could misinterpretation cause 10x-100x fee errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_905447be-b3df-4534-baa8-6dae4ff8b6f2?mode=deep",
+    "timestamp": "2026-02-18 23:42:20.260952",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Module: global_config] [Multi-Chain Config] If Momentum expands to other chains, could GlobalConfig desync across chains causing arbitrage opportunities? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_11aa5033-d37c-47e8-a374-6486b5d37a57?mode=deep",
+    "timestamp": "2026-02-18 23:42:40.246334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: get_tick_spacing()] [Price Oracle] Tick spacing affects price range. Could manipulated tick spacing enable oracle price manipulation in pool pricing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5935f34f-c9b1-4f01-98a3-8efaa8ade11a?mode=deep",
+    "timestamp": "2026-02-18 23:42:59.790539",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Field: fee_amount_tick_spacing] [MEV Extraction] Could MEV bots monitor fee rate changes to sandwich user pool creations, extracting value from fee tier transitions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_504b86be-c26d-459a-8d13-547f91ce3980?mode=deep",
+    "timestamp": "2026-02-18 23:43:20.065093",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: get_tick_spacing()] [Slippage Calculation] If tick spacing is used in slippage checks, could incorrect spacing cause user transactions to fail or execute with excessive slippage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_916a8843-f572-4fcb-ae0a-d6590d69deb6?mode=deep",
+    "timestamp": "2026-02-18 23:43:41.316875",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Commented Fee Values] [Too Many Tiers] Four fee tiers (100, 500, 3000, 10000 bps) could fragment liquidity across pools. Could this reduce trade execution quality? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cfd899cb-17f3-4ef3-ace5-542e823a3748?mode=deep",
+    "timestamp": "2026-02-18 23:44:02.246120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Field: fee_amount_tick_spacing] [Similar Fee Rates] Could attacker add fee rate 101, 102, 103 near existing 100, fragmenting liquidity and reducing efficiency? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dec9c903-e918-4cf3-bdd9-26848b93a024?mode=deep",
+    "timestamp": "2026-02-18 23:44:23.008707",
+    "report_generated": false
+  }
+]
