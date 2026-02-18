@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: cumulate_to_supply_index()] [Timestamp Reuse] At line 306, last_update_at is reused from storage. If this is stale and update_state is called later, can interest be double-counted? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_068cb77e-6d3c-4de6-b3f0-107fffbd0715?mode=deep",
+    "timestamp": "2026-02-18 23:22:25.660757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: cumulate_to_supply_index()] [Event Emission with Zero Address] At line 314, emit_state_updated_event is called with @0x0 as user. Can this break indexers or off-chain systems expecting valid addresses? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_73079854-4085-4acd-8a93-3a694512246f?mode=deep",
+    "timestamp": "2026-02-18 23:22:38.386203",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: cumulate_to_supply_index()] [Amount Validation] If amount is 0, does the calculation at line 308-311 still update supply_index unnecessarily? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5d4c306-1644-4a8a-b351-d3358136c994?mode=deep",
+    "timestamp": "2026-02-18 23:22:51.808871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: cumulate_to_supply_index()] [Rounding Direction] Does ray_div round down? If so, can repeated small flash loan profits accumulate through favorable rounding? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca87056c-d5d3-4a37-b1ef-02ff08a12932?mode=deep",
+    "timestamp": "2026-02-18 23:23:05.559275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: increase_supply_balance()] [Index Manipulation] At line 329, if supply_index is manipulated to be very small before this call, can scaled_amount be inflated allowing user to mint excessive shares? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b83d3fe7-caae-4b02-bd07-dcfb2fe03e87?mode=deep",
+    "timestamp": "2026-02-18 23:23:19.986297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: increase_supply_balance()] [Zero Index Division] If supply_index = 0 due to initialization error, does ray_div at line 329 cause panic or return MAX? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3cf0c53c-b1e4-4958-980e-94b8aa3f308f?mode=deep",
+    "timestamp": "2026-02-18 23:23:35.670192",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: decrease_supply_balance()] [Rounding Abuse] At line 336, if amount is slightly less than user's actual balance due to rounding, can they leave dust that accumulates? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e7f509a4-6e96-4b71-937d-7f054fc593d7?mode=deep",
+    "timestamp": "2026-02-18 23:23:53.733816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: decrease_supply_balance()] [Underflow Protection] If storage::decrease_supply_balance tries to subtract more than user has, does it panic or silently fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7519f472-cb48-4bd6-913e-f8f4e5ac8c5d?mode=deep",
+    "timestamp": "2026-02-18 23:24:12.167279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: increase_borrow_balance()] [Borrow Index Manipulation] At line 343, if borrow_index is very large, can scaled_amount round to 0 allowing free borrows? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7e34e55-04f3-4fa2-92b4-252de8c63b9a?mode=deep",
+    "timestamp": "2026-02-18 23:24:32.762402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: increase_borrow_balance()] [Overflow in Storage] If storage::increase_borrow_balance doesn't check for overflow, can scaled_amount overflow u256? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9e20a99-f47d-4b7b-a439-4b8e6c2c50d4?mode=deep",
+    "timestamp": "2026-02-18 23:24:53.154952",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: decrease_borrow_balance()] [Partial Repay Rounding] At line 350, if scaled_amount rounds up slightly, can user repay less actual debt than intended? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d6af62fc-ee01-40bb-bef0-67d2779c085e?mode=deep",
+    "timestamp": "2026-02-18 23:25:13.314544",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: decrease_borrow_balance()] [Negative Balance] If calculation error causes decrease_borrow_balance to be called with amount > balance, does storage handle this safely? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1812e4ca-3324-4dc1-a923-c5dc547a6061?mode=deep",
+    "timestamp": "2026-02-18 23:25:35.858999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: is_health()] [Threshold Comparison] At line 360, health_factor >= ray() checks if >= 1e27. If user_health_factor returns exactly 1e27 due to rounding, is user considered healthy or unhealthy in edge cases? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4db9316f-614e-45a2-a780-1974c3a9f181?mode=deep",
+    "timestamp": "2026-02-18 23:25:58.779502",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: is_health()] [Oracle Dependency] Since is_health relies on user_health_factor which uses oracle prices, can stale oracle data return incorrect health status? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1567f86e-5fe4-4400-8880-c6ec9d23cd87?mode=deep",
+    "timestamp": "2026-02-18 23:26:19.014900",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_factor_batch()] [Gas Limit Attack] At lines 363-373, if users vector is very large, can this exceed gas limits causing DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52ed9e05-aa26-4f2f-866e-efb5d7d7043f?mode=deep",
+    "timestamp": "2026-02-18 23:26:41.185598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_factor_batch()] [Partial Calculation] If one user calculation fails mid-loop, does entire batch fail or return partial results? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51c5ccc1-0fa4-4378-88bf-c74ed0af5da8?mode=deep",
+    "timestamp": "2026-02-18 23:27:03.608256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_factor()] [Division by Zero] At line 384, if health_loan_value > 0 is checked, but at line 386 ray_div(health_collateral_value, health_loan_value) is called. What if health_loan_value rounds to 0? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3482b451-f58c-4215-b463-ed137553160c?mode=deep",
+    "timestamp": "2026-02-18 23:27:26.564332",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_factor()] [Max Value Return] At line 389, address::max() is returned if no loan. Can downstream code handle u256::MAX safely or does it cause overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8bbc467a-59ec-4f7b-ae11-aed4c3e1c5ef?mode=deep",
+    "timestamp": "2026-02-18 23:27:50.859331",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_factor()] [Liquidation Threshold Manipulation] At line 382, if dynamic_liquidation_threshold returns manipulated value, can attacker appear healthier than reality? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0269fb6-45b4-4ed1-a6a3-bc18cf68f2ca?mode=deep",
+    "timestamp": "2026-02-18 23:28:16.531353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_factor()] [Collateral Value Zero] If health_collateral_value at line 381 is 0 but user has loans, does line 386 return 0 making liquidation always valid? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74286813-ace4-466b-adc2-2f36ce0813ff?mode=deep",
+    "timestamp": "2026-02-18 23:28:43.076095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_health_factor()] [Precision Loss in Ratio] At line 386, ray_div followed by ray_mul at line 387. Can this two-step calculation lose precision vs. doing it in one operation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e680e71f-2621-4d34-99f1-19366edebe85?mode=deep",
+    "timestamp": "2026-02-18 23:29:10.664927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: dynamic_liquidation_threshold()] [Zero Collateral Value] At line 412, if collateral_value is 0, function returns 0. Can this cause division by zero in caller functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5776108-cbc5-4590-a80b-11ab0489a655?mode=deep",
+    "timestamp": "2026-02-18 23:29:38.419358",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: dynamic_liquidation_threshold()] [Collateral Composition Attack] At lines 402-410, threshold is weighted by collateral values. Can attacker deposit low-threshold assets to reduce overall threshold and borrow more? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_782274ef-85bc-4a2a-a01e-020223971869?mode=deep",
+    "timestamp": "2026-02-18 23:30:02.735345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: dynamic_liquidation_threshold()] [Loop Optimization] If collateral vector is large, does loop at lines 402-410 consume excessive gas? Can this cause DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a4c0ad2a-9bde-47c9-8992-276e15a006e1?mode=deep",
+    "timestamp": "2026-02-18 23:30:28.166359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: dynamic_liquidation_threshold()] [Rounding in Division] At line 413, ray_div(collateral_health_value, collateral_value) - can this round incorrectly if values are close? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c601c515-c2b4-4e4f-bc1f-52201a619b4d?mode=deep",
+    "timestamp": "2026-02-18 23:30:54.776754",
+    "report_generated": false
+  }
+]
