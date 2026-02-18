@@ -1,0 +1,32 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Event: AddLiquidityEvent] [Fee Tracking Omission] The event doesn't include any fee-related fields. If fees are charged on liquidity addition, the vault's monitoring can't track actual costs vs expected costs, making fee analysis impossible. Should events include fee amounts? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_047f8a04-52e7-464b-8218-df7133b97ec1?mode=deep",
+    "timestamp": "2026-02-18 21:46:29.033362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: remove_liquidity()] [Liquidity Parameter Type] The liquidity parameter is u128, allowing removal of up to 2^128-1 units. If a position has less liquidity, attempting to remove max u128 could either underflow or incorrectly succeed by removing all available liquidity. Should liquidity be bounds-checked against position.liquidity? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0062beab-210a-4290-a8d8-11e45a99327a?mode=deep",
+    "timestamp": "2026-02-18 21:46:41.831962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: add_liquidity()] [Position Liquidity Cap] There's no visible check if adding liquidity would exceed a position's maximum liquidity limit (if such a limit exists per tick range). If the position already has MAX_LIQUIDITY-1 and 2 more is added, overflow could occur. Does the position module enforce caps? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a647c50-4f75-4b66-9a30-c82f3b36f962?mode=deep",
+    "timestamp": "2026-02-18 21:46:55.718798",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: open_position()] [Tick Lower/Upper Swap] If tick_lower and tick_upper are accidentally swapped by the caller (tick_lower > tick_upper), the position is invalid. An attacker could intentionally pass swapped ticks to cause the vault to create unusable positions. Should the order be validated at the function boundary? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc39c8aa-54f0-4708-ba2a-caee94ede638?mode=deep",
+    "timestamp": "2026-02-18 21:47:09.575610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: open_position()] [Same Tick Lower/Upper] If tick_lower == tick_upper, the position has zero width, meaning zero liquidity can be added. The vault wastes gas creating an unusable position. Should equal ticks be explicitly disallowed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b771549-c3a1-4c68-afac-6a5ad9fd19e0?mode=deep",
+    "timestamp": "2026-02-18 21:47:24.330273",
+    "report_generated": false
+  }
+]
