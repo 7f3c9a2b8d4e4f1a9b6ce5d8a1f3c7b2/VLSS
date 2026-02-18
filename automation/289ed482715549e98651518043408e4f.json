@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: zero()] [Unimplemented Function] All functions abort unconditionally with abort code 0 - when implemented, could zero() return an incorrect bit representation allowing non-zero I64 to masquerade as zero in vault loss calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_96750f10-f75b-4b8e-8c32-0e90faa8932a?mode=deep",
+    "timestamp": "2026-02-18 21:22:44.847540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: from_u64()] [Integer Overflow] When from_u64() is implemented, could passing values >= MIN_AS_U64 (0x8000000000000000) bypass overflow checks and create invalid positive I64 values used in share price calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2f56a18d-664e-45e9-b449-3818fcc630e1?mode=deep",
+    "timestamp": "2026-02-18 21:22:57.877922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: from()] [Integer Overflow] The from() function should reject values >= MIN_AS_U64 per test_from_overflow test - could missing validation allow wrapping negative numbers to appear positive in vault value calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86a2e35d-8b48-4550-acd6-431a4d5854c7?mode=deep",
+    "timestamp": "2026-02-18 21:23:11.789851",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: from()] [Test Coverage Gap] Test test_from_overflow only checks MIN_AS_U64 and 0xffffffffffffffff - could values in range (MAX_AS_U64+1, MIN_AS_U64) bypass checks and corrupt I64 invariants? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca55bdbf-5fc0-45b0-b07b-7b52a07722f6?mode=deep",
+    "timestamp": "2026-02-18 21:23:25.904016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: neg_from()] [Integer Overflow] neg_from() should reject values > MIN_AS_U64 per test_neg_from_overflow - could passing 0x8000000000000001 create invalid I64 representing impossible magnitude in loss tracking? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c3f5009b-9fc4-4d5e-bb01-ba5783a02c68?mode=deep",
+    "timestamp": "2026-02-18 21:23:40.421529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: neg_from()] [Sign Bit Manipulation] neg_from(MIN_AS_U64) should equal MIN_AS_U64 itself (most negative value) - could incorrect two's complement negation create off-by-one errors in debt calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ce5de4f-3a4a-4ac1-923d-1312f002fecc?mode=deep",
+    "timestamp": "2026-02-18 21:23:56.467967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: neg_from()] [Boundary Case] Test shows neg_from(0) should equal 0 - could implementation incorrectly set sign bit for zero, causing zero to be treated as negative in comparison operations affecting vault status? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ebc98a7-18b9-44f0-ba9c-bc253200d37f?mode=deep",
+    "timestamp": "2026-02-18 21:24:14.255928",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: wrapping_add()] [Integer Overflow] wrapping_add(from(MAX_AS_U64), from(1)) should wrap to MIN_AS_U64 - could incorrect wrapping logic cause phantom gains in cumulative reward tracking when overflow occurs? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_acd9f671-f284-4c5b-b9c4-873f93fadc1f?mode=deep",
+    "timestamp": "2026-02-18 21:24:33.286949",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: wrapping_add()] [Silent Overflow] wrapping_add() silently wraps on overflow without error - could this allow attackers to manipulate vault PnL calculations by forcing overflows that appear as losses instead of gains? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8034a6a3-85aa-4152-a979-e890a8556f3f?mode=deep",
+    "timestamp": "2026-02-18 21:24:53.859023",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: add()] [Integer Overflow] add(from(MAX_AS_U64), from(1)) must abort per test_add_overflow - could missing overflow check allow vault total_usd_value to silently wrap causing catastrophic accounting errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b6f5c468-c8fb-49bf-832d-7473072fbf14?mode=deep",
+    "timestamp": "2026-02-18 21:25:14.729090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: add()] [Integer Underflow] add(neg_from(MIN_AS_U64), neg_from(1)) must abort per test_add_underflow - could missing underflow check create impossible negative values in cumulative loss tracking? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac6e4bb6-7d85-48d0-8302-dffdb8ce620c?mode=deep",
+    "timestamp": "2026-02-18 21:25:36.232079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: add()] [Mixed Sign Addition] add(from(99999), neg_from(10000)) should equal 89999 - could incorrect mixed-sign arithmetic allow attackers to create off-by-one errors in net position calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_325fae8f-027c-49d9-948c-aefa44d10849?mode=deep",
+    "timestamp": "2026-02-18 21:25:58.722250",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: add()] [Boundary Addition] add(neg_from(MIN_AS_U64), from(1)) should produce MIN_AS_U64+1 - could boundary miscalculation cause maximum loss values to incorrectly appear recoverable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f99074e2-7128-4de2-b780-2b07dae38012?mode=deep",
+    "timestamp": "2026-02-18 21:26:21.795483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: wrapping_add()] [Underflow Wrapping] wrapping_add(neg_from(MIN_AS_U64-1), neg_from(1)) should wrap to MIN_AS_U64 - could incorrect negative wrapping allow loss_tolerance checks to be bypassed via underflow? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7f893a6f-cdb8-4358-a16a-a71c1cdf6676?mode=deep",
+    "timestamp": "2026-02-18 21:26:43.473981",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: wrapping_sub()] [Integer Overflow] wrapping_sub(from(MAX_AS_U64), neg_from(1)) wraps to neg_from(MIN_AS_U64) - could this allow profit calculations to wrap into massive apparent losses triggering emergency withdrawals? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50620bb3-749d-4356-a274-0e24eff354e0?mode=deep",
+    "timestamp": "2026-02-18 21:27:06.046034",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: wrapping_sub()] [Underflow Wrapping] wrapping_sub(neg_from(MIN_AS_U64), from(1)) wraps to from(MAX_AS_U64) - could loss calculations wrap to massive gains allowing loss_tolerance bypass? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc3eb103-0c8e-41d1-bc38-5534299d30e5?mode=deep",
+    "timestamp": "2026-02-18 21:27:28.318673",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: sub()] [Integer Overflow] sub(from(MAX_AS_U64), neg_from(1)) must abort per test_sub_overflow - could missing check allow share price delta calculations to overflow causing incorrect valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2c04f8e4-c054-4512-8611-c728a27d806b?mode=deep",
+    "timestamp": "2026-02-18 21:27:51.590445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: sub()] [Integer Underflow] sub(neg_from(MIN_AS_U64), from(1)) must abort per test_sub_underflow - could missing check in loss delta calculations create undetectable accounting corruption? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_30da2dbf-a403-4330-b65f-8a4e95998245?mode=deep",
+    "timestamp": "2026-02-18 21:28:16.333128",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: sub()] [Mixed Sign Subtraction] sub(from(1), from(1000000)) should equal neg_from(999999) - could sign errors in net value change calculations report gains as losses or vice versa? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_89e65384-93cf-4168-94c6-4945b5863710?mode=deep",
+    "timestamp": "2026-02-18 21:28:41.940709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: wrapping_sub()] [Zero Handling] wrapping_sub(from(1), from(1)) should equal neg_from(0) which equals 0 - could non-zero representation of zero break equality checks in profit/loss reconciliation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5500069b-aee5-46ee-b960-d207043a00ac?mode=deep",
+    "timestamp": "2026-02-18 21:29:08.972081",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: mul()] [Integer Overflow] mul(from(MIN_AS_U64/2), from(1)) should overflow per test_mul_overflow but test shows from(1) not neg - could typo hide critical overflow check allowing share price multiplication to overflow? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fab1a266-e2c3-4086-bb66-5581632cc640?mode=deep",
+    "timestamp": "2026-02-18 21:29:37.524967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: mul()] [Sign Overflow] mul(neg_from(MIN_AS_U64/2), neg_from(2)) should overflow - could multiplication of two negative values overflow when computing leveraged loss amounts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c3130b55-f236-4a65-892c-323f75d0a4a8?mode=deep",
+    "timestamp": "2026-02-18 21:30:06.909070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: mul()] [Mixed Sign Multiplication] mul(from(10000), neg_from(10000)) should equal neg_from(100000000) - could sign bit errors cause negative multiplier to produce positive result in fee calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_516c9dad-b237-478a-8270-79d4497406c5?mode=deep",
+    "timestamp": "2026-02-18 21:30:38.391002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: mul()] [Boundary Multiplication] mul(from(MIN_AS_U64/2), neg_from(2)) equals neg_from(MIN_AS_U64) - could boundary case create MIN_AS_U64 result that later causes abs() overflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd6e8545-9f46-47a5-a31e-7fca04a7a7e4?mode=deep",
+    "timestamp": "2026-02-18 21:31:10.700022",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: mul()] [Zero Multiplication] No test for mul(from(0), X) or mul(X, from(0)) - could missing zero handling produce non-zero results corrupting basis point fee multiplications? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_09e8fb24-4fc5-4c5b-ae9d-6f194247cf20?mode=deep",
+    "timestamp": "2026-02-18 21:31:44.067985",
+    "report_generated": false
+  }
+]
