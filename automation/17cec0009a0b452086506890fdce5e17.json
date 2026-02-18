@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: init()] [Critical DoS] The init() function immediately aborts with 'abort 0', preventing GlobalConfig object creation. If volo vault operations depend on mmt_v3 pool creation requiring GlobalConfig, does this cause complete denial of service for Momentum integration, making all vault operations involving Momentum positions fail? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dea9943e-57a4-437f-8500-2571f2048b6f?mode=deep",
+    "timestamp": "2026-02-18 20:40:32.908002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: contains_fee_rate()] [Critical DoS] The contains_fee_rate() function aborts unconditionally. If create_pool::new() calls this to validate fee rates before pool creation, will all Momentum pool creations fail, preventing vault operators from establishing new DeFi positions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc65d95e-8eef-4a27-b575-776bf54302e5?mode=deep",
+    "timestamp": "2026-02-18 20:40:45.495811",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: get_tick_spacing()] [Critical DoS] The get_tick_spacing() function aborts unconditionally. If pool creation or position management logic requires tick spacing lookup, will operations fail mid-execution after assets are transferred but before positions are created, causing asset lock? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_089316c1-35a7-4b70-84f3-c9964cbd691a?mode=deep",
+    "timestamp": "2026-02-18 20:40:59.223292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: init()] [Upgrade Risk] Since init() aborts, no GlobalConfig object exists. If volo vault is deployed expecting GlobalConfig to be available, will vault initialization fail or proceed with undefined behavior when Momentum adaptor attempts pool interactions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78f2485f-2bbd-4dbc-819e-00593ae9e6d4?mode=deep",
+    "timestamp": "2026-02-18 20:41:12.506078",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: contains_fee_rate()] [Logic Bypass] The function signature promises bool return but aborts. Could downstream code assume false/true defaults when catching aborts, allowing pool creation with arbitrary fee rates bypassing validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb7d196b-f022-4743-9190-c8019bfb7c1c?mode=deep",
+    "timestamp": "2026-02-18 20:41:26.777716",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Struct: GlobalConfig] [Access Control] The GlobalConfig struct has key + store abilities and contains a mutable Table. Without access control functions (all abort), can any address with a GlobalConfig reference manipulate the fee_amount_tick_spacing table directly via external modules? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_481b11ab-dd29-4641-a31d-ec4f3562c6a3?mode=deep",
+    "timestamp": "2026-02-18 20:41:43.386756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Field: fee_amount_tick_spacing] [Data Integrity] The Table<u64, u32> maps fee rates to tick spacing with no bounds validation visible. If enable_fee_rate functions existed, could attacker insert u64::MAX fee rates or zero tick spacing causing overflow/division by zero in pool math? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bae5cd4b-b5cc-414a-8929-c7f0b0c31e40?mode=deep",
+    "timestamp": "2026-02-18 20:41:59.157681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Struct: GlobalConfig] [Shared Object Risk] GlobalConfig has 'store' ability suggesting it could be wrapped or transferred. Without proper init(), could malicious actor create a fake GlobalConfig object with manipulated fee mappings and pass it to create_pool::new()? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_79b50694-672f-46e7-80d8-6103b24beaa3?mode=deep",
+    "timestamp": "2026-02-18 20:42:17.167554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Field: fee_amount_tick_spacing] [Table Poisoning] The Table has no size limits or validation. In a functional implementation, could attacker add millions of entries causing storage DoS or iteration failures when pools query tick spacing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b4cbf691-3e96-4174-a89d-0a51f5e0b128?mode=deep",
+    "timestamp": "2026-02-18 20:42:36.388844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Struct: GlobalConfig] [UID Management] GlobalConfig contains a UID field. Without proper init() creating it via object::new(), could vulnerabilities arise from multiple GlobalConfig objects with colliding IDs if created through other paths? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4aa66f67-e458-4bd0-8fcb-56436fe87380?mode=deep",
+    "timestamp": "2026-02-18 20:42:55.441546",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Struct: EnableFeeRateEvent] [Event Spoofing] EnableFeeRateEvent has copy+drop+store abilities but no emission function exists (commented out). Could malicious modules emit fake EnableFeeRateEvent events claiming invalid fee rates were enabled, misleading off-chain systems? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aa1d9529-594d-4a7e-bc86-48ee7ff09281?mode=deep",
+    "timestamp": "2026-02-18 20:43:15.175601",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Struct: EnableFeeRateEvent] [Missing Validation] The event contains sender address without admin verification. In functional code, could non-admin addresses emit events claiming to have enabled fee rates, creating audit trail manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0a95c703-facb-4481-9f5e-a83c4b8bdb43?mode=deep",
+    "timestamp": "2026-02-18 20:43:34.464693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Struct: EnableFeeRateEvent] [Fee Rate Integrity] The event stores fee_rate: u64 without range validation. Could events with fee_rate > 100% (e.g., u64::MAX) be emitted, causing confusion in fee calculations reading event history? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe40ac85-61a5-4e0c-8073-030fbcdfea2d?mode=deep",
+    "timestamp": "2026-02-18 20:43:53.607993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Struct: EnableFeeRateEvent] [Tick Spacing Bounds] The event stores tick_spacing: u32 without validation. Could zero or extremely large tick spacing values in events cause issues in pool tick calculations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_61241f85-0cf1-4d7e-9012-b40af9994ece?mode=deep",
+    "timestamp": "2026-02-18 20:44:13.243216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Lines 27-38: Commented init_] [Hardcoded Values] The commented test init_ hardcodes fee rates [100, 500, 3000, 10000] with tick spacings [2, 10, 60, 200]. If production code uses these defaults without proper admin control, could this limit protocol flexibility or create MEV opportunities on fixed-fee pools? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d5680774-0774-49c8-9924-dc20df75fd0a?mode=deep",
+    "timestamp": "2026-02-18 20:44:32.223560",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Lines 32-35: Commented enable_fee_rate_internal calls] [Missing Function] enable_fee_rate_internal() is called but not defined. Does this indicate incomplete implementation where fee rate enabling logic is missing, preventing protocol configuration updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_96a5aae3-58f3-44ce-87ae-df986e448fa9?mode=deep",
+    "timestamp": "2026-02-18 20:44:50.716629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Line 37: Commented transfer::share_object] [Public Mutability] The commented code shares GlobalConfig as a mutable shared object. Without access controls, could any transaction modify the shared GlobalConfig's fee mappings during vault operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8c31f72d-7a27-47b4-857a-579ce983d993?mode=deep",
+    "timestamp": "2026-02-18 20:45:11.163599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Lines 32-35: Fee/Tick Relationships] [Economic Attack] The commented mappings show fee_rate 100 -> tick_spacing 2 (fine-grained) vs fee_rate 10000 -> tick_spacing 200 (coarse). Could attackers exploit these relationships to create pools with mismatched precision, enabling sandwich attacks or liquidity manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c1cad684-8868-4aa2-abd6-423cbb955fb3?mode=deep",
+    "timestamp": "2026-02-18 20:45:31.355597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: contains_fee_rate()] [create_pool Integration] create_pool::new() receives &mut GlobalConfig and fee_rate parameters. If contains_fee_rate() aborts, does create_pool proceed without validation, allowing pools with non-existent fee rates causing incorrect swap fee calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e32fe2c-46c3-423f-9c72-943b98937694?mode=deep",
+    "timestamp": "2026-02-18 20:45:52.070431",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: get_tick_spacing()] [create_pool Integration] create_pool::create_pool_internal() requires tick_spacing from GlobalConfig. If get_tick_spacing() aborts, will pool creation fail after consuming gas and locking user funds in failed transaction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_70fadaa8-1062-4a66-b500-aead0fcbc5cb?mode=deep",
+    "timestamp": "2026-02-18 20:46:10.864257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: get_tick_spacing()] [Pool Initialization] If get_tick_spacing() aborts but pool creation continues with default tick spacing, could this create pools with incorrect tick boundaries, enabling price manipulation outside expected ranges? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_09edc7f6-ab2a-4d62-8035-33d334e37565?mode=deep",
+    "timestamp": "2026-02-18 20:46:29.832881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Struct: GlobalConfig] [Mutable Reference] create_pool::new() takes &mut GlobalConfig. Without implementation, does the mut reference serve no purpose, or worse, could it leave GlobalConfig in inconsistent state if partial writes occurred before abort? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a921694b-3e38-41c3-81bd-e375eff53559?mode=deep",
+    "timestamp": "2026-02-18 20:46:47.829845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: init()] [Missing Admin Cap] The init() function has no AdminCap or capability parameter. In functional implementation, could anyone call initialization functions to create or reset GlobalConfig, enabling config manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_43cf599f-2be6-44d5-852f-33872504592b?mode=deep",
+    "timestamp": "2026-02-18 20:47:05.280568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Module: global_config] [No Capability System] The entire module lacks capability structs (AdminCap, OperatorCap). Could any address call configuration functions if they were implemented, allowing unauthorized fee rate modifications? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_47e18bea-a7d6-45e1-b55a-e044e9b0cffa?mode=deep",
+    "timestamp": "2026-02-18 20:47:23.086027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/global_config.move] [Function: contains_fee_rate()] [Public Access] contains_fee_rate() is public and takes immutable reference. While currently aborting, if implemented, could public read access enable MEV bots to frontrun fee rate changes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_10d82e5f-d3b9-4ae6-a9ef-2d3913d3e7e4?mode=deep",
+    "timestamp": "2026-02-18 20:47:42.582697",
+    "report_generated": false
+  }
+]
