@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [Type Confusion] Can an attacker exploit type name collisions by creating two different types that produce identical AsciiString keys when combined with the same idx, allowing unauthorized asset access or type confusion in vault asset tracking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d005b00-f3b9-4cf3-90f4-38459254057f?mode=deep",
+    "timestamp": "2026-02-18 21:33:35.399852",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [Input Validation] Can idx parameter accept values 0-255 without validation, potentially causing key collision when idx wraps around or conflicts with hardcoded indices in adaptor logic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab6ed177-23a5-4fd3-8233-4d51e6974800?mode=deep",
+    "timestamp": "2026-02-18 21:33:47.943797",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [String Conversion] Can malformed type names containing special characters break the string concatenation in parse_key(), causing runtime errors or unexpected key generation for DeFi asset tracking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b49509f0-8cc1-4214-951c-cb8b8ca2702c?mode=deep",
+    "timestamp": "2026-02-18 21:34:01.716320",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [Key Uniqueness] If multiple adaptors use the same type T with overlapping idx ranges, can this create asset ID collisions in vault's asset tracking, allowing one adaptor to corrupt another's state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e761e2bc-0716-403b-b6c1-8ab5aea87e2f?mode=deep",
+    "timestamp": "2026-02-18 21:34:14.965684",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [Denial of Service] Can an attacker force extremely long type names to cause string concatenation to exceed memory limits, creating DoS when vault attempts to parse asset keys during operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5508eef-ccc9-4052-83eb-ca1028630546?mode=deep",
+    "timestamp": "2026-02-18 21:34:29.663757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Arithmetic Overflow] Can v1 * v2 overflow u256 max before division by DECIMALS (1e9), causing transaction abort and DoS in share calculation or fee computation paths? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83e64752-1648-4b4a-9454-e8d50e94ac47?mode=deep",
+    "timestamp": "2026-02-18 21:34:46.715871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Precision Loss] Can the multiplication followed by division lose precision for small values, causing share accounting errors where users receive fewer shares than expected when depositing small amounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7f8c080-7d93-410c-aa16-128840418aeb?mode=deep",
+    "timestamp": "2026-02-18 21:35:02.994833",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Rounding Down] Does mul_d() always round down due to integer division, and can attackers exploit this to repeatedly perform operations that accumulate rounding errors, draining vault value over time? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5035b021-9b2f-4507-88fc-6f7da91ea189?mode=deep",
+    "timestamp": "2026-02-18 21:35:21.015477",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Zero Input] If v1 or v2 is zero, does mul_d() return zero correctly, or can this be exploited in scenarios where zero multiplication should be prevented (e.g., fee calculations)? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1c08617a-cbc0-4788-ad8a-28cc2b6c2610?mode=deep",
+    "timestamp": "2026-02-18 21:35:39.582683",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Associativity] Can the order of operations matter when mul_d() is chained multiple times, causing different results due to intermediate rounding and violating accounting invariants? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2888495b-afd4-4adc-9ee5-518a73ee636d?mode=deep",
+    "timestamp": "2026-02-18 21:35:59.879162",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Extreme Values] Can passing values near u256::MAX to mul_d() cause overflow before the division, even if the final result would fit in u256, leading to unexpected reverts in vault operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fae8cf50-26bb-4d9b-a5ed-31978b4554e5?mode=deep",
+    "timestamp": "2026-02-18 21:36:20.961450",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Division by Zero] Can v2 be zero, causing division by zero panic and complete DoS of vault operations that rely on div_d() for share/asset conversions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f00dc93f-e7b2-49a2-85c4-7e5b3cd97aad?mode=deep",
+    "timestamp": "2026-02-18 21:36:43.537760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Arithmetic Overflow] Can v1 * DECIMALS overflow u256 max when v1 is large, causing transaction abort even when the final division result would be valid? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1f16b1f5-a599-400c-9577-69396f152447?mode=deep",
+    "timestamp": "2026-02-18 21:37:07.051538",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Precision Loss] For v1 < v2, does div_d() return a value less than DECIMALS, and can this cause precision loss where small ratios round down to zero, breaking share calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d4d70218-b8e0-4284-bc8f-55f0bd6a9fe8?mode=deep",
+    "timestamp": "2026-02-18 21:37:30.024497",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Rounding Down] Does integer division in div_d() always round down, allowing attackers to exploit this in withdraw calculations to receive more assets than their share entitles? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9df6be2c-d46e-48c0-a1d0-20bc054ff959?mode=deep",
+    "timestamp": "2026-02-18 21:37:54.261002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Inverse Operations] Are mul_d() and div_d() true inverses, or can chaining them introduce accumulated rounding errors that break share/asset conversion invariants? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e7f1f58-6fdb-4994-b7c7-e66918cfb780?mode=deep",
+    "timestamp": "2026-02-18 21:38:18.430563",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Extreme Ratios] When v1 is extremely small and v2 is extremely large, can div_d() return zero incorrectly, causing users to lose value in withdrawal calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_89cf9c40-480d-4bc0-862a-b36b367abb46?mode=deep",
+    "timestamp": "2026-02-18 21:38:42.277467",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: to_decimals()] [Arithmetic Overflow] Can v * DECIMALS overflow u256 max when converting raw amounts to decimal representation, causing DoS in deposit or value calculation paths? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_847dc8da-0c28-43ee-8971-b02930459178?mode=deep",
+    "timestamp": "2026-02-18 21:39:06.545048",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: to_decimals()] [Input Validation] Is there validation that v is within safe range before multiplication, or can passing values > u256::MAX / DECIMALS cause overflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b7a69241-d34f-4a79-932b-0e78886dc27e?mode=deep",
+    "timestamp": "2026-02-18 21:39:29.173748",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: to_decimals()] [Reversibility] Can to_decimals() and from_decimals() be safely chained without loss of precision, or do edge cases exist where original value cannot be recovered? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_95086967-e311-4981-8b61-63e1f5c67fd0?mode=deep",
+    "timestamp": "2026-02-18 21:39:52.968650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: from_decimals()] [Precision Loss] Does from_decimals() truncate fractional parts through integer division, and can this cause loss of user funds when converting shares back to assets? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b8cd992-c32b-4aed-bea6-2ea85add704d?mode=deep",
+    "timestamp": "2026-02-18 21:40:15.817679",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: from_decimals()] [Zero Result] For v < DECIMALS, does from_decimals() return zero, and can attackers exploit this to make small deposits/withdrawals that round down to zero, stealing value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_212ef613-617c-4f63-9933-d24694d6678f?mode=deep",
+    "timestamp": "2026-02-18 21:40:39.971344",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: from_decimals()] [Rounding Attack] Can attackers repeatedly deposit and withdraw amounts just below DECIMALS threshold to exploit rounding errors and extract value from the vault? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb507cc0-4af1-4b58-8b31-942ddf9747bf?mode=deep",
+    "timestamp": "2026-02-18 21:41:05.514284",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: to_oracle_price_decimals()] [Arithmetic Overflow] Can v * ORACLE_DECIMALS (1e18) overflow u256 when converting prices, causing DoS in oracle price operations or valuation calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d7e56d8-78ee-432c-aea0-1a409036a702?mode=deep",
+    "timestamp": "2026-02-18 21:41:30.812436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: to_oracle_price_decimals()] [Decimal Mismatch] Can confusion between DECIMALS (1e9) and ORACLE_DECIMALS (1e18) in price conversions cause 1 billion-fold errors in asset valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac321610-5d0e-4b35-9544-f270d3aeb843?mode=deep",
+    "timestamp": "2026-02-18 21:41:56.257677",
+    "report_generated": false
+  }
+]
