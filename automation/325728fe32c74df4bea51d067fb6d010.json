@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Transaction Atomicity] The actuate() function performs multiple operations (read old value, set new value, emit event). If the transaction fails partway through due to gas exhaustion or assertion failures, can the State object be left in an inconsistent state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ad262c63-cc2e-4a0b-b06d-c91b1bc48bae?mode=deep",
+    "timestamp": "2026-02-18 22:06:03.304933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Package Visibility Bypass] The actuate() function calls on_demand::set_guardian_queue_id, which has 'public(package)' visibility. Since this action module is in the same package, it can call it, but does this violate the principle of least privilege by allowing action modules to directly mutate critical state without additional checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5437ca2e-1cb2-4d22-8c90-4d30f94a76a4?mode=deep",
+    "timestamp": "2026-02-18 22:06:16.035377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [Cross-Module State Consistency] The run() function modifies State but doesn't check if the new guardian_queue_id is compatible with other State fields (oracle_queue, on_demand_package_id). Can setting an incompatible guardian queue break the relationship between these components and cause oracle feed failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a4860f61-30d6-4cbd-a91a-1827d37e28cd?mode=deep",
+    "timestamp": "2026-02-18 22:06:29.811443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Module: set_guardian_queue_id_action] [Missing Dependency Checks] The module imports on_demand but doesn't verify version compatibility or module address consistency. In an upgrade scenario, can an old action module interact with a new State structure incorrectly after a protocol upgrade? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea12f763-ca32-4abc-b2e0-e8f67a166b66?mode=deep",
+    "timestamp": "2026-02-18 22:06:43.710133",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Guardian Queue Capabilities] The actuate() function doesn't verify that the new guardian queue has the necessary capabilities or permissions to actually validate oracle updates. Can setting a guardian queue without proper oracle validation capabilities result in unvalidated or incorrectly validated price feeds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_53143f11-071f-46a3-a159-09cae4951576?mode=deep",
+    "timestamp": "2026-02-18 22:06:58.439922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [No Active Operations Check] The run() function doesn't check if there are active oracle operations or pending guardian validations. Can changing the guardian queue mid-operation cause in-flight oracle updates to be validated against the wrong guardian queue, leading to price data inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d37afefc-fdf2-4286-a809-de88dcb4bfb2?mode=deep",
+    "timestamp": "2026-02-18 22:07:14.075087",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [No Migration Path] The run() function provides no migration or transition logic when changing guardian queues. If Queue A is replaced with Queue B, how are pending validations from Queue A handled, and can this create a gap where oracle updates are neither validated by the old nor the new guardian queue? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0dadb2fa-930b-4959-a28c-2113201b34e5?mode=deep",
+    "timestamp": "2026-02-18 22:07:31.370198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [No Deprecation Flag] The actuate() function doesn't mark the old guardian queue as deprecated or notify it of being replaced. Can the old guardian queue continue accepting and processing validation requests after being replaced, leading to conflicting validation states? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_705ec613-cd6a-49f2-ae2d-e620bf842b46?mode=deep",
+    "timestamp": "2026-02-18 22:07:50.146767",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [No Oracle Queue Impact Analysis] The run() function doesn't check how many oracle queues depend on the current guardian queue. Can changing the guardian queue break existing oracle feeds that are configured to use specific guardian validation logic, causing price feed failures across the entire protocol? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e18a79a9-d2a4-4542-a974-23a25444c7bf?mode=deep",
+    "timestamp": "2026-02-18 22:08:09.882864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [No Emergency Mode] The run() function has no emergency or maintenance mode flag. In a security incident where the guardian queue is compromised, can the admin quickly set a backup guardian queue, or could there be delays/failures in emergency guardian queue rotation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c2eec31e-40c6-433f-bd10-eaca3552c21f?mode=deep",
+    "timestamp": "2026-02-18 22:08:31.174316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [Single Point of Failure] The run() function allows a single AdminCap holder to change the guardian queue without any backup or redundancy mechanisms. If the admin key is lost or the admin is unavailable during a security incident, can the guardian queue be changed at all, creating a single point of failure? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_040a9a14-afe2-4416-a856-385fb278a0ba?mode=deep",
+    "timestamp": "2026-02-18 22:08:53.470940",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [No Previous Values History] The actuate() function only emits the immediate previous guardian_queue_id in the event, with no history tracking. In case of multiple rapid changes (legitimate or attack), how can the system revert to a known-good guardian queue without complete event history analysis? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_99d4f98f-114d-445c-aeb4-142e55df6333?mode=deep",
+    "timestamp": "2026-02-18 22:09:16.151840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [No Gas Optimization] The run() function doesn't check if the new guardian_queue_id is the same as the current one before calling actuate(). Can an attacker or malfunctioning admin script repeatedly set the same guardian queue, wasting gas and spamming events without actually changing any state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8646dd5b-9aa6-49a4-a5c6-62d53d0a0ee2?mode=deep",
+    "timestamp": "2026-02-18 22:09:38.251228",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Redundant State Read] The actuate() function calls state.guardian_queue() to get the old value right before changing it. Could this redundant read be optimized, or in a high-contention scenario, could there be a TOCTOU (Time-Of-Check-Time-Of-Use) issue if the state is modified between the read and the set? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b1fbce4-7b2b-4769-b362-a687da873d36?mode=deep",
+    "timestamp": "2026-02-18 22:10:01.629200",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: validate()] [Dead Code] The validate() function is defined but completely empty, suggesting incomplete implementation. Is this function planned to be implemented in the future, and could the current deployment be vulnerable due to missing validation logic that was intended but never completed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52547620-7579-437c-a07a-d635a084f7ed?mode=deep",
+    "timestamp": "2026-02-18 22:10:25.718912",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: validate()] [Misleading Function Name] The validate() function name suggests it performs validation, but it's empty. Can this mislead developers or auditors into assuming validation exists when it doesn't, creating a false sense of security? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_918fa225-f2f4-4471-9a17-4645b669a19a?mode=deep",
+    "timestamp": "2026-02-18 22:10:50.780697",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Module: set_guardian_queue_id_action] [Missing Natspec] The module has no documentation comments explaining the security model, preconditions, or invariants that should be maintained. Can this lead to misuse by integrators or future developers who don't understand the critical security implications of guardian queue changes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a4f331f9-ab06-46a1-9e3a-20059eee4fe9?mode=deep",
+    "timestamp": "2026-02-18 22:11:16.003536",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [Oracle Price Manipulation Risk] The run() function allows immediate guardian queue changes without any price feed freeze or cooldown period. Can an attacker who compromises the AdminCap switch to a malicious guardian queue and then immediately push through manipulated oracle price updates before monitoring systems detect the change? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_063897ed-800c-4aa4-a7d8-73518631fa4b?mode=deep",
+    "timestamp": "2026-02-18 22:11:38.426768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Guardian Signature Continuity] The actuate() function doesn't address how guardian signatures from the old queue are handled after the switch. If oracle updates were signed by the old guardian queue but submitted after the guardian queue change, will they be accepted or rejected, and can this create oracle feed gaps or replay attack vectors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c249824c-7cbf-4c8d-9928-c14cc737c24c?mode=deep",
+    "timestamp": "2026-02-18 22:12:01.031039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [No Oracle Feed Impact Assessment] The run() function doesn't check or notify oracle feed consumers (like Volo Vault) that the guardian queue is changing. Can DeFi protocols relying on these oracle prices be caught off-guard by guardian queue changes, leading to incorrect valuations during the transition? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_355099cd-c47d-4e57-b4dd-d984e2c88ecc?mode=deep",
+    "timestamp": "2026-02-18 22:12:22.335384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Guardian Queue Authority Transfer] The actuate() function doesn't verify that the new guardian queue has proper authority and trust setup. Can an admin accidentally set a guardian queue that doesn't have the cryptographic keys or infrastructure needed to validate oracle updates, causing all oracle operations to fail? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4085221b-ec76-45c7-9cf4-d5e7a5a6f83b?mode=deep",
+    "timestamp": "2026-02-18 22:12:41.772733",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Struct: GuardianQueueIdSet] [Type Confusion] The GuardianQueueIdSet event uses generic ID type for both old and new guardian_queue_id without type-level guarantees that they refer to Queue objects. Can type confusion lead to setting non-Queue object IDs as the guardian queue? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f2cd9d6-caa4-4175-a55e-eea13d47a2f2?mode=deep",
+    "timestamp": "2026-02-18 22:13:02.515096",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [Parameter Type Safety] The run() function accepts a raw ID type for guardian_queue_id instead of a typed reference like &Queue. Does this lack of type safety allow passing IDs of wrong object types that will cause runtime failures in guardian validation logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d582b4e-97c5-43f5-9e5f-2fde5144d775?mode=deep",
+    "timestamp": "2026-02-18 22:13:22.360879",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Module: set_guardian_queue_id_action] [No Builder Pattern] The module uses a direct action execution pattern without any builder or staged approval mechanism. For such a critical operation, should there be a two-phase commit (propose guardian queue change, then execute after review period) to prevent hasty or erroneous changes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a7e1635-aa42-4689-8f20-6e3fc9b242d4?mode=deep",
+    "timestamp": "2026-02-18 22:13:43.532945",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [Volo Vault Price Impact] The run() function changes the guardian queue without coordinating with Volo Vault's oracle price configuration. Can this cause Volo Vault to receive oracle prices validated by an unexpected guardian queue, leading to incorrect asset valuations and potential loss tolerance bypass? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9efb310a-d09e-4a3b-b1a8-26aa50674ffc?mode=deep",
+    "timestamp": "2026-02-18 22:14:06.227772",
+    "report_generated": false
+  }
+]
