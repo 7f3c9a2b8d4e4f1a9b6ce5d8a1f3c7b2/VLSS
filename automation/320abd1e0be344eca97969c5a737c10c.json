@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: median_result()] [Partition Logic Error] At lines 528-536, partition loop with i and j pointers - if updates[update_indices[j]].result.lt() comparison is manipulated (e.g., via Decimal overflow), can partition produce wrong result? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8079c10e-c860-446c-9ed7-e23ffb50db90?mode=deep",
+    "timestamp": "2026-02-18 22:03:35.541128",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: median_result()] [Swap Operation] At lines 532 and 538, update_indices.swap(i, j) modifies indices in-place - can concurrent calls cause race condition corrupting index array? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b2ae667-e734-4149-aa51-a73ce3e75ac9?mode=deep",
+    "timestamp": "2026-02-18 22:03:48.664692",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: median_result()] [Mid Calculation] At line 521, mid = n / 2 - for even n, this selects lower-middle element; for odd n, true middle - can attacker manipulate n (via valid_update_indices) to control which element is selected as median? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_85584254-6768-46e7-9a9f-2dc107d1f2ff?mode=deep",
+    "timestamp": "2026-02-18 22:04:03.109721",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: median_result()] [Median Timestamp Selection] At line 550, returns updates[update_indices[mid]].timestamp_ms - does timestamp correspond to median value, or can it be from different oracle, misrepresenting data freshness? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_93e13766-c015-4fb2-b9ce-1194bfa90bae?mode=deep",
+    "timestamp": "2026-02-18 22:04:17.395845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: median_result()] [Result Return Without Validation] At line 550, returns (updates[update_indices[mid]].result, timestamp_ms) - is update_indices[mid] guaranteed to be valid index after quickselect, or can edge case cause panic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b4346b5-fcf1-4213-8b9d-cf7bfbad37b6?mode=deep",
+    "timestamp": "2026-02-18 22:04:33.159052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: median_result()] [Empty Array] At line 520, n = update_indices.length() - if n == 0 (shouldn't happen but not validated in function), does mid = 0 / 2 = 0 cause out-of-bounds at line 550? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82e78ecd-32fe-4a7d-bdc6-e336d2b6a76a?mode=deep",
+    "timestamp": "2026-02-18 22:04:51.134910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_configs()] [Feed Hash Bypass] At line 235, feed_hash is updated without validation - can attacker change feed_hash to point to different feed while reusing existing oracle updates, mixing incompatible data sources? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_227c17bf-86c0-418f-b48e-f548c7b7ee17?mode=deep",
+    "timestamp": "2026-02-18 22:05:10.510736",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: new()] [Feed Hash Not Enforced] feed_hash is stored at line 195 but never validated in add_result() - can oracle submit results for wrong feed, mixing BTC prices into ETH aggregator? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ccbf7ca-ab7f-4688-a20f-7538ee8f4cab?mode=deep",
+    "timestamp": "2026-02-18 22:05:30.340800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: add_result()] [Oracle ID Not Validated] At line 247, oracle ID is passed but never verified against queue or feed_hash - can any oracle submit to any aggregator regardless of authorization? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_096af88d-5fa2-43f4-a1c2-3d5244fd5d4f?mode=deep",
+    "timestamp": "2026-02-18 22:05:52.833678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: add_result()] [Result Decimal Not Validated] result parameter at line 245 is Decimal with no bounds checking - can oracle submit Decimal with value=u128::MAX or negative flag set incorrectly, corrupting calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7235f731-2c46-4a5c-bf48-4d6c2f99e475?mode=deep",
+    "timestamp": "2026-02-18 22:06:13.188187",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: new()] [Min Sample Size Zero] At line 196, min_sample_size can be set to 0 during initialization - does this allow aggregator to produce results from single malicious oracle? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d09b37e4-2540-494b-beb3-fb1ce5758dae?mode=deep",
+    "timestamp": "2026-02-18 22:06:35.832993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: new()] [Max Staleness Zero] If max_staleness_seconds is set to 0 at line 197, does staleness check at line 574 become '(timestamp + 0) < now', rejecting all updates including brand new ones? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_414fbdfe-b0c4-4361-97e1-23c05d238c9d?mode=deep",
+    "timestamp": "2026-02-18 22:06:58.103325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: new()] [Queue ID Not Validated] At line 192, queue ID is stored but never validated - can attacker create aggregator with non-existent queue ID, bypassing queue governance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b7155a5-bf6e-49b4-b147-ff85a7c61bc7?mode=deep",
+    "timestamp": "2026-02-18 22:07:21.545528",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: add_result()] [Queue Association Bypass] add_result() never checks if oracle belongs to aggregator.queue - can oracle from different queue submit results, bypassing queue-specific security policies? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e3c999b-d0c2-4fe0-9c83-3882cbf2ec90?mode=deep",
+    "timestamp": "2026-02-18 22:07:45.756290",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: delete()] [Active Deletion] delete() function at lines 260-284 has no checks if aggregator is actively used - can attacker delete aggregator while Volo Vault relies on it, causing vault operations to fail? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bbbf4ef0-ffc6-45ea-9fe8-5638f00f1fca?mode=deep",
+    "timestamp": "2026-02-18 22:08:06.614045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: delete()] [Missing Authorization] delete() is public(package) without authority check - can any module in package delete any aggregator, even those owned by other authorities? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f75bf9e0-bb74-4627-98f3-4eaeed868ec0?mode=deep",
+    "timestamp": "2026-02-18 22:08:28.771385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: delete()] [State Not Cleared] At lines 277-280, UpdateState is unpacked but results vector is dropped without clearing - does this leak memory or leave dangling references? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_79549f2f-951f-46b4-a80a-a7ca382da619?mode=deep",
+    "timestamp": "2026-02-18 22:08:48.964336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Global Constant VERSION] VERSION constant is 1 at line 10 but never checked during operations - can attacker downgrade or manipulate version field, bypassing upgrade safety checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a371feaf-27b0-42a6-a640-0c75cc136bf9?mode=deep",
+    "timestamp": "2026-02-18 22:09:11.178649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: new()] [Version Mismatch] At line 216, version is set to VERSION constant but never validated against expected version in calling code - can version mismatch cause incompatible behavior? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6b8f4c2-53b4-42e5-b554-129799867fd2?mode=deep",
+    "timestamp": "2026-02-18 22:09:33.953030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: current_result()] [Stale Result Access] current_result() at line 127 returns reference without checking if result is stale - can Volo Vault use stale result if no recent add_result() calls occurred? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9dafa503-3e38-4e3e-898f-3900a2ded7ab?mode=deep",
+    "timestamp": "2026-02-18 22:09:56.272035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: current_result()] [Uninitialized Result] If compute_current_result() never succeeds, current_result remains zero-initialized from line 201-210 - can Volo Vault mistakenly use zero prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4bbcc516-0abe-41d2-abfc-c5073d333d08?mode=deep",
+    "timestamp": "2026-02-18 22:10:15.691568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Struct CurrentResult] CurrentResult fields are public via accessors but no staleness timestamp - how does consumer know if result.timestamp_ms is too old? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc0bd181-3f76-417a-9d28-38a02b9941f2?mode=deep",
+    "timestamp": "2026-02-18 22:10:34.228057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Constant MAX_RESULTS] MAX_RESULTS = 16 at line 9 limits circular buffer - if more than 16 oracles submit updates, does oldest oracle's data get overwritten even if still valid? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3aed3de-a493-4cf4-80a9-cfe0241f2c82?mode=deep",
+    "timestamp": "2026-02-18 22:10:53.311369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Constant MAX_RESULTS] With MAX_RESULTS = 16, if attacker controls 9+ oracles, can they dominate median calculation even with > 16 total oracles in system? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d6cc9f7-cb1e-4dc8-b39b-b366aa6cf9d5?mode=deep",
+    "timestamp": "2026-02-18 22:11:15.398276",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_current_value()] [Test Function in Production] set_current_value() at lines 601-624 is marked test_only but allows arbitrary CurrentResult injection - if test_only attribute is bypassed, can attacker inject fake prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e16203f0-122c-4e43-8b48-3997dd2ca9f7?mode=deep",
+    "timestamp": "2026-02-18 22:11:38.303654",
+    "report_generated": false
+  }
+]
