@@ -1,0 +1,92 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Function: get_sqrt_price_at_tick()] [Critical Implementation Gap] If Cetus CLMM adaptor or any vault operation attempts to call get_sqrt_price_at_tick() to calculate position values or price conversions, the transaction will unconditionally abort, causing complete DoS for all operations depending on tick-to-price conversions. What is the fallback mechanism? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_921e8371-214c-4a36-8a18-b9719b1bc07d?mode=deep",
+    "timestamp": "2026-02-18 22:20:24.074083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Function: get_tick_at_sqrt_price()] [Critical Implementation Gap] If any adaptor needs to convert sqrt_price to tick for range validation or position management, the abort 0 will cause transaction failure. Are there any vault operations that depend on this conversion? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5d130a68-cef1-49b3-a902-eab6281b8594?mode=deep",
+    "timestamp": "2026-02-18 22:20:36.410014",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Function: is_valid_index()] [Critical Implementation Gap] Without tick index validation logic, if this function is called before Cetus position operations, all calls will abort. Does any code path validate tick indices before creating/modifying CLMM positions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0f1728b-271e-4a9f-a204-130f88cda5bd?mode=deep",
+    "timestamp": "2026-02-18 22:20:49.690004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Function: max_sqrt_price()] [Critical Implementation Gap] If vault value calculations or health factor checks need sqrt_price bounds to prevent overflow, the abort will cause DoS. Are sqrt_price bounds checked anywhere in the Cetus adaptor? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0cc2d0c3-f3b0-4a75-895f-1beadad8f8e9?mode=deep",
+    "timestamp": "2026-02-18 22:21:03.070810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Function: min_sqrt_price()] [Critical Implementation Gap] Similar to max_sqrt_price, if minimum price bounds are required for safe operations, the stub implementation will cause all dependent transactions to fail. Is there redundant validation elsewhere? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_00e4551f-6596-4811-b9e1-188f874b7b52?mode=deep",
+    "timestamp": "2026-02-18 22:21:17.564616",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Function: max_tick()] [Critical Implementation Gap] If Cetus adaptor needs to validate upper tick bounds before position creation, the abort will prevent all position management. Does the adaptor have alternative tick bound validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a817db4f-acf8-487c-9d74-6c2029ecf2ac?mode=deep",
+    "timestamp": "2026-02-18 22:21:33.147640",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Function: min_tick()] [Critical Implementation Gap] Without minimum tick bounds, the adaptor cannot validate tick ranges. If called during position operations, will cause transaction abort. Are tick ranges validated by the Cetus protocol itself? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9adbd5cb-5eb8-4ba2-a3f4-ebd22c858261?mode=deep",
+    "timestamp": "2026-02-18 22:21:50.137032",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Function: tick_bound()] [Critical Implementation Gap] If this function provides the maximum allowable tick distance from zero, its absence means no local validation of tick spacing or bounds. Does the vault rely on this for safety checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56ee6fdd-64b6-4145-8b3e-038cc87320db?mode=deep",
+    "timestamp": "2026-02-18 22:22:07.770817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Module: mmt_v3::tick_math] [Dependency Risk] If this module is imported but never called in production code paths, the stub implementation may pass testing but represents a critical missing dependency. Has the codebase been audited to confirm no code path invokes these functions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ed44b6f8-a299-418a-8e37-c8fc94588636?mode=deep",
+    "timestamp": "2026-02-18 22:22:26.325232",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Module: mmt_v3::tick_math] [Integration Risk] If the Cetus CLMM adaptor was designed assuming this module would provide tick math utilities, but currently uses alternative implementations, there may be inconsistency risks. Are there duplicate implementations of tick math elsewhere? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7531c860-8e24-475d-8338-e495c69cc779?mode=deep",
+    "timestamp": "2026-02-18 22:22:44.981907",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Function: get_sqrt_price_at_tick()] [Type Safety] The function signature indicates it should return u128 sqrt_price from I32 tick, but the abort prevents any validation of this conversion. If implemented incorrectly later, could overflow or underflow occur? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ac9167d-24f2-4059-b75f-b7586b63f40c?mode=deep",
+    "timestamp": "2026-02-18 22:23:04.656576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Function: get_tick_at_sqrt_price()] [Type Safety] The function should convert u128 sqrt_price to I32 tick. The abort prevents validation that sqrt_price inputs are within valid ranges before conversion. Could future implementation accept invalid inputs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6c65924d-dc78-457b-983e-40ef7b7a93c9?mode=deep",
+    "timestamp": "2026-02-18 22:23:24.274640",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Function: is_valid_index()] [Validation Gap] This function appears to validate whether a tick I32 is valid for a given spacing u32, but stub implementation means no validation occurs. If Cetus requires specific tick spacing, positions could be created at invalid ticks if not validated elsewhere. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ccd425d-ef12-46ae-86be-67d66850e230?mode=deep",
+    "timestamp": "2026-02-18 22:23:43.833264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Module: mmt_v3::tick_math] [Testing Gap] All functions abort, so any unit tests for this module would fail. Has the test suite been configured to skip these functions, and if so, does that hide integration test failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_048a3651-df4c-488f-a60d-e03fe5984c15?mode=deep",
+    "timestamp": "2026-02-18 22:24:04.821583",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/tick_math.move] [Module: mmt_v3::tick_math] [Documentation Risk] The module name 'tick_math' suggests it should provide mathematical functions for tick calculations critical to CLMM. The stub implementation means documentation or external integrations expecting these functions will fail. Is this intentional deprecation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0bca0351-dcc8-4087-b457-015e640bcffe?mode=deep",
+    "timestamp": "2026-02-18 22:24:26.523606",
+    "report_generated": false
+  }
+]
