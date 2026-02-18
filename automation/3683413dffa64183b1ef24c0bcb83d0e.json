@@ -1,0 +1,146 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Missing Validation] [No UID Validation] UID created but never validated for uniqueness - can collisions occur? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_576d6877-aa67-4c8e-a968-8746fb295e1a?mode=deep",
+    "timestamp": "2026-02-18 22:15:08.674822",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Missing Validation] [No Deletion Preconditions] Can delete cap without checking for active positions or outstanding debt? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_27d27924-46bf-452e-83dc-b4582cadb608?mode=deep",
+    "timestamp": "2026-02-18 22:15:21.262443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Missing Validation] [No Transfer Restrictions] 'store' ability allows unrestricted transfer - should certain caps be non-transferable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_93b024d8-f36c-455d-a7c5-d7959c1b6d0f?mode=deep",
+    "timestamp": "2026-02-18 22:15:34.699104",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Business Logic] [Single Owner Model] Each cap has single owner - does this prevent multi-sig or DAO-controlled lending positions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4b585142-dd36-42e4-a534-79649733924b?mode=deep",
+    "timestamp": "2026-02-18 22:15:49.561499",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Business Logic] [Parent-Child Purpose] Why do child caps exist if they have same owner as parent? What's the business logic preventing exploits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a9a6141-efd0-4e55-827c-02ad003770cb?mode=deep",
+    "timestamp": "2026-02-18 22:16:03.912718",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Business Logic] [Ownership Transfer] If AccountCap is transferred, should lending positions transfer too or stay with original owner? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1f83b269-96c1-4a7a-b81d-2285cb091de5?mode=deep",
+    "timestamp": "2026-02-18 22:16:19.917422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Business Logic] [Cap Recovery] If user loses AccountCap, is there recovery mechanism? Or are positions permanently locked? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fd67fbdb-5860-48ea-976d-a4204621094d?mode=deep",
+    "timestamp": "2026-02-18 22:16:37.707141",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Protocol Economics] [Fee Evasion] Can attacker delete cap before fees accrue to avoid paying interest on borrows? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_81b8c202-26fa-4837-a8e9-ae793f276f10?mode=deep",
+    "timestamp": "2026-02-18 22:16:57.775144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Protocol Economics] [Liquidation Avoidance] Can attacker delete cap to prevent liquidation of underwater position causing bad debt? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_228454a6-c26c-45a2-8c2d-d13fde02ecd8?mode=deep",
+    "timestamp": "2026-02-18 22:17:18.793658",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Protocol Economics] [Position Merging] Multiple caps with same owner - can this be exploited to merge positions and bypass risk parameters? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b23dc6b-d421-477c-a5df-fae733969f6e?mode=deep",
+    "timestamp": "2026-02-18 22:17:39.338182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Upgrade] [Module Upgrade] If account module is upgraded, do existing AccountCaps remain valid? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2dba1b48-1e93-4ebf-a91c-471d86b1a543?mode=deep",
+    "timestamp": "2026-02-18 22:18:00.559085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Upgrade] [Breaking Changes] If AccountCap struct is modified in upgrade, can old caps be used causing type confusion? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a916b5fe-d191-4231-93a9-33aa540b24bf?mode=deep",
+    "timestamp": "2026-02-18 22:18:21.666192",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Migration] [V1 to V2] No migration path defined - how do users migrate positions from old caps to new caps? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5cdb80c-90c7-4f9c-adb3-32c245424449?mode=deep",
+    "timestamp": "2026-02-18 22:18:43.573114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Sui-Specific] [Object Ownership] AccountCap has 'key' so it's an object - if it's owned vs shared, how does this affect lending operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82aafe65-3da6-4f66-84a2-61d86fca0ebf?mode=deep",
+    "timestamp": "2026-02-18 22:19:06.425886",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Sui-Specific] [UID to Address] Uses object::uid_to_address - is this cryptographically secure? Can attacker find UID that maps to victim's address? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af892b6c-1bb5-4eef-9f00-a16cc419d445?mode=deep",
+    "timestamp": "2026-02-18 22:19:29.856823",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Sui-Specific] [Dynamic Fields] AccountCap can have dynamic fields via 'store' - can attacker add malicious fields to corrupt cap? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b8c2078-0adc-4129-b1a6-7877e606c0b9?mode=deep",
+    "timestamp": "2026-02-18 22:19:52.717737",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Sui-Specific] [Transfer Rules] No custom transfer policy - should caps have transfer restrictions for security? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c36f8bf6-5c91-4d7f-ad65-037676c2f1b1?mode=deep",
+    "timestamp": "2026-02-18 22:20:14.842790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Edge Case] [Empty Context] What if TxContext is malformed when creating cap? Can this cause undefined behavior? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_034ace19-ce36-4340-8464-67e941bc584a?mode=deep",
+    "timestamp": "2026-02-18 22:20:37.343574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Edge Case] [Null UID] Can object::new return null/invalid UID? Would this cause cap creation to succeed with broken state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_34709acd-98e7-4f3b-b5d3-30639ad0f138?mode=deep",
+    "timestamp": "2026-02-18 22:20:59.986214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Edge Case] [Address Collision] If two UIDs map to same address via uid_to_address, can two caps have same owner causing position collision? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_44559cca-573a-477f-80b6-99f35165df69?mode=deep",
+    "timestamp": "2026-02-18 22:21:23.967102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Edge Case] [Maximum Children] Can parent create infinite children causing stack overflow in recursive operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_54c37c1f-f41f-4c5c-8202-0c06dd5769e0?mode=deep",
+    "timestamp": "2026-02-18 22:21:47.811173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Edge Case] [Self-Referencing] Can cap be its own parent creating circular reference? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca48b504-be57-4627-8d87-8cf57ff6ae40?mode=deep",
+    "timestamp": "2026-02-18 22:22:11.218607",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Volo Vault] [Cap as Collateral] Can AccountCap be used as collateral in volo-vault? If yes, how is value determined? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ed43259-78b2-473f-97c0-dceb3158fb64?mode=deep",
+    "timestamp": "2026-02-18 22:42:38.663231",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Volo Vault] [Adaptor Interaction] Can volo-vault adaptors (Navi/Suilend/Cetus) interact with AccountCaps? Could this create custody conflicts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_35359799-26a0-4642-a40a-10d585fba848?mode=deep",
+    "timestamp": "2026-02-18 22:42:51.629033",
+    "report_generated": false
+  }
+]
