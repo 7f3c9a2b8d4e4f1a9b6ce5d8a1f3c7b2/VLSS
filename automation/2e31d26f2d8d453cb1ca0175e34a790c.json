@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [Authorization Bypass] Can the queue.has_authority() check be bypassed if the Queue module allows multiple authority addresses and the validation only checks if the caller is ANY authority, enabling unauthorized config changes by malicious secondary authorities? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4aabbd24-1333-48a5-8ee4-76c8a98a90d3?mode=deep",
+    "timestamp": "2026-02-18 21:39:10.003112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [Authorization Bypass] If queue.has_authority() relies on TxContext sender but the Queue was previously transferred or authority was changed, can an old authority still pass validation and modify configs after their authority should have been revoked? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c22c9ce0-31cd-450d-8e69-f07c6c0b303f?mode=deep",
+    "timestamp": "2026-02-18 21:39:22.964348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: run()] [Access Control] Does the entry function run() allow anyone to call it and rely solely on queue.has_authority() internal check, potentially enabling brute-force attempts or DoS if the Queue object can be borrowed from shared state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e1b11b4-8fdb-41b4-bebe-dc0b399759d0?mode=deep",
+    "timestamp": "2026-02-18 21:39:37.250625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [Authorization Logic] If the Queue object implements has_authority() by checking against a vector of authorities, can the check be passed by an attacker who was temporarily added as authority in the same transaction before this call? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_07241c33-e554-489d-ba0c-0a38533e574a?mode=deep",
+    "timestamp": "2026-02-18 21:39:51.218162",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: run()] [Privilege Escalation] Can an attacker create a malicious Queue object that always returns true for has_authority() and version() checks, then call run() to emit fake QueueConfigsUpdated events that off-chain systems might trust? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8471a7be-86a1-4bf6-bc3e-8aeeb9b80216?mode=deep",
+    "timestamp": "2026-02-18 21:40:06.166852",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [Version Control] The EXPECTED_QUEUE_VERSION is hardcoded to 1. If the Queue module is upgraded to version 2 but this action module is not updated, will all legitimate config updates fail with EInvalidQueueVersion, causing DoS for queue maintenance? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_379ecb66-a20c-4b4b-818f-03accde45f8f?mode=deep",
+    "timestamp": "2026-02-18 21:40:22.790287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [Version Mismatch] Can an attacker exploit the version check by creating a Queue wrapper that reports version 1 but delegates to a modified Queue implementation with different set_configs() behavior, bypassing intended config constraints? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a1a11a12-7c89-4a43-aaea-3870a58b7a06?mode=deep",
+    "timestamp": "2026-02-18 21:40:40.646129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [Backward Compatibility] If EXPECTED_QUEUE_VERSION is increased in a future deployment, will existing Queue objects become permanently unable to update configs, requiring migration without a defined upgrade path? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3011100a-8365-4aa0-9f34-f80ea9c0de65?mode=deep",
+    "timestamp": "2026-02-18 21:40:58.488680",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [Parameter Validation] The min_attestations check only validates > 0, but doesn't enforce an upper bound. Can an authority set min_attestations to u64::MAX, making it impossible for any oracle aggregator to ever reach the threshold and DoS all oracle updates? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d80a44ee-f39f-42b3-9e00-eb5e1024c51c?mode=deep",
+    "timestamp": "2026-02-18 21:41:17.849482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [Parameter Validation] Can min_attestations be set to 1, reducing security to a single oracle attestation and enabling a compromised single oracle to manipulate all price feeds without consensus? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e38dc0a-ff86-4574-acbb-e3a0a41275cc?mode=deep",
+    "timestamp": "2026-02-18 21:41:38.790109",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: actuate()] [State Consistency] If min_attestations is increased to a value higher than the current number of active oracles in the queue, will existing aggregators become unable to update, causing oracle price staleness and incorrect valuations in dependent Volo Vault operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ba959a15-e9e0-42ce-85ad-14bffbab4a7d?mode=deep",
+    "timestamp": "2026-02-18 21:42:01.511128",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [Integer Boundary] Does the min_attestations > 0 check prevent setting it to 0, but fail to check if min_attestations exceeds the total oracle count, enabling configurations that can never be satisfied? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_59e205e4-862d-48ad-b2c0-5a3223507e79?mode=deep",
+    "timestamp": "2026-02-18 21:42:23.319280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: run()] [Configuration Attack] Can an authority rapidly toggle min_attestations between 1 and a high value to create a griefing attack where oracle operators cannot predict the required attestation count, disrupting oracle service? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_59a988ea-c338-405c-8ab7-4d85462108d1?mode=deep",
+    "timestamp": "2026-02-18 21:42:44.988633",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [Parameter Validation] The oracle_validity_length_ms check only validates > 0, but doesn't enforce bounds. Can an authority set it to 1ms, causing all oracle data to be immediately stale and forcing constant re-attestations that DoS the oracle network? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_de064270-bc6b-4f34-ae67-a52d8b2c3c76?mode=deep",
+    "timestamp": "2026-02-18 21:43:06.851610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [Time Manipulation] Can oracle_validity_length_ms be set to u64::MAX (approximately 584 million years), allowing stale oracle prices to remain valid indefinitely and enabling price manipulation in Volo Vault operations that rely on fresh oracle data? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa5cd859-3291-49e5-8834-3ac4d755b88f?mode=deep",
+    "timestamp": "2026-02-18 21:43:30.599865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: actuate()] [Oracle Freshness] If oracle_validity_length_ms is reduced from a large value to a small value, will previously valid oracle attestations suddenly become invalid, causing all Volo Vault operations relying on those oracles to fail until new attestations arrive? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9685e360-c164-4571-ac5e-4be78e2db94b?mode=deep",
+    "timestamp": "2026-02-18 21:43:52.963114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [Time Unit Assumption] The parameter is named oracle_validity_length_ms (milliseconds), but there's no validation that the value is reasonable for millisecond timescales. Can confusion between milliseconds and seconds enable setting a 1-second validity as 1000ms vs 1ms? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7e52f72-60cd-40a5-b517-a8569cf76400?mode=deep",
+    "timestamp": "2026-02-18 21:44:16.002621",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: run()] [Front-Running] Can an attacker front-run legitimate oracle attestation transactions by calling run() to set oracle_validity_length_ms to 1ms just before attestations are submitted, invalidating them immediately and griefing oracle operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8037e6c-e601-4457-b31f-905d36e860f0?mode=deep",
+    "timestamp": "2026-02-18 21:44:39.793445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [Fee Validation] The fee parameter has no validation at all. Can an authority set the fee to u64::MAX, making oracle queries prohibitively expensive and DoS'ing all Volo Vault operations that depend on oracle prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e65ac87-07c3-4141-b28b-539ab05592d5?mode=deep",
+    "timestamp": "2026-02-18 21:45:05.328922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: actuate()] [Fee Manipulation] Can an authority set the fee to 0, removing economic incentives for oracles to provide attestations and degrading oracle service quality for all Volo protocol operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a97fa6e-2334-407e-9396-7a25f6af9cf9?mode=deep",
+    "timestamp": "2026-02-18 21:45:31.684477",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: run()] [Fee Griefing] Can an authority rapidly change fees between transactions to create unpredictability in oracle query costs, causing transaction failures for Volo Vault operations that estimated gas based on previous fee levels? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ef6aba0-7a17-4275-80a5-53be00dc9872?mode=deep",
+    "timestamp": "2026-02-18 21:45:59.183890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: actuate()] [Fee Recipient Change] Can the fee_recipient address be changed to an attacker-controlled address mid-epoch, redirecting ongoing oracle fee revenue away from legitimate oracle operators and breaking their economic model? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cd6d4793-c801-4089-b9c0-7daa7fc344b1?mode=deep",
+    "timestamp": "2026-02-18 21:46:27.026483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [Address Validation] Is there any validation that fee_recipient is not the zero address (0x0), which could result in fees being burned and oracle operators not receiving compensation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7798315-a420-470f-8e84-2063c36d4075?mode=deep",
+    "timestamp": "2026-02-18 21:46:52.743210",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: actuate()] [Fee Accounting] If fees are changed after some oracle queries have already been charged at the old rate, is there any reconciliation mechanism, or can this create accounting discrepancies in fee distribution? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7aa78c82-53e5-40b9-80f8-e08cce5b6b58?mode=deep",
+    "timestamp": "2026-02-18 21:47:16.177764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_configs_action.move] [Function: validate()] [String Validation] The name parameter has no validation for length or content. Can an authority set an extremely long name string to consume excessive storage or cause off-chain indexing systems to fail? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4e7d4a5-1828-4edf-86f4-49c42fc3d689?mode=deep",
+    "timestamp": "2026-02-18 21:47:41.206833",
+    "report_generated": false
+  }
+]
