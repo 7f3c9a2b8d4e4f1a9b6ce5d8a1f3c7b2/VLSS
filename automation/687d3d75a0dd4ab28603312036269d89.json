@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: set_maximum_effective_price_to_price_feed()] [Race Condition] If minimum is increased after maximum is set, can the bounds become inverted (min > max)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_15caec8c-4688-4fe9-aeef-8016da662a53?mode=deep",
+    "timestamp": "2026-02-19 00:59:39.693075",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: set_minimum_effective_price_to_price_feed()] [Narrow Range Attack] Can min and max be set to nearly identical values (e.g., min=X, max=X+1) to make price updates fail constantly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_425624e9-85f7-4fa3-8a9f-878c784232b3?mode=deep",
+    "timestamp": "2026-02-19 00:59:52.648465",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: set_primary_oracle_provider()] [Early Return Bypass] Lines 387-389 return early if primary already equals provider - can this prevent necessary validation checks from running when re-setting to the same provider? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f2cf0b82-d0ea-4fc0-9a8e-86e31eded19c?mode=deep",
+    "timestamp": "2026-02-19 01:00:06.898002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: set_primary_oracle_provider()] [Provider Config Check] Can an attacker set a primary provider that exists in oracle_provider_configs but is disabled, since the enable check occurs after assignment? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f3861d3-83ee-45bb-86f0-8bb669bea276?mode=deep",
+    "timestamp": "2026-02-19 01:00:21.113435",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: set_secondary_oracle_provider()] [Validation Inconsistency] Lines 409-411 check provider_configs existence only if provider is not empty - can an empty secondary provider be set without validation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08113457-7ebf-4fca-8483-3119f36b55c6?mode=deep",
+    "timestamp": "2026-02-19 01:00:37.082951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: set_secondary_oracle_provider()] [Enable Check Missing] Unlike set_primary_oracle_provider(), set_secondary_oracle_provider() doesn't verify the provider is enabled - can a disabled provider be set as secondary? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a8cffb5b-1b9b-4cd0-bb07-8425d385ecc5?mode=deep",
+    "timestamp": "2026-02-19 01:00:54.215164",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: set_secondary_oracle_provider()] [Same Provider Attack] Can primary and secondary be set to the same provider, defeating the redundancy mechanism? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab2c69ef-94ed-49ea-aa8c-02179a9ace19?mode=deep",
+    "timestamp": "2026-02-19 01:01:12.493330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: set_primary_oracle_provider()] [State Transition] If primary provider is changed while price updates are in progress, can this cause inconsistent price data? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d5240941-57e4-4a99-9208-9612e55ed13b?mode=deep",
+    "timestamp": "2026-02-19 01:01:32.212877",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: new_oracle_provider_config()] [Duplicate Prevention] Line 421 checks if provider already exists in configs - but can an attacker create configs with same pair_id but different providers? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e10145c-319b-4a2a-b04e-b7e484596bd5?mode=deep",
+    "timestamp": "2026-02-19 01:01:53.663775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: new_oracle_provider_config()] [Enable Parameter] The enable parameter allows creating disabled configs - can this be exploited to create unusable provider configs that block legitimate ones? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5983bb9c-a1cd-4a79-a97e-f132c2319644?mode=deep",
+    "timestamp": "2026-02-19 01:02:16.113040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: set_oracle_provider_config_pair_id()] [Pair ID Validation] No validation exists for pair_id format or content - can arbitrary/malicious pair_ids be set? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa72f362-d0cd-474d-8b59-67928b26f3f2?mode=deep",
+    "timestamp": "2026-02-19 01:02:38.459031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: set_oracle_provider_config_enable()] [Primary Provider Check] Line 447 prevents disabling a provider if it's being used as primary - but what if it's being used as secondary? Can secondary provider be disabled mid-operation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b00408f-71ab-4736-bdf5-8f3c1693c0bc?mode=deep",
+    "timestamp": "2026-02-19 01:03:01.105425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: set_oracle_provider_config_enable()] [Race Condition] Can a provider be disabled between when it's checked and when it's used for price fetching? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_620f06d3-6348-4d49-9687-f78d5a46b12c?mode=deep",
+    "timestamp": "2026-02-19 01:03:23.804225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: set_oracle_provider_config_enable()] [Timing Attack] Can an attacker repeatedly enable/disable providers to cause price update failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_087ed70b-7ca7-43c5-ab57-34e9161a33a6?mode=deep",
+    "timestamp": "2026-02-19 01:03:45.480263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: start_or_continue_diff_threshold2_timer()] [Timer Bypass] Lines 466-468 return early if timer > 0 - can this prevent timer updates even when it should be reset? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_095b776b-317f-48e1-a041-fa9a9cda4aea?mode=deep",
+    "timestamp": "2026-02-19 01:04:06.890553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: start_or_continue_diff_threshold2_timer()] [Timestamp Manipulation] No validation of timestamp parameter - can an attacker pass timestamp=1 to set an extremely old timer start? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e69e47cc-7d58-473d-bef4-df9d7c6d19c8?mode=deep",
+    "timestamp": "2026-02-19 01:04:27.025776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: reset_diff_threshold2_timer()] [Zero Check] Lines 476-478 return early if timer is 0 - but is this correct logic? Should resetting an already-reset timer be a no-op or an error? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e814fe9-06af-4a9a-b516-45e315918f03?mode=deep",
+    "timestamp": "2026-02-19 01:04:46.563181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: start_or_continue_diff_threshold2_timer()] [Duration Bypass] Can an attacker call this with future timestamps to bypass max_duration_within_thresholds checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a8bad118-6423-44f8-b34f-c6bf9eeff7a6?mode=deep",
+    "timestamp": "2026-02-19 01:05:06.315316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: reset_diff_threshold2_timer()] [Race Condition] If reset is called while start_or_continue is executing, can timer state become inconsistent? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8852310d-a2a5-4755-b796-a19cddce75bf?mode=deep",
+    "timestamp": "2026-02-19 01:05:28.083201",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: start_or_continue_diff_threshold2_timer()] [Overflow] Can timestamp values close to u64::MAX cause overflow when duration calculations are performed elsewhere? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9225827b-131d-4017-9eaa-7ae042d409fd?mode=deep",
+    "timestamp": "2026-02-19 01:05:49.646250",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: keep_history_update()] [Price Validation] No validation of price parameter - can price=0 or price=u256::MAX be set as historical price? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0dee144b-cd93-41fa-84d8-d26deb8817b7?mode=deep",
+    "timestamp": "2026-02-19 01:06:12.082429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: keep_history_update()] [Timestamp Validation] No validation that updated_time is greater than previous history.updated_time - can timestamps go backwards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3a2c792-3d8a-42bd-8693-1c41586a0ff5?mode=deep",
+    "timestamp": "2026-02-19 01:06:36.682451",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: keep_history_update()] [Atomicity] Are price and updated_time updated atomically, or can they be in inconsistent states if accessed during update? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_988d8edd-09a8-4322-a920-2e0978ca3210?mode=deep",
+    "timestamp": "2026-02-19 01:06:59.770971",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: keep_history_update()] [Overwrite Attack] Can an attacker repeatedly call this to prevent legitimate price history from being preserved? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_926936ef-d12e-4c39-a4c6-3edef8bffc09?mode=deep",
+    "timestamp": "2026-02-19 01:07:23.502400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: set_enable_to_price_feed()] [State Transition] Can a price feed be disabled during active price updates, causing in-flight operations to fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_27fedf56-7db6-44f2-bb49-f66637e270cd?mode=deep",
+    "timestamp": "2026-02-19 01:07:47.558196",
+    "report_generated": false
+  }
+]
