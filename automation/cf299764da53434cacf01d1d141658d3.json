@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Arithmetic Overflow] Can an attacker provide extremely large primary_price and secondary_price values that cause utils::calculate_amplitude() to overflow, returning U64MAX and bypassing threshold1 check at line 12, incorrectly returning level_normal when prices are actually divergent? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_94a6f2d1-3ae4-4aa5-bd87-05276c1c324c?mode=deep",
+    "timestamp": "2026-02-19 06:48:48.616260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Logic Error] If primary_price is zero, calculate_amplitude returns U64MAX per oracle_utils.move line 42, causing diff to exceed threshold2 at line 13 and return level_critical, potentially DoSing the oracle system when primary price is legitimately zero? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dccb4c00-45e9-4c2d-93c4-fa29dc94ed5b?mode=deep",
+    "timestamp": "2026-02-19 06:49:01.395834",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Logic Error] If secondary_price is zero, calculate_amplitude returns U64MAX per oracle_utils.move line 42, causing diff to exceed threshold2 and return level_critical even when primary_price is valid, enabling false critical alerts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6aebbb51-0fa9-4090-9cea-0079278284bd?mode=deep",
+    "timestamp": "2026-02-19 06:49:14.889386",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Boundary Condition] If diff equals threshold1 exactly, the condition at line 12 (diff < threshold1) returns false but line 13 (diff > threshold2) also returns false, proceeding to time-based logic at line 15. Is this intended behavior or should threshold1 be inclusive? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4167ee28-7306-47fe-a466-056768ab2c53?mode=deep",
+    "timestamp": "2026-02-19 06:49:29.035495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Boundary Condition] If diff equals threshold2 exactly, the condition at line 13 (diff > threshold2) returns false, proceeding to time-based logic. Should threshold2 be treated as critical level when equal? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db9d1fa1-2d8e-4b1c-ab7c-a6b59bee7c0d?mode=deep",
+    "timestamp": "2026-02-19 06:49:43.777861",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Timestamp Manipulation] Can an attacker manipulate current_timestamp to be less than max_duration_within_thresholds + ratio2_usage_start_time at line 15, forcing level_warning instead of level_major when price divergence has persisted too long? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e51598e-2e7f-4a08-a077-44b3f522d0bd?mode=deep",
+    "timestamp": "2026-02-19 06:50:00.514844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Integer Overflow] Can max_duration_within_thresholds + ratio2_usage_start_time overflow at line 15, causing the comparison to always fail and never return level_major even when duration exceeds limits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8538476d-db05-4414-8a5a-ff50ce9137e0?mode=deep",
+    "timestamp": "2026-02-19 06:50:18.068903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Uninitialized State] If ratio2_usage_start_time is 0 at line 15, the condition short-circuits and returns level_warning. Can an attacker exploit uninitialized ratio2_usage_start_time to avoid level_major escalation indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6948225b-b42b-402c-94f7-c720bae7a864?mode=deep",
+    "timestamp": "2026-02-19 06:50:36.792784",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Logic Error] The condition at line 15 checks ratio2_usage_start_time > 0 AND current_timestamp > max_duration + ratio2_usage_start_time. If ratio2_usage_start_time is never set (remains 0), does this create a permanent level_warning state even for long-duration divergences? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1f305830-0b57-48a6-b319-5298a0fc9423?mode=deep",
+    "timestamp": "2026-02-19 06:50:58.670671",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Timestamp Validation] No validation exists for current_timestamp being in the future or ratio2_usage_start_time being in the future. Can malicious timestamp values cause incorrect severity calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_00b880e5-1783-462f-a5d5-66d626812d5f?mode=deep",
+    "timestamp": "2026-02-19 06:51:19.601688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Parameter Validation] threshold1 and threshold2 are u64 but no validation ensures threshold1 < threshold2. Can threshold1 >= threshold2 cause the function to never enter the time-based logic at lines 15-19? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_214540b4-90dc-4f3f-b1b4-220760e840c8?mode=deep",
+    "timestamp": "2026-02-19 06:51:40.473566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Edge Case] If threshold1 is 0, any non-zero diff will bypass line 12. If threshold2 is U64MAX, line 13 will never trigger. Can these extreme configurations break severity logic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08e468ce-1861-4ca2-a6a3-476575045351?mode=deep",
+    "timestamp": "2026-02-19 06:52:02.500340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Dependency Risk] calculate_amplitude uses constants::multiple() as 10000 for percentage calculation. If multiple() changes or amplitude calculation overflows as checked in oracle_utils lines 47-49, returning U64MAX will incorrectly trigger critical level. Is this handling appropriate? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68e75a7c-6bd2-41e0-af05-edbe11b37176?mode=deep",
+    "timestamp": "2026-02-19 06:52:23.696489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Return Value Manipulation] The function returns u8 severity levels. Can calling code misinterpret severity values if constants::level_critical() through level_normal() change, or if an unexpected value is returned? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_34608110-db56-4a9f-b5a1-f5f767bd935c?mode=deep",
+    "timestamp": "2026-02-19 06:52:46.267525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Race Condition] If ratio2_usage_start_time is updated between reading it at line 15 and using it in calculation, can this cause inconsistent severity results? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48080cba-7992-41e4-9fcf-9c553b3732f7?mode=deep",
+    "timestamp": "2026-02-19 06:53:09.027154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Arithmetic Manipulation] calculate_amplitude at line 10 divides by primary_price. If primary_price is 1 and secondary_price is very large, can the amplitude exceed U64MAX causing truncation to U64MAX and incorrectly triggering critical level? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_20a592ef-97c4-4e2d-ba90-4c50756ec980?mode=deep",
+    "timestamp": "2026-02-19 06:53:30.752765",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Precision Loss] calculate_amplitude multiplies difference by 10000 before dividing. For very small price differences, can precision loss cause the amplitude to be 0, incorrectly bypassing threshold1 at line 12? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29f9d832-b516-4e82-b393-cf3b283612de?mode=deep",
+    "timestamp": "2026-02-19 06:53:53.976726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Edge Case] When primary_price and secondary_price are equal, calculate_amplitude returns 0 (per abs_sub returning 0). Does returning level_normal at line 12 correctly handle identical prices or could this mask issues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5008bd55-0552-4c50-9842-b4ca11c57353?mode=deep",
+    "timestamp": "2026-02-19 06:54:18.043337",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Overflow Protection] oracle_utils checks if ab_diff > sui::address::max() / 10000 to prevent overflow. Can an attacker craft prices that bypass this check but still cause overflow in subsequent calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1115d4ed-d9af-4fa9-9b64-9adfd9feedaf?mode=deep",
+    "timestamp": "2026-02-19 06:54:41.457474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Asymmetric Risk] calculate_amplitude divides by 'a' (first parameter = primary_price). This means a 50% increase gets different amplitude than 50% decrease. Can this asymmetry be exploited to show acceptable divergence in one direction but critical in another? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1542e3d7-157e-48c3-974b-00d5bde48265?mode=deep",
+    "timestamp": "2026-02-19 06:55:04.456237",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Bypass] The maximum_effective_price check at line 34 only triggers if maximum_effective_price > 0. Can an attacker set maximum_effective_price to 0 to completely bypass upper bound validation, accepting arbitrarily high prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_475e2d2e-e8a9-4416-b23a-406fde2740b0?mode=deep",
+    "timestamp": "2026-02-19 06:55:26.831409",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Logic Error] If price equals maximum_effective_price exactly, the condition at line 34 (price > maximum_effective_price) returns false and continues. Should the boundary be inclusive to prevent prices exactly at the limit? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dfc160f6-9b20-4119-9eae-fe255cc9d256?mode=deep",
+    "timestamp": "2026-02-19 06:55:49.132643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Boundary Condition] At line 39, if price equals minimum_effective_price exactly, the function returns false. Is this intended to reject prices at the minimum boundary, or should minimum be inclusive? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_71873064-7347-4546-b167-85cf3f161d63?mode=deep",
+    "timestamp": "2026-02-19 06:56:10.928739",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Inconsistent Validation] maximum_effective_price uses strict inequality (>) at line 34 while minimum_effective_price uses non-strict inequality (<) at line 39. Is this intentional asymmetry or a logic error? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1d66d6a-ac70-4524-898a-7d5f33fbc8a8?mode=deep",
+    "timestamp": "2026-02-19 06:56:33.885152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Parameter Validation] No check ensures minimum_effective_price <= maximum_effective_price. Can misconfigured bounds where minimum > maximum cause all prices to be rejected? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bf38a300-daa2-4640-8f51-796ee572641c?mode=deep",
+    "timestamp": "2026-02-19 06:56:58.093424",
+    "report_generated": false
+  }
+]
