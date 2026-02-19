@@ -1,0 +1,62 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: as_u32()] [Repeated Conversions] Tests frequently call as_u32() on I32 values - if conversions are expensive and done repeatedly in hot paths, could gas costs of signed arithmetic become prohibitive? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a1946db4-0194-46c1-a2ed-e88f6c92538d?mode=deep",
+    "timestamp": "2026-02-19 04:51:54.290778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Module: mmt_v3::i32] [Implementation Status] All functions abort with 'abort 0' - is this intended stub/placeholder, or are implementations missing? If missing, when deployed will cause total DoS of any dependent code? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_087e3c81-926f-47ac-8669-03cf7f16c9a5?mode=deep",
+    "timestamp": "2026-02-19 04:52:07.100496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Module: mmt_v3::i32] [Specification] No function documentation or pre/post conditions - without specs, how can callers know when overflow/underflow checking happens vs wrapping behavior, leading to incorrect usage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1972b988-04cc-4af6-96ce-21fd0ac10cd2?mode=deep",
+    "timestamp": "2026-02-19 04:52:20.847240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Tests: Expected Failures] [Error Communication] Multiple tests use #[expected_failure] without specific error code - do tests verify correct error (EOverflow) or accept any abort, potentially missing wrong error scenarios? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb6f0cfe-c8e1-4cbe-b5f8-b5337b7286aa?mode=deep",
+    "timestamp": "2026-02-19 04:52:34.760672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Module: mmt_v3::i32] [Dependency Risk] Module is in local_dependencies suggesting vendored copy - if upstream mmt_v3 has bug fixes or security patches, will outdated local copy remain vulnerable? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dc78d200-e2d3-416f-8e51-802dbf6bada0?mode=deep",
+    "timestamp": "2026-02-19 04:52:49.283298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: add()] [Associativity] If add() implementation has rounding errors or overflow in intermediate steps, could (a + b) + c differ from a + (b + c) causing accumulated differences in long chains of additions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8dcd0bbe-9b1e-41cd-a82f-0ccc1e3e18a6?mode=deep",
+    "timestamp": "2026-02-19 04:53:05.359234",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: mul()] [Distributivity] If mul() then add() doesn't equal add() then mul() due to overflow handling, could fee calculations like (price * amount) + fee differ from price * (amount + fee/price)? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c54301a4-1a16-4baf-97f9-851b07c272ee?mode=deep",
+    "timestamp": "2026-02-19 04:53:22.666248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: div()] [Precision Loss] Integer division truncates - if vault calculations chain multiple div() operations, could accumulated truncation error cause significant value loss? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_489852f9-cb7a-4e7d-8b35-d5a89b876966?mode=deep",
+    "timestamp": "2026-02-19 04:53:41.280095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: div()] [Rounding Direction] Tests don't specify rounding direction for negative division - does div(from(10), from(3)) == 3 and div(neg_from(10), from(3)) == neg_from(3) (round toward zero), or different rounding? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_94af1ef9-d883-4044-bb46-84cbf13603b2?mode=deep",
+    "timestamp": "2026-02-19 04:54:02.278977",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i32.move] [Function: mod()] [Remainder Sign] If mod() result can be negative, could unexpected negative remainders in price calculations cause invalid tick positions or off-by-one errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7d420bb1-1e4d-4a17-b1dc-0b671137b584?mode=deep",
+    "timestamp": "2026-02-19 04:54:20.955617",
+    "report_generated": false
+  }
+]
