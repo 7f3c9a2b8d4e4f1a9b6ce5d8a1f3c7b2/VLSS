@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: verify_rule_id_config()] [Error Code Confusion] The assertions use error codes 1, 2, 3 at lines 65, 69, 70, but are these globally unique error codes, or can they collide with other modules causing incorrect error handling in calling code? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82ac37cc-992b-4f6c-bd76-0fa4acd5ba12?mode=deep",
+    "timestamp": "2026-02-19 09:22:43.917148",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: verify_rule_id_config()] [Type Name Spoofing] Can an attacker create a malicious coin type with a type_name that matches the expected reward_coin_type string at line 70 but has different move semantics, bypassing type safety? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b2e6012-3991-4471-b04f-e9b2d006f691?mode=deep",
+    "timestamp": "2026-02-19 09:22:56.995469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: verify_rule_id_config()] [Option Value Manipulation] Does the check_option parameter at line 61 properly validate against the constants::option_type_supply() and constants::option_type_borrow() values, or can invalid option values pass assertion at line 69? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f44dd9c-5016-4863-80d7-c370d4ba2113?mode=deep",
+    "timestamp": "2026-02-19 09:23:11.035762",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: verify_rule_id_config()] [Incentive Reference Validity] Is the IncentiveV3 reference at line 61 guaranteed to be valid and not stale, or can it point to a deprecated incentive structure allowing bypassed security checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_01e706ae-513f-49e4-bf7c-45c48c4a530d?mode=deep",
+    "timestamp": "2026-02-19 09:23:25.335791",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: verify_rule_id_config()] [Rule ID Collision] Can multiple rules have the same rule_id causing vec_map::get() at line 67 to return the wrong rule, making the verification pass for incorrect configurations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_61877180-317d-4c77-9a0e-a9a1a6ff0cc9?mode=deep",
+    "timestamp": "2026-02-19 09:23:40.688525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Division by Zero] When total_balance is 0 at line 85, the function returns 0 for index_increased, but does this correctly handle the edge case where rate is non-zero and duration is non-zero, potentially losing reward accrual? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a961fb67-d092-4fba-9165-d50d5eae2948?mode=deep",
+    "timestamp": "2026-02-19 09:23:57.403427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Integer Overflow] Can the multiplication `rate * (duration as u256)` at line 88 overflow before division by total_balance, causing incorrect index calculation and reward loss or inflation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5814a76a-02c9-4e2f-a784-edd03a6ffedc?mode=deep",
+    "timestamp": "2026-02-19 09:24:16.038880",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Time Manipulation] Can the timestamp from clock::timestamp_ms(clock) at line 83 be manipulated or roll backwards, causing `now - last_update_at` at line 84 to underflow and produce massive duration values? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8c486ec0-f4c8-405e-aed6-9e4346cc147a?mode=deep",
+    "timestamp": "2026-02-19 09:24:35.333323",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Precision Loss] Does the division `(rate * duration) / total_balance` at line 88 lose precision for small total_balance or large rate values, causing users to permanently lose accumulated rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_37fbc5a6-00aa-4e3b-9ddb-180d462d9d19?mode=deep",
+    "timestamp": "2026-02-19 09:24:57.092169",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Option Type Abuse] Can an attacker pass a rule with an option value that's neither supply nor borrow, causing the function to reach the abort at line 80 during critical operations and locking user funds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_593cc6af-a4d2-44ea-a7f5-d3dfde3217dd?mode=deep",
+    "timestamp": "2026-02-19 09:25:19.258943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Index Addition Overflow] Can the addition `global_index + index_increased` at line 90 overflow when global_index has accumulated to near u256::MAX, causing the index to wrap to small values and breaking reward calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0fbf1ff-63ff-4a6e-aaab-211142d9e4fa?mode=deep",
+    "timestamp": "2026-02-19 09:25:42.508160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Rate Manipulation] If the rate parameter extracted at line 74 can be modified between rule creation and index calculation, can an attacker inflate rates temporarily to claim excessive rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_14fd4e68-f09a-467a-a3de-ee91802f1e0c?mode=deep",
+    "timestamp": "2026-02-19 09:26:05.124683",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Last Update Timestamp Staleness] Can last_update_at at line 74 be far in the past, causing duration at line 84 to be extremely large and index_increased calculation at line 88 to overflow or produce unrealistic values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3f09de8d-6edc-42c2-b8bf-e39bf3940677?mode=deep",
+    "timestamp": "2026-02-19 09:26:28.005841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Total Balance Manipulation] Between extracting total_supply and total_borrow at lines 75-78 and using total_balance at line 85, can these values be manipulated through flash loans to artificially reduce denominator and inflate index_increased? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c21d5b28-2049-4e93-b950-8e8225c09276?mode=deep",
+    "timestamp": "2026-02-19 09:26:50.574438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Zero Duration Edge Case] When duration is exactly 0 at line 85, does returning 0 for index_increased correctly represent no time passing, or can this be exploited in rapid successive calls to avoid index updates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ba377347-7d48-473f-9be7-bac237df3c2b?mode=deep",
+    "timestamp": "2026-02-19 09:27:11.880534",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Type Casting Risk] Does casting duration to u256 at line 88 properly handle the full range of u64 timestamp differences, or can overflow occur during the cast operation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b348f01-9202-4090-9158-6755b3baeae6?mode=deep",
+    "timestamp": "2026-02-19 09:27:33.929113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Negative Duration] If clock timestamp goes backwards due to clock skew or manipulation, can `now - last_update_at` at line 84 underflow in u64 arithmetic before being cast to u256, causing massive incorrect duration? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3ca20961-4c4b-4902-83d4-1b00a06b29a3?mode=deep",
+    "timestamp": "2026-02-19 09:27:57.081321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Rate Zero Edge Case] When rate is 0, does the multiplication at line 88 correctly return 0, or can integer division by zero total_balance still cause issues when rate is meant to be paused? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3f18045-a263-4ed5-bfb1-aeee53f26c93?mode=deep",
+    "timestamp": "2026-02-19 09:28:19.705823",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_global_index()] [Borrow vs Supply Confusion] Can the option type check at lines 75-80 be bypassed by passing an option value that equals both constants due to misconfiguration, causing wrong balance selection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f463c01-3389-4cdb-ab85-6e317d2a7bc6?mode=deep",
+    "timestamp": "2026-02-19 09:28:44.213244",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [Index Underflow] Can the subtraction `global_index - incentive_v3::get_user_index_by_rule(rule, user)` at line 102 underflow if user_index is greater than global_index due to index manipulation or rollback? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e0de2f91-de70-4e43-8052-fbc055f9c213?mode=deep",
+    "timestamp": "2026-02-19 09:29:08.653444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [Ray Math Overflow] Can ray_math::ray_mul(user_balance, user_index_diff) at line 104 overflow when user_balance is very large and user_index_diff is near maximum, causing incorrect reward calculation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0dae6725-9c14-4236-b936-426448229a07?mode=deep",
+    "timestamp": "2026-02-19 09:29:32.209993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [User Balance Manipulation] Can the user_balance selected at lines 95-100 be manipulated through concurrent transactions between reading effective supply/borrow and calculating rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2341345f-dafd-43c5-8b0b-947e235c31bd?mode=deep",
+    "timestamp": "2026-02-19 09:29:56.056861",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [Reward Addition Overflow] Can the addition `user_reward + ray_math::ray_mul(...)` at line 104 overflow when accumulated user_reward is near u256::MAX, causing reward calculation to wrap to small values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ecbe82e4-77e8-4b32-a5f2-be1e1fc8ec30?mode=deep",
+    "timestamp": "2026-02-19 09:30:21.036693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [Option Type DoS] Can passing a rule with invalid option type cause the function to abort at line 100, disrupting reward calculations for all users in a batch operation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d2f56fc-c2ab-420f-abb1-958248e67b6d?mode=deep",
+    "timestamp": "2026-02-19 09:30:46.630625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive_v3.move] [Function: calculate_user_reward()] [Zero Balance Rewards] When user_balance is 0 (lines 95-100), does ray_math::ray_mul() correctly return 0, or can precision issues cause non-zero rewards for users with no balance? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb4d43dd-2492-46e1-80a3-de9f4ea11eb0?mode=deep",
+    "timestamp": "2026-02-19 09:31:11.037138",
+    "report_generated": false
+  }
+]
