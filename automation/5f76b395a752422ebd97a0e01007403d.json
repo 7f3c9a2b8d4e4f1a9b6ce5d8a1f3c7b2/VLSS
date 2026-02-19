@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: validate()] [Missing Validation] The validate() function is completely empty with no validation logic - can an attacker with AdminCap set guardian_queue_id to address(0x0) or invalid ID, breaking oracle guardian queue functionality and causing DoS for all oracle operations requiring guardian verification? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d4d4c387-691a-4021-be73-cd70d87ab1de?mode=deep",
+    "timestamp": "2026-02-19 00:36:55.313677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: validate()] [Missing Validation] The empty validate() function performs no checks on guardian_queue_id validity - can an attacker set guardian_queue_id to a non-existent object ID, causing all subsequent guardian queue reads to fail and bricking the oracle system? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_629f15de-2467-4504-b94c-84d900cfeb88?mode=deep",
+    "timestamp": "2026-02-19 00:37:08.501259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: validate()] [Missing Validation] With validate() being a no-op, can guardian_queue_id be set to the same value as the current guardian_queue, creating redundant state changes, wasting gas, and emitting misleading GuardianQueueIdSet events? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7932433a-f26c-465c-ba81-5e68147f8c85?mode=deep",
+    "timestamp": "2026-02-19 00:37:22.054098",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: validate()] [Missing Validation] The validate() function doesn't verify that guardian_queue_id points to an actual Queue object - can an attacker set it to an ID of a different object type (e.g., aggregator, feed), causing type mismatches and runtime failures in guardian operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_533e6535-77ea-4b88-b973-7a4439400f90?mode=deep",
+    "timestamp": "2026-02-19 00:37:37.335808",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: validate()] [Missing Validation] Since validate() is empty, can guardian_queue_id be set to an ID that belongs to a deleted or consumed Queue object, permanently breaking guardian queue functionality until manually corrected? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98944233-4c5c-4024-84f1-8bc5f8a437fe?mode=deep",
+    "timestamp": "2026-02-19 00:37:52.508760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: validate()] [Missing Validation] The validate() function doesn't check if the new guardian_queue_id is owned by the protocol or is a shared object - can it be set to a privately-owned Queue that later gets transferred or deleted, breaking oracle invariants? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b328737-59e5-445d-be93-9e43bfbff7f0?mode=deep",
+    "timestamp": "2026-02-19 00:38:09.066828",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: validate()] [Missing Validation] With no validation, can guardian_queue_id be set to point to a malicious Queue object controlled by an attacker (if AdminCap is compromised), allowing manipulation of guardian attestations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_31808c24-36d1-4f08-a86a-901532087325?mode=deep",
+    "timestamp": "2026-02-19 00:38:27.226643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: validate()] [Missing Validation] The empty validate() doesn't verify Queue configuration (min_stake, reward, max_size) - can guardian_queue_id be set to a Queue with malicious parameters that enable guardian manipulation or DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cadd27b5-1275-4f47-8a1a-26fab6ff9921?mode=deep",
+    "timestamp": "2026-02-19 00:38:45.990259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: validate()] [Missing Validation] Since validate() performs no state consistency checks, can guardian_queue_id be changed during active oracle operations, causing in-flight guardian attestations to reference the wrong queue and fail validation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7bc5e44-f7fa-45c9-b042-2acb6c4e6b44?mode=deep",
+    "timestamp": "2026-02-19 00:39:06.008392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: validate()] [Missing Validation] The validate() function doesn't enforce any time-lock or delay - can a compromised AdminCap immediately switch guardian_queue_id to a malicious queue, bypassing any governance or multi-sig protections expected in critical parameter changes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1bd772f4-e999-4407-8fc8-d28dc952d5f2?mode=deep",
+    "timestamp": "2026-02-19 00:39:27.067940",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [Authorization Bypass] The run() function only checks AdminCap ownership but doesn't verify AdminCap hasn't been revoked or frozen - can a previously valid but now-revoked admin still change guardian_queue_id if they retained the AdminCap object? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87f62bf7-e933-4748-98f6-7828c4150279?mode=deep",
+    "timestamp": "2026-02-19 00:39:49.602461",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [Missing Pause Check] The run() function has no paused/emergency stop flag check - can guardian_queue_id be changed even when the oracle system is paused for emergency maintenance, potentially causing inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5c055e5-5732-4b3b-8a11-5e3ab48e7cbb?mode=deep",
+    "timestamp": "2026-02-19 00:40:13.847687",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [Single Point of Failure] AdminCap is the only authorization check - if AdminCap is compromised, stolen, or the admin's private key is lost, can an attacker unilaterally change guardian_queue_id without any multi-sig or time-delay protection? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7dc49006-6d09-4dd1-9594-df5d8e5c018b?mode=deep",
+    "timestamp": "2026-02-19 00:40:38.091554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [Missing Role Separation] There's no separation between oracle configuration roles and operational roles - can the same AdminCap that manages critical guardian queue settings also perform day-to-day operations, violating principle of least privilege? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c2d20d64-c077-4eaf-b09c-933ebfd411d0?mode=deep",
+    "timestamp": "2026-02-19 00:41:01.518639",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Internal Function Exposure] The actuate() function is not public entry but also not explicitly private with 'fun' visibility - is there any risk it could be called directly by other modules in the package, bypassing AdminCap authorization check in run()? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0838f206-1b32-4c00-a942-e93e2d0ec453?mode=deep",
+    "timestamp": "2026-02-19 00:41:24.785884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [Immutable AdminCap] AdminCap has no revocation or rotation mechanism visible - if AdminCap is compromised, is there any way to prevent malicious guardian_queue_id changes other than upgrading the entire contract? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_959d223e-3d2c-48b5-bf94-82c0fe276e12?mode=deep",
+    "timestamp": "2026-02-19 00:41:47.842559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [State Corruption] The actuate() function directly calls on_demand::set_guardian_queue_id without validating the ID exists - if guardian_queue_id points to a non-existent object, will all future State reads of guardian_queue() return an invalid ID, causing cascading failures? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d26636e-0d30-4287-9864-33498de87e37?mode=deep",
+    "timestamp": "2026-02-19 00:42:11.793610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Zero Address] Can guardian_queue_id be set to object::id_from_address(@0x0), matching the initialization value, causing guardian queue lookups to fail or return uninitialized state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9df7b44c-60a4-4ef0-b53b-864d34a1f51a?mode=deep",
+    "timestamp": "2026-02-19 00:42:36.402905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Circular Reference] Can guardian_queue_id be set to state.id (the State object's own ID), creating a circular reference that causes infinite loops or logic errors in guardian queue operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b4bfbbb-1ac5-4a5f-8a9f-ec6f87b0e06d?mode=deep",
+    "timestamp": "2026-02-19 00:43:00.894858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Type Confusion] Can guardian_queue_id be set to the oracle_queue ID (or any other object ID in the system), causing type confusion when code expects a Queue object but gets a different type, leading to runtime panics? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4390d337-731b-4266-adc6-a2afd7413138?mode=deep",
+    "timestamp": "2026-02-19 00:43:24.687906",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Stale Reference] If the Queue object referenced by guardian_queue_id is deleted or wrapped after being set, will the guardian_queue field contain a dangling reference, causing all guardian operations to fail permanently? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5eab9950-be78-493e-9776-8a069c90f933?mode=deep",
+    "timestamp": "2026-02-19 00:43:48.486176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Cross-Chain ID] On Sui, can guardian_queue_id be crafted to reference an object on a different chain or network, causing guardian queue operations to fail when they attempt to access the non-existent object? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e20be30c-77ed-4647-9cb7-372f5396565d?mode=deep",
+    "timestamp": "2026-02-19 00:44:10.104934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Event-State Ordering] The GuardianQueueIdSet event is emitted AFTER on_demand::set_guardian_queue_id() modifies state - if the event emission fails or is dropped, will off-chain indexers miss the state change, causing UI/monitoring desync? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_acd3d906-a2d1-415d-982a-34b952cf68b4?mode=deep",
+    "timestamp": "2026-02-19 00:44:31.098033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Event Ordering Race] Between capturing old_guardian_queue_id (line 18) and setting the new guardian_queue_id (line 21-23), if another transaction modifies State in a concurrent execution context, will the event log incorrect old_guardian_queue_id value? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c20b5481-bd4d-4b1c-ab97-1a8c973dccbd?mode=deep",
+    "timestamp": "2026-02-19 00:44:54.060460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Missing Event Data] The GuardianQueueIdSet event doesn't include a timestamp, epoch number, or transaction hash - can off-chain systems accurately reconstruct the timeline of guardian queue changes for auditing purposes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_41d99b5a-0b75-4788-8920-95b0522a5975?mode=deep",
+    "timestamp": "2026-02-19 00:45:16.833684",
+    "report_generated": false
+  }
+]
