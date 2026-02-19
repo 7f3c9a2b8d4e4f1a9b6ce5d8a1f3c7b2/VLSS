@@ -1,7 +1,0 @@
-[
-  "[File: volo-vault/sources/reward_manager.move] [Function: remove_reward_buffer_distribution()] [Partial Removal] At lines 326-327, buffer entries are removed but reward type remains - can this cause issues? (Medium)",
-  "[File: volo-vault/sources/reward_manager.move] [Function: add_new_reward_type()] [Double Addition] Is there protection against adding the same reward type twice, which could overwrite indices or balances? (High)",
-  "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Subtraction Underflow] At line 533, remaining_reward_amount - actual_reward_amount is computed - can underflow occur? (High)",
-  "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_to_buffer()] [Addition Overflow] At line 399, buffer_reward_amount + reward_amount is computed - can this overflow u256? (Medium)",
-  "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_indices()] [Index Addition] At line 578, current index + add_index could overflow - is there protection? (High)"
-]
