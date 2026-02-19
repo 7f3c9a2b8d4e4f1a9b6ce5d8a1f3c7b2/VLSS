@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_asset()] [Authorization Bypass] Can an attacker exploit the lack of pool ownership verification to create flash loan assets for pools they don't control, potentially enabling unauthorized fee extraction or asset manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3689c123-4bd2-4116-86a3-d7133dbe30ce?mode=deep",
+    "timestamp": "2026-02-19 03:31:43.622443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_asset()] [Access Control] Does StorageAdminCap grant global admin rights across all pools, allowing a single compromised admin to misconfigure flash loans for all assets and drain fees? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f53601ef-51c6-48b9-a2ee-71255e0a5d0a?mode=deep",
+    "timestamp": "2026-02-19 03:31:56.214997",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_flash_loan_asset_rate_to_supplier()] [Authorization] Can repeated calls to rate setter functions with StorageAdminCap bypass any rate-of-change limits or cooldown periods in the underlying flash_loan module? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_775edaf6-7a71-40f0-81d6-ddae312a972e?mode=deep",
+    "timestamp": "2026-02-19 03:32:11.004335",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_flash_loan_asset_rate_to_treasury()] [Authorization] If StorageAdminCap is compromised, can attacker set treasury rate to 100% to siphon all flash loan fees away from suppliers? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b5cc158-518b-4c40-88d2-8d520cae3008?mode=deep",
+    "timestamp": "2026-02-19 03:32:24.796601",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_asset()] [Type Confusion] Can attacker pass mismatched generic type T and asset_id to bypass the type_name equality check at line 38, creating flash loan config for wrong asset type? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a14af485-0669-4ba3-8b3d-80f109f9cdfc?mode=deep",
+    "timestamp": "2026-02-19 03:32:39.802383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_asset()] [Input Validation] What prevents asset_id from being reused to create duplicate flash loan assets, potentially causing state corruption or double-fee collection? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c3ad9c1b-9205-408d-9d9b-35319db16dd9?mode=deep",
+    "timestamp": "2026-02-19 03:32:55.405570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_asset()] [Boundary Check] If reserves_count equals asset_id (line 35), the check `asset_id < reserves_count` fails, but what if reserves_count is 0 - does this create an invalid state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d84ad746-868b-4d31-817c-5bedf5acc25b?mode=deep",
+    "timestamp": "2026-02-19 03:33:11.977321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_asset()] [Integer Overflow] Can rate_to_supplier + rate_to_treasury exceed u64::MAX causing overflow in fee calculations within flash_loan::create_asset? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a5a84b8-a6cd-4bbb-b880-8aaf811e05ca?mode=deep",
+    "timestamp": "2026-02-19 03:33:30.413138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_asset()] [Logic Error] What prevents maximum parameter from being less than minimum, creating impossible flash loan constraints that DoS the lending pool? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1c8937e4-6524-4c00-a018-bec2a769ba6d?mode=deep",
+    "timestamp": "2026-02-19 03:33:49.706464",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_asset()] [Rate Validation] Can rates be set to 0 allowing free flash loans, or to extreme values (near u64::MAX) causing integer overflow in fee calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bdd1647e-350e-47db-bda5-22bd0dfc851e?mode=deep",
+    "timestamp": "2026-02-19 03:34:09.296650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_flash_loan_asset_rate_to_supplier()] [Front-running] Can admin front-run large flash loan transactions by updating rates immediately before execution to extract maximum fees? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aed203e5-2981-450c-aa31-95454abe5748?mode=deep",
+    "timestamp": "2026-02-19 03:34:28.455551",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_flash_loan_asset_rate_to_treasury()] [Economic Attack] Can malicious admin set treasury rate to 100% and supplier rate to 0, making flash loans unprofitable and causing DoS through liquidity withdrawal? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd6072e8-f90b-4695-ba23-412c144b4004?mode=deep",
+    "timestamp": "2026-02-19 03:34:48.038776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_flash_loan_asset_rate_to_supplier()] [Type Mismatch] Does the function validate that type T exists in the flash loan config before updating, or can it create invalid entries for non-existent assets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a697434e-b8a0-4841-b7cb-20512952bf47?mode=deep",
+    "timestamp": "2026-02-19 03:35:07.838776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_flash_loan_asset_min()] [DoS Attack] Can admin set minimum to u64::MAX to completely disable flash loans, locking legitimate users out? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e4821a5-aa78-47fd-9967-c8cbbabdf87d?mode=deep",
+    "timestamp": "2026-02-19 03:35:27.768459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_flash_loan_asset_max()] [Constraint Violation] If max is set below current outstanding flash loans, does this create an inconsistent state preventing loan repayment? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f031e78e-814b-4ccd-b0e2-1f472348b1f9?mode=deep",
+    "timestamp": "2026-02-19 03:35:44.571708",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_flash_loan_asset_min()] [Configuration Error] Can min be set higher than existing max value, creating impossible flash loan conditions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5d36bece-3de6-4fb9-b94f-6153e8661eff?mode=deep",
+    "timestamp": "2026-02-19 03:36:03.889799",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_flash_loan_asset_max()] [Integer Underflow] If max is set to 0, can this cause underflow when calculating available flash loan capacity? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_300ca965-8b80-4d41-90a5-db656fb218b2?mode=deep",
+    "timestamp": "2026-02-19 03:36:23.536764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: deposit_incentive_v3_reward_fund()] [Amount Validation] Can attacker pass amount=0 to deposit nothing but trigger state changes, potentially manipulating reward distribution timing? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86fd930b-2651-4256-851d-6c1e63a29b2c?mode=deep",
+    "timestamp": "2026-02-19 03:36:44.648382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: deposit_incentive_v3_reward_fund()] [Input Validation] What prevents amount from exceeding coin::value, given the assertion at line 106 allows equality - can this be exploited if coin value is manipulated? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9c7d908f-202c-4893-9ff3-345e1be61af4?mode=deep",
+    "timestamp": "2026-02-19 03:37:04.535257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: deposit_incentive_v3_reward_fund()] [Self Transfer] Line 111 transfers remaining deposit_coin back to sender - if sender is a malicious contract, can re-entrancy occur before transfer completes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2fe7ce27-91ad-4221-aa84-74ef412aee3e?mode=deep",
+    "timestamp": "2026-02-19 03:37:24.509712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: deposit_incentive_v3_reward_fund()] [Precision Loss] When splitting coin at line 107, if amount is very small relative to total coin value, can dust amounts accumulate causing accounting errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_94a80062-fc87-4e6b-a344-c94f0b609eea?mode=deep",
+    "timestamp": "2026-02-19 03:37:43.537424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_incentive_v3_reward_fund()] [Authorization] Can StorageAdminCap holder withdraw reward funds intended for users, effectively stealing deposited incentive rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cd2f8bd7-6b5f-4fd7-9487-6ed255f62bdf?mode=deep",
+    "timestamp": "2026-02-19 03:38:01.150556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_incentive_v3_reward_fund()] [Input Validation] What prevents amount from exceeding reward fund balance, causing the underlying incentive_v3::withdraw_reward_fund to fail or underflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_38008603-af63-434f-89b5-73116bdf319e?mode=deep",
+    "timestamp": "2026-02-19 03:38:20.419333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_borrow_fee()] [Fund Theft] Can StorageAdminCap holder arbitrarily withdraw borrow fees to any recipient address, bypassing intended fee distribution logic? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3e9f4fea-2384-4240-9d49-e36c5548b924?mode=deep",
+    "timestamp": "2026-02-19 03:38:41.241831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_borrow_fee()] [Amount Validation] Is there validation that amount doesn't exceed accumulated borrow fees, or can this drain other pooled funds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1208ddd-d708-4d31-a1b8-caa969316ffe?mode=deep",
+    "timestamp": "2026-02-19 03:39:01.310450",
+    "report_generated": false
+  }
+]
