@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Authorization Bypass] The function is public entry, allowing anyone to call it. Can an attacker repeatedly call this with arbitrary account addresses to trigger gas griefing or DoS by forcing health factor calculations on many accounts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ef2017de-8945-48c0-9f93-961f8aacd091?mode=deep",
+    "timestamp": "2026-02-19 08:05:02.831862",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Authorization Bypass] There is no caller authentication. Can a malicious actor call this function before the legitimate vault operation, causing premature health checks that may pass/fail incorrectly due to timing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5ba9a5c3-62d7-4c40-8a1f-26f91946ec02?mode=deep",
+    "timestamp": "2026-02-19 08:05:15.308734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: is_navi_position_healthy()] [Authorization Bypass] The function is public and returns a boolean without authorization checks. Can an attacker use this to front-run vault operations by checking health status before executing their own competing transactions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7fd4b572-3a2f-4e66-9666-72763dc43203?mode=deep",
+    "timestamp": "2026-02-19 08:05:28.359769",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Access Control] No capability or role check exists. Can unauthorized parties call this to emit misleading NaviHealthFactorVerified events that could confuse off-chain monitoring systems? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0d7721d-eee2-4b96-a642-e905f2849c86?mode=deep",
+    "timestamp": "2026-02-19 08:05:42.021803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [State Mutation] The function takes &mut Storage as parameter. Can the logic::user_health_factor call mutate Storage state in unexpected ways that affect subsequent health checks in the same transaction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fdd78371-57c5-4472-b80b-830084818195?mode=deep",
+    "timestamp": "2026-02-19 08:05:56.644941",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Reentrancy] Since Storage is mutable, can a malicious contract trigger reentrancy through the lending_core::logic module to mutate position state mid-calculation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fd2809cb-4e5d-46de-86c4-3716cf996ef4?mode=deep",
+    "timestamp": "2026-02-19 08:06:12.324771",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: is_navi_position_healthy()] [State Mutation] The function also takes &mut Storage. Can calling this function cause side effects in Storage that alter the health factor value for subsequent verify calls in the same transaction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da161c25-eeff-43d9-9598-cc6c84c329e4?mode=deep",
+    "timestamp": "2026-02-19 08:06:29.280319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Storage Corruption] If lending_core::logic::user_health_factor modifies Storage, can an attacker call verify_navi_position_healthy multiple times to corrupt Storage state through repeated mutations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_090db580-cd63-47fa-9926-7a709d566112?mode=deep",
+    "timestamp": "2026-02-19 08:06:47.472830",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Oracle Manipulation] The function passes &PriceOracle to logic::user_health_factor without staleness checks. Can an attacker exploit stale oracle prices to pass health checks with invalid positions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aa1b6f0a-961e-45f9-a322-410be28a77ac?mode=deep",
+    "timestamp": "2026-02-19 08:07:06.731531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Price Manipulation] No validation exists on oracle price bounds. Can an attacker manipulate oracle prices to extreme values (near 0 or max) to artificially inflate health factors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4cee4b59-97e3-4e53-a605-c293c71eff82?mode=deep",
+    "timestamp": "2026-02-19 08:07:26.059450",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: is_navi_position_healthy()] [Oracle Staleness] The function doesn't verify oracle freshness. Can an attacker delay oracle updates to maintain artificially healthy positions while extracting value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3e75643-05cb-4df5-8080-087ec2e340bd?mode=deep",
+    "timestamp": "2026-02-19 08:07:46.813644",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Oracle Trust] The function blindly trusts PriceOracle without verifying its integrity. Can a compromised or malicious oracle contract return manipulated health factors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ff551ef-c5d4-4ca4-b8c2-ed40129c4778?mode=deep",
+    "timestamp": "2026-02-19 08:08:06.672919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Multi-Asset Oracle] If the oracle provides prices for multiple collateral/debt assets, can an attacker manipulate relative prices between assets to boost health factor calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6dcdcb5d-07b1-43e4-9deb-869cee9d7835?mode=deep",
+    "timestamp": "2026-02-19 08:08:28.372309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Clock Manipulation] The function accepts &Clock parameter. Can an attacker exploit clock-dependent logic in lending_core to manipulate interest accrual and health factor calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5a83a18-aba2-4316-a018-a767c1c48cc5?mode=deep",
+    "timestamp": "2026-02-19 08:08:49.067042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Timing Attack] No timestamp validation exists. Can an attacker call this at epoch boundaries when interest rates or prices update to exploit transitional states? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b6889e8-a26c-4758-a162-8cc26ffa04e7?mode=deep",
+    "timestamp": "2026-02-19 08:09:11.626788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: is_navi_position_healthy()] [Clock Dependency] The function relies on Clock for health calculation. Can an attacker sandwich transactions around clock updates to exploit time-dependent health factor changes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3f287697-3c34-4e69-ba9d-1f017e77b10c?mode=deep",
+    "timestamp": "2026-02-19 08:09:33.629963",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Race Condition] Between health check and actual vault operation, can clock advance cause interest accrual that invalidates the health check result? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e20c1e0-b8df-40fc-8d09-73191beab66a?mode=deep",
+    "timestamp": "2026-02-19 08:09:55.340121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Precision Loss] The division of health_factor by DECIMAL_E18 at line 42 may lose precision for very small health factors. Can an attacker exploit this to round down unhealthy positions to 0 and bypass the check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_66b735e6-8c55-47be-a125-e1039191863e?mode=deep",
+    "timestamp": "2026-02-19 08:10:16.529748",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Rounding Error] When hf_normalized = health_factor / DECIMAL_E18, does truncation favor attackers with marginally unhealthy positions (e.g., HF = 1.0000001e27 becomes 1e9, passing min_health_factor of 1e9)? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5691649-a057-40e5-b706-97350d111475?mode=deep",
+    "timestamp": "2026-02-19 08:10:38.318725",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Constants] [Decimal Mismatch] DECIMAL_E18 and DECIMAL_E9 represent different decimal bases. Can inconsistent decimal handling between Navi's internal representation and this adaptor cause health factor misinterpretation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aeee1931-dd50-4bee-af8a-5dcad5de3e31?mode=deep",
+    "timestamp": "2026-02-19 08:10:58.825792",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Overflow] The division at line 42 assumes health_factor fits in u256. Can extremely large health factors from Navi overflow during division or comparison operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7f207dad-9d26-4dd5-b10a-893c7dd5a05f?mode=deep",
+    "timestamp": "2026-02-19 08:11:20.805620",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Underflow] For health_factor < DECIMAL_E18, the division results in 0. Can an attacker exploit this to make very unhealthy positions (HF < 1.0) return error code 0, masking the severity? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_134a1325-9225-4191-9c57-a8edb273e3f7?mode=deep",
+    "timestamp": "2026-02-19 08:11:43.973841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Decimal Precision] The normalization reduces 18-decimal precision to 9-decimal. Can this 1e-9 granularity loss allow positions at exactly min_health_factor to pass/fail inconsistently? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3e270f44-4dee-4e21-be3a-e1e7424b8590?mode=deep",
+    "timestamp": "2026-02-19 08:12:07.952418",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Off-by-One] The comparison at line 33 uses strict inequality (health_factor > min_health_factor). Should positions at exactly min_health_factor be considered healthy or unhealthy? Can this create liquidation edge cases? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08d54da0-f249-4055-adc2-d9558bb5f801?mode=deep",
+    "timestamp": "2026-02-19 08:12:31.489888",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: is_navi_position_healthy()] [Comparison Inconsistency] Both functions use the same > comparison. Can an attacker exploit the boundary condition where health_factor == min_health_factor to be rejected by verify but accepted in boolean checks elsewhere? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5cecfd75-42b2-4e09-8a31-0c7a2eda6621?mode=deep",
+    "timestamp": "2026-02-19 08:12:53.654349",
+    "report_generated": false
+  }
+]
