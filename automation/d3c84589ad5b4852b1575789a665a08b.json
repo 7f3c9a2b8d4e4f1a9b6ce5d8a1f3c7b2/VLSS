@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: sqrt_price_x64_to_price()] [Decimal Mismatch] When decimals_a > decimals_b, can price_u256_with_decimals * pow(10, decimals_a - decimals_b) overflow if the decimal difference is large (e.g., 18)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82071563-7d8d-497d-a598-11d3f383efa2?mode=deep",
+    "timestamp": "2026-02-19 07:08:10.400842",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: sqrt_price_x64_to_price()] [Decimal Mismatch] When decimals_b > decimals_a, can price_u256_with_decimals / pow(10, decimals_b - decimals_a) round to zero for small prices, breaking position valuation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e37c2204-7b06-444e-9118-29d1d87ca5ef?mode=deep",
+    "timestamp": "2026-02-19 07:08:23.430415",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: sqrt_price_x64_to_price()] [Decimal Edge Case] Can decimals_a == decimals_b cause incorrect branching if the else clause should also apply special handling for equal decimals? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3494022-8ff4-4f45-a8d5-8c6b02c88967?mode=deep",
+    "timestamp": "2026-02-19 07:08:36.965553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: sqrt_price_x64_to_price()] [Decimal Validation] Are decimals_a and decimals_b validated to be within reasonable ranges (0-18), or can extreme values cause pow() to fail or overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c9ab8fc-306d-4f02-9d63-140a284eb507?mode=deep",
+    "timestamp": "2026-02-19 07:08:51.893322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: sqrt_price_x64_to_price()] [Zero Price] Can the function return zero price if all intermediate calculations round down, causing division by zero in calling functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_13a6ad95-942b-44c9-92e3-1855f9e7b7a8?mode=deep",
+    "timestamp": "2026-02-19 07:09:06.665333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Liquidity Math] Can liquidity_math::get_amounts_for_liquidity return (0, 0) for positions with liquidity > 0 due to rounding, causing incorrect zero-value positions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a678c25-c039-41ac-8b54-30b5675f2eb8?mode=deep",
+    "timestamp": "2026-02-19 07:09:23.828986",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Tick Math] Can tick_math::get_sqrt_price_at_tick revert or return incorrect values for extreme tick values (MIN_TICK or MAX_TICK), causing DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb77143b-3e4d-437e-b296-1fc080863a2b?mode=deep",
+    "timestamp": "2026-02-19 07:09:41.464416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Tick Ordering] Is there validation that tick_lower_index < tick_upper_index, or can reversed ticks cause incorrect amount calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec723e35-d3cc-4f6c-8128-fe783a3f27df?mode=deep",
+    "timestamp": "2026-02-19 07:10:00.258959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Position State] Can position.liquidity() return 0 for a valid position due to full withdrawal, causing (0, 0) amounts to pass validation incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e80e1311-1364-4744-8c0e-f00454e7c154?mode=deep",
+    "timestamp": "2026-02-19 07:10:19.227599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Pool State] Can pool.sqrt_price() be manipulated via pool operations to return incorrect current price, affecting amount calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7499c0cd-7a5a-4614-b6d8-7ab9c7502ba4?mode=deep",
+    "timestamp": "2026-02-19 07:10:39.997355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Rounding Direction] Does the false parameter in get_amounts_for_liquidity control rounding, and can this be exploited to consistently under/overvalue positions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f04395b7-c173-431f-b734-646f7ee307ce?mode=deep",
+    "timestamp": "2026-02-19 07:11:00.919405",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Amount Overflow] Can amount_a or amount_b overflow u64 for positions with very high liquidity, causing incorrect truncated values to be returned? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aa69ed65-7a47-447d-9cda-e7e1ae35a476?mode=deep",
+    "timestamp": "2026-02-19 07:11:22.842284",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Cross-Pool Attack] Can an attacker pass a different pool reference than the one the position was created in, getting incorrect amounts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4550c697-9ac3-4181-a2c5-956a1a64f05a?mode=deep",
+    "timestamp": "2026-02-19 07:11:46.305751",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Value Overflow] Can value_a + value_b overflow u256 for positions with extremely high token amounts and prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3134a95-ff27-4e1a-94cc-ed8c2f225824?mode=deep",
+    "timestamp": "2026-02-19 07:12:11.517653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Value Calculation] Does vault_utils::mul_with_oracle_price correctly handle u64 to u256 conversion and maintain precision for all amount ranges? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5eec1233-82ef-4517-af93-8cb7207dda74?mode=deep",
+    "timestamp": "2026-02-19 07:12:36.521114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Price Precision] Can normalized_price_a or normalized_price_b be zero due to rounding, causing one side of the position to be valued at zero? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83360fff-9d0f-48cb-b103-152d94cbd3a7?mode=deep",
+    "timestamp": "2026-02-19 07:13:01.849838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Value Consistency] Are normalized_price_a and normalized_price_b denominated in the same base currency, or can currency mismatch cause incorrect value_a + value_b summation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1407b6d5-1faf-4135-bc00-52d84bd4c2fb?mode=deep",
+    "timestamp": "2026-02-19 07:13:29.521602",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Casting Safety] Can casting amount_a and amount_b from u64 to u256 lose information or introduce errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_33ad59f0-596a-45ad-abbd-fbcd8128a307?mode=deep",
+    "timestamp": "2026-02-19 07:13:57.395997",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Zero Value] Can both value_a and value_b legitimately be zero for an active position, and does this break downstream vault accounting? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9c25827b-e01f-44fb-8258-40e6e5f09cbe?mode=deep",
+    "timestamp": "2026-02-19 07:14:25.465269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Type Confusion] Can PrincipalCoinType mismatch with CoinA or CoinB, causing type confusion when retrieving the position from vault? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_115255ed-b287-4128-aa7f-b4483a651414?mode=deep",
+    "timestamp": "2026-02-19 07:14:54.247808",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Type Validation] Can an attacker pass CoinA and CoinB in reversed order compared to the stored position, causing incorrect price calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e5fc07d-6429-482f-b724-63394d4135d9?mode=deep",
+    "timestamp": "2026-02-19 07:15:24.221712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Type Name] Can into_string(get<CoinA>()) be manipulated or return unexpected values for non-standard coin types, breaking oracle lookups? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6756a3b0-09ad-4b57-a25e-182b09d4c543?mode=deep",
+    "timestamp": "2026-02-19 07:15:52.589475",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Asset Type] Can the asset_type String be crafted to match multiple positions or bypass vault_utils::parse_key validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1aaab04f-a25b-4570-b3cf-4533674137ea?mode=deep",
+    "timestamp": "2026-02-19 07:16:18.730412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Generic Bounds] Are there missing trait bounds on CoinA/CoinB that allow incompatible types to be used with MomentumPool? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d158f17-b6bc-46f0-b150-1882f9b35ee2?mode=deep",
+    "timestamp": "2026-02-19 07:16:42.349358",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Type Casting] Can type_name_a or type_name_b strings fail to match OracleConfig entries due to type name formatting differences? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb93c54b-9d7b-4fb4-90f7-8dc909907629?mode=deep",
+    "timestamp": "2026-02-19 07:17:06.187408",
+    "report_generated": false
+  }
+]
