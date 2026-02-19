@@ -1,0 +1,128 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: export_stakes_from_v1()] [Iteration Limit] max_iterations parameter limits gas, but can malicious validators with many stakes monopolize all iterations, starving other validators? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_15f4417a-f6d0-44c9-9da9-2295639b1813?mode=deep",
+    "timestamp": "2026-02-19 00:51:47.299792",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: remove_stakes()] [Empty Vault] If validator has vault but gap == length initially, does the function correctly return zero values without unnecessary operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4505ca38-1661-4e55-bfa5-0edeaf4f45bd?mode=deep",
+    "timestamp": "2026-02-19 00:52:00.374035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: remove_stakes()] [Zero Requested] If requested_amount is 0, does the function handle it gracefully, or can it cause division by zero or infinite loops? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51cfdc7c-353d-416b-b3de-96ac104e6bfb?mode=deep",
+    "timestamp": "2026-02-19 00:52:14.019819",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: add_stake()] [Zero Amount] If StakedSui has 0 staked_sui_amount, does add_stake() handle it correctly, or can it corrupt accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb22604a-bb53-4d31-9aa7-22a9b8cd03ed?mode=deep",
+    "timestamp": "2026-02-19 00:52:28.169660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: update_validators()] [Empty Vectors] If empty validators/priorities vectors are passed, does the function correctly skip updates and maintain state consistency? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f1794210-9b32-48c4-bfbc-fbeeba7ad942?mode=deep",
+    "timestamp": "2026-02-19 00:52:43.267715",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: sort_validators()] [Single Validator] If only one validator exists, does sorting logic handle it correctly without array access errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e31450c9-bb77-4db2-a694-7c51878e08dd?mode=deep",
+    "timestamp": "2026-02-19 00:52:59.641801",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: export_stakes_from_v1()] [Max Iterations Zero] If max_iterations is 0, does export_stakes_from_v1() correctly return without operations, or can it cause errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a19b7294-e79c-4602-b6ca-bef7b0e0e6f1?mode=deep",
+    "timestamp": "2026-02-19 00:53:18.654962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 194] [Integer Overflow] vault.total_staked + value can overflow u64 if extremely large stakes are added; is there overflow protection? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3cd32926-fefc-4fa0-bcbb-e73ee7155e66?mode=deep",
+    "timestamp": "2026-02-19 00:53:37.443222",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 195] [Integer Overflow] vault.length + 1 can overflow u64 if billions of stakes exist; is this realistic, and is there overflow protection? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_14227831-039b-4474-86f2-f812bdf35164?mode=deep",
+    "timestamp": "2026-02-19 00:53:57.828329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 226] [Loop Condition] Complex while loop condition with two checks; can short-circuit evaluation cause unexpected early exit? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c8b24ef2-bb5e-40e3-a812-5bd5234bfa64?mode=deep",
+    "timestamp": "2026-02-19 00:54:16.407120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 237] [Underflow] requested_amount - balance::value(&total_withdrawn) can underflow if total_withdrawn > requested_amount; is this possible? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe60af08-a6ed-419f-b9a3-eecdcf497f8d?mode=deep",
+    "timestamp": "2026-02-19 00:54:35.016458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 241] [Split Condition] Complex condition for split decision; can carefully crafted principal_value cause split logic to always/never trigger? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c00312bb-2f79-4dbc-957b-99479c0fef61?mode=deep",
+    "timestamp": "2026-02-19 00:54:54.145662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 247] [Gap Increment] gap incremented only when full stake removed, but split case doesn't increment; is this correct, or can it cause desync? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_942e2e49-7610-4ca6-945f-bbc4cdffd10f?mode=deep",
+    "timestamp": "2026-02-19 00:55:14.107232",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 256] [Reward Calculation] Withdrawn reward calculated as balance minus principal; can this be negative if fees are deducted, causing underflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4dbd6d69-b4ad-42c3-9af3-3c525a33ec2a?mode=deep",
+    "timestamp": "2026-02-19 00:55:34.777234",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 257] [Total Staked Update] total_staked decremented by principal_value; if principal calculation is wrong, can this corrupt accounting permanently? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d62392b-d49f-4fbb-b9fc-3a0f41e85552?mode=deep",
+    "timestamp": "2026-02-19 00:55:57.327038",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 262] [Assertion] Assert total_staked == 0 when gap == length; what if rounding errors leave dust amounts, causing legitimate abort? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f914c0b4-4629-491f-bdcd-12f48b2fcf80?mode=deep",
+    "timestamp": "2026-02-19 00:56:20.991881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 274] [Swap Remove] swap_remove on sorted_validators; does this invalidate is_sorted flag, or is it safe because validator has priority 0? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48bb884d-7e95-40da-b187-52644d0e9f79?mode=deep",
+    "timestamp": "2026-02-19 00:56:42.887461",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 277-278] [Reset Logic] Resetting gap and length to 0 for active validators; does this orphan remaining ObjectTable entries? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d826920-c596-42cf-8e0d-eca1723187b9?mode=deep",
+    "timestamp": "2026-02-19 00:57:03.633337",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 329] [Array Access] Direct index access validators[i] after borrow at line 321; is this safe, or can indices be out of sync? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b70e9bb2-7d25-4ff8-bc1f-3e46e052a925?mode=deep",
+    "timestamp": "2026-02-19 00:57:24.369282",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Line 356] [Gap Increment Export] gap incremented in export but total_staked not updated; is this intentional for migration, or accounting bug? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_df4d29cb-9e65-4a78-9848-ce1791fadff7?mode=deep",
+    "timestamp": "2026-02-19 00:57:46.495031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/validator_set.move] [Function: remove_stakes()] [Precision Loss] When splitting stakes, can precision be lost in principal_value calculations, causing total_staked to drift from actual holdings? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3c32985c-53b5-42e7-ae07-cfd16fbe8098?mode=deep",
+    "timestamp": "2026-02-19 00:58:09.964004",
+    "report_generated": false
+  }
+]
