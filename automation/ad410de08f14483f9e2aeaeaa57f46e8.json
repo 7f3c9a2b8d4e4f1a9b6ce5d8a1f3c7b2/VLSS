@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_borrow()] [Threshold Bypass] At line 151, calculate_avg_threshold uses dynamic_liquidation_threshold internally. Can an attacker manipulate collateral composition to maximize threshold and borrow more than safe? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fa4cdbe-6499-4b4a-baa9-89d12b3e871a?mode=deep",
+    "timestamp": "2026-02-19 04:24:51.394323",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_borrow()] [Oracle Staleness] If user_health_factor at line 154 uses stale oracle prices while avg_ltv/avg_threshold use fresh prices, can this inconsistency allow unsafe borrows? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0cfdef21-c99a-4699-9e99-823ce5774171?mode=deep",
+    "timestamp": "2026-02-19 04:25:04.509774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_borrow()] [Rounding Abuse] In increase_borrow_balance at line 138, if borrow_index is very large, can ray_div result in scaled_amount = 0 allowing free borrows? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_57d781b4-c1f0-4ba2-a9b4-a5d9b1781952?mode=deep",
+    "timestamp": "2026-02-19 04:25:18.739349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_borrow()] [State Update Order] If update_state_of_all at line 131 updates borrow_index, but health calculation at line 154 uses old user balances, can this create temporal arbitrage opportunities? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af8e283d-9491-41d8-91b8-8a511ed19340?mode=deep",
+    "timestamp": "2026-02-19 04:25:33.063731",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_borrow()] [Validation Bypass] If validation::validate_borrow only checks reserve capacity but not user-specific limits, can an attacker borrow up to reserve capacity regardless of their collateral? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8447e33a-23d6-42bd-8ae6-d88bb6e80109?mode=deep",
+    "timestamp": "2026-02-19 04:25:48.539937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_repay()] [Excess Amount Calculation] At lines 177-180, if current_debt < amount, excess_amount = amount - current_debt. If this subtraction underflows due to precision errors, can it cause incorrect excess calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9138076-66f7-4cef-8c9d-0f5995a4b415?mode=deep",
+    "timestamp": "2026-02-19 04:26:05.446151",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_repay()] [Loan Removal Timing] At lines 183-185, if repay_debt == current_debt, loan is removed. But if another transaction borrows the same asset concurrently, can this remove the loan while new debt exists? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e4ad9028-deae-41c7-8bb6-99bbec43f1e0?mode=deep",
+    "timestamp": "2026-02-19 04:26:23.507638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_repay()] [Rounding Exploitation] If user_loan_balance at line 173 rounds down slightly and user repays full amount, will excess_amount at line 179 be non-zero allowing attacker to extract extra tokens? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ceca482d-ff19-40fb-9b45-1d533de118dd?mode=deep",
+    "timestamp": "2026-02-19 04:26:44.192888",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_repay()] [Interest Accrual Bypass] If update_state_of_all at line 168 is called but attacker times their repay right before significant interest accrual, can they pay less than they should? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf59797a-6a31-4038-b45f-00296e1a5d66?mode=deep",
+    "timestamp": "2026-02-19 04:27:06.199289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_repay()] [Amount Validation] At line 166, assertion checks user_loan_balance > 0. But if the loan rounds to exactly 0, will the assertion fail preventing dust loan cleanup? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c739a5ec-8d68-40cb-9753-6c0f7afdfa07?mode=deep",
+    "timestamp": "2026-02-19 04:27:30.288182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_repay()] [State Inconsistency] If decrease_borrow_balance at line 181 succeeds but update_interest_rate at line 187 fails, can this leave borrow rate stale while balance is updated? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5998bf06-f6a5-4061-8e75-ceb2c87ee714?mode=deep",
+    "timestamp": "2026-02-19 04:27:53.948137",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_repay()] [Front-Running Interest] Can an attacker front-run legitimate repays by calling update_state_of_all externally (if exposed) to accrue interest right before others repay? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_37317d87-85e7-43d9-8371-19e9f1fc37f0?mode=deep",
+    "timestamp": "2026-02-19 04:28:18.032326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_repay()] [Precision Loss in Excess] If amount and current_debt are very close but differ by <1 due to rounding, does excess_amount become 0 incorrectly? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c997f1bc-b40c-46eb-a4e6-800ba3c74660?mode=deep",
+    "timestamp": "2026-02-19 04:28:42.682939",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_repay()] [Oracle Parameter Unused] At line 165, _oracle parameter is unused. If future code expects oracle validation in repay, is this a security gap? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90354f38-f784-435e-b75f-b8ef6e61ef33?mode=deep",
+    "timestamp": "2026-02-19 04:29:08.106750",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_repay()] [Max Repay Bypass] If amount = u256::MAX and current_debt is smaller, does the comparison at line 177 handle this correctly or can it overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8cac6419-29f2-4fb4-b188-49f14c382124?mode=deep",
+    "timestamp": "2026-02-19 04:29:34.737820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_liquidate()] [Health Check Bypass] At line 212, assert!(!is_health(...)) ensures user is unhealthy. Can flash loan attacks temporarily make user healthy between liquidation transactions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a8c312a-ac10-4624-9ae5-60b1a218a31c?mode=deep",
+    "timestamp": "2026-02-19 04:30:01.032230",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_liquidate()] [Liquidation Amount Manipulation] In calculate_liquidation at line 221, if amount parameter is u256::MAX, can liquidator liquidate entire position regardless of liquidation_ratio limits? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ceb09288-105f-4100-85f6-98073c6df2da?mode=deep",
+    "timestamp": "2026-02-19 04:30:27.952680",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_liquidate()] [Collateral Underflow] At line 226, decrease_supply_balance subtracts liquidable_amount_in_collateral + executor_bonus_amount + treasury_amount. If this sum exceeds user balance due to rounding, does it underflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e12d5b00-214a-4f99-a067-fa074580dd50?mode=deep",
+    "timestamp": "2026-02-19 04:30:54.824907",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_liquidate()] [Loan Removal Race] At lines 228-230, if is_max_loan_value is true, loan is removed. Can concurrent liquidations of different assets cause loan removal while debt still exists in other assets? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9dfeea76-7506-42da-a081-4d1205fe37b3?mode=deep",
+    "timestamp": "2026-02-19 04:31:22.708527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_liquidate()] [Bonus Calculation Error] If executor_bonus_amount or treasury_amount calculations in calculate_liquidation underflow or overflow, can liquidator receive incorrect bonus? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_45b4b816-c866-4ca7-a45e-3a1b45768253?mode=deep",
+    "timestamp": "2026-02-19 04:31:49.136195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_liquidate()] [Oracle Price Manipulation] If oracle prices are manipulated between health check (line 212) and value calculations in calculate_liquidation, can liquidator profit from price discrepancy? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5eb14004-1e20-4e04-88fe-a73314f9c27c?mode=deep",
+    "timestamp": "2026-02-19 04:32:14.025232",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_liquidate()] [Collateral vs Loan Asset Type] If collateral_asset == debt_asset, can liquidation logic at line 226 cause unexpected behavior when decreasing supply and borrow of same asset? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9ff8b9d-560a-43a2-b64a-f9f7981ee323?mode=deep",
+    "timestamp": "2026-02-19 04:32:41.230170",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_liquidate()] [Interest Rate Double Update] At lines 232-233, update_interest_rate is called for both assets. If they're the same asset, does this cause double update or incorrect rate? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b554dd3-b652-45b9-9af4-5f80a8ff8f14?mode=deep",
+    "timestamp": "2026-02-19 04:33:08.878449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_liquidate()] [State Update Order] If update_state_of_all at line 207 happens but another transaction changes state before decrease_borrow_balance at line 224, can this cause index mismatch? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b7d996d-b9d0-4c29-ba2a-a11077aa6db7?mode=deep",
+    "timestamp": "2026-02-19 04:33:38.634921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_liquidate()] [Partial Liquidation Abuse] Can an attacker partially liquidate a position multiple times to extract maximum bonus while keeping user barely unhealthy? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83b446cc-7c18-4f47-aa6b-fa3322b99d56?mode=deep",
+    "timestamp": "2026-02-19 04:34:08.461042",
+    "report_generated": false
+  }
+]
