@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Authorization Bypass] Can an attacker call this function without proper operator/admin caps to manipulate vault asset values, given that the function is public and may lack authorization checks before modifying vault state? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a8f74f4-68ec-4c64-9fed-7d97f5f6d6f9?mode=deep",
+    "timestamp": "2026-02-19 03:13:06.411208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Status Bypass] If vault status is 'disabled' or 'during_operation', can this function still execute and update asset values, potentially violating the operation lifecycle invariant that value updates should only occur in specific states? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9f70883-b073-4eb5-99a1-39f2e92c3d22?mode=deep",
+    "timestamp": "2026-02-19 03:13:19.161109",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Reentrancy] Can an attacker create a reentrant call path through the pool reference to call update_momentum_position_value multiple times in a single transaction, causing double-counting of position values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c120ad57-7146-43ff-b7bf-5f2386261afb?mode=deep",
+    "timestamp": "2026-02-19 03:13:32.817956",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Type Confusion] Can an attacker pass mismatched generic types where PrincipalCoinType doesn't match the vault's actual principal type, causing type confusion and incorrect value updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3cb53b4c-e7d1-4e2e-9cf0-ae8411b73590?mode=deep",
+    "timestamp": "2026-02-19 03:13:46.523380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Asset Type Mismatch] Can an attacker provide an asset_type string that doesn't match the actual CoinA/CoinB types in the pool, leading to value calculation for wrong assets and incorrect USD value storage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b0c08d0-6ace-4772-895e-248a25029196?mode=deep",
+    "timestamp": "2026-02-19 03:14:01.495642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Stale Oracle] If the OracleConfig contains stale prices but passes validation, can the function update vault values with outdated data, violating the staleness tracking invariant and causing loss tolerance miscalculation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eecd7599-5a3a-4583-ae4e-9aea57e5c4c6?mode=deep",
+    "timestamp": "2026-02-19 03:14:17.763394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Clock Manipulation] Can an attacker manipulate the Clock reference to use incorrect timestamps in finish_update_asset_value, causing assets_value_updated to be set to future/past times and bypassing epoch-based tolerance checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_76661a06-f245-4de1-b991-3edc077af5d6?mode=deep",
+    "timestamp": "2026-02-19 03:14:35.375720",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Missing Staleness Check] Does the function verify that clock.timestamp_ms() is within acceptable bounds before storing it as the last update time, potentially allowing updates with invalid timestamps? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_df71a172-d4a0-41f4-89ad-0fefb7234fbb?mode=deep",
+    "timestamp": "2026-02-19 03:14:53.610018",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Wrong Asset Type] What happens if vault.get_defi_asset() is called with an asset_type that exists but doesn't contain a MomentumPosition, will it panic or return incorrect data leading to calculation errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8120fff4-b986-4181-88b3-dcfc38028021?mode=deep",
+    "timestamp": "2026-02-19 03:15:12.874155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Missing Asset] If the asset_type doesn't exist in the vault's DeFi assets, does get_defi_asset handle this gracefully or will it abort, potentially causing DoS on legitimate value updates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_15364798-e7e9-4cc3-8c52-3323c850b4f6?mode=deep",
+    "timestamp": "2026-02-19 03:15:33.537030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Position Ownership] Does the function verify that the retrieved MomentumPosition actually belongs to the vault and hasn't been borrowed/transferred elsewhere, preventing updates on positions the vault no longer owns? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b85df71-eb25-4537-a43d-64598036fb91?mode=deep",
+    "timestamp": "2026-02-19 03:15:55.365655",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Oracle Price Manipulation] Can an attacker manipulate the Switchboard oracle to return prices that pass the slippage check but are still significantly different from true market prices, causing incorrect USD valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_224eaf48-7add-4ddc-a31f-5e28102403fd?mode=deep",
+    "timestamp": "2026-02-19 03:16:17.970257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Price Division by Zero] In the calculation 'price_a * DECIMAL / price_b', if price_b is zero (oracle failure or manipulation), will this cause a division by zero abort or return incorrect relative price? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28fcdd71-e38e-4f57-9426-debc8bac93e5?mode=deep",
+    "timestamp": "2026-02-19 03:16:40.550707",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Integer Overflow] When calculating 'price_a * DECIMAL', can this overflow u256 if price_a is extremely large (e.g., for low-decimal tokens), causing incorrect relative_price_from_oracle calculation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d674229d-9c3b-41b6-9a57-995ce8587dff?mode=deep",
+    "timestamp": "2026-02-19 03:17:05.151777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Slippage Bypass] Can an attacker manipulate pool liquidity or execute sandwich attacks to temporarily align pool_price with oracle price during the slippage check, then profit from the actual price difference after value update? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc7ea5f3-d28c-4836-a75d-efc2a786eaf4?mode=deep",
+    "timestamp": "2026-02-19 03:17:31.127222",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Slippage Calculation Overflow] In the assertion 'pool_price.diff(relative_price_from_oracle) * DECIMAL / relative_price_from_oracle', can the multiplication overflow u256 for extreme price differences, causing the check to fail incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f969b9ff-6bdd-484b-b6a6-044fcbc00029?mode=deep",
+    "timestamp": "2026-02-19 03:17:56.212737",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Slippage Check Precision Loss] Does the slippage calculation lose precision due to integer division, potentially allowing prices slightly outside acceptable bounds to pass validation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2f8debd-457a-48a4-917c-dcbd1330b088?mode=deep",
+    "timestamp": "2026-02-19 03:18:18.991997",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Zero Slippage Edge Case] If config.dex_slippage() returns 0, will the assertion always fail even for perfectly matching prices due to precision issues, causing DoS on value updates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29be3a1f-8a15-4e16-8901-1a830693dba2?mode=deep",
+    "timestamp": "2026-02-19 03:18:42.136394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Maximum Slippage Bypass] If config.dex_slippage() is set to SLIPPAGE_BASE (10000 = 100%), does this effectively disable the slippage check, allowing any pool price and enabling oracle manipulation attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f222642e-b17c-437c-afb1-9a5044c1c52f?mode=deep",
+    "timestamp": "2026-02-19 03:19:06.042760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Decimal Mismatch] If config.coin_decimals() returns incorrect decimals for CoinA or CoinB, will this cause systematic under/overvaluation of positions in USD terms? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e66f6ace-20d4-487b-a2f0-85e1cee5fe67?mode=deep",
+    "timestamp": "2026-02-19 03:19:31.764744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Missing Decimal Validation] Does the function validate that decimals_a and decimals_b are within reasonable bounds (0-18), or can extreme values cause overflow/underflow in price conversion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_93b707ed-ee17-4688-b018-03e49bccb0a1?mode=deep",
+    "timestamp": "2026-02-19 03:19:57.545759",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Type Name Confusion] Can an attacker register a malicious coin type with a name that matches CoinA/CoinB but has different decimals in OracleConfig, causing price calculation errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a4cb304-5555-4594-b1a7-a9827b56d123?mode=deep",
+    "timestamp": "2026-02-19 03:20:23.445063",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Amount Overflow] When casting 'amount_a as u256' and 'amount_b as u256', can this fail if amounts exceed u64::MAX, or are amounts always guaranteed to fit in u64? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68b30e0b-0405-40bb-9a72-a842a0dd542c?mode=deep",
+    "timestamp": "2026-02-19 03:20:50.145691",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Zero Liquidity Position] If the position has zero liquidity (amount_a = 0, amount_b = 0), will get_position_value return 0, and does this correctly represent an empty position or could it mask errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98a64e14-d935-408c-812a-f34a64c42e83?mode=deep",
+    "timestamp": "2026-02-19 03:21:18.134426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Normalized Price Inconsistency] Can normalized_price_a and price_a from oracle diverge significantly due to different decimal handling, causing the slippage check to pass but value calculation to use wrong prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_27d5cd92-52b2-48c9-ace2-bacb1d22ca86?mode=deep",
+    "timestamp": "2026-02-19 03:21:46.131687",
+    "report_generated": false
+  }
+]
