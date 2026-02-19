@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: validate()] [Authorization Bypass] If has_authority() checks ctx.sender() but an attacker controls multiple addresses and transfers authority right before calling run<T>(), could they bypass validation through race condition timing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_61047d4d-a26c-4d86-aad1-4e2afbf3a7c1?mode=deep",
+    "timestamp": "2026-02-19 01:11:19.581602",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: validate()] [Authorization Bypass] If queue.authority is updated to address(0) or a shared object address in another transaction, does validate() properly reject unauthorized callers or could this enable permission escalation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e32a2300-e11d-4850-b70d-d4d0da443e0d?mode=deep",
+    "timestamp": "2026-02-19 01:11:32.580954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: validate()] [Access Control] Can has_authority() be bypassed if the Queue object's authority field is corrupted through unsafe deserialization or package upgrade, allowing unauthorized fee type removal? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8cdaff3b-7ee6-4ce3-aa27-6dabf7391424?mode=deep",
+    "timestamp": "2026-02-19 01:11:46.088425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: run()] [Authorization] If an attacker gains temporary authority through a delegated capability pattern not checked here, could they remove critical fee types like SUI and break fee collection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f70dc08d-57c1-4495-9c77-85f0d75a948a?mode=deep",
+    "timestamp": "2026-02-19 01:11:59.886514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: validate()] [Time-of-Check Time-of-Use] Between validate() checking has_authority() at line 25 and actuate() executing at line 46, could a parallel transaction change queue.authority enabling unauthorized execution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee9229ca-8560-4a6f-90c1-9814e506ebe7?mode=deep",
+    "timestamp": "2026-02-19 01:12:14.846980",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: validate()] [Version Mismatch] If EXPECTED_QUEUE_VERSION is hardcoded to 1 at line 8 but Queue module upgrades to version 2 with breaking changes, could this function operate on incompatible state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a238523b-4cba-4da2-a0df-eef4bf17624b?mode=deep",
+    "timestamp": "2026-02-19 01:12:31.040757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: validate()] [Version Check Bypass] If queue.version() is modified through unsafe package upgrade or hot patching, could attacker bypass the version check at line 24 and cause state corruption? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08e4eb0e-e369-4f7d-8a46-e46081bf14bf?mode=deep",
+    "timestamp": "2026-02-19 01:12:48.306975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: validate()] [Version Validation] If Queue module allows version to be set to arbitrary values through set_configs or migration, could this enable cross-version attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5ce16ca-37e5-4648-8f1b-3925d45348d9?mode=deep",
+    "timestamp": "2026-02-19 01:13:07.101603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Constant: EXPECTED_QUEUE_VERSION] [Version Skew] If different action modules have different EXPECTED_QUEUE_VERSION values, could this create inconsistent state access patterns? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f61629db-0a88-460b-805b-0c97ab0eb050?mode=deep",
+    "timestamp": "2026-02-19 01:13:25.800147",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: actuate<T>()] [Type Confusion] Could an attacker call run<T>() with a type parameter T that doesn't match any existing fee type but causes type_name::get<Coin<T>>() to collide with critical system types? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2300464-485e-489f-8a0f-785abaf7cde0?mode=deep",
+    "timestamp": "2026-02-19 01:13:45.830010",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: run<T>()] [Generic Type Safety] If T is a phantom type or zero-sized type, could this cause undefined behavior in type_name::get<Coin<T>>() at line 34? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac12e000-4897-4a28-a94c-ae99c76356c2?mode=deep",
+    "timestamp": "2026-02-19 01:14:06.219922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: actuate<T>()] [Type Parameter] Can an attacker specify T as a malicious coin type that causes remove_fee_type<T>() to remove SUI or other critical fee types through type aliasing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3e37cc20-bf68-4862-b33b-6e7192fb1609?mode=deep",
+    "timestamp": "2026-02-19 01:14:29.943482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: run<T>()] [Type Instantiation] If T is instantiated with a recursive or circular generic type, could this cause stack overflow or infinite loop in type_name::get<Coin<T>>()? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9c178a4-a182-4e70-a0a0-f769a614e21f?mode=deep",
+    "timestamp": "2026-02-19 01:14:52.287968",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: actuate<T>()] [Type Witness Pattern] Since no type witness is required, could malicious actors remove fee types for coins they don't control, disrupting fee collection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fba4cc3e-efad-4f46-b903-447089d8b0f3?mode=deep",
+    "timestamp": "2026-02-19 01:15:13.787665",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: actuate<T>()] [Race Condition] If multiple run<T>() calls targeting the same fee type execute in parallel, could swap_remove() at line 207 cause index corruption or remove wrong fee types? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ef0f1d28-d727-4156-9169-1db5483dc0f7?mode=deep",
+    "timestamp": "2026-02-19 01:15:35.871445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: actuate<T>()] [State Inconsistency] Between remove_fee_type<T>() at line 31 and event emission at line 32, if another transaction adds the same fee type back, does the event reflect correct state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d70cbcb-fca2-417c-bc7a-16ce6f5e413e?mode=deep",
+    "timestamp": "2026-02-19 01:15:57.660951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: run()] [Atomicity] Since validate() and actuate() are separate function calls, could validator state change between them leading to invalid actuate() execution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_25f0234f-f8d0-426e-98cb-dde8907de7ed?mode=deep",
+    "timestamp": "2026-02-19 01:16:15.665952",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: actuate<T>()] [Concurrent Modification] If queue_add_fee_coin_action adds the same type T while this function removes it, could vector operations cause data corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f63a4fa4-3291-4a95-80f9-bf4925267656?mode=deep",
+    "timestamp": "2026-02-19 01:16:35.820844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Event: QueueFeeTypeRemoved] [Event Integrity] Could an attacker call run<T>() with a non-existent fee type to emit false QueueFeeTypeRemoved events at line 32, confusing off-chain monitors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6210c503-ad77-4113-831d-baaf312b19e3?mode=deep",
+    "timestamp": "2026-02-19 01:16:56.688148",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: actuate<T>()] [Event Timing] Since event is emitted after remove_fee_type<T>() but remove_fee_type returns early if type doesn't exist, could events be emitted for no-ops? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_690c0ef7-9add-4ed2-b58f-a96ec2b5397e?mode=deep",
+    "timestamp": "2026-02-19 01:17:17.203725",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Event: QueueFeeTypeRemoved] [Information Leakage] Could monitoring the queue_id and fee_type in events reveal sensitive queue configuration to competitors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8facdafd-9e55-40be-b250-e5215db8dbc7?mode=deep",
+    "timestamp": "2026-02-19 01:17:39.086969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: actuate<T>()] [Event Replay] If event emission at line 32 can be triggered multiple times for same removal, could this flood event streams in DoS attack? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c744efd4-5c39-48cd-9099-e6098906be8c?mode=deep",
+    "timestamp": "2026-02-19 01:18:01.067073",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: actuate<T>()] [Queue Invariant] If queue.fee_types becomes empty after removal, does Queue module handle zero-length fee_types vector correctly or does this break fee collection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8081a728-57e9-4e27-a57b-ca0313e6685c?mode=deep",
+    "timestamp": "2026-02-19 01:18:25.507424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: actuate<T>()] [Queue State] If remove_fee_type<T>() is called when T is the last remaining fee type, could this lock users' funds that are denominated in T? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_789798c9-cb58-4ab2-a814-90a8dd031da1?mode=deep",
+    "timestamp": "2026-02-19 01:18:46.666326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_remove_fee_coin_action.move] [Function: run()] [Queue Reference] Since queue is passed as &mut Queue, could concurrent borrows in other modules cause runtime errors or state corruption? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4403488-cdee-4893-bb9b-4d26b9535179?mode=deep",
+    "timestamp": "2026-02-19 01:19:07.320968",
+    "report_generated": false
+  }
+]
