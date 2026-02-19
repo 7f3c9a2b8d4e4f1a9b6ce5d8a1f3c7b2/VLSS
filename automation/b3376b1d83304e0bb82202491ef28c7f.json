@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_config()] [Authorization Bypass] If OracleAdminCap is compromised or stolen through social engineering, can an attacker create multiple conflicting OracleConfig objects, causing oracle data fragmentation and allowing manipulation of which config is used by vault operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f01a064b-21a4-493e-b6dd-b7a37e8da845?mode=deep",
+    "timestamp": "2026-02-19 04:47:29.229356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_config()] [State Consistency] Can an attacker repeatedly call create_config() to create an unbounded number of OracleConfig shared objects, causing storage bloat and potential DoS by exhausting storage capacity or making legitimate config discovery impossible? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f11e167d-3f15-48ad-a015-ecf2407f2297?mode=deep",
+    "timestamp": "2026-02-19 04:47:42.091554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: version_migrate()] [Migration Attack] During version_migrate(), if oracle_config and price_oracle versions are updated independently (lines 15-16), can an attacker exploit the intermediate state where only one is migrated to bypass version checks in other oracle modules? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28ed64d6-dfdf-4466-8b81-5846b5e9095a?mode=deep",
+    "timestamp": "2026-02-19 04:47:55.887422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: version_migrate()] [Version Rollback] If version_migrate() is called multiple times or if config::version_migrate() fails silently, can an attacker cause version inconsistency between oracle_config and price_oracle, allowing older vulnerable code paths to be executed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b4a95a5-d4a2-453f-8d8e-8aecc0e9646d?mode=deep",
+    "timestamp": "2026-02-19 04:48:09.434626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_pause()] [Pause State Race] Between version_verification (line 20) and set_pause (line 21), if another transaction modifies the oracle_config, can an attacker exploit a race condition to bypass pause enforcement or unpause during an emergency? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ff592f65-d334-448e-846f-1bec8828e009?mode=deep",
+    "timestamp": "2026-02-19 04:48:24.133259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_pause()] [Emergency Response] If set_pause() is called to pause oracle during a price manipulation attack, but price feeds remain enabled individually, can an attacker continue fetching and using manipulated prices through enabled feeds despite global pause? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8edf43fa-5ea0-4f1d-97b1-e119628ecfca?mode=deep",
+    "timestamp": "2026-02-19 04:48:41.548255",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_price_feed()] [Parameter Validation] Can an attacker call create_price_feed() with maximum_allowed_span_percentage = 0, causing division by zero or allowing any price change regardless of magnitude when span checks are performed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d447a0c6-a8ff-44c1-9b8e-df84ede1b4fb?mode=deep",
+    "timestamp": "2026-02-19 04:48:58.655632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_price_feed()] [Overflow Attack] Can an attacker set maximum_effective_price to u256::MAX and minimum_effective_price to 0, effectively disabling price bounds and allowing extreme price manipulation to pass validation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_76cb8637-1927-4c0e-ac43-e1252743297d?mode=deep",
+    "timestamp": "2026-02-19 04:49:15.146025",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_price_feed()] [Threshold Inversion] Can an attacker set price_diff_threshold1 > price_diff_threshold2, creating an invalid threshold range that causes price validation logic to fail or accept all prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0df569a1-4183-40b1-af9a-5cbfb108e743?mode=deep",
+    "timestamp": "2026-02-19 04:49:33.036999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_price_feed()] [Timestamp Manipulation] Can an attacker set max_timestamp_diff to u64::MAX, allowing arbitrarily stale prices to be accepted as valid, enabling price oracle attacks using old manipulated prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_97164394-8775-4381-b2af-7245241701ff?mode=deep",
+    "timestamp": "2026-02-19 04:49:52.313853",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_price_feed()] [Duration Attack] Can an attacker set max_duration_within_thresholds to 0 or u64::MAX, bypassing the intended timing constraint for price differences and allowing sustained price manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_62f9f8ad-2b37-48b7-b62b-e2bc2adb63f9?mode=deep",
+    "timestamp": "2026-02-19 04:50:12.861980",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_price_feed()] [TTL Manipulation] Can an attacker set historical_price_ttl to 0, causing historical price lookups to always fail and forcing fallback to potentially manipulated live prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7f48c439-1000-46e9-be3e-2b3b6eb5d3e8?mode=deep",
+    "timestamp": "2026-02-19 04:50:32.657443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_price_feed()] [Oracle ID Collision] Can an attacker create multiple price feeds with the same oracle_id using different CoinType parameters, causing oracle ID conflicts and incorrect price routing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_beac4c17-a043-494a-b612-a49a3fbfcd29?mode=deep",
+    "timestamp": "2026-02-19 04:50:51.995526",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_price_feed()] [Type Confusion] Can an attacker create a price feed for CoinType A but later use oracle_id to fetch it when requesting prices for CoinType B, causing cross-asset price confusion? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51383087-f2aa-42a8-a64c-8dbedeaa72db?mode=deep",
+    "timestamp": "2026-02-19 04:51:12.952788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_enable_to_price_feed()] [Disable Attack] Can an attacker with compromised OracleAdminCap disable critical price feeds during vault operations, causing operations to fail or revert to manipulatable fallback oracles? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_774153ca-bc23-448c-817e-4b7d59b32b7c?mode=deep",
+    "timestamp": "2026-02-19 04:51:35.734190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_enable_to_price_feed()] [Race Condition] Between version_verification and set_enable_to_price_feed execution, can an attacker enable/disable feeds in a rapid sequence to cause inconsistent enable states across concurrent price queries? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fc9d133-3b54-4186-91f4-4a1170a24ae6?mode=deep",
+    "timestamp": "2026-02-19 04:51:57.203849",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_enable_to_price_feed()] [Feed Validation Bypass] If set_enable_to_price_feed sets enable=false but primary/secondary providers remain configured, can price queries still succeed through direct provider access bypassing the enable check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d97d1de1-9c6d-40b6-b25e-747b94e1faf6?mode=deep",
+    "timestamp": "2026-02-19 04:52:17.583856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_max_timestamp_diff_to_price_feed()] [Staleness Attack] Can an attacker call set_max_timestamp_diff_to_price_feed with value = 0, forcing all oracle prices to be rejected as stale and causing DoS on vault operations requiring prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f99c4e5-0121-47b8-8165-bf870ce7340f?mode=deep",
+    "timestamp": "2026-02-19 04:52:39.387448",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_max_timestamp_diff_to_price_feed()] [Time Window Expansion] Can an attacker increase max_timestamp_diff to days or weeks, allowing them to exploit stale prices from historical manipulation events? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5641f90-9caf-48fd-85a2-62fd5892c376?mode=deep",
+    "timestamp": "2026-02-19 04:52:57.923852",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_max_timestamp_diff_to_price_feed()] [Feed ID Confusion] Can an attacker provide a feed_id that doesn't exist or belongs to a different config, causing the function to update the wrong price feed's timestamp tolerance? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90ed3293-ffcd-43db-98f5-88fd53fab54e?mode=deep",
+    "timestamp": "2026-02-19 04:53:17.314502",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_price_diff_threshold1_to_price_feed()] [Threshold Bypass] Can an attacker set price_diff_threshold1 to 0, allowing any price change to pass the first threshold check and accelerating price manipulation acceptance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aa4ba4d5-a00c-4ac6-8247-a1f737da4f3b?mode=deep",
+    "timestamp": "2026-02-19 04:53:37.616931",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_price_diff_threshold1_to_price_feed()] [Threshold Inversion Attack] Can an attacker set price_diff_threshold1 equal to price_diff_threshold2, collapsing the two-tier threshold system into a single tier and bypassing graduated price change detection? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1329da1c-bd1e-403e-b1b1-792f9a9923e7?mode=deep",
+    "timestamp": "2026-02-19 04:53:59.245579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_price_diff_threshold2_to_price_feed()] [Timer Reset Bypass] When set_price_diff_threshold2_to_price_feed modifies threshold2, does the diff_threshold2_timer get reset, potentially allowing an attacker to extend the allowed duration of price anomalies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bea5f1d5-4c47-4668-83ae-c6b7a7630dd7?mode=deep",
+    "timestamp": "2026-02-19 04:54:22.385347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_price_diff_threshold2_to_price_feed()] [Extreme Value Attack] Can an attacker set price_diff_threshold2 to u64::MAX, effectively disabling the second threshold and allowing unlimited price deviation after threshold1 is exceeded? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d85d2db7-b31f-48d5-b8f9-e4031d2eb2ad?mode=deep",
+    "timestamp": "2026-02-19 04:54:45.737868",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_max_duration_within_thresholds_to_price_feed()] [Duration Expansion] Can an attacker increase max_duration_within_thresholds to u64::MAX, allowing price anomalies between threshold1 and threshold2 to persist indefinitely without triggering protection? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d556b93e-8467-4679-bd69-c03e16ea213f?mode=deep",
+    "timestamp": "2026-02-19 04:55:09.273999",
+    "report_generated": false
+  }
+]
