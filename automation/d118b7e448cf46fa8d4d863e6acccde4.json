@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: value()] [Public Value Access] The value() function at line 26 returns num.value directly - can external contracts misuse this to access raw u128 values without considering the neg flag, causing sign errors in vault calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_67556c61-fb7b-4467-bdc7-e2696012e7dc?mode=deep",
+    "timestamp": "2026-02-19 06:56:52.018634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: neg()] [Public Neg Access] The neg() function at line 34 returns num.neg directly - can external contracts construct Decimals with inconsistent value/neg combinations (e.g., value=0, neg=true) by misusing these accessors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b6b4b0f9-89e4-419d-b365-23cb0895679e?mode=deep",
+    "timestamp": "2026-02-19 06:57:04.837182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: unpack()] [Destructuring Risk] The unpack() function at line 21 destroys the Decimal struct - if called on a vault balance, can this cause the balance to be unrecoverable, leading to permanent fund lock? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_172298ce-bf68-4e65-8ede-df02662c46a9?mode=deep",
+    "timestamp": "2026-02-19 06:57:18.782180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: new()] [Arbitrary Construction] Since new() at line 17 is public and accepts any u128 and bool, can an attacker construct invalid Decimals (e.g., u128::max with neg=true) that break vault invariants when used in calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8894eb41-b7e6-490b-bfbb-0fe9b77b477d?mode=deep",
+    "timestamp": "2026-02-19 06:57:32.364873",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: dec()] [Hardcoded Decimals] The dec() function always returns 18 at line 31 - if vault contracts assume different decimal bases, can this mismatch cause incorrect scaling in multi-asset price calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c6a287be-2d67-4148-a9dd-66666afea839?mode=deep",
+    "timestamp": "2026-02-19 06:57:47.056552",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Struct: Decimal] [Copy Abuse] Since Decimal has copy ability at line 8, can an attacker duplicate oracle price references across multiple vault operations, causing double-counting in total_usd_value calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_541cabdc-734c-4c62-ad33-720b711421ce?mode=deep",
+    "timestamp": "2026-02-19 06:58:03.144872",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Struct: Decimal] [Drop Risk] Since Decimal has drop ability at line 8, can important vault balance or price values be accidentally dropped without cleanup, causing accounting inconsistencies? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87a5cf47-3f30-4222-b2b0-c8a72973360e?mode=deep",
+    "timestamp": "2026-02-19 06:58:21.221511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Struct: Decimal] [Store Without Key] Decimal has store but not key at line 8 - can this allow Decimals to be stored in dynamic fields/bags in vault contracts, enabling hidden balance manipulation through field key collisions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56511f7f-f2f5-4ff8-a34b-1cc18c7bc7b1?mode=deep",
+    "timestamp": "2026-02-19 06:58:39.814903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: min()] [Copy Return] The min() function returns *a or *b (copy) at lines 119/121 - does this create independent Decimal instances that can be mutated separately, breaking vault balance reference integrity? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1fba7ee2-90ab-40ec-b481-204d5e4e35f6?mode=deep",
+    "timestamp": "2026-02-19 06:59:01.402323",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: max()] [Copy Return] The max() function returns *a or *b (copy) at lines 127/129 - if used to select between vault balances, can the copy semantics cause stale balance values to be used in subsequent operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a0f3de82-7732-4a42-acfa-9bd5a0b03a19?mode=deep",
+    "timestamp": "2026-02-19 06:59:23.566921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: add()] [Branch Coverage] The add() function has 4 branches (lines 73-88) for sign combinations - are all branches tested for overflow, and can an attacker find an untested edge case to exploit in vault share calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1cd4450b-a9d6-4ef8-9e3a-a26c088bdfa4?mode=deep",
+    "timestamp": "2026-02-19 06:59:46.591800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: add()] [Sign Preservation] When adding -x + -y at line 73, the result's neg flag is set to true at line 75, but is this correct if add_internal() overflows and wraps to a small positive value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c02449d1-f31b-4aa2-8e0e-dd4f4172560f?mode=deep",
+    "timestamp": "2026-02-19 07:00:10.423903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: add()] [Symmetric Delegation] The function delegates -x + y to sub_internal(b, a) at line 79, and x + -y to sub_internal(a, b) at line 83 - is this delegation symmetric, or can it cause incorrect results in vault reward accumulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe0f1699-c45e-40e3-885b-5455d76d5ab7?mode=deep",
+    "timestamp": "2026-02-19 07:00:33.993120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: add()] [No Input Validation] The add() function doesn't validate that a and b are non-overflowed Decimals - can an attacker pass pre-wrapped values to cause double overflow in vault total value calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_262a0d33-1ca7-4d76-9d01-dd03c75c7d31?mode=deep",
+    "timestamp": "2026-02-19 07:00:57.182993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: add()] [Commutative Property] Is add(a, b) == add(b, a) guaranteed for all inputs, or can sign handling at lines 78-83 break commutativity in vault multi-asset summations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cb725e5a-a3c6-45e1-b509-350a53e7a9e8?mode=deep",
+    "timestamp": "2026-02-19 07:01:19.292848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: sub()] [Branch Coverage] The sub() function has 4 branches (lines 97-110) for sign combinations - are all branches tested for underflow, and can an attacker exploit edge cases in vault withdrawal calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b79f3427-7acb-47ef-af5f-a5f733e03dee?mode=deep",
+    "timestamp": "2026-02-19 07:01:41.696107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: sub()] [Double Negative] When computing -x - -y (which is -x + y), the function calls sub_internal(b, a) at line 98 - is this equivalent to add(a, b) with sign adjustment, or can it produce different results in vault balance updates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2dfe899a-41b3-48da-ab65-cbc35600dbc1?mode=deep",
+    "timestamp": "2026-02-19 07:02:04.003191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: sub()] [Negative Result Creation] When computing -x - y at lines 100-103, add_internal() is called and neg is set to true - can this create unexpected negative balances in vault accounting that should never be negative? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d1cfff2b-0af1-43c2-af8b-9c1ad8889ff2?mode=deep",
+    "timestamp": "2026-02-19 07:02:27.523949",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: sub()] [Positive + Negative] When computing x - -y (which is x + y) at line 106, add_internal(a, b) is called - can overflow in this addition cause vault balance to wrap incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5899d53-491e-4fa3-8768-bda78f7f182b?mode=deep",
+    "timestamp": "2026-02-19 07:02:51.616965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: sub()] [No Zero Check] The sub() function doesn't check if result is zero to normalize negative zero - can sub(x, x) produce Decimal{0, true} in some cases, breaking vault equality checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e089b28-c4c4-49a0-b0f7-65d4e667461a?mode=deep",
+    "timestamp": "2026-02-19 07:03:15.061714",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: sub_internal()] [Magnitude Comparison] The function checks b.value > a.value at line 139 and swaps operands - can this cause unexpected sign flips in vault loss calculations where order matters? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_00d564c8-7552-46c4-99e1-64a402ec5889?mode=deep",
+    "timestamp": "2026-02-19 07:03:38.847831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: sub_internal()] [Automatic Negation] When b.value > a.value, the result is automatically negative at line 140 - can this cause vault profit/loss calculations to be inverted if the caller expected a positive result? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_987247d8-2301-4898-9a10-61f9c8a37213?mode=deep",
+    "timestamp": "2026-02-19 07:04:00.261606",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: sub_internal()] [Equal Values] When a.value == b.value, the function returns new(0, false) at line 142 - is this reached correctly, or can off-by-one errors cause non-zero results for equal inputs in vault share calculations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a492b722-61ae-4ec0-b0a1-c8884f03f244?mode=deep",
+    "timestamp": "2026-02-19 07:04:21.891122",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: sub_internal()] [Ignored Input Signs] The function is called with Decimals that may have neg flags, but only operates on values at lines 139-142 - can this cause incorrect results when called from add()/sub() with sign context? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_20c82276-091c-4987-a309-650bf5d4299d?mode=deep",
+    "timestamp": "2026-02-19 07:04:44.130428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: sub_internal()] [Underflow Safety] While the function prevents underflow by checking b.value > a.value at line 139, can integer underflow still occur in edge cases where b.value and a.value are very close to u128 boundaries? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c76d5086-db07-4c6b-ace6-d491cb73f806?mode=deep",
+    "timestamp": "2026-02-19 07:05:06.845932",
+    "report_generated": false
+  }
+]
