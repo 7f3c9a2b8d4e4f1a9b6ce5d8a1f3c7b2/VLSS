@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [Function: this_version()] [Atomicity] If this_version() is called multiple times in a transaction, can non-atomic reads of constants::version() cause inconsistent version values within the same operation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48afed4f-4795-420a-903c-a93462255818?mode=deep",
+    "timestamp": "2026-02-19 05:44:12.433587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [Function: next_version()] [Calculation Timing] If next_version() is used to pre-allocate storage for v3 before v2->v3 migration starts, can the calculation be stale if constants::version() updates during the migration window? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_60cd3d00-0e3e-42a0-a2b2-cb269c369ad5?mode=deep",
+    "timestamp": "2026-02-19 05:44:25.632424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Version Monotonicity] Is there enforcement that version numbers only increase monotonically, or can constants::version() decrease causing rollback scenarios that violate upgrade invariants? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b476baad-b059-4aee-948e-ebc0680b5c99?mode=deep",
+    "timestamp": "2026-02-19 05:44:39.311573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Edge Cases] Are there tests verifying behavior when constants::version() returns 0, causing next_version() to return 1 - can this break assumptions in migration code expecting version>=2? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9191d59f-2161-4f8e-a290-474fe83fc025?mode=deep",
+    "timestamp": "2026-02-19 05:44:54.890984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [Function: pre_check_version()] [Fuzz Testing] Has pre_check_version() been fuzz tested with random u64 inputs including 0, u64::MAX, and version±1 to ensure robust error handling? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46af5d7c-9e79-4fdc-b9d2-53b13f9cf4f3?mode=deep",
+    "timestamp": "2026-02-19 05:45:10.399160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Integration Tests] Are there tests verifying that all modules using version checks (oracle, config, flash_loan, incentive, storage) correctly handle version mismatch scenarios? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78d0112b-fbf1-44ec-92e7-256a611b1a1e?mode=deep",
+    "timestamp": "2026-02-19 05:45:26.847945",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Upgrade Coordination] If constants::version() is updated before all oracle/config objects are migrated, can users interact with unmigrated objects triggering pre_check_version() failures and temporary DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_109a2dc7-0fc4-4048-9b9a-f98f32fd4c22?mode=deep",
+    "timestamp": "2026-02-19 05:45:44.230756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [Function: this_version()] [Migration Window] During the time window when some oracles are v1 and some are v2, can this_version() returning 2 cause v1 oracles to be permanently inaccessible until manual migration? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d39f7332-9c55-4fd0-a5b5-782604db6a11?mode=deep",
+    "timestamp": "2026-02-19 05:46:02.824060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Rollback Safety] If a v2->v3 upgrade fails and must be rolled back, can changing constants::version() from 3 to 2 leave v3 oracle objects in an invalid state? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_80a97542-87ca-48f8-84ba-677be06c086a?mode=deep",
+    "timestamp": "2026-02-19 05:46:23.398894",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Emergency Stop] Is there a mechanism to disable version checks during emergency situations, or will pre_check_version() continue blocking operations even during critical incidents? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f400a397-44eb-4015-80ef-90943af6bce5?mode=deep",
+    "timestamp": "2026-02-19 05:46:45.482976",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [MEV Opportunity] Can bots monitor next_version() to front-run protocol upgrades, extracting value by knowing when version checks will start failing for unmigrated users? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e49b515-fd1e-4a1d-8c5d-a5b8d000c080?mode=deep",
+    "timestamp": "2026-02-19 05:47:08.570925",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Gas Costs] Does calling this_version() in every operation add unnecessary gas overhead compared to caching the version value in each oracle/config object? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5ee739c-2b31-43d9-b565-c3ff83ae4e92?mode=deep",
+    "timestamp": "2026-02-19 05:47:32.608260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Constants Module Risk] If oracle_constants module is compromised and version() returns malicious values, can it brick the entire oracle system by making all pre_check_version() calls fail? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_260daeb9-3bde-44c1-b445-3c5787a354bd?mode=deep",
+    "timestamp": "2026-02-19 05:47:54.648013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Error Module Risk] If oracle_error::incorrect_version() is changed to return a different error code, can error handling in caller modules fail to catch version mismatch errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea872199-0068-44d6-96a7-637086dc13c1?mode=deep",
+    "timestamp": "2026-02-19 05:48:19.104006",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Circular Dependency] Can circular dependencies between oracle_version, oracle_constants, and oracle_error modules cause initialization failures during module publishing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1168118c-5147-4cc5-a131-f523ca026b43?mode=deep",
+    "timestamp": "2026-02-19 05:48:45.124002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [Function: pre_check_version()] [Oracle.move Risk] In oracle.move's set_update_interval(), if version_verification() using pre_check_version() aborts, can admin be locked out of updating critical oracle parameters? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_35a5f80c-a881-48d6-91c3-fbce17a6725c?mode=deep",
+    "timestamp": "2026-02-19 05:49:11.293199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [Function: this_version()] [Config.move Risk] In config.move's version_migrate(), if this_version() returns wrong value due to race condition, can cfg.version be set incorrectly breaking all future operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_317d2f09-30cf-43a6-a872-1a5c7e209ecf?mode=deep",
+    "timestamp": "2026-02-19 05:49:36.352807",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [Function: pre_check_version()] [Flash Loan Risk] In flash_loan.move, if pre_check_version() is missing from loan initiation but present in repayment, can version-mismatched loans be created but never repaid? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_49b51078-6c8a-4f22-83d1-736327fdc35d?mode=deep",
+    "timestamp": "2026-02-19 05:50:01.141390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [Function: this_version()] [Storage Risk] In lending_core/storage.move, if this_version() is used to initialize new storage objects but version changes mid-init, can storage be created with wrong version field? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_764aed0b-7cdc-479a-b72f-a0d93829ef0e?mode=deep",
+    "timestamp": "2026-02-19 05:50:27.322051",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Hardcoded v2] Since constants::version() returns hardcoded 2, can upgrading to v3 require recompiling all modules, making hot upgrades impossible? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e9feea8e-4fff-46c3-b554-c2a5444a3713?mode=deep",
+    "timestamp": "2026-02-19 05:50:49.997412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [Function: next_version()] [v3 Assumption] Does next_version() returning 3 assume the next upgrade is to v3, or can administrators accidentally skip version numbers causing migration logic to break? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f397077b-f5d3-401b-8002-b54cd50d7c02?mode=deep",
+    "timestamp": "2026-02-19 05:51:10.440649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Version Semantics] Is version 2 a breaking change from v1 requiring data migration, or just a patch - can pre_check_version() incorrectly reject compatible v1 operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9d87793f-1a72-4e65-a09f-767a006fd6e2?mode=deep",
+    "timestamp": "2026-02-19 05:51:32.347091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Multi-Oracle Sync] If protocol has multiple PriceOracle objects with different version fields, can pre_check_version() pass for some but fail for others, causing inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63c66355-55a9-4f65-9bfa-3c2c6c08e7cf?mode=deep",
+    "timestamp": "2026-02-19 05:51:55.381995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Config-Oracle Mismatch] Can OracleConfig and PriceOracle have different version numbers after partial migration, causing operations requiring both to fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68d523f0-d3f7-4a41-bd3f-9f167f3e060b?mode=deep",
+    "timestamp": "2026-02-19 05:52:20.979917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_version.move] [All Functions] [Incentive Version Drift] Can incentive_v2 and incentive_v3 modules have different version assumptions about oracle version, causing integration failures during upgrades? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e25cf007-cf52-46ec-ac01-3d6809e63976?mode=deep",
+    "timestamp": "2026-02-19 05:52:45.920040",
+    "report_generated": false
+  }
+]
