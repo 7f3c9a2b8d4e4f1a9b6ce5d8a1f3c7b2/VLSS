@@ -1,0 +1,116 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan() + repay()] [Price Oracle Manipulation] If the protocol uses price oracles, could flash loan volume manipulation affect oracle prices for downstream exploits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0115730a-c19a-4467-bae0-f7e0c7dd8abe?mode=deep",
+    "timestamp": "2026-02-19 07:27:43.830198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Supply Index Inflation] By taking large flash loans repeatedly, can attackers artificially inflate supply_index faster than normal to manipulate lending rates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c98b6e74-16ae-43cf-accc-b52da9d08a37?mode=deep",
+    "timestamp": "2026-02-19 07:27:56.793317",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Pool Drain] Can an attacker take maximum flash loans to temporarily drain pool liquidity, causing DoS for legitimate borrowers? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fc7f615-b4d8-41ec-a955-b739e9ad67a5?mode=deep",
+    "timestamp": "2026-02-19 07:28:10.952473",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Gas Exhaustion] The logic::update_state_of_all() might be expensive - can attackers trigger this repeatedly via flash loans to exhaust block gas? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3652250c-d378-42cd-89be-ccc7165e4f7d?mode=deep",
+    "timestamp": "2026-02-19 07:28:25.081973",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: get_storage_asset_id_from_coin_type()] [Linear Search DoS] With many assets, the O(n) search becomes expensive - can attackers add many assets to make repay() prohibitively expensive? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5ea21543-3adf-4315-9ffe-01f719c5dd8a?mode=deep",
+    "timestamp": "2026-02-19 07:28:39.778582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: create_asset()] [Config Bloat] Can an attacker create many asset configs to bloat Config storage, making all operations slower? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0d47603-8ade-4f17-8865-6ebb47eb5620?mode=deep",
+    "timestamp": "2026-02-19 07:28:55.464770",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Struct: Receipt] [No Drop Ability] Receipt doesn't have drop ability - if a user fails to call repay(), the receipt persists, but does this lock funds or prevent cleanup? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aea759e9-3dd9-45f2-ac33-43ed565e4d7e?mode=deep",
+    "timestamp": "2026-02-19 07:29:12.118072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Struct: Receipt] [No Store Ability] Receipt doesn't have store - can it be temporarily stored in objects or tables during complex operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b27df97-6b34-419d-a327-51475aff73d0?mode=deep",
+    "timestamp": "2026-02-19 07:29:30.327369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Struct: Receipt] [No Key Ability] Receipt can't be shared objects - does this prevent certain attack vectors or enable others? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1c9aa93c-bfbf-4e7a-aa09-90222605a7c6?mode=deep",
+    "timestamp": "2026-02-19 07:29:49.985069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Receipt Destructuring] The receipt is destructured in repay() - if destructuring fails partway, could this leave partial state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4b4aeda3-2480-4b88-afd3-e91ec600bba6?mode=deep",
+    "timestamp": "2026-02-19 07:30:06.369144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: parsed_receipt()] [Receipt Reference] This function takes &Receipt - could an attacker use this to inspect receipts they don't own to gain information? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d104f50-93df-4a8a-9df3-3b86f573fb52?mode=deep",
+    "timestamp": "2026-02-19 07:30:27.760931",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Struct: Config] [Shared Object] Config is shared, allowing concurrent access - could race conditions in table operations corrupt state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4fa66b24-d162-428f-9634-35191ac8e50f?mode=deep",
+    "timestamp": "2026-02-19 07:30:47.545922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Struct: Config] [Version Field] The version field is manually managed - if forgotten during updates, could this cause version mismatch vulnerabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6eb7894a-d3c1-431b-9ff9-0d15c66af731?mode=deep",
+    "timestamp": "2026-02-19 07:31:08.898532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Struct: Config] [Two Tables] Config maintains both support_assets and assets tables - if these become inconsistent, could this cause lookup failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_69b2983e-cd90-4da6-a71e-e3916d7497f7?mode=deep",
+    "timestamp": "2026-02-19 07:31:31.140069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Struct: AssetConfig] [Multiple Instances] Each asset has its own AssetConfig object - could an attacker create duplicate configs for same coin type in different configs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0cd03b43-bdec-4ebe-b2a2-a831b0899160?mode=deep",
+    "timestamp": "2026-02-19 07:31:51.739377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Struct: AssetConfig] [Pool ID Update] If pool_id is updated after creation, existing receipts reference old pool_id - could this cause repayment failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d33cec6-d723-4db7-b82c-af0546d61afb?mode=deep",
+    "timestamp": "2026-02-19 07:32:11.606959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [FlashLoanMultiple Constant] If constants::FlashLoanMultiple() returns 0, division causes panic - is there validation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_168c68df-99d1-42a1-a9a9-93155232f129?mode=deep",
+    "timestamp": "2026-02-19 07:32:31.840111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [FlashLoanMultiple Change] If FlashLoanMultiple() value changes between loan() and repay(), does this cause fee mismatch? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_259e5d13-af3a-4008-b8a9-dd0f11605e39?mode=deep",
+    "timestamp": "2026-02-19 07:32:52.093570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: verify_config()] [FlashLoanMultiple Assumption] The function assumes FlashLoanMultiple() is constant - if it's dynamically updated, could configs become invalid? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08459426-6b18-44fa-895a-e7ed967fe382?mode=deep",
+    "timestamp": "2026-02-19 07:33:12.425550",
+    "report_generated": false
+  }
+]
