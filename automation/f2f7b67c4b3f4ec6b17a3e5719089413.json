@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: init()] [Deployment Failure] The init function immediately aborts with code 0, preventing module initialization. If Volo Vault adaptors depend on this module being initialized, could deployment of the entire vault system fail, causing a complete DoS of vault operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_47432989-03a7-407c-b95a-f4b3d91847e1?mode=deep",
+    "timestamp": "2026-02-19 08:51:02.323632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: init()] [Capability Distribution] The init function aborts before creating or distributing VersionCap. If Volo Vault expects VersionCap to exist for version management, could the absence of this capability create an irrecoverable state where version upgrades are permanently impossible? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_980638d5-64c6-45a7-b6d8-4dbf10f43675?mode=deep",
+    "timestamp": "2026-02-19 08:51:15.297444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: init()] [Shared Object Creation] The commented code shows Version should be a shared object, but init aborts before calling transfer::share_object. Could this prevent the Version singleton from being created, causing all version checks across Volo Vault to fail? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5d3552ce-ff2a-4ee0-ac65-baf3128f1ac0?mode=deep",
+    "timestamp": "2026-02-19 08:51:28.679383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Struct: Version] [Object Lifecycle] Version struct has key+store abilities but is never instantiated due to init abort. If other modules try to access or create Version objects, could this cause unexpected transaction failures in production? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3c2734b-77b4-4eb1-95b9-c88d8f590a66?mode=deep",
+    "timestamp": "2026-02-19 08:51:42.990080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Struct: VersionCap] [Access Control] VersionCap is defined but never created. If Volo Vault security model relies on VersionCap for privileged version operations, could the lack of this capability create an authorization gap where no one can perform version updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22865cc4-39ea-40eb-a89b-d1cbe9ccc284?mode=deep",
+    "timestamp": "2026-02-19 08:51:57.961064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: value_major()] [Version Query DoS] value_major() aborts immediately instead of returning major_version. If Volo Vault adaptors call this to check MMT v3 compatibility before operations, could every adaptor transaction abort, causing complete DoS of vault DeFi operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c8daee6-5831-4f95-a046-c41a530b78ef?mode=deep",
+    "timestamp": "2026-02-19 08:52:14.321723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: value_minor()] [Version Query DoS] value_minor() aborts immediately instead of returning minor_version. If vault operations verify minor version compatibility for safety checks, could this abort all vault transactions that integrate with MMT v3 AMM? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98807a54-69da-43c3-b8cd-dcae645f2d8f?mode=deep",
+    "timestamp": "2026-02-19 08:52:32.049343",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: value_major()] [Integration Failure] If Momentum Safe or other adaptors call value_major() to determine protocol compatibility, could the abort cause cascading failures across all vault operations involving AMM interactions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ad50f63-5f44-4175-a815-08f7a09b50d7?mode=deep",
+    "timestamp": "2026-02-19 08:52:51.929657",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: value_minor()] [Feature Detection] If code uses value_minor() to detect feature support in specific MMT versions, could the abort prevent proper feature gating, leading to calls to non-existent functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4b2efa36-299e-49d8-857c-0ef245bc2a39?mode=deep",
+    "timestamp": "2026-02-19 08:53:13.040806",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: value_major()] [Error Handling] value_major() provides no error code distinction (always abort 0). Could this prevent debugging of version incompatibility issues, making production failures difficult to diagnose? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_45fd5d09-87e6-4b99-bc45-a4f2c22f4005?mode=deep",
+    "timestamp": "2026-02-19 08:53:34.480327",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: upgrade_major()] [Upgrade Path Blocked] upgrade_major() aborts even when valid VersionCap is provided. If a critical security fix in MMT v3 requires a major version upgrade, could this abort make it impossible to patch the protocol, leaving Volo Vault permanently vulnerable? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ad27b4fe-2fc5-44e0-9da9-765fa3b773d3?mode=deep",
+    "timestamp": "2026-02-19 08:53:57.244937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: upgrade_minor()] [Emergency Upgrade Denial] upgrade_minor() aborts with any input, preventing minor version updates. If Volo Vault discovers a compatibility issue requiring a minor MMT version bump, could this abort prevent the fix, causing extended downtime? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_901d361b-6dfd-4eea-bc5f-ca0288dcd09b?mode=deep",
+    "timestamp": "2026-02-19 08:54:20.396587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: set_version()] [Direct Version Override] set_version() allows arbitrary major/minor setting but aborts. If this was intended as an emergency override function, could its non-functionality prevent recovery from version mismatch states? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3b14d83-8c4f-452a-87b8-837ad8c395f0?mode=deep",
+    "timestamp": "2026-02-19 08:54:43.969024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: upgrade_major()] [Capability Check Bypass] upgrade_major() takes VersionCap but aborts before any capability validation. Could this indicate the capability model is incomplete, and even if it didn't abort, authorization might not be properly enforced? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_422aaf65-ddd5-4812-928c-274f6a7a5877?mode=deep",
+    "timestamp": "2026-02-19 08:55:07.374330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: upgrade_minor()] [Value Validation Missing] upgrade_minor() accepts a u64 val parameter but aborts before validation. If it were functional, could it accept invalid minor versions (e.g., downgrade, overflow), breaking version monotonicity? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ffdd3a9-4db6-4572-bf96-fcb82144318a?mode=deep",
+    "timestamp": "2026-02-19 08:55:30.216007",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: set_version()] [Version Rollback Risk] set_version() takes major and minor as separate u64s without apparent constraints. If implemented, could an operator use this to roll back to vulnerable versions, bypassing security upgrades? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68a97f68-76b8-412c-be60-517effca1783?mode=deep",
+    "timestamp": "2026-02-19 08:55:51.221647",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: upgrade_major()] [State Mutation Failure] upgrade_major() takes &mut Version but aborts before modifying major_version. If other code expects version state changes to persist, could this create inconsistent expectations about version progression? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b7fc4a6e-6909-46b1-936d-8c26f53362e5?mode=deep",
+    "timestamp": "2026-02-19 08:56:11.741416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: upgrade_minor()] [Atomicity Violation] upgrade_minor() modifies a shared Version object. If it didn't abort and lacked proper synchronization, could concurrent upgrade attempts create race conditions corrupting version state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0864a707-995f-4303-84de-7b1bdb2ac620?mode=deep",
+    "timestamp": "2026-02-19 08:56:33.344800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: is_supported_major_version()] [Compatibility Check Bypass] is_supported_major_version() aborts instead of returning bool. If Volo Vault uses this to prevent incompatible AMM interactions, could the abort allow operations with mismatched major versions, causing fund loss or corruption? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8aca37ab-85a0-4213-8992-4cefc834a4bf?mode=deep",
+    "timestamp": "2026-02-19 08:56:54.096136",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: is_supported_minor_version()] [Feature Safety Bypass] is_supported_minor_version() aborts instead of checking compatibility. If vault adaptors rely on this to ensure required AMM features exist, could the abort cause calls to unimplemented functions, aborting with unclear errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_76764852-7a53-422b-95ac-c5d1d6ecab15?mode=deep",
+    "timestamp": "2026-02-19 08:57:13.121134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: assert_supported_version()] [Safety Gate Failure] assert_supported_version() is likely intended as a safety gate but aborts unconditionally. If this is called at the start of critical vault operations, could every transaction abort, creating complete DoS? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d73eef58-7110-480d-9f20-ebc3bae1b378?mode=deep",
+    "timestamp": "2026-02-19 08:57:35.257438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: assert_supported_version()] [Migration Safety] assert_supported_version() should prevent operations during incompatible versions. If Volo Vault upgrades its MMT v3 integration, could the abort block migration by preventing new version acceptance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_359655cf-1e81-4c9c-9192-95baabcf2176?mode=deep",
+    "timestamp": "2026-02-19 08:57:52.498470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: is_supported_major_version()] [Version Range Logic] is_supported_major_version() provides no logic for defining supported versions. If implemented, how would it determine the supported range - hardcoded, configurable, or based on current_major_version()? Missing logic could allow any version. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_440c05d6-cfb9-4ca2-a5e2-8c16252b4a53?mode=deep",
+    "timestamp": "2026-02-19 08:58:11.742263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: is_supported_minor_version()] [Backward Compatibility] is_supported_minor_version() lacks implementation. Even if functional, would it enforce strict minor version matching or allow backward compatibility? Incorrect logic could break existing integrations. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3447236-661e-4528-9e8d-d56e590616ee?mode=deep",
+    "timestamp": "2026-02-19 08:58:31.787100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Function: assert_supported_version()] [Error Message Clarity] assert_supported_version() aborts with code 0, providing no information about version mismatch. If it were implemented, would lack of clear error codes make debugging integration issues impossible? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ec194f8-d093-49e7-83bc-27edd455dc6b?mode=deep",
+    "timestamp": "2026-02-19 08:58:52.394078",
+    "report_generated": false
+  }
+]
