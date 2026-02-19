@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Precision Loss] Can an attacker exploit precision loss when converting from high decimal (e.g., 18) to low decimal (e.g., 6), causing value=999999999999999999 to become 999999999999, losing 999999 units worth of value in oracle price feeds used for vault share calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21c9b17e-30f8-42e0-8cac-eb5a3ad610d8?mode=deep",
+    "timestamp": "2026-02-19 07:18:11.804891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Infinite Loop DoS] Can decimal and target_decimal be set to values that cause the while loop to never terminate when value=0 is checked after the condition, allowing an attacker to DoS oracle price conversions by passing initial non-zero value that becomes zero during iteration? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4faf0ac4-d157-4ace-965e-51071a2cee62?mode=deep",
+    "timestamp": "2026-02-19 07:18:24.511653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Integer Overflow] When converting from decimal=9 to target_decimal=255, can the repeated multiplication by 10 (246 times) cause value to overflow u256 max before the loop terminates, breaking oracle price feeds for assets with extreme decimal configurations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_96f804db-78f7-4448-b50c-eaeec42916de?mode=deep",
+    "timestamp": "2026-02-19 07:18:38.639497",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Zero Value Bypass] Can an attacker pass value=0 with mismatched decimals to bypass all conversion logic and return 0, then use this in vault operations to claim assets are worthless when they have actual value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_acc90130-89d6-495d-a0e7-998163091a6a?mode=deep",
+    "timestamp": "2026-02-19 07:18:53.539891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Underflow to Zero] When converting large decimals to small decimals with small initial values (e.g., value=5, decimal=18, target_decimal=9), can repeated division by 10 round down to 0 prematurely, causing oracle to report zero price for valuable assets? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0fadc870-9272-423d-a57a-0540d88dfcc0?mode=deep",
+    "timestamp": "2026-02-19 07:19:08.315245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Rounding Direction Manipulation] Does the division by 10 always round down, allowing an attacker to systematically undervalue assets by choosing decimal conversions that maximize rounding losses across multiple price updates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_69277d92-319e-4edf-a93a-72441aadd2fd?mode=deep",
+    "timestamp": "2026-02-19 07:19:25.719120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Loop Manipulation] Can an attacker pass decimal=u64::MAX and target_decimal=0 to cause the loop to iterate u64::MAX times, creating a DoS condition that blocks all oracle price updates and vault operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9bb31ebc-87a4-4953-a732-931b80cba284?mode=deep",
+    "timestamp": "2026-02-19 07:19:42.991431",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Precision Loss Accumulation] When vault performs multiple sequential decimal conversions (e.g., ETH price 18→9→6→9), can accumulated rounding errors compound to create significant value discrepancies enabling arbitrage or theft? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d70a8d4-eee2-40b6-9b67-ec0779bbfdc8?mode=deep",
+    "timestamp": "2026-02-19 07:20:01.393823",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Early Loop Termination] If value becomes 0 during conversion but decimal!=target_decimal, does the function return 0 immediately, potentially causing oracle to report zero prices when assets should have non-zero values after full conversion? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e7374cf8-52a4-4c55-bfdf-51a6374bd13f?mode=deep",
+    "timestamp": "2026-02-19 07:20:20.860803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Maximum Value Overflow] When value approaches u256::MAX and decimal < target_decimal, can the multiplication by 10 overflow silently in Move, wrapping around to small values and causing oracle to report drastically incorrect prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_55e5b48a-7aba-473d-aa8f-bbf0040f68bd?mode=deep",
+    "timestamp": "2026-02-19 07:20:41.425461",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Gas Griefing] Can an attacker force expensive oracle updates by passing decimal=0 and target_decimal=255, requiring 255 loop iterations of multiplication, causing legitimate users to pay excessive gas or hitting block gas limits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d52d2e6-e2c7-401f-8b05-ee12d2aa1ba8?mode=deep",
+    "timestamp": "2026-02-19 07:21:02.424076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Inconsistent Decimal Handling] If callers incorrectly assume this function validates decimal ranges (e.g., decimal > target_decimal by 50+ units), can invalid conversions propagate through vault USD value calculations causing share price manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_366b4d67-0b4c-40ab-aa51-4456a7f4c744?mode=deep",
+    "timestamp": "2026-02-19 07:21:25.174334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Stack Overflow Prevention Bypass] The comment mentions 'zero check to prevent stack overflow', but can an attacker pass value=1 with extreme decimal differences (e.g., 0→255) to still cause stack overflow despite the check? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98274c71-8fb5-42d1-94cd-1c8b6b047921?mode=deep",
+    "timestamp": "2026-02-19 07:21:48.821407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Decimal Confusion Attack] Can an attacker exploit the fact this function uses u64 for decimals while to_target_decimal_value() uses u8, causing type confusion when callers mix the two functions in oracle price processing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e57bf8b-6fbe-4bb3-9aff-fdd29a002f11?mode=deep",
+    "timestamp": "2026-02-19 07:22:12.128727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value_safe()] [Integer Division Truncation] When converting value=19999999999999999999 from decimal 18 to decimal 9, does repeated division by 10 truncate to 1999999999, losing 0.9 units, and can this be weaponized across many assets to drain vault value over time? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0c09f59-2025-4670-9231-738172510f0c?mode=deep",
+    "timestamp": "2026-02-19 07:22:37.145318",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value()] [Assertion Bypass] Can an attacker pass decimal=0 or target_decimal=0 to trigger abort code 1, causing all dependent oracle price feeds to fail and DoS vault deposits/withdrawals that rely on price data? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f85674e2-01b9-4f93-b1b5-f48e97910425?mode=deep",
+    "timestamp": "2026-02-19 07:23:02.592840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value()] [Type Mismatch Exploit] The function uses u8 for decimals while to_target_decimal_value_safe() uses u64, can an attacker exploit different overflow boundaries (u8::MAX=255 vs u64::MAX) to cause inconsistent price conversions across vault operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_825c6572-5181-4408-a50e-8df628c95531?mode=deep",
+    "timestamp": "2026-02-19 07:23:28.940684",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value()] [Overflow Without Check] Unlike the safe version, this function has no overflow protection when multiplying value by 10 repeatedly, can value * 10^(target_decimal - decimal) exceed u256::MAX causing silent wrapping and catastrophic price miscalculation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e1059be3-9e3c-4fc7-b48e-5a8a39d13f90?mode=deep",
+    "timestamp": "2026-02-19 07:23:54.551287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value()] [Infinite Loop Risk] The while loop has no maximum iteration limit, can an attacker pass decimal=255 and target_decimal=0 to force 255 iterations, causing oracle price updates to consume excessive gas and potentially hit execution limits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0816962-dce5-404d-95bf-6a9dbe5affae?mode=deep",
+    "timestamp": "2026-02-19 07:24:20.008841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value()] [No Zero Value Check] Unlike to_target_decimal_value_safe(), this function doesn't check if value becomes 0 during conversion, can this cause unnecessary iterations and gas waste when processing oracle prices for very small amounts? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3337b814-b257-414d-86fb-8d27acf05a82?mode=deep",
+    "timestamp": "2026-02-19 07:24:45.640927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value()] [Precision Loss Amplification] When decimal=18 and target_decimal=6, does dividing by 10 twelve times amplify rounding errors compared to a single division by 10^12, enabling attackers to exploit price differences between assets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0dc9eadd-dec2-4259-9b90-d1ebd68e0728?mode=deep",
+    "timestamp": "2026-02-19 07:25:08.642930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value()] [Assertion Error Code Weak] The assertion uses error code 1 which is generic, can this make debugging oracle price conversion failures difficult, potentially hiding systematic exploitation in production? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_26e8bb73-ffdd-4f11-8b66-94d60c16bf89?mode=deep",
+    "timestamp": "2026-02-19 07:25:31.512681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value()] [Missing Upper Bound Check] While asserting decimals > 0, there's no check that decimals <= 16 (the default limit), can passing decimal=255 cause excessive iterations and DoS oracle price calculation for vault operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7fd9031e-d0c8-4dc5-b371-f0f3def97358?mode=deep",
+    "timestamp": "2026-02-19 07:25:52.980483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value()] [Function Selection Attack] Can an attacker exploit contracts that use both safe and unsafe versions inconsistently, causing some price feeds to abort on edge cases while others return incorrect values, creating arbitrage opportunities? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb026cb2-c5a5-45e1-9e8a-8a22406eb6ca?mode=deep",
+    "timestamp": "2026-02-19 07:26:15.116947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Function: to_target_decimal_value()] [Loop Counter Overflow] When decimal < target_decimal and the difference is 255, does incrementing decimal by 1 each iteration risk u8 overflow (though it would terminate first), and could refactoring break this assumption? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b0aca99-951c-4be1-8fc5-337158146fe1?mode=deep",
+    "timestamp": "2026-02-19 07:26:35.460626",
+    "report_generated": false
+  }
+]
