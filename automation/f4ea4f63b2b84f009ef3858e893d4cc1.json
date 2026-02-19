@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Timestamp Overflow Scenario 1] If timestamp_seconds = (u64::MAX / 1000), does multiplication overflow before addition of ATTESTATION_VALIDITY_MS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a1a47c93-0a0e-47b8-9b2e-82a40d94aec2?mode=deep",
+    "timestamp": "2026-02-19 08:58:20.825807",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Timestamp Overflow Scenario 2] If timestamp_seconds * 1000 = u64::MAX - ATTESTATION_VALIDITY_MS + 1, does the addition wrap to exactly match a valid clock time? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_88b04ae5-c6f8-47bd-9248-a0d110748169?mode=deep",
+    "timestamp": "2026-02-19 08:58:33.518610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Timestamp Conversion Consistency] Lines 73 and 107 both convert timestamp_seconds to milliseconds - are these guaranteed to produce identical results or can precision differ? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_88fd55b6-b7b7-4bf0-ac1f-ba17577f1f3e?mode=deep",
+    "timestamp": "2026-02-19 08:58:46.948909",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Clock Timestamp Manipulation] If clock object can be manipulated between validate() and actuate(), can this create timestamp inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b8ac29de-7393-4ae7-9ba0-d3595d1e7072?mode=deep",
+    "timestamp": "2026-02-19 08:59:01.565992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Negative Timestamp] Since timestamp_seconds is u64, can it represent negative times or does this require signed integer handling? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82a709fc-2211-4322-982d-c376cfa10b11?mode=deep",
+    "timestamp": "2026-02-19 08:59:16.435579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Signature All Zeros] What happens if signature is 65 bytes of all zeros - does ECDSA recovery fail gracefully or can it produce unexpected pubkeys? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e7921dc-83ff-4f08-b8d5-0d1ff4a4e872?mode=deep",
+    "timestamp": "2026-02-19 08:59:33.504379",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Signature All Ones] What if signature is 65 bytes of all 0xFF - can this create special case behavior in secp256k1_ecrecover? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b9649dc-87ea-412b-a908-97cfee980d3e?mode=deep",
+    "timestamp": "2026-02-19 08:59:49.714673",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Recovery ID Values] The hardcoded recovery_id=1 at line 88 - what happens if signatures require recovery_id 0, 2, or 3 to properly recover? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_144f3377-47c3-45c5-84f9-6f2a6bd109a3?mode=deep",
+    "timestamp": "2026-02-19 09:00:06.893458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Compressed Pubkey Format] Does secp256k1_ecrecover return pubkeys in expected compressed format, or can format mismatch cause decompression to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5854b274-7a5d-4b32-8c41-ebce8f8b93e8?mode=deep",
+    "timestamp": "2026-02-19 09:00:24.317583",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Decompression Failure] If decompress_pubkey fails at line 89, does it abort or return invalid data that could bypass check_subvec? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b0cb3921-1e9c-45e7-9393-2af90ca1ab87?mode=deep",
+    "timestamp": "2026-02-19 09:00:41.245903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Pubkey Point at Infinity] Can recovered pubkey be the point at infinity, and does check_subvec properly reject this invalid pubkey? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_905514c3-b580-43d1-8769-d837ea175f8c?mode=deep",
+    "timestamp": "2026-02-19 09:00:57.971532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Message Hash Domain] The attestation message hash - is there a domain separator to prevent cross-protocol signature replay? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8eb7852-4ed5-4d47-86e7-fa978ab1f09b?mode=deep",
+    "timestamp": "2026-02-19 09:01:16.627762",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Guardian Self-Reference] Can guardian and oracle parameters reference the same object, allowing self-attestation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5954c6d-d637-4e34-9922-a0d04e1b0881?mode=deep",
+    "timestamp": "2026-02-19 09:01:35.019614",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Guardian Queue Empty] If guardian_queue_id() returns an ID for an empty queue, can any guardian be used? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_216673b7-a06b-42d8-935c-c344ece6f58d?mode=deep",
+    "timestamp": "2026-02-19 09:01:54.669502",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Guardian Secp Key Empty] What if guardian.secp256k1_key() returns empty vector - does check_subvec at line 92 fail safely? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_468bea95-ab13-47ea-948e-9dd40bf01525?mode=deep",
+    "timestamp": "2026-02-19 09:02:16.821562",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Guardian Secp Key Length] If guardian.secp256k1_key() is only 1 byte, does check_subvec starting at index 1 cause out-of-bounds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51c97fc3-3a3c-470c-8c18-f373400a7de5?mode=deep",
+    "timestamp": "2026-02-19 09:02:38.731576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Multiple Guardian Queues] Can an attacker create multiple guardian queues and use guardians from a compromised queue? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6472044f-859d-4725-b6d3-573892595d3d?mode=deep",
+    "timestamp": "2026-02-19 09:03:05.384533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Attestation ID Collision] If new_attestation generates predictable IDs, can an attacker create ID collisions to overwrite existing attestations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_88dd7c73-ce18-4fb8-af03-ae9c0b3e55af?mode=deep",
+    "timestamp": "2026-02-19 09:03:29.198529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Valid Count Race] Between lines 120 and 123, if another transaction adds/removes attestations, can oracle be enabled with wrong count? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db91de8e-3ca3-4488-a15a-7d0e586c44bb?mode=deep",
+    "timestamp": "2026-02-19 09:03:52.269497",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Enable Oracle Failure] If enable_oracle() call at line 123 fails or reverts, is the attestation still added at line 109? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_67e15d30-e4c8-49db-978c-59c80a5d6807?mode=deep",
+    "timestamp": "2026-02-19 09:04:15.096609",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Expiration Overflow] If clock.timestamp_ms() + queue.oracle_validity_length_ms() overflows u64, what expiration time is set? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0aa60910-5f1c-4a76-85d7-3b01df71690f?mode=deep",
+    "timestamp": "2026-02-19 09:04:38.048180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Min Attestations Change] If queue.min_attestations() changes between attestations, can oracle be enabled with insufficient attestations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e30b8ed6-d321-4467-9017-8d979c1ea155?mode=deep",
+    "timestamp": "2026-02-19 09:05:01.379628",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Oracle Already Expired] If oracle is already expired when enable_oracle is called, can it be re-enabled with stale attestations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e29111e-4b8d-4317-bd8e-54b2ef658721?mode=deep",
+    "timestamp": "2026-02-19 09:05:25.542555",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [MR Enclave Change] Can multiple run() calls enable oracle with different mr_enclave values for same secp256k1_key? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5295e6a3-3602-4603-b4b5-fab053de8401?mode=deep",
+    "timestamp": "2026-02-19 09:05:50.247487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Event Ordering] If multiple attestations are added rapidly, are AttestationCreated events emitted in correct order? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d6d53729-e212-45d2-8d5a-460bc6c33cc8?mode=deep",
+    "timestamp": "2026-02-19 09:06:14.461506",
+    "report_generated": false
+  }
+]
