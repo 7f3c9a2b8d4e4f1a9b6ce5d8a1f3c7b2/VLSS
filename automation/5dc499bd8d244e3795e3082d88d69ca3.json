@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Lines: 1152-1183] [Fee Calculation] Uses u128 for intermediate calculations to prevent overflow but final result cast to u64 - can u128 result exceed u64::MAX causing truncation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b757e27d-a8b3-4541-943b-ecc51c412ed3?mode=deep",
+    "timestamp": "2026-02-19 00:32:07.857496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Lines: 1161-1165] [Conditional Transfer] If balance > 0 transfers else destroys zero balance - can destroy_zero fail if balance somehow becomes non-zero between check and destroy? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7db7ed66-7060-42ab-b24e-4dcbe8d3906e?mode=deep",
+    "timestamp": "2026-02-19 00:32:20.648587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: init_staker()] [SUI Reserve Required] Requires reserve coin_type == SUI but doesn't check if staker already initialized - can double-initialization corrupt state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d6071348-dda8-4606-ae10-f644066d0553?mode=deep",
+    "timestamp": "2026-02-19 00:32:34.482707",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: init_staker()] [Treasury Cap] Takes TreasuryCap<S> but type S is not validated against reserve - can wrong treasury cap be used? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c4d8593d-faea-454c-94ca-d9eef43987ab?mode=deep",
+    "timestamp": "2026-02-19 00:32:47.914871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: rebalance_staker()] [No Authorization] No cap requirement so publicly callable - can attacker repeatedly rebalance to grief protocol or manipulate staking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_17dc3797-8ed1-4a7d-8ff5-a89edcf5eb6e?mode=deep",
+    "timestamp": "2026-02-19 00:33:02.323448",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: rebalance_staker()] [System State] Takes &mut SuiSystemState - can rebalance be front-run during epoch boundaries to extract value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3471d3e-6cd3-46bb-9683-61cb3eac25c5?mode=deep",
+    "timestamp": "2026-02-19 00:33:18.146642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: unstake_sui_from_staker()] [Conditional Return] Early returns if coin_type != SUI without error - can this cause silent failures in batch operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_40477859-3a5a-49c8-8513-4a2be6455760?mode=deep",
+    "timestamp": "2026-02-19 00:33:36.172374",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: unstake_sui_from_staker()] [Liquidity Request] Takes &LiquidityRequest but doesn't consume it - can same request be used multiple times to drain staker? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_64f15e14-4b24-4b19-bc7f-9dcf268f0cc1?mode=deep",
+    "timestamp": "2026-02-19 00:33:52.943591",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Lines: 815-817] [Silent Failure] Returns early if not SUI reserve without reverting - can caller assume success when operation actually skipped? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_12499cfd-1190-4981-816d-8313c715de85?mode=deep",
+    "timestamp": "2026-02-19 00:34:11.599451",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Struct: LendingMarket<phantom P>] [Phantom Type] P is phantom but used for type safety - can two LendingMarkets with different P values interact unsafely? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f7afba84-1808-490e-98f2-1525a9a108cd?mode=deep",
+    "timestamp": "2026-02-19 00:34:31.062589",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Struct: ObligationOwnerCap<phantom P>] [Cap Type Mismatch] Cap has phantom P but obligation_id is untyped ID - can cap with wrong P be used with obligation of different market? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8403c3dc-8ce3-4b51-931e-0805cd9fbe93?mode=deep",
+    "timestamp": "2026-02-19 00:34:50.808459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Struct: RateLimiterExemption<phantom P, phantom T>] [Type Enforcement] Has drop ability so can be discarded - should it be consumed to ensure exemptions aren't wasted? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3d1d06c-64d9-4d1a-a4d9-450a26632e0c?mode=deep",
+    "timestamp": "2026-02-19 00:35:09.711349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: deposit_liquidity_and_mint_ctokens()] [Type Parameter] Takes T and returns CToken<P, T> but P from lending_market not validated - can wrong market type P be used? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_70b2f5fd-de0a-4384-9884-1977a3d6ee6c?mode=deep",
+    "timestamp": "2026-02-19 00:35:29.766674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Lines: 236-262] [CToken Type] Returns Coin<CToken<P, T>> where P is from lending_market and T from function parameter - is type parameter P correctly bound? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28ca244b-d89f-4bd6-8358-6e4f6ea9015e?mode=deep",
+    "timestamp": "2026-02-19 00:35:50.431194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: borrow_request()] [U64_MAX Amount] If amount == U64_MAX, calculates max borrow - can U64_MAX be confused with actual intended borrow amount? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9f65ceb2-77d5-42c0-9efb-472a35f42925?mode=deep",
+    "timestamp": "2026-02-19 00:36:12.033375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: borrow_request()] [Max Borrow Zero] After calculating max_borrow_amount, asserts > 0 - but what if max is 0 due to health factor? Should specific error be thrown? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b95e7135-9741-48c5-9626-8d6f6627c4df?mode=deep",
+    "timestamp": "2026-02-19 00:36:34.718323",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: withdraw_ctokens()] [U64_MAX Withdraw] If amount == U64_MAX, calculates max withdraw without asserting result > 0 - can 0 withdrawal succeed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_84d578e6-4a9b-4cb3-97d9-71e070daa902?mode=deep",
+    "timestamp": "2026-02-19 00:36:57.628847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: max_borrow_amount()] [Triple Min] Takes min of obligation max, reserve max, and rate_limiter max - can one constraint being 0 hide more informative error from others? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c8d389e8-681e-487f-9a97-193611d67ba0?mode=deep",
+    "timestamp": "2026-02-19 00:37:21.850070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: max_withdraw_amount()] [Triple Min] Same issue - can 0 from rate limiter hide health factor issue? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a326bdcc-3851-452d-bffe-2b946b2627f6?mode=deep",
+    "timestamp": "2026-02-19 00:37:46.086345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Lines: 414-417] [Max Calculation Override] User provides amount but if == U64_MAX it's overridden - can this cause confusion about actual borrowed amount? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_511dd8ea-ef77-42e1-af39-7a955fe7f790?mode=deep",
+    "timestamp": "2026-02-19 00:38:10.342497",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Lines: 489-492] [Max Calculation Without Assert] U64_MAX triggers max calculation but unlike borrow, doesn't assert result > 0 - intentional difference? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4c9a9112-bc78-4349-a064-017b76bdb39e?mode=deep",
+    "timestamp": "2026-02-19 00:38:34.283026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: borrow()] [Request Fulfillment] Creates liquidity_request via borrow_request() then immediately fulfills it - can attacker interleave between these calls if they were separate transactions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8187dc25-63d0-4fe6-95d3-271f68502320?mode=deep",
+    "timestamp": "2026-02-19 00:38:57.538416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: redeem_ctokens_and_withdraw_liquidity()] [Request Pattern] Same pattern - creates request then fulfills - are these atomic or can they be split? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ac85a6d-ff4b-450c-9ee2-15c34f430fb9?mode=deep",
+    "timestamp": "2026-02-19 00:39:19.407557",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: fulfill_liquidity_request()] [Request Validation] Takes LiquidityRequest but doesn't validate it belongs to this reserve or market - can cross-market request fulfillment cause issues? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_11b89bb4-f944-4b63-afe1-24dc86acff73?mode=deep",
+    "timestamp": "2026-02-19 00:39:40.693894",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: unstake_sui_from_staker()] [Request Reference] Takes &LiquidityRequest as reference not ownership - can request be fulfilled elsewhere while staker thinks it's consuming it? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c96cc005-36b9-485c-8bac-6a38eed34805?mode=deep",
+    "timestamp": "2026-02-19 00:39:59.423327",
+    "report_generated": false
+  }
+]
