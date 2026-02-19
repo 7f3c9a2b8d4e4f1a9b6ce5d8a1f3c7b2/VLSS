@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: max_borrow_amount()] [Token Amount Lower Bound] The function uses usd_to_token_amount_lower_bound - does this intentionally underestimate max borrow for safety, and can attackers exploit the gap to borrow more via repeated small borrows? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ce52f385-862b-49d0-b39d-025a9949ab33?mode=deep",
+    "timestamp": "2026-02-19 04:48:06.165506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: max_borrow_amount()] [Floor Truncation] The function floors the result - can repeated borrows exploiting the truncated fraction accumulate to significant unbacked debt? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_39ddd7f7-ad76-4f5b-8007-66f0f6c65205?mode=deep",
+    "timestamp": "2026-02-19 04:48:19.587701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: max_withdraw_amount()] [Zero LTV Early Return] If open_ltv is zero or no borrows exist, the function returns full deposited_ctoken_amount - is this safe, or should there be additional checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c4ab2c83-fd8c-414f-b024-6073a39dec70?mode=deep",
+    "timestamp": "2026-02-19 04:48:33.083504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: max_withdraw_amount()] [Division By Zero] The function divides by open_ltv(config(reserve)) - if open_ltv is zero but borrows exist, does the early return prevent division by zero? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d0bb21b-c244-4810-8ff5-e3220b8840df?mode=deep",
+    "timestamp": "2026-02-19 04:48:47.604031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: max_withdraw_amount()] [Saturating Sub Usage] Uses saturating_sub which can hide cases where weighted_borrowed_value_upper_bound_usd > allowed_borrow_value_usd, suggesting withdrawals are possible when obligation is unhealthy? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ea86c0b-d24c-4fa6-810f-bb52608787fa?mode=deep",
+    "timestamp": "2026-02-19 04:49:03.350362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: max_withdraw_amount()] [Upper Bound Conversion] Uses usd_to_token_amount_upper_bound which overestimates - can this allow withdrawing more collateral than safe, leading to under-collateralization? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c447be7-f0b7-481e-8484-6741c4703e89?mode=deep",
+    "timestamp": "2026-02-19 04:49:20.535885",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: max_withdraw_amount()] [CToken Ratio Division] The function divides by ctoken_ratio - if the ratio is very small or changes during the transaction, can this cause incorrect max withdrawal calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_714e33be-b236-4b15-a3d1-21564e4be215?mode=deep",
+    "timestamp": "2026-02-19 04:49:38.892388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: max_withdraw_amount()] [Min Floor] The final result uses min() and floor() - can the combination cause scenarios where max_withdraw_amount returns zero even when withdrawal should be possible? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5b66aaa-a8fe-4c09-86a3-abb0ed4aef95?mode=deep",
+    "timestamp": "2026-02-19 04:49:56.312347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: compound_debt()] [Cumulative Rate Division] The function divides new_cumulative_borrow_rate by borrow.cumulative_borrow_rate - if borrow.cumulative_borrow_rate is very small, can this cause overflow in compounded_interest_rate? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52581141-a730-4ec0-9951-4d955ebeea45?mode=deep",
+    "timestamp": "2026-02-19 04:50:17.152587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: compound_debt()] [Multiplication Overflow] When multiplying borrow.borrowed_amount by compounded_interest_rate, can this overflow if borrowed_amount is large and interest rate is high? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a84c2078-6dae-46ea-9eed-3af2430fa10a?mode=deep",
+    "timestamp": "2026-02-19 04:50:39.540906",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: compound_debt()] [Rate Update Timing] The function updates cumulative_borrow_rate after calculating compounded interest - if reserve's rate changes mid-execution, can this cause double-compounding? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe8c9b76-a48e-4332-b34d-db62f5d3ca23?mode=deep",
+    "timestamp": "2026-02-19 04:51:02.834748",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: compound_debt()] [Stale Rate Usage] If reserve::cumulative_borrow_rate() returns stale data, can debt compound incorrectly over time, accumulating compounding errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ef3fca14-7108-4c9f-9d6e-c4253140a8ba?mode=deep",
+    "timestamp": "2026-02-19 04:51:27.515113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: liability_shares()] [Division By Zero] The function divides borrowed_amount by cumulative_borrow_rate - can cumulative_borrow_rate ever be zero, causing panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_067e4279-c109-4336-a3db-0ea1bbe6601e?mode=deep",
+    "timestamp": "2026-02-19 04:51:54.052570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: liability_shares()] [Floor Precision Loss] The function floors the division result - can accumulated precision loss from repeated calculations cause significant share accounting errors in reward distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2a541b7f-2c09-4782-9a44-ecc234fc3989?mode=deep",
+    "timestamp": "2026-02-19 04:52:19.448488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: liability_shares()] [Very Small Rates] If cumulative_borrow_rate is very small (< 1), division result would be larger than borrowed_amount - is this intended behavior or can it cause share inflation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c926d64a-7c2f-4247-b49e-edca0cacdd6b?mode=deep",
+    "timestamp": "2026-02-19 04:52:42.476328",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: is_looped()] [Hardcoded Indices] The function uses hardcoded target_reserve_array_indices [1,2,5,7,19,20,3,9] - if reserves are added/removed, can these indices become stale and fail to detect loops? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b12d565-efc3-40d5-b3a8-16f9bfc7db95?mode=deep",
+    "timestamp": "2026-02-19 04:53:05.634277",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: is_looped()] [Disabled Pairings Map] The disabled_pairings_map is hardcoded - can attackers exploit reserves not in this map to create loops that bypass detection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d626aed3-8aea-491c-af5a-8262abcb41f2?mode=deep",
+    "timestamp": "2026-02-19 04:53:30.750189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: is_looped()] [Same Reserve Check] The function checks if borrow and deposit have same reserve_array_index - but does it check all combinations of borrows and deposits, or only pairwise? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_23eb6f05-a4ea-4a8b-babb-641ed200677b?mode=deep",
+    "timestamp": "2026-02-19 04:53:56.088215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: is_looped()] [Early Return] The function returns true on first detected loop - does this prevent checking for multiple loop types that might have different severity? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1997772-228b-4b27-a8e9-1483f5da238e?mode=deep",
+    "timestamp": "2026-02-19 04:54:20.735212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: is_looped()] [Index Mapping] The comment states target_reserve_array_indices maps to disabled_pairings_map by index - if this mapping becomes misaligned, can it cause incorrect loop detection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_331ed951-69f4-43df-9be1-2effe020da5d?mode=deep",
+    "timestamp": "2026-02-19 04:54:46.084033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: is_looped()] [Three-Way Loops] The function checks borrow-deposit pairs - can it detect three-way loops (e.g., deposit A, borrow B, deposit B, borrow C, deposit C, borrow A)? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb33b38b-2b89-4726-82f5-6bae0a5784fa?mode=deep",
+    "timestamp": "2026-02-19 04:55:12.859066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: zero_out_rewards()] [Reward Loss] The function sets shares to 0 for all deposits and borrows - if called incorrectly, can this cause permanent loss of accrued rewards for legitimate users? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6acf6bf7-ec55-4c4a-bb43-84ebd758c6ff?mode=deep",
+    "timestamp": "2026-02-19 04:55:35.714255",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: zero_out_rewards()] [Incomplete Zeroing] The function zeros rewards but doesn't update other reward-related state - can this cause inconsistencies in reward accounting? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_315ce058-d787-47e6-a40d-ac81d14e20af?mode=deep",
+    "timestamp": "2026-02-19 04:55:57.861896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: zero_out_rewards()] [Reserve Iteration] The function iterates through deposits and borrows accessing reserves by array index - can out-of-bounds access occur if indices are stale? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd5fb16e-2d42-4b6a-9b3d-0dfe09eafd77?mode=deep",
+    "timestamp": "2026-02-19 04:56:21.962568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: zero_out_rewards()] [Two Separate Loops] The function has separate loops for deposits and borrows - can a revert in the second loop leave deposit rewards zeroed but borrow rewards intact? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2805ef86-30cf-4706-b179-0311e6ce405c?mode=deep",
+    "timestamp": "2026-02-19 04:56:46.121448",
+    "report_generated": false
+  }
+]
