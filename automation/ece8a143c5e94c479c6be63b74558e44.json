@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: withdraw_unchecked()] [Market Value Lower Bound] The function uses ctoken_market_value_lower_bound for allowed_borrow_value_usd but ctoken_market_value for deposited_value_usd - can this asymmetry cause health calculations to be incorrect after withdrawal? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_553272e2-cdea-4d43-aa42-869fa5cede31?mode=deep",
+    "timestamp": "2026-02-19 08:31:47.263794",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: liquidate()] [Liquidation Check Bypass] The function only checks is_liquidatable() at the start - if the obligation becomes healthy mid-execution due to reentrancy or external state changes, does liquidation still proceed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b31e7e0e-9056-4540-aaf4-448e3be02f15?mode=deep",
+    "timestamp": "2026-02-19 08:32:00.772299",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: liquidate()] [Close Factor Calculation] The function uses CLOSE_FACTOR_PCT (20%) to limit liquidation amount - but the check uses weighted_borrowed_value_usd, can an attacker manipulate borrow weights to liquidate more than 20% of actual debt? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b535ee2c-5930-49a2-a39c-28dd4d7f4ce6?mode=deep",
+    "timestamp": "2026-02-19 08:32:14.351558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: liquidate()] [Full Liquidation Condition] When borrow.market_value <= 1, full liquidation is allowed - can an attacker exploit this by inflating market values just above 1 to avoid full liquidation when they should be fully liquidatable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_30291fa2-1b05-4243-a36a-3cec86960a8e?mode=deep",
+    "timestamp": "2026-02-19 08:32:28.894974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: liquidate()] [Bonus Calculation] The liquidation bonus includes liquidation_bonus + protocol_liquidation_fee - if either of these is very large, can the total bonus exceed 100%, causing withdraw_value to exceed repay_value unrealistically? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_871b9abf-e47b-4ac6-b484-d930a0d3e3dc?mode=deep",
+    "timestamp": "2026-02-19 08:32:44.828282",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: liquidate()] [Deposit Collateral Insufficient] When deposit.market_value < withdraw_value, the function adjusts repay_pct - but what if this calculation results in a very small final_settle_amount that doesn't improve the obligation's health? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3592a66-0be5-40dc-9d3c-e75b6c35e441?mode=deep",
+    "timestamp": "2026-02-19 08:33:02.997772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: liquidate()] [Max Repay Percentage] The max_repay_pct is calculated as div(max_repay_value, borrow.market_value) which should be <= 1 - but if market values are stale or manipulated, can this exceed 1 and cause over-liquidation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51a3e7b3-5071-45e2-990c-a9386efda7fc?mode=deep",
+    "timestamp": "2026-02-19 08:33:22.698598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: liquidate()] [Withdraw Amount Floor] The final_withdraw_amount uses floor() which truncates - can repeated liquidations with floor truncation cause collateral to be withdrawn without corresponding debt repayment? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dfacf8d5-0cf7-4615-ad40-b0fe28c17bde?mode=deep",
+    "timestamp": "2026-02-19 08:33:43.007908",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: liquidate()] [Repay Before Withdraw] The function calls repay() then withdraw_unchecked() - if repay fails mid-execution, does withdraw_unchecked still execute, or are all changes rolled back? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4b72c0e0-3f24-421a-a772-6fc43aaa411c?mode=deep",
+    "timestamp": "2026-02-19 08:34:05.039649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: liquidate()] [Reserve Array Index Bounds] The function accesses reserves using repay_reserve_array_index and withdraw_reserve_array_index - are these indices validated to prevent out-of-bounds access? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d67a478-5d07-452d-9e21-840c81fe4cd0?mode=deep",
+    "timestamp": "2026-02-19 08:34:26.960303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: liquidate()] [Return Value Mismatch] The function returns (final_withdraw_amount, final_settle_amount) - can a caller exploit discrepancies between these values and actual amounts transferred? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8c726974-0d27-4423-9cc8-0b8ee1a01b3e?mode=deep",
+    "timestamp": "2026-02-19 08:34:51.062567",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: forgive()] [Forgivable Condition] The function checks is_forgivable() which only verifies deposits are empty - can an attacker create an obligation with only borrows and no deposits to force protocol bad debt forgiveness? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab27e382-9438-4c1c-9c90-0f17099f8eab?mode=deep",
+    "timestamp": "2026-02-19 08:35:16.095408",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: forgive()] [Unlimited Forgiveness] There's no cap on max_forgive_amount - can an attacker create multiple obligations with zero collateral and maximum debt to drain protocol reserves via forgiveness? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_488f225a-a53d-447e-b7e5-c251f4a1ba5d?mode=deep",
+    "timestamp": "2026-02-19 08:35:40.091589",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: forgive()] [Repay Delegation] The function delegates to repay() - does repay() properly handle the case where debt is being forgiven vs. normally repaid for accounting purposes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_34008517-c71e-497d-8b71-e4445333ad7e?mode=deep",
+    "timestamp": "2026-02-19 08:36:00.654090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: forgive()] [Bad Debt Tracking] The obligation.bad_debt_usd field exists but appears unused - should forgiveness update this field, and can its absence cause accounting inconsistencies? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2128ce05-5315-4755-b704-fb096c06d03c?mode=deep",
+    "timestamp": "2026-02-19 08:36:22.641227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: is_healthy()] [Upper Bound Usage] The function compares weighted_borrowed_value_upper_bound_usd to allowed_borrow_value_usd - can price spreads between upper bound and actual market value be exploited to appear healthy while being underwater? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_92f48b0f-6ac6-4103-a347-ace367eefaac?mode=deep",
+    "timestamp": "2026-02-19 08:36:45.545260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: is_healthy()] [Equal Case] The function uses le() (less than or equal) - if values are exactly equal, is the obligation considered healthy or unhealthy, and can attackers exploit the boundary? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8c17444-dad6-454f-afe6-534a04523b7d?mode=deep",
+    "timestamp": "2026-02-19 08:37:07.838667",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: is_healthy()] [Decimal Precision] Since both values are Decimals, can precision loss in prior calculations cause is_healthy() to return incorrect results near the boundary? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_42e6f47c-d10e-46d8-82ea-602b20d1379b?mode=deep",
+    "timestamp": "2026-02-19 08:37:30.951947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: is_liquidatable()] [Market Value vs Upper Bound] The function uses weighted_borrowed_value_usd (not upper bound) compared to unhealthy_borrow_value_usd - can this discrepancy with is_healthy() create arbitrage where an obligation is liquidatable but healthy? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e9fc01e7-3018-42d4-a0e0-4d1071f416c3?mode=deep",
+    "timestamp": "2026-02-19 08:37:54.565837",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: is_liquidatable()] [Greater Than Only] The function uses gt() (greater than) not gte() - can obligations sitting exactly at the liquidation threshold avoid liquidation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_41c7d5f2-04ac-4c11-bc3e-3769bccebf7b?mode=deep",
+    "timestamp": "2026-02-19 08:38:17.938145",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: is_liquidatable()] [Close LTV vs Open LTV] The function implicitly uses close_ltv via unhealthy_borrow_value_usd - can the gap between open_ltv and close_ltv be exploited to maintain positions that should be liquidatable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f94c02c8-a64e-4882-8b75-0d17e85c00b6?mode=deep",
+    "timestamp": "2026-02-19 08:38:44.498864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: is_forgivable()] [Only Checks Deposits] The function only verifies vector::length(&obligation.deposits) == 0 - should it also check if borrowed values are below some threshold to prevent forgiving large debts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f7aa02ff-e0c6-46a9-8c06-c7f501fb42e4?mode=deep",
+    "timestamp": "2026-02-19 08:39:08.256942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: is_forgivable()] [No Value Check] The function doesn't check deposited_value_usd or other cached values - can stale state where deposits vector is empty but deposited_value_usd > 0 cause incorrect forgiveness? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c2d6a76b-1cc8-43e8-bb6b-1cd5f30760f0?mode=deep",
+    "timestamp": "2026-02-19 08:39:31.699030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: max_borrow_amount()] [Division By Zero] The function divides by borrow_weight(config(reserve)) - if borrow_weight is zero, does this cause a panic, or is there a check preventing zero borrow weight? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_308fe711-4bed-4bfe-90f0-b8b05847c040?mode=deep",
+    "timestamp": "2026-02-19 08:39:57.902627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: max_borrow_amount()] [Saturating Sub] The function uses saturating_sub which returns zero on underflow - can this hide scenarios where weighted_borrowed_value_upper_bound_usd > allowed_borrow_value_usd, incorrectly suggesting borrowing is possible? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c968eeb2-31d2-41a6-aaae-da3e3ae2765c?mode=deep",
+    "timestamp": "2026-02-19 08:40:23.431010",
+    "report_generated": false
+  }
+]
