@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: valid_attestation_count()] [Counting DoS] With an unbounded attestation vector, can valid_attestation_count() iterate over millions of attestations, causing transaction timeouts or excessive gas costs when Volo Vault queries oracle consensus? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ccf20e10-1b28-4a77-b841-7dbdd8ebbfb4?mode=deep",
+    "timestamp": "2026-02-19 05:21:30.320571",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: add_attestation()] [Filter Performance] The filter lambda 'a.timestamp_ms + ATTESTATION_TIMEOUT_MS > timestamp_ms && a.guardian_id != attestation.guardian_id' checks every attestation. Can an attacker add attestations with timestamp_ms spaced exactly ATTESTATION_TIMEOUT_MS apart to maximize filter computation time? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a57bfff-efa9-406b-b859-5431bc0e1f06?mode=deep",
+    "timestamp": "2026-02-19 05:21:43.238846",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: new()] [Oracle Flooding] Since new() creates shared objects without limits, can an attacker spawn thousands of Oracle objects to exhaust global storage or cause queue management systems to fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e6a0419c-a961-42ea-8321-7f4db3efd578?mode=deep",
+    "timestamp": "2026-02-19 05:21:57.984791",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: add_attestation()] [Memory Exhaustion] Each Attestation struct stores a vector<u8> secp256k1_key (potentially 33-65 bytes). Can an attacker create attestations with maximum-length keys and guardian IDs to maximize memory usage per attestation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_67112a0e-da6f-45b5-b5cb-bb093951b882?mode=deep",
+    "timestamp": "2026-02-19 05:22:12.109144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: add_attestation()] [Guardian ID Enumeration] Can an attacker systematically generate unique guardian_ids (e.g., sequential addresses) to bypass the duplicate guardian filter and flood the attestation vector? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_44a00b54-5250-4445-b78f-83098acb8c6b?mode=deep",
+    "timestamp": "2026-02-19 05:22:27.816490",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: enable_oracle()] [State Transition Bypass] Can enable_oracle() be called multiple times to repeatedly change secp256k1_key, mr_enclave, and expiration_time_ms without any cooldown or state checks, allowing rapid oracle reconfiguration attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc470d91-0a71-400f-be1f-904452792618?mode=deep",
+    "timestamp": "2026-02-19 05:22:44.468659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: enable_oracle()] [Expiration Manipulation] Can an attacker call enable_oracle() with expiration_time_ms set to u64::MAX to make the oracle never expire, or set to 0/current_time to immediately expire it, disrupting oracle availability? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca36cf5b-8e91-4d4c-9d27-495e624dcf7a?mode=deep",
+    "timestamp": "2026-02-19 05:23:03.018695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: new()] [Initial State Vulnerability] The Oracle is created with expiration_time_ms=0, secp256k1_key=empty, valid_attestations=empty. Can consumers accidentally use the oracle before enable_oracle() is called, reading invalid empty keys? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_960ab134-3d6b-45eb-9bab-33a075b64897?mode=deep",
+    "timestamp": "2026-02-19 05:23:21.563422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: enable_oracle()] [Key Replacement Attack] If enable_oracle() overwrites oracle.secp256k1_key without invalidating existing attestations, can old attestations with different keys remain in valid_attestations, causing key mismatch when valid_attestation_count() is called? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_95396bca-5bd7-4da0-b878-433adb80ee87?mode=deep",
+    "timestamp": "2026-02-19 05:23:42.085846",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: enable_oracle()] [MR Enclave Validation] Does enable_oracle() validate the mr_enclave vector format or length? Can attackers pass empty or malformed mr_enclave values to bypass enclave verification in consumers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2fe4a8f9-ce92-4833-a393-85cbed1a7c1c?mode=deep",
+    "timestamp": "2026-02-19 05:24:06.953324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: enable_oracle()] [Atomicity Violation] The function updates secp256k1_key, mr_enclave, and expiration_time_ms sequentially. Can a transaction failure mid-execution leave the Oracle in an inconsistent state with partial updates? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7108a40c-74e1-4a87-b230-da819e5f4381?mode=deep",
+    "timestamp": "2026-02-19 05:24:29.469816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: expiration_time_ms()] [Expiration Check Absence] The accessor expiration_time_ms() returns the value but doesn't validate if the oracle is expired. Can consumers read expired oracles without realizing they should reject the data? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d5476d1-b534-4726-97e6-bdbbaff27f61?mode=deep",
+    "timestamp": "2026-02-19 05:24:53.087626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Struct: Oracle] [Shared Object Race Condition] Since Oracle is a shared object (transfer::share_object), can concurrent calls to enable_oracle() and add_attestation() cause race conditions where attestations reference old keys while the oracle is being re-enabled? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_964fc127-57fa-4a86-881f-eed84415df39?mode=deep",
+    "timestamp": "2026-02-19 05:25:17.597529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: enable_oracle()] [Key Format Validation] Does enable_oracle() validate that secp256k1_key is exactly 33 bytes (compressed) or 65 bytes (uncompressed)? Can attackers pass arbitrary-length vectors causing signature verification failures in consumers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac479484-d5b5-43cd-9a52-593552bc2ab2?mode=deep",
+    "timestamp": "2026-02-19 05:25:40.194644",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: new_attestation()] [Key Duplication] Does new_attestation() validate that secp256k1_key is not empty or duplicated across attestations? Can attackers create attestations with empty keys that pass validation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3ab3281-7857-4a73-8642-bf80f39abc08?mode=deep",
+    "timestamp": "2026-02-19 05:26:01.137799",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: valid_attestation_count()] [Key Comparison] The function compares 'a.secp256k1_key == secp256k1_key' using vector equality. Can this fail for valid keys if byte representations differ (e.g., compressed vs uncompressed format)? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a535ebaa-2669-46af-8911-9112c2c4cfa9?mode=deep",
+    "timestamp": "2026-02-19 05:26:20.939736",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: enable_oracle()] [Zero Key Attack] Can enable_oracle() accept a secp256k1_key filled with zeros (vector[0u8, 0u8, ...]), causing all signature verifications to fail but the oracle to appear valid? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86b5be8f-6380-4c25-8bfb-a90650b78832?mode=deep",
+    "timestamp": "2026-02-19 05:26:41.415647",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: oracle_key()] [Oracle Key Purpose] The oracle_key field is never validated or used in the contract. Can attackers set arbitrary oracle_key values during new() without consequences, or is this key meant for external verification that's missing? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3c2620bf-ea1a-4483-bad6-f0d0bc79f21a?mode=deep",
+    "timestamp": "2026-02-19 05:27:02.853118",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: queue_key()] [Queue Key Validation] Is queue_key ever validated against the queue ID? Can attackers create oracles with mismatched queue and queue_key pairs, causing queue routing failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6414472-b0d6-4782-a484-09e6a7b7b00b?mode=deep",
+    "timestamp": "2026-02-19 05:27:25.842795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: enable_oracle()] [Key Rotation] If oracle.secp256k1_key is updated via enable_oracle(), should existing attestations be invalidated? Can an oracle with 10 valid attestations for keyA be re-enabled with keyB, leaving attestations for keyA still active? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4827166c-00f7-48b9-a605-292355d2fa8a?mode=deep",
+    "timestamp": "2026-02-19 05:27:49.981667",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: new()] [Empty Key Initialization] Oracle is created with secp256k1_key = vector::empty(). Can consumer code check for non-empty keys before using the oracle to prevent reading from uninitialized oracles? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86fc6ace-f925-45b5-b05e-3df0443d18d1?mode=deep",
+    "timestamp": "2026-02-19 05:28:12.490441",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Constant: VERSION] [Version Enforcement] The VERSION constant is set to 1 but never validated in any function. Can old oracle objects with version 0 (if they existed) be used interchangeably with version 1 oracles, causing compatibility issues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_121c04e2-4b30-4035-8d09-5a3baf009f5e?mode=deep",
+    "timestamp": "2026-02-19 05:28:36.163682",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: version()] [Upgrade Safety] If the contract is upgraded to VERSION=2, how are existing shared Oracle objects with version=1 handled? Can version mismatches cause data corruption or failed transactions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bbc1e647-5e17-4d8a-ab85-4143eb7ebf42?mode=deep",
+    "timestamp": "2026-02-19 05:28:59.633604",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: new()] [Version Immutability] Since version is set during new() and never updated, can Oracle objects become permanently outdated if VERSION changes, requiring migration logic that's currently absent? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7bddac99-46fc-49ff-ab76-1ea03ac09606?mode=deep",
+    "timestamp": "2026-02-19 05:29:21.419098",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/oracle.move] [Function: add_attestation()] [Filter Logic Error] The filter keeps attestations where 'a.timestamp_ms + ATTESTATION_TIMEOUT_MS > timestamp_ms && a.guardian_id != attestation.guardian_id'. If both conditions fail (expired AND same guardian), the attestation is removed. Can this logic incorrectly remove non-expired attestations from different guardians? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0fca3f5-74e3-4b88-ac1d-3e06d240e1ff?mode=deep",
+    "timestamp": "2026-02-19 05:29:43.296563",
+    "report_generated": false
+  }
+]
