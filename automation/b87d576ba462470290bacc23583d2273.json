@@ -1,0 +1,20 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_difference()] [Navi Integration] If Navi health limiter uses severity levels to gate operations, can an attacker keep prices at level_warning (between threshold1 and threshold2) indefinitely by preventing ratio2_usage_start_time from being set, allowing risky operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e47de0a0-89ed-4b0b-b274-a4de082a5ded?mode=deep",
+    "timestamp": "2026-02-19 05:04:52.046355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Suilend Integration] If Suilend obligations use this validation before liquidations, can manipulating maximum_effective_price to 0 allow liquidations at inflated prices, causing losses to the protocol? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bf7ca5c6-45b3-434f-8cb5-24c7f449f488?mode=deep",
+    "timestamp": "2026-02-19 05:05:04.851262",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/strategy.move] [Function: validate_price_range_and_history()] [Cetus Integration] If Cetus CLMM positions use historical price validation, can an attacker manipulate historical_price_ttl to force using stale historical data, accepting bad swaps? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a65dae3f-58f6-4098-98bf-2b9b768b8d22?mode=deep",
+    "timestamp": "2026-02-19 05:05:18.673742",
+    "report_generated": false
+  }
+]
