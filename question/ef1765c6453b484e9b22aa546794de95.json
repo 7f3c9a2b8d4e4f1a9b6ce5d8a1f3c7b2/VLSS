@@ -1,8 +1,0 @@
-[
-  "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Dependencies] Does vault_oracle module properly validate clock timestamps, or can stale clocks bypass freshness checks? (Medium)",
-  "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Dependencies] Can vault_utils::mul_with_oracle_price overflow or underflow silently without this adaptor detecting it? (High)",
-  "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Dependencies] If Pool reference becomes stale (object deleted), does get_position_amounts fail safely? (Medium)",
-  "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Boundary] When pool_price exactly equals relative_price_from_oracle, does diff() return 0 and slippage check pass? (Low)",
-  "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Boundary] Can price_a = u256::MAX cause overflow in line 52 'price_a * DECIMAL'? (High)",
-  "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Boundary] When slippage is at maximum (10000), does the check in line 64 become 'anything < DECIMAL * 1' = anything < 1e18? (High)"
-]
