@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: liquidation()] [Authorization] Does liquidation() properly sequence incentive updates before the actual liquidation, or could reordering allow reward manipulation during liquidation events? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c7d951b9-7eb1-485d-8c31-3266111b62da?mode=deep",
+    "timestamp": "2026-02-19 08:07:53.167019",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Module: lending_core::incentive_v3] [Friend Declaration] Does the single 'friend lending_core::manage' declaration provide sufficient access control, or could manage module be compromised to gain unauthorized access to all friend functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fc2ce2d6-0325-418b-94af-99da3127cc5e?mode=deep",
+    "timestamp": "2026-02-19 08:08:06.390683",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: create_pool()] [Duplicate Prevention] Does the duplicate_config() check in create_pool() prevent creation of pools with identical coin types across different incentive instances, or only within a single instance? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_383a9477-4349-47c1-8ce9-8f07ffd12e10?mode=deep",
+    "timestamp": "2026-02-19 08:08:19.989766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: create_rule()] [Duplicate Prevention] Can an attacker bypass the duplicate check in create_rule() by creating rules for the same option/reward_coin_type pair in different pools, causing confusion in reward distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_69ae62e4-976c-483d-a666-c61d0d90a777?mode=deep",
+    "timestamp": "2026-02-19 08:08:34.200594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: contains_rule()] [Logic Error] Does contains_rule() iterate through all rules correctly, or could rules be added while the function executes causing race conditions or missed duplicates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22e9d1f6-3211-4ec2-8bd5-4fdf55730265?mode=deep",
+    "timestamp": "2026-02-19 08:08:49.780432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_mut_rule()] [Access Control] Does get_mut_rule() being internal prevent unauthorized rule modifications, or could it be called indirectly through public functions without proper validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_70577326-ed4f-4075-a9b1-226cd8578744?mode=deep",
+    "timestamp": "2026-02-19 08:09:06.523306",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: update_reward_state_by_asset()] [Authorization] Does update_reward_state_by_asset() being public allow anyone to manipulate reward states by calling it repeatedly with different user addresses, causing DoS or state corruption? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e92e6097-8daa-492d-9e43-9d36d3e09f45?mode=deep",
+    "timestamp": "2026-02-19 08:09:23.405554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_user_claimable_rewards()] [View Function Safety] Can get_user_claimable_rewards() being public with mutable storage reference allow read-only DoS attacks if called with many pools/rules causing excessive computation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d4008e33-9471-4762-a343-b99f72e95459?mode=deep",
+    "timestamp": "2026-02-19 08:09:43.048024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Struct: Incentive] [Shared Object] Does Incentive being a shared object with mutable friend functions create race conditions when multiple transactions modify pools/rules/fees concurrently? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63718f50-d241-41dc-b0b4-fe15dc755f19?mode=deep",
+    "timestamp": "2026-02-19 08:10:04.133254",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Struct: RewardFund] [Shared Object] Can RewardFund being shared allow concurrent deposit/withdraw operations that cause balance inconsistencies or double-spending if not properly synchronized? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_367f96bb-06f4-479f-a3fd-a7a2d11926b0?mode=deep",
+    "timestamp": "2026-02-19 08:10:26.717844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: set_borrow_fee_rate()] [Rate Limit] Does the 10% cap check 'rate <= constants::percentage_benchmark() / 10' prevent all fee manipulation, or could constants be modified to bypass this limit? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dbcdd3f2-e251-4c05-aa50-abb28d272ab0?mode=deep",
+    "timestamp": "2026-02-19 08:10:50.784447",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: version_migrate()] [Version Security] Can version_migrate() be called multiple times to roll version numbers forward and backward, potentially bypassing version-dependent security checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e6302aae-57d8-45d1-a0cd-7cb0ebd0d305?mode=deep",
+    "timestamp": "2026-02-19 08:11:14.609587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: deposit_borrow_fee()] [Internal Function] Does deposit_borrow_fee() being internal but called from multiple public functions ensure fee collection happens atomically with borrows, or could reentrancy separate them? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_89c7848f-02bb-4a1d-931e-527f003ee0fc?mode=deep",
+    "timestamp": "2026-02-19 08:11:38.748108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: base_claim_reward_by_rules()] [Internal Function] Does base_claim_reward_by_rules() being internal prevent direct calls, or could it be exploited through crafted public function calls with malicious parameters? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da6cf803-ec38-44cb-a7ee-808ec4bb3300?mode=deep",
+    "timestamp": "2026-02-19 08:12:03.219178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: base_claim_reward_by_rule()] [Internal Function] Can base_claim_reward_by_rule() being called in a loop be exploited to claim the same rewards multiple times if state updates aren't atomic? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08aa8375-be54-4bfa-b483-d58a0997a3b7?mode=deep",
+    "timestamp": "2026-02-19 08:12:27.583428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: set_max_reward_rate_by_rule_id()] [Arithmetic Overflow] Can ray_div((max_total_supply as u256), (duration_ms as u256)) overflow when max_total_supply is u64::MAX, causing max_rate to wrap around to small value and bypassing rate limits? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6cd7c5c8-8f27-4d21-a519-8aa46f59cb9c?mode=deep",
+    "timestamp": "2026-02-19 08:12:50.704786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: set_reward_rate_by_rule_id()] [Arithmetic Overflow] Does ray_div((total_supply as u256), (duration_ms as u256)) overflow when total_supply is maximum and duration_ms is 1, setting impossibly high reward rates? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_948d8ca3-e4e5-42db-b6b0-c819246dd76a?mode=deep",
+    "timestamp": "2026-02-19 08:13:13.893609",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: set_reward_rate_by_rule_id()] [Division by Zero] Can an attacker set duration_ms to 0 causing division by zero in ray_div, or does the check 'if (duration_ms > 0)' prevent this but allow setting rate to 0 which disables rewards unexpectedly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b6000e7-75db-419e-a3e5-5a0a48254f26?mode=deep",
+    "timestamp": "2026-02-19 08:13:37.022993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_global_index()] [Division by Zero] Does 'if (duration == 0 || total_balance == 0)' properly handle the case where total_balance becomes 0 after deposits/withdrawals, potentially causing division by zero in '(rule.rate * (duration as u256)) / total_balance'? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c72a8fbc-1b7e-456f-a34d-c93a1b7a7239?mode=deep",
+    "timestamp": "2026-02-19 08:14:00.029547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_global_index()] [Arithmetic Overflow] Can 'rule.rate * (duration as u256)' overflow when rate is maximum and duration is very large (e.g., years in milliseconds), corrupting global index calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7413b3db-4195-4706-84f0-099694687e4a?mode=deep",
+    "timestamp": "2026-02-19 08:14:23.322471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_global_index()] [Arithmetic Underflow] Does 'now - rule.last_update_at' handle clock rollback or manipulation correctly, or could negative durations cause underflow and massive index increases? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fcace05-b429-4907-8f8e-f7fbe92912a5?mode=deep",
+    "timestamp": "2026-02-19 08:14:46.728540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_user_reward()] [Arithmetic Underflow] Can 'global_index - get_user_index_by_rule(rule, user)' underflow if user_index is somehow greater than global_index due to concurrent updates or clock manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3a87c94-08db-433d-9983-0f8e1f1e6c1a?mode=deep",
+    "timestamp": "2026-02-19 08:15:09.802657",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_user_reward()] [Arithmetic Overflow] Does 'ray_mul(user_balance, user_index_diff)' overflow when user_balance is maximum and index difference is large, causing incorrect reward calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9012cd91-64af-4bb9-a666-5042b6770352?mode=deep",
+    "timestamp": "2026-02-19 08:15:33.451770",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_user_reward()] [Arithmetic Overflow] Can 'user_reward + ray_math::ray_mul(...)' overflow when user has accumulated maximum rewards and additional rewards are calculated, wrapping to small value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e500f31c-e56f-4d56-afb2-1f9287e0d593?mode=deep",
+    "timestamp": "2026-02-19 08:15:54.874533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_effective_balance()] [Arithmetic Overflow] Does 'ray_mul(total_supply, supply_index)' overflow when both values are near maximum, causing incorrect total supply calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_69210a60-2154-460f-909a-7e4a5fdd782e?mode=deep",
+    "timestamp": "2026-02-19 08:16:17.385841",
+    "report_generated": false
+  }
+]
