@@ -1,0 +1,8 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Supply Snapshot] Uses current total_supply but rewards based on time since last update - could supply changes between updates cause unfair distribution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_91b38873-cda3-4757-aa17-97280b292bac?mode=deep",
+    "timestamp": "2026-02-19 03:48:48.936043",
+    "report_generated": false
+  }
+]
