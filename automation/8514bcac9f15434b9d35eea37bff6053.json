@@ -1,0 +1,8 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: liquidation_non_entry()] [Friend Non-Entry] Can liquidation_non_entry() at line 377 be exploited by friend modules with custom balance handling? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f0f6f257-44a4-4e81-b004-0b26fd02ff0f?mode=deep",
+    "timestamp": "2026-02-19 02:31:58.585458",
+    "report_generated": false
+  }
+]
