@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/manage.move] [State: Oracle staleness] When oracle config is upgraded, is staleness state preserved or reset? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e187dc33-8f87-46e1-b097-381df3d47340?mode=deep",
+    "timestamp": "2026-02-19 01:58:45.770217",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [State: Fee accumulation] Can fee configuration changes affect already-collected but not-retrieved fees? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_321fd7b6-046d-4292-b533-298537a6b445?mode=deep",
+    "timestamp": "2026-02-19 01:58:58.084346",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [State: Epoch tracking] If reset_loss_tolerance() is called multiple times, is epoch counter correctly maintained? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b760db89-5695-4032-8911-b6312a90e826?mode=deep",
+    "timestamp": "2026-02-19 01:59:11.703492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [State: Freeze map] When set_operator_freezed() is called, is freeze state persistent across operations or per-operation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f209016-568f-4bce-aa99-b64ad4b84b53?mode=deep",
+    "timestamp": "2026-02-19 01:59:25.986314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [State: Reward manager initialization] Is there a defined initialization sequence for reward_manager that must be followed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4c354092-ebcc-4c6f-94d8-27c3df304421?mode=deep",
+    "timestamp": "2026-02-19 01:59:40.920533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Lifecycle: Vault creation to operation] What's the minimum setup required before vault can accept operations? Can operations start prematurely? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5bdcef25-c155-4ce2-bf1e-51ddf5ac9c5a?mode=deep",
+    "timestamp": "2026-02-19 01:59:57.731653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Lifecycle: Oracle setup] Must aggregators be added before vault can accept deposits? Or can deposits happen with no price feed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c28fe103-97de-4e29-8251-acea6d068898?mode=deep",
+    "timestamp": "2026-02-19 02:00:14.237629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Lifecycle: Operator creation] Can operator_cap be used immediately after creation or is there initialization delay? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7730145-a6ae-4b7b-88cf-6f3caab72457?mode=deep",
+    "timestamp": "2026-02-19 02:00:32.423860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Economic: Fee manipulation] Can admin change fees to extract maximum value from users without their consent? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc8fa6b0-4edf-484c-ba62-a1806eaeac81?mode=deep",
+    "timestamp": "2026-02-19 02:00:51.991674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Economic: Loss tolerance] Can admin set loss_tolerance very high to allow risky operations that benefit operator over vault users? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e4d45ef-f1a7-4337-9fec-afca2b6d4adf?mode=deep",
+    "timestamp": "2026-02-19 02:01:13.091636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Economic: Oracle manipulation] Can admin collude with oracle provider to manipulate aggregator prices for profit? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_858beb3f-00a0-41da-b144-68cc46355245?mode=deep",
+    "timestamp": "2026-02-19 02:01:35.313395",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Economic: Slippage abuse] Can admin set dex_slippage high to allow operators to extract value through DEX trades? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98bbadfa-5184-413c-baf9-e9716a874c0d?mode=deep",
+    "timestamp": "2026-02-19 02:01:57.129510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Economic: Locking time] Can admin increase locking times to trap user funds during market volatility? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5dfaddb1-8e1d-42e6-925b-6b119e5a4d53?mode=deep",
+    "timestamp": "2026-02-19 02:02:20.794798",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Economic: Fee retrieval timing] Can admin/operator time fee retrievals to coincide with vault value drops, extracting disproportionate value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f8f10964-48d5-45f3-8b70-a8f99eb1130f?mode=deep",
+    "timestamp": "2026-02-19 02:02:43.663661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Economic: Operator freeze] Can admin selectively freeze operators who execute profitable strategies to monopolize gains? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_972e6dc1-594e-4fed-979e-727f92fd52c6?mode=deep",
+    "timestamp": "2026-02-19 02:03:07.518664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Incentive: Admin upgrading] Does admin have economic incentive to upgrade vault/oracle at inopportune times for users? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f1cf2d1a-828e-4276-9378-9c46a60cc156?mode=deep",
+    "timestamp": "2026-02-19 02:03:32.170926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [DoS: Vault disabling] Can admin permanently disable vault with set_vault_enabled(false) to lock all user funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d13154e6-a17b-4b0b-931c-ef9744263d73?mode=deep",
+    "timestamp": "2026-02-19 02:03:56.857633",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [DoS: Aggregator removal] Can admin remove all price aggregators to prevent any operations requiring valuation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_840926fa-bea6-4390-a1ba-bb6626734898?mode=deep",
+    "timestamp": "2026-02-19 02:04:21.371435",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [DoS: Extreme locking times] Can setting locking times to u64::MAX prevent withdrawals for 584 billion years? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1cc94594-6924-46a2-9485-ecf5afbac03d?mode=deep",
+    "timestamp": "2026-02-19 02:04:44.866321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [DoS: Zero tolerance] Can setting loss_tolerance to 0 prevent all operations due to any minor value fluctuation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6a586c48-031e-45ae-89d8-587a15a0d707?mode=deep",
+    "timestamp": "2026-02-19 02:05:09.051781",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [DoS: Operator freeze] Can admin freeze all operators preventing any vault operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_60bc5e4d-0a98-4b1d-86a4-558743712219?mode=deep",
+    "timestamp": "2026-02-19 02:05:35.371916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [DoS: Fee drain] Can admin/operator drain all fees leaving vault unable to cover gas for operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6fb9f2d1-e192-4e9d-927a-6cfeea58563b?mode=deep",
+    "timestamp": "2026-02-19 02:06:02.645662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [DoS: Update interval] Can setting update_interval to 0 require constant oracle updates breaking operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0bf7f0a1-67c3-4cb3-8589-56f6efe5dd6b?mode=deep",
+    "timestamp": "2026-02-19 02:06:27.480571",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [DoS: Repeated upgrades] Can calling upgrade functions repeatedly cause version state confusion? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ba5690f-2644-404b-a0d0-235dbcbe2351?mode=deep",
+    "timestamp": "2026-02-19 02:06:50.799837",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Edge Case: Empty vault] Can admin functions be called on vault with 0 total_shares? Does this cause division by zero? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_44f38df0-5d4b-4376-acef-7e06b63ad8fb?mode=deep",
+    "timestamp": "2026-02-19 02:07:13.152875",
+    "report_generated": false
+  }
+]
