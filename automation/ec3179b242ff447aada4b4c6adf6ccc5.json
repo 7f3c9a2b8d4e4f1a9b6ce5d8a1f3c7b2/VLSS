@@ -1,0 +1,128 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: repay_with_account_cap()] [No Excess Check] repay_with_account_cap() returns entire balance without checking if excess exists - can caller misuse excess as free funds? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_de3fbd54-bd0b-4713-8484-dd307895497c?mode=deep",
+    "timestamp": "2026-02-19 08:29:41.293913",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_liquidation()] [Zero Address Update] entry_liquidation() updates rewards for @0x0 in incentive_v2 - does this properly update global indices without affecting any user's rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_26bd970e-fa89-41b9-9360-d45daf821fbf?mode=deep",
+    "timestamp": "2026-02-19 08:29:54.483716",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_liquidation()] [Liquidate User Update Order] entry_liquidation() updates liquidate_user rewards after updating @0x0 - can attacker liquidate before liquidate_user's pending rewards are realized, stealing unclaimed rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_11f1b2f1-9774-4275-b7cb-0e3600b83271?mode=deep",
+    "timestamp": "2026-02-19 08:30:07.999364",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_liquidation()] [Bonus Balance Transfer] entry_liquidation() transfers bonus_balance to sender - if sender is contract that reverts on receive, does liquidation fail causing undercollateralized positions to persist? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb46d0be-9282-4b29-9dfe-52cb2ffdc228?mode=deep",
+    "timestamp": "2026-02-19 08:30:22.079492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: liquidation()] [Balance Return] liquidation() returns two balances - if caller doesn't properly handle both balances, can funds be locked in returned Balance objects? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dc5be6b3-c8e7-4497-9cd4-e1d7394ebda9?mode=deep",
+    "timestamp": "2026-02-19 08:30:36.980214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_liquidation()] [Excess Value Check] entry_liquidation() destroys excess_balance if value=0 - if balance::value() rounds down, can tiny amounts be destroyed incorrectly? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6dccdcbf-c6eb-4217-b2c3-3ac6331e7793?mode=deep",
+    "timestamp": "2026-02-19 08:30:53.026826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_user_claimable_rewards()] [Storage Mutation in Query] get_user_claimable_rewards() takes &mut Storage despite being query function - can concurrent queries race on storage mutation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_932be6f0-2fb0-46b3-a02f-97d71cda4487?mode=deep",
+    "timestamp": "2026-02-19 08:31:14.361724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_user_claimable_rewards()] [Stale Data] get_user_claimable_rewards() calculates rewards using calculate_global_index() without actually updating state - can off-chain systems make decisions based on claimable amounts that differ from actual claim()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83e495c6-c060-4b82-8d05-5c697c362ed4?mode=deep",
+    "timestamp": "2026-02-19 08:31:34.930238",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_user_claimable_rewards()] [Key Construction] get_user_claimable_rewards() constructs keys by concatenating pool_key and reward_coin_type with comma - can collision occur if pool names contain commas? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_32ebda23-ff4b-4f8c-8e07-597446a20bff?mode=deep",
+    "timestamp": "2026-02-19 08:31:56.630861",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_user_claimable_rewards()] [Rule ID Filtering] get_user_claimable_rewards() only adds rule_key to rule_ids if user_claimable_reward > 0 - can this cause rule_ids length mismatch with expected length, breaking off-chain parsers? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_00b78a4f-09c3-4f68-a48b-b4feb9303522?mode=deep",
+    "timestamp": "2026-02-19 08:32:19.033921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: parse_claimable_rewards()] [Vector Consumption] parse_claimable_rewards() consumes input vector with pop_back() - can caller accidentally lose ClaimableReward data by passing same vector to multiple parsers? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3a719f87-0143-48ab-a089-866e637bcd72?mode=deep",
+    "timestamp": "2026-02-19 08:32:42.988484",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: delete_rule_for_testing()] [Improper Cleanup] delete_rule_for_testing() destroys tables with table::drop() - if tables contain entries, does drop() properly clean up or leak storage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5cacb4c5-636f-4b06-888c-c5cc24ffddce?mode=deep",
+    "timestamp": "2026-02-19 08:33:06.656296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_mut_rule_for_testing()] [Test Exposure] get_mut_rule_for_testing() exposes get_mut_rule() in test mode - can test builds accidentally be deployed to mainnet exposing mutable rule access? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5ee35ae-447c-4aac-8042-5f0215be3f33?mode=deep",
+    "timestamp": "2026-02-19 08:33:32.599186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: update_index_for_testing()] [Zero Address Update] update_index_for_testing() calls update_reward_state_by_asset() with @0x0 - can test code leave invalid state if @0x0 has non-zero balances in test environment? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e2c002cb-4f65-4420-b7b8-e9ba025b7bb1?mode=deep",
+    "timestamp": "2026-02-19 08:33:56.242489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: create_rule()] [Enable State Default] New rules are created with enable=true by default - can attacker create rule right before admin configures rate, allowing users to claim zero rewards polluting state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_335946b5-3aa4-4105-94b8-32f199e84f02?mode=deep",
+    "timestamp": "2026-02-19 08:34:19.503874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: set_reward_rate_by_rule_id()] [Update Race Condition] set_reward_rate_by_rule_id() updates state via update_reward_state_by_asset() then sets rate - can concurrent set_reward_rate calls cause race where second call uses stale data? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a1ccaa0-7f52-48a7-9cb8-9c93d5973bf5?mode=deep",
+    "timestamp": "2026-02-19 08:34:43.580357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_global_index()] [Integer Division Loss] calculate_global_index() divides (rate * duration) by total_balance - can small total_balance cause integer division to round down excessively, losing significant reward precision? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f708593f-f77e-4c7c-84e6-f37b6081d616?mode=deep",
+    "timestamp": "2026-02-19 08:35:05.996252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: base_claim_reward_by_rule()] [Type Mismatch] base_claim_reward_by_rule() asserts rule.reward_coin_type matches but uses string comparison - can different type representations (e.g., with/without module prefix) bypass check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a58ad99e-7cce-4bd8-bcbc-785c148d1389?mode=deep",
+    "timestamp": "2026-02-19 08:35:29.982763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: deposit_borrow_fee()] [TypeName Key Usage] deposit_borrow_fee() uses TypeName as Bag key - can TypeName collision between different generic instantiations cause fee corruption? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d966d406-57d4-4fb1-9576-0ed87847a21a?mode=deep",
+    "timestamp": "2026-02-19 08:35:51.048344",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_deposit_on_behalf_of_user()] [User Parameter Trust] entry_deposit_on_behalf_of_user() accepts arbitrary user address - can attacker deposit dust for many users to pollute their reward state and increase storage costs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b068c6c4-bce0-4dfd-a2ca-793e622b1b4a?mode=deep",
+    "timestamp": "2026-02-19 08:36:11.830840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_effective_balance()] [Negative Balance Handling] get_effective_balance() computes effective balances by subtraction - if storage indices are corrupted causing supply < borrow for user, does subtraction underflow? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78f7040e-3050-4539-995f-2e1caf36aa14?mode=deep",
+    "timestamp": "2026-02-19 08:36:33.487206",
+    "report_generated": false
+  }
+]
