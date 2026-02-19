@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Price Manipulation] Can an attacker with oracle provider access systematically report slightly inflated/deflated prices within acceptable thresholds to extract value over time? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1875810f-5f5c-4fe1-b16a-8dc88af87f93?mode=deep",
+    "timestamp": "2026-02-19 01:42:07.724256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Flash Loan Attack] Can flash loan-style attacks manipulate on-chain oracle prices (if Pyth/Supra consume on-chain data) to briefly pass validation and exploit vault operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_815d2f88-7158-44ea-8042-2b2e1af3a179?mode=deep",
+    "timestamp": "2026-02-19 01:42:20.203174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [MEV Extraction] Can MEV bots sandwich vault transactions by monitoring oracle price updates and executing just before favorable prices expire? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc23e698-f60d-4cdb-8b79-00d08f361a79?mode=deep",
+    "timestamp": "2026-02-19 01:42:33.408857",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Oracle Griefing] Can attackers DoS the protocol by submitting transactions that cause oracle queries to fail, preventing all vault operations for affected assets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4fbafb14-b56d-4c02-af38-bce51f28899f?mode=deep",
+    "timestamp": "2026-02-19 01:42:47.970851",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Rounding Errors] Can accumulated rounding errors in decimal conversions and price calculations lead to significant valuation drift over many operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_953457ca-565a-44af-94a4-dc9af7c0d2ae?mode=deep",
+    "timestamp": "2026-02-19 01:43:02.813813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Precision Loss] When converting between oracle native precision and target decimal precision, can precision loss cause prices to round down to zero for low-value assets? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ea8e4c6-fb9d-4586-8291-3f68708b59ec?mode=deep",
+    "timestamp": "2026-02-19 01:43:18.879614",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Truncation Attack] Can attackers exploit predictable rounding behavior to consistently gain small advantages that accumulate to significant value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b8ba54bd-fc52-4c1a-92c1-163b452fb45a?mode=deep",
+    "timestamp": "2026-02-19 01:43:35.583264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Adaptor Selection] How does get_price_from_adaptor determine which oracle to query (Supra vs Pyth), and can incorrect selection return wrong price types? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4fc043bd-c9b0-4a90-8234-f0c3772ffa62?mode=deep",
+    "timestamp": "2026-02-19 01:43:53.698666",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Adaptor Failure] If an adaptor function panics or aborts, does the entire price fetch fail, or can it fall through to return garbage values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b78642f9-bef5-46bb-bf05-65262ee44e83?mode=deep",
+    "timestamp": "2026-02-19 01:44:12.857654",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Adaptor Return Format] Are there assumptions about the format or scaling of values returned by get_price_from_adaptor that could be violated by updated adaptor implementations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eef4eacb-9e67-4416-b8f3-f63b221b31e9?mode=deep",
+    "timestamp": "2026-02-19 01:44:33.527195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Historical Manipulation] Can the historical_price stored in the feed be manipulated to extreme values, causing all future price validations to fail or all to pass? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5931cb68-240b-4987-83fa-ca7cdba0b378?mode=deep",
+    "timestamp": "2026-02-19 01:44:54.013204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Historical Staleness] If historical price is never updated, can the historical_price_ttl expire, causing validate_price_range_and_history to always reject valid prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be2e73e3-7421-4e93-b4fb-2b0b8516e28a?mode=deep",
+    "timestamp": "2026-02-19 01:45:16.377394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Historical Bootstrap] During initial deployment when no historical_price exists, can the validation logic fail or accept any price value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cb188a20-7112-425f-a70c-12d91d8aaa2b?mode=deep",
+    "timestamp": "2026-02-19 01:45:39.654445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Threshold Inversion] Can misconfigured thresholds (threshold1 > threshold2) cause validate_price_difference to return unexpected severity levels? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c635f640-e9e3-44a4-9320-4325ebc3738d?mode=deep",
+    "timestamp": "2026-02-19 01:46:07.806052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Threshold Zero] If price_diff_threshold1 or threshold2 are set to 0, does this make validation extremely strict (rejecting any difference) or permissive (accepting all)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_604a51c7-1a44-4511-a1e8-9779374bce16?mode=deep",
+    "timestamp": "2026-02-19 01:46:33.605540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Threshold Overflow] Can threshold percentage calculations overflow when multiplied by large prices, causing comparison logic to fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a53e895-c50f-46da-8f47-5b8179db0a07?mode=deep",
+    "timestamp": "2026-02-19 01:46:58.301801",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Feed Switching] If a feed_address is reconfigured to point to a different asset oracle, can cached or stale price data from the old asset contaminate new asset pricing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e3afcd9e-69cb-4d44-a52f-d5ba00fd2384?mode=deep",
+    "timestamp": "2026-02-19 01:47:22.992811",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Multi-Feed Arbitrage] Can attackers exploit price discrepancies between multiple feed_addresses for the same underlying asset to arbitrage vault operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8feb15ab-b911-4135-86ba-4d8edd00bddd?mode=deep",
+    "timestamp": "2026-02-19 01:47:49.093542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Feed Disable Timing] Can a feed be disabled after price fetch begins but before validation completes, causing partially validated prices to be used? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_729328a3-06d2-4da1-8329-883bcc7d14b3?mode=deep",
+    "timestamp": "2026-02-19 01:48:15.775615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Warning Level] When severity == level_warning, execution continues with potentially divergent prices - can this be exploited during market stress when price feeds legitimately diverge? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08215276-cc74-4606-9145-cbb97bec21a0?mode=deep",
+    "timestamp": "2026-02-19 01:48:40.257502",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Severity Threshold] Can the severity level gradually escalate from normal to warning to error without triggering protective measures until it's too late? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a9d57bd0-93dd-448a-b8c6-9f0af38cd237?mode=deep",
+    "timestamp": "2026-02-19 01:49:03.614826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Severity Reset] How and when does severity level reset back to normal, and can attackers exploit the reset timing to bypass restrictions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4b2851ba-d3fc-407c-b78f-8a307bf9d146?mode=deep",
+    "timestamp": "2026-02-19 01:49:26.992690",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Validation Order] Can the order of validations be exploited where early returns skip important later checks that would catch manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_71f8e5f6-4b05-4de0-9586-091e1e254435?mode=deep",
+    "timestamp": "2026-02-19 01:49:51.235007",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Partial Validation] If validate_price_range_and_history checks multiple conditions, can partial failures be masked by boolean short-circuiting? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_762966bf-7096-4655-9b9e-0c352f64bb8a?mode=deep",
+    "timestamp": "2026-02-19 01:50:16.135659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_dynamic_getter.move] [Function: get_dynamic_single_price()] [Validation Costs] Can expensive validation operations be used for DoS by making oracle price queries too gas-intensive to execute? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a543231f-b08c-40a0-a871-9b19879a061d?mode=deep",
+    "timestamp": "2026-02-19 01:50:41.480621",
+    "report_generated": false
+  }
+]
