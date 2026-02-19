@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: calculate_current_index()] [Timestamp Manipulation] Line 265: current_timestamp from clock - if Sui clock can be influenced or has precision issues, can attacker manipulate timestamp to minimize interest accrual when borrowing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_79a20437-802c-4bb6-9112-be46c78be95c?mode=deep",
+    "timestamp": "2026-02-19 03:32:23.923369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: calculate_current_index()] [Timestamp Manipulation] Line 266: last_update_timestamp from storage - if storage update is delayed or not atomic with index calculations, can attacker exploit timing window to borrow at old rates then update timestamp? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fd21a654-4d98-4141-a904-b100e33248ae?mode=deep",
+    "timestamp": "2026-02-19 03:32:37.023949",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: calculate_current_index()] [Timestamp Manipulation] Line 271: timestamp_difference = (current - last) / 1000 converts ms to seconds - does integer division truncate sub-second interest accrual, allowing attacker to game system by borrowing/repaying within milliseconds? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5222968-d8fd-44ce-9358-9166e93fff37?mode=deep",
+    "timestamp": "2026-02-19 03:32:50.495728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: calculate_current_index()] [Timestamp Manipulation] Lines 274-278: compound interest calculated from timestamp_difference - if attacker can trigger index calculation at specific timestamps, can they minimize compounding periods to reduce interest paid? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e90339ac-2275-4539-8eb6-870f6ed8647f?mode=deep",
+    "timestamp": "2026-02-19 03:33:05.676556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_collateral_balance()] [Timestamp Manipulation] Line 198: calculate_current_index depends on clock - can attacker call with manipulated clock reference to get favorable index values and inflate collateral balance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3df41a7b-9f1d-47d8-b999-8be98487ea0c?mode=deep",
+    "timestamp": "2026-02-19 03:33:21.292617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_loan_balance()] [Timestamp Manipulation] Line 218: calculate_current_index for borrow - can timestamp manipulation reduce borrow_index, showing less debt than actually owed, enabling excessive borrowing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e67487f4-427f-4dc4-831d-15190ee38907?mode=deep",
+    "timestamp": "2026-02-19 03:33:38.262396",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_collateral_value()] [Vector Overflow] Line 91: vector::push_back(&mut c, asset) when adding new asset - no max size check - can attacker add unlimited collateral asset types to cause gas exhaustion in loops at lines 96-110? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e51a5b08-0fd8-4477-a36b-1b94f1cb7ccf?mode=deep",
+    "timestamp": "2026-02-19 03:33:56.653041",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_loan_value()] [Vector Overflow] Line 131: vector::push_back(&mut l, asset) for loans - can attacker borrow tiny amounts from hundreds of asset types to bloat loans vector and DoS health calculations via gas exhaustion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_603befe7-0e48-4269-bc7f-ef6d5c57386e?mode=deep",
+    "timestamp": "2026-02-19 03:34:15.054457",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_liquidation_threshold()] [Vector Overflow] Line 238: vector::push_back(&mut c, asset) - no bounds check - can attacker add collateral types to exceed block gas limit in loop at lines 245-259, preventing liquidation threshold calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ff256cfb-c1a1-4cfb-87e0-6567db5f7504?mode=deep",
+    "timestamp": "2026-02-19 03:34:31.948009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_collateral_value()] [Vector Logic] Lines 89-94: if asset not in collaterals and is_increase, adds to local copy c - but this modified vector doesn't update storage - does this cause inconsistent state where estimates don't match actual storage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87225d35-c615-4098-8040-72cf8741e30e?mode=deep",
+    "timestamp": "2026-02-19 03:34:52.740635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_loan_value()] [Vector Logic] Lines 129-133: loans vector modified locally but not persisted - can this cause dynamic calculations to show different loan assets than actual storage, breaking health factor accuracy? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_619c6815-9970-4daf-9e94-8bac8b9d3fa0?mode=deep",
+    "timestamp": "2026-02-19 03:35:14.790182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_liquidation_threshold()] [Vector Logic] Lines 237-240: adds asset to c vector without storage update - does this mean liquidation threshold calculations use wrong asset list compared to actual user collateral? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_45fabb1c-d2bf-4031-a46c-73cd2572f4ff?mode=deep",
+    "timestamp": "2026-02-19 03:35:36.904096",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_collateral_value()] [Vector Bounds] Line 97: vector::borrow(&c, i) - if c was modified by push_back but len was already captured at line 84, could this cause out-of-bounds access if concurrent modifications occur? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_caccafcc-4f86-4477-b8a1-94e993226b8e?mode=deep",
+    "timestamp": "2026-02-19 03:36:00.499453",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_health_factor()] [Rounding Error] Lines 67-68: ray_div then ray_mul operations - can accumulated rounding errors in multi-step calculations cause health factor to be slightly inflated, allowing borderline positions to avoid liquidation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee51f7a4-9129-495f-95e9-c85840485e06?mode=deep",
+    "timestamp": "2026-02-19 03:36:24.570425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_collateral_balance()] [Rounding Error] Line 199: ray_mul(supply_balance, current_supply_index) - if supply_balance is very small and index is large, does rounding to zero cause collateral to disappear? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d7fd85e-bb91-4301-a48b-fee263748e2c?mode=deep",
+    "timestamp": "2026-02-19 03:36:48.018468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_loan_balance()] [Rounding Error] Line 219: ray_mul(borrow_balance, current_borrow_index) - can rounding down cause small debts to round to zero, allowing attacker to borrow small amounts for free repeatedly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9240ca41-bd6e-4e15-9310-ff773cceacfd?mode=deep",
+    "timestamp": "2026-02-19 03:37:11.695284",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_liquidation_threshold()] [Rounding Error] Line 256: ray_mul(user_collateral_value, threshold) accumulated in loop - can rounding errors compound across many assets to significantly alter weighted average liquidation threshold? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e272a334-2522-4b34-b469-c3aa21eb0949?mode=deep",
+    "timestamp": "2026-02-19 03:37:35.801512",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_liquidation_threshold()] [Rounding Error] Line 261: ray_div(collateral_health_value, collateral_value) - if numerator and denominator are close but rounding causes small differences, can threshold be manipulated to be slightly higher/lower than intended? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3d8fd41-31e3-4ed1-94d4-4c916a9c5474?mode=deep",
+    "timestamp": "2026-02-19 03:37:58.231467",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_caculate_utilization()] [Rounding Error] Lines 400-401: ray_mul for both supply and borrow with indexes - if rounding causes scale_supply to be slightly larger than scale_borrow when they should be equal, does utilization become 0 incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28f6a2ba-233e-45fa-a136-fa64f9a0f573?mode=deep",
+    "timestamp": "2026-02-19 03:38:20.241546",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_caculate_utilization()] [Rounding Error] Line 406: ray_div for utilization - can rounding in this final division cause utilization to be 0 when there are small borrows, leading to incorrect base interest rates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da2fd142-7e42-49d5-b61e-597270af9314?mode=deep",
+    "timestamp": "2026-02-19 03:38:41.990410",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_calculate_supply_rate()] [Rounding Error] Lines 368-371: Three ray operations (ray_mul twice, ray subtraction) - can accumulated rounding cause supply rate to be higher than borrow rate after reserve factor, violating economic model? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1262bbb4-d381-4dc5-8f94-a2487456708d?mode=deep",
+    "timestamp": "2026-02-19 03:39:04.064479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: calculate_current_index()] [Rounding Error] Lines 278 & 285: ray_mul operations for new indexes - can rounding cause indexes to grow slower than expected, reducing protocol interest revenue over time? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08492ea1-519b-47ec-902b-5b66d9d674ff?mode=deep",
+    "timestamp": "2026-02-19 03:39:26.927286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_calculate_borrow_rate()] [Rounding Error] Lines 350 & 352: Multiple ray_mul operations - can rounding in rate calculation cause actual charged rate to differ from expected rate, especially for small utilization values? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ea22a74-013a-40f3-8664-91f23d190384?mode=deep",
+    "timestamp": "2026-02-19 03:39:49.185437",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_health_factor()] [Assertion Bypass] Line 24: assert!(!(estimate_supply_value > 0 && estimate_borrow_value > 0)) - but allows both to be zero - what happens when calculating health factor with zero estimates for both supply and borrow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8af0b899-8e5f-44f8-b518-c59747f79fcb?mode=deep",
+    "timestamp": "2026-02-19 03:40:13.290080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_calculate_apy()] [Assertion Bypass] Line 299: same assertion as line 24 - can attacker call with both values=0 to bypass normal APY calculation logic and potentially trigger undefined behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f12572a4-aef3-47dd-af4a-8ac8638ed8e3?mode=deep",
+    "timestamp": "2026-02-19 03:40:37.481938",
+    "report_generated": false
+  }
+]
