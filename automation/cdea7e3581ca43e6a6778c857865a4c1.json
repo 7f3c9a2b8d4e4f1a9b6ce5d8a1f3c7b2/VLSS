@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: version_verification()] [Authorization Bypass] Can an attacker bypass version checks by manipulating the Config.version field through a race condition between version_migrate() calls, allowing operations on outdated protocol logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_92bc9ddb-44f2-4f14-88b9-1e75adb07e60?mode=deep",
+    "timestamp": "2026-02-19 06:06:01.977084",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: version_migrate()] [Access Control] Can version_migrate() be called multiple times by the same StorageAdminCap holder to reset state or cause unexpected behavior through version number manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c8598245-ad1b-4f70-b755-41ea5debaefc?mode=deep",
+    "timestamp": "2026-02-19 06:06:15.179633",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: version_migrate()] [State Consistency] If version_migrate() is called while flash loans are active (receipts outstanding), could this lead to receipts becoming invalid or users losing funds when repaying against a migrated config? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a2b2bbcc-0d1f-4a6f-a0df-ccd45fa0cb18?mode=deep",
+    "timestamp": "2026-02-19 06:06:28.652770",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: version_verification()] [DoS] Can an attacker front-run legitimate transactions by migrating the version, causing all pending transactions with old version assumptions to fail and revert? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7afebf4-ed51-44e9-bd5f-5d88ed05af17?mode=deep",
+    "timestamp": "2026-02-19 06:06:43.263113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: create_config()] [Shared Object] Since Config is shared via transfer::share_object(), can multiple configs be created leading to ambiguity about which config controls flash loan operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5b182d1-2e82-4570-867a-8d3186d1b05d?mode=deep",
+    "timestamp": "2026-02-19 06:06:58.701098",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: create_asset()] [Duplicate Check] The duplicate check only verifies support_assets table, but if an attacker creates an asset, deletes the support_assets entry, and recreates it with different parameters, could they bypass min/max/rate validations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7cc10cdb-5bc5-4443-b40a-77e1170ad877?mode=deep",
+    "timestamp": "2026-02-19 06:07:15.060895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: create_asset()] [Table Consistency] After adding to config.assets but before adding to support_assets, if the transaction fails, could this leave an orphaned AssetConfig that's in assets but not in support_assets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_70307bd4-ebbe-4c11-bc77-bb5f7da52c5b?mode=deep",
+    "timestamp": "2026-02-19 06:07:32.572055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: create_asset()] [Rate Validation] The verify_config() checks rate_to_supplier + rate_to_treasury < FlashLoanMultiple(), but can an attacker set both rates to just below the limit (e.g., 9999 each if multiple is 10000) to extract excessive fees approaching 200%? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b80990f-4aa3-466c-98bf-25cf8a836d81?mode=deep",
+    "timestamp": "2026-02-19 06:07:52.828666",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: create_asset()] [Min/Max Validation] Can an admin accidentally or maliciously set min = 0 and max = u64::MAX, allowing flash loans of any size including zero-amount loans that could break fee calculation logic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3879c07-2c40-4c99-ab89-bfc294bced37?mode=deep",
+    "timestamp": "2026-02-19 06:08:14.881071",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: create_asset()] [Pool ID Collision] If two different asset types point to the same pool_id, could an attacker take a flash loan of AssetA but repay with AssetB, exploiting type confusion? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c72477e9-90e4-46a5-acbb-6d6300f04249?mode=deep",
+    "timestamp": "2026-02-19 06:08:37.995335",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Fee Calculation] When calculating to_supplier = _loan_amount * rate_to_supplier / FlashLoanMultiple(), if _loan_amount is very large, could this overflow u64 before division, causing a panic or incorrect fee? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_047331ef-9258-4da0-bfb4-1251cc809ac1?mode=deep",
+    "timestamp": "2026-02-19 06:08:59.892925",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Fee Calculation] When calculating to_treasury = _loan_amount * rate_to_treasury / FlashLoanMultiple(), if both values are near u64::MAX, could multiplication overflow before division occurs? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0a7f69e0-c6ef-428d-8082-0608c4915755?mode=deep",
+    "timestamp": "2026-02-19 06:09:22.305429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Rounding Errors] If _loan_amount * rate_to_supplier is not perfectly divisible by FlashLoanMultiple(), the division rounds down - can an attacker take many small loans to accumulate significant rounding dust that avoids fees? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_deda3e3e-f1cb-4b5b-86f7-7507f41c2671?mode=deep",
+    "timestamp": "2026-02-19 06:09:44.630104",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Min Amount Bypass] If cfg.min is set to 0, can an attacker take a 0-amount flash loan that generates a receipt but no actual balance, potentially exploiting downstream logic that assumes non-zero amounts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5bf5b4b8-4adb-454d-a1a2-f303c8d0220a?mode=deep",
+    "timestamp": "2026-02-19 06:10:04.024911",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Max Amount Enforcement] If pool balance is less than cfg.max but an attacker requests cfg.max, will pool::withdraw_balance() panic or return insufficient funds, and could this be used for DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_225673ef-89c3-46b0-ac54-bf31e3c732bf?mode=deep",
+    "timestamp": "2026-02-19 06:10:24.194809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Pool ID Mismatch] The function checks cfg.pool_id == pool_id, but if an admin updates the AssetConfig.pool_id after assets are created, could existing pools become inaccessible while new pools are exploitable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c71bb866-2bf3-4438-bc08-1923ff625ff9?mode=deep",
+    "timestamp": "2026-02-19 06:10:44.698442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Type Name Spoofing] The function uses type_name::get<CoinType>() for lookup - can an attacker create a malicious CoinType with the same string representation as a legitimate coin to bypass checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_64148309-ab94-4627-8e1b-a2fdf655c9de?mode=deep",
+    "timestamp": "2026-02-19 06:11:06.975336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Receipt Forgery] The Receipt struct doesn't have any cryptographic binding to the transaction - could an attacker serialize, copy, and reuse a receipt across multiple transactions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd943afd-483f-4515-b126-7375ca985aa5?mode=deep",
+    "timestamp": "2026-02-19 06:11:29.888564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [User Address Manipulation] The Receipt stores _user address, but this is just a parameter - can an attacker specify a different user address to bypass repayment checks or steal from others? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3a3f66e5-e067-4755-916c-2bf635619a56?mode=deep",
+    "timestamp": "2026-02-19 06:11:53.793999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Multiple Loans] Can an attacker call loan() multiple times in the same transaction to obtain multiple receipts and balances, then selectively repay only some to exploit accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1230d242-4959-4258-8270-de04834fe4bc?mode=deep",
+    "timestamp": "2026-02-19 06:12:17.506463",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Pool Withdraw Failure] If pool::withdraw_balance() fails or returns less than _loan_amount due to insufficient liquidity, is there proper error handling or could this leave the system in an inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5becd98-03b5-46c5-a941-91a260706905?mode=deep",
+    "timestamp": "2026-02-19 06:12:42.423167",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [User Validation] The function checks user == _user, but if an attacker can somehow obtain another user's receipt, could they repay on behalf of that user and claim rewards or manipulate accounting? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e6e3255-9bfe-4392-89ea-4a848d705fd9?mode=deep",
+    "timestamp": "2026-02-19 06:13:05.700261",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Pool ID Validation] The function validates pool == pool address, but if pool ownership transfers or pool is deleted between loan() and repay(), could this cause funds to be locked or misdirected? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3a2d1cb-e92b-4d4e-a6da-309989bb209b?mode=deep",
+    "timestamp": "2026-02-19 06:13:28.651602",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Amount Validation] The assertion repay_amount >= amount + fee_to_supplier + fee_to_treasury uses >=, allowing overpayment - can excess funds be permanently locked in the pool or exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_11ec3c31-a1f1-4c09-90bf-d8ef066b75b3?mode=deep",
+    "timestamp": "2026-02-19 06:13:50.533198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Balance Split] When splitting _repay_balance, if amount + fee_to_supplier + fee_to_treasury overflows u64, could this cause a panic or incorrect split? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ad26e9c-a7a2-4cef-b70a-20cfa0e47425?mode=deep",
+    "timestamp": "2026-02-19 06:14:14.370419",
+    "report_generated": false
+  }
+]
