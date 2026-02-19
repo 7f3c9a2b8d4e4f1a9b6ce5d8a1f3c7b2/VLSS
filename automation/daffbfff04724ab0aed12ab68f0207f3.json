@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Integration] [Amplitude Thresholds] The amplitude calculation is likely compared against thresholds to detect price manipulation. Can an attacker craft prices that produce amplitudes just below thresholds, allowing gradual price manipulation to accumulate? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6c266974-c603-46fa-a822-c80825f2c851?mode=deep",
+    "timestamp": "2026-02-19 07:30:57.916621",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Integration] [Decimal Standardization] Different tokens may have different native decimals. If the system doesn't standardize properly before calling these functions, can mismatched decimals cause systematic valuation errors across the vault? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8dfe690-7ba2-4991-8db4-c12ca4b9225a?mode=deep",
+    "timestamp": "2026-02-19 07:31:10.377518",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Integration] [Staleness Checks] If amplitude is used for staleness detection, can an attacker exploit the U64MAX return value to either always trigger staleness flags (DoS) or never trigger them (accepting stale prices)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_675e35db-619f-4213-bf52-c22599ac3aa1?mode=deep",
+    "timestamp": "2026-02-19 07:31:23.547279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Math Logic] [Multiplication Order] In calculate_amplitude(), the order is ab_diff * constants::multiple() / a. Can changing the order to ab_diff / a * constants::multiple() reduce overflow risk but introduce precision loss that's exploitable? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18c669a4-afe1-432f-b9ed-7151940a63ff?mode=deep",
+    "timestamp": "2026-02-19 07:31:37.105385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Math Logic] [Division Rounding] All divisions in this file truncate (round down). Can an attacker systematically exploit truncation direction to accumulate favorable rounding over many operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c7f042ea-f3da-4a14-98b7-ccc49a511396?mode=deep",
+    "timestamp": "2026-02-19 07:31:51.290919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Math Logic] [Iterative Multiplication] In decimal conversion, repeatedly multiplying by 10 can accumulate floating-point-like errors even in integer math due to the base-10 nature. Can this be exploited over many conversions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac0209d4-2cc9-4c2e-bee5-d280a96999c3?mode=deep",
+    "timestamp": "2026-02-19 07:32:06.882814",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Math Logic] [Percentage Calculation] The amplitude is essentially a percentage calculation. Can the formula (diff * multiple / base) be exploited when diff and base have specific relationships (e.g., diff slightly larger than base)? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83a397d2-928e-4a39-a608-958d89a05d87?mode=deep",
+    "timestamp": "2026-02-19 07:32:23.934378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Concurrency] [State Mutation] These functions are pure utility functions with no state. However, can concurrent calls with different parameters create race conditions in dependent modules that cache results? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50d82e74-561b-4f88-94c1-b711d48ba34d?mode=deep",
+    "timestamp": "2026-02-19 07:32:41.839585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Concurrency] [Oracle Updates] If multiple threads/transactions call these functions simultaneously during an oracle price update, can inconsistent intermediate values be read by dependent vault operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_33126648-d14f-4435-81f4-96d1587bb963?mode=deep",
+    "timestamp": "2026-02-19 07:33:00.177214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Access Control] [Public Functions] All functions are public. Should some be restricted to oracle-only or vault-only access to prevent external manipulation attempts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_609430d7-769e-40da-bd22-114ca016ce23?mode=deep",
+    "timestamp": "2026-02-19 07:33:20.154728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Access Control] [Missing Entry Functions] None of these functions are entry functions, meaning they can't be called directly via transactions. However, can they be called through other public entry functions in ways that bypass intended validation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f42823cc-44fa-46e9-88c0-daa86ad18f0e?mode=deep",
+    "timestamp": "2026-02-19 07:33:41.193418",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Documentation] [Stack Overflow Comment] Line 10 mentions 'zero check to prevent stack overflow', but the actual check is for the loop condition. Is this comment accurate, or does it indicate a misunderstanding of the code's purpose that could lead to vulnerabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5cd1cdc2-2959-43eb-816d-e129e2e7ef08?mode=deep",
+    "timestamp": "2026-02-19 07:34:02.857525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Documentation] [Production Env Comment] Line 8 states 'production env: max target_decimal = 16', but the function accepts u64 allowing up to 255 (or u8 in the other variant). Can this documentation mismatch lead to incorrect assumptions and vulnerabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_04d7f687-f775-422b-bf3e-32eb3df09913?mode=deep",
+    "timestamp": "2026-02-19 07:34:24.571099",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Documentation] [Safe vs Unsafe] The 'safe' variant and regular variant have minimal differences in safety checks. Can developers be misled into using one over the other inappropriately? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa7364dd-b61d-4718-b1e5-ea8c906cd406?mode=deep",
+    "timestamp": "2026-02-19 07:34:46.743432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Testing] [Overflow Test Cases] Have all overflow scenarios been tested, particularly the edge case where value * 10 overflows in the first iteration of to_target_decimal_value()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e2a004e-beb5-4fcd-a535-214a2c779b0f?mode=deep",
+    "timestamp": "2026-02-19 07:35:10.194719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Testing] [Precision Loss Tests] Have systematic precision loss scenarios been tested where many conversions are chained together? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8760052f-c69a-467e-a70c-0b842bf05635?mode=deep",
+    "timestamp": "2026-02-19 07:35:34.306063",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Testing] [Amplitude Edge Cases] Has calculate_amplitude() been tested with values that exactly match the overflow thresholds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1f223172-040b-4f9a-a2c8-dbd9e764764f?mode=deep",
+    "timestamp": "2026-02-19 07:35:58.031162",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Testing] [Negative Testing] Have malicious parameter combinations been tested to ensure all error paths work correctly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2fea1f45-4cee-49fa-a899-4be4dc3991b9?mode=deep",
+    "timestamp": "2026-02-19 07:36:22.990407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Exploit Scenario] [Price Inflation Attack] Can an attacker manipulate oracle feeds to use to_target_decimal_value() with parameters that cause overflow, wrapping to small values, then use those corrupted prices to borrow maximum assets from the vault at deflated valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b4f17c1c-7cbf-45f8-8674-f534e9da3e12?mode=deep",
+    "timestamp": "2026-02-19 07:36:49.511006",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Exploit Scenario] [Amplitude Manipulation] Can an attacker gradually shift prices to keep amplitude just below detection thresholds, then execute a large exploit when the accumulated price deviation is significant but undetected? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e9e2afd7-2990-43cf-b633-6e59f75ac1a9?mode=deep",
+    "timestamp": "2026-02-19 07:37:15.400904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Exploit Scenario] [Gas Griefing] Can an attacker submit many transactions with maximum decimal differences (e.g., 0 to 255) to exhaust gas and cause DoS during critical vault operations like liquidations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db9002bf-7876-4c2c-894f-c7d62025c10e?mode=deep",
+    "timestamp": "2026-02-19 07:37:40.975556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Exploit Scenario] [Precision Drain] Can an attacker repeatedly trigger decimal conversions that systematically lose precision in a direction favorable to them, slowly draining vault value over time? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f69ef815-2b6a-4c2a-bd0f-bc8216a5b044?mode=deep",
+    "timestamp": "2026-02-19 07:38:04.577039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Exploit Scenario] [Zero Price Injection] Can an attacker exploit the value=0 short-circuit in to_target_decimal_value_safe() to inject zero prices into the oracle system, causing vault operations to accept worthless collateral? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_883a1f8f-95d3-4dff-978b-857d9c1489f6?mode=deep",
+    "timestamp": "2026-02-19 07:38:28.155408",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Performance] [Loop Efficiency] The while loops in decimal conversion iterate once per decimal difference. For large differences (e.g., 100), this is inefficient. Can this be exploited for gas attacks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b7ce492a-3ec6-4d0f-99bb-154e8fd729fd?mode=deep",
+    "timestamp": "2026-02-19 07:38:49.924436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_utils.move] [Performance] [Redundant Checks] The calculate_amplitude() function has multiple overflow checks. Can these be optimized without reducing security, or do the multiple checks create timing attack vectors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_04f46a6d-ec7a-409e-8469-e6e5ff03fce6?mode=deep",
+    "timestamp": "2026-02-19 07:39:12.090861",
+    "report_generated": false
+  }
+]
