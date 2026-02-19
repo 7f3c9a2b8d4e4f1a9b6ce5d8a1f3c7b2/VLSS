@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Attestation Message Size] With fixed 32-byte fields and one 64-byte field, is the total 192+ byte message size enforced, or can shorter messages pass validation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe280eb4-1b5b-437a-bcdc-f7b7728392c2?mode=deep",
+    "timestamp": "2026-02-19 03:04:05.125375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Field Alignment] Are all fields in generate_attestation_msg() properly aligned at 32-byte boundaries? Can misalignment cause parsing errors or enable injection attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c81d4f50-246e-466c-8656-165358f6479c?mode=deep",
+    "timestamp": "2026-02-19 03:04:17.872709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Slothash Validation] Is slothash validated to represent a legitimate Solana slot hash, or can arbitrary 32-byte values be used to forge cross-chain oracle updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bba4e4d0-a2b8-4d10-82d8-f3776cd5633e?mode=deep",
+    "timestamp": "2026-02-19 03:04:32.016950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Slothash Replay] Can old slothash values be replayed in new update messages to make stale data appear fresh, bypassing temporal validity checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_91657f7b-c58a-473b-80b1-0337671ae006?mode=deep",
+    "timestamp": "2026-02-19 03:04:45.941772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Attestation Slothash] Does attestation slothash serve the same purpose as update slothash? Can inconsistencies between them allow attestation-update mismatches? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2ab0487-5090-42f6-9cec-36fb339bedd0?mode=deep",
+    "timestamp": "2026-02-19 03:05:00.309189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: test_update_msg_ecrecover()] [Zero Slothash] The test uses all-zero slothash - is this valid in production, or can it bypass slot validation to enable cross-chain replay attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a8917a35-d253-4342-8970-a7373b279b79?mode=deep",
+    "timestamp": "2026-02-19 03:05:15.978791",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Struct: Hasher] [Copy Ability Exploit] Since Hasher has 'copy' ability, can an attacker clone a partially-filled Hasher to create multiple messages with shared prefixes but different suffixes, enabling batch forgery? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_891a5eb3-4b37-486c-a13a-1f745bcacb51?mode=deep",
+    "timestamp": "2026-02-19 03:05:32.259196",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Struct: Hasher] [Drop Ability] With 'drop' ability, are there scenarios where dropping a Hasher with sensitive data in its buffer leaks information or leaves memory unsanitized? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b415b54f-3b1d-44a3-bd77-e36e63813a57?mode=deep",
+    "timestamp": "2026-02-19 03:05:49.744314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Struct: Hasher] [Buffer Visibility] Is the buffer field private enough? Can other modules access or modify the buffer directly, bypassing hash integrity? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cca8cd20-08b7-4b43-ae79-6a848b476a2d?mode=deep",
+    "timestamp": "2026-02-19 03:06:08.774492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Struct: Hasher] [Struct Packing] Can the Hasher struct be packed/unpacked in ways that expose or modify its buffer field outside of the intended API? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc45fe10-fa2f-46d9-98fe-064c5241afd0?mode=deep",
+    "timestamp": "2026-02-19 03:06:29.592081",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Vault Price Feed Integration] When vault reads oracle prices, can hash verification pass while the Decimal value differs from what's stored, enabling price feed manipulation in vault asset valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2accaa84-f99e-423d-90f2-7d7ec31cd968?mode=deep",
+    "timestamp": "2026-02-19 03:06:50.057217",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Max Variance Vault Tolerance] If vault has its own loss_tolerance and oracle has max_variance, can these conflict such that hashes validate while vault constraints are violated? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8225b8fe-12bf-4dff-93b4-336e9df6e257?mode=deep",
+    "timestamp": "2026-02-19 03:07:11.149231",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Min Responses vs Vault Oracle Count] If vault expects N oracles but min_responses in hash is < N, can partial consensus validate while vault assumes full consensus? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ed8dba9e-9384-4493-82f2-2cc2cd2649ac?mode=deep",
+    "timestamp": "2026-02-19 03:07:32.638992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Health Limiter Oracle Trust] When health limiter uses oracle prices for Navi health factor checks, can forged attestations bypass TEE verification to manipulate health calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e10af254-0327-4400-81e2-707ad6275ec8?mode=deep",
+    "timestamp": "2026-02-19 03:07:54.457916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: finalize()] [Hash Output Length] Does SHA2-256 always produce exactly 32 bytes? Can implementations vary, causing hash length mismatches in signature verification? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_36be6bf9-2840-45d9-973f-5298b55bd9bd?mode=deep",
+    "timestamp": "2026-02-19 03:08:14.889840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: finalize()] [Hash Collision Resistance] Is SHA2-256 collision-resistant enough for financial oracles with billions in TVL? Could quantum computers break hash collision resistance? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83d2d0ff-c777-4260-b54e-8ae037520cfa?mode=deep",
+    "timestamp": "2026-02-19 03:08:35.104009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: finalize()] [Hash Performance] Can extremely large buffers cause finalize() to consume excessive gas, enabling DoS attacks on oracle update transactions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f7afbad1-0eea-4ca0-bf27-e7b2e30aed37?mode=deep",
+    "timestamp": "2026-02-19 03:08:55.099331",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: finalize()] [Deterministic Hashing] Is hash::sha2_256() deterministic across all Sui Move VM implementations? Can non-determinism cause consensus failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f2c1cf0e-2714-474f-959e-82d6a6381430?mode=deep",
+    "timestamp": "2026-02-19 03:09:15.945326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_bytes()] [Type Safety] Can push_bytes() accept vectors of types other than u8 through type coercion, causing type confusion in hash input construction? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56b91508-7b48-4c20-9444-6feb7f4165a2?mode=deep",
+    "timestamp": "2026-02-19 03:09:37.629730",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_decimal()] [Decimal Type Trust] Does push_decimal() trust that the Decimal type is well-formed, or can malformed Decimals from untrusted sources corrupt hash inputs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c383a486-2b86-4769-9307-e1dbaa080e3e?mode=deep",
+    "timestamp": "2026-02-19 03:10:00.594617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Module: switchboard::hash] [Module Boundary] Can other modules in the switchboard package access internal hash functions or bypass length validations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fddc10b7-e0bd-4b3d-af63-b73adb3d297a?mode=deep",
+    "timestamp": "2026-02-19 03:10:26.361557",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Module: switchboard::hash] [Public Function Exposure] Are all push functions and message generators intentionally public? Could restricting access prevent misuse? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac401256-08e0-40b0-99f7-d421ab14d847?mode=deep",
+    "timestamp": "2026-02-19 03:10:49.464350",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Assertion Abort] When length assertions fail (EWrongQueueLength, EWrongFeedHashLength, EWrongSlothashLength), does the transaction abort cleanly without leaking partial state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ca41028-7ed0-45c9-9e1c-9739f7c30c74?mode=deep",
+    "timestamp": "2026-02-19 03:11:11.712236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Multi-Assertion Failure] If multiple length assertions fail simultaneously, which error is reported? Can error precedence leak information about input validation order? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3f670c8f-4045-4f9f-b940-b656cfb3865e?mode=deep",
+    "timestamp": "2026-02-19 03:11:35.357853",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Partial Message Construction] If an assertion fails after some push operations, is the partial Hasher state cleaned up, or can it be observed? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e65ed92-256a-4d19-8d9c-488847c36c4e?mode=deep",
+    "timestamp": "2026-02-19 03:11:58.402538",
+    "report_generated": false
+  }
+]
