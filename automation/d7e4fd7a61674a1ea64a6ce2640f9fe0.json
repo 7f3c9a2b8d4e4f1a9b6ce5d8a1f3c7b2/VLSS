@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: ceil()] [Rounding Advantage] ceil() always rounds up, giving users favorable rounding. If vault withdrawal calculations use ceil() for user-received amounts, users systematically receive more than entitled. Over many operations, could this drain vault reserves? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e8f05d1-bbf3-4749-9e0d-93e97a9aa4ef?mode=deep",
+    "timestamp": "2026-02-19 07:20:12.284308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: eq()] [Floating Point Comparison] eq() performs exact equality check on u256 values. Due to precision loss in mul/div operations, values that should be equal may differ slightly. Could vault checks like 'expected_shares == actual_shares' fail incorrectly due to precision differences? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22a89078-d7bf-41b3-9101-7bc9902f513c?mode=deep",
+    "timestamp": "2026-02-19 07:20:24.838394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: ge()/gt()/le()/lt()] [No Tolerance Checks] Comparison functions perform exact comparisons without epsilon tolerance. In vault slippage checks or price comparison logic, could tiny precision differences cause legitimate operations to fail or allow marginally invalid operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c8ce0478-7db3-41ab-ba34-8f5162106ac3?mode=deep",
+    "timestamp": "2026-02-19 07:20:38.066403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: min()/max()] [Copy Semantics] min() and max() return copies of Decimal. In vault value update flows, if min/max are used to bound values, the original value is unchanged. Could failure to assign the result back allow values to exceed bounds? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_07e90f00-35b8-44dd-b6c4-e0b282b38483?mode=deep",
+    "timestamp": "2026-02-19 07:20:52.134371",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: from() + mul()] [Share Price Calculation Overflow] If vault share price is calculated as from(total_assets) * price_per_share, and total_assets is large, from() creates a huge Decimal. Subsequent mul() could overflow. Could this DoS deposit operations when vault grows large? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f38821e8-051c-428c-adf2-eec0d71c2f5c?mode=deep",
+    "timestamp": "2026-02-19 07:21:07.323097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div() + floor()] [Share Calculation Precision Loss] If shares = floor(div(deposit_amount, share_price)), the combination of div() precision loss and floor() truncation compounds error. Could attackers deposit amounts that maximize rounding loss, systematically receiving fewer shares than entitled? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2400de1a-4f43-44ca-8014-7db7f0fd9a6a?mode=deep",
+    "timestamp": "2026-02-19 07:21:23.555672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: mul() + ceil()] [Withdrawal Amount Inflation] If withdrawal_amount = ceil(mul(shares, share_price)), using ceil() rounds up. Combined with mul() precision behavior, could users repeatedly withdraw slightly more than deposited, draining vault? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_94b1e68a-bced-4d51-becb-5e252447c9ee?mode=deep",
+    "timestamp": "2026-02-19 07:21:41.207116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: from_bps() + mul()] [Fee Calculation Underflow] If protocol fee is from_bps(fee_bps) * amount and fee_bps is small (e.g., 10 bps), from_bps precision loss occurs. Then mul() loses more precision. Could accumulated precision loss cause fee collection to be significantly less than intended? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a89b006-9179-4e34-9223-6989d74aae5d?mode=deep",
+    "timestamp": "2026-02-19 07:21:59.899691",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: sub() + floor()] [Share Burn Calculation Error] If shares_to_burn = floor(sub(total_shares, remaining_shares)) and sub() underflows due to incorrect ordering, the result wraps huge. floor() then tries to cast huge u256 to u64, causing abort. Could this DoS share burn operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ef16b36-9f92-4bad-b3bc-ec8f77d37586?mode=deep",
+    "timestamp": "2026-02-19 07:22:20.243465",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: from()] [Oracle Price Scale Mismatch] If Switchboard oracle returns prices in 1e9 decimals but from() assumes input is in native units before scaling by WAD (1e18), there's a 1e9 scale mismatch. Could this cause asset valuations to be off by 1 billion, breaking loss_tolerance or enabling massive under-priced withdrawals? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fcfd6442-67a0-44e2-a5ce-6788a949ab73?mode=deep",
+    "timestamp": "2026-02-19 07:22:41.773492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: from_scaled_val()] [Raw Oracle Price Injection] from_scaled_val() accepts raw u256 values without validation. If vault code mistakenly passes oracle prices with wrong decimal places directly, the Decimal will have incorrect magnitude. Could this allow manipulation of total_usd_value calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dc81ace7-560a-45d1-8118-e357d8ecf6ee?mode=deep",
+    "timestamp": "2026-02-19 07:23:03.678861",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: mul() + div()] [Oracle Price Conversion Precision Loss] When converting asset amounts using oracle prices: converted = mul(amount, oracle_price), then div(result, target_price). Two operations lose precision. Could accumulated error in multi-asset vault valuations cause incorrect total_usd_value, bypassing loss_tolerance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9b4385f-f94f-42ed-933d-7b5deffd7d44?mode=deep",
+    "timestamp": "2026-02-19 07:23:26.672639",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div()] [Zero Oracle Price DoS] If oracle returns price = 0 (due to staleness or error) and vault calculations do div(amount, price), the operation aborts. Could an attacker manipulate oracle staleness or exploit edge cases to force zero prices, DoSing all vault operations requiring valuation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_45eea7c5-4455-4997-a177-0947d42dee39?mode=deep",
+    "timestamp": "2026-02-19 07:23:49.993399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: from() + gt()] [Oracle Price Bound Checks] If vault validates oracle prices via gt(from(max_price), oracle_price), but from() overflows with large max_price, the bound check uses wrapped value. Could this allow acceptance of invalid oracle prices exceeding intended bounds? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_65deab9a-8ef8-4fb6-9a77-f3b0dc33e546?mode=deep",
+    "timestamp": "2026-02-19 07:24:11.781905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div() + mul()] [LST Ratio Manipulation] If LST exchange ratio = div(total_sui, total_lst_supply) and user mints LST via mul(sui_amount, ratio), precision loss in div() creates favorable rounding. Could first depositor exploit precision by depositing 1 SUI, inflating ratio via rounding, then others get fewer LST? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e3d08ab-7180-4a5a-b1ed-53c796a83a26?mode=deep",
+    "timestamp": "2026-02-19 07:24:34.637542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: from() + add()] [Boosted Balance Overflow] If LST boosted_balance = add(from(base_amount), from(rewards)), and both amounts are near u64::MAX, from() creates huge Decimals. add() could overflow. Could this DoS epoch rollover when rewards are distributed to large stakers? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a650a42c-099e-436b-86e1-47b6a76af8cc?mode=deep",
+    "timestamp": "2026-02-19 07:24:58.052779",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: mul() + sub()] [Reward Fee Calculation Error] If protocol_fee = sub(mul(total_rewards, fee_rate), user_rewards), and fee_rate is from_bps(), precision loss occurs. If sub() underflows because mul() result is too small, abort occurs. Could certain reward amounts DoS fee collection? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee72dc97-3330-4df3-b684-e07a1bd25a56?mode=deep",
+    "timestamp": "2026-02-19 07:25:22.086033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: floor() + from()] [Min Stake Amount Bypass] If min_stake check uses ge(deposit, from(min_amount)) but deposit is computed via floor() of a Decimal, rounding down could allow deposits just below minimum. Could attackers bypass min_stake by depositing amounts that round down? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_76f755c8-15b4-48e9-9e08-7f596fc9155d?mode=deep",
+    "timestamp": "2026-02-19 07:25:45.936394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div() + saturating_floor()] [Unstake Amount Capping] If max_unstake = saturating_floor(div(total_staked, max_ratio)), saturation at U64_MAX silently caps. For very large stake pools, could this allow unstaking more than intended ratio limits, violating validator pool balance constraints? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0fbec2f7-365f-41ba-91c2-54abe2c8a72f?mode=deep",
+    "timestamp": "2026-02-19 07:26:10.316881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: from_percent() + add()] [Validator Weight Sum Overflow] If validator weights sum via add(from_percent(w1), from_percent(w2), ...) and total exceeds 100%, the sum could exceed from(1). Could validators be assigned weights totaling > 100%, causing over-delegation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ae6544ef-8ef7-4338-900f-3ef59169f82a?mode=deep",
+    "timestamp": "2026-02-19 07:26:33.866504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: mul() + floor()] [Delegation Amount Rounding] If delegation = floor(mul(total_stake, validator_weight)), floor() truncates. Over many validators, accumulated truncation could leave stake undelegated. Could undelegated stake accumulate over epochs, breaking validator pool balance invariant? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1af8d27d-2b51-4853-9d85-99daa44f4ffa?mode=deep",
+    "timestamp": "2026-02-19 07:26:57.327378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div() + ceil()] [Validator Minimum Delegation] If min_delegation = ceil(div(total_stake, num_validators)), using ceil() ensures minimum. But if total_stake is small and num_validators is large, ceil() might round up to more than available. Could this cause delegation to fail when total stake is low? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_512a6a1b-b9d2-46e2-85aa-1fdea2b758e0?mode=deep",
+    "timestamp": "2026-02-19 07:27:21.071353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: sub() + gt()] [Validator Rebalance Threshold] If rebalance_needed = gt(sub(current_weight, target_weight), threshold), and sub() underflows (current < target), it wraps huge, always triggering rebalance. Could incorrect weight ordering cause constant rebalancing, wasting gas? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2eee929c-803b-453c-82dc-5fb407f9334e?mode=deep",
+    "timestamp": "2026-02-19 07:27:44.814280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: sub() + le()] [Loss Tolerance Bypass via Underflow] If loss_check = le(sub(value_before, value_after), loss_tolerance) and sub() underflows because value_after > value_before (gain), the wrap makes loss appear huge, failing check. But if check is inverted or error handling missing, could gains bypass loss tolerance logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab25362e-aa43-4c6d-a21f-d8e4005b9828?mode=deep",
+    "timestamp": "2026-02-19 07:28:08.421357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div() + lt()] [Loss Percentage Calculation Error] If loss_pct = div(loss_amount, total_value) and total_value is near zero, div() might overflow or return huge value. Then lt(loss_pct, max_loss_pct) incorrectly fails. Could operations near zero vault value bypass or incorrectly trigger loss tolerance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd9ab68f-e4b3-4460-9e18-d8e573875e52?mode=deep",
+    "timestamp": "2026-02-19 07:28:33.221563",
+    "report_generated": false
+  }
+]
