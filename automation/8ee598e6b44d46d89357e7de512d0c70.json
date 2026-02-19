@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Authority Proof-of-Work] If authority should require proof-of-work or proof-of-stake for deletion (to prevent spam), does has_authority() enforce these requirements, or is simple address matching at line 19 insufficient? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_59dda76a-66a7-4e69-ae10-843f4cce9364?mode=deep",
+    "timestamp": "2026-02-19 02:57:36.323947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Delegate Call Vulnerability] Can an attacker use delegate call patterns to invoke run() with a different ctx.sender() than the actual transaction signer, bypassing has_authority() checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc758bd6-c698-4cd1-bd83-262e7834e4ed?mode=deep",
+    "timestamp": "2026-02-19 02:57:48.986509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Authority Chain Break] If authority verification depends on a chain of objects (queue -> aggregator -> authority), can an attacker break this chain by deleting intermediate objects to make has_authority() fail incorrectly or pass incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e9f3d591-a6f3-420e-84f6-d476f786350f?mode=deep",
+    "timestamp": "2026-02-19 02:58:02.314890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Gas Griefing] Can an attacker repeatedly call run() with invalid aggregators (wrong version) to consume gas and emit misleading error events, griefing the system and masking legitimate deletion attempts? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b6ff00f7-2885-406c-a0a2-729e68c2f7ba?mode=deep",
+    "timestamp": "2026-02-19 02:58:16.726159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Authority Metadata Mismatch] If aggregator stores authority metadata (name, description) separately from address, can mismatched metadata cause has_authority() to validate incorrectly, allowing wrong entities to delete? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_35d7f902-462a-41f2-b02e-57aa287da805?mode=deep",
+    "timestamp": "2026-02-19 02:58:31.291432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Version Check Bypass] Can an attacker upgrade aggregator version from 1 to 2 externally, then call run() which only accepts EXPECTED_AGGREGATOR_VERSION=1 at line 18, causing validate() to fail but leaving the aggregator in an inconsistent partially-deleted state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8598eb9a-f9ea-4242-9d01-70beaba135cb?mode=deep",
+    "timestamp": "2026-02-19 02:58:47.331571",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Constant: EXPECTED_AGGREGATOR_VERSION] [Version Hardcoding] Is EXPECTED_AGGREGATOR_VERSION=1 at line 6 hardcoded without upgrade path, meaning when aggregators upgrade to version 2, all deletion operations break, leaving undeletable zombie aggregators consuming storage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_57576db3-6913-46b5-b63e-d8b5a88c5098?mode=deep",
+    "timestamp": "2026-02-19 02:59:04.137932",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Version Downgrade Attack] If aggregator.version() can be downgraded from 2 to 1 through some exploit, can an attacker force old version validation at line 18 to pass for newer aggregators that should use different deletion logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8034c654-ac44-4538-bc44-020435914e22?mode=deep",
+    "timestamp": "2026-02-19 02:59:22.216764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Version Migration DoS] During a version migration from v1 to v2, can the transition period create a DoS window where neither old nor new deletion actions work, leaving aggregators undeletable and price feeds stuck? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_626aa1a5-b878-49e9-9be9-82ff176498ab?mode=deep",
+    "timestamp": "2026-02-19 02:59:40.578509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Version Comparison Weakness] Does the version check at line 18 use strict equality (==) when it should use >= or <=, causing legitimate version 1 aggregators to fail if version field is 0 or has overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f8051eb-45bd-4e6b-ad65-1d9f9db78b5a?mode=deep",
+    "timestamp": "2026-02-19 02:59:59.486793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Constant: EXPECTED_AGGREGATOR_VERSION] [Version Type Overflow] Is EXPECTED_AGGREGATOR_VERSION stored as u8 at line 6, limiting versions to 0-255, but what happens at version 256 overflow—can attackers exploit wrapping to version 0 or 1 to bypass future version checks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4ce9ad8-4784-45e2-9336-20d8ac098692?mode=deep",
+    "timestamp": "2026-02-19 03:00:19.288120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Version Mismatch Invariant] If validate() at line 18 rejects version 2+ aggregators, but Volo Vault still references them in OracleConfig, can this create dangling references where vault queries prices from undeletable v2 aggregators? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_836a99a1-350e-4d7c-9edb-09dae3d27ca0?mode=deep",
+    "timestamp": "2026-02-19 03:00:39.070415",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Version Rollback Vulnerability] Can an attacker exploit version rollback vulnerabilities in the Aggregator module to reset version from 2 back to 1, making previously undeletable aggregators deletable through this action? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eab0c446-7ebd-4f9e-9262-2cad8bc00591?mode=deep",
+    "timestamp": "2026-02-19 03:01:00.001320",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Error: EInvalidAggregatorVersion] [Error Handling] Does EInvalidAggregatorVersion at line 11 provide enough context for debugging, or can error message ambiguity (not showing expected vs actual version) hide version-related attacks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e073367-c498-459f-bba7-1b417f2dbd66?mode=deep",
+    "timestamp": "2026-02-19 03:01:19.244389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Version Check Order] Should version check at line 18 execute before authority check at line 19 for fail-fast optimization, but current order allows attackers to probe version validity even without authority? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9f65526d-8a75-4fd4-b5cc-2ad32221140c?mode=deep",
+    "timestamp": "2026-02-19 03:01:37.167292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Version Feature Flag] If version 2 aggregators introduce feature flags (pause, freeze), does validate() check these flags, or can v1-only deletion bypass v2 safety mechanisms? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ae0b6b69-349d-4be4-b653-8eb3ec6b7f0f?mode=deep",
+    "timestamp": "2026-02-19 03:01:58.263359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Constant: EXPECTED_AGGREGATOR_VERSION] [Version Governance] Is EXPECTED_AGGREGATOR_VERSION=1 upgradeable through governance, or is it immutable, meaning governance cannot adapt deletion logic as Switchboard protocol evolves? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e133c0d7-cd48-4f86-98a4-2b480ee4543d?mode=deep",
+    "timestamp": "2026-02-19 03:02:17.387063",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Version Array Access] If aggregator.version() internally accesses array indices based on version number, can version 1 cause out-of-bounds access if the array was initialized for version 0 only? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1c253434-28e8-4e7d-a3c3-c53ede514aed?mode=deep",
+    "timestamp": "2026-02-19 03:02:36.847916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Cross-Version Compatibility] Can v1 deletion action at lines 30-36 safely delete aggregators that were upgraded from v0 to v1, or do legacy fields cause actuate() to fail or leak resources? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08fa974c-69d2-4db5-9725-75c4129bac46?mode=deep",
+    "timestamp": "2026-02-19 03:02:54.657919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Version Spoof Attack] Can an attacker create a fake Aggregator object with version=1 that passes validate() but isn't registered in the official Switchboard system, allowing unauthorized deletion events? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c1a3509-163f-485a-bb03-4b70c23ebf82?mode=deep",
+    "timestamp": "2026-02-19 03:03:16.725164",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Version-Dependent Delete] Does aggregator.delete() at line 26 handle version-specific cleanup correctly, or can deleting v1 aggregators leave v1-specific state orphaned while v2 cleanup code isn't called? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_021e009f-0e91-4d18-abc1-d18e54b819bc?mode=deep",
+    "timestamp": "2026-02-19 03:03:37.621030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Constant: EXPECTED_AGGREGATOR_VERSION] [Version Config Desync] If EXPECTED_AGGREGATOR_VERSION in this module differs from VERSION constant in aggregator.move (both set to 1), can future desynchronization cause deletion to accept wrong versions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_23350407-22f3-4bf8-a03b-4460f4561911?mode=deep",
+    "timestamp": "2026-02-19 03:03:58.332845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Version Temporal Attack] Can an attacker exploit version check timing: submit run() transaction during version upgrade window where some nodes see version 1 and others see version 2, causing non-deterministic validation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c541544-4048-4401-82bb-df66e6bacd9d?mode=deep",
+    "timestamp": "2026-02-19 03:04:19.362082",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Version Deprecation] If version 1 is deprecated but EXPECTED_AGGREGATOR_VERSION is not updated, can this create a security hole where deprecated aggregators with known vulnerabilities remain deletable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe77d1ff-2fa7-4955-97fe-8459b06b7c04?mode=deep",
+    "timestamp": "2026-02-19 03:04:39.561811",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Error: EInvalidAggregatorVersion] [Version Error Squelching] Can validate() at line 18 fail silently in some edge cases (e.g., version overflow), not throwing EInvalidAggregatorVersion, allowing wrong-version deletions to proceed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e69a861-1f19-44c0-b589-f7eda777bb1c?mode=deep",
+    "timestamp": "2026-02-19 03:04:59.571358",
+    "report_generated": false
+  }
+]
