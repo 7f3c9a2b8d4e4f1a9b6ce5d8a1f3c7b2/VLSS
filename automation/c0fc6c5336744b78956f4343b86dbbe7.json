@@ -1,0 +1,122 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: All Functions] [u64 to u256 Cast Precision] When casting u64 amounts to u256, are there edge cases where precision assumptions break? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ba1cdc4c-7ff7-4d44-b089-a7cda3c64386?mode=deep",
+    "timestamp": "2026-02-19 05:26:32.619500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Concurrent Updates] Can multiple concurrent calls to update_momentum_position_value for different assets race and corrupt vault state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_803fc3bf-140d-4d78-be40-77657e0036e5?mode=deep",
+    "timestamp": "2026-02-19 05:26:45.349639",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Update Ordering] Does the order of updating different Momentum positions matter for total vault valuation, and can attackers exploit update ordering? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ca7330a-2e2c-4c49-8c5f-531e1e879b00?mode=deep",
+    "timestamp": "2026-02-19 05:26:59.569129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Oracle Price Staleness Window] How long can oracle prices be stale before they're rejected, and can attackers exploit this window for advantageous value updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_65efeedf-f306-4a6e-8519-8cfb44e95e22?mode=deep",
+    "timestamp": "2026-02-19 05:27:13.639984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: All Functions] [Block Timestamp Dependencies] Are there timing assumptions in the code that break with irregular block times or timestamp manipulation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec5a2b5c-2551-47da-bf4e-8798bd1d1525?mode=deep",
+    "timestamp": "2026-02-19 05:27:28.488385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Double Counting] Can the same position be registered under multiple asset_type keys, allowing double-counting in vault total value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ef63672-ea53-4be9-9d85-1cdab2eb2229?mode=deep",
+    "timestamp": "2026-02-19 05:27:45.160904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Value Unit Consistency] Are value_a + value_b in consistent units (USD with specific decimals), and does vault expect this format? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_447327b5-c74a-48f2-b9c5-4330f35260fc?mode=deep",
+    "timestamp": "2026-02-19 05:28:01.888988",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Negative Value Possibility] Can any calculation path result in underflow causing large positive values to appear as",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2fd0ebbf-5936-4a66-af30-79ba8899ece1?mode=deep",
+    "timestamp": "2026-02-19 05:28:20.874080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Stale Value Persistence] If an update fails after calculating usd_value but before storing it, does old stale value persist, and can this be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd81cad5-d493-4062-8d16-d714366f5c43?mode=deep",
+    "timestamp": "2026-02-19 05:28:41.127345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Pool State Consistency] Does MomentumPool guarantee that sqrt_price and tick data are consistent, or can they be in inconsistent states during updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b081a6ec-bf0f-4d64-ad26-0c05fed3d847?mode=deep",
+    "timestamp": "2026-02-19 05:29:02.512997",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Pool Pause] If the Momentum pool is paused/frozen, does this function still return valid amounts or should it revert? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_13c8737a-cd6d-4865-8837-f8c38cc039cd?mode=deep",
+    "timestamp": "2026-02-19 05:29:24.918942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: All Functions] [Pool Upgrade] If MomentumPool is upgraded with new sqrt_price calculation, will this adaptor remain compatible? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68bd9244-69a0-452f-bbc3-7b06b7c7e99a?mode=deep",
+    "timestamp": "2026-02-19 05:29:49.127119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Pool Flash Crash] Can a flash crash in the pool (temporary extreme price) pass slippage checks if oracle hasn't updated, allowing value manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_322c24b1-2019-4891-ac55-fae4702695ac?mode=deep",
+    "timestamp": "2026-02-19 05:30:17.640094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Position Modification] If the position is modified (add/remove liquidity) during value calculation, can this cause inconsistent amount readings? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_988044fc-900e-4c28-86fe-b69f4bdbe18f?mode=deep",
+    "timestamp": "2026-02-19 05:30:43.611929",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Position Deletion] If a position is deleted from vault's defi_assets between get and finish_update, does this cause errors or corrupt state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d1a1a6c-2807-4cf7-b443-d0faa63644cc?mode=deep",
+    "timestamp": "2026-02-19 05:31:11.107962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: All Functions] [Position Borrowing] If the position is borrowed for operations while value is being updated, can this cause race conditions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aad6fe9e-36b6-4206-a68b-000bc0fbbb03?mode=deep",
+    "timestamp": "2026-02-19 05:31:38.722058",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: sqrt_price_x64_to_price()] [Equal Decimals] When decimals_a == decimals_b, the function returns price_u256_with_decimals directly - is this correct or should there still be adjustments? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_40fcf10a-03fa-42b4-a604-b5af807db342?mode=deep",
+    "timestamp": "2026-02-19 05:32:06.526223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: sqrt_price_x64_to_price()] [Large Decimal Difference] For abs(decimals_a - decimals_b) = 18, does pow(10, 18) = 1e18 overflow when multiplied with price? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3a7da47c-a25f-4da3-934a-355c46d6da20?mode=deep",
+    "timestamp": "2026-02-19 05:32:33.482949",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Decimal Mismatch Between Assets] If CoinA has 6 decimals and CoinB has 18 decimals, does the price conversion correctly handle this 12-decimal difference? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_055ca590-02f3-4c52-864c-5a4d232c6017?mode=deep",
+    "timestamp": "2026-02-19 05:32:57.602008",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Oracle Decimal Assumptions] If normalized_price has different decimals than expected 18, will mul_with_oracle_price still work correctly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b4660893-f695-4556-9c86-04b58a6aa81a?mode=deep",
+    "timestamp": "2026-02-19 05:33:22.616082",
+    "report_generated": false
+  }
+]
