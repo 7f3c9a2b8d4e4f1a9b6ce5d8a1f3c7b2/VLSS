@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: update_receipt_value()] [Authorization Bypass] Can an attacker call update_receipt_value with arbitrary vault and receipt_vault references to manipulate asset valuations without operator/admin privileges, since the function is public and has no capability checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e4234f45-f5a7-40ba-869a-11d26706656f?mode=deep",
+    "timestamp": "2026-02-19 09:06:07.378035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: update_receipt_value()] [Authorization Bypass] Can a malicious operator freeze specific receipts by controlling receipt_vault status checks via assert_normal() at line 29, while the main vault remains in normal status, causing valuation DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a2432e4-1a54-4161-aaf6-3822535338c8?mode=deep",
+    "timestamp": "2026-02-19 09:06:19.959906",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Authorization Bypass] Since get_receipt_value is public, can external contracts call it with manipulated vault states to obtain incorrect valuations and exploit dependent systems? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2c8482de-29bc-4434-87c3-1646fcfa487d?mode=deep",
+    "timestamp": "2026-02-19 09:06:33.101855",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: update_receipt_value()] [Access Control] Can an attacker repeatedly call update_receipt_value during vault operations (status=1) to manipulate op_value_update_record and bypass operation value tracking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1412dc86-9e1d-43db-aebf-69c91867e9c7?mode=deep",
+    "timestamp": "2026-02-19 09:06:46.866319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: update_receipt_value()] [Receipt Mismatch] The commented-out self-vault check at lines 23-28 suggests no enforcement preventing vault from holding its own receipts - can this create circular value dependencies causing infinite valuation or DoS? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78bd0450-3f4d-439c-be23-30a15281fbf8?mode=deep",
+    "timestamp": "2026-02-19 09:07:01.229204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Receipt Validation] If assert_vault_receipt_matched at line 47 only checks vault_id equality, can an attacker create receipts with matching vault_ids but invalid receipt_ids to bypass validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_edf510fd-2e65-42cf-b8c5-359a8eae1d21?mode=deep",
+    "timestamp": "2026-02-19 09:07:17.072886",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: update_receipt_value()] [Type Confusion] Can an attacker exploit the get_defi_asset call at line 31 by registering a fake Receipt object under the same asset_type String to extract or manipulate vault assets? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d506949e-318e-4383-a3ef-88d3114b6d05?mode=deep",
+    "timestamp": "2026-02-19 09:07:33.640179",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: update_receipt_value()] [Receipt Mismatch] If the receipt retrieved at line 31 belongs to a different vault than receipt_vault, will the assert_vault_receipt_matched check at line 47 fail, and can this be exploited for valuation manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6358d39e-aa3c-4652-ab3d-e00ba31956ca?mode=deep",
+    "timestamp": "2026-02-19 09:07:52.158590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Status Bypass] Can an attacker manipulate VaultReceiptInfo status to PENDING_WITHDRAW_WITH_AUTO_TRANSFER_STATUS (value 3) at line 55 to artificially deflate receipt value by subtracting pending_withdraw_shares, enabling underpriced asset acquisitions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_944b29ce-2888-406d-9c33-03f4d5c0b533?mode=deep",
+    "timestamp": "2026-02-19 09:08:11.714159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Accounting Error] If status is set to 3 and pending_withdraw_shares exceeds total shares at line 56, will the subtraction underflow causing valuation to wrap to maximum u256? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0a8cd35a-8205-49fd-9eab-a0fcfde75a31?mode=deep",
+    "timestamp": "2026-02-19 09:08:33.104345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Status Manipulation] Can an attacker front-run update_receipt_value by changing receipt status to 3 immediately before valuation, then revert it after, to temporarily suppress value and exploit price-dependent operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a0e5ad91-06bc-4dd6-a2b7-2fdabff10ee7?mode=deep",
+    "timestamp": "2026-02-19 09:08:54.509579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Logic Error] The comment at line 40 states 'avoid operator attack' - but if operator controls status transitions, can they still manipulate status to 3 during valuation to hide share value for their benefit? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cb1cdac5-ae8b-409c-9a73-c587b875d5b5?mode=deep",
+    "timestamp": "2026-02-19 09:09:17.549225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Race Condition] Between lines 52 and 56, if another transaction changes pending_withdraw_shares, can the shares calculation become inconsistent with actual vault state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_92b13d22-e111-4576-8d6d-c11e524241f5?mode=deep",
+    "timestamp": "2026-02-19 09:09:40.774897",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Status Bypass] Can an attacker set status to any value other than 0-3 to bypass the status==3 check at line 55, causing shares to not be reduced when they should be? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a856491f-96be-48d4-80ca-328ee332c51c?mode=deep",
+    "timestamp": "2026-02-19 09:10:06.064337",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Accounting Manipulation] Can an attacker inflate shares() at line 52 before valuation to increase vault_share_value at line 65, then deflate shares after to extract excess value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d71107f9-13cf-4dab-a60b-e0e0e70f2e38?mode=deep",
+    "timestamp": "2026-02-19 09:10:32.292398",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Share Inflation] If get_share_ratio at line 49 returns manipulated values during operations, can the vault_share_value calculation at line 65 be exploited for share price manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d4db0a87-5e70-4e19-970b-850c2e288fb5?mode=deep",
+    "timestamp": "2026-02-19 09:10:57.733483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Precision Loss] Does mul_d at line 65 properly handle share_ratio decimal precision (1e9), and can rounding errors accumulate across multiple receipts to drain vault value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d30c9d32-efe0-476c-99ca-900342ebceaf?mode=deep",
+    "timestamp": "2026-02-19 09:11:24.098658",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Zero Shares Attack] If shares at line 52 is zero but pending_deposit_balance and claimable_principal are non-zero (lines 67, 71), can an attacker create receipts with no shares but claim pending/claimable value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ffa7203a-a7d0-4921-8e2f-b100cfa8eb6c?mode=deep",
+    "timestamp": "2026-02-19 09:11:50.810389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Share Subtraction] When status is 3 and shares is reduced by pending_withdraw_shares at line 56, if this results in zero or near-zero shares, does it incorrectly suppress the entire receipt value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ab743ad-f443-4a6f-980c-b27aba65248b?mode=deep",
+    "timestamp": "2026-02-19 09:12:17.964564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Value Components] The three value components at lines 65, 66-69, 70-73 are summed at line 75 - can an attacker manipulate each component independently to cause overflow at summation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46ca8d37-5bfc-4566-82c5-7f6ece42ac3b?mode=deep",
+    "timestamp": "2026-02-19 09:12:45.208933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Oracle Manipulation] Can an attacker manipulate the OracleConfig passed at line 19 to cause get_normalized_asset_price at lines 59-63 to return inflated/deflated principal_price? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dc95d03d-4a0f-4f19-9cf6-a1a9ed207f4c?mode=deep",
+    "timestamp": "2026-02-19 09:13:11.622482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Stale Price] Does get_normalized_asset_price at lines 59-63 validate price freshness using clock, or can stale oracle prices be used to over/undervalue receipts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78b12aab-1af2-44bf-a5c1-6bd83931e9cb?mode=deep",
+    "timestamp": "2026-02-19 09:13:37.211496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Price Decimals] The oracle price used in mul_with_oracle_price at lines 66-69 and 70-73 expects 1e18 decimals - can incorrect decimal conversions cause 1e9 precision errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_73961353-78f9-4f86-8ef2-20e88258d62a?mode=deep",
+    "timestamp": "2026-02-19 09:14:01.445066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: get_receipt_value()] [Type Name Attack] Can an attacker register fake type names via type_name::get<T>().into_string() at line 62 to retrieve manipulated prices from the oracle config? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0e01eac-15be-41cf-bbae-f9d3a63a063c?mode=deep",
+    "timestamp": "2026-02-19 09:14:26.336323",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/receipt_adaptor.move] [Function: update_receipt_value()] [Oracle Bypass] Can update_receipt_value be called with an arbitrary OracleConfig that doesn't match the vault's actual config, causing incorrect valuations to be stored? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9843745-3dc3-46d8-a057-fb003a5dbf10?mode=deep",
+    "timestamp": "2026-02-19 09:14:48.598494",
+    "report_generated": false
+  }
+]
