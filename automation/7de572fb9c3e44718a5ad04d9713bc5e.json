@@ -1,0 +1,38 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Liquidity Attack] Can positions with zero liquidity return non-zero amounts due to rounding in liquidity_math? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bbff13a2-aaa7-42e1-b304-327a066990ab?mode=deep",
+    "timestamp": "2026-02-19 02:11:27.186845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Liquidity Attack] Can extremely high liquidity values cause amount_a or amount_b to overflow u64? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a88dd11-0a24-4996-bddb-8ade2d5340aa?mode=deep",
+    "timestamp": "2026-02-19 02:11:39.746150",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Liquidity Edge Case] Can liquidity be set to MAX_U128 causing calculation errors in get_amounts_for_liquidity? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a0e25829-b5cf-4832-8823-b8dddceef957?mode=deep",
+    "timestamp": "2026-02-19 02:11:53.113067",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Tick Attack] Can malformed tick indices cause tick_math::get_sqrt_price_at_tick to panic or return invalid prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_626cbc50-f3fa-452d-b4b5-5dce99239d72?mode=deep",
+    "timestamp": "2026-02-19 02:12:07.310779",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Tick Range] Can extremely narrow tick ranges (tick_upper - tick_lower = 1) cause precision issues in amount calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_527ba806-e6e4-4e36-bb31-9f4685465020?mode=deep",
+    "timestamp": "2026-02-19 02:12:21.593077",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_token_amounts()] [Tick Range] Can extremely wide tick ranges spanning full price range cause overflow in liquidity_math calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_99390c4f-8576-4884-aca2-df8c7775e1ba?mode=deep",
+    "timestamp": "2026-02-19 02:12:38.120109",
+    "report_generated": false
+  }
+]
