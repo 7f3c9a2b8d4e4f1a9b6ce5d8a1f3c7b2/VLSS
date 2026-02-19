@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Oracle Price Reuse] Can the same oracle prices be reused across multiple position valuations without freshness checks, enabling manipulation during volatile periods? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_91da9f45-13ab-40da-9f82-76e9210c9164?mode=deep",
+    "timestamp": "2026-02-19 04:39:52.809833",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Slippage Logic Inversion] Does the slippage check in line 63-66 correctly handle both pool_price > oracle_price and pool_price < oracle_price scenarios symmetrically? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08358270-a63b-4834-898d-3a04414035ae?mode=deep",
+    "timestamp": "2026-02-19 04:40:05.525509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Zero Position Value] Can a position with zero liquidity (amount_a=0, amount_b=0) cause issues in subsequent vault calculations expecting non-zero values? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a952311d-9de2-4120-97ee-e17af68251cc?mode=deep",
+    "timestamp": "2026-02-19 04:40:19.170632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Integer Overflow] In line 79, can '(sqrt_price_x64 as u256) * DECIMAL' overflow u256 when sqrt_price_x64 is at u128::MAX? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98f4e2b6-b72b-4a9f-ac2d-b94deac21e58?mode=deep",
+    "timestamp": "2026-02-19 04:40:32.869348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Division by Zero] In line 79, pow(2, 64) is constant, but can any edge case cause this division to fail or return unexpected values? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a4c03ff-9770-423d-b7af-7255d84b651e?mode=deep",
+    "timestamp": "2026-02-19 04:40:47.993732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Squaring Overflow] In line 80-81, can 'sqrt_price_u256_with_decimals * sqrt_price_u256_with_decimals' overflow u256 before division by DECIMAL? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d80f1512-1ad6-4bf6-893d-29717fd4a658?mode=deep",
+    "timestamp": "2026-02-19 04:41:04.833251",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Precision Loss] In line 81, does dividing by DECIMAL after squaring cause significant precision loss affecting slippage checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e4c964d4-8513-41cc-b2f5-7e875f3ecd29?mode=deep",
+    "timestamp": "2026-02-19 04:41:21.328057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Decimal Adjustment] In line 84, can 'price_u256_with_decimals * pow(10, decimals_a - decimals_b)' overflow u256 when decimal differences are large? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ee97c00-0f25-4a4b-9571-91d18dffcc57?mode=deep",
+    "timestamp": "2026-02-19 04:41:39.705446",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Decimal Adjustment] In line 86, can 'price_u256_with_decimals / pow(10, decimals_b - decimals_a)' lose critical precision when decimal differences are large? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0374ecd2-a5d6-495b-a335-5fbc7311505e?mode=deep",
+    "timestamp": "2026-02-19 04:41:58.291645",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Equal Decimals] When decimals_a == decimals_b, does the function correctly return price_u256_with_decimals without adjustment? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee2c4b8c-c497-4234-874b-8f8f322f4141?mode=deep",
+    "timestamp": "2026-02-19 04:42:17.926639",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Invalid Decimals] Can decimals_a or decimals_b be > 38 (u256 max ~1e77), causing pow(10, diff) to overflow or become unrepresentable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ed12543-78ac-482e-9b84-9aac163f0d36?mode=deep",
+    "timestamp": "2026-02-19 04:42:38.802686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Zero sqrt_price] When sqrt_price_x64 is zero, does this correctly return zero price or cause division by zero in subsequent calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9828378-eaee-459f-a9c7-06a2897ea2af?mode=deep",
+    "timestamp": "2026-02-19 04:43:00.002786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Precision Constant] Is DECIMAL = 1e18 appropriate for all token decimal combinations, or can mismatches cause incorrect price conversions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0dc54a5e-430a-4a59-a596-5ea8293d301d?mode=deep",
+    "timestamp": "2026-02-19 04:43:20.583404",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Integration] Can an attacker create a Cetus position with extreme tick ranges that cause amount calculations to overflow in calculate_cetus_position_value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_120e12cb-b656-44b4-8056-f090e94d6bac?mode=deep",
+    "timestamp": "2026-02-19 04:43:41.492673",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Integration] Can position NFT ownership be transferred mid-calculation, causing get_position_amounts to return different values than expected? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_54c213de-837e-4fe9-a4ca-563e6dcd9467?mode=deep",
+    "timestamp": "2026-02-19 04:44:03.970693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Integration] If vault.get_defi_asset() returns a stale position reference, can outdated liquidity values be used for valuation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b2bb129-41a6-416f-80fe-b87951f3a877?mode=deep",
+    "timestamp": "2026-02-19 04:44:27.418471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Integration] Can the OracleConfig be updated between oracle price fetches in calculate_cetus_position_value, causing inconsistent price data? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb089704-70cc-4df0-83e9-22b0b7052874?mode=deep",
+    "timestamp": "2026-02-19 04:44:51.447681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Integration] Can vault.finish_update_asset_value() be called with an incorrect usd_value if calculate_cetus_position_value reverts silently in some edge case? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b3b54ab-8cbe-404b-86d4-ad3fc3f6cc72?mode=deep",
+    "timestamp": "2026-02-19 04:45:16.361370",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Integration] Is there protection against calling update_cetus_position_value for the same asset_type multiple times in quick succession to manipulate vault state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2287483f-2d92-46db-80f0-7797e7e8d9c4?mode=deep",
+    "timestamp": "2026-02-19 04:45:39.779426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Constant] Can DECIMAL = 1e18 cause overflow when multiplied with large prices or amounts in any calculation path? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_991aad01-cd62-468c-8670-0229466c21c6?mode=deep",
+    "timestamp": "2026-02-19 04:46:03.400226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Constant] Can SLIPPAGE_BASE = 10000 be insufficient precision for very tight slippage tolerances required by the protocol? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dc3bf980-c311-4ebe-b8c9-28014e5ed4c9?mode=deep",
+    "timestamp": "2026-02-19 04:46:27.893824",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Error Code] Does ERR_INVALID_POOL_PRICE = 6001 conflict with other error codes in the vault system, potentially masking the real error source? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4d90c14f-1279-43d8-ab00-e7c8186511bd?mode=deep",
+    "timestamp": "2026-02-19 04:46:52.808431",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Module Imports] Can cetusclmm::pool or cetusclmm::position modules be compromised or upgraded mid-transaction affecting security assumptions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4c4b8474-2478-4bb2-97d8-b7cf6ba87adf?mode=deep",
+    "timestamp": "2026-02-19 04:47:19.153697",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Flash Loan Attack] Can an attacker use flash loans to manipulate pool sqrt_price right before update_cetus_position_value is called, then arbitrage the price difference after slippage check passes? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e162ecfd-7e89-4f07-9f18-682b12cd3306?mode=deep",
+    "timestamp": "2026-02-19 04:47:45.738385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Sandwich Attack] Can an attacker sandwich update_cetus_position_value calls with pool swaps to manipulate prices within slippage tolerance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_045e2e42-b673-4b53-ad40-9024cf776a4a?mode=deep",
+    "timestamp": "2026-02-19 04:48:13.401436",
+    "report_generated": false
+  }
+]
