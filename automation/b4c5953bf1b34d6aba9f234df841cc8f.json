@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [No Atomicity Guarantee] Three separate operations: validate(), actuate(), queue::new(). If system crashes between steps, can this leave partial state? Does Move's transaction semantics guarantee full rollback? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8c42ed1f-11b7-43d7-b8a9-54cd87481e11?mode=deep",
+    "timestamp": "2026-02-19 04:54:01.654814",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Guardian Queue Reference Check-Time-Of-Use] Takes &Queue reference but doesn't hold lock. Can another transaction modify guardian_queue between version() check and id() extraction causing race condition? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a35b8ca8-5c51-449c-b1b0-7fd7fd86e797?mode=deep",
+    "timestamp": "2026-02-19 04:54:14.577952",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [queue_key as Identifier] If queue_key is used as cryptographic identifier or hash input, lack of validation means attacker can choose colliding keys to exploit hash-based lookups in downstream code. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2dd42c8e-46eb-4516-8373-0da5054e5118?mode=deep",
+    "timestamp": "2026-02-19 04:54:28.743168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Guardian Queue ID Integrity] guardian_queue_id from guardian_queue.id() is passed to queue::new() and emitted. If Queue.id() method is compromised to return attacker-controlled ID, can this link queues to wrong guardians? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7690b84f-0af2-4e2b-a475-d9cdd52971f9?mode=deep",
+    "timestamp": "2026-02-19 04:54:42.828066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Queue ID Predictability] If queue::new() generates deterministic IDs based on inputs, can attacker pre-compute queue IDs to front-run or create collision attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e21411b-a58c-4fad-8153-48e2f746bbec?mode=deep",
+    "timestamp": "2026-02-19 04:54:57.889387",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Authority Address Validity] authority parameter is address type but not validated. Can attacker use uninitialized or invalid address causing issues when queue module tries to grant permissions to non-existent account? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bf02744a-bf1e-41fd-9a51-62bb2e294e8a?mode=deep",
+    "timestamp": "2026-02-19 04:55:14.709345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: validate()] [Consensus Threshold Bypass] Only validates min_attestations > 0. If Volo Vault expects minimum safety threshold (e.g., >=3), can attacker create queue with min_attestations=1 providing single-source oracle data vulnerable to manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b03f6baf-e700-401e-9969-8e0345eb62cf?mode=deep",
+    "timestamp": "2026-02-19 04:55:32.578778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: validate()] [Validity Window Too Short] No minimum oracle_validity_length_ms enforced. Can setting 1ms force vault operations to always fail due to expired prices, DoSing deposits/withdrawals/operations in Volo Vault? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d526a5a6-29c4-4198-bef4-feea68829adb?mode=deep",
+    "timestamp": "2026-02-19 04:55:50.302223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: validate()] [Validity Window Too Long] No maximum oracle_validity_length_ms enforced. Can setting u64::MAX allow months-old price data to be considered fresh, enabling attacker to wait for favorable old prices then execute vault operations at stale rates? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_37dc9f63-9322-482f-b5e8-21b37301bced?mode=deep",
+    "timestamp": "2026-02-19 04:56:11.484138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Oracle Authority Control] authority parameter determines who controls oracle. Can attacker set this to their address then manipulate oracle responses after Volo Vault trusts the queue, causing price manipulation attacks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9f70377-251d-4adf-97c3-434ac30e772a?mode=deep",
+    "timestamp": "2026-02-19 04:56:32.361169",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Fee Manipulation to Control Selection] If Volo Vault selects cheapest oracle, can attacker create low-fee malicious queue, get selected, then manipulate prices? Is there quality/reputation weighting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_49eefead-75ae-4610-acce-262faff22b3d?mode=deep",
+    "timestamp": "2026-02-19 04:56:52.941300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: validate()] [Guardian Queue Compromise] If guardian_queue reference points to attacker-controlled queue that passes version check, can attacker inherit guardian privileges to all child queues, compromising Volo Vault oracle integrity? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ecb001fe-17a6-414c-9f84-dbb1d888d3d1?mode=deep",
+    "timestamp": "2026-02-19 04:57:14.955357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Queue Proliferation Attack] No limit on queues per guardian. Can attacker create thousands of queues under same guardian to dilute trust/reputation metrics or overwhelm queue selection logic in Volo Vault? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78fd380c-d9a3-4996-973e-ba63caf2d7a1?mode=deep",
+    "timestamp": "2026-02-19 04:57:37.539915",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Name Squatting] No uniqueness requirement for name parameter. Can attacker create queue with name mimicking official Volo oracle (e.g., 'Volo Official Price Feed') to social engineer users into trusting malicious oracle? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c8fac05e-da15-4873-802f-f36f76727478?mode=deep",
+    "timestamp": "2026-02-19 04:58:00.501641",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Fee Recipient as Attacker] Setting fee_recipient to attacker's address means attacker profits from oracle usage. Can this incentivize creation of many low-quality oracles to farm fees without providing reliable data? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dea6865b-20c4-4c5d-8fd5-823783f2afef?mode=deep",
+    "timestamp": "2026-02-19 04:58:23.825235",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_check_init_action.move] [Function: run()] [Authority Delegation Risk] Creating queue with authority set to another user's address without their consent could enable sophisticated attacks where attacker frames innocent party as running malicious oracle. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86be5a11-01cd-492a-af84-caff4d1b4b40?mode=deep",
+    "timestamp": "2026-02-19 04:58:46.646009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: validate()] [No Economic Stake] Queue creation requires no economic commitment. Can attacker create unlimited throwaway queues to test exploits against Volo Vault without financial risk? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_748e0df8-a2ee-462f-9ead-672513577d1f?mode=deep",
+    "timestamp": "2026-02-19 04:59:10.268100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Queue ID Prediction] If queue IDs are deterministic/sequential, can attacker observe pending queue creation, predict ID, and front-run to register that ID for malicious queue in Volo Vault's configuration? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_598f0c18-c7d3-4656-8291-0455820ad659?mode=deep",
+    "timestamp": "2026-02-19 04:59:33.752057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Parameter Front-Running] Attacker sees pending legitimate queue creation in mempool, copies parameters but changes fee_recipient to themselves, front-runs with higher gas to steal fee revenue. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ce1b959-953b-49c5-a76e-4323c68126c6?mode=deep",
+    "timestamp": "2026-02-19 04:59:59.128973",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Event Ordering Exploits] If indexers process events sequentially, can attacker create multiple queues in same block to manipulate which gets registered first in Volo Vault's oracle list? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4acd4b01-7b8c-43e1-bc09-649c25139aa6?mode=deep",
+    "timestamp": "2026-02-19 05:00:25.665150",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Guardian Queue Sniping] Attacker monitors for new guardian queues, immediately creates child queues to claim 'first mover' advantage or exhaust queue slots if guardian has capacity limits. (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_044df66b-7b15-41e6-90ba-8cbc33b64eed?mode=deep",
+    "timestamp": "2026-02-19 05:00:51.711110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Validation DoS] If guardian_queue.version() call is expensive, can attacker spam run() calls to DoS guardian queue via excessive version() queries? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e191b73a-5fa5-4ed4-bff7-42cc89a73965?mode=deep",
+    "timestamp": "2026-02-19 05:01:15.361122",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: validate()] [Assert Abuse] Three asserts can fail causing transaction revert. Can attacker intentionally trigger failures to waste validator resources or create blockchain bloat with failed transactions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb673acb-38f2-4ffa-a056-5fab9563462d?mode=deep",
+    "timestamp": "2026-02-19 05:01:39.299395",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [queue::new() DoS] If queue module has state that can be filled/exhausted, can repeated queue::new() calls DoS the queue system preventing legitimate queue creation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_04b776c2-f74c-4fe6-b1b7-7a684de016f2?mode=deep",
+    "timestamp": "2026-02-19 05:02:03.628161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Event Spam] Each queue creation emits event. Can attacker create queues rapidly to spam event logs causing indexer crashes or delays that make Volo Vault unable to detect oracle issues in real-time? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c6debb42-1c97-4024-88d6-fa77f8a4d99c?mode=deep",
+    "timestamp": "2026-02-19 05:02:25.560504",
+    "report_generated": false
+  }
+]
