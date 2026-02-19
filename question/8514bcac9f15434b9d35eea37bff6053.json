@@ -1,3 +1,0 @@
-[
-  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: liquidation_non_entry()] [Friend Non-Entry] Can liquidation_non_entry() at line 377 be exploited by friend modules with custom balance handling? (High)"
-]
