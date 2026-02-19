@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: check_version()] [Authorization Bypass] Can an attacker interact with oracle functions after a version upgrade but before check_version() is called, potentially using deprecated logic paths that bypass security checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c59d0671-2536-44e3-8e04-d422e1e92cfb?mode=deep",
+    "timestamp": "2026-02-19 00:46:11.358366",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: upgrade_oracle_config()] [Version Manipulation] Can an attacker call upgrade_oracle_config() multiple times to manipulate the version field, potentially skipping critical migration logic or downgrading to a vulnerable version? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7fa9a20e-445d-4c60-b7c2-9846e1429076?mode=deep",
+    "timestamp": "2026-02-19 00:46:23.860664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: upgrade_oracle_config()] [Race Condition] If upgrade_oracle_config() is called concurrently with price update operations, can this lead to inconsistent state where some operations use old version logic while others use new version logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2de21e45-1379-4ad1-a1bd-905f3d96358c?mode=deep",
+    "timestamp": "2026-02-19 00:46:37.354321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: check_version()] [DoS Attack] Can an attacker prevent legitimate oracle operations by manipulating the version field to cause check_version() assertions to fail, effectively DoS'ing the entire vault system? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_914362ad-dbd9-43a0-ac6a-40da2ce012dc?mode=deep",
+    "timestamp": "2026-02-19 00:46:50.957180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: upgrade_oracle_config()] [Access Control] The upgrade function only checks version < VERSION but doesn't verify caller identity - can any external caller with package access trigger upgrades at inappropriate times, disrupting active vault operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6bc7fe1c-6698-42cd-92b3-c2bb091e898c?mode=deep",
+    "timestamp": "2026-02-19 00:47:05.403492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: set_update_interval()] [Parameter Manipulation] Can an attacker with package access set update_interval to 0, causing all price staleness checks in get_asset_price() to pass regardless of actual price age, enabling stale price exploitation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68789512-f470-410a-8f48-b88c14c464e9?mode=deep",
+    "timestamp": "2026-02-19 00:47:21.861527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: set_update_interval()] [Economic Attack] Can an operator set update_interval to an extremely large value (e.g., u64::MAX), allowing prices to remain valid indefinitely and enabling price manipulation attacks on the vault? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_37ad095c-5d6d-434e-ad51-6ead91953ef3?mode=deep",
+    "timestamp": "2026-02-19 00:47:38.185226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_asset_price()] [Staleness Check Bypass] With update_interval set to MAX_UPDATE_INTERVAL (60 seconds), can an attacker exploit the 1-minute window to execute operations with outdated prices during high volatility periods? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8593c6d6-7d6b-4a25-a321-f97bbe75822d?mode=deep",
+    "timestamp": "2026-02-19 00:47:56.858369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: set_update_interval()] [Missing Bounds] No maximum or minimum bounds are enforced on update_interval - can this be set to 1 millisecond, causing all price reads to fail and DoS the vault system? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d4c9119e-cd89-443d-8980-5d9467b3d01c?mode=deep",
+    "timestamp": "2026-02-19 00:48:16.131449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_current_price()] [Time Window Attack] The staleness check uses (now - max_timestamp < config.update_interval) but doesn't handle clock manipulation - can an attacker exploit clock.timestamp_ms() to pass stale prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_81d60e54-64df-49fd-ac4c-423ac5a9df7c?mode=deep",
+    "timestamp": "2026-02-19 00:48:36.292050",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: set_dex_slippage()] [Economic Attack] Can an operator set dex_slippage to 0, causing DEX adaptor operations to fail due to zero slippage tolerance, effectively DoS'ing DEX-related vault operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_59d6097c-7aa8-48de-83d9-3d3522a23933?mode=deep",
+    "timestamp": "2026-02-19 00:48:56.919369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: set_dex_slippage()] [Parameter Validation] No upper bound exists for dex_slippage - can setting it to u256::MAX enable 100%+ slippage, allowing attackers to drain vault funds via manipulated DEX trades? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6c403abc-bc7a-4987-b304-48dcb4016a75?mode=deep",
+    "timestamp": "2026-02-19 00:49:19.351451",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: set_dex_slippage()] [Front-Running Attack] Can an attacker front-run vault DEX operations by manipulating dex_slippage just before a swap, causing the vault to accept unfavorable exchange rates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c8950d67-48b5-4d26-90d0-5ce4443c4237?mode=deep",
+    "timestamp": "2026-02-19 00:49:39.387119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: dex_slippage()] [Missing Validation] The getter returns raw dex_slippage without validation - can downstream adaptors misinterpret values like u256::MAX as acceptable slippage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb1f19cd-4d62-43a1-86ed-41c15d8a42b8?mode=deep",
+    "timestamp": "2026-02-19 00:50:00.366955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_asset_price()] [Integer Overflow] The diff() operation on last_updated.diff(now) could overflow if last_updated > now - can clock manipulation cause this check to pass with stale prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3e548f66-2100-4860-9053-1d3ec0fc7daf?mode=deep",
+    "timestamp": "2026-02-19 00:50:22.366383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_asset_price()] [Missing Asset Type Validation] The function doesn't validate asset_type format - can an attacker query prices for non-existent or malformed asset types, causing unexpected behavior in vault logic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dfffe9ea-6a27-4843-aca8-0ac90a1022d7?mode=deep",
+    "timestamp": "2026-02-19 00:50:45.027359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_asset_price()] [Race Condition] Between the staleness check and returning price, can another transaction update the price, leading to TOCTOU where the returned price is not what was validated? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf491bfb-fffd-48f4-a4c3-400965d4bcbc?mode=deep",
+    "timestamp": "2026-02-19 00:51:07.601693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_asset_price()] [DoS via Staleness] If the Switchboard aggregator fails to update within update_interval, all vault operations dependent on this price will fail - can this be weaponized for DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fbe856c2-fde0-4f01-8ab0-493fbee3bd81?mode=deep",
+    "timestamp": "2026-02-19 00:51:28.774329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_asset_price()] [Precision Loss] Prices are stored as u256 but source aggregators may have different precision - can precision loss during conversions lead to price manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7097e06a-29dd-44a6-b2d0-f024d26bf3b3?mode=deep",
+    "timestamp": "2026-02-19 00:51:48.500517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_normalized_asset_price()] [Integer Overflow] When decimals < 9, the multiplication price * pow(10, 9 - decimals) can overflow u256 for high prices - can this cause operations to fail or return incorrect prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_16d8ea6d-eedc-4a3c-acf0-9addfba91670?mode=deep",
+    "timestamp": "2026-02-19 00:52:09.727482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_normalized_asset_price()] [Integer Underflow] When decimals > 9, the division price / pow(10, decimals - 9) can lose precision - can this undervalue assets and enable theft via underpriced withdrawals? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec1febc1-539b-402a-a497-ea60702395eb?mode=deep",
+    "timestamp": "2026-02-19 00:52:30.107447",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_normalized_asset_price()] [Decimal Boundary] What happens when decimals == 9? The function returns price unchanged, but was the original staleness check in get_asset_price() applied? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e4c5f60d-9ba2-44f2-8281-d1193320fda7?mode=deep",
+    "timestamp": "2026-02-19 00:52:50.808001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_normalized_asset_price()] [Rounding Error] Division for decimals > 9 truncates towards zero - can repeated operations amplify rounding errors, enabling gradual asset drain? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a022d72c-5b93-4fca-b5a5-e16c4069f297?mode=deep",
+    "timestamp": "2026-02-19 00:53:13.391354",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_normalized_asset_price()] [Decimal Manipulation] Can an attacker add an aggregator with extreme decimals (0 or 255) to cause overflow/underflow in pow() calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_09170d85-3708-4d7e-90c8-6cb695ea66d7?mode=deep",
+    "timestamp": "2026-02-19 00:53:35.249891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_normalized_asset_price()] [Missing Bounds Check] No validation that decimals is reasonable (e.g., 0-18) - can setting decimals to 255 cause pow(10, 255-9) to overflow and panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_335d6f74-8f3e-4515-8db0-11151dad831c?mode=deep",
+    "timestamp": "2026-02-19 00:53:56.127450",
+    "report_generated": false
+  }
+]
