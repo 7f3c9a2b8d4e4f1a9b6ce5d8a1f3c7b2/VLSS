@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Struct: VaultReceiptInfo] [Invariant: Pending Operation Exclusivity] Can multiple pending operations (deposit and withdraw) coexist, violating the assumption that only one operation type is pending at a time? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a64afe4-01f3-4425-a09e-138dadc32a4b?mode=deep",
+    "timestamp": "2026-02-19 00:51:03.582268",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_execute_deposit()] [Invariant: Balance Decrease] Does update_after_execute_deposit() always decrease pending_deposit_balance by exactly executed_deposit_balance, or can partial execution cause inconsistency? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_629e008e-ab81-4640-bb64-b71201e0128c?mode=deep",
+    "timestamp": "2026-02-19 00:51:16.571599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_execute_withdraw()] [Invariant: Share Decrease] Can update_after_execute_withdraw() decrease shares and pending_withdraw_shares by different amounts, causing share accounting desynchronization? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2d12513-48ee-42ba-a1ca-bf4b2eb9c741?mode=deep",
+    "timestamp": "2026-02-19 00:51:30.395485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_reward()] [Gas Griefing] Can an attacker create many reward types to bloat reward_indices and unclaimed_rewards tables, causing update_reward() to consume excessive gas? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ce854c37-ddf0-42f7-af22-1c0cbf9e35a9?mode=deep",
+    "timestamp": "2026-02-19 00:51:44.701685",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: get_receipt_rewards()] [DoS via Large Vector] If reward_types vector is very large, can iterating through all types and calling get_receipt_reward() for each cause out-of-gas errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_038da2c4-5fe4-426d-ae46-704f849f5fe5?mode=deep",
+    "timestamp": "2026-02-19 00:52:00.189814",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_reward()] [Table Lookup Cost] As reward_indices and unclaimed_rewards tables grow, does the cost of contains() and borrow_mut() operations increase, enabling DoS through table pollution? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bfa8ac58-8a29-4c71-853f-9a6dc7d8e8ed?mode=deep",
+    "timestamp": "2026-02-19 00:52:18.029509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Event: VaultReceiptInfoUpdated] [Event Replay] Can an attacker replay VaultReceiptInfoUpdated events to confuse off-chain indexers about actual reward distributions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ae130c0a-1b02-4b76-b481-d483d82067d4?mode=deep",
+    "timestamp": "2026-02-19 00:52:35.509474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_reward()] [Missing Event Fields] The VaultReceiptInfoUpdated event doesn't include reward_type or receipt identifier—can this cause off-chain systems to misattribute rewards? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8abd732e-3979-4438-a1a7-fc62f839c218?mode=deep",
+    "timestamp": "2026-02-19 00:52:55.067392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_reward()] [Event Emission Condition] VaultReceiptInfoUpdated is only emitted when new_reward_idx > pre_idx—can attackers suppress events by preventing index updates, hiding reward activity? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b45c92b-9dd3-43f5-b49e-065dc12f313a?mode=deep",
+    "timestamp": "2026-02-19 00:53:16.265062",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_request_deposit()] [Zero Amount Check] Can pending_deposit_balance=0 be passed to update_after_request_deposit(), and does this allow manipulating status without actual deposit intent? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d52e851e-ba10-4b65-aa00-ed86da31c881?mode=deep",
+    "timestamp": "2026-02-19 00:53:38.040938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_execute_deposit()] [Zero Share Mint] If new_shares=0 is passed to update_after_execute_deposit(), can a user execute a deposit but receive no shares, causing fund loss? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_54f95764-d141-41b6-aacd-2b3b276f6a90?mode=deep",
+    "timestamp": "2026-02-19 00:54:00.986190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_request_withdraw()] [Zero Share Withdrawal] Can pending_withdraw_shares=0 be passed to update_after_request_withdraw() to manipulate status without requesting actual withdrawal? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90841545-1b40-4da7-8f86-a94a8054b49a?mode=deep",
+    "timestamp": "2026-02-19 00:54:25.619086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_execute_withdraw()] [Zero Claimable Principal] If claimable_principal=0 is passed to update_after_execute_withdraw(), can shares be burned without crediting withdrawable principal, causing fund loss? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5dce9383-8688-4b80-a577-31f52a931120?mode=deep",
+    "timestamp": "2026-02-19 00:54:52.226768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_cancel_deposit()] [Cancel Amount Validation] Does update_after_cancel_deposit() validate that cancelled_deposit_balance <= pending_deposit_balance before subtraction, or can underflow occur? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fedac64-9110-4873-8f33-cd603f91cac1?mode=deep",
+    "timestamp": "2026-02-19 00:55:12.704143",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_cancel_withdraw()] [Cancel Share Validation] Does update_after_cancel_withdraw() validate that cancelled_withdraw_shares <= pending_withdraw_shares before subtraction, or can underflow occur? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ff9f1d1b-3a2e-424c-a986-4b0a49bad9d5?mode=deep",
+    "timestamp": "2026-02-19 00:55:33.605943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_reward()] [Reward Index Validation] Does update_reward() validate that new_reward_idx is reasonable (not excessively large), or can overflow in reward calculation occur? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc5cda49-90c2-448d-ac92-4f597322b999?mode=deep",
+    "timestamp": "2026-02-19 00:55:55.454236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: set_shares()] [Test Function in Production] Is set_shares() guarded by #[test_only], and if accidentally included in production, can it be exploited to arbitrarily manipulate shares? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d6d080fe-0c05-45c0-9d02-7f48a2b39200?mode=deep",
+    "timestamp": "2026-02-19 00:56:15.858024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: set_status()] [Status Bypass] If set_status() is not properly guarded by #[test_only], can an attacker call it to bypass status transition logic and set arbitrary status values? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e01b4f59-62aa-49a3-86e2-fcb274fd798c?mode=deep",
+    "timestamp": "2026-02-19 00:56:36.003809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: set_pending_withdraw_shares()] [Direct Manipulation] Can set_pending_withdraw_shares() be exploited if not properly test-only guarded to bypass withdrawal request validation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9363cc45-ff0a-4489-aed5-1fd3f6170be5?mode=deep",
+    "timestamp": "2026-02-19 00:56:55.854615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: set_claimable_principal()] [Principal Inflation] If set_claimable_principal() is accessible in production, can an attacker inflate their claimable principal without executing valid withdrawals? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_59cd7226-406f-44a0-9790-ba07ac4b5b02?mode=deep",
+    "timestamp": "2026-02-19 00:57:16.662233",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: set_pending_deposit_balance()] [Deposit Manipulation] Can set_pending_deposit_balance() be used to bypass deposit limits if test guards are not properly enforced? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d5cecd3-42b0-4a40-8395-1670696fb089?mode=deep",
+    "timestamp": "2026-02-19 00:57:37.929694",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: add_share()] [Share Minting] Can add_share() be called in production to mint shares without corresponding deposits, inflating total supply? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e626aac-185b-4f01-b9c5-9d46d7b050e5?mode=deep",
+    "timestamp": "2026-02-19 00:57:57.940924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: decrease_share()] [Share Burning] Can decrease_share() be used to burn shares without proper withdrawal, allowing an attacker to manipulate share-to-asset ratios? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a561b563-6e83-4030-b05f-25a69894d3d3?mode=deep",
+    "timestamp": "2026-02-19 00:58:18.706337",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: set_last_deposit_time()] [Timestamp Manipulation] Can set_last_deposit_time() be exploited to bypass locking windows if test-only guards fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_43eabe8f-4e1a-45a5-8253-46e65325dbb6?mode=deep",
+    "timestamp": "2026-02-19 00:58:41.018938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_reward()] [vault_utils Dependency] Can vault_utils::mul_with_oracle_price() be manipulated through oracle price feeds to inflate acc_reward calculation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_89e553ef-36ad-4786-9407-7289b78f78be?mode=deep",
+    "timestamp": "2026-02-19 00:59:02.147031",
+    "report_generated": false
+  }
+]
