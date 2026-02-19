@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Integer Overflow] Can an attacker create multiple tickets with u64::MAX values causing total_supply overflow at line 114, bypassing supply tracking and enabling unlimited ticket minting without corresponding backing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af330bc5-52f0-47bd-94f3-21984308a837?mode=deep",
+    "timestamp": "2026-02-19 09:31:58.021525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: add_to_epoch()] [Integer Overflow] Can an attacker exploit line 104 where *total = *total + value without overflow check, causing epoch tracking to wrap to zero and bypass max_supply_for_2epochs limits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_723dec45-0885-4583-b84d-8b0d38ac9d74?mode=deep",
+    "timestamp": "2026-02-19 09:32:10.613409",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Integer Underflow] Can metadata.total_supply underflow at line 145 if tickets are burned when total_supply < ticket.value, resulting in u64::MAX total supply and breaking all accounting invariants? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9d86e98a-2e0c-4075-b4fb-76170e03f7f4?mode=deep",
+    "timestamp": "2026-02-19 09:32:23.858204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: get_max_supply_for_2epochs()] [Integer Overflow] Can line 90 total = total + *table::borrow(...) overflow if both current and previous epoch values are near u64::MAX, causing incorrect supply cap calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7001968-68ec-4992-858c-6d2e2581349d?mode=deep",
+    "timestamp": "2026-02-19 09:32:37.579299",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Accounting Error] If value parameter is u64::MAX, does line 114 metadata.total_supply + value overflow silently, allowing infinite tickets to be minted? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_43602496-9584-4b6a-97e0-3bdbcac71a37?mode=deep",
+    "timestamp": "2026-02-19 09:32:52.047136",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: add_to_epoch()] [Overflow Attack] Can an attacker call wrap_unstake_ticket repeatedly with large values to overflow the table entry at line 104, resetting epoch tracking to zero and bypassing withdrawal limits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b126c22-ab63-48bd-9d01-c2bd9f979167?mode=deep",
+    "timestamp": "2026-02-19 09:33:07.523056",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Underflow DoS] If total_supply is manipulated to be less than ticket values through prior underflow, can subsequent unwrap calls at line 145 panic and DoS all ticket redemptions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3044546e-0cb4-46e1-aef4-f015f38018e8?mode=deep",
+    "timestamp": "2026-02-19 09:33:24.368626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Supply Tracking] If metadata.total_supply overflows at line 114, does it silently wrap causing total_supply to become smaller than actual outstanding tickets, breaking withdrawal limits? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_44fcae3f-9dc9-4b74-bdda-06f7c93f6750?mode=deep",
+    "timestamp": "2026-02-19 09:33:42.868734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Missing Validation] Why doesn't unwrap_unstake_ticket check is_unlocked before burning? Can attacker burn tickets at line 137-156 before unlock_epoch, stealing funds early and violating time-lock invariant? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_96116511-75eb-4c57-af00-d248c4df5187?mode=deep",
+    "timestamp": "2026-02-19 09:34:02.663934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: is_unlocked()] [Validation Bypass] Since is_unlocked at lines 65-67 is only a view function, can callers of unwrap_unstake_ticket ignore unlock_epoch entirely, redeeming tickets immediately after creation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a8362555-c28d-49d4-9c01-df4c60ebefb4?mode=deep",
+    "timestamp": "2026-02-19 09:34:23.049537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Unlock Epoch Manipulation] Can an attacker pass unlocked_in_epoch = 0 at line 111, creating tickets that are immediately unlockable via is_unlocked check at line 66, bypassing unstaking delays? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ae4bfe6-6446-4931-9f58-92d176ebde0c?mode=deep",
+    "timestamp": "2026-02-19 09:34:44.091509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Time-Lock Bypass] Since unwrap_unstake_ticket at line 137 doesn't validate unlock_epoch, can malicious pool operators drain funds by burning all tickets regardless of lock period? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98be980b-79e6-4ba7-bb61-595550baa94d?mode=deep",
+    "timestamp": "2026-02-19 09:35:04.998506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: is_unlocked()] [Logic Error] Can tx_context::epoch(ctx) >= ticket.unlock_epoch at line 66 be exploited when unlock_epoch is u64::MAX, making tickets permanently locked or immediately unlocked depending on epoch values? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ccff9556-85e8-473d-9d5e-5dfef1d71ab5?mode=deep",
+    "timestamp": "2026-02-19 09:35:24.982459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Parameter Validation] If unlocked_in_epoch parameter at line 111 is set to current_epoch - 1, does the ticket become immediately burnable, bypassing the intended lock period? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6c6cf749-7dfd-4513-b2e9-5c08f89302f1?mode=deep",
+    "timestamp": "2026-02-19 09:35:44.847454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Invariant Violation] Since unlock_epoch is ignored at line 140 (marked with underscore), can tickets be redeemed at any time, completely breaking the unstaking delay mechanism? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_25c5e1f1-cc2d-492a-970d-906370ca9478?mode=deep",
+    "timestamp": "2026-02-19 09:36:05.403484",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Access Control] Since wrap_unstake_ticket at line 111 is public(package), can any module in liquid_staking package mint arbitrary tickets without proper authorization checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_64c8ac0f-0aeb-4739-943c-6fb64a5c8af2?mode=deep",
+    "timestamp": "2026-02-19 09:36:26.585306",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Access Control] Since unwrap_unstake_ticket at line 137 is public(package), can malicious package modules burn any ticket they receive, stealing funds from legitimate users? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3247283-baee-4c55-a0bd-b71bc22dfefe?mode=deep",
+    "timestamp": "2026-02-19 09:36:48.435747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: create_metadata()] [Initialization Attack] Can create_metadata at line 49 be called multiple times by package modules to create duplicate Metadata objects with independent total_supply tracking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_04a361d3-d4ac-481f-a1bd-d67a2a6c3dae?mode=deep",
+    "timestamp": "2026-02-19 09:37:10.822284",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: transfer()] [Transfer Risk] Since transfer at line 163 is public(package), can malicious modules transfer tickets to attacker-controlled addresses to frontrun legitimate redemptions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca1326b7-ef6a-469c-a314-23fa67f88548?mode=deep",
+    "timestamp": "2026-02-19 09:37:32.456110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Parameter Injection] Can a malicious package module call wrap_unstake_ticket with value=0, unstake_fee=u64::MAX to mint worthless tickets that collect maximum fees on burn? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a714b991-fa95-404f-b9a7-73e46bc2b76b?mode=deep",
+    "timestamp": "2026-02-19 09:37:54.614407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Unauthorized Burn] Without capability-based access control, can any package module with Metadata reference burn tickets they don't own by getting the UnstakeTicket object? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_59e6e290-7cdd-4f9a-8f81-0bbb5fddfdea?mode=deep",
+    "timestamp": "2026-02-19 09:38:16.402476",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: add_to_epoch()] [Internal Exposure] Though add_to_epoch is private at line 99, can package modules bypass it by directly calling wrap_unstake_ticket without proper epoch tracking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22ec9207-eed3-4e9f-a809-ba7525b3690f?mode=deep",
+    "timestamp": "2026-02-19 09:38:37.552559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: create_metadata()] [Singleton Violation] Without enforcing single Metadata instance, can multiple Metadata objects at line 49 lead to fragmented total_supply tracking across different instances? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9b6b93b-2f48-4170-a717-21e47e4c33e0?mode=deep",
+    "timestamp": "2026-02-19 09:38:58.970752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Double Accounting] Does add_to_epoch at line 112 add value to epoch history AND line 114 adds to total_supply, causing double-counting in supply calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5ed758b-4cc6-4e96-9d5c-4544dafd46d6?mode=deep",
+    "timestamp": "2026-02-19 09:39:21.631073",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Accounting Mismatch] When ticket is burned at lines 137-156, only total_supply decreases at line 145, but epoch history in max_history_value table is never updated, causing permanent supply inflation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fd40ab87-3688-418c-8305-73d717c28158?mode=deep",
+    "timestamp": "2026-02-19 09:39:44.040281",
+    "report_generated": false
+  }
+]
