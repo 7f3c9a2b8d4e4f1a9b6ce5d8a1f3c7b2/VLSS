@@ -1,0 +1,146 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: set_asset_min()] [Min Above Max] If min is set above max before verify_config() is called, but verify_config() checks min < max, could this cause all flash loans to fail until fixed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9d806aa9-7d82-4bd0-9112-f0f3810cf941?mode=deep",
+    "timestamp": "2026-02-19 04:41:51.483125",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: set_asset_max()] [Max Below Active Loan] If max is reduced below an active outstanding loan amount, what happens when the user tries to repay? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_61608d82-a598-44a6-b2a9-fa48c0bd7875?mode=deep",
+    "timestamp": "2026-02-19 05:02:16.716513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: verify_config()] [Rate Sum Check] The check rate_to_supplier + rate_to_treasury < FlashLoanMultiple() uses strict <, but what if both rates are 0? Could this enable fee-free flash loans? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a4039bad-d448-42d2-86c8-3aa1e7620aa5?mode=deep",
+    "timestamp": "2026-02-19 05:02:29.603850",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: verify_config()] [Overflow Risk] When adding rate_to_supplier + rate_to_treasury, if both are near u64::MAX / 2, could this overflow before comparison? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_76a92208-c58b-4a91-987e-e32594435589?mode=deep",
+    "timestamp": "2026-02-19 05:02:43.345035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: verify_config()] [Min/Max Check] The check min < max uses strict <, so min == max is invalid, but what if both are 0? Could this lock all flash loan functionality? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da2b1717-93b1-4b56-bccd-e17f8afea805?mode=deep",
+    "timestamp": "2026-02-19 05:02:57.327343",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: verify_config()] [Incomplete Validation] The function only checks rates and min/max, but doesn't validate pool_id exists or asset_id is unique - could invalid configs pass verification? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c03dde70-59d2-4b7b-b883-42a46e721e83?mode=deep",
+    "timestamp": "2026-02-19 05:03:13.495677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: get_asset_config_by_coin_type()] [Mutable Borrow] This function returns &mut AssetConfig, allowing callers to modify config directly - if called outside the intended setter functions, could this bypass verify_config() checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68a783f1-c1dd-472a-ba9f-49c4c43e755a?mode=deep",
+    "timestamp": "2026-02-19 05:03:30.671004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: get_asset_config_by_coin_type()] [Table Lookup] The function borrows from support_assets then assets - if there's a mismatch between these tables, could this return wrong config or panic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9d5a2de1-829c-4b3f-b579-64da7d2d7813?mode=deep",
+    "timestamp": "2026-02-19 05:03:49.494322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan() + repay()] [Reentrancy] Can an attacker call loan() from within a repay() callback (via pool interactions) to obtain nested loans with only one fee payment? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_79ecfff6-568f-469c-9b63-97898dba1c00?mode=deep",
+    "timestamp": "2026-02-19 05:04:07.909528",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan() + repay()] [Receipt Swap] Can an attacker obtain multiple receipts via multiple loan() calls, then repay them in wrong order to exploit fee discrepancies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9addc14-e64f-4c68-b5b3-dbb1535b5045?mode=deep",
+    "timestamp": "2026-02-19 05:04:27.168425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan() + repay()] [Cross-Pool Exploitation] Can an attacker take a loan from Pool A but repay to Pool B (same asset type) to exploit liquidity or rate differences? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c340f1ed-2ab3-4054-b2b7-46ec6a6c458b?mode=deep",
+    "timestamp": "2026-02-19 05:04:47.327907",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: create_asset() + loan()] [Config Race] If create_asset() and loan() are called in quick succession, could loan() read incomplete config due to table inconsistencies? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c4a9d787-2564-4e51-afcc-79cd5f29712e?mode=deep",
+    "timestamp": "2026-02-19 05:05:05.937196",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: set_asset_rate_* + loan()] [Rate Manipulation] Can an admin front-run users' loan() transactions by updating rates to maximum, forcing users to pay excessive fees? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2fb8d909-d484-4189-930f-301c89bb0142?mode=deep",
+    "timestamp": "2026-02-19 05:05:25.502711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: set_asset_rate_* + repay()] [Fee Exploitation] If rates increase between loan() and repay(), users pay more than expected - but if rates decrease, do they pay less, creating arbitrage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29a8015c-7d1f-4fd8-80f4-0b89a95be297?mode=deep",
+    "timestamp": "2026-02-19 05:05:47.989634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Multiplication Overflow] In _loan_amount * cfg.rate_to_supplier, if _loan_amount = u64::MAX and rate_to_supplier > 1, this overflows before division by FlashLoanMultiple() - is there overflow protection? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6b094af-1935-497e-aa06-da58f2ba948e?mode=deep",
+    "timestamp": "2026-02-19 05:06:08.072275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Multiplication Overflow] In _loan_amount * cfg.rate_to_treasury, same overflow risk exists - could this cause panic or silent overflow to small values? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dce797f3-a259-4917-8e0c-04ffbe14a975?mode=deep",
+    "timestamp": "2026-02-19 05:06:27.530792",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Division Precision Loss] Division by FlashLoanMultiple() truncates - if loan amount is small and rate is small, could fee round to 0, enabling fee-free flash loans? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3a46cf59-8668-40c7-a8ad-de0d847738f9?mode=deep",
+    "timestamp": "2026-02-19 05:06:47.302463",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Addition Overflow] In amount + fee_to_supplier + fee_to_treasury, if all three are large, could this overflow before comparison with repay_amount? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aded05de-889b-4448-9465-c72c2424b64f?mode=deep",
+    "timestamp": "2026-02-19 05:07:07.563731",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Cast to u256] Casting normal_amount as u256 should be safe, but if ray_math operations overflow u256 bounds, could this cause unexpected behavior? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4368d3d7-b183-4e8f-90a9-17bac249d884?mode=deep",
+    "timestamp": "2026-02-19 05:07:27.712460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: get_storage_asset_id_from_coin_type()] [Counter Underflow] When count = count - 1, if count is 0 at loop entry, does Move prevent underflow or could this wrap to u64::MAX? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_65ee0d68-ce85-4019-aa85-ccb07d059a1e?mode=deep",
+    "timestamp": "2026-02-19 05:07:49.024853",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: create_asset()] [Table Corruption] If table::add() for assets succeeds but table::add() for support_assets fails, does the transaction rollback or leave orphaned entries? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b47861d-1bd0-463a-9faf-8b8adba3e58e?mode=deep",
+    "timestamp": "2026-02-19 05:08:08.717754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: create_asset()] [Memory Exhaustion] Can an attacker create unlimited assets to exhaust table storage, causing DoS for legitimate operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf888b81-f00a-4066-a396-23bc3721f4c8?mode=deep",
+    "timestamp": "2026-02-19 05:08:27.953731",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Table Borrow Lifetime] The function borrows from config.support_assets and config.assets - if these borrows overlap incorrectly, could this cause borrow checker violations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd8cea9c-3cda-462c-8efc-821674db7a42?mode=deep",
+    "timestamp": "2026-02-19 05:08:49.420465",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: get_asset_config_by_coin_type()] [Mutable Borrow Conflict] This returns &mut AssetConfig while config is borrowed - if called multiple times concurrently, could this violate Move's borrow rules? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ff01b02-338b-4cb7-a5df-5d329956d664?mode=deep",
+    "timestamp": "2026-02-19 05:09:12.322040",
+    "report_generated": false
+  }
+]
