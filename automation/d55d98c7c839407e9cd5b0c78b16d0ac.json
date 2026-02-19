@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_vault_enabled()] [Authorization Bypass] Can an attacker bypass AdminCap check by exploiting type confusion or capability forging to call set_enabled and disable vault during active operations, locking user funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eec8155c-7a77-4d7a-8b11-36c93e1a8fc0?mode=deep",
+    "timestamp": "2026-02-19 07:13:19.809264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_vault_enabled()] [State Corruption] If vault is enabled/disabled during VAULT_DURING_OPERATION_STATUS, can this create inconsistent state where operations are partially complete but vault status prevents recovery actions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f49936b-53d6-4510-b402-6a94a86bb2df?mode=deep",
+    "timestamp": "2026-02-19 07:13:32.882728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_vault_enabled()] [Race Condition] Can an admin disable vault immediately after a user submits a deposit request but before execution, causing funds to be stuck in request buffer indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e66df1c1-3410-493f-8284-a8dfd6f98c71?mode=deep",
+    "timestamp": "2026-02-19 07:13:47.440562",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_vault_enabled()] [DoS Attack] Can repeated enable/disable calls within same transaction or across transactions cause event spam or state thrashing that prevents legitimate operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_85dae57f-8a8d-4830-9347-919a1f6b73d1?mode=deep",
+    "timestamp": "2026-02-19 07:14:01.742790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_vault_enabled()] [Access Control] Does set_vault_enabled properly validate that the vault is not during operation before changing status, preventing status corruption during active DeFi operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_695f7924-a3a9-4c4c-a278-ca339fb567ea?mode=deep",
+    "timestamp": "2026-02-19 07:14:17.548422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_vault_enabled()] [Invariant Violation] If vault is disabled while holding borrowed DeFi assets (Navi caps, Cetus positions), can this prevent proper asset return and cause permanent custody issues? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5845f32-994d-4715-9832-4aff001d8e0a?mode=deep",
+    "timestamp": "2026-02-19 07:14:35.177263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_vault_enabled()] [Timing Attack] Can attacker front-run admin disable transaction to execute malicious operations knowing vault will be frozen immediately after? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1740408c-3ecd-4215-aa8e-e7ed6c6cc2ce?mode=deep",
+    "timestamp": "2026-02-19 07:14:53.557669",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_vault_enabled()] [Parameter Validation] Does the function validate that enabled bool value transitions are logical (e.g., not setting enabled=true when already true) to prevent unnecessary state changes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7de88a88-0a46-4a30-81ea-4640ccc98493?mode=deep",
+    "timestamp": "2026-02-19 07:15:11.820858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_vault()] [Version Manipulation] Can an attacker exploit upgrade_vault to bypass version checks if VERSION constant is manipulated or if upgrade logic doesn't properly validate version increments? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4ce45fc-f77a-4df8-abd5-8697908ff758?mode=deep",
+    "timestamp": "2026-02-19 07:15:33.350489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_vault()] [State Migration] Does upgrade_vault properly handle migration of all vault state including request_buffer, assets, receipts, and op_value_update_record, or can incomplete migration leave vault in corrupted state? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_09dd3efb-9464-4153-9d39-b57aadf337d5?mode=deep",
+    "timestamp": "2026-02-19 07:15:55.118706",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_vault()] [Reentrancy] Can upgrade_vault be called multiple times in nested context to skip version validation and corrupt vault version tracking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c997392-4771-49e8-b358-213be50460b9?mode=deep",
+    "timestamp": "2026-02-19 07:16:18.680770",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_vault()] [Timing Exploit] If upgrade_vault is called while vault has pending deposits/withdrawals or active operations, can this cause request buffer corruption or loss of user funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_421c46e8-badb-43bb-a460-170d4265218a?mode=deep",
+    "timestamp": "2026-02-19 07:16:42.897729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_vault()] [Access Control] Does unused_variable attribute on AdminCap parameter create vulnerability where function could be exploited without proper authorization? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4286237c-6bfe-442b-b143-5d7632d024d8?mode=deep",
+    "timestamp": "2026-02-19 07:17:06.974812",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_vault()] [Invariant Break] Can upgrade_vault be exploited to reset critical vault parameters like total_shares, loss_tolerance, or fee rates to default values, causing accounting errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_62332923-9f29-4a51-8b5e-a7eb75f537c8?mode=deep",
+    "timestamp": "2026-02-19 07:17:30.114156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_vault()] [DoS] Can repeated upgrade_vault calls cause event emission spam or table/bag corruption that prevents normal vault operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8567bf6d-2449-47e5-b595-ac03cce51b67?mode=deep",
+    "timestamp": "2026-02-19 07:17:53.024799",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_reward_manager()] [Version Desync] Can upgrade_reward_manager be called without upgrading vault, causing version mismatch between vault and reward manager that breaks reward distribution logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e6798569-a882-4318-8deb-ff16ca0aaa00?mode=deep",
+    "timestamp": "2026-02-19 07:18:15.853826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_reward_manager()] [State Corruption] If reward manager is upgraded while rewards are being distributed or receipt updates are pending, can this cause loss of accrued rewards or incorrect share calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b7fc41a-9036-4f7c-9b0e-6c2c0eb692d2?mode=deep",
+    "timestamp": "2026-02-19 07:18:37.553390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_reward_manager()] [Authorization] Does function verify reward_manager address matches vault.reward_manager before allowing upgrade, or can arbitrary reward manager be upgraded? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_948258bf-05c4-453c-8622-a2f893787e29?mode=deep",
+    "timestamp": "2026-02-19 07:19:00.307865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_reward_manager()] [Reentrancy] Can upgrade_reward_manager be exploited in nested calls to corrupt reward accounting or bypass version checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9c9f6d4a-6719-4ac2-afdb-316765f6537b?mode=deep",
+    "timestamp": "2026-02-19 07:19:24.874246",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_reward_manager()] [Integration Risk] Does upgrade_reward_manager properly handle migration of reward buffers, receipt reward tracking, and vault ID associations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab88e8d2-159e-4536-bee2-469fb752544e?mode=deep",
+    "timestamp": "2026-02-19 07:19:48.569983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_oracle_config()] [Price Manipulation] Can upgrade_oracle_config be exploited during active operations to change oracle version and cause stale price acceptance or incorrect USD valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a05a192-6a35-403a-a1a9-c54ca86adaa3?mode=deep",
+    "timestamp": "2026-02-19 07:20:13.599334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_oracle_config()] [Timing Attack] If oracle config is upgraded while vault is calculating total_usd_value for deposit/withdraw execution, can this cause price inconsistencies and slippage violations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_25c930f1-ed02-4bf1-b85e-535f409baa13?mode=deep",
+    "timestamp": "2026-02-19 07:20:38.005337",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_oracle_config()] [State Migration] Does oracle upgrade properly migrate all Switchboard aggregator mappings, decimals settings, and update interval configurations without loss? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cb4b7f20-c533-49be-81bc-26afe5571987?mode=deep",
+    "timestamp": "2026-02-19 07:21:02.958947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: upgrade_oracle_config()] [DoS] Can upgrade_oracle_config be called repeatedly to cause version/aggregator map corruption that prevents price updates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aa3c5b0f-8a6b-4152-9b7f-b5af67e35303?mode=deep",
+    "timestamp": "2026-02-19 07:21:29.795123",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_deposit_fee()] [Fee Extraction] Can admin set deposit_fee to MAX_DEPOSIT_FEE_RATE (500bp = 5%) immediately before large user deposit to extract maximum fees, violating user expectations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e7ca20dc-cd69-4c40-abe6-fc23b816285f?mode=deep",
+    "timestamp": "2026-02-19 07:21:57.579692",
+    "report_generated": false
+  }
+]
