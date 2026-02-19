@@ -1,0 +1,134 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_incentive_v3_max_reward_rate_by_rule_id()] [Type Mismatch] Can generic T not match rule's asset type, setting max rate on wrong pool? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_812e77d2-cba6-4e08-94af-65718fbe7f54?mode=deep",
+    "timestamp": "2026-02-19 07:16:05.894798",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_incentive_v3_max_reward_rate_by_rule_id()] [Bypass Current Rate] Can this function be used to set max above current rate but then current rate set above this max, bypassing the cap? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c63fd87d-d421-4c6c-800f-3eb2b499348e?mode=deep",
+    "timestamp": "2026-02-19 07:16:18.496204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_incentive_v3_borrow_fee_rate()] [Rate Bounds] Can rate exceed 10000 BPS (100%), causing borrowers to pay more than borrowed amount in fees? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02109506-dfa5-4a43-abea-f6cdf212e6e4?mode=deep",
+    "timestamp": "2026-02-19 07:16:31.667481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_incentive_v3_borrow_fee_rate()] [Zero Rate] Can rate be set to 0, eliminating borrow fees and breaking protocol revenue model? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea3be6e8-e200-4ad2-bac4-ba35bb7f3235?mode=deep",
+    "timestamp": "2026-02-19 07:16:45.965687",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_incentive_v3_borrow_fee_rate()] [Mid-Borrow Update] Can rate be changed while borrows are active, causing existing borrowers to face unexpected fee changes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e5f10ba-7d06-4c29-9efe-f0c41facab81?mode=deep",
+    "timestamp": "2026-02-19 07:17:00.229278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_incentive_v3_borrow_fee_rate()] [Fee Collection Bypass] Can rate update be timed to allow borrowers to avoid fees by repaying before rate increase? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2c789628-cdd7-441c-975e-8ccb8a17e97c?mode=deep",
+    "timestamp": "2026-02-19 07:17:16.601144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_incentive_v3_borrow_fee_rate()] [Authorization Bypass] If StorageAdminCap is shared or duplicated, can multiple parties race to set conflicting rates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_41cd95fe-2df3-410f-9068-c3c6c857e176?mode=deep",
+    "timestamp": "2026-02-19 07:17:34.622189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: Multiple] [Cap Duplication] Can StorageAdminCap be duplicated through transfer or copy, allowing multiple entities to have admin privileges? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a9ef8581-c129-4d11-8282-989091db6b8d?mode=deep",
+    "timestamp": "2026-02-19 07:17:52.172173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: Multiple] [Cap Loss] If StorageAdminCap owner loses access, can any functions be called to recover or reassign admin rights? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b15fa024-1d49-45ec-99f1-9f50ed5a50e6?mode=deep",
+    "timestamp": "2026-02-19 07:18:10.571991",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: Multiple] [IncentiveOwnerCap Sharing] Can IncentiveOwnerCap be shared between multiple addresses, causing conflicting management actions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e6fde2cd-0ab3-47a0-9ed5-cdeaf8b9e1d3?mode=deep",
+    "timestamp": "2026-02-19 07:18:28.372768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: Multiple] [Cap Transfer Frontrun] Can attacker front-run cap transfer transactions to temporarily gain admin access? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86b25f51-e028-48d2-bab7-5a41ca8c670e?mode=deep",
+    "timestamp": "2026-02-19 07:18:47.388177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_asset + set_flash_loan_asset_rate_to_supplier] [Rate Timing] Can rates be set before asset creation, or must asset exist first? Can this ordering be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c6b1f14e-dbec-4aca-a0a3-3f3930a2b58f?mode=deep",
+    "timestamp": "2026-02-19 07:19:07.971865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_pool + create_incentive_v3_rule] [Pool-Rule Ordering] Must pools be created before rules, or can rules exist without pools causing dangling references? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c8cd2ace-af60-41be-966d-270a60cf57d2?mode=deep",
+    "timestamp": "2026-02-19 07:19:27.814288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: enable_incentive_v3_by_rule_id + set_incentive_v3_reward_rate_by_rule_id] [Enable Before Rate] Can rule be enabled before reward rate is set, causing 0-rate distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_956a0363-2dad-4471-9078-9364601d9f90?mode=deep",
+    "timestamp": "2026-02-19 07:19:49.022903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_borrow_fee + set_incentive_v3_borrow_fee_rate] [Fee Withdrawal Race] Can borrow fees be withdrawn immediately after rate increase, front-running fee collection? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e9f70ca9-715e-4502-a327-da601dce6f22?mode=deep",
+    "timestamp": "2026-02-19 07:20:09.653572",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_reward_fund + deposit_incentive_v3_reward_fund] [Fund-Deposit Ordering] Can deposits occur before fund creation, or does ordering matter for type safety? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ace271e0-99da-41c9-8b18-2f86259702cc?mode=deep",
+    "timestamp": "2026-02-19 07:20:30.829297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_rule + create_incentive_v3_reward_fund] [Type Consistency] Can rule be created with RewardCoinType that has no corresponding RewardFund, breaking reward distribution? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_457bd304-8b4d-4bfa-a1f7-8e5b15e68db1?mode=deep",
+    "timestamp": "2026-02-19 07:20:51.559705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_pool + set_incentive_v3_reward_rate_by_rule_id] [Type Mismatch] Can reward rate be set for asset type T that doesn't have a pool, causing silent failure? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b695d11b-a401-41f6-b00c-6faadbd0ef57?mode=deep",
+    "timestamp": "2026-02-19 07:21:11.696983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_borrow_fee + deposit_incentive_v3_reward_fund] [Token Type Confusion] Can different generic types T in these functions refer to same underlying token, causing accounting confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_830b65ad-4825-48a9-9af7-a5cd3fd23bff?mode=deep",
+    "timestamp": "2026-02-19 07:21:31.708940",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Module: lending_core::manage] [Missing Validation] Does any function validate that Storage, IncentiveV3, or FlashLoanConfig objects are from same protocol version? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_277dc339-31dc-4b9a-80ab-f021c883ce9e?mode=deep",
+    "timestamp": "2026-02-19 07:21:52.474005",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Module: lending_core::manage] [Object Lifecycle] Can shared objects (Storage, IncentiveV3, FlashLoanConfig) be deleted or frozen, causing DoS on all management functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b863cf38-dd5a-4b15-81be-f31d1bb7f6b0?mode=deep",
+    "timestamp": "2026-02-19 07:22:13.009166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Module: lending_core::manage] [Dependency Injection] Can attacker pass malicious Storage or IncentiveV3 objects to management functions, bypassing access control? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6907986f-63eb-4402-a137-28f46e51eb82?mode=deep",
+    "timestamp": "2026-02-19 07:22:33.719433",
+    "report_generated": false
+  }
+]
