@@ -1,8 +1,0 @@
-[
-  "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [State Corruption: OracleHolder Poisoning] If the OracleHolder reference is updated to point to a malicious oracle, would all subsequent price queries return attacker-controlled prices? (Critical)",
-  "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [State Corruption: Decimal Drift] If the Supra oracle changes its decimal format over time without this adaptor being updated, could all prices become systematically wrong by powers of 10? (Critical)",
-  "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Critical Priority] Given that this adaptor has NO input validation, NO price bounds checking, NO staleness validation, and NO access control, should it be considered production-ready, or does it require significant hardening before mainnet deployment? (Critical)",
-  "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Critical Priority] The entire 30-line adaptor lacks any `assert!()` statements - is this intentional minimalism, or a fundamental security gap that could enable multiple attack vectors? (Critical)",
-  "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Critical Priority] Should there be a circuit breaker or price deviation check that halts operations if Supra prices move beyond reasonable bounds, protecting against oracle manipulation? (Critical)",
-  "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Critical Priority] Is there monitoring and alerting for when Supra prices significantly diverge from other oracle sources, allowing quick response to oracle failures? (High)"
-]
