@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Oracle Registration Path] After queue creation, how do oracles register with the new queue, and can attacker prevent oracle registration by manipulating queue state immediately after creation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c56af308-a5dd-485a-b611-c715feacf1e3?mode=deep",
+    "timestamp": "2026-02-19 01:02:03.014797",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Oracle Inheritance] Does the new queue inherit oracles from guardian_queue, or start with empty existing_oracles table, potentially creating unusable queue? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c49404a-895d-44de-b9e0-56e5f58b7949?mode=deep",
+    "timestamp": "2026-02-19 01:02:15.712244",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: validate()] [Guardian Queue Activity] Does validate() check if guardian_queue is active and has recent oracle submissions, or can attacker reference abandoned guardian queue? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19aade9a-16cb-4adf-a100-9b5d07c0981f?mode=deep",
+    "timestamp": "2026-02-19 01:02:28.916751",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Guardian Queue Type] Can an attacker pass a different type that implements version() method but isn't actually a Queue, bypassing type safety? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ea3eab2-af55-419a-a324-b3824d7ab451?mode=deep",
+    "timestamp": "2026-02-19 01:02:43.847387",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Address Type Confusion] Can authority or fee_recipient addresses be exploited if they point to objects instead of accounts, causing payment failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8c9be7f9-ba64-43b6-8e84-e72815df95e6?mode=deep",
+    "timestamp": "2026-02-19 01:02:58.406844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [String Type Attack] Can malformed UTF-8 in the name String parameter cause panics or incorrect string operations in queue::new()? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b150d3a-bdcc-4637-964c-b92e66f4e6bc?mode=deep",
+    "timestamp": "2026-02-19 01:03:14.072765",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Queue Immediate Usage] Can the newly created queue be immediately used for oracle requests before initialization completes, causing requests to fail or use invalid configuration? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_afc1649f-cbb6-4543-96dd-7c51809e2162?mode=deep",
+    "timestamp": "2026-02-19 01:03:31.033796",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Guardian Reference Staleness] If guardian_queue_id is captured at line 91, can the guardian queue be deleted immediately after, leaving new queue with dangling guardian reference? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_88c855f0-9102-44e4-b20e-56ee3b2a75ee?mode=deep",
+    "timestamp": "2026-02-19 01:03:49.451904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Transaction Rollback] If event emission fails after queue::new() succeeds, does transaction rollback properly clean up the shared queue object, or is queue created without event? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d13ec905-75a5-4b6c-890d-f3ed632aba96?mode=deep",
+    "timestamp": "2026-02-19 01:04:08.930414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Public Entry Abuse] Since run() is public entry, can any user create queues that reference the official guardian_queue, impersonating official protocol queues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6026b526-f7eb-4131-bef2-05876bcfaf20?mode=deep",
+    "timestamp": "2026-02-19 01:04:28.097598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: validate()] [Guardian Queue Permission Check] Does validate() verify caller has permission to create child queues from guardian_queue, or can anyone create queues referencing any guardian? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74b6a52e-11fd-4273-a7c3-293f5b437a02?mode=deep",
+    "timestamp": "2026-02-19 01:04:48.139246",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Authority Self-Assignment] Can caller set authority=ctx.sender() to automatically own the queue, and is this intentional or a privilege escalation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_757efa2f-afe5-4164-a3e3-43a149b0979b?mode=deep",
+    "timestamp": "2026-02-19 01:05:10.327590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [No Capability Check] Does run() require any capability object to create queues, or can any address spam queue creation freely? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eedf0595-8ed4-42a0-85af-994254a179ba?mode=deep",
+    "timestamp": "2026-02-19 01:05:32.591252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: validate()] [Guardian Queue Modified State] If guardian_queue is in maintenance mode or paused, should validate() reject queue creation, or can queues be created against non-operational guardians? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_04b40b3d-cca0-4b89-a35c-4f27498db379?mode=deep",
+    "timestamp": "2026-02-19 01:05:54.796266",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Duplicate Queue Detection] Can the same queue_key be used to create multiple queues, and if so, how are they distinguished when oracles try to submit to 'the queue with key X'? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52d6186e-1502-405e-89b0-615569bb7c38?mode=deep",
+    "timestamp": "2026-02-19 01:06:18.064553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Parameter Validation Order] If guardian_queue becomes invalid after passing to run() but before validate() executes, can this cause inconsistent validation results? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b25ebb1a-8b3e-4852-aa53-cf51fa62b269?mode=deep",
+    "timestamp": "2026-02-19 01:06:39.962052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Event Before State] Since event is emitted after queue::new(), can indexers see the event and try to interact with queue before share_object completes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8eed7c65-99d2-41e5-ace3-b844a1530421?mode=deep",
+    "timestamp": "2026-02-19 01:07:02.913669",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: validate()] [Version Future Compatibility] If EXPECTED_QUEUE_VERSION is hardcoded to 1, how will version 2 queues be initialized after protocol upgrade - will init_action become unusable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e7a79ef-e988-4b63-926e-5b72daada923?mode=deep",
+    "timestamp": "2026-02-19 01:07:26.350189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Module Upgrade Impact] If oracle_queue_init_action module is upgraded, can in-flight transactions using old version complete successfully or will they fail validation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e859d9c-1cb7-40aa-8faa-be3b22d2ad37?mode=deep",
+    "timestamp": "2026-02-19 01:07:48.134560",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Queue Schema Mismatch] If Queue struct gains new required fields after upgrade, can queue::new() fail for queues initialized through old init_action version? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_26f39afc-8fe9-4d97-bcb6-6edc552794a6?mode=deep",
+    "timestamp": "2026-02-19 01:08:10.972967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: validate()] [Error Message Exposure] Do error constants at lines 10-14 expose sensitive information about expected values that attackers can use to craft bypass attempts? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d9c2ca1-056b-4d48-8263-bc39216e9933?mode=deep",
+    "timestamp": "2026-02-19 01:08:30.730717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: validate()] [Assertion Failure Cleanup] If validate() assertions fail, is guardian_queue reference properly released, or can failed validations leak object references? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fccc8105-b553-41e3-84f0-998fbca50fc4?mode=deep",
+    "timestamp": "2026-02-19 01:08:49.444854",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: run()] [Partial Execution] If actuate() starts but fails midway, can a partially initialized queue exist in corrupted state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a6c65b6-4c59-4173-bf91-91fc9bfa8c61?mode=deep",
+    "timestamp": "2026-02-19 01:09:07.201149",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Configuration Permanence] After queue creation, can authority modify min_attestations or oracle_validity_length_ms to relax security, or are these parameters immutable? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe8d6d44-11bd-46e3-af2e-b0b134a39857?mode=deep",
+    "timestamp": "2026-02-19 01:09:27.196930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [Conflicting Configurations] Can an attacker create a queue with min_attestations=100 but guardian_queue only has 10 oracles, creating permanently unusable queue? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bacc103e-5938-4d13-820f-e477ee5b6c58?mode=deep",
+    "timestamp": "2026-02-19 01:09:46.760520",
+    "report_generated": false
+  }
+]
