@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [Timestamp Manipulation] clock.timestamp_ms() at line 28 is used to record the update time - if the clock is manipulated, can stale values be marked as fresh? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_765b4f0b-3ae0-4c18-98e3-effb0ce492a4?mode=deep",
+    "timestamp": "2026-02-19 03:35:14.751807",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [Asset Mismatch] If the asset_type passed at line 20 doesn't match the one passed to finish_update_asset_value() at line 28, could this cause value updates for the wrong asset? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b72e4b6-e3f9-48c5-9bce-6b7fa3f0c8d8?mode=deep",
+    "timestamp": "2026-02-19 03:35:27.885104",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [Operation State] If the vault is 'during operation', does finish_update_asset_value() properly track the op_value_update_record, or can an attacker update values without marking them as updated? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a414755-648e-43fb-8d41-d103938b74bd?mode=deep",
+    "timestamp": "2026-02-19 03:35:42.441982",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [Value Staleness] If calculate_navi_position_value() takes time to compute (e.g., many reserves), the timestamp at line 28 might be stale compared to when prices were fetched - is this acceptable? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_042ae0fc-1f25-4773-9b3b-28515be3ed54?mode=deep",
+    "timestamp": "2026-02-19 03:35:57.024577",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [Partial Updates] If calculate_navi_position_value() fails midway (e.g., oracle error), does finish_update_asset_value() still get called with an incorrect partial value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_929acc01-0c7c-4ba9-98cc-ca31f197d791?mode=deep",
+    "timestamp": "2026-02-19 03:36:12.731918",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Insolvency Hiding] Lines 74-76 return 0 if total_supply_usd_value < total_borrow_usd_value - does this hide the fact that the position is underwater, allowing insolvent vaults to continue operating? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9dd3efc5-e49e-492a-82b2-829c8939abb4?mode=deep",
+    "timestamp": "2026-02-19 03:36:29.636083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Negative Equity] When total_borrow exceeds total_supply, returning 0 instead of a negative value means the vault can't track actual losses - can this be exploited for accounting manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ead0e56f-7f7f-4a07-820f-8dac9d930976?mode=deep",
+    "timestamp": "2026-02-19 03:36:48.915471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Health Factor Bypass] If the position is underwater (line 74-76), does the health_limiter still check the Navi health factor, or is it bypassed since value is reported as 0? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9912a5a3-1f92-45e4-ab04-751d70fb5c64?mode=deep",
+    "timestamp": "2026-02-19 03:37:09.304164",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Loss Detection] Returning 0 for underwater positions makes it impossible to distinguish between 'no position' and 'insolvent position' - can this cause incorrect loss_tolerance checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1dd3225-956b-40fd-92fe-3d0ba5a0195e?mode=deep",
+    "timestamp": "2026-02-19 03:37:30.964016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Liquidation Risk] If the position is underwater but reported as 0 value, will the vault think the position is empty and allow withdrawals that should be blocked? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d56dfdd8-9492-4453-93f6-940304dabf51?mode=deep",
+    "timestamp": "2026-02-19 03:37:54.437855",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Coin Type Mismatch] get_coin_type() at line 56 returns the type for reserve i-1 - if this type doesn't exist in the OracleConfig, will get_asset_price() at line 63 revert, DoSing the entire valuation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_97b2dc1a-d75a-476c-b5ff-f0f4885f3e7c?mode=deep",
+    "timestamp": "2026-02-19 03:38:18.957282",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Type String Format] The coin_type returned at line 56 is passed to get_asset_price() at line 63 as a String - are the formats compatible, or could mismatches cause oracle lookup failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_23b59804-76c1-45a9-8942-dfa56626fc2b?mode=deep",
+    "timestamp": "2026-02-19 03:38:41.619123",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Invalid Reserve] If get_coin_type() is called with an invalid reserve index (i-1 out of bounds), will it revert or return garbage data? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a9c3ef56-1fd4-4dbf-8e64-a8184ef54d66?mode=deep",
+    "timestamp": "2026-02-19 03:39:04.435330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Balance Manipulation] get_user_balance() at line 44 returns (supply, borrow) for the account - if Navi's storage is compromised, can false balances be returned to inflate position values? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b1367bb-10bc-452c-aa5d-927a31822cd5?mode=deep",
+    "timestamp": "2026-02-19 03:39:31.340311",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Balance Staleness] Are the supply and borrow balances at line 44 current, or are they stale values that don't reflect recent Navi interactions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ba505c5b-7349-4514-82e8-032514bba8c8?mode=deep",
+    "timestamp": "2026-02-19 03:39:56.932479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Balance Overflow] If get_user_balance() returns extremely large u256 values for supply or borrow at line 44, can subsequent ray_mul() operations at lines 53-54 overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e52de8d9-c4dd-4ac4-802a-fdba47ab97a1?mode=deep",
+    "timestamp": "2026-02-19 03:40:24.723414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [Vault State] Does get_defi_asset() at line 20 check that the vault is in a valid state (not disabled), or can value updates occur on disabled vaults? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3886428-004c-42c1-b123-c9c8e23452b5?mode=deep",
+    "timestamp": "2026-02-19 03:40:52.857827",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [Asset Existence] If the asset_type doesn't exist in the vault's asset bag, will get_defi_asset() at line 20 abort gracefully, or cause undefined behavior? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8bbe8d01-7c26-424f-aa1a-f0d0bc4abcfd?mode=deep",
+    "timestamp": "2026-02-19 03:41:22.131470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [Generic Type Safety] The PrincipalCoinType generic must match the vault's type - if a caller provides the wrong type, will compilation or runtime checks catch this? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e27160fb-ca73-49fa-9ed8-10fabd47b359?mode=deep",
+    "timestamp": "2026-02-19 03:41:52.437457",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [Asset Borrowing] If the asset is currently borrowed for a vault operation, can update_navi_position_value() still read it via get_defi_asset(), or will it fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_679e8676-283a-4ac0-bab5-61b2f5bc8426?mode=deep",
+    "timestamp": "2026-02-19 03:42:23.684602",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [Clock Injection] The Clock object is passed as a parameter at line 16 - if an attacker passes a manipulated clock object, can they affect oracle price checks or timestamp recording? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aedcc282-c41f-4f36-9424-d49ce54ba3e9?mode=deep",
+    "timestamp": "2026-02-19 03:42:52.879662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Clock Staleness] At lines 35 and 49, the clock is used - if it's not the latest system clock, can outdated timestamps affect index calculations or oracle price validation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2c89648-b5b9-4779-a38b-33e2ff1a9feb?mode=deep",
+    "timestamp": "2026-02-19 03:43:22.734182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Timestamp Consistency] The clock is used multiple times (lines 35, 49, 63) - are all these calls guaranteed to return the same timestamp, or could time skew cause inconsistencies? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e485688b-3704-4dc4-99ba-fa0ad0083d67?mode=deep",
+    "timestamp": "2026-02-19 03:43:49.341032",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Gas Exhaustion] The loop at lines 43-72 processes all reserves - if a vault has positions in many reserves, could this exceed gas limits and make value updates impossible? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_23d54c28-7d98-4ba2-9504-c5f40f48a754?mode=deep",
+    "timestamp": "2026-02-19 03:44:14.912317",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Expensive Operations] Lines 48-52 call dynamic_calculator::calculate_current_index() in every iteration - is this gas-efficient, or should static indexes be cached? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_44d2c17e-89ca-4543-845b-981e82c1143d?mode=deep",
+    "timestamp": "2026-02-19 03:44:39.281329",
+    "report_generated": false
+  }
+]
