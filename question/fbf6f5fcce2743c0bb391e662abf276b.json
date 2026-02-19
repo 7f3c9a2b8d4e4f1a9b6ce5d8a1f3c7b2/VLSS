@@ -1,4 +1,0 @@
-[
-  "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: zero_out_rewards_if_looped()] [Loop Detection Bypass] If is_looped() has false negatives, can attackers earn rewards on looped positions that should have rewards zeroed? (High)",
-  "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: zero_out_rewards_if_looped()] [Public Package Visibility] The function is public(package) - can it be called from other modules to maliciously zero out rewards for legitimate users? (Medium)"
-]
