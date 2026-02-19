@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: compound_interest()] [Seconds Per Year Constant] Uses hardcoded 365 * 24 * 60 * 60 for APR calculation. Can this cause issues in leap years or if protocol needs to account for different time periods? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f8a5124e-ba1c-4b9b-9b3a-58f131cf51a1?mode=deep",
+    "timestamp": "2026-02-19 07:33:51.775531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: repay_liquidity()] [Saturating Sub on Repay] Uses saturating_sub for borrowed_amount reduction. Can over-repayment go undetected, allowing borrowers to lose funds without error? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3de43d19-1c93-4402-8a39-a25533e8528b?mode=deep",
+    "timestamp": "2026-02-19 07:34:04.989289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: redeem_ctokens()] [Available Amount Underflow Risk] Subtracts liquidity_amount from available_amount before MIN_AVAILABLE_AMOUNT check. Can this temporarily underflow in edge cases before assertion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_948dd4ba-2f76-4352-860e-2b43e1c90134?mode=deep",
+    "timestamp": "2026-02-19 07:34:19.332490",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: borrow_liquidity()] [Available Amount Double Deduction] Deducts borrow_amount_with_fees from available_amount. If fees are already included in borrowed_amount tracking, is there double accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02b74676-3efc-4205-a845-40e20f606e26?mode=deep",
+    "timestamp": "2026-02-19 07:34:33.664807",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: claim_fees()] [Zero Fee Destruction] Checks if balance::value(&fees) > 0 for staking fees, using destroy_zero if not. Can other fee paths fail to handle zero balances properly? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_686b3738-0c41-49c6-84da-f70f91369d7e?mode=deep",
+    "timestamp": "2026-02-19 07:34:48.870220",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Struct: Reserve] [Attributed Borrow Value] Contains attributed_borrow_value field marked as unused. Can this zombie field cause issues if future code mistakenly uses it? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5292919-9436-43eb-870d-26db1806e7a4?mode=deep",
+    "timestamp": "2026-02-19 07:35:05.052109",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: create_reserve()] [Initial State Vulnerability] Initializes with available_amount=0, ctoken_supply=0, borrowed_amount=0. Can the very first operations exploit this pristine state for ratio manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56c99a56-f5fa-4300-ab46-13b81201b15b?mode=deep",
+    "timestamp": "2026-02-19 07:35:23.210045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: deposit_liquidity_and_mint_ctokens()] [Atomic State Update] Updates available_amount and ctoken_supply before limit checks. If limit check fails, is state properly rolled back? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee230999-78c0-4662-b078-7df88f361375?mode=deep",
+    "timestamp": "2026-02-19 07:35:42.678918",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: fulfill_liquidity_request()] [Balance Availability] Splits amount from balances.available_amount. If amount > balance value due to race conditions, can this cause panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e2d567c-d255-42a0-992a-b66c4d55908d?mode=deep",
+    "timestamp": "2026-02-19 07:36:03.335052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: calculate_utilization_rate()] [Fee Exclusion from Utilization] Uses total_supply_excluding_fees for calculation. Can unclaimed spread fees create arbitrage opportunities by artificially lowering utilization? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5792be26-c178-4a96-a60b-a82ae9bfc037?mode=deep",
+    "timestamp": "2026-02-19 07:36:24.123604",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: compound_interest()] [Precision Loss in Long Periods] For very long time_elapsed_s (e.g., weeks without update), does pow calculation maintain sufficient precision or can rounding errors accumulate? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86f8c0e1-7f1d-44c7-9a32-f45c613731c5?mode=deep",
+    "timestamp": "2026-02-19 07:36:44.865995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: ctoken_ratio()] [Ratio Stagnation Attack] If no operations occur for long periods but interest compounds, can ctoken_ratio become stale, allowing attackers to deposit/redeem at outdated ratios? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c434c7d5-a713-48ec-98aa-e5ae33546329?mode=deep",
+    "timestamp": "2026-02-19 07:37:07.056988",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: deposit_liquidity_and_mint_ctokens()] [Flash Loan Deposit Attack] Can an attacker use flash-loaned tokens to inflate their ctoken balance, manipulate operations, then withdraw, all within single transaction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ebb136fc-ce8d-4d1f-80a8-da77d63f5eff?mode=deep",
+    "timestamp": "2026-02-19 07:37:29.336312",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: borrow_liquidity()] [Recursive Borrow Attack] Can an attacker borrow, use borrowed tokens as collateral in another reserve, then borrow more, creating leverage beyond intended limits? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0df690bf-b4a7-4dba-bc25-600655d3b41e?mode=deep",
+    "timestamp": "2026-02-19 07:37:52.770974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: max_borrow_amount()] [Max Borrow Front-Running] The max borrow calculation doesn't account for pending operations. Can attackers front-run to borrow exactly the max, causing next user's borrow to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_677eaf91-aeae-4603-bb71-45933042f04b?mode=deep",
+    "timestamp": "2026-02-19 07:38:15.647201",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: redeem_ctokens()] [Mass Redemption DoS] If many users try to redeem simultaneously, can the MIN_AVAILABLE_AMOUNT check cause later redeemers to fail even with sufficient liquidity? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2f6adf36-bc1e-493e-848e-280c32eeaa34?mode=deep",
+    "timestamp": "2026-02-19 07:38:38.070950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: update_price()] [Price Update Griefing] Can an attacker repeatedly call update_price with minimal price changes to reset price_last_update_timestamp_s, affecting staleness checks in other operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_79b39ab5-95e6-40f2-b41e-9b31795123ed?mode=deep",
+    "timestamp": "2026-02-19 07:39:02.235821",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: compound_interest()] [Interest Rate Sandwich Attack] Can an attacker manipulate utilization_rate by large deposit/withdrawal around interest compounding to minimize their interest payments? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_efc89bed-117a-4351-84d9-314f446fc113?mode=deep",
+    "timestamp": "2026-02-19 07:39:26.966841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: deduct_liquidation_fee()] [Liquidation Fee Front-Running] Can liquidators front-run config updates that change protocol_liquidation_fee or liquidation_bonus to maximize their profits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ad2af7b-3703-4332-a324-38f90c02fac0?mode=deep",
+    "timestamp": "2026-02-19 07:39:53.355911",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: claim_fees()] [Fee Claim Timing Manipulation] Can protocol operators time fee claims to coincide with favorable price updates, maximizing USD value of claimed fees? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83da1d89-e599-411e-813d-24981e24fbfb?mode=deep",
+    "timestamp": "2026-02-19 07:40:19.386717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Functions: deposit_liquidity_and_mint_ctokens() + compound_interest()] [Compound Before Deposit Race] If compound_interest() is called between deposit and minting, can the ctoken_ratio change mid-transaction, giving depositor more or fewer ctokens than expected? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f273c96f-e038-4600-91c9-e5c2d40ec219?mode=deep",
+    "timestamp": "2026-02-19 07:40:45.759270",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Functions: borrow_liquidity() + update_price()] [Price Update During Borrow] If price updates between borrow limit checks, can the USD limit check pass but actual borrowed value exceed limits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_374a65eb-b10a-4bcb-9c03-55a1b621a1eb?mode=deep",
+    "timestamp": "2026-02-19 07:41:11.269978",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Functions: redeem_ctokens() + unstake_sui_from_staker()] [Unstake Failure Impact] If unstake_sui_from_staker fails (validator offline), does redeem_ctokens properly handle the failure or can it leave inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_16890367-65ec-44f3-9dd1-ad40cfc59c3a?mode=deep",
+    "timestamp": "2026-02-19 07:41:35.347942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Functions: repay_liquidity() + compound_interest()] [Compound During Repay] If interest compounds between calculating settle_amount and repayment, can the ceil(settle_amount) check fail even for legitimate repayments? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5a87a80-3cb1-4e47-8a01-e8313d77a7ce?mode=deep",
+    "timestamp": "2026-02-19 07:42:00.197698",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Functions: claim_fees() + rebalance_staker()] [Concurrent Fee Claims] Can simultaneous calls to claim_fees() and rebalance_staker() cause double-withdrawal from staker or balance inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b196cc1-ef6b-489e-9dc2-94dfaaeda1df?mode=deep",
+    "timestamp": "2026-02-19 07:42:23.681873",
+    "report_generated": false
+  }
+]
