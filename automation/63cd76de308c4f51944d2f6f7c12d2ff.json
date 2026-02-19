@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: add_switchboard_aggregator()] [Table Growth] Table can grow indefinitely - can an attacker add thousands of aggregators to DoS via storage costs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0cdfb9b5-0c80-445e-bd34-4ef08f847d2c?mode=deep",
+    "timestamp": "2026-02-19 00:47:33.534302",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: remove_switchboard_aggregator()] [Table Remove Race] If multiple removes execute concurrently, can this corrupt the table? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cfd0e25e-29f6-4db2-af99-22c585715a84?mode=deep",
+    "timestamp": "2026-02-19 00:47:45.973685",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Struct: OracleConfig] [Table Access Pattern] Direct indexing with aggregators[asset_type] can panic - should all access use contains() check first? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_73a99d56-e58e-42b1-9331-7cd24225d086?mode=deep",
+    "timestamp": "2026-02-19 00:47:59.621546",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: coin_decimals()] [Panic Risk] Direct table access without existence check - will this panic for invalid asset_type? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2f452339-739e-428b-b0aa-9bcc84c85834?mode=deep",
+    "timestamp": "2026-02-19 00:48:13.266354",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: check_version()] [Version Mismatch DoS] If VERSION constant is updated but config.version isn't, all operations fail - can this cause permanent DoS? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f571476-fc72-4615-b08c-b2d30eaf02c6?mode=deep",
+    "timestamp": "2026-02-19 00:48:28.502586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: upgrade_oracle_config()] [Upgrade Ordering] If multiple configs exist, can they be upgraded in wrong order, causing version inconsistencies? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_36eb4d68-3bf2-4dae-a0ff-4d792a45cdea?mode=deep",
+    "timestamp": "2026-02-19 00:48:44.792508",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Constant: VERSION] [Version Bump Impact] When VERSION changes from 2 to 3, what data migrations are needed? Are they handled? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd6105e9-c9a0-4e7c-bb34-ec767e896599?mode=deep",
+    "timestamp": "2026-02-19 00:49:02.333351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: upgrade_oracle_config()] [Partial Upgrade] If upgrade fails midway, is the version field rolled back or left in inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af9f1f85-7296-4c6e-b989-707674d57f44?mode=deep",
+    "timestamp": "2026-02-19 00:49:20.493576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_current_price()] [Switchboard Dependency] Fully depends on switchboard::aggregator module - what if Switchboard is paused or malfunctioning? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3d671a0-d339-47f4-bb9e-fa8d7698cb39?mode=deep",
+    "timestamp": "2026-02-19 00:49:39.853592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_current_price()] [current_result() Trust] Blindly trusts current_result() without verifying it represents consensus - can individual feeds manipulate this? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f1eca7b2-7378-4a11-8279-77270d9e0e2f?mode=deep",
+    "timestamp": "2026-02-19 00:49:59.499143",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_current_price()] [max_timestamp_ms() Validation] Doesn't validate that max_timestamp_ms() is reasonable - can future timestamps be provided? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9e0ba47-c055-4789-b93f-855b053c2227?mode=deep",
+    "timestamp": "2026-02-19 00:50:19.465400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_current_price()] [result().value() Cast] Casts to u256 assuming it fits - can negative or out-of-range values cause issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5247dcb6-b75a-4be2-b18a-51ea7615ec85?mode=deep",
+    "timestamp": "2026-02-19 00:50:40.069967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: add_switchboard_aggregator()] [Aggregator Liveness] Doesn't check if aggregator is active before adding - can dead aggregators be added? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5327461-b52f-427f-826e-7b9be5cb3ff2?mode=deep",
+    "timestamp": "2026-02-19 00:51:01.092454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Type: String] [Asset Type Format] asset_type is std::ascii::String with no format validation - can special characters or empty strings cause issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e235cd2-cba1-406a-b5cb-bc20ad76c53c?mode=deep",
+    "timestamp": "2026-02-19 00:51:23.226145",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_asset_price()] [Case Sensitivity] Asset type comparison is case-sensitive - can 'SUI' and 'sui' coexist as different assets? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5244f2ff-656e-4af6-a005-b8017ddb4dc1?mode=deep",
+    "timestamp": "2026-02-19 00:51:45.376002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: add_switchboard_aggregator()] [Asset Type Collision] No namespace or prefix for asset types - can cross-protocol collisions occur? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3e582173-4764-46b5-9d0d-e5b62f4e58d4?mode=deep",
+    "timestamp": "2026-02-19 00:52:08.437821",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: remove_switchboard_aggregator()] [Asset Type Cleanup] Removing asset doesn't prevent future vault operations from trying to use it - can this cause runtime panics? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b468051-b6b1-4c15-8499-708345b8e5dc?mode=deep",
+    "timestamp": "2026-02-19 00:52:31.352764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Constant: MAX_UPDATE_INTERVAL] [Default Safety] Set to 60 seconds - is this sufficient for all market conditions and network congestion? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7f33848e-ea4d-4cf6-8ff8-5c2772109f52?mode=deep",
+    "timestamp": "2026-02-19 00:52:55.580576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Constant: DEFAULT_DEX_SLIPPAGE] [Slippage Safety] Set to 1% (100 bps) - is this safe across all DEX operations and market volatilities? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1a15bf2a-ccb6-4727-96ba-96dcf727469b?mode=deep",
+    "timestamp": "2026-02-19 00:53:18.885542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: set_update_interval()] [No Minimum] Can be set to 1ms making all prices appear stale - should there be a minimum enforced? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_61c024a4-ce64-45b0-be72-e28a90dc0401?mode=deep",
+    "timestamp": "2026-02-19 00:53:43.984576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: set_dex_slippage()] [Slippage Extremes] Can be 0 (DoS) or u256::MAX (no protection) - should bounds be enforced? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_67b45054-1d37-4195-bc7e-894df3f8035f?mode=deep",
+    "timestamp": "2026-02-19 00:54:09.528924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Struct: PriceInfo] [No Bounds Fields] price, last_updated have no min/max bounds - can extreme values cause issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5e6d88d-7ecf-4440-b0fd-c6302457827d?mode=deep",
+    "timestamp": "2026-02-19 00:54:34.188085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Struct: PriceInfo] [Missing Fields] No price staleness flag or health indicator - can unhealthy prices be used? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2a589c8e-0595-4f36-a6fe-f7a51d04fa72?mode=deep",
+    "timestamp": "2026-02-19 00:54:55.938831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Struct: OracleConfig] [Mutable Shared Object] Being a mutable shared object, can concurrent mutations cause data races? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_063643c6-3f70-4e55-8f0d-d889cf55f296?mode=deep",
+    "timestamp": "2026-02-19 00:55:17.849358",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Struct: OracleConfig] [No Admin Cap] No owner or admin capability stored - authorization relies solely on package access, is this sufficient? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_624f5185-095e-4d50-b03d-ce633f5a0eca?mode=deep",
+    "timestamp": "2026-02-19 00:55:39.850661",
+    "report_generated": false
+  }
+]
