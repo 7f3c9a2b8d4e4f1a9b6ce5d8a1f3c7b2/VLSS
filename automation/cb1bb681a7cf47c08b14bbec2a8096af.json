@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amount_x_for_liquidity()] [Precision Loss in Division] When dividing (liquidity * sqrt_price_diff) by sqrt_price_product, can precision loss cause the u64 result to be off by enough to enable repeated extraction attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_743a0e32-5eeb-4f8d-8d53-a356851957ae?mode=deep",
+    "timestamp": "2026-02-19 05:58:39.901052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amount_x_for_liquidity()] [Rounding Bool Bypass] Can vault operations call get_amount_x_for_liquidity() with incorrect round_up values, causing the vault to give away token X during withdrawals or take too little during deposits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8eebf03d-8acb-4e10-a886-c560a1c6a399?mode=deep",
+    "timestamp": "2026-02-19 05:58:52.428783",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amount_y_for_liquidity()] [Rounding Manipulation] When round_up=false during withdrawal, can users extract more token Y than their liquidity entitles by repeatedly exploiting rounding-down errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_81933910-83d5-4bf9-bd80-f69abdd1fbee?mode=deep",
+    "timestamp": "2026-02-19 05:59:06.711658",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amount_y_for_liquidity()] [Rounding Direction Error] If implementation swaps round_up logic, will vault deposit operations accept less token Y than required, allowing users to mint shares with insufficient collateral? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8dd5b5f3-6334-45f5-b5a1-503ea8b507a0?mode=deep",
+    "timestamp": "2026-02-19 05:59:20.582001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amount_y_for_liquidity()] [u128 to u64 Overflow] Since (liquidity * sqrt_price_delta) could exceed u64::max, will the cast abort or silently overflow, enabling DoS attacks during large liquidity operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_30b5dccb-80ee-417e-8357-1cfa2037bbdf?mode=deep",
+    "timestamp": "2026-02-19 05:59:35.258892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amount_y_for_liquidity()] [Sqrt Price Ordering] If sqrt_price_current > sqrt_price_target (wrong order for Y calculations), will get_amount_y_for_liquidity() return incorrect negative-cast amounts or abort, and can oracle manipulation trigger this? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_587be187-2292-4e67-ac13-8d2ec7a32abb?mode=deep",
+    "timestamp": "2026-02-19 05:59:50.989821",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amount_y_for_liquidity()] [Zero Liquidity] When liquidity=0, will get_amount_y_for_liquidity() safely return 0, or could vault operations misinterpret zero returns as errors and abort legitimate withdrawals? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5986a51-192c-4533-871f-409268d6bc39?mode=deep",
+    "timestamp": "2026-02-19 06:00:07.931124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amount_y_for_liquidity()] [Identical Sqrt Prices] If sqrt_price_current == sqrt_price_target, will get_amount_y_for_liquidity() return 0 correctly, or could vault operations treat this as an error condition? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc72b5d6-339d-4452-ab10-78bba05dacad?mode=deep",
+    "timestamp": "2026-02-19 06:00:26.510309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amount_y_for_liquidity()] [Multiplication Overflow] Can max values of liquidity and sqrt_price_delta cause overflow in get_amount_y_for_liquidity(), wrapping to small amounts and causing vault to accept vastly insufficient collateral? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c7095e9-4df6-4ff6-bbb2-402a8decb0ee?mode=deep",
+    "timestamp": "2026-02-19 06:00:45.244925",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amount_y_for_liquidity()] [Precision Loss] In the calculation (liquidity * (sqrt_price_current - sqrt_price_target)) / Q64, can precision loss accumulate across multiple operations to enable value extraction? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_170feef7-4eb9-41d9-9062-e23b4bb09347?mode=deep",
+    "timestamp": "2026-02-19 06:01:04.378838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amount_y_for_liquidity()] [Round Up Inversion] If vault adaptors pass round_up=true when they should pass false (or vice versa), can this cause systematic value leakage from the vault to users? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe67afe9-85c4-4670-8db8-4abb0c5055f6?mode=deep",
+    "timestamp": "2026-02-19 06:01:24.244547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amounts_for_liquidity()] [Price Range Validation] If sqrt_price_lower >= sqrt_price_upper (invalid range), will get_amounts_for_liquidity() abort or return swapped amounts, causing vault to mint shares based on inverted token ratios? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_70880515-0482-483a-9047-e08eae128b72?mode=deep",
+    "timestamp": "2026-02-19 06:01:44.827201",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amounts_for_liquidity()] [Current Price Out of Range] When sqrt_price_current is outside [sqrt_price_lower, sqrt_price_upper], will get_amounts_for_liquidity() correctly handle single-sided liquidity or return both amounts incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a9ae2437-8394-4424-8a8a-c4a2db8bbd1a?mode=deep",
+    "timestamp": "2026-02-19 06:02:04.986384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amounts_for_liquidity()] [Both Amounts Zero] Can an attacker manipulate prices such that get_amounts_for_liquidity() returns (0, 0) for non-zero liquidity, allowing them to withdraw liquidity without returning tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_05eb656c-a527-4fab-945c-2e7d9c7c11bb?mode=deep",
+    "timestamp": "2026-02-19 06:02:25.432874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amounts_for_liquidity()] [Inconsistent Rounding] If round_up affects amount_x and amount_y differently, can an attacker exploit the inconsistency to withdraw more value than deposited across multiple operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7d095f9a-2e32-4d1a-9a1e-ea0b672e2b45?mode=deep",
+    "timestamp": "2026-02-19 06:02:43.749418",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amounts_for_liquidity()] [u64 Dual Overflow] If both amount calculations overflow u64, will get_amounts_for_liquidity() abort cleanly or could one amount overflow while the other succeeds, causing imbalanced vault accounting? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3932d88-ee58-496d-9309-5d91704ce561?mode=deep",
+    "timestamp": "2026-02-19 06:03:03.159150",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amounts_for_liquidity()] [Rounding Direction Mismatch] When calling underlying get_amount_x_for_liquidity() and get_amount_y_for_liquidity() with the same round_up flag, can the vault end up rounding in favor of users for both deposits and withdrawals? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_89792892-b1f5-4996-9357-bb584e72a84d?mode=deep",
+    "timestamp": "2026-02-19 06:03:22.561654",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amounts_for_liquidity()] [Single-Sided Position] If price is at upper bound (only token Y), will get_amounts_for_liquidity() return (0, amount_y) correctly, or could vault operations misinterpret this as a failure? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0422547-c88a-4a4e-ae5b-d9642f2c2236?mode=deep",
+    "timestamp": "2026-02-19 06:03:43.393851",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amounts_for_liquidity()] [Price Boundary Edge Case] At exact sqrt_price_lower or sqrt_price_upper boundaries, will rounding cause get_amounts_for_liquidity() to include/exclude one token incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52042a71-ee0e-49e1-93fa-fbd64e9b5a1f?mode=deep",
+    "timestamp": "2026-02-19 06:04:05.430837",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amounts_for_liquidity()] [Zero Liquidity Input] When liquidity=0, will get_amounts_for_liquidity() return (0, 0) as expected, or could the implementation divide by zero in the calculation path? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e8d5dc6-4caf-48ee-b44b-5a91757f3c09?mode=deep",
+    "timestamp": "2026-02-19 06:04:28.871771",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amounts_for_liquidity()] [MAX Liquidity] If liquidity=u128::max, will both amount calculations overflow, and can this be used to DoS vault operations requiring position valuation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21bc12d0-9caf-4add-9e76-5cb6183bb103?mode=deep",
+    "timestamp": "2026-02-19 06:04:51.979001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_liquidity_for_amount_x()] [Zero Amount Input] When amount_x=0, will get_liquidity_for_amount_x() return liquidity=0, or could division by zero / edge cases cause aborts preventing zero-amount operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3ad3d156-ad5c-48b9-9a39-e74213a74318?mode=deep",
+    "timestamp": "2026-02-19 06:05:14.990072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_liquidity_for_amount_x()] [u64 to u128 Conversion] Since amount_x is u64 but return is u128, can the calculation (amount_x * sqrt_price_product / sqrt_price_diff) overflow u128 for extreme price ratios, wrapping to small liquidity values? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_875e73d8-e927-4b12-8469-0251910a3e49?mode=deep",
+    "timestamp": "2026-02-19 06:05:39.304820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_liquidity_for_amount_x()] [Sqrt Price Inversion] If sqrt_price_current < sqrt_price_target (inverted for X), will get_liquidity_for_amount_x() return negative-cast large liquidity or abort, and can oracle attacks trigger this? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b7be1ab3-c698-4fb8-ae2f-348fc5fb6da9?mode=deep",
+    "timestamp": "2026-02-19 06:06:03.729514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_liquidity_for_amount_x()] [Division Precision Loss] When dividing amount_x by (1/sqrt_price_target - 1/sqrt_price_current), can precision loss cause liquidity to be understated, allowing users to mint more shares than deserved? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b221f9e-9f9b-4a31-9db1-c497035ec1d6?mode=deep",
+    "timestamp": "2026-02-19 06:06:27.323197",
+    "report_generated": false
+  }
+]
