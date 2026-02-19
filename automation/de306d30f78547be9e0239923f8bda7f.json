@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: update_reward()] [Partial Update Failure] If the while loop at lines 200-220 fails midway (e.g., vector::borrow_mut panics), are previous iterations' updates persisted, creating inconsistent reward state across pool indices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dae64751-ea7f-4657-a6d2-02a42423ff8b?mode=deep",
+    "timestamp": "2026-02-19 07:39:35.241188",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: update_reward()] [Account Zero Address] If account == @0x0, calc_pool_update_rewards skips user reward calculation but update_reward still tries to add entries to tables - can this cause table operations on zero address leading to state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2bdce970-cb49-49e6-a0d8-ba216187540b?mode=deep",
+    "timestamp": "2026-02-19 07:39:48.201329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Division by Zero] Line 255: index_increase = safe_math::mul(rate, time_diff) / total_supply - if total_supply is 0 (no users staked), does safe_math prevent division by zero, or can this panic causing reward calculation DoS? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b19105a8-394d-4d1a-9a84-cb82d17b8bf3?mode=deep",
+    "timestamp": "2026-02-19 07:40:02.124252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Overflow in Multiplication] Line 255: safe_math::mul(rate, time_diff) - if rate is very large (from short duration pool) and time_diff spans months, can this multiplication overflow even with safe_math, causing panic or wrap-around? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_20c65076-a8da-452b-af4e-335a33d7b1f3?mode=deep",
+    "timestamp": "2026-02-19 07:40:15.939465",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Index Reward Underflow] Line 274: (index_reward - index_rewards_paid) - if index_rewards_paid > index_reward due to state corruption or race condition, does this underflow cause panic or negative reward? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ed08a543-8073-444b-a8b1-7229d40a9425?mode=deep",
+    "timestamp": "2026-02-19 07:40:30.712595",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Reward Increase Overflow] Line 274: reward_increase = (index_reward - index_rewards_paid) * supply_balance - if a whale has huge supply_balance and index delta is large, can this overflow u256? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5594e4f4-e384-4479-a403-c393fee094bf?mode=deep",
+    "timestamp": "2026-02-19 07:40:46.996351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Accumulated Reward Overflow] Line 275: user_acc_reward = user_acc_reward + reward_increase - across multiple pool updates, can accumulated rewards overflow u256, causing wrap-around and loss of rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_89590410-8876-4dbd-be00-e7755b92aa66?mode=deep",
+    "timestamp": "2026-02-19 07:41:04.087829",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Time Window Manipulation] Lines 239-245: start_time and end_time are clamped to last_update_time and current_timestamp - if start_time >= end_time after clamping, time_diff becomes 0, but can attacker exploit boundary conditions to skip reward accrual? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4750b609-5181-42fa-90c4-b7487edbfc40?mode=deep",
+    "timestamp": "2026-02-19 07:41:21.794850",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Stale Total Supply] Line 251: get_total_supply() is called without timestamp validation - if Storage.total_supply is stale (not updated for epochs), can this cause reward dilution or concentration? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_34796646-1aee-4097-bb21-944d8349672c?mode=deep",
+    "timestamp": "2026-02-19 07:41:40.868342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Index Not Increasing] If start_time >= end_time (line 249), index_increase is 0 and index_reward stays same - can this cause permanent reward freeze if pool end_time is in past but pool isn't marked inactive? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f96f1ec4-5337-4cfa-b900-bf2ac20a116f?mode=deep",
+    "timestamp": "2026-02-19 07:42:00.440775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [User Balance Staleness] Line 273: get_user_balance() returns supply_balance at call time, but if user's balance changed since last update, is old balance used in reward calculation causing over/under payment? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e833a870-6d31-4c52-8bac-6e3fd2bb6312?mode=deep",
+    "timestamp": "2026-02-19 07:42:21.568046",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Vector Borrow Panic] Multiple vector::borrow calls without length checks - if pool vectors are desynchronized or corrupted, can out-of-bounds access cause transaction panic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee1abcbe-058a-4c6c-8805-ac3c783a0e4c?mode=deep",
+    "timestamp": "2026-02-19 07:42:43.407963",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Zero Address Handling] Line 262: if (account != @0x0) - but if account IS @0x0, user_acc_reward remains 0 and is pushed to vector - can this cause incorrect reward tracking for legitimate zero-address edge cases? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18aa9ddc-ea07-4ae5-9384-a2b20a053813?mode=deep",
+    "timestamp": "2026-02-19 07:43:05.456240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Rate Precision Loss] Line 255: division by total_supply can cause precision loss for small total_supply values - can rounding errors accumulate over time causing significant reward underpayment? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0dc57269-3b05-4aa9-a303-d96c59a2acbe?mode=deep",
+    "timestamp": "2026-02-19 07:43:27.522419",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: calc_pool_update_rewards()] [Missing Reward Cap] No upper bound check on index_increase or user_acc_reward - can attacker exploit large time gaps or supply manipulation to mint unlimited rewards exceeding total_supply? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_459854fc-ea22-4a32-b5c1-b80e1502a605?mode=deep",
+    "timestamp": "2026-02-19 07:43:51.335729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: claim_reward()] [Reentrancy via Transfer] Line 296: public_transfer is called while incentive and bal are still mutable references - can the transfer recipient's receive function reenter claim_reward to double-claim before bal.distributed_amount is updated? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c27e0f5-784c-4ea0-8143-b75fea39ad79?mode=deep",
+    "timestamp": "2026-02-19 07:44:15.326398",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Distributed Amount Overflow] Line 333: bal.distributed_amount = bal.distributed_amount + amount_to_pay - can multiple concurrent claims cause distributed_amount to exceed total_supply before the assertion at line 332 is checked? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fd1a0f3c-3e01-4716-b4cc-2e007f2186ee?mode=deep",
+    "timestamp": "2026-02-19 07:44:41.374909",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Ray Division Precision Loss] Line 329: (user_acc_reward - user_acc_rewards_paid) / ray_math::ray() - dividing by RAY (1e27) can cause significant rounding down - can users lose substantial rewards due to precision truncation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c072a98a-c5a3-45f0-823c-3dcbfc815533?mode=deep",
+    "timestamp": "2026-02-19 07:45:08.419831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Amount Casting Overflow] Line 335: (amount_to_pay as u64) - if amount_to_pay (u256) exceeds u64::MAX, does this cast truncate or panic? Can attacker accumulate huge u256 rewards that fail to convert to u64 for balance::split? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9732bf37-869e-4fbd-8bd6-6a6bd4e08f87?mode=deep",
+    "timestamp": "2026-02-19 07:45:36.827919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Underflow in Reward Calculation] Line 329: (user_acc_reward - user_acc_rewards_paid) - if user_acc_rewards_paid > user_acc_reward due to race condition, does this cause underflow panic or return negative amount? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d4d6a95-e189-49f1-8edf-c40d3a9e2318?mode=deep",
+    "timestamp": "2026-02-19 07:46:05.622746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Double Claim via Remove-Add] Lines 325-327: remove old paid amount then add new - if claim is called twice before state commits, can the second call see old user_acc_rewards_paid allowing double claim? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9a7dfb2-aee8-4e56-afc8-31911b3ce6ba?mode=deep",
+    "timestamp": "2026-02-19 07:46:34.894303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: claim_reward_with_account_cap()] [AccountCap Validation Missing] account::account_owner(account_cap) is called without checking if AccountCap is valid for this incentive pool - can attacker use AccountCap from different protocol to claim rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0caa21d7-a9c5-4470-8908-e6ad5e9b8992?mode=deep",
+    "timestamp": "2026-02-19 07:47:06.317156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Update Before Claim] Line 311: update_reward is called before claiming, but if update fails silently, stale rewards are used - can this cause users to claim outdated smaller rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd31f062-1f8d-4cd3-b864-1870fb34224a?mode=deep",
+    "timestamp": "2026-02-19 07:47:38.117641",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Index Mismatch] current_idx from IncentiveBal is used to index into PoolInfo vectors - if IncentiveBal.current_idx is corrupted or desynchronized, can claims pull from wrong reward pool? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9e855e8-fd30-477e-beea-82e106822950?mode=deep",
+    "timestamp": "2026-02-19 07:48:11.205429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive.move] [Function: base_claim_reward()] [Balance Split Insufficient] Line 335: balance::split(&mut bal.balance, amount_to_pay as u64) - if bal.balance < amount_to_pay due to previous claims, does split panic causing DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a22efa23-acf8-4868-8e97-a664ce7719ac?mode=deep",
+    "timestamp": "2026-02-19 07:48:45.487891",
+    "report_generated": false
+  }
+]
