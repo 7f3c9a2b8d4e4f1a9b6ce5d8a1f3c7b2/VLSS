@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: import_stakes()] [Join Failure] If join_to_sui_pool() at line 173 fails after balance is split, are funds lost? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f536105-3250-41b6-817e-c79125f542b6?mode=deep",
+    "timestamp": "2026-02-19 09:36:22.213061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: destroy_migration_cap()] [Count Mismatch] Can target_exported_count be manipulated to not match actual exported_count, preventing cap destruction and leaving migration incomplete? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ed9dc174-0940-4b17-bea0-9ff8ed1903f5?mode=deep",
+    "timestamp": "2026-02-19 09:36:35.396865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: destroy_migration_cap()] [Balance Check] Assertion sui_balance.value() == 0 at line 194 - can rounding errors or dust amounts prevent cap destruction? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be1cb761-bad6-47bb-873f-92b4be423027?mode=deep",
+    "timestamp": "2026-02-19 09:36:48.943352",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: destroy_migration_cap()] [Flag Verification] Can pool_created or fees_taken flags be reset after setting but before destroy_migration_cap() is called? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_91427985-b133-4047-83c2-65461eea5039?mode=deep",
+    "timestamp": "2026-02-19 09:37:03.219130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: destroy_migration_cap()] [Premature Destruction] Can destroy_migration_cap() be called before all stakes are imported, satisfying balance == 0 but leaving stakes unaccounted? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_018e5eb3-7463-4a11-b7d0-32266b8c3b8d?mode=deep",
+    "timestamp": "2026-02-19 09:37:18.499055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: destroy_migration_cap()] [Error Codes] Assertions use error codes 0, 1, 2, 3 - are these codes unique across all migration functions to aid debugging? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19697864-3c17-4627-966a-35885d0ebebb?mode=deep",
+    "timestamp": "2026-02-19 09:37:35.196877",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: destroy_migration_cap()] [Cap Reuse] After id.delete() at line 199, can the deleted UID be reconstructed or reused in subsequent transactions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_07e28f80-b7b2-43ec-a173-98c38df1a441?mode=deep",
+    "timestamp": "2026-02-19 09:37:53.135798",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: destroy_migration_cap()] [Storage Leak] MigrationStorage is not destroyed - can it remain accessible after migration completion, enabling unauthorized access? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_43093875-3329-4513-a90c-4e8bea1ace63?mode=deep",
+    "timestamp": "2026-02-19 09:38:12.688014",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: destroy_migration_cap()] [Target Count Manipulation] Can an attacker set target_exported_count to any value to bypass count verification at line 193? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19c069f4-857a-4a05-8ac9-cdaf6e9767bf?mode=deep",
+    "timestamp": "2026-02-19 09:38:31.680816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: destroy_migration_cap()] [Partial Migration] If some exports succeeded but others failed, can destroy_migration_cap() still be called with adjusted target_exported_count? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3f76d63-ff60-450b-8dcc-b98e90ea07af?mode=deep",
+    "timestamp": "2026-02-19 09:38:51.710421",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: deposit_sui()] [Authorization] MigrationCap is only mutably borrowed at line 205 - can any MigrationCap holder deposit arbitrary amounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_23252cd8-1059-40aa-8f56-4d8f14ff810d?mode=deep",
+    "timestamp": "2026-02-19 09:39:13.174041",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: deposit_sui()] [Amount Validation] Can amount parameter at line 207 exceed sui_balance total, causing split() to fail and lock funds? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5b6301b-ff85-424f-b55e-355a13d2d076?mode=deep",
+    "timestamp": "2026-02-19 09:39:36.160336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: deposit_sui()] [Unexpected Situations] Comment says 'for unexpeced situtations' - what situations? Can this be abused to inflate migration balance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6129c04a-77a5-4002-aca0-19e52b8f4615?mode=deep",
+    "timestamp": "2026-02-19 09:39:58.888438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: deposit_sui()] [Balance Inflation] Can deposit_sui() be called repeatedly to inflate sui_balance above legitimate migration amounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e23e020c-ce4f-4a25-9d24-73d35886dd95?mode=deep",
+    "timestamp": "2026-02-19 09:40:22.710399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: deposit_sui()] [Event Manipulation] SuiChangedEvent at line 214 shows total balance - can this be used to hide unauthorized deposits? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d33ab4a-a04c-4b5c-8970-1043a34a3785?mode=deep",
+    "timestamp": "2026-02-19 09:40:47.406860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: deposit_sui()] [Source Validation] Is the source Coin<SUI> validated to prevent depositing stolen or illegitimate funds? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_552a7aee-9725-401f-a830-cdda783b1649?mode=deep",
+    "timestamp": "2026-02-19 09:41:13.294775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: deposit_sui()] [Post-Migration] Can deposit_sui() be called after migration is complete, corrupting the finished state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_24347975-25cb-492f-9a2a-12294cd28ae3?mode=deep",
+    "timestamp": "2026-02-19 09:41:39.252780",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: deposit_sui()] [Destroy Prevention] Can depositing dust amounts prevent destroy_migration_cap() from satisfying balance == 0 check? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f32877fd-a1f8-4f20-9021-bd8da5b6e124?mode=deep",
+    "timestamp": "2026-02-19 09:42:04.091471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Cross-Function] [Ordering Bypass] Can steps be executed out of order (e.g., import before export) by different accounts holding MigrationCap? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c812ef1-c0d3-410a-aed8-e4b8292e032f?mode=deep",
+    "timestamp": "2026-02-19 09:42:27.869189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Cross-Function] [Parallel Execution] Can export_stakes() and import_stakes() be called in parallel, causing race conditions in balance accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_12aa7441-7a8a-4dbb-99e5-63fef349bf84?mode=deep",
+    "timestamp": "2026-02-19 09:42:51.840689",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Cross-Function] [Fee Timing] Can take_unclaimed_fees() be called multiple times between exports, draining migrated funds incrementally? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74b05a86-5be2-4212-b8b8-cd1a146d1614?mode=deep",
+    "timestamp": "2026-02-19 09:43:15.674847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Cross-Function] [Cap Sharing] If MigrationCap is transferred to multiple addresses, can concurrent function calls corrupt migration state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e2187e41-ed78-40f9-a9d7-a77c3c121dc0?mode=deep",
+    "timestamp": "2026-02-19 09:43:40.767175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Cross-Function] [Storage Access] MigrationStorage is shared - can functions access it concurrently without proper locking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9b74c8a-4c4a-4428-b1f5-31f3339a2f45?mode=deep",
+    "timestamp": "2026-02-19 09:44:03.740789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Cross-Function] [Balance Consistency] Can deposits via deposit_sui() race with exports/imports to create inconsistent balance states? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7f0c330-8954-4ae7-a36c-ab6e77ec797b?mode=deep",
+    "timestamp": "2026-02-19 09:44:25.228682",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Cross-Function] [Flag Dependencies] Are pool_created and fees_taken flags checked consistently across all functions requiring them? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9b37098-74c6-4290-9ab7-51b0a2469f50?mode=deep",
+    "timestamp": "2026-02-19 09:44:47.201461",
+    "report_generated": false
+  }
+]
