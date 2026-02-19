@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Authorization Bypass] Can package-level visibility allow unauthorized modules to call migrate_version() if they're in the same package, enabling version manipulation without AdminCap check? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7cad38c3-b0d9-4bba-9a6e-5d8dee08b4db?mode=deep",
+    "timestamp": "2026-02-19 07:13:01.211182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Logic Error] Does the <= comparison in migrate_version() allow downgrade attacks where self.version > VERSION could pass the check if VERSION constant is decreased in future deployments? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cec9a481-cb34-4f3e-89e4-d3a74c96c36c?mode=deep",
+    "timestamp": "2026-02-19 07:13:14.075702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [State Inconsistency] Can migrate_version() be called multiple times in succession without side effects, and does this enable DoS or state corruption when combined with other operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a56102f-696b-4523-919d-cc5ce5757568?mode=deep",
+    "timestamp": "2026-02-19 07:13:28.272618",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Race Condition] If migrate_version() is called while other operations are in progress, can it cause version check failures mid-transaction for concurrent operations reading the version field? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_24531974-b169-4626-bdd6-f7fb0b5de123?mode=deep",
+    "timestamp": "2026-02-19 07:13:42.466658",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Validation Bypass] Can an attacker exploit timing between check_version() calls in parent modules to execute operations after version is changed but before migration completes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c179e8b8-4d9c-4bc7-9366-69ce10d49197?mode=deep",
+    "timestamp": "2026-02-19 07:13:57.354966",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Logic Error] Does check_version() using strict equality (==) prevent legitimate forward compatibility scenarios where version > VERSION should be acceptable? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f259445-448f-4269-a876-f322cca703ca?mode=deep",
+    "timestamp": "2026-02-19 07:14:13.709616",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Constant: VERSION] [Upgrade Safety] If VERSION is changed from 2 to 3 in a new deployment, will existing pools with version=2 become permanently locked until migrate_version() is called? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_58d29102-b876-4439-a509-7592604dc384?mode=deep",
+    "timestamp": "2026-02-19 07:14:30.409261",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Integer Overflow] Can self.version be manipulated to near u64::MAX before migration, causing integer overflow when compared to VERSION or in future version arithmetic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_32a58b4f-ef8c-444d-a0e8-889cd9d63cdd?mode=deep",
+    "timestamp": "2026-02-19 07:14:48.670011",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Authorization Bypass] Since set_paused() has package visibility, can any module in liquid_staking package call it directly, bypassing AdminCap requirements enforced only in stake_pool.move? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d626bd2f-89dc-45ec-80f2-311fa4f84b8a?mode=deep",
+    "timestamp": "2026-02-19 07:15:08.919021",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [State Manipulation] Can set_paused() be called repeatedly to toggle pause state rapidly, causing DoS or breaking assumptions in modules that cache pause state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48a64e0b-a7a0-4c6e-80e6-756082fa9847?mode=deep",
+    "timestamp": "2026-02-19 07:15:31.527526",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_not_paused()] [Race Condition] Between check_not_paused() call and actual operation execution, can set_paused(true) be called in another transaction to cause operations to complete while system should be paused? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_278bcc91-60c4-4d4a-a468-9b6971b76bd8?mode=deep",
+    "timestamp": "2026-02-19 07:15:53.881035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_not_paused()] [Logic Error] Does check_not_paused() abort with EIncompatiblePaused (50002) providing enough context, or could this error code collision with other modules cause confusion in error handling? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3972592-93f6-4257-998a-061b31bb5bff?mode=deep",
+    "timestamp": "2026-02-19 07:16:15.959102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: new()] [Initial State] Why is paused=true in new() constructor, and can this cause locked funds if deployment doesn't immediately call set_paused(false)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ce1593a7-37b2-4e91-afaf-8487bf42ed35?mode=deep",
+    "timestamp": "2026-02-19 07:16:37.737092",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Missing Validation] Does set_paused() lack checks for current pause state, enabling idempotent calls that could mask errors or enable event replay attacks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2f7eedba-0633-4ad7-87b6-d574ca22db8a?mode=deep",
+    "timestamp": "2026-02-19 07:17:01.428709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: new()] [Access Control] Since new() has package visibility, can malicious package modules create arbitrary Manage instances with paused=true to inject into other data structures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b9c748e-78f7-4ab7-8435-72daeb462212?mode=deep",
+    "timestamp": "2026-02-19 07:17:24.449876",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: new()] [State Inconsistency] Does new() always initializing paused=true create deployment risks where pools are created but cannot be used until admin manually unpauses? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7969064a-5a8c-470e-bd50-db60ab0f194a?mode=deep",
+    "timestamp": "2026-02-19 07:17:44.801738",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: new()] [Version Initialization] Can new() be called with outdated VERSION constant if module is not fully redeployed, causing version mismatches between Manage instances? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd4ebf41-4232-4135-a5c4-92aec4190622?mode=deep",
+    "timestamp": "2026-02-19 07:18:06.729464",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Constant: EIncompatibleVersion] [Error Code Collision] Can error code 50001 collide with error codes in other modules, causing incorrect error interpretation in multi-module transactions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6477d461-61cc-4dcc-a64f-4d03bb98b044?mode=deep",
+    "timestamp": "2026-02-19 07:18:28.626295",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Constant: EIncompatiblePaused] [Error Code Collision] Can error code 50002 collide with other pause-related errors in volo_vault or validator_pool modules? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f226a654-56bb-4337-ae53-f0e77ed682ed?mode=deep",
+    "timestamp": "2026-02-19 07:18:50.932330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Error Message] Does assert!(self.version == VERSION, EIncompatibleVersion) provide enough information for debugging version mismatch issues in production? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f6da30e-fe6c-4a13-b03e-828dd6c62153?mode=deep",
+    "timestamp": "2026-02-19 07:19:09.477905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_not_paused()] [Error Message] Does assert!(!self.paused, EIncompatiblePaused) clearly communicate why operation failed, or can users confuse pause with other operational states? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ca46019-945f-4a28-8ae4-7f161461c094?mode=deep",
+    "timestamp": "2026-02-19 07:19:29.953917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Struct: Manage] [Composition Pattern] Can Manage struct be embedded in multiple pool types (StakePool, ValidatorPool), and does this create inconsistent pause states across pools? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f36478b3-580a-44b6-8177-f0434b5e250f?mode=deep",
+    "timestamp": "2026-02-19 07:19:51.253882",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Cross-Module Consistency] If StakePool and ValidatorPool have different Manage instances with different versions, can this cause inconsistent behavior in integrated operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b748059-2d2c-4fc0-b2e4-a24519ad4bb7?mode=deep",
+    "timestamp": "2026-02-19 07:20:11.864649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [State Synchronization] When set_paused() is called on StakePool's Manage, does ValidatorPool's Manage pause state remain independent, enabling partial system pause vulnerabilities? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d4cb2852-721b-4130-94e4-518942ec1648?mode=deep",
+    "timestamp": "2026-02-19 07:20:32.744358",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Package Visibility] [Scope Creep] Can future modules added to liquid_staking package abuse package-level access to new(), set_paused(), and migrate_version() without proper authorization? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec7c485d-4f37-4f1d-b389-f5d30227d53a?mode=deep",
+    "timestamp": "2026-02-19 07:20:54.448728",
+    "report_generated": false
+  }
+]
