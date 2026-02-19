@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_health_factor()] [Input Validation] Lines 20-22: estimate_supply_value and estimate_borrow_value are u64 - no validation of reasonable ranges - can attacker pass u64::MAX to cause issues in subsequent calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f49abc05-20a5-4b46-8e92-4e3bfc8ec61b?mode=deep",
+    "timestamp": "2026-02-19 08:36:38.752174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_health_factor()] [Input Validation] Line 19: asset parameter is u8 with no validation - can attacker pass non-existent asset id to cause storage lookups to fail or return default values? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf6850e5-65d0-45a4-92b1-b71aec3aeb3e?mode=deep",
+    "timestamp": "2026-02-19 08:36:51.771805",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_collateral_value()] [Input Validation] No validation that estimate_value fits in u256 calculations - though converted from u64, subsequent operations could overflow - are all paths checked? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b7e239fa-f84c-4ccc-be23-cd6d40719017?mode=deep",
+    "timestamp": "2026-02-19 08:37:05.374297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_calculate_apy()] [Input Validation] Lines 295-297: estimate values in u64 but converted to u256 - can mismatch between u64 input and u256 internal calculations cause type confusion or precision loss? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_943044e1-8ba2-42e3-ac4b-d5b8ffca709e?mode=deep",
+    "timestamp": "2026-02-19 08:37:19.148514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: calculate_current_index()] [Index Manipulation] Lines 268-269: current_supply_index and current_borrow_index from storage - if storage is not properly initialized or corrupted, can indexes start from 0 causing division issues? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ddb1f094-76f7-42ac-961d-8c26d9fbf0b9?mode=deep",
+    "timestamp": "2026-02-19 08:37:34.098258",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: calculate_current_index()] [Index Manipulation] Line 269: current_supply_rate and current_borrow_rate from storage - no validation these are non-zero or reasonable - can corrupted rates cause extreme index growth? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_01d2d1cf-7fdf-422e-9935-730691c9942d?mode=deep",
+    "timestamp": "2026-02-19 08:37:50.366256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: calculate_current_index()] [Interest Calculation] Lines 274-277: calculate_compounded_interest uses timestamp_difference and rate - if rate is maliciously high or timestamp_difference is large due to no recent updates, can interest compound to extreme values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68ac9cea-630c-42a9-8880-15b96016f300?mode=deep",
+    "timestamp": "2026-02-19 08:38:08.084744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: calculate_current_index()] [Interest Calculation] Lines 281-284: calculate_linear_interest for supply - if linear interest calculation differs significantly from compound interest, can arbitrage exist between supply and borrow sides? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21527f66-1cd5-4387-ae30-53aebe0318c3?mode=deep",
+    "timestamp": "2026-02-19 08:38:26.777343",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: calculate_current_index()] [Race Condition] Function takes &mut Storage - if multiple calls happen concurrently (different transactions in same block), can index calculations use stale last_update_timestamp causing double-counting of interest? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c361c489-ab50-459e-ac44-fb780f92cb33?mode=deep",
+    "timestamp": "2026-02-19 08:38:45.587495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_collateral_balance()] [Index Inconsistency] Line 198: calculate_current_index called but doesn't update storage - can this cause calculated index to differ from actual stored index, breaking accounting? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d283cd5a-697d-4e5f-a497-73c08d93e3f2?mode=deep",
+    "timestamp": "2026-02-19 08:39:06.085481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_loan_balance()] [Index Inconsistency] Line 218: calculate_current_index without storage update - can gap between calculated and stored borrow_index allow users to repay less than they actually owe? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_855945a8-bace-4672-b15a-4898550a526d?mode=deep",
+    "timestamp": "2026-02-19 08:39:28.318454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_caculate_utilization()] [Index Inconsistency] Line 399: calculate_current_index used for utilization but indexes not persisted - can stale storage indexes cause actual interest accrual to diverge from calculated rates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e9bdf9f0-c82a-46b6-a05c-cbeb0c053f0f?mode=deep",
+    "timestamp": "2026-02-19 08:39:49.984056",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_health_factor()] [Health Factor Manipulation] Lines 27-28: normal_amount conversion for supply - if pool's normalizing function has rounding errors, can attacker exploit to inflate normal_estimate_supply_value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7aa8248-1dbc-48fe-b02b-06086e9f2e99?mode=deep",
+    "timestamp": "2026-02-19 08:40:11.945930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_health_factor()] [Health Factor Manipulation] Lines 31-32: normal_amount conversion for borrow - can deflate normal_estimate_borrow_value to show less debt than actual, improving health factor artificially? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4edc7b04-a533-4571-9592-5aa1bbfc8aea?mode=deep",
+    "timestamp": "2026-02-19 08:40:34.251807",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_health_factor()] [Health Factor Manipulation] Lines 35-43: dynamic_user_health_collateral_value calculation - if is_increase=true with supply estimate, can attacker call multiple times to see predicted health factor before actually supplying? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ac4d201-7844-46c3-8d38-e982bb2b063e?mode=deep",
+    "timestamp": "2026-02-19 08:40:56.792121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_health_factor()] [Health Factor Bypass] Line 70: returns address::max() when loan value is 0 - can attacker manipulate loan value calculation to return 0 (via rounding) to achieve infinite health factor? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ae462f7-a554-492b-8a39-2790fa4c9525?mode=deep",
+    "timestamp": "2026-02-19 08:41:19.174941",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_health_factor()] [Health Factor Calculation] Lines 55-63: dynamic_liquidation_threshold calculated separately - if threshold calculation uses different asset list than collateral value, can mismatch cause incorrect health factor? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a9c7a418-836c-482f-b5b0-20c5ba9bbe26?mode=deep",
+    "timestamp": "2026-02-19 08:41:42.389294",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_health_factor()] [Economic Attack] Lines 66-71: health factor formula H = (collateral * threshold) / loan - can attacker with multiple accounts manipulate liquidation threshold via asset composition to make healthy accounts appear liquidatable? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e0663f55-54dd-4998-86ac-30666ad2bdab?mode=deep",
+    "timestamp": "2026-02-19 08:42:05.229420",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_collateral_value()] [Collateral Inflation] Lines 83-84: gets user collaterals from storage - if storage returns stale or manipulated collateral list, can collateral value be inflated? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78ba46a9-e898-4dde-9f72-7add88c5fb05?mode=deep",
+    "timestamp": "2026-02-19 08:42:28.704678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_collateral_value()] [Collateral Logic] Lines 100-103: estimate_value_t only applied to matching asset - if user supplies estimate for asset they don't have collateral in, and is_increase=false, does this cause incorrect calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b454b31-02ec-44fa-a59b-de06ded82cc0?mode=deep",
+    "timestamp": "2026-02-19 08:42:51.278288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_collateral_value()] [Collateral Accounting] Line 106: dynamic_user_collateral_value called for each asset - if this function fails for one asset (oracle issue), does entire health calculation fail or skip that asset? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9dfcde83-9a87-4bf5-97ee-79c18543b195?mode=deep",
+    "timestamp": "2026-02-19 08:43:15.195938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_collateral_value()] [LTV Commented Out] Lines 98 & 107: LTV fetching and multiplication are commented out - is collateral value not being properly adjusted by LTV, allowing over-collateralized borrowing limits? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5488675-0a78-4648-a454-b5f52af8cf77?mode=deep",
+    "timestamp": "2026-02-19 08:43:37.649245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_collateral_value()] [Balance Manipulation] Line 161: dynamic_user_collateral_balance calculates balance with estimate - can attacker call with is_increase=true and large estimate to temporarily show huge collateral for flash loan attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_85aeedc9-8385-4343-b010-e4d4a8958020?mode=deep",
+    "timestamp": "2026-02-19 08:43:59.692609",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_collateral_balance()] [Balance Calculation] Lines 190-196: balance adjusted by estimate_value based on is_increase - no validation that adjusted balance is >= 0 for decrease case - underflow protection missing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f7ec80b-33dd-40c0-84b2-c178b82a4e20?mode=deep",
+    "timestamp": "2026-02-19 08:44:23.369012",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_loan_value()] [Loan Deflation] Lines 123-124: gets user loans from storage - can stale storage cause loan value to be underestimated, allowing excess borrowing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dba338c9-6130-4121-afcc-9c248c96f053?mode=deep",
+    "timestamp": "2026-02-19 08:44:45.815398",
+    "report_generated": false
+  }
+]
