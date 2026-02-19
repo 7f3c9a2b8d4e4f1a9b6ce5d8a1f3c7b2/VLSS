@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: add_internal()] [Integer Overflow] Can an attacker trigger u128 overflow by adding two near-max Decimal values (e.g., both with value = u128::max_value!() - 1), causing the addition at line 135 to wrap around and produce an incorrectly small result that could be exploited in vault share calculations or oracle price aggregations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_39d604ec-dbeb-4dad-86f9-b3ca5bd44cec?mode=deep",
+    "timestamp": "2026-02-19 03:37:19.647619",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: add()] [Signed Overflow] When adding two negative decimals via add() -> add_internal() at lines 73-76, can an attacker craft inputs where a.value + b.value overflows u128, resulting in a much smaller negative value than expected, potentially bypassing loss_tolerance checks in vault operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_55a2e65b-81bf-4c11-8bbc-0216194845af?mode=deep",
+    "timestamp": "2026-02-19 03:37:32.516044",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: sub_internal()] [Underflow] At line 140, when b.value > a.value, the function returns a negative result (b.value - a.value, true). Can this be exploited when subtracting oracle prices to incorrectly mark a vault as having negative value, triggering improper loss accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cbd070dc-e748-4025-8b1e-2d8b3df2d6d4?mode=deep",
+    "timestamp": "2026-02-19 03:37:46.444059",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: pow_10()] [Exponential Overflow] At lines 158-159, the result is multiplied by 10 repeatedly without overflow checks. Can an attacker pass a large exponent (e.g., e=40) to cause result to overflow u128, wrapping to a small value and corrupting scale_to_decimals() conversions used in oracle price calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21fce0e8-0614-47d6-af42-1a01dbc4db80?mode=deep",
+    "timestamp": "2026-02-19 03:38:00.565085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: scale_to_decimals()] [Multiplication Overflow] At line 148, when scaling up (current_decimals < DECIMALS), num.value * pow_10(DECIMALS - current_decimals) can overflow if num.value is large and the scaling factor is significant. Can this be exploited to produce wrapped-around small values in vault USD valuation, enabling theft via undervalued withdrawals? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_91fa5247-6d5d-43bf-b2c9-95f2796691bb?mode=deep",
+    "timestamp": "2026-02-19 03:38:16.015616",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: scale_to_decimals()] [Division Precision Loss] At line 150, when scaling down (current_decimals > DECIMALS), division by pow_10() causes precision loss. Can an attacker exploit repeated scaling operations to accumulate rounding errors, gradually draining value from the vault through share mint/burn imbalances? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28d214a1-a8ff-4e8d-808b-4f72b6e0e87c?mode=deep",
+    "timestamp": "2026-02-19 03:38:32.356195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: new()] [Sign Injection] The new() function at line 17 allows creating a Decimal with any (value, neg) combination without validation. Can an attacker create invalid states like Decimal{value: 0, neg: true} (negative zero) and exploit comparison or arithmetic logic that doesn't handle this edge case, bypassing vault safety checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_007a2935-0877-492c-b9d0-543b258d1b25?mode=deep",
+    "timestamp": "2026-02-19 03:38:51.017276",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: add()] [Sign Logic Error] In the -x + y case at lines 78-79, the function calls sub_internal(b, a), effectively computing y - x. If this path is taken when both values are very large, can sign handling errors cause the result to flip unexpectedly, corrupting vault share calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_06848703-517b-4205-848a-8be69a8f9d87?mode=deep",
+    "timestamp": "2026-02-19 03:39:09.819975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: sub()] [Sign Flip Vulnerability] At lines 100-103, when computing -x - y, the result is add_internal(a, b) with neg=true. If a and b are both negative with large absolute values, can the addition overflow and produce a positive result due to improper sign handling, bypassing loss_tolerance checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50a866c9-2f3c-4f19-a84f-10da127b5034?mode=deep",
+    "timestamp": "2026-02-19 03:39:30.053031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: gt()] [Sign Comparison Flaw] At lines 50-51, when both values are negative, the comparison inverts (a.value < b.value). Can an attacker exploit this by crafting negative oracle prices where -1000 is incorrectly compared as greater than -100, causing vault operations to use stale or manipulated prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee159bf1-dff7-404c-9e52-793bfaa92db8?mode=deep",
+    "timestamp": "2026-02-19 03:39:51.833295",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: lt()] [Negative Zero Edge Case] At lines 61-62, if a is negative zero (value=0, neg=true) and b is positive zero (value=0, neg=false), does lt() return true at line 64, creating inconsistent ordering? Can this be exploited in oracle price sorting or min/max selection to select manipulated prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5ab8a60e-4982-4063-867f-33509fd0d464?mode=deep",
+    "timestamp": "2026-02-19 03:40:13.725456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: equals()] [Negative Zero Inequality] At line 46, equals() checks both value and neg. Since negative zero {0, true} and positive zero {0, false} would not be equal, can this cause share calculations or price comparisons to incorrectly reject valid zero values, leading to DoS or fund lockup? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6fb0faa-cb73-4f77-815d-b64379407588?mode=deep",
+    "timestamp": "2026-02-19 03:40:36.479609",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: gt()] [Boundary Condition] When a.value == u128::max_value!() and b.value == u128::max_value!() - 1, both positive, does gt(a, b) correctly return true at line 57? If comparison fails at extreme values, can this be exploited in max_value() checks for vault total_usd_value limits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b361ef6-75d5-4579-8378-9fc9d782daf0?mode=deep",
+    "timestamp": "2026-02-19 03:40:57.890878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: min()/max()] [Reference vs Value Semantics] At lines 119-121 and 127-129, min/max return copies of decimals. If these are used in vault operations that expect references to be compared, can the copy semantics cause the wrong value to be selected, enabling price manipulation attacks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_72deeb32-ecc9-4998-bc19-3a31eb1c6154?mode=deep",
+    "timestamp": "2026-02-19 03:41:19.936179",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: gt()] [Early Return Vulnerability] At lines 52-55, if a.neg is true, the function returns false, but what if b is also negative? The function correctly handles this at line 50-51, but can reordering of checks in future modifications introduce a bug where negative comparisons fail? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21cdb972-5b1f-42a3-be6f-f92d33e1b6fa?mode=deep",
+    "timestamp": "2026-02-19 03:41:43.220278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: scale_to_decimals()] [Zero Decimals Edge Case] If current_decimals=0, then at line 148, pow_10(DECIMALS - 0) = pow_10(18) is computed. Can this large multiplication cause overflow for even moderate num.value inputs, corrupting oracle price conversions from integer representations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fcab9e8c-a08f-4eb7-b883-821e9edfa6ae?mode=deep",
+    "timestamp": "2026-02-19 03:42:08.635206",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: scale_to_decimals()] [Max Decimals Overflow] If current_decimals=255 (max u8), then at line 150, pow_10(255 - 18) = pow_10(237) would overflow massively in pow_10(). Can an attacker pass malicious current_decimals values to crash the oracle price feed or return corrupted values? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_355650a9-fd28-4654-aec2-5cc7f2019e94?mode=deep",
+    "timestamp": "2026-02-19 03:42:33.577112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: scale_to_decimals()] [Rounding Direction Bias] When scaling down at line 150 via division, truncation always rounds toward zero. Over many oracle price updates, can this consistent downward bias accumulate to systematically undervalue vault assets, enabling attackers to withdraw more than their fair share? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7a955e14-d44f-43d6-bb5c-69e3017b9cd0?mode=deep",
+    "timestamp": "2026-02-19 03:42:54.826255",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: pow_10()] [Loop Limit] The pow_10() function has no upper bound check on the exponent e. If e > 39, u128 overflow is guaranteed. Can an attacker exploit this by forcing the Volo vault to process oracle data with extreme decimal values, causing all price calculations to return near-zero wrapped values? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_629fa953-e812-4559-a1bc-db2d08a77b59?mode=deep",
+    "timestamp": "2026-02-19 03:43:15.174629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: scale_to_decimals()] [Bidirectional Scaling Error] If a value is scaled up (current_decimals < DECIMALS) and then scaled back down in a different operation, the round-trip may not preserve the original value due to line 148 multiplication followed by line 150 division. Can this be exploited to drain vault value through repeated deposit/withdrawal cycles? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e632ca26-87b7-45bf-9491-4cdf0881344e?mode=deep",
+    "timestamp": "2026-02-19 03:43:37.936184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: dec()] [Hardcoded Decimals] The dec() function at line 30 always returns DECIMALS=18, ignoring the actual decimal instance. If the Volo system attempts to use this to determine precision for calculations, can mismatch between actual decimal values and this constant lead to 10^X scaling errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1878a6cb-c4cb-44e4-b986-f6a25d4f23d0?mode=deep",
+    "timestamp": "2026-02-19 03:44:02.646624",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: add()] [Oracle Price Aggregation] When multiple Switchboard oracle prices (some positive, some potentially negative due to spreads) are added together at lines 71-89, can sign handling errors cause the aggregated price to be incorrectly computed, leading to vault operations using wrong USD valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_30bcc2b0-6e60-46c9-9c3a-ace46b2e246d?mode=deep",
+    "timestamp": "2026-02-19 03:44:26.187989",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: sub()] [Loss Calculation Exploit] When computing vault losses as (old_value - new_value) via sub() at lines 95-111, if both are large positive numbers close to u128 max, can overflow in intermediate calculations produce a small positive difference instead of large negative loss, bypassing loss_tolerance checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_06840a53-03ed-4c74-b721-41d41d7ad7bc?mode=deep",
+    "timestamp": "2026-02-19 03:44:49.474230",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: scale_to_decimals()] [Cross-Protocol Decimal Mismatch] If Navi uses 9 decimals, Suilend uses 6 decimals, and Switchboard uses 18 decimals, and scale_to_decimals() is used to normalize all to 18 decimals at lines 146-152, can precision loss or overflow in conversions cause vault to misvalue borrowed assets, enabling over-borrowing attacks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ce1dd5af-adbf-46bd-95cc-d0bfd7974709?mode=deep",
+    "timestamp": "2026-02-19 03:45:09.856113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/decimal.move] [Function: gt()] [Health Factor Comparison] When the Navi health limiter compares a health factor decimal against a threshold using gt() at lines 49-58, can edge cases with negative values (representing unhealthy positions) be incorrectly ordered, allowing operations that should be blocked by the limiter? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_edc3775f-da64-4935-8d94-85971ed01d49?mode=deep",
+    "timestamp": "2026-02-19 03:45:29.926235",
+    "report_generated": false
+  }
+]
