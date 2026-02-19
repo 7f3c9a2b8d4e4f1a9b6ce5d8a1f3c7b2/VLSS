@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: parse_price_to_decimal()] [Negative Price Handling] The comment at line 55 states 'suilend doesn't support negative prices' but only calls get_magnitude_if_positive - does this abort on negative prices or return 0, and could this be exploited? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22b89307-5510-4a90-967b-785140aaa6aa?mode=deep",
+    "timestamp": "2026-02-19 05:42:41.590105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [External Dependency] Does the function validate that the PriceInfoObject is from the legitimate Pyth contract, or can attackers pass malicious PriceInfoObjects with fabricated prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c59024b2-83df-464d-9dde-45c8eaa54e62?mode=deep",
+    "timestamp": "2026-02-19 05:42:54.859588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Signature Verification] Are Pyth price signatures verified before use, or does the function assume price_info_obj has already been validated, potentially accepting unverified price data? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_316c2dc8-ce42-4633-91a7-e2aae9f8bcf4?mode=deep",
+    "timestamp": "2026-02-19 05:43:09.190255",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Price Feed Matching] Is the price_identifier returned at line 25 used to verify that the price corresponds to the expected asset, or could callers misuse prices for wrong assets? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2323c63a-575e-4fac-9233-647bc58291bc?mode=deep",
+    "timestamp": "2026-02-19 05:43:23.662057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Reentrancy] Can the price_info_obj be mutated by the caller between validation and use, allowing time-of-check-time-of-use attacks where price data changes after validation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec533b37-eed4-40ea-a0cd-82f5760bd549?mode=deep",
+    "timestamp": "2026-02-19 05:43:39.597383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [DoS Attack] If Pyth price feeds stop updating for >60s due to oracle node issues, will all vault operations dependent on this oracle permanently fail until Pyth recovers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a54eb027-f543-4908-aef3-1dfd010a8568?mode=deep",
+    "timestamp": "2026-02-19 05:43:57.290252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Error Handling] The function returns option::none() for invalid spot prices (lines 37, 47) - do callers have proper fallback logic, or could None values propagate causing unexpected behavior? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a6e8e498-e07d-41f6-8d12-053917e808e2?mode=deep",
+    "timestamp": "2026-02-19 05:44:16.509658",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Silent Failure] When confidence or staleness checks fail, the function returns None without emitting events - can this silent failure be exploited to hide oracle manipulation attempts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb0796f5-24f0-4b13-b914-b2b2e462ac3c?mode=deep",
+    "timestamp": "2026-02-19 05:44:37.080903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Tuple Return] The function returns a 3-tuple (Option<Decimal>, Decimal, PriceIdentifier) - can callers accidentally swap the order of return values, using EMA as spot or vice versa? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ff77389f-4889-471a-a57e-58b032538776?mode=deep",
+    "timestamp": "2026-02-19 05:45:00.326934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Inconsistent State] If spot price validation fails but EMA is returned successfully, could vault operations use inconsistent pricing where some components use EMA and others expect spot? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d03047c5-8fa7-4555-ba2e-c4e607087832?mode=deep",
+    "timestamp": "2026-02-19 05:45:22.916229",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Module: oracles] [Dependency Risk] Does the suilend::decimal module used for mul/div operations at lines 60-68 have its own overflow/underflow protections, or could those operations fail silently? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48ba357c-85bc-459c-8f29-f0ea01016d2e?mode=deep",
+    "timestamp": "2026-02-19 05:45:47.526940",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Type Safety] Are the pyth::price and pyth::price_feed types from the official Pyth contract, or could a malicious fork provide compatible types with altered validation logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b8a766c-fd2b-429f-8543-a83f8d7b5e70?mode=deep",
+    "timestamp": "2026-02-19 05:46:13.522344",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Module: oracles] [Version Compatibility] If the Pyth protocol upgrades its price feed format or validation logic, could this oracle module become incompatible, permanently breaking Suilend and Volo vault operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5464e2e-d549-4037-a730-bae66c7a6a43?mode=deep",
+    "timestamp": "2026-02-19 05:46:40.695828",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Clock Dependency] Does the function validate that the Clock object is the system Clock, or could callers pass a manipulated Clock with arbitrary timestamps? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6863375b-e1d6-4f11-81c6-90fcb73bd98c?mode=deep",
+    "timestamp": "2026-02-19 05:47:06.325732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Edge Case] What happens if price_mag is u64::MAX and conf is also u64::MAX? Does the confidence check handle this boundary correctly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d6d1b03-f801-4859-93ce-c01c2f458bf7?mode=deep",
+    "timestamp": "2026-02-19 05:47:32.098700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Edge Case] If timestamp_ms is exactly at the rollover point (e.g., changing from 1699999999 to 1700000000), could the division by 1000 cause off-by-one errors in staleness calculation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c7ddeb72-f78d-41e9-9b06-a89a0b007368?mode=deep",
+    "timestamp": "2026-02-19 05:47:59.841622",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: parse_price_to_decimal()] [Edge Case] What is the maximum supported price_mag value before decimal::from() fails? Can extremely large prices (e.g., for high-value assets) cause conversion errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_91cbf00a-e158-4469-952d-3ccaacb1cb6c?mode=deep",
+    "timestamp": "2026-02-19 05:48:26.811690",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: parse_price_to_decimal()] [Edge Case] For expo values near i64::MIN or i64::MAX, do the magnitude extraction functions handle these boundaries correctly without overflowing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3fa25265-a0d3-4af8-b04d-e997fc943042?mode=deep",
+    "timestamp": "2026-02-19 05:48:53.212798",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Edge Case] If multiple validation checks fail simultaneously (both confidence and staleness), which check executes first, and could the ordering be exploited? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2cba4f30-045a-4f55-bafc-171b18736deb?mode=deep",
+    "timestamp": "2026-02-19 05:49:19.361958",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: parse_price_to_decimal()] [Gas Exhaustion] Can the std::u64::pow(10, expo) calculations at lines 62 and 67 consume excessive gas for large exponents, making oracle price fetches prohibitively expensive? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4240de9a-663a-446d-ba27-dbe0472cc5bf?mode=deep",
+    "timestamp": "2026-02-19 05:49:44.222030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [DoS] If called repeatedly with invalid prices, could the repeated option::none() returns combined with caller retry logic create a DoS condition? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2990b059-4793-41db-9777-43ff458ab00e?mode=deep",
+    "timestamp": "2026-02-19 05:50:08.402684",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Economic Attack] During extreme market volatility, can attackers trigger the confidence check to fail by waiting for periods when Pyth confidence intervals naturally widen, causing DoS on vault operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8241e0b-c901-4539-bba5-ff5f237099f8?mode=deep",
+    "timestamp": "2026-02-19 05:50:33.189543",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Constant: MIN_CONFIDENCE_RATIO] [Governance Risk] The MIN_CONFIDENCE_RATIO constant is hardcoded with no upgrade path - if market conditions change requiring different confidence thresholds, must the entire module be replaced? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_188f89c4-2276-4997-b054-b9d15dac8254?mode=deep",
+    "timestamp": "2026-02-19 05:50:58.725931",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Integer Math] Does the confidence check `conf * MIN_CONFIDENCE_RATIO > price_mag` correctly implement the intended '10% of price' logic, or should it be `conf * 100 > price_mag * 10` for better precision? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e217578f-5280-41a4-9d96-08c70ad1440c?mode=deep",
+    "timestamp": "2026-02-19 05:51:24.460879",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Timestamp Precision] Converting timestamp_ms to seconds by dividing by 1000 (line 42) loses millisecond precision - could two prices 500ms apart be treated as simultaneous? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_93da622e-d120-478c-98ba-cb6f0c7d4c1e?mode=deep",
+    "timestamp": "2026-02-19 05:51:49.039021",
+    "report_generated": false
+  }
+]
