@@ -1,0 +1,104 @@
+[
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_with_oracle_price()] [Attack: Oracle Manipulation] If oracle price can be manipulated, can attacker use mul_with_oracle_price() to inflate asset valuations fraudulently? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c51bfde5-a9dc-4c97-9fef-84144e36b44f?mode=deep",
+    "timestamp": "2026-02-19 05:15:03.882917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_with_oracle_price()] [Attack: Oracle Manipulation] Can attacker manipulate oracle to make div_with_oracle_price() return excessive asset amounts during withdrawals? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2fd6dd90-0c7c-434f-b440-9199e7670f9b?mode=deep",
+    "timestamp": "2026-02-19 05:15:16.833031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [Attack: Key Collision] Can attacker create custom types that generate the same parse_key() output as legitimate vault assets to corrupt asset tracking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e2326d0-dad2-4674-8798-9eb494c5a818?mode=deep",
+    "timestamp": "2026-02-19 05:15:30.739643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: clone_vecmap_table()] [Attack: DoS via Large Map] Can attacker bloat VecMap with entries to make clone_vecmap_table() extremely expensive, DOSing vault operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8caf3ec-0ccc-4d28-b970-f76e3509a211?mode=deep",
+    "timestamp": "2026-02-19 05:15:44.643486",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d() vs mul_with_oracle_price()] [Logic Error] Can developers confuse these functions and use wrong decimal constant, causing 1 billion-fold calculation errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90446ee9-595f-47a9-882b-1b541e8074d4?mode=deep",
+    "timestamp": "2026-02-19 05:15:59.771367",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d() vs div_with_oracle_price()] [Logic Error] Can developers confuse these functions and use wrong decimal constant, causing catastrophic valuation errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_39683e69-d7f0-44f1-bf06-3711392b4a1b?mode=deep",
+    "timestamp": "2026-02-19 05:16:15.557801",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: to_decimals() vs to_oracle_price_decimals()] [Usage Error] If caller uses wrong conversion function, can this cause 1 billion-fold errors in asset amounts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9870f9c-2125-47e3-922d-cd7e18ad5c77?mode=deep",
+    "timestamp": "2026-02-19 05:16:32.488864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: from_decimals() vs from_oracle_price_decimals()] [Usage Error] If caller uses wrong conversion function, can this cause massive precision loss or incorrect values? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ccb8ef3-9a16-4fd0-bca2-e4113e3a2a75?mode=deep",
+    "timestamp": "2026-02-19 05:16:50.817537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Gas Optimization] Is there a more gas-efficient way to perform decimal multiplication that reduces computation costs in high-frequency operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9f74e814-ee22-4a4b-b7fd-212785e73397?mode=deep",
+    "timestamp": "2026-02-19 05:17:11.257075",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: clone_vecmap_table()] [Gas Cost] Does cloning large VecMaps consume excessive gas, making vault operations prohibitively expensive for normal users? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7bfeb461-6b3c-4d8d-a0cc-55d4d4c45833?mode=deep",
+    "timestamp": "2026-02-19 05:17:32.380727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [Gas Cost] Does string concatenation and conversion consume excessive gas when called repeatedly in asset tracking operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_526e07cb-7341-4a8b-b8ba-2fa98555b297?mode=deep",
+    "timestamp": "2026-02-19 05:17:54.696057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Specification] Is it documented that mul_d() rounds down, and are callers aware of this behavior in safety-critical calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d029112b-47d4-4b0f-9ea7-cfef2c0c52fd?mode=deep",
+    "timestamp": "2026-02-19 05:18:17.695765",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Specification] Is it documented that div_d() can revert on division by zero, and do all callers validate inputs appropriately? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_69b60b81-7c42-4d75-8214-1bc59742639d?mode=deep",
+    "timestamp": "2026-02-19 05:18:41.574106",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Constants] [Specification] Is it documented why DECIMALS is 1e9 and ORACLE_DECIMALS is 1e18, and are these values compatible with all integrated protocols? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d080902-2206-45ce-8b99-1b6d7cfdeff4?mode=deep",
+    "timestamp": "2026-02-19 05:19:06.975196",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Constants: DECIMALS] [Migration Risk] If DECIMALS constant needs to change in a future version, can existing vault state be safely migrated without loss of precision? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3662510a-a1b6-46d7-ab9c-4eef4c070c29?mode=deep",
+    "timestamp": "2026-02-19 05:19:32.403828",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Constants: ORACLE_DECIMALS] [Upgrade Risk] If oracle decimal format changes, can ORACLE_DECIMALS be updated without breaking existing vault calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ce1f55a3-19fd-47fc-9b7c-841968152684?mode=deep",
+    "timestamp": "2026-02-19 05:19:58.050251",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: clone_vecmap_table()] [State Migration] If this function is used in vault upgrades, can it handle all legacy VecMap formats safely? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b25f47d4-b009-4730-aaec-9f3272957afa?mode=deep",
+    "timestamp": "2026-02-19 05:20:24.334580",
+    "report_generated": false
+  }
+]
