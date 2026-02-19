@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: migrate()] [Silent Failure] migrate() asserts version mismatch but doesn't provide detailed error messages. Could silent failures make it hard to diagnose why migration failed? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_470ca567-e7be-4aa7-8cf0-63aad482da9c?mode=deep",
+    "timestamp": "2026-02-19 01:01:17.236903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: mint()] [No Overflow Check] mint() doesn't explicitly check for supply overflow before calling balance::increase_supply(). Does balance module handle overflow safely, or could overflow silently wrap? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a98640b1-4073-461b-bafa-18244c2bd892?mode=deep",
+    "timestamp": "2026-02-19 01:01:29.667289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: burn_coin()] [No Underflow Check] burn_coin() doesn't check if supply is sufficient before burning. Does balance::decrease_supply() handle underflow safely, or could it panic and DOS the protocol? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_adce83c0-f02e-42f0-9a3a-3ecb3972d21b?mode=deep",
+    "timestamp": "2026-02-19 01:01:42.799843",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Module Comments] Module comment states 'They don't grow in number but grow in value'. If mint() can be called freely by package modules, could supply grow in ways that violate this invariant? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b630b49-94b9-40c0-b081-cc5455910196?mode=deep",
+    "timestamp": "2026-02-19 01:01:57.181533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: get_total_supply_value()] [Comment Missing] get_total_supply_value() subtracts BURNED_CERT_AMOUNT but there's no comment explaining why. Could developers misunderstand this offset and break invariants in calling code? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2a53133-3973-42a6-a2b2-c917d3478501?mode=deep",
+    "timestamp": "2026-02-19 01:02:11.491770",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Constant: BURNED_CERT_AMOUNT] [Unexplained] BURNED_CERT_AMOUNT is set to 0 with no explanation. Could this be a placeholder for future burns that was never implemented, creating technical debt? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_23840e83-3886-45d3-bccc-c0ac27b9e01a?mode=deep",
+    "timestamp": "2026-02-19 01:02:26.752202",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Module Design] No comments explain why treasury_cap is destroyed instead of stored. Could future developers try to access treasury_cap and fail, not understanding the design choice? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_34e8ce0b-322f-4004-8176-4b9ae379cc25?mode=deep",
+    "timestamp": "2026-02-19 01:02:43.780199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: mint()] [Boundary Testing] Has mint() been tested with shares=u64::MAX? Could untested edge cases cause overflow exploits in production? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2bbc9370-41b2-4b3c-9cd5-5135c847859b?mode=deep",
+    "timestamp": "2026-02-19 01:03:01.741196",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: burn_coin()] [Concurrent Testing] Has burn_coin() been tested with concurrent burns in parallel transactions? Could race conditions exist that only manifest under high load? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8552c416-3db6-455a-8834-2f85e5e01103?mode=deep",
+    "timestamp": "2026-02-19 01:03:18.753467",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: migrate()] [Upgrade Testing] Has migrate() been tested across actual module upgrades with state preservation? Could untested upgrade paths fail in production? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb088058-1451-4dd2-b7c6-4f84d31abbbd?mode=deep",
+    "timestamp": "2026-02-19 01:03:37.217291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: get_total_supply_value()] [Underflow Testing] Has get_total_supply_value() been tested when supply < BURNED_CERT_AMOUNT? Could untested underflow scenarios cause production panics? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf990abe-ed7e-4e74-9d1b-08f92a1c0dd5?mode=deep",
+    "timestamp": "2026-02-19 01:03:57.116660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: assert_version()] [Version Mismatch Testing] Has version mismatch been tested with various version gaps (1->2, 1->5, etc.)? Could unexpected version jumps break assumptions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8379e6d-6516-4bd5-842b-ae6e45dc779d?mode=deep",
+    "timestamp": "2026-02-19 01:04:17.157933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Attack: Supply Manipulation] Attacker compromises a module in liquid_staking package, gains mint authority. They mint max u64 tokens, sell on DEX, causing CERT price to crash. Users lose funds. How is this prevented? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e441e8ad-b618-4a7b-b87e-81cae8a2c063?mode=deep",
+    "timestamp": "2026-02-19 01:04:37.342617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Attack: Burn Race] Two users initiate large unstakes simultaneously. Race condition in burn_coin() causes both to burn tokens but only one to receive SUI. How does supply accounting prevent this? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5b9f205-ca89-4222-8eb1-6a07966257ef?mode=deep",
+    "timestamp": "2026-02-19 01:04:57.368608",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Attack: Version Lock] Attacker steals OwnerCap, calls migrate() to increment version past current VERSION constant, locking all mint/burn operations. How can protocol recover? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e2a9c92-e887-476f-8f70-9ba1c3a69932?mode=deep",
+    "timestamp": "2026-02-19 01:05:17.592204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Attack: Ratio Manipulation] Attacker finds a way to call mint() repeatedly with calculated amounts to manipulate CERT/SUI ratio before executing large arbitrage trade. How is ratio integrity ensured? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b05f819-f7d7-4367-86fd-cc070ee58fdf?mode=deep",
+    "timestamp": "2026-02-19 01:05:38.481004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Attack: Supply Overflow] Attacker triggers repeated mints that eventually overflow u64::MAX in total_supply. Overflow wraps to 0, all CERT becomes worthless. Does balance module prevent this? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e05620d-7f4b-49c6-9222-be4ea191f3f0?mode=deep",
+    "timestamp": "2026-02-19 01:06:00.700670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Interaction: stake_pool] stake_pool calls mint() during staking. If stake_pool has reentrancy vulnerability, could attacker call mint() recursively, minting tokens multiple times for single stake? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_902c362c-2d78-4d0f-a9c0-b9c253b7fe2f?mode=deep",
+    "timestamp": "2026-02-19 01:06:22.867665",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Interaction: validator_pool] If validator_pool needs to read supply for reward distribution, could stale supply values cause incorrect reward calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a9410930-513d-4e89-aab3-9cf9d9fff7b6?mode=deep",
+    "timestamp": "2026-02-19 01:06:44.668705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Interaction: fee_config] If fee calculations depend on circulating supply, could the BURNED_CERT_AMOUNT offset cause fees to be calculated on wrong supply amount? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d4b2f3b9-3022-42cd-beb3-e9e1160aef82?mode=deep",
+    "timestamp": "2026-02-19 01:07:05.721444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Interaction: manage] If manage module calls migrate(), could it interfere with ongoing stake/unstake operations that are mid-transaction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52f1d83f-410f-402a-b6b6-461198fa4233?mode=deep",
+    "timestamp": "2026-02-19 01:07:26.686748",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Interaction: volo_v1] If migration from volo_v1 involves minting CERT for old positions, could incorrect migration logic mint more CERT than SUI backing, breaking peg? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_daec2904-5cd0-427f-9c1b-c04adc7e392c?mode=deep",
+    "timestamp": "2026-02-19 01:07:48.949390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Edge Case: Empty Supply] If all CERT is burned (supply=0), then new stake comes in, could first mint() after zero supply cause ratio issues in stake_pool? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1c75dab2-03d1-4367-b318-0ee9e5507121?mode=deep",
+    "timestamp": "2026-02-19 01:08:09.056331",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Edge Case: Minimum Mint] If shares parameter in mint() is 1 (minimum), could rounding errors in balance module cause 0 tokens to be minted, breaking user expectations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_12a98f88-f4e2-4211-aa37-53af168b9175?mode=deep",
+    "timestamp": "2026-02-19 01:08:27.874121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Edge Case: Maximum Burn] If burn_coin() is called with Coin containing entire circulating supply, could burning all tokens break protocol invariants that assume non-zero supply? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b4a8194-74e5-4d4e-afac-3fd836a11400?mode=deep",
+    "timestamp": "2026-02-19 01:08:47.656399",
+    "report_generated": false
+  }
+]
