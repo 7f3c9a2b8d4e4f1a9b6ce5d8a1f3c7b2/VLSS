@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools()] [Integer Underflow] Can an attacker cause underflow when `total_rewards_of_user < total_claimed_of_user` at line 83, resulting in wrapped u256 value showing massive false available rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_58c3f51b-53c9-4a3d-a9d7-37acfb2a55b9?mode=deep",
+    "timestamp": "2026-02-19 03:21:26.115496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools()] [Logic Error] Does the function correctly handle the case where `option == incentive::option_borrow()` at line 42-44, potentially using wrong balance (supply vs borrow) for reward calculations when option type changes mid-loop? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6c4486c6-b3fc-4e40-b7a2-b661940deca5?mode=deep",
+    "timestamp": "2026-02-19 03:21:39.191784",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools()] [State Inconsistency] Can `storage::get_total_supply()` at line 41 return stale data if storage is not properly updated, leading to incorrect `total_supply_balance` used in reward calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21603aad-72c8-4f62-a034-757f6acf9e83?mode=deep",
+    "timestamp": "2026-02-19 03:21:53.504600",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools()] [Loop Manipulation] Can an attacker manipulate `pool_length` by affecting `vector::length(&objs)` at line 38, causing infinite loop or skipped pools in iteration at lines 46-87? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2b25d8c-11c9-42ff-aa33-b8db35a8da22?mode=deep",
+    "timestamp": "2026-02-19 03:22:07.645376",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools()] [Data Race] If `incentive::get_pool_from_asset_and_option()` at line 37 is called while pools are being modified, can it return inconsistent pool addresses leading to incorrect reward calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e749c1c2-0306-4cb5-bc7d-eec12ac442a3?mode=deep",
+    "timestamp": "2026-02-19 03:22:22.767321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools()] [Division by Zero] Can `incentive::calculate_one_from_pool()` at line 65 trigger division by zero if `total_supply_balance` is 0, causing transaction abort and DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7bcb12bb-cf9e-4a67-8d7a-32a7a358e186?mode=deep",
+    "timestamp": "2026-02-19 03:22:39.113519",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools()] [Timestamp Manipulation] Can an attacker manipulate `clock::timestamp_ms(clock)` at line 35 to affect reward calculations in `incentive::calculate_one_from_pool()`, claiming rewards from future time periods? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_838e988f-08ec-408f-b132-6907f283e4fe?mode=deep",
+    "timestamp": "2026-02-19 03:22:57.252809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools()] [Balance Manipulation] Can an attacker inflate `user_supply_balance` or `user_borrow_balance` from `storage::get_user_balance()` at line 39 immediately before calling this function to show inflated rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29e7ebae-96ad-4d7c-bffb-99a60f3a8f62?mode=deep",
+    "timestamp": "2026-02-19 03:23:16.804199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools()] [Factor Manipulation] Can the `factor` value retrieved at line 58 be manipulated to cause `calculate_user_effective_amount()` at line 64 to return incorrect values, affecting reward distribution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_41dcd084-c4aa-43fd-9939-730d8a889a06?mode=deep",
+    "timestamp": "2026-02-19 03:23:38.600741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools()] [Vector Index OOB] Can `vector::borrow(&objs, pool_length-1)` at line 47 cause out-of-bounds access if pool_length becomes 0 unexpectedly due to concurrent modifications? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_36ea4af6-2688-4931-a0fe-890ec5fb994a?mode=deep",
+    "timestamp": "2026-02-19 03:23:59.990746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Division by Zero] Can `ray_math::ray_div()` at line 159 divide by zero when `end_at - start_at` equals 0, causing transaction abort for pools with same start and end times? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5fa7719f-2742-4917-a997-8d9257e56ef1?mode=deep",
+    "timestamp": "2026-02-19 03:24:25.097733",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Overflow] Can the multiplication `ray_math::ray_mul()` at line 160 overflow when `total_incentive_amount_on_usd` is extremely large, leading to incorrect APY calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d71c07f1-a760-4cfd-82a5-748b6794725a?mode=deep",
+    "timestamp": "2026-02-19 03:24:48.135930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Division by Zero] Can `ray_math::ray_div()` at line 167 divide by zero when `protocol_total_supply_on_usd` is 0, causing DoS for assets with no supply? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7d946cdc-ea7d-41a4-9663-782b91d6437a?mode=deep",
+    "timestamp": "2026-02-19 03:25:11.448262",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Oracle Manipulation] Can an attacker manipulate the oracle price returned by `oracle::get_token_price()` at line 151 to inflate or deflate APY calculations, misleading users? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82a171c6-e66e-4319-95b8-838a8b811fb6?mode=deep",
+    "timestamp": "2026-02-19 03:25:34.507068",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Decimal Conversion Error] Can incorrect decimal conversion at line 152 using `pool::convert_amount(total_supply, decimal, 9)` cause precision loss or overflow when converting from various token decimals to 9? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b134719-729e-444a-91d0-fb97781b4534?mode=deep",
+    "timestamp": "2026-02-19 03:25:56.078413",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Logic Error] Does the function correctly handle option_borrow at lines 106-108, potentially using wrong balance (supply vs borrow) for entire reserve count loop affecting all APY calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6498dd2-c030-44e8-b604-7cd413ba7af8?mode=deep",
+    "timestamp": "2026-02-19 03:26:18.732213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [State Inconsistency] Can `storage::get_reserves_count()` at line 102 return inconsistent count if reserves are added/removed during execution, causing skipped or duplicate asset_id processing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_45f97754-1b80-4b07-8e09-f6798a7086b8?mode=deep",
+    "timestamp": "2026-02-19 03:26:42.118200",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Continue Logic] Can the continue statement at line 116 skip assets incorrectly when pool_length is 0, potentially hiding assets that should show 0 APY instead of being omitted? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_609d3229-896c-4e15-a3f4-262da5fa4fe4?mode=deep",
+    "timestamp": "2026-02-19 03:27:06.793211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [APY Accumulation] Can `total_apy = total_apy + apy` at line 170 overflow when summing multiple large APY values, resulting in wrapped/incorrect total APY? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3117e0e-6c1c-4cdc-820d-b3cf8f017119?mode=deep",
+    "timestamp": "2026-02-19 03:27:31.706404",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Time Constant] Is the `MsPerYear` constant at line 14 (1000*60*60*24*365) correctly accounting for leap years, potentially causing APY calculation errors in leap years? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_09407d4a-8faf-4295-a8cb-03aefbdc7bdf?mode=deep",
+    "timestamp": "2026-02-19 03:27:56.883347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Vector Duplicate Check] Can `vector::contains()` at line 171 fail to detect duplicates if type_name format changes, causing duplicate coin types in the _types vector? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_41588190-11c1-4b8a-b7b6-48a2080417cb?mode=deep",
+    "timestamp": "2026-02-19 03:28:23.261304",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Active Pool Filter] Can `incentive::get_active_pools()` at line 112 return expired or not-yet-started pools if timestamp checks are bypassed, inflating APY with inactive rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ff9de1b-52ca-4558-a398-0a8ad7199cf7?mode=deep",
+    "timestamp": "2026-02-19 03:28:41.568941",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Oracle ID Mismatch] Can `storage::get_oracle_id()` at line 110 return wrong oracle ID for asset, causing APY calculation to use incorrect price data from mismatched oracle? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_96a655de-20c3-477f-b7d7-9785ea157523?mode=deep",
+    "timestamp": "2026-02-19 03:29:00.036382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Calculator Value] Can `c::calculate_value()` at line 144 return 0 or incorrect USD value when price oracle is stale, causing division by zero or wrong APY at line 167? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4d830059-7889-4c26-bc59-ec5c7927e7d5?mode=deep",
+    "timestamp": "2026-02-19 03:29:18.996824",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Type Cast] Can casting `(normal_total_supply as u256)` at line 153 lose precision if normal_total_supply exceeds u256 max as u64, causing incorrect incentive amount calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3bd65e67-228a-4515-9ad2-69eb584ba387?mode=deep",
+    "timestamp": "2026-02-19 03:29:38.833317",
+    "report_generated": false
+  }
+]
