@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Function: transfer_operator()] [Address Validation] Similar to transfer_owner, can transferring OperatorCap to an invalid address (0x0, non-existent, contract without receive) cause permanent loss of operator privileges with no owner recovery mechanism? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1c0ee51c-322f-456e-8198-0ca453f20422?mode=deep",
+    "timestamp": "2026-02-19 08:56:52.367592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Function: transfer_operator()] [Authorization Gap] The function allows any holder of OperatorCap to transfer it - should there be additional authorization requiring OwnerCap approval before operator transfer, or is unrestricted transfer intentional? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_35c5997d-4c48-4abc-bf57-09746d32b006?mode=deep",
+    "timestamp": "2026-02-19 08:57:04.632715",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Function: transfer_operator()] [Reentrancy] During transfer::transfer(cap, to), could the 'to' address's receive logic call back into protocol functions that assume the old operator still holds OperatorCap, causing state inconsistencies? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_292e27bc-d586-40a9-9bb5-e3edb6794a1b?mode=deep",
+    "timestamp": "2026-02-19 08:57:17.714719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Function: transfer_operator()] [Event Accuracy] If OperatorCap transfer fails mid-execution, is the OperatorCapTransferred event rolled back, or could it persist causing off-chain tracking errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f20c8867-2675-40eb-b779-50a1cb0326f8?mode=deep",
+    "timestamp": "2026-02-19 08:57:31.656166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Function: transfer_operator()] [Sender Spoofing] The event uses tx_context::sender(ctx) as 'from' - if the actual OperatorCap holder uses a proxy or delegated transaction, does this cause event inaccuracy enabling operator tracking bypass? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_042bed52-fce1-445a-bc86-37f48ca6f366?mode=deep",
+    "timestamp": "2026-02-19 08:57:45.708951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Function: transfer_operator()] [Self-Transfer Loop] Can an attacker repeatedly call transfer_operator with 'to' set to their own address to spam OperatorCapTransferred events, causing off-chain indexer DoS or storage bloat? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aff6db70-36e8-4358-8874-95de9afedbd5?mode=deep",
+    "timestamp": "2026-02-19 08:58:00.956516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Function: transfer_operator()] [Race Conditions] If operator transfer happens concurrently with operator-privileged actions (stake, unstake, config changes), which transaction order is enforced, and could this enable privilege escalation timing attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_25fd5ff9-ccd7-4189-a7c4-413550341c46?mode=deep",
+    "timestamp": "2026-02-19 08:58:17.030777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Function: transfer_operator()] [Capability Theft] Could an attacker frontrun a legitimate transfer_operator transaction to steal the OperatorCap transfer to themselves instead of the intended recipient? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0bf4f24-7a59-406a-bd80-f5ca4d1d6638?mode=deep",
+    "timestamp": "2026-02-19 08:58:33.778617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Function: transfer_operator()] [Missing Cooldown] Is there any rate limiting or cooldown period on operator transfers, or can the operator be changed arbitrarily often, enabling rapid privilege switching attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_99a04aae-eebc-4290-9b48-9198d22a3439?mode=deep",
+    "timestamp": "2026-02-19 08:58:52.720661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Function: transfer_operator()] [Event Indexing] Do off-chain systems correctly handle rapid OperatorCapTransferred events, or could high-frequency transfers cause indexing errors and incorrect operator tracking? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3f01ac20-4ea9-483d-9528-31ed074db653?mode=deep",
+    "timestamp": "2026-02-19 08:59:09.983269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Struct: OwnerCapTransferred] [Event Manipulation] Since the event has 'copy, drop' abilities, could an attacker create fake OwnerCapTransferred events off-chain and inject them into event streams to trick monitoring systems? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6fd292c-1fa4-4077-933d-ac4cff325827?mode=deep",
+    "timestamp": "2026-02-19 08:59:27.991163",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Struct: OwnerCapTransferred] [Missing Timestamp] The event doesn't include a timestamp field - could this cause ambiguity in event ordering when multiple transfers occur in the same block? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86824cfa-35ea-46ca-95a3-c24aedc8827f?mode=deep",
+    "timestamp": "2026-02-19 08:59:46.763522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Struct: OwnerCapTransferred] [Missing UID] The event doesn't include the OwnerCap's UID - if multiple OwnerCap instances exist (via exploit), can off-chain systems distinguish which specific capability was transferred? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c5f87a9-5035-47ba-9041-2044806539ed?mode=deep",
+    "timestamp": "2026-02-19 09:00:05.625670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Struct: OwnerCapTransferred] [Address Collision] If 'from' and 'to' addresses are identical (self-transfer), does this cause event processing errors in systems that assume transfers always change ownership? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_079df941-4bf8-4072-81c8-8f0cf57a1e5a?mode=deep",
+    "timestamp": "2026-02-19 09:00:24.129527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Struct: OwnerCapTransferred] [Event Spamming] Can an attacker with OwnerCap spam transfer events by transferring back and forth to cause off-chain event indexer DoS or storage exhaustion? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9a56cff-8dc0-4bd2-a54a-e1c7aa23229e?mode=deep",
+    "timestamp": "2026-02-19 09:00:42.599962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Struct: OperatorCapTransferred] [Event Forgery] Similar to OwnerCapTransferred, could fake OperatorCapTransferred events be injected into off-chain systems to cause incorrect operator privilege tracking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8860cda6-f6c8-4d57-ad03-989adcf08622?mode=deep",
+    "timestamp": "2026-02-19 09:01:01.786699",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Struct: OperatorCapTransferred] [Missing Metadata] The event lacks metadata about why the transfer occurred (voluntary, forced, migration) - does this ambiguity cause security monitoring gaps? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7079143b-059b-475a-bcb8-13d5f5bf5866?mode=deep",
+    "timestamp": "2026-02-19 09:01:20.548733",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Struct: OperatorCapTransferred] [Event Correlation] Without a unique transfer ID, can multiple OperatorCapTransferred events be correlated to the same underlying capability object, or could event replay cause confusion? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9c0026fc-f884-4fb1-88e1-a78f18685fee?mode=deep",
+    "timestamp": "2026-02-19 09:01:38.881803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Struct: OperatorCapTransferred] [Cross-Event Sync] If OwnerCapTransferred and OperatorCapTransferred are emitted in the same transaction, is their ordering guaranteed, or could off-chain systems process them out of order causing race conditions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7d0900e8-973a-481c-ae0e-594e529ce7b3?mode=deep",
+    "timestamp": "2026-02-19 09:01:56.196343",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Module Integration] [Capability Validation] Do other protocol modules (stake_pool, manage, fee_config) verify that OwnerCap/OperatorCap originate from this specific ownership module, or could capabilities from a malicious fork module be accepted? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8541d5d-e8b1-435b-80dc-4c664b80a8c8?mode=deep",
+    "timestamp": "2026-02-19 09:02:13.766170",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Module Integration] [Capability Revocation] If OwnerCap is transferred to a malicious actor, do other modules provide emergency pause or revocation mechanisms that don't require OwnerCap, or is the protocol permanently compromised? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d511d33c-aa09-4022-86a2-b94f7addf715?mode=deep",
+    "timestamp": "2026-02-19 09:02:32.622597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Module Integration] [Operator Privilege Scope] Do other modules clearly distinguish between owner-only actions (fee config, pause) and operator-allowed actions (stake, unstake), or could OperatorCap be used to execute owner-level functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_10ad3abc-9062-411f-a717-d17849b9c50c?mode=deep",
+    "timestamp": "2026-02-19 09:02:53.594375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Module Integration] [Missing Timelock] When OwnerCap is transferred, do critical protocol functions (fee changes, validator updates) have a timelock to prevent immediate malicious actions by the new owner? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f10402b4-8a9f-47fa-88a9-ae9ab29cc9c0?mode=deep",
+    "timestamp": "2026-02-19 09:03:14.443293",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Module Integration] [Capability Enumeration] Can external modules query the current holder of OwnerCap/OperatorCap for access control decisions, or is capability ownership opaque enabling privilege confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_11049af0-1b7c-421d-a0c0-a447f0cd027b?mode=deep",
+    "timestamp": "2026-02-19 09:03:35.985336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/ownership.move] [Module Integration] [Emergency Override] Is there a governance or multisig mechanism that can override or replace OwnerCap/OperatorCap in case of compromise, or is the single-key model a permanent single point of failure? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8156fc06-4a3b-448e-8829-480b2e55205b?mode=deep",
+    "timestamp": "2026-02-19 09:03:55.966277",
+    "report_generated": false
+  }
+]
