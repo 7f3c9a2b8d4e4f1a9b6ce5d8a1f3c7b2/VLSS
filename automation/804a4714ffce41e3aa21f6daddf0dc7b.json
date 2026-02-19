@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Functions: mul() and div()] [Precision Loss in Ratio] When calculating shares using mul(amount, total_shares) followed by div(result, total_value), can intermediate precision loss cause share inflation or deflation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd4751e8-9231-44f5-8ad3-23547a34a117?mode=deep",
+    "timestamp": "2026-02-19 02:17:31.967721",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Functions: add() and sub()] [Balance Tracking] Can rapid sequences of add() and sub() operations cause accounting mismatch if assertions fail mid-sequence? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a67f376-9232-4fad-9043-30da521f1015?mode=deep",
+    "timestamp": "2026-02-19 02:17:45.012493",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Functions: mul() and add()] [Fee Accumulation Chain] When calculating total fees using mul(amount, fee_bps) followed by add(protocol_fee, performance_fee), can overflow in intermediate steps cause incorrect total? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_44ae8f00-a6b2-4ccf-9da2-33389e5573f5?mode=deep",
+    "timestamp": "2026-02-19 02:17:59.958077",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Functions: div() and mul()] [Share Redemption] When calculating redemption amount using div(shares, total_shares) then mul(ratio, total_value), can order of operations cause rounding errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_724e8b73-4b2f-4a25-af8b-75e0afe16b12?mode=deep",
+    "timestamp": "2026-02-19 02:18:14.462382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Functions: sub() and min()] [Partial Withdrawal] When using sub(balance, min(requested, available)), can underflow occur if balance is less than the min value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f90ec38-cd38-4726-a02c-0c63a663e089?mode=deep",
+    "timestamp": "2026-02-19 02:18:29.860764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Functions: add() and mod()] [Epoch Counter] When incrementing epoch counter using add() and checking alignment with mod(), can overflow wrap counter to zero bypassing epoch checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f2c6aa59-3b8d-452b-a5f9-af0cce10956e?mode=deep",
+    "timestamp": "2026-02-19 02:18:46.301223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Functions: mul() and min()] [Fee Capping] When calculating fee with mul() and capping with min(), can overflow in mul() occur before min() is applied? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_76e0a57b-244c-4358-b469-a2cae9654b6c?mode=deep",
+    "timestamp": "2026-02-19 02:19:03.999635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Functions: div() and add()] [Average Calculation] When calculating average price using add(price1, price2) then div(sum, 2), can overflow in add() prevent average calculation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_76b2d25a-36da-4bea-b60f-3b4a238dc86b?mode=deep",
+    "timestamp": "2026-02-19 02:19:24.567155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Error Codes] [Code Collision] Can error codes 1001-1005 collide with error codes from other modules causing confusion in error handling? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a09e0ed5-ce25-4b7c-ba37-2edb3c250bba?mode=deep",
+    "timestamp": "2026-02-19 02:19:46.377098",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Error Codes] [Missing Error Context] Do error codes provide sufficient context for debugging, or can same error code from different call sites be indistinguishable? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a81ad047-adf9-4388-b4f5-bc55637ec33b?mode=deep",
+    "timestamp": "2026-02-19 02:20:08.870297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: add()] [Gas Cost Attack] Can attacker repeatedly call functions using add() with values that always trigger assertions to waste gas and DoS the protocol? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ad1c386-ba85-495b-ba97-156dfba59e0d?mode=deep",
+    "timestamp": "2026-02-19 02:20:32.570202",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: mul()] [Expensive Verification] Is the c/a == b check in mul() more expensive than necessary, allowing gas-based griefing when called in loops? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48f8cb09-2178-4596-8263-a3df52973cce?mode=deep",
+    "timestamp": "2026-02-19 02:20:57.702128",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Function: div()] [Division Gas Cost] Can attackers force expensive division operations in loops to exceed gas limits during vault operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_92264d42-2feb-41c2-baaf-882bf0a7c756?mode=deep",
+    "timestamp": "2026-02-19 02:21:23.255960",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: Vault Shares] [Share Calculation Attack] When vault uses mul(deposit_amount, total_shares) then div(result, total_assets) for share minting, can first depositor attack by minting 1 share with 1 wei then donating large amount to inflate share price? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b16da17b-20cb-4490-aa85-03a0dff3451d?mode=deep",
+    "timestamp": "2026-02-19 02:21:48.714866",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: LST Ratio] [Ratio Manipulation] When liquid staking uses div(total_sui, total_lst_supply) to calculate exchange ratio, can attacker manipulate supply to affect ratio calculation via math errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_307c702f-38f7-4207-8ef5-29c21b121dd7?mode=deep",
+    "timestamp": "2026-02-19 02:22:13.490032",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: Fee Calculation] [BPS Overflow] When calculating fees using mul(amount, fee_bps) then div(result, 10000), can amount be so large that mul() overflows even though final fee would be reasonable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02d4aebb-201b-4f0a-bc4f-ba9c84d18cc8?mode=deep",
+    "timestamp": "2026-02-19 02:22:40.719900",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: Oracle Prices] [Price Overflow] When converting oracle prices using mul(price, 1e18) for decimal normalization, can high prices overflow causing operations to abort? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3da1ca47-94b8-4b4f-989a-7aedebe2e479?mode=deep",
+    "timestamp": "2026-02-19 02:23:07.744121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: Loss Tolerance] [Tolerance Calculation] When calculating if losses exceed tolerance using sub(prev_value, curr_value) then comparing to mul(total_value, tolerance_pct), can underflow or overflow bypass loss protection? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_471cd48d-0959-4919-91fc-c722636c060f?mode=deep",
+    "timestamp": "2026-02-19 02:23:33.104859",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: Request Buffers] [Buffer Overflow] When accumulating deposit requests using add(current_buffer, new_deposit), can overflow cause buffer corruption allowing deposit without payment? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bff0faff-60ae-4fb9-afca-5fe01f7f4145?mode=deep",
+    "timestamp": "2026-02-19 02:23:57.714593",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: Validator Weights] [Weight Normalization] When normalizing validator weights using div(validator_weight, total_weight), can manipulation of total_weight cause incorrect delegation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aebcc05e-5a55-454f-9568-db1a67f00dc0?mode=deep",
+    "timestamp": "2026-02-19 02:24:23.247184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: Health Factor] [Health Calculation] When Navi limiter calculates health factor using div(mul(collateral_value, liquidation_threshold), debt_value), can overflow in mul() occur before div() preventing operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd08a0d6-6535-41c5-8018-b2221ccae418?mode=deep",
+    "timestamp": "2026-02-19 02:24:49.286220",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: Reward Boosting] [Boost Calculation] When calculating boosted rewards using mul(base_reward, boost_multiplier), can overflow prevent reward distribution and lock rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ff8cfa3-67a4-46cd-8a8e-393b87094132?mode=deep",
+    "timestamp": "2026-02-19 02:25:15.764186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: Adaptor Returns] [Asset Balance Check] When verifying returned assets using sub(borrowed_amount, returned_amount), can underflow be exploited to return less than borrowed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a4efe5e3-9851-49c8-946d-7c4bb52cd43f?mode=deep",
+    "timestamp": "2026-02-19 02:25:42.148075",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: Slippage Checks] [Slippage Calculation] When calculating slippage using sub(expected_amount, actual_amount) then comparing to mul(expected, slippage_bps)/10000, can underflow or overflow bypass slippage protection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9eb1b80-610e-4790-ba6c-d5446392cd9e?mode=deep",
+    "timestamp": "2026-02-19 02:26:09.758601",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: Locking Windows] [Time Calculation] When checking lock expiry using add(lock_start_time, lock_duration), can overflow cause locks to expire immediately? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e9dad3f-84f3-478d-b1b3-9a5fd227439f?mode=deep",
+    "timestamp": "2026-02-19 02:26:38.157178",
+    "report_generated": false
+  }
+]
