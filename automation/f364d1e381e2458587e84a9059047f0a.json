@@ -1,0 +1,14 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle.move] [Function: set_update_interval()] [Interval Timing Attack] Can admin set extremely short update_interval (e.g., 1ms) to force all prices stale, then update to their advantage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8e08123-7bf2-4fb4-bf66-836028426f8c?mode=deep",
+    "timestamp": "2026-02-19 08:54:49.372350",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle.move] [Function: set_update_interval()] [No Minimum Interval] While checked > 0, can 1ms interval cause all prices to immediately become stale, DoS'ing price-dependent operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21737f87-f96f-4401-870f-2203192c2fc5?mode=deep",
+    "timestamp": "2026-02-19 08:55:02.038632",
+    "report_generated": false
+  }
+]
