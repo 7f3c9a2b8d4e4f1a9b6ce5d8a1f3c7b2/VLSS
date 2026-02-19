@@ -1,9 +1,0 @@
-[
-  "[File: liquid_staking/sources/volo_v1/native_pool.move] [Error Codes] [Error Code Gaps] Error codes jump from E_MIN_LIMIT (100) to E_DEPRECATED (999). Can missing error codes indicate removed functionality that left security holes? (Low)",
-  "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: stake_pool()] [Restaking After Unstake] unstake_amount_from_validators calls stake_pool for excess. Since stake_pool is deprecated, can this call fail, leaving excess in pending? (High)",
-  "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: stake_pool_for_testing()] [Test vs Prod Divergence] stake_pool_for_testing has ticket_supply check but original doesn't. Can test coverage miss bugs in production staking logic? (Low)",
-  "[File: liquid_staking/sources/volo_v1/native_pool.move] [Field: collectable_fee] [Fee Balance Growth] collectable_fee accumulates from unstake fees and reward fees. Can unbounded growth cause storage costs to become prohibitive? (Low)",
-  "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Fee Balance Join] Fees are joined to collectable_fee after extraction. Can coin::join fail if collectable_fee is corrupted? (Low)",
-  "[File: liquid_staking/sources/volo_v1/native_pool.move] [Field: total_staked] [Table Growth] total_staked Table grows by one entry per epoch. Can unbounded table growth cause storage bloat or lookup slowdown after years of operation? (Low)",
-  "[File: liquid_staking/sources/volo_v1/native_pool.move] [Field: total_staked] [Table Entry Leak] Table entries are added but never removed. Can old epoch entries accumulate, wasting storage? (Low)"
-]
