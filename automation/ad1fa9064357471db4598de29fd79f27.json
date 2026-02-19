@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Threshold Racing] Can an attacker monitor diff_threshold2_timer and call update_single_price repeatedly just before max_duration_within_thresholds expires, preventing level_major alerts from triggering? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_908a595e-5365-44ad-90a7-eef94a222c5e?mode=deep",
+    "timestamp": "2026-02-19 04:23:48.494243",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Historical Price Poisoning] If an attacker can inject a manipulated price that passes all validations once, can this poisoned historical_price then be used to validate future extreme prices through span validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b99e817d-9c1a-46b2-be34-299f4b1aca8f?mode=deep",
+    "timestamp": "2026-02-19 04:24:01.075070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Multi-Feed Attack] Can an attacker coordinate price manipulations across multiple feeds to create correlated failures that bypass individual feed validations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_69003f54-eb88-490f-80ea-eef328703184?mode=deep",
+    "timestamp": "2026-02-19 04:24:14.267184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Max Timestamp Diff DoS] If max_timestamp_diff is set to 0, no prices can be fresh (current_timestamp - oracle_timestamp < 0 is impossible) - can admin error or malicious config cause permanent DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0efb051-f5d7-4483-b2f4-1974c8d062bf?mode=deep",
+    "timestamp": "2026-02-19 04:24:28.747114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Threshold Inversion] If price_diff_threshold1 > price_diff_threshold2 due to config error, can validate_price_difference produce inverted severity levels, misclassifying critical deviations as normal? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_91cc899d-2991-4ab8-8705-4cdb8636384c?mode=deep",
+    "timestamp": "2026-02-19 04:24:43.317378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Effective Price Bounds Invalid] If maximum_effective_price < minimum_effective_price, all prices fail validation - can this config error cause permanent feed unavailability? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a424f7cc-e3a0-427e-bdcb-7be28f87a100?mode=deep",
+    "timestamp": "2026-02-19 04:24:58.715423",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Oracle ID Collision] If multiple feeds share the same oracle_id due to config error, can updates to one feed corrupt another feed's state in the PriceOracle? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c786d47a-2996-4bbe-9a65-1db7db57ac90?mode=deep",
+    "timestamp": "2026-02-19 04:25:15.593824",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: get_price_from_adaptor()] [Pair ID Substitution] If pair_id is changed after oracle_provider_config is set, can the assertion at line 177 be bypassed by updating both values simultaneously, allowing wrong price feeds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ed7d9996-607b-4683-b66e-f1ee3e7404bf?mode=deep",
+    "timestamp": "2026-02-19 04:25:35.762568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [History vs Oracle Price Skew] Lines 162 and 164 update history and oracle price separately - if a transaction reads between these updates, can it observe inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3679cf52-5b9d-4bfc-8b1b-203d198fb7f5?mode=deep",
+    "timestamp": "2026-02-19 04:25:55.726445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Timer State Corruption] If start_or_continue_diff_threshold2_timer at line 157 fails but doesn't revert, can the timer state become corrupted, causing incorrect severity calculations in future updates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dbfee473-7745-4faa-923f-f98f73bf8a06?mode=deep",
+    "timestamp": "2026-02-19 04:26:16.645120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Event Emission Ordering] Events are emitted at various return points - can event reordering or omission cause off-chain systems to have incorrect understanding of oracle state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c025e46-58ac-4355-a249-889e6eb93ffe?mode=deep",
+    "timestamp": "2026-02-19 04:26:37.776191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Partial Update Rollback] If oracle::update_price at line 164 fails, are the history update at line 162 and timer changes at lines 157/159 rolled back, or can partial state changes persist? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_07cbbb89-7405-47a4-b374-6416ba9c4d2b?mode=deep",
+    "timestamp": "2026-02-19 04:27:00.243799",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Cascading Returns] Multiple early returns (lines 61, 76, 81, 118, 130, 153) cause silent failures - can an attacker trigger these conditions systematically to prevent any price updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_555b17d9-51c8-41ac-b2b9-77a9ea72f295?mode=deep",
+    "timestamp": "2026-02-19 04:27:23.841348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Gas Cost Manipulation] If validate_price_difference or validate_price_range_and_history are computationally expensive, can an attacker configure thresholds to maximize gas cost, making price updates uneconomical? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e0747b7-0d89-4a61-b75f-32e7e36ec724?mode=deep",
+    "timestamp": "2026-02-19 04:27:47.060142",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: get_price_from_adaptor()] [Adaptor Call Failure] If Supra or Pyth adaptor calls fail without proper error handling, can this cause transaction reversion that prevents all oracle updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a8cd1046-2ca3-4805-8680-226e47aa1196?mode=deep",
+    "timestamp": "2026-02-19 04:28:10.916151",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Config Table Bloat] If price_feed or oracle_provider_configs tables grow unbounded, can this cause gas exhaustion in get_price_feed_mut at line 59? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f560109d-dece-46a2-a518-f6b3d32f169f?mode=deep",
+    "timestamp": "2026-02-19 04:28:33.287747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Primary-Secondary Flip Attack] Can an attacker alternate between making primary and secondary stale to force continuous oracle source switching, creating price volatility? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a056d414-ab63-40d1-a800-1862c8367ead?mode=deep",
+    "timestamp": "2026-02-19 04:28:56.286743",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Threshold Walking] Can an attacker keep primary-secondary price difference just below threshold2 continuously, accumulating small price deviations that bypass major/critical alerts but sum to large manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c960b4cf-d878-43df-81b3-c0995b29a0fe?mode=deep",
+    "timestamp": "2026-02-19 04:29:17.915236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Historical Span Gaming] If maximum_allowed_span_percentage is set high, can an attacker gradually ratchet prices up/down over multiple updates, each within span limits but achieving large total manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bf7c4261-2dec-46de-af26-c21faa2b7d31?mode=deep",
+    "timestamp": "2026-02-19 04:29:39.090336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Decimal Precision Exploitation] Can an attacker exploit rounding differences between high and low decimal target values to systematically bias prices in one direction? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_891beaa2-2693-4224-89a3-13ba29648f37?mode=deep",
+    "timestamp": "2026-02-19 04:30:00.397019",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: get_price_from_adaptor()] [Oracle Provider Compromise] If either Supra or Pyth provider is compromised and returns malicious prices, can these pass all validation checks if within configured bounds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5ca1f3bd-8698-4377-86ec-dd5e6d6b988b?mode=deep",
+    "timestamp": "2026-02-19 04:30:20.878480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Stale Price Economic Impact] When function returns early without updating prices (lines 61, 76, 81, 130, 153), dependent protocols use stale prices - can this cause economic loss in lending/borrowing/trading protocols? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_03bcf939-21e2-4e20-9fc8-b1b8de32850e?mode=deep",
+    "timestamp": "2026-02-19 04:30:42.886464",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Price Lag Arbitrage] If max_timestamp_diff is large, prices can be up to that duration stale - can arbitrageurs exploit this lag to profit from price differences between oracle and market? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_53553947-8fc2-4819-bf14-3f0387357e12?mode=deep",
+    "timestamp": "2026-02-19 04:31:04.017307",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Threshold Level Impact] Different severity levels (normal/warning/major/critical) only emit events - but if no on-chain enforcement exists, can protocols continue operating unsafely during major/critical events? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d79b633d-3b3e-4999-bc52-7f57052cf144?mode=deep",
+    "timestamp": "2026-02-19 04:31:25.743391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_pro.move] [Function: update_single_price()] [Circuit Breaker Absence] When validation fails or prices deviate critically, no circuit breaker halts dependent protocols - can this allow cascading failures during oracle disruptions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_59314dd7-a41b-4348-ae8a-186f85846331?mode=deep",
+    "timestamp": "2026-02-19 04:31:47.821226",
+    "report_generated": false
+  }
+]
