@@ -1,0 +1,44 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Struct: Registry] [Trusted Registry Assumption] If Volo Vault assumes all markets in this registry are legitimate, could an attacker exploit this by registering malicious markets and tricking the vault into depositing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a984e50-87b9-477d-b37f-71dbdbe3d1e9?mode=deep",
+    "timestamp": "2026-02-19 05:09:56.785459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [Health Factor Impact] If a malicious market is registered and Volo's health limiter checks are bypassed, could this expose vault funds to unprotected leverage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7d66c4d3-449b-40be-9667-38cd4da5c3cc?mode=deep",
+    "timestamp": "2026-02-19 05:10:10.209766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [Oracle Integration] If Volo Vault relies on this registry to determine which Suilend markets are valid for oracle price integration, could fake market registration corrupt vault valuation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_326a2d32-87f5-4cda-9b95-28ee44525d93?mode=deep",
+    "timestamp": "2026-02-19 05:10:25.532654",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [No Creation Events] Since no events are emitted when a market is created (line 31-39), how can Volo Vault monitor for new Suilend markets to potentially integrate? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a1f5fec-fabd-493e-8fe6-3d66884f7738?mode=deep",
+    "timestamp": "2026-02-19 05:10:39.925412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Struct: Registry] [No Market Status] Since the registry doesn't track market status (active, paused, deprecated) (line 15-19), could Volo Vault interact with defunct markets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_07b8d327-bf4f-4b7b-b895-7f256cae2474?mode=deep",
+    "timestamp": "2026-02-19 05:10:55.225921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Function: create_lending_market()] [No Whitelist] Should there be a whitelist of allowed types P or creator addresses to prevent arbitrary market creation that could confuse integrating protocols like Volo? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fdddb421-c7fc-4b5a-9752-2fde77d0d4dc?mode=deep",
+    "timestamp": "2026-02-19 05:11:13.349768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market_registry.move] [Struct: Registry] [No Metadata] Without storing creator address, creation timestamp, or market parameters (line 18), how can auditors verify market legitimacy or trace ownership? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2dfa64be-6c98-4ed6-9110-dceeb77f505e?mode=deep",
+    "timestamp": "2026-02-19 05:11:32.412032",
+    "report_generated": false
+  }
+]
