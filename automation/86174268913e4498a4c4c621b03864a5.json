@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_supply_rate()] [Formula Validation] The formula is borrow_rate * utilization * (1 - reserve_factor) - if borrow_rate is passed incorrectly or comes from wrong asset, does this cause cross-asset contamination in supply rates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_93840205-87c3-4558-a4e5-4dd147081e16?mode=deep",
+    "timestamp": "2026-02-19 02:35:40.159079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_supply_rate()] [Stale Utilization] Like borrow rate, this recalculates utilization inline - if called twice rapidly with storage changes between, can inconsistent rates cause arbitrage opportunities or accounting mismatches? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b72a03e-1be5-42ab-8d84-d360536cac96?mode=deep",
+    "timestamp": "2026-02-19 02:35:53.242479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_supply_rate()] [Missing Validation] The function doesn't validate that borrow_rate is reasonable or from the same asset - can an attacker pass inflated borrow_rate from a different calculation to inflate supply rates and drain reserves faster? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a7ba0fb-7ce5-4085-bc8b-0c995963083a?mode=deep",
+    "timestamp": "2026-02-19 02:36:07.684383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_supply_rate()] [Rate Inversion] If borrow_rate is somehow less than supply_rate after this calculation (due to reserve_factor < 0 underflow), does this break the fundamental invariant that borrowers pay more than suppliers earn? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7cb3247e-912c-47c4-bea2-603022fc87ab?mode=deep",
+    "timestamp": "2026-02-19 02:36:21.993926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_supply_rate()] [Missing Upper Bound] There's no check that supply_rate <= borrow_rate - if reserve_factor underflows causing (ray() - reserve_factor) to be huge, can supply_rate exceed borrow_rate creating negative spread and protocol losses? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_45c9d7df-70d0-4c73-ac39-c4631e12eda0?mode=deep",
+    "timestamp": "2026-02-19 02:36:36.804768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_compounded_interest()] [Division by Zero] The rate is divided by constants::seconds_per_year() - if this constant is zero or can be manipulated to zero, will division fail causing DoS on all interest accrual? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90cb39e4-add4-46fc-a5c9-adf5b2df1c94?mode=deep",
+    "timestamp": "2026-02-19 02:36:53.001981",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_compounded_interest()] [Integer Overflow] When calculating second_term as timestamp_difference * exp_minus_one * base_power_two / 2, can the multiplication overflow before division causing wrapped values and incorrect interest? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_73490d04-bf6c-4d4e-867d-ed20133af1e4?mode=deep",
+    "timestamp": "2026-02-19 02:37:10.674763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_compounded_interest()] [Integer Overflow] When calculating third_term as timestamp_difference * exp_minus_one * exp_minus_two * base_power_three / 6, can the triple multiplication overflow before division causing massive negative interest through wrapping? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_994b6772-4e7c-4c1b-ada6-adac2324e566?mode=deep",
+    "timestamp": "2026-02-19 02:37:30.223596",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_compounded_interest()] [Integer Overflow] The final sum ray() + rate_per_second * timestamp_difference + second_term + third_term could overflow u256 with large timestamp_difference or rate, causing interest to wrap to near-zero values? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1a58e72f-5284-492e-b6ae-7bcf2128ee52?mode=deep",
+    "timestamp": "2026-02-19 02:37:50.487465",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_compounded_interest()] [Integer Underflow] When timestamp_difference is 1, exp_minus_one is 0, but when it's 2, exp_minus_two is 0 - is the check timestamp_difference > 2 correct or should it be >= 2 to avoid off-by-one in third_term calculation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_93774c36-168c-415a-b0d5-2d79bcd1455f?mode=deep",
+    "timestamp": "2026-02-19 02:38:11.690527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_compounded_interest()] [Precision Loss] Dividing rate by seconds_per_year before multiplying by timestamp_difference loses precision - should the order be rate * timestamp_difference / seconds_per_year to minimize loss? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d68cc28-551d-42a3-9bee-da185ec8e514?mode=deep",
+    "timestamp": "2026-02-19 02:38:33.199791",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_compounded_interest()] [Precision Loss] The second_term divides by 2 and third_term by 6 using integer division - does this cause significant precision loss in the Taylor series approximation, undercalculating interest owed? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1a9d09af-db1e-4834-b736-0ca14e910171?mode=deep",
+    "timestamp": "2026-02-19 02:38:54.894597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/eling_core/sources/calculator.move] [Function: calculate_compounded_interest()] [Time Manipulation] If timestamp_difference can be artificially inflated to years or decades, will the polynomial expansion overflow or produce nonsensical compound interest multipliers that drain the protocol? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b077cd84-57ae-4ce7-bc98-36264d04d6a2?mode=deep",
+    "timestamp": "2026-02-19 02:39:15.109856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_compounded_interest()] [Rate Manipulation] If rate is set to u256::MAX, rate_per_second becomes huge, and base_power_two/three overflow, can this cause DoS or wrapped interest values enabling debt escape? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_06460c4c-63c1-4f6a-aa76-3e241bb21156?mode=deep",
+    "timestamp": "2026-02-19 02:39:37.120726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_compounded_interest()] [Edge Case] When timestamp_difference is 0, the function returns ray() (1.0x multiplier) - but the early return happens after calculating exp_minus_one = timestamp_difference - 1, which underflows to u256::MAX - is this safe? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a9808f8-cedd-40c4-bb29-0727206f1019?mode=deep",
+    "timestamp": "2026-02-19 02:40:00.721282",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_compounded_interest()] [Formula Accuracy] The Taylor series is truncated at third order - for large timestamp_difference or high rates, is the approximation error significant enough that borrowers underpay or suppliers are underpaid compound interest? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46625894-c9ee-407a-9887-355223c0c5db?mode=deep",
+    "timestamp": "2026-02-19 02:40:25.481401",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_compounded_interest()] [Ray Math Interaction] ray_mul is used for base_power_two and base_power_three but not for the final terms - does mixing RAY operations with regular integer operations cause inconsistent precision in different parts of the calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8d0204a-5889-45d3-929f-d13064b506a1?mode=deep",
+    "timestamp": "2026-02-19 02:40:50.150651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_compounded_interest()] [Missing Validation] There's no validation that rate is reasonable (e.g., < 10000% APY) - can an attacker pass extreme rates causing overflow or underflow in the compounding calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c994c6b1-5694-4828-95aa-d9d5400d3f52?mode=deep",
+    "timestamp": "2026-02-19 02:41:16.461481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_compounded_interest()] [Negative Interest] If rate is zero, the function returns ray() + 0 + 0 + 0 = ray() (no interest) - but there's no check preventing negative rates which could invert interest calculations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_30efb2f1-8f4e-4f9d-a2eb-cb3ae140c241?mode=deep",
+    "timestamp": "2026-02-19 02:41:39.361708",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_linear_interest()] [Integer Overflow] When calculating rate * timestamp_difference, if both are large, can overflow occur before dividing by seconds_per_year causing wrapped interest multiplier near zero? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db61045f-4020-48a5-82d7-218cf37aeff9?mode=deep",
+    "timestamp": "2026-02-19 02:42:00.657489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_linear_interest()] [Integer Overflow] The addition ray() + rate * timestamp_difference / seconds_per_year() could overflow if the product term is huge, causing interest multiplier to wrap and enable debt escape? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f531af21-cd81-4c86-8754-f044c3ba22e8?mode=deep",
+    "timestamp": "2026-02-19 02:42:22.176705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_linear_interest()] [Division by Zero] If constants::seconds_per_year() returns 0, the division fails causing DoS on all linear interest calculations - can this constant be manipulated or misconfigured? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5cd9fc96-75e2-4e29-b302-d006dbefd9e7?mode=deep",
+    "timestamp": "2026-02-19 02:42:44.827656",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_linear_interest()] [Precision Loss] Dividing rate * timestamp_difference by seconds_per_year loses precision compared to calculating rate * timestamp_difference / seconds_per_year in higher precision - does this systematically underpay interest? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d41ac54d-401a-4290-a77c-2e8a14f65ff1?mode=deep",
+    "timestamp": "2026-02-19 02:43:08.990942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_linear_interest()] [Time Manipulation] If timestamp_difference is set to u256::MAX, the multiplication rate * timestamp_difference will overflow before division, causing wrong interest - is there any upper bound validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e8578bc-d008-4178-b8c0-93c03a89ea04?mode=deep",
+    "timestamp": "2026-02-19 02:43:34.422190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_linear_interest()] [Rate Manipulation] If rate is u256::MAX, multiplying by any non-zero timestamp_difference overflows - can an attacker exploit this to cause DoS or wrap interest to zero? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19e304ef-f19a-435e-af67-65f72156c83d?mode=deep",
+    "timestamp": "2026-02-19 02:44:00.376675",
+    "report_generated": false
+  }
+]
