@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Cross-Function] [Event Ordering] Can events be emitted out of order if functions execute concurrently, confusing off-chain monitoring? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e693625e-62d2-4857-8acf-b65d825151f7?mode=deep",
+    "timestamp": "2026-02-19 00:54:00.467944",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Cross-Function] [Epoch Boundaries] If migration spans multiple epochs, can epoch-dependent logic in different functions conflict? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ba8ca71-daf8-4aaa-a6af-0d3c522c1205?mode=deep",
+    "timestamp": "2026-02-19 00:54:13.656537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Cross-Function] [Admin/Owner Confusion] Do functions consistently use AdminCap vs OwnerCap for authorization? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_886301ba-4279-4714-a69d-cbf2e73fb05b?mode=deep",
+    "timestamp": "2026-02-19 00:54:28.466057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Arithmetic] [exported_count Overflow] Line 117 adds to exported_count without overflow check - can this wrap to 0 with many exports? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_795e6c73-2cdc-4156-9f9c-459ac978b9c6?mode=deep",
+    "timestamp": "2026-02-19 00:54:42.839248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Arithmetic] [Balance Underflow] Does split() at line 146 properly handle underflow if fee_amount > balance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3762360c-a2f7-4f66-aab5-109f865214cc?mode=deep",
+    "timestamp": "2026-02-19 00:54:58.383464",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Arithmetic] [Min Calculation] Line 169 uses min() - can both values be 0, importing nothing but appearing successful? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_55686ee0-56f0-4886-94cc-166ac1aafd3e?mode=deep",
+    "timestamp": "2026-02-19 00:55:16.416251",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Arithmetic] [Ratio Comparison] Line 179 compares ratio <= min_ratio - can ratio overflow cause inverted logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb56d4ed-3b47-47a6-a951-898d05863966?mode=deep",
+    "timestamp": "2026-02-19 00:55:34.089361",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Arithmetic] [Balance Join] Multiple join() operations - can accumulated balances exceed u64::MAX? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_efc93949-f7a8-405f-82f3-98ae1b8b2f37?mode=deep",
+    "timestamp": "2026-02-19 00:55:51.928352",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Arithmetic] [Amount Zero] Can import_amount = 0 bypass ratio checks while appearing to import successfully? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c2779026-ed2d-44cd-b779-f34fb74c1c0e?mode=deep",
+    "timestamp": "2026-02-19 00:56:13.841329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Arithmetic] [Dust Accumulation] Can repeated small deposits via deposit_sui() cause precision loss or dust accumulation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b68f23a5-5a40-4347-afa2-9145cfe65782?mode=deep",
+    "timestamp": "2026-02-19 00:56:35.106479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [State] [Double Initialization] Despite mark_cap_created(), can object IDs collide allowing re-initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2abdaeb9-12f8-4cd4-bce0-f75c3dd6d1fb?mode=deep",
+    "timestamp": "2026-02-19 00:56:57.979506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [State] [Pause Consistency] Is pause state consistent between v1 native_pool and v2 stake_pool during migration? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea0224bd-17a6-4471-8d3e-8588953e2e72?mode=deep",
+    "timestamp": "2026-02-19 00:57:22.345675",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [State] [Exported Count Accuracy] Can exported_count at line 117 become inconsistent with actual exports if transactions fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc1332eb-e1c9-446d-8c88-94f0d908d817?mode=deep",
+    "timestamp": "2026-02-19 00:57:47.111710",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [State] [Flag Atomicity] Are pool_created and fees_taken flags updated atomically with their respective operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2a6d6e29-f8b7-4539-8338-d2337b22dd20?mode=deep",
+    "timestamp": "2026-02-19 00:58:13.768510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [State] [Balance Invariant] Is the invariant 'total exported = total imported + fees + deposits' maintained throughout migration? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b63f4b85-b843-4255-a10d-9fb459fbff9b?mode=deep",
+    "timestamp": "2026-02-19 00:58:40.771474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [State] [Validator Set Consistency] After export_stakes(), is validator set in v1 properly emptied to prevent double-staking? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_12b1ce95-e0ef-4d45-8722-b6b404bd89ba?mode=deep",
+    "timestamp": "2026-02-19 00:59:07.868894",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [State] [Pending Balance] After line 121 empties pending, can new pending deposits corrupt migration accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c4f92053-984f-4265-8588-9dd4e1c5966b?mode=deep",
+    "timestamp": "2026-02-19 00:59:35.076542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [State] [Metadata Sync] Is Metadata<CERT> properly synchronized with StakePool during import_stakes()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9c92f777-b09e-47f1-800b-aefe34ce937c?mode=deep",
+    "timestamp": "2026-02-19 01:00:05.128331",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Authorization] [Cap Type Confusion] Can an attacker with AdminCap or OwnerCap from unrelated pools exploit these functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b730066-347f-4d6e-9a30-832323a8d27b?mode=deep",
+    "timestamp": "2026-02-19 01:00:28.587594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Authorization] [MigrationCap Transfer] After line 90 transfers MigrationCap, can unauthorized transfers bypass intended access control? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_03b5d5c9-be64-4c10-bdc4-d8d8ced187da?mode=deep",
+    "timestamp": "2026-02-19 01:00:50.231252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Authorization] [Shared Object Exploit] MigrationStorage is shared - can anyone manipulate its fields directly? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f98560ed-64bb-4dab-af95-b37c77e5f416?mode=deep",
+    "timestamp": "2026-02-19 01:01:13.092477",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Authorization] [Recipient Spoofing] In take_unclaimed_fees(), can recipient parameter be spoofed to redirect fees? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8cc29de7-dc7b-4d27-9a58-ee8ce48e0c98?mode=deep",
+    "timestamp": "2026-02-19 01:01:37.114271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Authorization] [Admin Cap Validation] Line 161 uses AdminCap - is it validated to match the specific StakePool? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fed299f3-d181-4e07-9893-56ab8771c440?mode=deep",
+    "timestamp": "2026-02-19 01:02:02.436177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Authorization] [Owner Cap Validation] Line 67 uses OwnerCap - can it be from wrong NativePool instance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6740e519-300a-48df-af14-81831ac276bf?mode=deep",
+    "timestamp": "2026-02-19 01:02:28.579489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Authorization] [Migration Cap Cloning] Can MigrationCap be cloned or duplicated to bypass single-use restrictions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_12af55b1-ed53-40a7-bae1-4cd21bbbf98d?mode=deep",
+    "timestamp": "2026-02-19 01:02:54.375468",
+    "report_generated": false
+  }
+]
