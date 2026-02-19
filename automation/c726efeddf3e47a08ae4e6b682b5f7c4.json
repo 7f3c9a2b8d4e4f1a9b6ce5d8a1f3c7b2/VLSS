@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_withdraw()] [Borrow Index Zero] If current_borrow_index at line 40 is zero, ray_mul at line 43 produces scale_borrow_balance=0, allowing withdrawals even when borrows exist? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5cd72d9-99ad-47fa-8927-cdc54ea36356?mode=deep",
+    "timestamp": "2026-02-19 05:49:10.232186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_withdraw()] [Supply vs Borrow Mismatch] Can scale_supply_balance and scale_borrow_balance be manipulated independently such that line 45 check passes but actual withdrawal depletes reserves needed for borrows? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_45980434-a527-45fe-b26b-c45a1829584d?mode=deep",
+    "timestamp": "2026-02-19 05:49:23.120540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_withdraw()] [Exact Balance Edge Case] If scale_supply_balance exactly equals scale_borrow_balance + amount, the >= check at line 45 passes, but does this leave zero buffer for reserve requirements? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_44e08dc5-e7a7-4ae9-8bcc-d4636f852f54?mode=deep",
+    "timestamp": "2026-02-19 05:49:36.706452",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_withdraw()] [Flash Withdrawal Attack] Can an attacker borrow maximum amount in same transaction before validate_withdraw() is called, causing line 45 assertion to fail and DoS legitimate withdrawals? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_79e06231-c0bb-4a8d-8044-baf2e79aa757?mode=deep",
+    "timestamp": "2026-02-19 05:49:50.536701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Coin Type Spoofing] Can CoinType generic at line 56 be crafted to pass type_name string match at line 57 but represent different value or wrapped asset? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_35b40646-331d-431a-bf99-17641dcf41aa?mode=deep",
+    "timestamp": "2026-02-19 05:50:05.285316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Zero Borrow Bypass] While zero amount is blocked at line 58, can amount=1 or minimal amounts be borrowed repeatedly to manipulate borrow index or cause precision errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ae4b55d2-5b2c-4192-88e0-207bc5a6bd1a?mode=deep",
+    "timestamp": "2026-02-19 05:50:22.086373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Borrow Amount Overflow] If amount at line 56 is near u256::MAX, can adding it to scale_borrow_balance at line 67 or line 70 cause overflow and bypass checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_53cb2fb0-3ab7-4592-a3e5-1807fe654ba5?mode=deep",
+    "timestamp": "2026-02-19 05:50:39.010065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Supply Balance Underreporting] If supply_balance from storage::get_total_supply() at line 61 is underreported, can scale_supply_balance at line 64 be artificially low, failing legitimate borrows at line 67? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_710e2eb7-70dc-4ad7-861f-caefa383f1e9?mode=deep",
+    "timestamp": "2026-02-19 05:50:57.917291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Borrow Balance Overreporting] If borrow_balance at line 61 is manipulated to be higher, can it cause the borrow check at line 67 to fail incorrectly, DoS-ing borrows? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c290cfe8-4808-441f-96b8-e31716689535?mode=deep",
+    "timestamp": "2026-02-19 05:51:17.392560",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Index Manipulation Attack] Can an attacker manipulate current_supply_index or current_borrow_index at line 62 to pass ray_mul at lines 64-65 with incorrect scaled values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b59fe34f-c561-4616-82e1-15e40b0026ea?mode=deep",
+    "timestamp": "2026-02-19 05:51:37.853887",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Strict Less Than] Line 67 uses strict < comparison - if scale_borrow_balance + amount == scale_supply_balance, borrow fails. Is this too restrictive and can it be exploited to DoS borrows? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab38f940-82a6-4ba2-9f11-d0f94b6648f0?mode=deep",
+    "timestamp": "2026-02-19 05:51:58.345686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Ray Mul Overflow] Can ray_math::ray_mul at lines 64-65 overflow if supply_balance or borrow_balance and respective indices are extremely large? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_735d12f1-dd45-483b-ac0f-d6e954ac3262?mode=deep",
+    "timestamp": "2026-02-19 05:52:20.095245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Ray Div Zero] If scale_supply_balance at line 70 denominator is zero, will ray_math::ray_div cause division by zero error or return incorrect ratio? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_661a48e6-c0b5-4425-8dd9-9973d370c6ec?mode=deep",
+    "timestamp": "2026-02-19 05:52:42.505386",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Borrow Ratio Overflow] Can (scale_borrow_balance + amount) at line 70 numerator overflow before ray_div is calculated, producing wrong current_borrow_ratio? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_67c29bf7-3c87-485c-b79a-4c2e747e4b07?mode=deep",
+    "timestamp": "2026-02-19 05:53:04.531277",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Ray Div Precision Loss] Does ray_math::ray_div at line 70 lose precision allowing current_borrow_ratio to appear lower than actual, bypassing the cap at line 73? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac171e30-23a8-4cd7-9cfc-2af642809d74?mode=deep",
+    "timestamp": "2026-02-19 05:53:29.095695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Borrow Ratio Cap Race] Between calculating current_borrow_ratio at line 70 and checking against borrow_ratio cap at line 73, can the cap be lowered causing legitimate borrows to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2280cd24-8df2-43d4-9fa7-93ae613e46b7?mode=deep",
+    "timestamp": "2026-02-19 05:53:51.520562",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Borrow Cap Ceiling Bypass] If borrow_ratio from storage::get_borrow_cap_ceiling_ratio() at line 72 is set to u256::MAX or very high value, can unlimited borrowing occur passing check at line 73? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_67d26099-74ae-4f7d-a082-3edaf343a5c8?mode=deep",
+    "timestamp": "2026-02-19 05:54:13.119462",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Borrow Ratio Equals Cap] If borrow_ratio exactly equals current_borrow_ratio, the >= check at line 73 passes - is there sufficient buffer or can this lead to exactly maxing out the pool? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f032a667-febc-4f83-aa3b-f99a1f917071?mode=deep",
+    "timestamp": "2026-02-19 05:54:35.275307",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Ratio Cap Zero] If borrow_ratio cap at line 72 is zero, will line 73 block all borrows even when supply exists? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_068c034f-ab1c-447b-9010-bdb44d7281f2?mode=deep",
+    "timestamp": "2026-02-19 05:54:58.405720",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Redundant Checks] Lines 67 and 73 both limit borrowing - can an attacker exploit the difference between absolute balance check and ratio check to borrow more than intended? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c48c13b8-a8ae-42e1-ad8e-52fe059284c2?mode=deep",
+    "timestamp": "2026-02-19 05:55:21.211182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_borrow()] [Check Ordering] If line 67 passes but line 73 fails, or vice versa, does this indicate incorrect cap configuration that can be exploited? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fef46b7d-61bc-4305-aa6e-29827975f42b?mode=deep",
+    "timestamp": "2026-02-19 05:55:43.715170",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_repay()] [Type Check Only] Line 77 only validates coin type - can an attacker repay with wrong CoinType that matches string representation but has different value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db0c347d-c5c8-44d8-8e4a-1b4bede640ba?mode=deep",
+    "timestamp": "2026-02-19 05:56:06.294179",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_repay()] [Zero Repayment] Line 78 blocks zero repayment, but can amount=1 minimal repayments be used to manipulate debt tracking or interest calculations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dbf061a4-c211-4510-bc94-94c3fce871ac?mode=deep",
+    "timestamp": "2026-02-19 05:56:28.565279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_repay()] [No Borrow Balance Check] validate_repay doesn't verify that repayment amount <= actual borrow balance - can over-repayment occur and corrupt accounting? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_210d15c1-61ff-42bc-a46e-838fc75ce47b?mode=deep",
+    "timestamp": "2026-02-19 05:56:48.874125",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_repay()] [No Debt Verification] validate_repay doesn't check if the repayer has any outstanding debt - can arbitrary addresses repay debts they don't owe? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63f9edf9-9c5e-4db0-b461-4600bb926bee?mode=deep",
+    "timestamp": "2026-02-19 05:57:10.536359",
+    "report_generated": false
+  }
+]
