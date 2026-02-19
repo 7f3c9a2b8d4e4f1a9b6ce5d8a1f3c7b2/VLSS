@@ -1,0 +1,80 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Invariant: Pending vs Staked] Can pending balance be counted in both get_pending() and get_total_staked(), causing double-counting in ratio calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3eecbad0-4af3-4422-9abc-3d6bd68368dc?mode=deep",
+    "timestamp": "2026-02-18 23:57:25.046031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Invariant: Collected vs Total Rewards] If collected_rewards > total_rewards due to mut_collected_rewards() abuse, does this break get_total_rewards() underflow protection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a6745454-e942-4fc9-a3af-a201ab2ce702?mode=deep",
+    "timestamp": "2026-02-18 23:57:38.179838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Reentrancy in Loop] Can validator_set::remove_stakes() at line 443 perform callbacks that modify NativePool state, causing the loop to read stale values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_522fc4f1-77e1-404b-9bc9-fec34005633b?mode=deep",
+    "timestamp": "2026-02-18 23:57:52.115704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: collect_fee()] [Transfer Reentrancy] Does transfer::public_transfer() at line 532 allow reentrancy that could call collect_fee() again before the first call completes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ca2554f-67b1-41f9-a6e9-1d914a68fe67?mode=deep",
+    "timestamp": "2026-02-18 23:58:06.298053",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [State Rollback] If stake_pool() at line 491 aborts during restaking, are all state changes from sub_total_staked_unsafe() and sub_rewards_unsafe() rolled back? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_62adbab1-c4d8-4226-a61e-e836cac08dd7?mode=deep",
+    "timestamp": "2026-02-18 23:58:21.863357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Error: E_NOTHING_TO_UNSTAKE] [Empty Validator Vector] If validators vector has length 0 at line 434, does E_NOTHING_TO_UNSTAKE properly indicate the root cause or mask other issues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3c4f817f-1f0c-4a8f-8a74-5100f4d73cf8?mode=deep",
+    "timestamp": "2026-02-18 23:58:38.225820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Error: E_NOT_ENOUGH_BALANCE] [Balance Assertion Timing] Is the assertion at line 479 checked before or after collectable_reward is capped, potentially causing false positives? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6eed776e-2084-4bf4-a9c4-0c7d65131b71?mode=deep",
+    "timestamp": "2026-02-18 23:58:55.581854",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: sub_rewards_unsafe()] [Silent Underflow] At line 285, underflow is silently clamped to 0 - can this hide bugs where rewards are over-deducted? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b44b94a5-fda4-47f3-8045-64b2b55e50c0?mode=deep",
+    "timestamp": "2026-02-18 23:59:14.912775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: get_total_active_stake()] [Epoch Clamping] At line 203, last_active_epoch is clamped to current_epoch - does this correctly handle the case where staked_update_epoch is far in the future? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_429696a2-3165-47d5-92ff-3c5c33b24339?mode=deep",
+    "timestamp": "2026-02-18 23:59:34.230516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: migrate()] [Version Check Weakness] At line 558, migrate() checks version < VERSION but doesn't validate the version is exactly VERSION-1, allowing skipped version migrations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d47e7661-909f-41d4-9847-c0176f8c5988?mode=deep",
+    "timestamp": "2026-02-18 23:59:55.508202",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: migrate()] [State Corruption on Migrate] Does migrate() at line 557 perform any state validation or cleanup, or can it leave the pool in an inconsistent state if interrupted? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_de4e36f2-619f-4ce5-a388-a9d9c2c125ae?mode=deep",
+    "timestamp": "2026-02-19 00:00:19.392638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: assert_version()] [Version Window Attack] Allowing both VERSION and VERSION-1 at line 619 creates a compatibility window - can attackers exploit differences between version behaviors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f90f5cad-04dc-4aad-b635-83139d9b7188?mode=deep",
+    "timestamp": "2026-02-19 00:00:44.477847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Constant: VERSION] [Version Rollback] If VERSION constant is changed in an upgrade, can old pool objects with stale version fields become permanently inaccessible? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4cf2fbcf-a36e-45f8-967c-0a8fd970af51?mode=deep",
+    "timestamp": "2026-02-19 00:01:08.475112",
+    "report_generated": false
+  }
+]
