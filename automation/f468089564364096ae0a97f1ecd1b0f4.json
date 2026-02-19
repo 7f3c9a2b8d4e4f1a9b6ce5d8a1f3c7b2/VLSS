@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Authorization Bypass] Can an attacker call this public function directly without operator/admin caps to manipulate asset valuations, bypassing vault operation status checks, enabling unauthorized value updates during critical operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dcf25091-cf7b-4186-8b96-aac34488fa86?mode=deep",
+    "timestamp": "2026-02-19 08:57:37.379116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Authorization Bypass] Does the function verify that the caller has proper operator capabilities before allowing position value updates, or can any external party trigger value recalculations to cause DoS or manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0a154e9-8e13-46a8-b4ee-0afd388f9cad?mode=deep",
+    "timestamp": "2026-02-19 08:57:50.231690",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Access Control] Can an attacker pass a malicious vault reference to update values for positions they don't own, potentially corrupting accounting in other users' vaults? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fe3aa5f-aabb-4ab1-81f4-0bf67260c887?mode=deep",
+    "timestamp": "2026-02-19 08:58:05.272207",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Access Control] Since this is a public function, can external contracts call it with manipulated pool/position references to extract sensitive pricing information or cause computational DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c6360ff-2957-48d2-8e37-a7b8c245f7fe?mode=deep",
+    "timestamp": "2026-02-19 08:58:19.616766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: update_momentum_position_value()] [Authorization] Is there validation that the asset_type string corresponds to an actual Momentum position in the vault, or can attackers pass arbitrary strings to create ghost assets? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c189e9c5-72ab-42a8-ada9-d69b7d4c75f6?mode=deep",
+    "timestamp": "2026-02-19 08:58:34.943200",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Oracle Manipulation] Can an attacker manipulate the Switchboard oracle price feed to pass the slippage check while still providing incorrect relative_price_from_oracle, enabling price oracle attacks during position valuation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fe33ecd-4748-401f-b00b-306683c4dee9?mode=deep",
+    "timestamp": "2026-02-19 08:58:51.469600",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Oracle Staleness] Does the function verify oracle price freshness before using price_a and price_b in calculations, or can stale prices from hours/days ago pass validation and corrupt position values? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5750126d-aa93-46b3-bbf2-ee7dc20fad7c?mode=deep",
+    "timestamp": "2026-02-19 08:59:10.127060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Oracle Manipulation] If price_b is manipulated to be very small (near zero), can the division price_a * DECIMAL / price_b cause overflow in relative_price_from_oracle calculation at line 51? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ece3103e-9f29-4f5a-85f5-fd8b5ffabb6f?mode=deep",
+    "timestamp": "2026-02-19 08:59:29.546565",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Oracle DoS] Can an attacker cause vault_oracle::get_asset_price to revert by providing type_name_a or type_name_b not configured in OracleConfig, causing DoS of all position value updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b122dd8-35a3-49fd-90bb-bc6d3bec75a2?mode=deep",
+    "timestamp": "2026-02-19 08:59:49.740078",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Oracle Bypass] Can an attacker set dex_slippage() to 10000 (100%) in config to bypass the price sanity check entirely, allowing arbitrary pool manipulation to pass validation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fbde36fd-ebc2-4077-9ac9-314f160c4fa9?mode=deep",
+    "timestamp": "2026-02-19 09:00:11.755590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Price Manipulation] Can flash loan attacks manipulate pool.sqrt_price() temporarily to pass the slippage check window, then revert after value update is committed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_941eeb74-9000-43eb-85ff-85cb999ff3dc?mode=deep",
+    "timestamp": "2026-02-19 09:00:34.901863",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Oracle Precision] When calculating relative_price_from_oracle with price_a * DECIMAL / price_b, can precision loss for low-value tokens cause the slippage check to incorrectly pass/fail? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0a566c10-557e-4c03-94d8-f4d64302608f?mode=deep",
+    "timestamp": "2026-02-19 09:00:59.181584",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Oracle Attack] Can an attacker exploit the diff() calculation by manipulating pool_price to be exactly equal to relative_price_from_oracle * (1 + slippage threshold - epsilon), passing validation with maximum deviation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21153258-fdab-43ff-b8df-3e73ea1565d9?mode=deep",
+    "timestamp": "2026-02-19 09:01:24.564395",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Double Oracle Call] Are normalized_price_a and normalized_price_b guaranteed to be from the same oracle update as price_a and price_b, or can oracle updates between calls cause price inconsistency? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5e5cd03-1eff-426f-86c1-9fc855afb170?mode=deep",
+    "timestamp": "2026-02-19 09:01:50.262610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Oracle Decimals] Can mismatched decimals between oracle price (18 decimals) and coin decimals cause the relative price calculation to be incorrect if coins have extreme decimal values (e.g., 0 or 18)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_faaa4be6-49d5-42d9-af4d-75f6eee02ed0?mode=deep",
+    "timestamp": "2026-02-19 09:02:15.769921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Slippage Bypass] Can the slippage check be bypassed if relative_price_from_oracle is zero, causing division by zero or assertion bypass in the comparison logic? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b3c0314-9532-4df9-8b95-46e877710e76?mode=deep",
+    "timestamp": "2026-02-19 09:02:40.210624",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Slippage Calculation] Can integer overflow occur in (pool_price.diff(relative_price_from_oracle) * DECIMAL / relative_price_from_oracle) when prices are at extreme values, causing incorrect slippage validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d72c30f8-cdf3-4952-88bc-04894f8b74e6?mode=deep",
+    "timestamp": "2026-02-19 09:03:09.652586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Slippage Logic] Does diff() return absolute value, and can negative price differences bypass the slippage check if diff() returns signed values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46f56292-b83c-418f-b6d8-4c5afb448e19?mode=deep",
+    "timestamp": "2026-02-19 09:03:34.951528",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Slippage Threshold] If slippage from config.dex_slippage() can be set to 0, will all position updates fail due to ERR_INVALID_POOL_PRICE, causing DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d77b8b24-4346-4aa5-a45e-90bd3b95c7c6?mode=deep",
+    "timestamp": "2026-02-19 09:04:00.224895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Slippage Edge Case] Can the comparison fail incorrectly when (DECIMAL * slippage / SLIPPAGE_BASE) causes precision loss for very small slippage values (e.g., 1 bps)? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f8719203-d1bb-4731-ba07-6715ad885096?mode=deep",
+    "timestamp": "2026-02-19 09:04:26.640734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Slippage Attack] Can an attacker manipulate the pool right before value update to make pool_price match relative_price_from_oracle, then restore pool state after, gaming the slippage check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_64ba5be5-ac70-4d5a-8823-ebe91758bbc1?mode=deep",
+    "timestamp": "2026-02-19 09:04:52.632787",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: get_position_value()] [Slippage Constant] Is SLIPPAGE_BASE = 10000 correct for bps calculations, and can overflow occur when slippage is at maximum (10000), making DECIMAL * slippage overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bee30aa3-70ad-4ed6-b892-273c8f7d8a75?mode=deep",
+    "timestamp": "2026-02-19 09:05:18.807161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: sqrt_price_x64_to_price()] [Overflow] Can sqrt_price_x64 * DECIMAL overflow u256 when sqrt_price_x64 is at maximum u128 value, causing incorrect price calculation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_298fa619-768d-465c-82f5-b6278a28a34e?mode=deep",
+    "timestamp": "2026-02-19 09:05:46.165795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: sqrt_price_x64_to_price()] [Precision Loss] When dividing by pow(2, 64), can precision be lost for very small sqrt_price_x64 values, causing pool_price to round to zero and break slippage checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_97ddc8f5-7c50-447a-9e2f-9d54bc7bf2cc?mode=deep",
+    "timestamp": "2026-02-19 09:06:11.969197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/momentum.adaptor.move] [Function: sqrt_price_x64_to_price()] [Overflow] In sqrt_price_u256_with_decimals * sqrt_price_u256_with_decimals / DECIMAL, can the multiplication overflow before division, even with u256? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0fb3656a-4e18-4d0b-b7bc-b2d168973a44?mode=deep",
+    "timestamp": "2026-02-19 09:06:37.580785",
+    "report_generated": false
+  }
+]
