@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Hardcoded Decimal] Can the hardcoded decimal value 6 at line 229 in `pool::convert_amount(total_supply, 6, 9)` cause incorrect conversion if the actual token decimal is not 6, leading to wrong APY? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86611b7c-ad10-43a2-9f4c-2e839087bfa2?mode=deep",
+    "timestamp": "2026-02-19 02:12:58.332722",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Decimal Inconsistency] Why does `get_incentive_apy_one()` hardcode decimal as 6 at line 229 while `get_incentive_apy()` reads it from oracle at line 151, creating inconsistent APY calculations between the two functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c84791d-fd8b-4a3f-b653-65accc97290c?mode=deep",
+    "timestamp": "2026-02-19 02:13:10.948740",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Division by Zero] Can `ray_math::ray_div()` at line 238 divide by zero when `end_at - start_at` equals 0, causing transaction abort for single pool query? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cea3a4aa-b805-4b5f-9212-3f988d82da09?mode=deep",
+    "timestamp": "2026-02-19 02:13:25.029636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Division by Zero] Can `ray_math::ray_div()` at line 244 divide by zero when `protocol_total_supply_on_usd` is 0, causing DoS when querying pools with zero protocol supply? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_33cd019a-eed5-4e85-a48d-48c591d27d41?mode=deep",
+    "timestamp": "2026-02-19 02:13:38.797684",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Oracle Manipulation] Can an attacker front-run the price oracle update before calling this function to manipulate the APY calculation at lines 230 and 217-222? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_27262455-c5b0-46bd-afdc-9e6eff21f3f2?mode=deep",
+    "timestamp": "2026-02-19 02:13:53.861724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Option Handling] Does the function correctly handle `option == incentive::option_borrow()` at lines 212-214, potentially using wrong balance type for single pool APY calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_10f80aff-6472-4782-858b-edf776f4fdd7?mode=deep",
+    "timestamp": "2026-02-19 02:14:09.997587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Invalid Pool] Can passing an invalid pool address cause `incentive::get_pool_info()` at line 191-205 to abort or return garbage data, leading to incorrect APY display? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c960f99-2f00-4bf9-84db-e56a9ac534c7?mode=deep",
+    "timestamp": "2026-02-19 02:14:27.308385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Overflow] Can multiplication operations in `ray_math::ray_mul()` at line 237 overflow when computing APY for pools with extremely large incentive amounts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb488bb5-bf78-4a6a-9688-3254072c89a3?mode=deep",
+    "timestamp": "2026-02-19 02:14:45.608712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Type Conversion] Can `(normal_total_supply as u256)` at line 230 cause precision issues if normal_total_supply is near u64 max boundary? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2585ecb-ab61-445c-a2a4-4fee636880a7?mode=deep",
+    "timestamp": "2026-02-19 02:15:04.440700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Time Period] Can an attacker query APY for a pool where `start_at > end_at`, causing negative or wrapped duration in subtraction at line 239, leading to astronomical false APY? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6033d326-9208-43dc-8038-0364874358f0?mode=deep",
+    "timestamp": "2026-02-19 02:15:23.734577",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Status Logic Error] Can the status filtering logic at lines 295-302 incorrectly filter pools due to logic errors, where `status == PoolStatusClosed && end_at >= now` keeps non-closed pools? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ae04449-2cce-401c-a4d2-1d4ca710a5a0?mode=deep",
+    "timestamp": "2026-02-19 02:15:44.085916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Status Logic Error] Can the condition `status == PoolStatusEnabled && (start_at >= now || end_at <= now)` at line 297 incorrectly skip enabled pools that are currently active? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e87c7e09-1df6-4893-8fce-c631d638d13d?mode=deep",
+    "timestamp": "2026-02-19 02:16:04.072100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Status Logic Error] Can the condition `status == PoolStatusNotStarted && start_at <= now` at line 298 incorrectly skip pools that have already started when filtering for not-started status? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e7b6435d-1650-406f-bda2-42377bc22120?mode=deep",
+    "timestamp": "2026-02-19 02:16:24.687293",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Integer Underflow] Can `total_rewards_of_user - total_claimed_of_user` at line 329 underflow when claimed exceeds calculated rewards, creating wrapped u256 showing false massive available rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_491c79ce-ffd0-4274-b596-8eac9dd463d2?mode=deep",
+    "timestamp": "2026-02-19 02:16:46.018227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Option Filter] Can an attacker bypass option filtering at lines 290-293 by manipulating option_type, causing supply pools to be included in borrow queries or vice versa? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_64f30d8a-32fe-4870-9fff-7c62a3bcdddf?mode=deep",
+    "timestamp": "2026-02-19 02:17:08.345981",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Pool Iteration] Can `incentive::get_pool_objects()` at line 269 return stale or inconsistent pool addresses if pools are modified during function execution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_631a3cdc-2355-44c9-b235-82c40a91626e?mode=deep",
+    "timestamp": "2026-02-19 02:17:30.333709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Balance Consistency] Can `storage::get_user_balance()` at line 304 return inconsistent balances if user performs actions between this call and reward calculation at line 312? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29332c34-ace9-4eeb-b776-c652dd369667?mode=deep",
+    "timestamp": "2026-02-19 02:17:53.989481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Factor Manipulation] Can manipulated `factor` value at line 284 cause incorrect `calculate_user_effective_amount()` at line 311, showing wrong rewards in grouped results? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d247bf99-4eaf-462e-a6e7-a682ff67c92e?mode=deep",
+    "timestamp": "2026-02-19 02:18:16.978595",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Continue Logic] Can multiple continue statements at lines 292, 301 cause certain pools to be incorrectly skipped, hiding valid incentive opportunities from users? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_09af6a57-872b-40c4-aef0-5f785d379009?mode=deep",
+    "timestamp": "2026-02-19 02:18:41.716039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Vector OOB] Can `vector::borrow(&objs, pool_length-1)` at line 273 cause out-of-bounds access if pool_length is manipulated to 0? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9076f905-dd26-4a87-82b7-77385594b940?mode=deep",
+    "timestamp": "2026-02-19 02:19:07.504105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Balance Type] Does line 307-309 correctly handle option_borrow case, potentially using wrong balance for all subsequent pools in the loop? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc092498-9af2-4258-9de8-62bd33ea78e0?mode=deep",
+    "timestamp": "2026-02-19 02:19:33.560962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Insert Function Call] Can `insert_pools()` at line 332 fail to properly group pools by phase, causing duplicate phase entries or lost pool information? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_96393413-69f0-4dd3-bab3-ad38e819592b?mode=deep",
+    "timestamp": "2026-02-19 02:20:01.298213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: insert_pools()] [Logic Error] Can the `is_exist` flag remain false even when phase exists due to continue statement at line 347, causing duplicate phase entries at line 364? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5603f31-04f0-4ac3-8e60-bd4f563189dd?mode=deep",
+    "timestamp": "2026-02-19 02:20:30.409927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: insert_pools()] [Unnecessary Loop] Why does the loop at lines 343-353 continue iterating after finding matching phase and setting `is_exist = true`, wasting gas and potentially causing duplicate insertions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5d6c5ca3-2e98-422a-b8d4-33ba74d77f3a?mode=deep",
+    "timestamp": "2026-02-19 02:21:00.502036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: insert_pools()] [Vector Mutation] Can concurrent calls to `insert_pools()` cause race conditions when mutating `element.pools` at line 350, leading to lost pool insertions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_42ffed96-1912-4d68-98c7-07601893f3c0?mode=deep",
+    "timestamp": "2026-02-19 02:21:31.863482",
+    "report_generated": false
+  }
+]
