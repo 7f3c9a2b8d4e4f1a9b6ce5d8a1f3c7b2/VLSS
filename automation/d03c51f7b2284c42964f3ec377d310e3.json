@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Validation Cost] The has_authority() check may involve cryptographic verification - can repeated failed validation attempts be used for gas griefing? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bdc1d04b-3f50-4c13-af13-9d14b64e4c1d?mode=deep",
+    "timestamp": "2026-02-19 06:54:33.574001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Module Dependencies] [Queue Module Trust] This module completely trusts Queue.add_fee_type() implementation - if Queue module is upgraded maliciously, can it accept arbitrary fee types regardless of validation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_03b19831-d51f-4899-98dd-214bcd1eb03c?mode=deep",
+    "timestamp": "2026-02-19 06:54:46.271628",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Module Dependencies] [Type Name Module] The module relies on std::type_name - if this standard library has bugs in type name resolution, can fee types be misidentified? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b3edecd-3dc6-46de-9346-659c9038894a?mode=deep",
+    "timestamp": "2026-02-19 06:55:00.388205",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Module Dependencies] [Event System] The module uses sui::event::emit - if event system has bugs or can be blocked, does fee type addition still succeed silently? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fce1584f-0f63-40b7-8b15-5efe1f0b78a6?mode=deep",
+    "timestamp": "2026-02-19 06:55:14.081963",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Queue ID Extraction] The event uses queue.id() - if Queue.id() can return a different ID than the actual queue object ID, can events be misattributed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2a6cc6b-ec5f-492d-83a6-4a82eeada9a5?mode=deep",
+    "timestamp": "2026-02-19 06:55:28.940946",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Module Structure] [Circular Dependencies] If Queue module also depends on this action module, can circular dependencies cause initialization or upgrade issues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ce9e35a1-8916-45cd-9c70-1b4b3ea02271?mode=deep",
+    "timestamp": "2026-02-19 06:55:45.973675",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Fee Type Pollution] Can a malicious authority add hundreds of worthless coin types to dilute legitimate fee types and make fee selection inefficient for oracle operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7bcf6d77-2f4b-45a0-a60d-d6c8109dcc82?mode=deep",
+    "timestamp": "2026-02-19 06:56:03.447041",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Fee Type Ordering Attack] If queue fee selection prioritizes by position in fee_types vector, can an attacker add preferred coin types last to manipulate fee payment order? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f862b686-f181-4703-9415-dd1ab4a60000?mode=deep",
+    "timestamp": "2026-02-19 06:56:20.803326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Liquidity Fragmentation] Can adding too many fee types fragment liquidity across many coin types, making it difficult to accumulate sufficient fees for oracle operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b2ccfaf-2877-4c1d-94e7-8117942a6ad5?mode=deep",
+    "timestamp": "2026-02-19 06:56:39.485957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Front-Running] If queue fee type additions are visible in mempool, can MEV bots front-run legitimate additions to manipulate fee market dynamics? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d305728-e518-4e7d-8038-d8a9a6329447?mode=deep",
+    "timestamp": "2026-02-19 06:56:59.603551",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Censorship] Can the queue authority selectively refuse to add certain fee types to censor specific oracle users or protocols? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f8a93ada-9ecd-4e62-8f1d-d22dc9998bdf?mode=deep",
+    "timestamp": "2026-02-19 06:57:19.488039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Race Condition] If two transactions call run<T>() simultaneously, can both pass validation and both call actuate(), potentially causing duplicate fee type additions despite contains check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5b60048-cd64-4eb8-8afb-3c03f767a0d6?mode=deep",
+    "timestamp": "2026-02-19 06:57:41.973468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [TOCTOU Bug] Time-of-check (validate) vs time-of-use (actuate) gap allows queue state changes - can authority be revoked between validate and actuate? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7748b910-4efa-4b7e-b99b-24cf4a7c9173?mode=deep",
+    "timestamp": "2026-02-19 06:58:02.674208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Transaction Ordering] Can an attacker manipulate transaction ordering to ensure their fee type additions execute before legitimate ones, gaining priority in fee selection? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b9384ac-4f6d-491e-aa81-12523864fe8d?mode=deep",
+    "timestamp": "2026-02-19 06:58:23.742775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Atomic Batch] There is no batch_run function - if multiple fee types need to be added atomically, can partial failures leave the queue in unintended configuration? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29a461f3-2d0a-45fc-b9c7-9f31b5624095?mode=deep",
+    "timestamp": "2026-02-19 06:58:45.250110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Transaction Rollback] If transaction fails after add_fee_type() succeeds but before event emission, does the fee type addition get properly rolled back? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1916b87c-6f01-4ff0-924f-a7cfa6dccf19?mode=deep",
+    "timestamp": "2026-02-19 06:59:05.681375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Module Integration] [Volo Vault Interaction] If Volo Vault uses this queue for oracle fees, can adding malicious fee types corrupt vault accounting or enable fee theft? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1ec842c-d02f-4f8f-848b-0c2b5ed05fe1?mode=deep",
+    "timestamp": "2026-02-19 06:59:25.783528",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Module Integration] [Oracle Feed Impact] Can adding incompatible fee types cause oracle feed updates to fail if they try to collect fees in unsupported coins? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4db1a87a-3be8-4705-9f03-e44ed231b634?mode=deep",
+    "timestamp": "2026-02-19 06:59:47.752147",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Module Integration] [LST Integration] If liquid staking tokens are added as fee types, can this create circular dependencies where oracle pricing depends on LST value which depends on oracle pricing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1336cdb3-a423-4024-8bb7-4279a4f86afd?mode=deep",
+    "timestamp": "2026-02-19 07:00:08.579327",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Module Integration] [Health Limiter] If queue fee types affect health factor calculations, can adding specific coin types bypass health limits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a7d953f-3449-4122-a953-7ca6a754f025?mode=deep",
+    "timestamp": "2026-02-19 07:00:32.396096",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Module Integration] [Cross-Protocol] If other protocols depend on queue fee types list, can malicious additions cause cascading failures across integrated protocols? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8965c70c-502b-4625-b3d4-4b58c335ed5b?mode=deep",
+    "timestamp": "2026-02-19 07:00:54.341983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Constant: EXPECTED_QUEUE_VERSION] [Upgrade Compatibility] When upgrading from queue v1 to v2, there is no version migration logic - will all existing queues become unusable for fee type additions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e03bbc5a-b3c7-41e5-9ee8-53367698ca72?mode=deep",
+    "timestamp": "2026-02-19 07:01:14.986182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Module Structure] [Package Upgrade] If switchboard package is upgraded, can the new version maintain compatibility with existing fee types added by old action module? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c97a3534-78ba-4de3-b88d-516a42eeb7dd?mode=deep",
+    "timestamp": "2026-02-19 07:01:35.747642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Fee Type Persistence] When queue is upgraded or migrated, is fee_types vector properly preserved or can added fee types be lost? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_899ba576-47c9-43e5-b4a4-855fa70fee54?mode=deep",
+    "timestamp": "2026-02-19 07:01:57.877195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Module Structure] [Backwards Compatibility] If older queue action modules exist, can they interfere with this module's fee type additions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ef6ba606-5fe5-4302-9f9c-e4c98760c730?mode=deep",
+    "timestamp": "2026-02-19 07:02:20.620386",
+    "report_generated": false
+  }
+]
