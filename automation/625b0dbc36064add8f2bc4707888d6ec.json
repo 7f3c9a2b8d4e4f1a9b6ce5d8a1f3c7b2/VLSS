@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: calculate_supply_apr()] [Fee Application Order] The function calculates supply_apr = (1 - spread_fee) * borrow_apr * cur_util - if spread_fee_bps is 10_000 (100%), supply APR becomes 0 regardless of borrow APR. Can this be used to grief depositors by setting maximum spread fee? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b924defe-d97a-4480-a47b-cc9c02b19074?mode=deep",
+    "timestamp": "2026-02-19 00:42:32.770672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: calculate_supply_apr()] [Multiplication Overflow] The calculation performs mul(mul(sub(1, spread_fee), borrow_apr), cur_util) - if borrow_apr is extremely high (e.g., from 100% utilization), can the nested multiplications cause Decimal overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_524b2ab6-1696-4c83-8315-9c79d9bf50dd?mode=deep",
+    "timestamp": "2026-02-19 00:42:45.555123",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: calculate_supply_apr()] [Negative Result] If spread_fee is somehow > 1.0 due to decimal conversion errors, sub(decimal::from(1), spread_fee) becomes negative - can this cause supply APR to be negative, enabling suppliers to lose money instead of earn interest? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5dc0d9a-b45e-4d64-a5ee-e153e3fa46e9?mode=deep",
+    "timestamp": "2026-02-19 00:42:59.937785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: calculate_supply_apr()] [Utilization Impact] At very low utilization (e.g., 0.01%), even with high borrow APR, supply APR approaches 0 - can this create a scenario where deposits earn negligible interest, disincentivizing supply and causing liquidity crises? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bef80034-766a-454d-919e-db7589226009?mode=deep",
+    "timestamp": "2026-02-19 00:43:13.979504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: from()] [State Duplication] The from() function creates a ReserveConfigBuilder by copying all fields from an existing config - if the original config's additional_fields Bag is not empty, this Bag content is lost. Can this cause loss of extended configuration data? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7c097c1-887e-4522-a64b-0a04dab7203c?mode=deep",
+    "timestamp": "2026-02-19 00:43:29.095063",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: set()] [Type Confusion] The generic set<K, V> function allows any K: copy + drop + store and V: store + drop - can an attacker use this to insert arbitrary types into the builder.fields Bag, potentially causing type confusion in build()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7033d619-20d9-4422-8648-be148e4fb2d3?mode=deep",
+    "timestamp": "2026-02-19 00:43:46.394910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: set()] [Bag Mutation] The set() function checks if a key exists and either updates or adds it - but if a value type V changes between calls (e.g., first u8, then u64 for the same key), can this cause type mismatch panics during bag::remove in build()? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cd559aaf-e46d-4fdc-9a32-8bc56bfc02d7?mode=deep",
+    "timestamp": "2026-02-19 00:44:03.750086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: build()] [Missing Field] The build() function calls bag::remove for all required fields - if any setter was not called (e.g., set_open_ltv_pct was never invoked), bag::remove will abort. Can this be exploited to DoS config creation by preventing certain setters from being called? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3c1dbc21-d3e4-44d0-a04e-f41b30c32964?mode=deep",
+    "timestamp": "2026-02-19 00:44:22.603390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: build()] [Validation Bypass] The build() function removes fields from the builder's Bag and passes them to create_reserve_config, which calls validate_reserve_config - but can an attacker manipulate the Bag between set() calls and build() to bypass validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d9dd199-dbce-4327-85df-fbbe61671252?mode=deep",
+    "timestamp": "2026-02-19 00:44:42.709382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: build()] [Order Dependency] The build() function removes fields in a specific order (open_ltv_pct first, close_attributed_borrow_limit_usd last) - if bag::remove fails midway, the builder is left in a partially consumed state. Can this cause resource leaks or re-entrancy issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b4338b37-c242-46f8-9c95-accf7bb6e691?mode=deep",
+    "timestamp": "2026-02-19 00:45:03.699315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: build()] [Empty Bag Assumption] After removing all standard fields, the function calls bag::destroy_empty(fields) - but if the builder's Bag contains additional non-standard fields (added via set()), this will abort. Can an attacker add extra fields to DoS config building? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0a24994c-4af1-4f32-8140-adbe350a12a4?mode=deep",
+    "timestamp": "2026-02-19 00:45:24.135613",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: open_ltv()] [Decimal Conversion] The function converts u8 percentage to Decimal via decimal::from_percent() - if open_ltv_pct is 100, this returns a Decimal representing 1.0 (100%). Can downstream code mishandle this, treating it as 100x leverage instead of 1x? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c3181bb-e583-4428-81f1-0a7815c143c8?mode=deep",
+    "timestamp": "2026-02-19 00:45:45.230487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: close_ltv()] [Decimal Conversion] Similar to open_ltv(), converting close_ltv_pct to Decimal - if precision loss occurs in from_percent(), can positions at exactly the LTV threshold be incorrectly classified as healthy or liquidatable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ecd19191-01a5-4420-804c-d2b3a61c2f84?mode=deep",
+    "timestamp": "2026-02-19 00:46:07.169806",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: borrow_weight()] [BPS Conversion] Converting borrow_weight_bps (basis points) to Decimal via from_bps() - if borrow_weight_bps is 10_000 (minimum allowed), this represents 1.0x weight. Can weights < 1.0x ever occur due to validation bypasses, causing borrowed amounts to be underweighted? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6cb96ac5-cfde-4c86-a1f1-f6dca905ad37?mode=deep",
+    "timestamp": "2026-02-19 00:46:29.837344",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: liquidation_bonus()] [BPS Conversion] Converting liquidation_bonus_bps to Decimal - if the value is near the maximum allowed (considering the cap with protocol_liquidation_fee_bps), can this cause liquidators to receive excessive bonuses, incentivizing unnecessary liquidations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e53c0041-a06a-4341-ac94-2b93277d1c14?mode=deep",
+    "timestamp": "2026-02-19 00:46:52.875002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: borrow_fee()] [BPS Conversion] Converting borrow_fee_bps to Decimal with max value 10_000 (100%) - if this fee is applied multiplicatively to borrow amounts, can a 100% fee cause borrowers to immediately become undercollateralized? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1c905ce9-5b8e-47f9-a3ea-5de0b823b5ec?mode=deep",
+    "timestamp": "2026-02-19 00:47:14.514553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: protocol_liquidation_fee()] [BPS Conversion] Converting protocol_liquidation_fee_bps to Decimal - this fee is taken from liquidation proceeds. If protocol_liquidation_fee_bps + liquidation_bonus_bps approaches 2_000 (20%), can liquidation become unprofitable for liquidators? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bcbeb760-441e-4782-a23e-55271859343f?mode=deep",
+    "timestamp": "2026-02-19 00:47:36.442723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: spread_fee()] [BPS Conversion] Converting spread_fee_bps to Decimal for use in supply APR calculation - if spread_fee approaches 10_000 (100%), depositors earn nothing. Can this be weaponized to drain protocol TVL by making deposits unprofitable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_066a3e23-c911-46fc-ab3f-79cdb8b98f1a?mode=deep",
+    "timestamp": "2026-02-19 00:47:57.396686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: destroy()] [Resource Leak] The destroy() function unpacks ReserveConfig and calls bag::destroy_empty(additional_fields) - if additional_fields contains any items, this will abort. Can an attacker add items to additional_fields to prevent config destruction? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_05b7e3b6-bced-42ba-a8d1-c078241e8f11?mode=deep",
+    "timestamp": "2026-02-19 00:48:20.136443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Function: destroy()] [Unused Fields] The function explicitly notes that max_close_ltv_pct, max_liquidation_bonus_bps, open_attributed_borrow_limit_usd, and close_attributed_borrow_limit_usd are unused - if these fields are unused, why are they validated? Could removing validation on unused fields reduce gas costs? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1dd55f7f-9014-4674-8c80-3206cb8aceb7?mode=deep",
+    "timestamp": "2026-02-19 00:48:41.892007",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Struct: ReserveConfig] [Field Visibility] All fields in ReserveConfig are private and only accessible via getter functions - but can the additional_fields Bag be accessed directly through type reflection or other means to bypass intended access controls? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a4bbf6d-0778-4e11-b617-6c48797b33dc?mode=deep",
+    "timestamp": "2026-02-19 00:49:01.911574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Struct: ReserveConfig] [Unused Fields] The struct contains unused fields (max_close_ltv_pct, max_liquidation_bonus_bps, open/close_attributed_borrow_limit_usd) that are validated but never read - can these fields be exploited for storage of malicious data or to bloat contract storage? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_93010c83-d1b2-4818-b815-45a9bf020f48?mode=deep",
+    "timestamp": "2026-02-19 00:49:23.166553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Struct: ReserveConfig] [Isolation Flag] The isolated boolean determines if an asset can be used as collateral - if this flag is flipped after config creation (through some external function), can previously isolated assets suddenly be used for leverage? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_936e475f-ac4f-44c2-9aea-3fc84d993d15?mode=deep",
+    "timestamp": "2026-02-19 00:49:43.793326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Struct: ReserveConfig] [Limit Pairs] There are both token-denominated limits (deposit_limit, borrow_limit) and USD-denominated limits (deposit_limit_usd, borrow_limit_usd) - if only one set is enforced in the lending protocol, can an attacker bypass limits by exploiting price changes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ad9664ad-91ea-45f7-81c0-09004d801ef5?mode=deep",
+    "timestamp": "2026-02-19 00:50:06.158753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve_config.move] [Struct: ReserveConfig] [Interest Rate Vectors] The interest_rate_utils and interest_rate_aprs vectors are stored together - if these vectors are modified independently in the lending protocol without revalidation, can the interest curve become invalid? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ae9a77e0-5723-495f-b266-c2d65b94b471?mode=deep",
+    "timestamp": "2026-02-19 00:50:27.895597",
+    "report_generated": false
+  }
+]
