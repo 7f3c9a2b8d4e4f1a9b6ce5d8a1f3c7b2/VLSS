@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: from_shares() + ratio()] [Withdrawal Front-Running] Can an attacker front-run legitimate withdrawals by manipulating the ratio to reduce the amount returned by from_shares() for victims? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_69c40b84-8fc9-4804-b880-a95d264fa441?mode=deep",
+    "timestamp": "2026-02-19 04:40:27.200139",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: All functions] [Precision Degradation Chain] When to_shares() and from_shares() are called in sequence, does the double rounding cause significant precision loss that accumulates over multiple stake/unstake cycles? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7852792-de06-41b4-bf22-72b11987829f?mode=deep",
+    "timestamp": "2026-02-19 04:40:39.795917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Constant: U64_MAX] [Constant Correctness] The U64_MAX constant at line 9 is 18_446_744_073_709_551_615. Is this exactly 2^64 - 1, and could any off-by-one error cause overflow checks to fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2110bcc8-d8e7-4272-91b5-0500594b2f02?mode=deep",
+    "timestamp": "2026-02-19 04:40:52.876556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Constant: RATIO_MAX] [Ratio Precision] RATIO_MAX is set to 1e18 at line 10. Is 18 decimals sufficient precision for all share calculations, or can large pools experience precision loss? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_788a3633-8bff-4704-998a-5fe8641aaac0?mode=deep",
+    "timestamp": "2026-02-19 04:41:06.609309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Constant: RATIO_MAX] [Ratio Upper Bound] The assertion in ratio() checks ratio <= RATIO_MAX. Does this unnecessarily restrict valid pool states where supply > tvl due to legitimate reasons? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b02e6837-b3a2-4e3f-9b52-ec18f8d0ee7d?mode=deep",
+    "timestamp": "2026-02-19 04:41:21.004491",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Error: E_DIVIDE_BY_ZERO] [Error Handling] The E_DIVIDE_BY_ZERO error code 500 is used in mul_div() and from_shares(). Are there legitimate operational states that could trigger this, causing DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b596d54e-0753-4734-a8d8-62ac2ea4eb28?mode=deep",
+    "timestamp": "2026-02-19 04:41:37.498340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Error: E_U64_OVERFLOW] [Error Handling] E_U64_OVERFLOW (501) is used in mul_div(), to_shares(), and from_shares(). Can legitimate large-value operations trigger this and prevent valid transactions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e105a361-9f83-4716-b0cb-558e31ab9832?mode=deep",
+    "timestamp": "2026-02-19 04:41:53.117505",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Error: E_RATIO_OVERFLOW] [Error Handling] E_RATIO_OVERFLOW (502) is only used in ratio(). Does this error code adequately communicate the undercollateralization state to users/callers? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_79a2bb75-d625-456d-afe8-86a6da8f63c6?mode=deep",
+    "timestamp": "2026-02-19 04:42:09.964192",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: mul_div()] [Type Casting Chain] The function casts u64 -> u128 -> u64. Are there any edge cases where this double casting could produce unexpected results? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e272dd09-b578-4e5a-934f-4a10da0051a7?mode=deep",
+    "timestamp": "2026-02-19 04:42:28.408282",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: ratio()] [u64 to u256 Casting] Lines 28 casts u64 values to u256. Is there any risk of unexpected behavior in u256 arithmetic compared to u64? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f523eb2a-c552-4beb-b3c0-ed909dc9ac4d?mode=deep",
+    "timestamp": "2026-02-19 04:42:47.156309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: to_shares()] [u256 to u64 Casting] Line 40 casts shares from u256 to u64 after assertion. Is the assertion at line 36 sufficient to prevent all overflow cases? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e580f75-dc98-43bb-a81c-db7a3205b59a?mode=deep",
+    "timestamp": "2026-02-19 04:43:07.491368",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: from_shares()] [u256 to u64 Casting] Line 48 casts amount from u256 to u64. Could any arithmetic overflow occur between the assertion at line 47 and the cast? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f508e3c-8752-41a3-9ea4-626c1ca28f88?mode=deep",
+    "timestamp": "2026-02-19 04:43:28.209493",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [All Functions] [Mixed Integer Types] The module uses u64, u128, and u256 types. Could mixing these types in complex calling code lead to unexpected casting behavior or overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d32ff36-f4f4-4461-99e7-0e12294610ad?mode=deep",
+    "timestamp": "2026-02-19 04:43:50.681547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: ratio()] [Share Price Invariant] In liquid staking, share price should increase over time (ratio decreases). If ratio increases, does this indicate value loss or attack? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3c1d03a-66fd-4c79-a3a5-0d0fe86f92db?mode=deep",
+    "timestamp": "2026-02-19 04:44:13.528463",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: to_shares()] [Stake Minimum Amount] There's no minimum stake amount check. Can staking 1 wei exploit the minimum 1 share guarantee repeatedly? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4b7d3759-5fb4-4ac4-902f-33ebc66e8db7?mode=deep",
+    "timestamp": "2026-02-19 04:44:37.126325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: from_shares()] [Unstake Minimum Share] There's no minimum share unstake check. Can unstaking 1 share cause amount to round to 0, burning shares for no SUI? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b306817a-f66b-46fe-83d6-6919fed13110?mode=deep",
+    "timestamp": "2026-02-19 04:44:59.943208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: ratio()] [TVL Zero Edge Case] When tvl=0, ratio returns RATIO_MAX. If this occurs mid-operation due to complete withdrawal or slashing, can it break the protocol? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e91ad96-116c-47b7-aee6-cd8cc38ac34b?mode=deep",
+    "timestamp": "2026-02-19 04:45:22.456380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: to_shares()] [Share Dilution Protection] Is there any protection against share dilution attacks where an attacker stakes large amounts to dilute existing holders? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8cd0ec10-34ab-4420-8bc5-d4b2b9038859?mode=deep",
+    "timestamp": "2026-02-19 04:45:44.842707",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: from_shares()] [Withdrawal Limit] There's no check on maximum shares that can be unstaked. Can a large holder unstake all shares and drain the pool in one transaction? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af51b54a-01a2-4871-ab7c-69ba5f347f9a?mode=deep",
+    "timestamp": "2026-02-19 04:46:06.848367",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: All functions] [Reentrancy Safety] Although Move has reentrancy protections, can these pure math functions be safely called in reentrant contexts by calling code? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51359234-f075-435d-b292-9b2484daad4e?mode=deep",
+    "timestamp": "2026-02-19 04:46:28.019600",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: ratio()] [Reward Accrual] The ratio calculation doesn't explicitly handle reward accrual. Must calling code handle adding rewards to tvl before calculating ratio? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6fbbdfbb-a195-43ca-926c-5cd4526de261?mode=deep",
+    "timestamp": "2026-02-19 04:46:49.447308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: to_shares()] [Donation Attack] Can an attacker donate SUI directly to the pool (bypassing to_shares()) to manipulate the tvl and ratio, then stake to receive excessive shares? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b0b8f0d0-9501-4d14-87ae-ce37b39a9a54?mode=deep",
+    "timestamp": "2026-02-19 04:47:10.457427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: from_shares()] [Grief Attack] Can an attacker repeatedly unstake minimum amounts to cause gas costs and round-down losses for the protocol? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_616a108a-b488-4f7d-b3be-600b802e87e6?mode=deep",
+    "timestamp": "2026-02-19 04:47:31.289089",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: ratio()] [Slashing Impact] If validators are slashed and tvl decreases while supply remains constant, ratio increases. Can this violate the RATIO_MAX assertion and DoS the protocol? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dcc20a98-3d12-4872-a9a8-eb48580a6fdb?mode=deep",
+    "timestamp": "2026-02-19 04:47:51.808823",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/math.move] [Function: to_shares()] [First Depositor Advantage] The first depositor when tvl=0 gets ratio=RATIO_MAX. Can they deposit 1 SUI, get 1 share, then manipulate subsequent deposits? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d064d231-7a51-4e89-834d-fd5cc6cecd06?mode=deep",
+    "timestamp": "2026-02-19 04:48:12.106947",
+    "report_generated": false
+  }
+]
