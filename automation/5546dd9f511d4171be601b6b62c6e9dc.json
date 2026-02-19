@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: version_migrate()] [Authorization Bypass] Can an attacker exploit the friend-only access to manipulate version number arbitrarily, bypassing version checks in all other functions since version_migrate() has no additional constraints beyond friend access? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90e6a202-c2e1-46f3-af15-ce4d23777a2f?mode=deep",
+    "timestamp": "2026-02-18 23:53:45.125153",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: create_reward_fund()] [Authorization Bypass] Can an attacker call create_reward_fund() repeatedly with different generic types to create unlimited shared RewardFund objects without admin authorization, potentially causing storage bloat or state confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_878e74b0-b5f3-433a-a822-6246f021e8d6?mode=deep",
+    "timestamp": "2026-02-18 23:53:57.603019",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: deposit_reward_fund()] [Authorization Bypass] Does deposit_reward_fund() being friend-only prevent unauthorized deposits that could manipulate reward distribution ratios or cause accounting issues if malicious balances are added? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aff22b12-93a6-4410-a7ab-663713d344aa?mode=deep",
+    "timestamp": "2026-02-18 23:54:11.546525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: withdraw_reward_fund()] [Authorization Bypass] Can an attacker exploit the friend-only withdraw_reward_fund() through a compromised friend module to drain all reward funds using std::u64::min() which allows partial withdrawals without proper authorization checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c1e09f95-e2c0-4f5d-be3f-687dcefa4710?mode=deep",
+    "timestamp": "2026-02-18 23:54:25.239373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: create_incentive_v3()] [Authorization Bypass] Does create_incentive_v3() being friend-only prevent creation of multiple incentive instances that could cause confusion in protocol state or allow unauthorized incentive schemes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b71f1a3-5e1f-477d-b888-a7f9810359f3?mode=deep",
+    "timestamp": "2026-02-18 23:54:40.549113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: create_pool()] [Authorization Bypass] Can an attacker exploit create_pool() being friend-only but without owner/admin cap checks to create pools for arbitrary assets and manipulate which assets receive incentives? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_15007121-bf6b-4e49-881f-0b1d52a8ee7f?mode=deep",
+    "timestamp": "2026-02-18 23:54:56.678768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: create_rule()] [Authorization Bypass] Does create_rule() lack proper authorization beyond friend access, allowing creation of rules with arbitrary reward rates before max_rate is set, enabling infinite reward inflation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_de57b155-2bc6-43b0-bc09-32835fce8254?mode=deep",
+    "timestamp": "2026-02-18 23:55:14.562472",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: set_borrow_fee_rate()] [Authorization Bypass] Can an attacker exploit set_borrow_fee_rate() being friend-only to repeatedly toggle fee rates between 0 and max (10%), front-running user borrows to extract maximum fees without proper governance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_77087428-7112-4ada-ba25-26740ebc361d?mode=deep",
+    "timestamp": "2026-02-18 23:55:32.994129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: withdraw_borrow_fee()] [Authorization Bypass] Does withdraw_borrow_fee() being friend-only without recipient restrictions allow draining accumulated protocol fees to arbitrary addresses controlled by malicious friend modules? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4fae004d-f544-4e8f-8962-740f2a8e5e19?mode=deep",
+    "timestamp": "2026-02-18 23:55:51.920956",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: set_enable_by_rule_id()] [Authorization Bypass] Can an attacker exploit set_enable_by_rule_id() to disable reward rules right before users claim, causing claim failures and allowing attacker to front-run with their own claims while rules are enabled? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e9044ec1-29d0-42c1-83bc-dee109fea575?mode=deep",
+    "timestamp": "2026-02-18 23:56:12.112758",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: set_max_reward_rate_by_rule_id()] [Authorization Bypass] Does set_max_reward_rate_by_rule_id() allow setting max_rate to 0 without validation, enabling later bypass of rate limits since the check 'rule.max_rate == 0 || rate <= rule.max_rate' treats 0 as unlimited? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d000a879-ceed-4f1f-ac4a-868ff7252c89?mode=deep",
+    "timestamp": "2026-02-18 23:56:32.300626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: set_reward_rate_by_rule_id()] [Authorization Bypass] Can an attacker exploit set_reward_rate_by_rule_id() to set reward rates immediately after users deposit but before update_reward_state is called, manipulating global index calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_47189754-3b89-46ff-8448-9ed14b8fc4bd?mode=deep",
+    "timestamp": "2026-02-18 23:56:53.086619",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: version_verification()] [Version Control] Does version_verification() only check pre_check_version without validating version equality, allowing operations on incentive objects with outdated versions as long as they pass pre-check? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e883dc5a-48b7-4bfd-8dd4-23b6a156abd6?mode=deep",
+    "timestamp": "2026-02-18 23:57:14.110457",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: claim_reward()] [Authorization] Does claim_reward() use tx_context::sender(ctx) without verifying the sender owns the account or has permission, potentially allowing unauthorized reward claims if ctx can be manipulated? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d50435ae-fb3f-4837-88c1-cae358fdc139?mode=deep",
+    "timestamp": "2026-02-18 23:57:34.195399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: claim_reward_with_account_cap()] [Authorization] Can an attacker exploit claim_reward_with_account_cap() by obtaining or forging an AccountCap to claim rewards belonging to other users if account_owner() validation is insufficient? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf067fca-0f7d-4c34-81c2-dbe2b3dfb8ab?mode=deep",
+    "timestamp": "2026-02-18 23:57:53.768194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_deposit()] [Authorization] Does entry_deposit() allow deposits on behalf of arbitrary users without proper authorization checks, enabling attacker to inflate other users' balances and manipulate reward calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3666095-4b77-4d5d-8c8a-4119f1d7faac?mode=deep",
+    "timestamp": "2026-02-18 23:58:13.458927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: deposit_with_account_cap()] [Authorization] Can an attacker exploit deposit_with_account_cap() by reusing or replaying AccountCap signatures to deposit repeatedly without proper nonce or timestamp checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_03175030-e449-4288-9514-3f6b531ee33d?mode=deep",
+    "timestamp": "2026-02-18 23:58:31.745918",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_deposit_on_behalf_of_user()] [Authorization] Does entry_deposit_on_behalf_of_user() accept arbitrary 'user' address parameter without validating the sender's authority, enabling forced deposits that manipulate reward distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d6f78feb-3096-44a6-a85f-1960648a3487?mode=deep",
+    "timestamp": "2026-02-18 23:58:51.932385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_withdraw()] [Authorization] Can an attacker front-run entry_withdraw() calls to update reward states with malicious parameters before the legitimate withdrawal, stealing accrued rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac55f331-3504-43cc-9ea8-d1a624cc5796?mode=deep",
+    "timestamp": "2026-02-18 23:59:09.700495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: withdraw_with_account_cap()] [Authorization] Does withdraw_with_account_cap() validate that the AccountCap hasn't been revoked or is still active before allowing withdrawals that affect reward calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_daefc4b3-4948-4aaf-90e1-cbd2a5bd08ce?mode=deep",
+    "timestamp": "2026-02-18 23:59:28.601416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_borrow()] [Authorization] Can an attacker exploit entry_borrow() to borrow on behalf of other users by manipulating tx_context if the sender validation is weak, causing unauthorized debt? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_92c662e2-180c-44f8-b44d-e5f7285df940?mode=deep",
+    "timestamp": "2026-02-18 23:59:48.366213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: borrow_with_account_cap()] [Authorization] Does borrow_with_account_cap() properly validate AccountCap ownership before allowing borrows that trigger borrow fee collection and reward updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_69004870-8a2a-46c4-8b75-e2b2fe41fe39?mode=deep",
+    "timestamp": "2026-02-19 00:00:08.205945",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_repay()] [Authorization] Can an attacker exploit entry_repay() to repay other users' debts without authorization, manipulating their reward calculations and borrow positions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_789acaf2-aef5-4944-8ac5-bf1b282dd821?mode=deep",
+    "timestamp": "2026-02-19 00:00:30.470376",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_repay_on_behalf_of_user()] [Authorization] Does entry_repay_on_behalf_of_user() lack proper authorization checks allowing anyone to repay any user's debt, potentially griefing users who strategically maintain debt for reward farming? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7cebe1fd-10ec-46ba-a649-d9750ed848ea?mode=deep",
+    "timestamp": "2026-02-19 00:00:52.246668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_liquidation()] [Authorization] Can an attacker exploit entry_liquidation() by front-running legitimate liquidations to update reward states with @0x0 address, causing incorrect index calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_863d977f-5772-486d-8fa6-c5e1287b1b41?mode=deep",
+    "timestamp": "2026-02-19 00:01:15.222851",
+    "report_generated": false
+  }
+]
