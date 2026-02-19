@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: init_objects()] [Cap Transfer Security] MigrationCap is transferred to ctx.sender() at line 90 - if sender is a malicious contract, could it control migration? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50bda4af-d295-4385-9f45-b682b1f9cea7?mode=deep",
+    "timestamp": "2026-02-19 01:44:52.292039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: destroy_migration_cap()] [Cap Destruction Timing] destroy_migration_cap() consumes the cap but what prevents calling it multiple times if multiple caps were created? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_826a3939-4564-446d-a2fc-4eec2db1d06b?mode=deep",
+    "timestamp": "2026-02-19 01:45:04.593099",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Struct: MigrationCap] [Key Store Abilities] MigrationCap has 'key, store' abilities at line 59 - does 'store' allow it to be placed in other objects, potentially creating custody issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e554e539-5a5a-46b6-b6af-2e767195fdd0?mode=deep",
+    "timestamp": "2026-02-19 01:45:18.509136",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: init_objects()] [Pause State] native_pool.set_pause(owner_cap, true) at line 75 pauses the pool, but is there validation that the pool wasn't already paused? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_639510fc-a656-4632-b3fa-67e9f9940a85?mode=deep",
+    "timestamp": "2026-02-19 01:45:31.694538",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Validator Set Corruption] If export_stakes_from_v1() at line 113 fails mid-iteration, is validator_set left in an inconsistent state that breaks NativePool? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_533fa7a3-6ba5-4795-8dc5-ff935c11cb2b?mode=deep",
+    "timestamp": "2026-02-19 01:45:46.094672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: take_unclaimed_fees()] [Rewards Reset] Setting *unclaimed_fees = 0 at line 148 zeroes out protocol rewards - is there any way to recover if this amount was incorrect? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d11b565-fba8-48a1-8678-095cf3e208ef?mode=deep",
+    "timestamp": "2026-02-19 01:46:02.169848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: import_stakes()] [Join vs Stake] join_to_sui_pool() at line 173 adds liquid SUI - does this differ from staking, and could it bypass validator selection logic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6656195d-1393-472e-9ed9-2f1366f64649?mode=deep",
+    "timestamp": "2026-02-19 01:46:19.222021",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: import_stakes()] [Metadata Mutation] Metadata<CERT> is passed mutably at line 163 - if rebalance() at line 174 modifies metadata incorrectly, does this corrupt LST supply? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe47747c-340d-4c86-89de-cdf12cfce43a?mode=deep",
+    "timestamp": "2026-02-19 01:46:37.836027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: create_stake_pool()] [Pool Initialization] stake_pool::create_stake_pool() is called at line 100 - does this create the pool with correct initial parameters matching V1? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22f949f9-5d5e-4387-b988-38d88e04fcd1?mode=deep",
+    "timestamp": "2026-02-19 01:46:56.540717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: deposit_sui()] [Unauthorized Deposits] deposit_sui() at lines 203-218 allows adding SUI to migration_storage - could this be used to prevent cap destruction by keeping balance > 0? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6aabbedf-1088-4fdb-9a1e-706c59792338?mode=deep",
+    "timestamp": "2026-02-19 01:47:15.561442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Export Duplication] If export_stakes() is called multiple times, balances accumulate at line 116 - could this double-count stakes if validator_set isn't properly cleaned? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c41290c6-f14a-4e40-bcfc-924b9b867924?mode=deep",
+    "timestamp": "2026-02-19 01:47:34.207239",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: import_stakes()] [Partial Import] Using min() at line 169 allows partial imports - if remaining balance is small, it could be trapped forever below minimum thresholds. (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5018c571-5f68-45a1-8ad6-c49a25d824ce?mode=deep",
+    "timestamp": "2026-02-19 01:47:53.800237",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: create_stake_pool()] [Assert Error Code] Line 98 uses error code 0 - are error codes properly documented and unique across the module? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1f1a478c-9547-477d-85d9-7b839a45e413?mode=deep",
+    "timestamp": "2026-02-19 01:48:14.819778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: destroy_migration_cap()] [Multiple Assertions] Lines 193, 194, 197, 198 use error codes 1, 3, 0, 2 - inconsistent ordering could confuse debuggers. (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dc181b74-5dfe-4f32-b7d3-3cf288266202?mode=deep",
+    "timestamp": "2026-02-19 01:48:36.847662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: import_stakes()] [Ratio Assert] Line 179 uses error code 0 for ratio check - does this conflict with other error code 0 uses? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_df86dee8-2be7-48ba-bd51-497e56dbf01f?mode=deep",
+    "timestamp": "2026-02-19 01:48:59.518479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Gas Griefing] export_stakes() with very high max_iterations at line 109 could consume excessive gas - is there an upper bound? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19d43f91-c64d-4654-a1a5-b8ce15379a42?mode=deep",
+    "timestamp": "2026-02-19 01:49:22.418211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: import_stakes()] [Rebalance Gas] rebalance() at line 174 could be gas-intensive with many validators - could this cause import to fail due to gas limits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_720f8c7a-d464-465b-9acf-fee2472062d6?mode=deep",
+    "timestamp": "2026-02-19 01:49:44.596489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: destroy_migration_cap()] [DoS via Balance] If someone deposits 1 mist via deposit_sui(), destroy_migration_cap() fails at line 194 - DoS attack? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_466ae0f5-6dbb-49e4-af85-4d4857fc316a?mode=deep",
+    "timestamp": "2026-02-19 01:50:05.510218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Import: export_stakes_from_v1] [External Dependency] export_stakes_from_v1 from validator_set module at line 23 - if that function has bugs, does it corrupt migration? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74a5bf23-4225-4d76-bb91-59a093106d0a?mode=deep",
+    "timestamp": "2026-02-19 01:50:23.390223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Import: NativePool] [V1 Module Trust] Multiple NativePool methods are called - if V1 code is compromised, could it attack V2 during migration? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a9a53b4-55ab-459c-a7a8-966f225277e2?mode=deep",
+    "timestamp": "2026-02-19 01:50:40.512081",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Import: StakePool] [V2 Module Trust] StakePool methods at lines 172-175 are called - if V2 has vulnerabilities, could migration exploit them? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_06066b3c-db2b-48a8-9d3a-6e998de5b496?mode=deep",
+    "timestamp": "2026-02-19 01:50:59.128892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 70] [State Mutation] mark_cap_created() is called before pause check - if it fails, the pool isn't paused but cap creation is marked. (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee30331d-803a-41ce-8e32-0309b6f2ef26?mode=deep",
+    "timestamp": "2026-02-19 01:51:19.340028",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 74] [Magic Number] Assert condition uses != 0 to detect prior migration - why not use a dedicated boolean flag? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6633a92b-ebad-40ea-98d1-3f0d3bca9169?mode=deep",
+    "timestamp": "2026-02-19 01:51:38.431248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 89] [Shared Object Risk] public_share_object makes MigrationStorage globally accessible - any transaction can read/modify it. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5da253dc-708c-40e8-a42b-0a6233e95718?mode=deep",
+    "timestamp": "2026-02-19 01:51:58.533386",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 90] [Cap Transfer] MigrationCap transferred to sender without validation - if sender is compromised, migration is compromised. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d615ba3-d70d-41a3-888e-34fb696aedf4?mode=deep",
+    "timestamp": "2026-02-19 01:52:18.964097",
+    "report_generated": false
+  }
+]
