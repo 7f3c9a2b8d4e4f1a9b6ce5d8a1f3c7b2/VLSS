@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: pre_check_version()] [Reentrancy] If pre_check_version() is called within a complex transaction that transfers objects, can attacker re-enter through transfer hooks to call pre_check_version() again with different version values, bypassing the equality assertion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d5e33997-19d1-44d1-939e-65d9c8b3e9b3?mode=deep",
+    "timestamp": "2026-02-19 07:34:45.052916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: this_version()] [Race Condition] Can two concurrent transactions both read this_version() as 13, start migration processes assuming they're at same version, then both write version 14 to different objects, creating duplicate version updates with undefined behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18db477a-88da-4125-963e-583a7b6cb6c0?mode=deep",
+    "timestamp": "2026-02-19 07:34:58.169901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: pre_check_version()] [TOCTOU] Between time-of-check (pre_check_version passing) and time-of-use (actual operation), can storage.version field be modified by concurrent transaction, invalidating the version check and allowing operation on wrong version? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9df9375-1715-4d45-a41f-543acfa05109?mode=deep",
+    "timestamp": "2026-02-19 07:35:12.172039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: next_version()] [Concurrent Migration] If multiple version_migrate() transactions execute concurrently for different objects (Storage, Incentive v2, Incentive v3), all calling next_version(), can they observe inconsistent version sequences that violate migration ordering requirements? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_92d39b63-fc8a-47b1-af0f-ae2226ae1cb9?mode=deep",
+    "timestamp": "2026-02-19 07:35:26.810977",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: pre_check_version()] [Error Code] Does error::incorrect_version() (code 1400) adequately differentiate between version too old, version too new, and version corrupted scenarios, or can attackers exploit ambiguous error handling to bypass proper migration paths? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f63019d-6cca-4244-a013-7f0ff136968b?mode=deep",
+    "timestamp": "2026-02-19 07:35:42.676389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: pre_check_version()] [Assertion Failure] When pre_check_version() aborts with incorrect_version error, are all state changes rolled back atomically, or can partial updates remain that corrupt version consistency across Storage/Incentive objects? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1406d69e-5495-4186-82ad-2ddb42c5068e?mode=deep",
+    "timestamp": "2026-02-19 07:36:01.382714",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: pre_check_version()] [Silent Failure] Can pre_check_version() silently pass when v and constants::version() are both 0 (uninitialized), allowing operations on completely uninitialized protocol objects without proper version tracking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_700da864-6001-4f82-a241-68c466008b21?mode=deep",
+    "timestamp": "2026-02-19 07:36:19.755228",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: this_version()] [Error Propagation] If constants::version() itself can fail or return error, does this_version() properly propagate that error, or can it return invalid version value that breaks all downstream pre_check_version() calls? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dabeff72-1551-47b7-8f9f-630e3f6c55c9?mode=deep",
+    "timestamp": "2026-02-19 07:36:40.184885",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: pre_check_version()] [State Consistency] After pre_check_version() passes for Storage object at version 13, can concurrent operations modify Storage.version to 14 before transaction completes, causing operation to execute against wrong version's state schema? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b3c5e69-d1bf-4a84-b4bb-79f4fc10a037?mode=deep",
+    "timestamp": "2026-02-19 07:37:00.764072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: this_version()] [Immutability] Does this_version() always return same value within a single transaction block, or can nested function calls see different versions if constants module is upgraded mid-block, breaking transaction atomicity assumptions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_219e3934-cc71-4427-9f1a-9f9f7b1ac57a?mode=deep",
+    "timestamp": "2026-02-19 07:37:21.189051",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: pre_check_version()] [Version Staleness] Can Storage object at version 12 pass pre_check_version() if constants::version() is temporarily rolled back from 14 to 12 during emergency protocol downgrade, allowing operations on stale state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_584a4347-9d85-40fe-b45f-a2d2f4351c21?mode=deep",
+    "timestamp": "2026-02-19 07:37:42.388567",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: next_version()] [Version Gap] If storage.version jumps from 13 to 15 (skipping 14) due to manual field manipulation, does next_version() logic detect this gap, or can it cause version_migrate() to apply wrong state transformations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_26dd1f0f-4c12-4fbc-b8d0-ba8948c9c273?mode=deep",
+    "timestamp": "2026-02-19 07:38:03.350753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: this_version()] [Upgrade Path] When protocol upgrades from version 13 to 14, does this_version() change atomically for all dependent modules (storage, flash_loan, incentive_v2, incentive_v3, oracle), or can modules see mismatched versions during upgrade window? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51d53345-cdda-44cb-8e0b-e9913543a9c7?mode=deep",
+    "timestamp": "2026-02-19 07:38:26.703079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: pre_check_version()] [Upgrade Atomicity] During protocol package upgrade that changes constants::version() from 13 to 14, can in-flight transactions still using old version module complete successfully, creating inconsistent version states across objects? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e99eaccc-1689-4ab4-8cd9-1c8891854ed6?mode=deep",
+    "timestamp": "2026-02-19 07:38:49.875899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: this_version()] [Version Rollback] If protocol is upgraded to version 14 then emergency downgraded to version 13, can objects already migrated to version 14 cause pre_check_version() to permanently fail, bricking the protocol until manual intervention? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e1a85914-fba4-4447-848c-9eb5b5ccc49b?mode=deep",
+    "timestamp": "2026-02-19 07:39:13.985631",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: next_version()] [Upgrade Ordering] Must version_migrate() be called on Storage before Incentive objects during upgrade, and if so, does next_version() enforce this ordering, or can out-of-order migrations corrupt cross-module state dependencies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cb27a828-ef08-49af-8c42-4da4b1ce0391?mode=deep",
+    "timestamp": "2026-02-19 07:39:35.996626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: pre_check_version()] [Storage Integration] When storage::version_verification() calls pre_check_version(storage.version), can attacker manipulate storage.version field directly through reflection or object ID tricks to bypass the check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b07642c-3807-4f0a-a1eb-b75d27469e09?mode=deep",
+    "timestamp": "2026-02-19 07:39:57.278765",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: this_version()] [Flash Loan Integration] Does flash_loan::version_migrate() properly synchronize with storage::version_migrate() by checking this_version() matches, or can flash loan config be at version 14 while storage is at 13, enabling fee arbitrage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_43c51981-6dbd-4acd-b3e8-190b8c5053d9?mode=deep",
+    "timestamp": "2026-02-19 07:40:19.206427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: pre_check_version()] [Incentive Integration] Can incentive_v2 and incentive_v3 objects have different versions (12 vs 13) simultaneously, and does pre_check_version() prevent mixed-version incentive calculations that double-count rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b2740cf-f998-4eb9-bc97-2674c10ba734?mode=deep",
+    "timestamp": "2026-02-19 07:40:42.326650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: this_version()] [Oracle Integration] Since oracle module uses separate oracle_version::this_version(), can price feeds operate at oracle version 11 while lending_core is at version 13, causing liquidation threshold mismatches? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_071b4bcc-793a-4fea-b2d9-92d0326fe0d0?mode=deep",
+    "timestamp": "2026-02-19 07:41:04.686772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: pre_check_version()] [Vault Adaptor Integration] When volo-vault's Navi adaptor calls lending_core functions that invoke pre_check_version(), does vault verify its expected lending_core version matches, or can vault operations proceed against unexpected protocol version? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_afd1aef5-66d2-40b6-8a63-588dd0b0a13f?mode=deep",
+    "timestamp": "2026-02-19 07:41:28.730222",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: next_version()] [Migration Logic] Does protocol business logic assume version always increases by exactly 1, and if so, can next_version() returning arbitrary increments break migration state transformations that expect sequential version steps? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c04ce913-54ad-413a-95ce-975136fe2caa?mode=deep",
+    "timestamp": "2026-02-19 07:41:53.030477",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: this_version()] [Version Semantics] Does version 13 indicate major/minor/patch versioning (e.g., v1.3.0), and if so, do version checks distinguish between breaking vs non-breaking changes, or does pre_check_version() reject all version mismatches equally? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08fac2ac-e21d-4cbb-85da-084b312147da?mode=deep",
+    "timestamp": "2026-02-19 07:42:19.237587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: pre_check_version()] [Backward Compatibility] Can protocol safely operate with Storage at version 13 and Incentive at version 12 if version 13 is backward-compatible, or does pre_check_version() force all objects to exact same version, preventing gradual rollout? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e24801b-3394-46f9-9262-214b1facd00f?mode=deep",
+    "timestamp": "2026-02-19 07:42:46.310411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/version.move] [Function: this_version()] [Version Metadata] Does this_version() only return numeric value without metadata about what changed between versions, and can this cause admins to apply wrong migration scripts that corrupt state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e6813fd9-9aa9-4117-b928-4a6695a98306?mode=deep",
+    "timestamp": "2026-02-19 07:43:14.130070",
+    "report_generated": false
+  }
+]
