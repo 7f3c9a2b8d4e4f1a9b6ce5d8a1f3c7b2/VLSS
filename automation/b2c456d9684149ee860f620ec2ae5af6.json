@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_health_factor()] [Authorization Bypass] All functions are public with no capability requirements - can malicious actors manipulate health factor calculations by directly calling this with crafted storage/oracle references to bypass health checks during liquidations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fcef697-aa4e-4991-b442-9c165b2bf2d2?mode=deep",
+    "timestamp": "2026-02-19 04:46:39.502763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_collateral_value()] [Authorization Bypass] Function takes &mut Storage with no authorization checks - can attacker pass a malicious Storage object to manipulate collateral values returned, allowing over-borrowing beyond safe limits? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b734cfe9-dc3a-4a04-b4fc-459e24e5a0c8?mode=deep",
+    "timestamp": "2026-02-19 04:46:52.765221",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_loan_value()] [Authorization Bypass] No validation that caller has permission to query user loan values - can this enable privacy violations or enable attackers to identify vulnerable positions for targeted liquidation attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb0a3361-2195-44f2-8616-9b8e52c0263b?mode=deep",
+    "timestamp": "2026-02-19 04:47:06.344388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: calculate_current_index()] [Authorization Bypass] Public function with &mut Storage access - can external contracts call this to force index updates at advantageous timestamps for arbitrage or to manipulate interest accrual? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_49a7ffc9-99f7-49f2-83f9-f4f728edf6b0?mode=deep",
+    "timestamp": "2026-02-19 04:47:20.669199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_calculate_apy()] [Authorization Bypass] Public APY calculation with mutable storage - can attacker repeatedly call to force storage state changes that benefit their positions through interest rate manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a800532a-24bf-4295-a9f3-f4dcefe1ed0e?mode=deep",
+    "timestamp": "2026-02-19 04:47:35.552045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_collateral_balance()] [Integer Underflow] Lines 193-196: supply_balance subtraction when is_increase=false has no underflow check - if estimate_value > supply_balance, does this underflow and wrap to max u256, causing massive collateral inflation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_218327c9-d038-41cc-8d35-43702230a23e?mode=deep",
+    "timestamp": "2026-02-19 04:47:51.648830",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_collateral_balance()] [Integer Overflow] Line 193: supply_balance + estimate_value has no overflow check - can attacker supply estimate_value near u256::MAX to overflow and reset collateral to small value, enabling massive over-borrowing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46c4783b-a16f-44f1-a088-f21f313b4cac?mode=deep",
+    "timestamp": "2026-02-19 04:48:09.251668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_loan_balance()] [Integer Underflow] Lines 213-216: borrow_balance subtraction when is_increase=false lacks underflow protection - can repayment of more than borrowed cause underflow, wrapping to huge debt and immediate liquidation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3015401-d80a-4d9b-ae4b-678ab99ad768?mode=deep",
+    "timestamp": "2026-02-19 04:48:29.358580",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_loan_balance()] [Integer Overflow] Line 213: borrow_balance + estimate_value has no overflow check - can borrower trigger overflow to reset debt to zero, stealing protocol funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4cd04a9d-e9b7-4bb5-a5d0-9d02b95455e5?mode=deep",
+    "timestamp": "2026-02-19 04:48:50.234874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_caculate_utilization()] [Integer Underflow] Lines 387 & 395: total_supply/total_borrows subtraction when is_increase=false - can withdraw/repay estimates exceeding actual totals underflow, causing utilization calculation to return wrong values and break rate calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0cf2dbc8-fbf2-4f00-ac4a-38c320da7962?mode=deep",
+    "timestamp": "2026-02-19 04:49:12.590077",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_caculate_utilization()] [Integer Overflow] Lines 385 & 393: total_supply/total_borrows addition - can supply/borrow estimates near u256::MAX overflow totals, causing utilization to be miscalculated and interest rates to be incorrect? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_07f4fbca-d86f-4c8a-9664-0bafea815744?mode=deep",
+    "timestamp": "2026-02-19 04:49:37.589652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: calculate_current_index()] [Integer Overflow] Line 271: timestamp_difference calculation via subtraction then division - if current_timestamp < last_update_timestamp (clock rollback), does this underflow and create massive time delta causing extreme interest accrual? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5121c80-c08c-459e-a0c9-908c78b49cd0?mode=deep",
+    "timestamp": "2026-02-19 04:50:02.316379",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_collateral_value()] [Integer Overflow] Line 108: value += collateral_value in loop - can attacker with many collateral assets cause accumulated value to overflow u256, wrapping to small value and enabling liquidation of healthy positions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3a173af-ccb3-429b-a30f-16f63a3de245?mode=deep",
+    "timestamp": "2026-02-19 04:50:24.444089",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_health_loan_value()] [Integer Overflow] Line 146: value += loan_value in loop - can many borrowed assets accumulate to overflow, wrapping debt to zero and showing healthy when actually insolvent? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_223f3dc6-c4ae-47e7-8f87-68fe473aabad?mode=deep",
+    "timestamp": "2026-02-19 04:50:45.577046",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_liquidation_threshold()] [Integer Overflow] Lines 256-257: collateral_health_value and collateral_value accumulation in loop - can overflow cause incorrect weighted liquidation threshold, allowing liquidations of healthy accounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_486a9719-d62e-48d4-97a3-f9ae8e708878?mode=deep",
+    "timestamp": "2026-02-19 04:51:09.453026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_health_factor()] [Division by Zero] Line 67: ray_div(dynamic_health_collateral_value, dynamic_health_loan_value) when dynamic_health_loan_value=0 returns address::max() - but what if dynamic_health_collateral_value is also 0? Does ray_div panic or return undefined result? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d5f45856-cb0d-46f7-b868-d525af6dc7f0?mode=deep",
+    "timestamp": "2026-02-19 04:51:31.122249",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_liquidation_threshold()] [Division by Zero] Line 261: ray_div(collateral_health_value, collateral_value) - if all collateral values are zero (edge case with zero-balance assets), does this panic and DoS liquidation calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d812fecf-9b9a-459d-8f74-127d842c754c?mode=deep",
+    "timestamp": "2026-02-19 04:51:53.732329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_caculate_utilization()] [Division by Zero] Line 406: ray_div(scale_borrow_amount, scale_supply_amount) when scale_borrow_amount > 0 - but what if scale_supply_amount becomes 0 due to rounding in ray_mul at line 400? Does this panic and DoS rate calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_17ad2e0c-857d-49c2-9df6-5c64dd5bd7ed?mode=deep",
+    "timestamp": "2026-02-19 04:52:17.255343",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_liquidation_threshold()] [Division by Zero] Line 261: If user has multiple collateral assets but all have zero value due to oracle price=0 or balance issues, collateral_value=0 causes division panic - can attacker trigger this to DoS liquidations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c5f612d-4d4c-4412-8343-e38bcbf20e5d?mode=deep",
+    "timestamp": "2026-02-19 04:52:40.514853",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_collateral_value()] [Oracle Manipulation] Line 164: calculator::calculate_value() uses oracle with no staleness check - can attacker exploit stale oracle prices to inflate collateral value during market crashes, preventing liquidations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08fc30d5-8b81-4356-a142-8db7239f2173?mode=deep",
+    "timestamp": "2026-02-19 04:53:02.899405",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_loan_value()] [Oracle Manipulation] Line 179: calculator::calculate_value() for loan valuation - if oracle returns stale low prices for borrowed asset during price spike, does this undervalue debt and allow over-borrowing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fd0084e0-9238-4a1a-a35c-15e9b38e0c9a?mode=deep",
+    "timestamp": "2026-02-19 04:53:25.745635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_health_factor()] [Oracle Manipulation] Uses oracle via calculate_value calls for both collateral (line 164) and loans (line 179) - can attacker manipulate oracle feed to temporarily inflate health factor above liquidation threshold to avoid liquidation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bcfb7ae6-482e-452d-8c16-467feb030b92?mode=deep",
+    "timestamp": "2026-02-19 04:53:47.402221",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_collateral_value()] [Oracle Manipulation] Line 162: oracle_id retrieved from storage without validation - can attacker manipulate storage to return wrong oracle_id, causing collateral to be valued using wrong asset's price oracle? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_06600fe7-8321-410e-8340-96a7a894e1c1?mode=deep",
+    "timestamp": "2026-02-19 04:54:09.496124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_user_loan_value()] [Oracle Manipulation] Line 177: oracle_id from storage for loan valuation - if storage is corrupted or attacker controls oracle_id mapping, can loans be valued using manipulated price feeds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3dc2557e-b5cd-4bc9-956f-2c5d1c3ae14f?mode=deep",
+    "timestamp": "2026-02-19 04:54:31.892955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_liquidation_threshold()] [Oracle Manipulation] Calls dynamic_user_collateral_value at line 254 which uses oracle - can weighted liquidation threshold be manipulated via oracle price manipulation to enable profitable liquidations of healthy accounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f12a7726-ee10-4e11-a7a4-00175d8a0ea8?mode=deep",
+    "timestamp": "2026-02-19 04:54:55.301957",
+    "report_generated": false
+  }
+]
