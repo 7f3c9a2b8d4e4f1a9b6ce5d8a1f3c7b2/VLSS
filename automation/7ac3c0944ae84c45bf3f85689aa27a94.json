@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: unstake()] [Redistribution Pool Inflation] At line 312, redistribution_fee is joined back to sui_pool via join_to_sui_pool(). Can repeated unstakes by large holders cause redistribution fees to accumulate, inflating the SUI pool and diluting future unstakers' rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a642d7c9-719f-4c7e-8671-3bb898ea72af?mode=deep",
+    "timestamp": "2026-02-19 02:03:34.764869",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: lst_amount_to_sui_amount()] [Zero Supply Assertion] At line 655, the function asserts total_lst_supply > 0. But can an attacker burn all LST tokens, then call unstake_entry() triggering this assertion and causing DoS for other users' pending unstakes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ff572e4-2a7a-4a54-956d-6dbe1849e76f?mode=deep",
+    "timestamp": "2026-02-19 02:03:47.739918",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: unstake()] [Metadata Burn Timing] At line 330, metadata.burn_coin() occurs after ratio check. Can an attacker exploit timing between ratio check and burn to double-spend LST tokens if burn fails due to metadata state changes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18e2df67-7c4f-4b33-bd75-8e6e4afc32b1?mode=deep",
+    "timestamp": "2026-02-19 02:04:01.720019",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: unstake_entry()] [Transfer Failure] If public_transfer at line 277 fails due to recipient object state, are LST tokens already burned at line 330, causing permanent loss of user funds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_65ef6e26-1644-4b97-b81c-71ba9c9b558f?mode=deep",
+    "timestamp": "2026-02-19 02:04:15.818786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: unstake()] [Pause Race Condition] check_not_paused() is called at line 288, but can admin pause between line 288 and line 297 split_n_sui(), causing unstake to complete while system is paused? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bdc4bc34-5394-4da0-bbe3-dc6655c8e189?mode=deep",
+    "timestamp": "2026-02-19 02:04:30.639774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: collect_fees()] [Reward Fee Double Collection] At line 369, split_n_sui() withdraws accrued_reward_fees from validator_pool. Then at line 370, accrued_reward_fees is decremented. Can a race condition allow multiple collect_fees() calls to withdraw the same accrued_reward_fees twice? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_404a397b-4ad1-404c-a84d-aab1c204b6be?mode=deep",
+    "timestamp": "2026-02-19 02:04:46.962001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: collect_fees()] [Fee Calculation Error] At line 372, self.fees.withdraw_all() extracts all stake/unstake fees. But are accrued_reward_fees properly excluded from total_sui_supply() calculation at line 560, or can fee collection cause sudden ratio changes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_34a40ce5-3c46-4829-8e10-d821b00073ac?mode=deep",
+    "timestamp": "2026-02-19 02:05:04.809072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: collect_fees()] [Refresh Dependency] At line 367, refresh() is called before collecting fees. If refresh() epoch rollover increases accrued_reward_fees, can AdminCap immediately collect fees including newly accrued rewards in the same transaction, front-running users? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6cd541a-eeb6-41fd-878b-f3502e85eb6c?mode=deep",
+    "timestamp": "2026-02-19 02:05:24.505033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: total_fees()] [Accounting Mismatch] At line 572, total_fees returns fees.value() + accrued_reward_fees. But accrued_reward_fees is already counted in validator_pool.total_sui_supply(), causing double-counting in total_sui_supply() calculation at line 560? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_01574f25-9401-44a9-98c5-efcd1736eb66?mode=deep",
+    "timestamp": "2026-02-19 02:05:43.586222",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: collect_fees()] [Withdrawal Timing] If AdminCap calls collect_fees() right after epoch rollover but before users call refresh(), can the admin extract reward fees calculated on old supply, then users refresh with lower total_sui_supply, causing ratio manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b5db4f6-b983-47c0-8b93-c15e29274bec?mode=deep",
+    "timestamp": "2026-02-19 02:06:04.296568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: total_sui_supply()] [Fee Subtraction] At line 560, total_sui_supply = validator_pool.total_sui_supply() - accrued_reward_fees. Can accrued_reward_fees exceed validator_pool.total_sui_supply() due to reward calculation errors, causing underflow and returning inflated supply? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c45f00c-efb8-4850-81de-0284f19b6d0b?mode=deep",
+    "timestamp": "2026-02-19 02:06:25.926955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: refresh()] [Reward Fee Calculation] At lines 517-523, reward_fee = (new_supply - old_supply) * reward_fee_bps / BPS_MULTIPLIER. Can extremely large (new_supply - old_supply) cause u128 overflow, resulting in zero or negative reward_fee? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5169fec8-956b-482a-b09c-5195e182ca87?mode=deep",
+    "timestamp": "2026-02-19 02:06:46.965268",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: refresh()] [Boosted Reward Logic] At lines 527-536, boosted_reward_amount is capped by min(new_reward, boosted_balance, set_reward_amount). Can an attacker manipulate boosted_balance to zero right before epoch rollover, preventing legitimate boosted rewards from being distributed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_897c2547-0766-4085-9df0-7434a14a98cd?mode=deep",
+    "timestamp": "2026-02-19 02:07:07.750984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: refresh()] [Boosted Balance Split] At line 532, boosted_balance.split(boosted_reward_amount) is called. If boosted_reward_amount is miscalculated due to min() logic error, can split() panic due to insufficient balance, causing DoS on all stake/unstake operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_12c60bb5-82bc-4d1e-acad-58bc2897a193?mode=deep",
+    "timestamp": "2026-02-19 02:07:27.746376",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: refresh()] [Epoch Rollover Flag] At line 514, validator_pool.refresh() returns true if epoch rolled over. Can an attacker force multiple refresh() calls in same epoch after rollover, re-executing lines 517-544 and double-applying reward fees? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e220e44-7a28-4199-9d57-900bfb53ddfb?mode=deep",
+    "timestamp": "2026-02-19 02:07:49.180572",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: refresh()] [Negative Rewards] At lines 517-523, reward_fee calculation assumes new_total_supply > old_total_supply. But if new_total_supply < old_total_supply (slashing event), reward_fee = 0. Do LST holders unfairly absorb slashing losses without proportional LST supply reduction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_27a67861-cae1-43b3-8a67-8029ac10dd54?mode=deep",
+    "timestamp": "2026-02-19 02:08:09.649935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: refresh()] [Accrued Fee Accumulation] At line 525, accrued_reward_fees += reward_fee without bound. Can cumulative accrued_reward_fees eventually exceed validator_pool balance, causing collect_fees() to fail or underflow total_sui_supply()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4c2d52af-3af9-4379-bc55-549eb62a6f6d?mode=deep",
+    "timestamp": "2026-02-19 02:08:30.678371",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: refresh()] [Boosted Balance Depletion] If boosted_balance is depleted to zero at line 532, are subsequent epoch rollovers without boosted rewards properly handled, or can the zero balance cause unexpected behavior in min() calculations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a9ae90d-53c2-4fb5-8b40-bde95a6a15aa?mode=deep",
+    "timestamp": "2026-02-19 02:08:53.543426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: refresh()] [Supply Snapshot Timing] At line 512, old_total_supply is captured. If concurrent stake/unstake operations occur between line 512 and line 515, can the snapshot be stale, causing incorrect reward_fee calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0cee7176-bde3-49b6-9f8d-ed0ea41c4288?mode=deep",
+    "timestamp": "2026-02-19 02:09:17.931586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: rebalance()] [Pause Check] At line 496, check_not_paused() is called. But if rebalance() triggers validator_pool.rebalance() at line 498, can validator_pool operations complete even if pause is set mid-execution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5943e71e-f955-457d-b61f-929abf9f75a6?mode=deep",
+    "timestamp": "2026-02-19 02:09:40.155816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: rebalance()] [Refresh Dependency] At line 497, refresh() is called before rebalance(). If refresh() increases total_sui_supply due to rewards, does rebalance() account for the new supply when redistributing stakes across validators? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_62a64fff-0c35-42d9-8f7b-f33b86fdcecd?mode=deep",
+    "timestamp": "2026-02-19 02:10:02.101965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: get_ratio()] [Stale Ratio Warning] At line 588, comment states ratio may not be up to date if epoch rolled over. Can off-chain integrations rely on stale get_ratio(), causing them to accept unfavorable exchange rates before calling refresh()? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e770c48-26f0-4751-99c5-bc8b497f9dce?mode=deep",
+    "timestamp": "2026-02-19 02:10:23.737704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: get_ratio()] [Zero Supply Edge Case] At lines 592-594, if total_sui_supply=0 OR total_lst_supply=0, get_ratio() returns 0. Can this mislead integrations to believe LST has no value, causing them to reject valid unstake requests? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_897318ad-ebac-4bb6-82f4-b7da880e8399?mode=deep",
+    "timestamp": "2026-02-19 02:10:45.198385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: get_ratio_reverse()] [Inconsistent Zero Handling] At lines 603-605, get_ratio_reverse() also returns 0 for zero supplies. Can the asymmetry between get_ratio() and get_ratio_reverse() returning 0 cause calculation errors in DEX integrations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f73396e-27af-4dae-a130-bc361b410540?mode=deep",
+    "timestamp": "2026-02-19 02:11:08.676041",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/stake_pool.move] [Function: publish_ratio()] [Decimal Conversion] At line 612, e9 to e18 conversion multiplies get_ratio() by 1e9. Can this multiplication overflow u256 for extremely large ratios, causing emit_ratio() to broadcast incorrect ratio to volo_v1 observers? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d33c58c2-48e5-480f-9cbf-d7ec73ba634e?mode=deep",
+    "timestamp": "2026-02-19 02:11:32.432269",
+    "report_generated": false
+  }
+]
