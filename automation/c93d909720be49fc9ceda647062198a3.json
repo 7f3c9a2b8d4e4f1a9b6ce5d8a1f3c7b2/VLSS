@@ -1,0 +1,74 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Event Data Tampering] The actuate() function constructs OracleQueueIdSet event with user-provided data. Can malicious oracle_queue_id values contain crafted data that causes issues for event parsers or indexers? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2424ce1e-154d-4f1e-91e8-8419d78988f4?mode=deep",
+    "timestamp": "2026-02-19 05:52:52.497898",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Parameter Validation Gap] The run() function accepts oracle_queue_id of type ID without any bounds checking. Can extremely large, extremely small, or specially formatted ID values cause parsing errors or undefined behavior? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6499014a-38b3-4442-b989-2e952c3173a2?mode=deep",
+    "timestamp": "2026-02-19 05:53:05.309636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Missing Caller Context] The actuate() function's emitted event does not include who initiated the change (only that AdminCap was used). Can this lack of traceability hide malicious actions or make forensic analysis difficult after an attack? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1654504-7282-446c-9ca9-fa948c9e1268?mode=deep",
+    "timestamp": "2026-02-19 05:53:19.531549",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [No Change Reason] The actuate() function does not include a reason or comment for why the oracle queue was changed. Can this lack of context make it difficult to distinguish legitimate changes from malicious ones in audit logs? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d909fe55-a2e9-440b-a539-b09b738ba411?mode=deep",
+    "timestamp": "2026-02-19 05:53:33.418549",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Missing Timestamp] The actuate() function's event does not include explicit timestamp information. Can this make it difficult to correlate oracle changes with price anomalies or vault incidents? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5cc99e41-dc3a-480f-b4aa-2802caa07440?mode=deep",
+    "timestamp": "2026-02-19 05:53:47.940452",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [No Change Counter] The actuate() function does not track how many times the oracle queue has been changed. Can frequent changes go unnoticed without proper monitoring, indicating potential compromise? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5bf511ce-f10b-49d0-83de-c4913e9250ff?mode=deep",
+    "timestamp": "2026-02-19 05:54:03.474682",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Forward Compatibility] The run() function may set oracle queues from future package versions. Can this cause compatibility issues when new oracle queue features are not supported by current State implementation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa647372-a23e-4c3d-ab91-4441726fdc48?mode=deep",
+    "timestamp": "2026-02-19 05:54:20.339724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Backward Compatibility] The run() function may set oracle queues from older package versions. Can deprecated oracle queues cause issues when they lack features that current Volo vault implementation depends on? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aa658f9a-a312-4c8b-80ad-3019bd0e1984?mode=deep",
+    "timestamp": "2026-02-19 05:54:37.406403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Version Lock-In] The run() function permanently changes oracle queue with no version tracking. Can this create situations where system upgrades are blocked because oracle queue version is incompatible? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4fd6eeac-5d34-481c-ae80-de99ea116221?mode=deep",
+    "timestamp": "2026-02-19 05:54:55.944287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [No Asset Coverage Check] The validate() function does not verify that the new oracle queue provides prices for all assets in Volo vault. Can switching to an incomplete oracle queue cause some vault assets to have missing price data? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_241f741b-4cf8-4ee9-ba61-c0b1542df6af?mode=deep",
+    "timestamp": "2026-02-19 05:55:15.277835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [No Price Range Validation] The validate() function does not check if the new oracle queue's prices are within reasonable ranges. Can switching to a queue with extreme prices (e.g., all assets at $0 or $infinity) break vault accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c58be2d5-4c2b-4d22-94dc-cc1dfafd20e6?mode=deep",
+    "timestamp": "2026-02-19 05:55:36.456744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [No Historical Price Check] The validate() function does not verify historical price accuracy of the new oracle queue. Can switching to a queue with a history of providing incorrect prices increase future price manipulation risk? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_406642fc-0766-4873-af46-08c3265f81be?mode=deep",
+    "timestamp": "2026-02-19 05:55:58.680727",
+    "report_generated": false
+  }
+]
