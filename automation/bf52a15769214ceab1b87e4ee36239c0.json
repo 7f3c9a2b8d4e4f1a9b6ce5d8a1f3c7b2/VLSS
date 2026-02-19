@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Upgrade Risk] The 'copy' ability means old struct instances could exist outside RequestBuffer - could stale copies be used after upgrade causing version mismatches? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5101de3d-6d39-43f5-86d2-05cb95d52c57?mode=deep",
+    "timestamp": "2026-02-19 05:24:21.257996",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Access Control] Constructor is public(package) not public(friend) - any module in volo_vault package can create requests, increasing attack surface if package contains malicious modules (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d1c4024-b61e-4be4-b695-c6ff73518059?mode=deep",
+    "timestamp": "2026-02-19 05:24:33.911852",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Getter Functions] [Access Control] All getters are public - should some request details be restricted to prevent information leakage that aids attacks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e3f69ff5-0bb3-4c48-a215-79ba6e8f0372?mode=deep",
+    "timestamp": "2026-02-19 05:24:47.177478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Access Control] No capability requirement to read sensitive fields - could unrestricted access to amount and expected_shares enable sophisticated MEV attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f28e3c11-590c-4706-a985-2a44d9432198?mode=deep",
+    "timestamp": "2026-02-19 05:25:01.103630",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Edge Case] What happens if request_id = u64::MAX and counter wraps to 0? Could cause collision with very first request if it's still pending? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_80586772-6340-428f-b1a3-7a24cdc684a6?mode=deep",
+    "timestamp": "2026-02-19 05:25:16.179168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Edge Case] What happens if amount = 0? Could zero-amount requests cause division by zero in share calculations or fee calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0318eb21-025a-4994-a7c7-81b8069cd887?mode=deep",
+    "timestamp": "2026-02-19 05:25:32.131036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Edge Case] What happens if expected_shares = 0? Could this bypass the ERR_ZERO_SHARE check if calculated shares are also zero due to rounding? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_117fa5a3-b7c0-4f8f-8f88-31012986361d?mode=deep",
+    "timestamp": "2026-02-19 05:25:49.076993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Edge Case] What happens if timestamp = u64::MAX? Could overflow in cancel time check (request_time + locking_time) permanently lock the request? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a22379fd-b10f-4bc8-a955-2bf0ccd30f18?mode=deep",
+    "timestamp": "2026-02-19 05:26:07.453741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Edge Case] What happens if all addresses (receipt_id, recipient, vault_id) are the same? Could this cause unexpected behavior in identity checks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_54178ad3-5165-4a10-9658-681b429d448d?mode=deep",
+    "timestamp": "2026-02-19 05:26:27.685636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Edge Case] What happens if amount is very small (e.g., 1) and expected_shares is very large (e.g., u256::MAX)? Could this cause share ratio manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_218dacf1-5919-40ef-b255-307667114f4f?mode=deep",
+    "timestamp": "2026-02-19 05:26:48.453454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [DoS] No limit on request_id growth - could attacker spam requests to exhaust deposit_id_count and cause counter overflow? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_261fedf8-95c0-456d-be99-a0612877e921?mode=deep",
+    "timestamp": "2026-02-19 05:27:10.780555",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [DoS] No expiration mechanism - could old requests accumulate in Table indefinitely, causing unbounded storage growth and DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ed38510-a079-431f-b3be-381b90f40f27?mode=deep",
+    "timestamp": "2026-02-19 05:27:33.981181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [DoS] Could attacker create many requests with unsatisfiable expected_shares to fill buffer with unexecutable requests, blocking legitimate deposits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f0963704-4c8f-48ed-94a8-555eaed438e6?mode=deep",
+    "timestamp": "2026-02-19 05:27:55.282406",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [DoS] Could attacker create requests with expected_shares = u256::MAX to guarantee slippage violations, forcing permanent coin lock and operator griefing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e7a7594-6ba5-4336-a6c7-9e173615de38?mode=deep",
+    "timestamp": "2026-02-19 05:28:16.790905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Reentrancy] Constructor has no reentrancy protection - could malicious code in address parameters trigger callbacks during construction? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21d3ed71-51d4-413f-b13d-251836e04948?mode=deep",
+    "timestamp": "2026-02-19 05:28:39.029678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Getter Functions] [Reentrancy] Public getters could be called during vault state transitions - could reentrancy via getters expose intermediate state and enable exploits? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_12d9fd23-b6b1-4a88-a64d-3ba19f0bfb4d?mode=deep",
+    "timestamp": "2026-02-19 05:29:00.628225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Price Manipulation] The expected_shares is based on share ratio at request time - could oracle price manipulation between request and execution cause all pending deposits to fail slippage check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b16326df-35f0-4a26-bdd9-be8cb1ae2721?mode=deep",
+    "timestamp": "2026-02-19 05:29:21.831881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Price Manipulation] No oracle price snapshot in struct - could attacker manipulate oracle price before execute_deposit to extract maximum slippage from expected_shares constraint? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db607486-2edd-433c-897a-9a729ad97042?mode=deep",
+    "timestamp": "2026-02-19 05:29:44.785649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Precision Loss] Amount is u64 but expected_shares is u256 - could type mismatch in calculations cause precision loss or rounding errors favoring attacker? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_426276c9-8d3a-405a-a7c7-3a238cef1e6b?mode=deep",
+    "timestamp": "2026-02-19 05:30:08.141933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Rounding] No rounding mode specified for expected_shares calculation - could rounding differences between request and execution cause systematic slippage violations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19a087d1-9159-47b8-85d3-ef290b3b7b59?mode=deep",
+    "timestamp": "2026-02-19 05:30:30.958237",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Fee Manipulation] Amount doesn't account for fees - could amount field being pre-fee or post-fee cause confusion and enable fee bypass exploits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0178ddf9-36b5-452f-afba-fc068ce39b70?mode=deep",
+    "timestamp": "2026-02-19 05:30:52.794224",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Fee Manipulation] Expected_shares doesn't reflect fee impact - could attacker set expected_shares assuming no fees to bypass fee collection during execution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ca46c86-ea8a-4843-a187-c608c852d890?mode=deep",
+    "timestamp": "2026-02-19 05:31:16.041407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Flash Loan Attack] Two-step deposit process (request then execute) prevents atomic flash loan attacks - but could attacker use flash loan to manipulate vault state between request and execution to fail slippage check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6fe4c0c9-8d6a-4e4b-875b-e3c8d705df2a?mode=deep",
+    "timestamp": "2026-02-19 05:31:40.021369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Atomic Attack] Struct has copy ability - could attacker use PTB (Programmable Transaction Block) to copy request and perform atomic manipulations before execution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3e1be083-bc5e-4f48-97c3-12ed3d80b852?mode=deep",
+    "timestamp": "2026-02-19 05:32:04.505208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Gas Griefing] Public getters enable cheap state reads - could attacker spam getter calls to degrade node performance? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_11bc7d85-6806-4f50-909c-363c6939ee44?mode=deep",
+    "timestamp": "2026-02-19 05:32:30.811453",
+    "report_generated": false
+  }
+]
