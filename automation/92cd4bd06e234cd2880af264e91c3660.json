@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Edge Case] [Index Initialization] If indices start at 0 or 1, do ray_mul operations at lines 23, 42-43, 64-65 work correctly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e11f93b-0a91-4f7d-b78b-0ae35d5ea642?mode=deep",
+    "timestamp": "2026-02-19 03:10:01.049823",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Edge Case] [Maximum Supply] When supply_balance approaches u256::MAX, can line 23 ray_mul overflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2573085e-f728-4e12-998d-34d39e5a33a2?mode=deep",
+    "timestamp": "2026-02-19 03:10:13.490113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Edge Case] [Maximum Borrow] When borrow_balance approaches u256::MAX, can line 65 ray_mul overflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0107f677-8490-4d89-af2e-5df6308571bb?mode=deep",
+    "timestamp": "2026-02-19 03:10:26.429933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Edge Case] [Ratio Boundary] When current_borrow_ratio at line 70 is exactly 1 ray (100%), what happens? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c2732120-532c-488c-beb4-74345af447ed?mode=deep",
+    "timestamp": "2026-02-19 03:10:40.851702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Edge Case] [Zero Supply With Borrows] Can borrow_balance be non-zero while supply_balance is zero, causing division by zero at line 70? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_17d13123-f5f2-463d-8ef6-563230cc3353?mode=deep",
+    "timestamp": "2026-02-19 03:10:54.967463",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Edge Case] [Minimum Amount] For assets with high decimals, can amount=1 at lines 17, 37, 58, 78, 84 represent economically insignificant value? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_16b856d9-62b3-4d08-9c55-f509f6706688?mode=deep",
+    "timestamp": "2026-02-19 03:11:11.778149",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Type System] [Generic Phantom Types] Can phantom type parameters in CoinType cause type_name mismatch while actual coin is same? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dc00f70a-11be-4776-978f-ccf0b64ee2a9?mode=deep",
+    "timestamp": "2026-02-19 03:11:28.158885",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Type System] [Type Erasure] Can Move's type erasure cause different CoinTypes to have identical type_name strings at lines 16, 36, 57, 77, 82-83? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c8397301-6937-45b9-8c9a-e859f8b69716?mode=deep",
+    "timestamp": "2026-02-19 03:11:45.456273",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Type System] [Module Path] Does type_name::into_string include full module path - can attacker create same-named type in different module? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_75d6a3d1-2219-4415-872e-77d52b56cfb5?mode=deep",
+    "timestamp": "2026-02-19 03:12:03.200220",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Compound] [Deposit Then Borrow] If user deposits at cap limit (line 32) then immediately borrows, can borrow validation (line 67) fail incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68f5562f-3bff-47e8-ae5f-57b6dfc474a5?mode=deep",
+    "timestamp": "2026-02-19 03:12:22.109452",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Compound] [Borrow Then Withdraw] If user borrows near limit (line 73) then another user withdraws, can borrow become unhealthy without liquidation check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_38b2776b-1c9c-4a65-808d-d8aa5d3a6141?mode=deep",
+    "timestamp": "2026-02-19 03:12:42.053100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Compound] [Repay Then Borrow] Can user repay minimal amount (line 78) then borrow maximum, exploiting interest accumulation timing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a0a3dbae-0221-44c8-a7df-2dc2a9414ec1?mode=deep",
+    "timestamp": "2026-02-19 03:13:01.020503",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Compound] [Liquidate Then Withdraw] After liquidation (line 84) decreases borrow, can liquidator immediately withdraw all collateral bypassing withdraw check (line 45)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb738fed-1874-4926-a6c5-d3af2621f8b9?mode=deep",
+    "timestamp": "2026-02-19 03:13:21.759193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Index Timing] [Supply Index Update] When is current_supply_index updated - before or after validation? Can stale index be exploited? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_329e866a-2cac-4aad-86f7-c79962ffbedc?mode=deep",
+    "timestamp": "2026-02-19 03:13:42.323702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Index Timing] [Borrow Index Update] When is current_borrow_index updated - can it change between validate_borrow and actual borrow execution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_684faef2-ec20-437a-a443-519a8640ceff?mode=deep",
+    "timestamp": "2026-02-19 03:14:03.179891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Index Timing] [Index Synchronization] Are supply and borrow indices updated atomically - can they diverge causing validation inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ec63977-2367-422c-b97a-937c4f40833e?mode=deep",
+    "timestamp": "2026-02-19 03:14:24.973575",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Index Timing] [Multi-Asset Index] Do indices update per asset or globally - can high activity in one asset affect validation in another? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc26180e-3d33-4d16-9dec-20798ad350a4?mode=deep",
+    "timestamp": "2026-02-19 03:14:47.076746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Math] [Addition Overflow] Lines 29, 45, 67, 70 perform additions before multiplication/comparison - can these overflow? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b67097f3-f8bd-478c-b74f-a6a7b64f3685?mode=deep",
+    "timestamp": "2026-02-19 03:15:07.778925",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Math] [Multiplication Overflow] Line 29 multiplies large values - is there overflow protection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0c7e022-417d-4b10-aab9-6ac7c3fccd86?mode=deep",
+    "timestamp": "2026-02-19 03:15:28.428429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Math] [Subtraction Underflow] Does line 45 check prevent underflow, or can scale_supply_balance - (scale_borrow_balance + amount) underflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_36df3d08-ade8-41ad-a3bd-98dd36777d2b?mode=deep",
+    "timestamp": "2026-02-19 03:15:49.550389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Math] [Division by Zero] Line 70 divides by scale_supply_balance - is zero check missing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee46ce16-96fb-4682-accc-c623a49a5eb3?mode=deep",
+    "timestamp": "2026-02-19 03:16:12.155903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Storage] [Supply Borrow Mismatch] Can storage::get_total_supply return supply_balance < borrow_balance, violating lending invariants? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1aa56d0d-9f36-4055-b77f-894731038548?mode=deep",
+    "timestamp": "2026-02-19 03:16:34.587924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Storage] [Index Desync] Can supply and borrow indices from storage::get_index become desynchronized? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4db8ea3-bdd2-4fa4-8889-cb26bac6355f?mode=deep",
+    "timestamp": "2026-02-19 03:16:55.901832",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Storage] [Cap Modification] Can supply_cap_ceiling or borrow_cap_ceiling_ratio be modified by admin during active transactions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f897fe3f-e3f0-4465-b7c4-7f65e6ba345e?mode=deep",
+    "timestamp": "2026-02-19 03:17:16.640004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Storage] [Concurrent Reads] Can multiple validation functions read inconsistent storage state when executed concurrently? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_365668e5-e56b-4e27-ad22-13246e934ef5?mode=deep",
+    "timestamp": "2026-02-19 03:17:37.724739",
+    "report_generated": false
+  }
+]
