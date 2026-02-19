@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Receipt Vault Mismatch] At line 604, assert_vault_receipt_matched is called - can attacker craft receipt with matching vault_id but different RewardManager? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7a366169-3525-4dec-b55a-cc91e43e4439?mode=deep",
+    "timestamp": "2026-02-19 03:16:32.237638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Receipt Status Race] At line 610, receipt status is checked to be NORMAL_STATUS - can status change between check and reward claim causing double claims? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3e48496c-d828-4a3e-86d2-e8bde02c2e9b?mode=deep",
+    "timestamp": "2026-02-19 03:16:44.916609",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_receipt_reward()] [Receipt Index Sync] At lines 657-658, receipt indices are updated to current manager indices - can stale receipt miss rewards if not updated frequently? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d49ff63f-7956-43a9-8a7b-b4d9b95e11da?mode=deep",
+    "timestamp": "2026-02-19 03:16:58.175260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: issue_receipt()] [Receipt Vault ID] At line 208, receipt is created with self.vault_id - can vault_id change after RewardManager creation causing mismatch? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2660091-b2d4-49b4-97bb-1b3f1734c557?mode=deep",
+    "timestamp": "2026-02-19 03:17:13.089144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Multiple Receipt Claims] Can single receipt claim rewards multiple times by calling claim_reward concurrently before reset_unclaimed_rewards at line 622 executes? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9afc017b-2874-458b-9128-b063ddf8bacf?mode=deep",
+    "timestamp": "2026-02-19 03:17:28.047355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_receipt_reward()] [Reward Token Loop] At lines 654-659, all reward tokens are iterated - can adding many reward types cause gas exhaustion DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_526d0ca7-0b3e-478b-b3df-2ce1ddd0532a?mode=deep",
+    "timestamp": "2026-02-19 03:17:45.074078",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: issue_vault_receipt_info()] [Clone Vec Map] At lines 221-224, reward_indices are cloned - can this create inconsistency if RewardManager indices update before VaultReceiptInfo creation completes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21403a1f-6fa8-4a77-9aef-60c7e640548f?mode=deep",
+    "timestamp": "2026-02-19 03:18:03.114113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Vault Receipt Retrieval] At line 609, vault_receipt_info is retrieved by receipt_id - can attacker manipulate receipt_id to access different vault receipts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_105f10cd-772d-493f-97c8-9cea66bc08c0?mode=deep",
+    "timestamp": "2026-02-19 03:18:21.418848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Buffer Update Before Claim] At line 613, all buffers are updated before claim - can this cause unexpected reward distribution that affects claim amount? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f9f1be90-3f6e-4783-9a47-0aed86024b3c?mode=deep",
+    "timestamp": "2026-02-19 03:18:41.461455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_receipt_reward()] [Index Update Order] At line 658, vault_receipt.update_reward is called with new index - can incorrect update order cause reward calculation errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_edc6e7fd-8444-484d-9d94-4bbfb30fffc2?mode=deep",
+    "timestamp": "2026-02-19 03:19:00.266785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Receipt Status Constant] At line 610, NORMAL_STATUS constant is 0 - can other status values bypass this check if not properly validated? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_312a2976-0c68-4b6b-bf94-ed880e029edf?mode=deep",
+    "timestamp": "2026-02-19 03:19:20.355977",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: issue_vault_receipt_info()] [Empty Unclaimed Rewards] At line 220, unclaimed_rewards table is created empty - can this cause issues if receipt expects pre-populated rewards? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd520a03-7914-4e4e-8fbc-26598fb5b536?mode=deep",
+    "timestamp": "2026-02-19 03:19:41.393478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Reward Type Mismatch] At line 617, reward type is derived from generic RewardCoinType - can type mismatch between claim call and actual reward balance cause failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dfea6cfc-1919-47e2-9094-bf19553ffc67?mode=deep",
+    "timestamp": "2026-02-19 03:20:03.169484",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_receipt_reward()] [Keys Reference] At line 654, reward_indices.keys() returns references - can modifications during iteration cause undefined behavior? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6da09672-6562-41b3-a5f9-1bdf69b9e5f0?mode=deep",
+    "timestamp": "2026-02-19 03:20:25.617619",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Reset Unclaimed Rewards] At line 622, reset returns u256 and converts to u64 - can accumulated rewards exceed u64 max causing truncation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ab2fae9-8cae-4339-b838-fb5ba7032311?mode=deep",
+    "timestamp": "2026-02-19 03:20:46.185793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: issue_receipt()] [Version Check] At line 205, check_version is called before receipt creation - can version mismatch cause receipt to be incompatible with current manager? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_834c7500-e7c4-487e-b239-9888940ea871?mode=deep",
+    "timestamp": "2026-02-19 03:21:08.627718",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Balance Split] At line 638, balance.split extracts reward - can this fail if concurrent claims drain balance first? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_64eb88af-e93f-49e5-b558-ab6b7489da05?mode=deep",
+    "timestamp": "2026-02-19 03:21:30.665046",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_receipt_reward()] [Vault Receipt Mut] At line 651, vault_receipt_info_mut is borrowed mutably - can concurrent borrows cause borrow checker failures? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac39ba3d-9701-4036-a555-dda908aa971b?mode=deep",
+    "timestamp": "2026-02-19 03:21:52.912968",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Receipt ID Usage] Receipt ID is used at lines 607, 609, 615, 619, 633 - can ID collision across vaults cause cross-vault reward claims? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18bd6564-2545-4d65-9888-ea25dcaac015?mode=deep",
+    "timestamp": "2026-02-19 03:22:14.068032",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: issue_vault_receipt_info()] [Clone Function] At line 221, clone_vecmap_table is used - does this deep copy or reference, and can reference cause data races? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c1251e67-a60a-43e7-a33d-9dec38fd2a21?mode=deep",
+    "timestamp": "2026-02-19 03:22:34.809876",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Reward Amount Zero] If reset_unclaimed_rewards returns 0 at line 622, does claim still emit event at line 630 with zero amount? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9763faa3-d5aa-48af-a724-ea30c8d57fff?mode=deep",
+    "timestamp": "2026-02-19 03:22:55.824480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_receipt_reward()] [Loop Execution] Do_ref! at line 656 executes lambda for each reward type - can this execute malicious code if reward_type is controllable? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_744d156e-1f92-41ab-ba8a-6c80bc10e8f4?mode=deep",
+    "timestamp": "2026-02-19 03:23:17.070431",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Vault Enabled Timing] At line 603, vault.assert_enabled() is called - can vault disable between this check and claim execution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec3adb52-1e8f-4768-b785-869c3266124e?mode=deep",
+    "timestamp": "2026-02-19 03:23:39.226028",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: issue_receipt()] [Receipt Creation Access] Since issue_receipt is public(package), can malicious package modules create receipts that bypass vault receipt tracking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0299ea1d-2096-400a-9ea0-d514c74e85b2?mode=deep",
+    "timestamp": "2026-02-19 03:24:01.244117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Event Emission Timing] Event at line 630 emits before balance split at line 638 - can transaction revert after event causing false claim records? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_72e2c265-e559-43c6-ba91-51977a0e3926?mode=deep",
+    "timestamp": "2026-02-19 03:24:24.118559",
+    "report_generated": false
+  }
+]
