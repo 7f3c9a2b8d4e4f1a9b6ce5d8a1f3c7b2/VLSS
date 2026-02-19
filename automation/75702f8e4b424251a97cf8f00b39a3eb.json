@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Constant: DECIMALS] [Precision Loss] DECIMALS is set to 9 (1e9 precision). When interacting with protocols using different decimals (e.g., USDC=6, or 1e18 precision tokens), could decimal conversions cause rounding errors that accumulate to significant value loss? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_06736f90-e39c-4b49-9046-e89f6cece67e?mode=deep",
+    "timestamp": "2026-02-19 01:48:09.842785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Constant: VERSION] [Upgrade Path] VERSION is hardcoded to 1. If a future upgrade needs to version backwards for rollback, does the migration logic support downgrading, or would this break assert_version() checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c00b47f-b584-4cef-85dd-7b20b8a28af7?mode=deep",
+    "timestamp": "2026-02-19 01:48:22.696870",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Constant: DECIMALS] [Ratio Calculations] In downstream stake_pool calculations using get_total_supply_value(), could the fixed 9 decimals cause precision loss when computing share ratios, especially with large SUI amounts (which also use 9 decimals)? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29746a63-79eb-48b3-be1d-53db6cc7e340?mode=deep",
+    "timestamp": "2026-02-19 01:48:36.659098",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: get_total_supply()] [Reference Exposure] get_total_supply() returns a reference to Supply<CERT>. Could external code use this reference to read supply in a transaction before mint/burn completes, getting stale values that enable arbitrage? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1c702987-56e8-4a06-b1e5-b3e0d7ec9eaf?mode=deep",
+    "timestamp": "2026-02-19 01:48:50.458917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: get_total_supply_value()] [Race Condition] If get_total_supply_value() is called in the same transaction where mint() or burn() is occurring, could the value be inconsistent with the actual coin distribution, enabling MEV attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4dba2e55-4af9-4aac-a679-a716375e0e16?mode=deep",
+    "timestamp": "2026-02-19 01:49:05.481898",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Function: get_total_supply_value()] [View Function] As a public read function, get_total_supply_value() could be called by untrusted contracts. Could malicious contracts use this in loops to DoS the chain or perform expensive computations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_df0efa7f-cfc1-4d71-9756-5232b371aa21?mode=deep",
+    "timestamp": "2026-02-19 01:49:22.849035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Package Visibility] [Module Trust] public(package) functions trust all modules in liquid_staking package. If a less-audited module like volo_v1 migration logic exists, could it abuse mint/burn to manipulate supply? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d900902d-3d92-4be7-a738-f26407a2c9c9?mode=deep",
+    "timestamp": "2026-02-19 01:49:40.192675",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Import: ownership::OwnerCap] [Capability Leak] migrate() accepts &OwnerCap. If OwnerCap is clonable or transferable, could multiple parties claim ownership and trigger concurrent migrations, causing version confusion? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e4976ad-9e44-4f79-9a43-29a2aef16bb8?mode=deep",
+    "timestamp": "2026-02-19 01:49:59.722230",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Friend Declaration] [Commented Code] The friend declaration for native_pool is commented out. If this was uncommented without proper auditing, could native_pool gain access to package functions and abuse mint/burn? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2aec3ec1-1efc-4d69-a2e8-93e8521fddd5?mode=deep",
+    "timestamp": "2026-02-19 01:50:20.200048",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Event: MigratedEvent] [Information Leak] MigratedEvent exposes prev_version and new_version publicly. Could attackers monitor for migration events to front-run operations during vulnerable migration windows? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6ee21c3-7c11-45cb-bb0a-ff87aeda8d7e?mode=deep",
+    "timestamp": "2026-02-19 01:50:41.865873",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Event: MigratedEvent] [Missing Events] There are no events for mint() and burn() operations. Does this make it difficult to track supply changes off-chain, potentially hiding exploits until significant damage occurs? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aa2f6b26-2f99-476b-9b7c-8a38b9c5d925?mode=deep",
+    "timestamp": "2026-02-19 01:51:05.295874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Struct: CERT] [Phantom Type] CERT has drop ability. Could this enable type confusion where CERT is dropped in unexpected contexts, bypassing coin accounting safeguards? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ac049c5-20dd-4d2e-8181-059590a91451?mode=deep",
+    "timestamp": "2026-02-19 01:51:29.406850",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Struct: Metadata] [Generic Parameter] Metadata<T> uses phantom type parameter T. Could instantiating Metadata<OtherType> create parallel supply tracking that bypasses CERT supply limits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c60349c1-3b36-4e78-8447-b9f597b8cfa3?mode=deep",
+    "timestamp": "2026-02-19 01:51:52.248212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Struct: Metadata] [Key+Store Abilities] Metadata has both key and store abilities. Could Metadata be transferred/wrapped in ways that break singleton assumptions, creating multiple supply trackers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_daf991ed-9a3d-42cc-917c-df340c4634e3?mode=deep",
+    "timestamp": "2026-02-19 01:52:15.952950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Scenario: Flash Mint Attack] [Supply Inflation] Could an attacker call mint() from a compromised package module, mint massive CERT amounts, swap for SUI in DEX pools, then cover tracks by burning in same transaction before supply checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6728018a-9884-4b3b-9a39-fe04454cc3e7?mode=deep",
+    "timestamp": "2026-02-19 01:52:38.955371",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Scenario: Burn Front-Running] [Accounting Exploit] If user calls unstake requiring burn_coin(), could attacker front-run with their own burn to decrease total supply, increasing share price and causing user's burn to claim more SUI than entitled? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_45c97a0f-2481-44c4-b8eb-122e73ff4680?mode=deep",
+    "timestamp": "2026-02-19 01:53:01.000573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Scenario: Mint/Burn Sandwich] [MEV Exploit] Could MEV bot sandwich stake() calls by: 1) burning CERT to inflate share price, 2) user mints at bad rate, 3) bot mints back CERT at profit? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a524d0fe-c797-428a-8f23-185b7973b2c3?mode=deep",
+    "timestamp": "2026-02-19 01:53:19.533239",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Scenario: Supply Query Manipulation] [Oracle Attack] If external contracts query get_total_supply_value() for pricing, could attacker manipulate supply via mint/burn right before queries to skew CERT/SUI exchange rates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5eb3249a-a63a-4efa-ada8-13eed70b4c79?mode=deep",
+    "timestamp": "2026-02-19 01:53:38.544983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Scenario: Migration Race] [State Corruption] Could two migration transactions be submitted simultaneously, both passing version < VERSION check, but executing in sequence causing double version increment or corrupted state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_30e96139-0db1-49ae-bc5c-ff372e7b4e62?mode=deep",
+    "timestamp": "2026-02-19 01:53:59.067088",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Scenario: Partial Migration] [DoS Attack] If migrate() partially succeeds (version updated) but subsequent state setup fails, could the protocol be stuck in an invalid state where neither old nor new version logic works? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a1be4b3a-42e1-4c2e-9805-671fb7086590?mode=deep",
+    "timestamp": "2026-02-19 01:54:19.806932",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Scenario: Version Downgrade] [Rollback Attack] If a critical bug is found and VERSION needs to be decreased for rollback, would assert_version() block all operations, requiring emergency pause/upgrade paths that may not exist? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b654d99-d13d-44ea-8647-3994c3027a45?mode=deep",
+    "timestamp": "2026-02-19 01:54:41.832166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Scenario: Package Module Compromise] [Privilege Escalation] If any module in liquid_staking package (stake_pool, manage, validator_pool, etc.) has exploitable logic, could attacker leverage package visibility to mint unlimited CERT tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aad55217-d3f2-4ab7-a19f-836fa16c8b6d?mode=deep",
+    "timestamp": "2026-02-19 01:55:04.618776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Scenario: OwnerCap Theft] [Admin Takeover] If OwnerCap is stolen or leaked (stored in compromised wallet, exploitable admin contract), could attacker call migrate() to malicious VERSION, breaking all cert operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_06e6c32e-bf81-4a8a-ad87-391e52b01e11?mode=deep",
+    "timestamp": "2026-02-19 01:55:26.866008",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Integration: Stake Pool] [Ratio Calculation] When stake_pool calculates SUI/CERT ratio using get_total_supply_value(), could race conditions between ratio read and mint/burn execution cause arbitrage opportunities? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_81408768-210d-46ff-ab9a-b7b16dbbe60a?mode=deep",
+    "timestamp": "2026-02-19 01:55:50.202172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/cert.move] [Integration: DEX Pools] [Price Manipulation] If CERT is tradeable in DEX pools, could attacker manipulate total_supply via package module exploits to create artificial price pumps, rug-pulling liquidity providers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f3eecdd-123a-4dd0-9b1b-0b82e977b63c?mode=deep",
+    "timestamp": "2026-02-19 01:56:11.434331",
+    "report_generated": false
+  }
+]
