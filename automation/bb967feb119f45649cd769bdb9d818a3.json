@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Function: total_sui_supply()] [Stale Value] The comment at line 44 warns this value can be stale if staker hasn't refreshed, but callers may not know this - can claim_fees() or withdraw() make wrong decisions based on stale total_sui_supply()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e271442-0a08-4a2e-ac1b-83c9cd4f3f78?mode=deep",
+    "timestamp": "2026-02-19 05:12:45.382793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Function: total_sui_supply()] [Arithmetic Overflow] The addition liquid_staking_info.total_sui_supply() + sui_balance.value() at line 46 could overflow if both are large - can this cause total_sui_supply() to return a wrapped small value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3947a1f5-c99e-4b73-a462-9c38a8cd59df?mode=deep",
+    "timestamp": "2026-02-19 05:12:58.529027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Function: liabilities()] [Read-Only Safety] liabilities() returns a copy at line 33, but if multiple readers access this simultaneously with writers modifying liabilities in deposit/withdraw, can race conditions cause inconsistent reads? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46e3b6a7-c299-4468-a8dc-5b861223c9ab?mode=deep",
+    "timestamp": "2026-02-19 05:13:12.043183",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Function: lst_balance()] [Reference Leak] Returning a reference to lst_balance at line 37 allows callers to read the balance, but could this be used to front-run rebalance() operations or extract information for MEV attacks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_526d1539-74bb-4359-b54a-442e1eb0c72f?mode=deep",
+    "timestamp": "2026-02-19 05:13:25.918855",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Function: sui_balance()] [Reference Safety] Returning &Balance<SUI> at line 41 is safe since Move prevents mutation through immutable refs, but could external modules with package-level access modify this improperly? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dc8cb047-5e63-4014-95c2-479d655b1bd9?mode=deep",
+    "timestamp": "2026-02-19 05:13:40.710764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Struct: Staker] [Admin Cap Exposure] The admin field at line 24 is an AdminCap that grants privileged access, but since Staker has 'store' ability, can it be stored in external objects and the admin cap extracted? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74b97813-20ec-4a86-ba7c-fb5cbf52988a?mode=deep",
+    "timestamp": "2026-02-19 05:13:56.870204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Struct: Staker] [LiquidStakingInfo Mutation] liquid_staking_info at line 25 holds state for the LST protocol, but if external modules with package access can mutate this directly, can they bypass staker's invariants? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2da4f37d-953c-42d4-b7b1-b904e2939be8?mode=deep",
+    "timestamp": "2026-02-19 05:14:14.816143",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Struct: Staker] [Balance Fields Public] lst_balance and sui_balance at lines 26-27 are private but returned as references - can malicious package-level modules exploit these references? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_49e9ab91-0f72-4337-bebe-27941e7884cd?mode=deep",
+    "timestamp": "2026-02-19 05:14:34.242222",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Struct: Staker] [Liabilities Overflow] liabilities at line 28 is a u64 that can overflow - should this be u128 to handle very large protocols, or should there be explicit overflow protection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7cad6d54-93c0-4db3-b75c-1e0f68ec1d98?mode=deep",
+    "timestamp": "2026-02-19 05:14:55.237615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Struct: Staker] [Phantom Type Parameter] The phantom type P is used throughout but never instantiated - can type confusion attacks exploit differences in P across different Staker instances? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d26b34fb-8f90-413f-a106-4149291572f8?mode=deep",
+    "timestamp": "2026-02-19 05:15:16.463116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Constant: U64_MAX] [Max Value Usage] U64_MAX (18446744073709551615) is used as amount in increase_validator_stake() at line 126, intending to stake all available LST, but can this cause integer overflow in downstream calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dbea7af9-0260-4145-994a-267a0372a71a?mode=deep",
+    "timestamp": "2026-02-19 05:15:37.951130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Constant: SUILEND_VALIDATOR] [Validator Security] The hardcoded validator address at line 16-17 cannot be changed - if this validator is compromised, exhibits malicious behavior, or has high commission, is all staked value at risk? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf996aee-0baf-40fc-92bc-43cafc7c2f06?mode=deep",
+    "timestamp": "2026-02-19 05:15:59.412634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Constant: MIN_DEPLOY_AMOUNT] [Threshold Gaming] The 1 SUI minimum at line 20 prevents small rebalances, but can an attacker keep depositing 0.99 SUI repeatedly to keep sui_balance just under threshold, preventing any staking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3e80f348-91cd-4be5-8f11-66c70d4f0aaf?mode=deep",
+    "timestamp": "2026-02-19 05:16:21.951809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Constant: MIST_PER_SUI] [Precision] MIST_PER_SUI (1e9) is used in fee buffer calculation at line 21, but if SUI denomination changes or precision requirements increase, is this constant sufficient? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1737a84c-1909-4c69-b7b2-f3c85bb48ed1?mode=deep",
+    "timestamp": "2026-02-19 05:16:45.359475",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Error: ETreasuryCapNonZeroSupply] [Initialization Check] This error at line 11 prevents re-initialization, but if total_supply() can be manipulated to return 0 temporarily, can the check be bypassed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bdf2df6d-924b-4072-866a-b3d59356714d?mode=deep",
+    "timestamp": "2026-02-19 05:17:09.376554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Error: EInvariantViolation] [Single Invariant Check] Only one invariant check exists at line 154 in claim_fees(), but shouldn't deposit(), withdraw(), and rebalance() also have invariant assertions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4830001f-c120-4f0d-a51b-0ecd93db14c0?mode=deep",
+    "timestamp": "2026-02-19 05:17:35.118693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Integration: deposit+withdraw] [Accounting Round-Trip] If deposit(X) followed by withdraw(X) is called, does liabilities return to original value, or do rounding errors in unstaking cause permanent drift? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_53b10a05-0476-41c6-94ca-430d9ad0318b?mode=deep",
+    "timestamp": "2026-02-19 05:18:01.568556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Integration: deposit+rebalance+withdraw] [State Consistency] If deposit() adds SUI, rebalance() stakes it to LST, then withdraw() unstakes, can exchange rate changes cause the user to receive less than deposited? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b11e49c7-71fd-4fbf-89c3-94d710e9598f?mode=deep",
+    "timestamp": "2026-02-19 05:18:27.786587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Integration: rebalance+claim_fees] [Fee Extraction Timing] If rebalance() stakes all SUI, then claim_fees() tries to extract excess, but excess > sui_balance, can claim_fees() fail or extract incorrect amounts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7f52c192-f7eb-4995-aec8-f2b6234f4c15?mode=deep",
+    "timestamp": "2026-02-19 05:18:54.018976",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Integration: withdraw+claim_fees] [Concurrent Calls] If withdraw() and claim_fees() are called in same transaction, both might call unstake_n_sui(), potentially causing lst_balance to be split twice and panicking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d76bd643-7f60-4292-9f8b-4fc76f1c173c?mode=deep",
+    "timestamp": "2026-02-19 05:19:21.615942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Integration: liquid_staking module] [External State Assumptions] Functions call liquid_staking::redeem(), mint(), refresh(), and increase_validator_stake(), but if liquid_staking module has bugs or is upgraded, can this break staker's invariants? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a4995a3-bdfd-46c6-a47b-c70d00e60f4c?mode=deep",
+    "timestamp": "2026-02-19 05:19:50.951717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Integration: SuiSystemState] [System State Validity] Multiple functions pass &mut SuiSystemState, but if SuiSystemState is in an invalid epoch transition state, can refresh() or staking operations fail unexpectedly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b21bfeba-9369-451e-a6b7-ac05f0df2b35?mode=deep",
+    "timestamp": "2026-02-19 05:20:21.308225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Timing: Epoch Boundary] [Refresh Timing] If refresh() is called at epoch boundary, can rewards distribution or exchange rate updates cause total_sui_supply() to jump significantly, breaking excess_sui calculations in claim_fees()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4cec9bef-c5c5-445f-a39d-f082a55ba3b3?mode=deep",
+    "timestamp": "2026-02-19 05:20:51.994640",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Timing: Staking Delay] [Unstaking Delay] When unstake_n_sui() redeems LST, the actual SUI may not be immediately available if unstaking has a delay period - does the code handle this, or can it cause sui_balance.split() to fail? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a570c468-1bb6-4812-9e48-9f97c161354a?mode=deep",
+    "timestamp": "2026-02-19 05:21:24.534661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Timing: Multiple Refreshes] [Refresh Frequency] If refresh() is called multiple times in same block/epoch, can repeated state updates cause inconsistencies or allow manipulation of exchange rates for profit? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_06bd8a05-0791-442b-9619-56f9de89ca7d?mode=deep",
+    "timestamp": "2026-02-19 05:21:59.216748",
+    "report_generated": false
+  }
+]
