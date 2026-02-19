@@ -1,0 +1,110 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_oracle_info()] [Stale Oracle Detection] The valid flag is returned but not interpreted - if valid=false, do consuming contracts properly reject the price data or could they use stale/invalid prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee16a2bb-2f66-475e-8879-230c05161cc4?mode=deep",
+    "timestamp": "2026-02-19 01:32:23.517535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_user_state()] [Position Monitoring] Since user positions are publicly queryable, can MEV bots use this to identify profitable liquidations, front-running legitimate liquidators? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c3333d8a-f858-4394-84b3-912f019af2bb?mode=deep",
+    "timestamp": "2026-02-19 01:32:36.442687",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_reserve_data()] [Total Supply vs Cap] If total_supply exceeds supply_cap in returned data, does this indicate an exploit has occurred or a race condition in cap enforcement? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8aeab4ef-d651-493d-abd3-e8ffd7a04ca3?mode=deep",
+    "timestamp": "2026-02-19 01:32:49.801894",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_reserve_data()] [Utilization Calculation] The function returns total_supply and total_borrow separately - can calculating utilization (borrow/supply) result in division by zero if supply is 0 but borrow > 0? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f172fbd9-dd99-48f1-9712-27100e587752?mode=deep",
+    "timestamp": "2026-02-19 01:33:04.747561",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Module: getter] [Data Snapshot Timing] All three functions return point-in-time snapshots - can consumers misuse these snapshots for critical decisions in subsequent transactions where state has changed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22fee54f-eb7f-4237-9d59-b9fb6c82c2f9?mode=deep",
+    "timestamp": "2026-02-19 01:33:19.715308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_oracle_info()] [Oracle Array Length] If the ids vector is extremely long (1000+ elements), can the function exceed computational limits or return incomplete data? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db6e6fe8-bc25-4621-ac5f-30eef788433b?mode=deep",
+    "timestamp": "2026-02-19 01:33:36.248432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_user_state()] [Multi-Reserve Health] The function returns balances across all reserves but doesn't compute health factor - can consumers incorrectly calculate health by not accounting for different LTVs per asset? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bbd8bc90-2326-47fb-8786-e1be092ae4bb?mode=deep",
+    "timestamp": "2026-02-19 01:33:58.085290",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_reserve_data()] [Index Growth Bounds] The supply_index and borrow_index can grow unbounded - can extremely large indices (near u256 max) cause overflow in balance calculations when multiplied with principal? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_283326b1-01e2-46f8-b9da-b66c51cac3f5?mode=deep",
+    "timestamp": "2026-02-19 01:34:17.291586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_reserve_data()] [Rate Calculation Dependency] The current_rate depends on utilization which depends on total_supply and total_borrow - can race conditions cause these to be inconsistent, returning impossible rate values? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8fa61cd1-b834-4c20-82fb-0eb4d46b564c?mode=deep",
+    "timestamp": "2026-02-19 01:34:37.119468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Module: getter] [No Emergency Controls] The module has no pause or emergency shutdown mechanism - should getter functions be disabled during protocol emergencies to prevent information leakage? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_926e9ecc-0932-4a96-b453-c36a66c243cc?mode=deep",
+    "timestamp": "2026-02-19 01:34:58.889102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_oracle_info()] [Multiple Oracle Queries] Each oracle ID is queried independently - can this enable price manipulation if attacker controls multiple oracle IDs and can set different prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc76d732-705c-4aa2-89ac-af462dfc1fe0?mode=deep",
+    "timestamp": "2026-02-19 01:35:21.129302",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_user_state()] [Address Validation] The user address parameter is not validated - can querying special addresses (0x0, module addresses) expose internal protocol state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c959321f-2d77-4f3b-ae6f-1ebf8f4e9cbb?mode=deep",
+    "timestamp": "2026-02-19 01:35:45.156180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_reserve_data()] [Treasury Accumulation] If treasury_balance grows very large, can it indicate fee extraction vulnerabilities or protocol revenue being locked? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_573566b1-7fff-42d9-905d-f359679fa4c5?mode=deep",
+    "timestamp": "2026-02-19 01:36:09.312277",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_reserve_data()] [Coin Type Collision] The coin_type is returned as ASCII String - can two different assets have the same coin type string, causing asset confusion in UIs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9254a1c4-8041-4f1f-949c-3de28bf8db84?mode=deep",
+    "timestamp": "2026-02-19 01:36:33.537545",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Module: getter] [Version Compatibility] This is in lending_ui module - if lending_core storage schema changes, can this getter module return corrupted or outdated data structure formats? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c3b46e5-8456-439b-b995-e649eeeab4f9?mode=deep",
+    "timestamp": "2026-02-19 01:36:59.740996",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_reserve_data()] [Jump Rate Model] The jump_rate_multiplier triggers above optimal_utilization - can attackers force utilization just above optimal to benefit from lower jump rates before they fully apply? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2fc328e-34d9-4a9f-9e71-1a95b2541902?mode=deep",
+    "timestamp": "2026-02-19 01:37:26.387367",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_oracle_info()] [Oracle Price Zero] If oracle::get_token_price returns price=0 with valid=true, can this zero price be used to manipulate vault asset valuations to zero? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f32774f8-1a9d-4472-b500-74e4c157828f?mode=deep",
+    "timestamp": "2026-02-19 01:37:53.040785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_user_state()] [Borrow Position Inversion] If a user has borrow_balance > supply_balance (undercollateralized), does this function properly indicate this state for liquidation detection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7dcaed0f-24c3-4046-854b-92a278c63f2d?mode=deep",
+    "timestamp": "2026-02-19 01:38:19.497614",
+    "report_generated": false
+  }
+]
