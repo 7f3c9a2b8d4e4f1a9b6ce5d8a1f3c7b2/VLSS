@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_deposit()] [Storage Mutation] Can storage state be manipulated between when_not_paused (line 184) and execute_deposit (line 191) calls? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_de207250-3d14-48fa-84da-438d957ce068?mode=deep",
+    "timestamp": "2026-02-19 03:53:37.221620",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_withdraw()] [Storage Verification] Does storage::version_verification() at line 226 prevent all version mismatch attacks or are there edge cases? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b6fd892-c70f-4bee-b050-1550e39fff7b?mode=deep",
+    "timestamp": "2026-02-19 03:53:50.122969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_borrow()] [Storage Consistency] Can storage be in inconsistent state between pause check (line 275) and execute_borrow (line 279)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7889064-2a01-4911-98ab-bb72ed876c02?mode=deep",
+    "timestamp": "2026-02-19 03:54:03.704020",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_repay()] [Storage Access] Does storage::version_verification() at line 320 check all relevant storage fields or can partial upgrades cause issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_866d37ff-759e-4da3-9d1f-371c29d6bd0f?mode=deep",
+    "timestamp": "2026-02-19 03:54:18.061370",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Storage Oracle ID] Can storage::get_oracle_id() at lines 453-454 return stale or incorrect oracle IDs for price fetching? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_36015f57-b4d3-4901-8376-a03c406f44bd?mode=deep",
+    "timestamp": "2026-02-19 03:54:33.788743",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_flash_repay()] [Storage Update] Does base_flash_repay() properly update storage state at line 535 or can flash loans bypass storage accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b9ab262-0b42-4228-a04b-5b89504ffb22?mode=deep",
+    "timestamp": "2026-02-19 03:54:50.221507",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: when_not_paused()] [Pause Check] Is when_not_paused() at line 85 sufficient to prevent all actions during pause, or can race conditions exist? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4da2e04e-dbea-4dc2-b9a7-53287e86c724?mode=deep",
+    "timestamp": "2026-02-19 03:55:08.152172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_deposit()] [Asset Validation] Does base_deposit() validate that 'asset' parameter at line 180 matches CoinType generic parameter? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb2c624f-f42d-4705-bb2f-6975a7d54196?mode=deep",
+    "timestamp": "2026-02-19 03:55:27.552377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Asset Mismatch] Can debt_asset and collateral_asset parameters at lines 412,415 be same value, enabling self-liquidation exploits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_231b8ea1-f73b-40bb-aed2-0a78016ad034?mode=deep",
+    "timestamp": "2026-02-19 03:55:48.288451",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_withdraw()] [Asset Type Confusion] Can CoinType generic not match asset u8 parameter, causing type confusion in accounting? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_77ab2827-c1ca-4c82-85ad-844aa3a72372?mode=deep",
+    "timestamp": "2026-02-19 03:56:10.890315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_deposit()] [Logic Execution] Does logic::execute_deposit() at line 191 properly validate deposit amount or can negative/overflow values pass through? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc620b38-0a59-4f62-a57c-6f97a14286f9?mode=deep",
+    "timestamp": "2026-02-19 03:56:32.272378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_withdraw()] [Logic Return] Can logic::execute_withdraw() at line 229 return normal_withdrawable_amount that exceeds user's balance? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_469f3342-d32e-4428-922f-fcd8497593cd?mode=deep",
+    "timestamp": "2026-02-19 03:56:55.465664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_borrow()] [Logic Health Check] Does logic::execute_borrow() at line 279 enforce health factor limits or can users over-borrow? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d15a3f15-efb5-48b2-a2a0-d1aba91a6e1e?mode=deep",
+    "timestamp": "2026-02-19 03:57:20.294586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_repay()] [Logic Excess Calculation] Can logic::execute_repay() at line 327 return normal_excess_amount larger than repay amount? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4009dc85-5d86-46f9-b176-0149326ccdbf?mode=deep",
+    "timestamp": "2026-02-19 03:57:44.967754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Logic Liquidation Amounts] Does logic::execute_liquidate() at line 431 properly calculate all three return values to prevent collateral/debt mismatch? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_34e50070-3886-42f9-8549-4b616b720903?mode=deep",
+    "timestamp": "2026-02-19 03:58:09.571702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_deposit()] [Logic State Update] Can logic::execute_deposit() fail to update user's deposit balance, causing silent failure? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c33c7a36-6381-4dc9-8782-2732c6a1860e?mode=deep",
+    "timestamp": "2026-02-19 03:58:32.620450",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_withdraw()] [Logic Collateral Check] Does logic::execute_withdraw() verify sufficient collateral remains after withdrawal? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ace0857-ee2f-4c44-b61c-747d44655b2c?mode=deep",
+    "timestamp": "2026-02-19 03:58:57.672004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_borrow()] [Logic Liquidity Check] Can logic::execute_borrow() allow borrowing more than available pool liquidity? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5590cf67-2964-421e-90fd-fc3f7f4214ae?mode=deep",
+    "timestamp": "2026-02-19 03:59:20.586734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_repay()] [Logic Debt Update] Does logic::execute_repay() correctly reduce user's debt or can debt persist after repayment? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e72aa5b7-7edf-4c0d-aa76-f365dd673a34?mode=deep",
+    "timestamp": "2026-02-19 03:59:44.077439",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Logic Health Factor] Can logic::execute_liquidate() be called on healthy positions, violating liquidation invariants? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ff8a488-8fc1-42cf-a923-b0c9392cecf9?mode=deep",
+    "timestamp": "2026-02-19 04:00:08.440901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: deposit_coin()] [Friend Access] Can friend modules lending_core::incentive_v2 or lending_core::incentive_v3 at lines 19-20 abuse deposit_coin() access? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2c28eb27-3822-4155-84a6-c13694df5b5c?mode=deep",
+    "timestamp": "2026-02-19 04:00:31.583674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: withdraw_coin()] [Friend Privilege] Do friend modules have unrestricted access to withdraw_coin() enabling fund extraction? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2afdad8c-ed8a-48f7-938c-676c5c3292e4?mode=deep",
+    "timestamp": "2026-02-19 04:00:56.037445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: borrow_coin()] [Friend Abuse] Can malicious friend module use borrow_coin() to drain protocol funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be635155-7cbf-4ff4-89bb-d381d98d6466?mode=deep",
+    "timestamp": "2026-02-19 04:01:22.995794",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: repay_coin()] [Friend Manipulation] Can friend modules manipulate debt positions via repay_coin() access? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ead613c9-3d23-4691-b276-5b7d4941ad43?mode=deep",
+    "timestamp": "2026-02-19 04:01:49.409160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: liquidation()] [Friend Liquidation] Do friend modules have liquidation() access that bypasses normal liquidation restrictions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46e03fed-c3d1-4f62-9e56-cb69c4afc5b6?mode=deep",
+    "timestamp": "2026-02-19 04:02:15.730465",
+    "report_generated": false
+  }
+]
