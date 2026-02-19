@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_info_object_id()] [State-Feed Mismatch] Can state::get_price_info_object_id() return ID for wrong network (testnet vs mainnet) or outdated object causing vault to reference invalid PriceInfoObject? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3c09dcab-1c68-4e7e-a985-48f6d8213f27?mode=deep",
+    "timestamp": "2026-02-19 01:02:38.097959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_info_object_id()] [Address Conversion Attack] Does sui::address::to_bytes(price_feed_id) correctly handle all address formats? Can attacker provide malformed address that converts to valid bytes but wrong object ID? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18798231-738f-45d5-807d-9c05c6f5516c?mode=deep",
+    "timestamp": "2026-02-19 01:02:51.028820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_info_object_id()] [Object ID Invalidation] If Pyth upgrades and PriceInfoObject IDs change, will get_price_info_object_id() return stale IDs that reference old/deleted objects causing vault operations to fail or use cached stale prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8cd14b90-1c1f-40af-81ec-be477abd07c8?mode=deep",
+    "timestamp": "2026-02-19 01:03:04.375326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_info_object_id()] [State Object Poisoning] Can an attacker provide malicious Pyth State object to get_price_info_object_id() that returns adversarial object IDs, causing vault to reference attacker-controlled price objects? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7affe550-bdd5-417f-99af-f3882b309087?mode=deep",
+    "timestamp": "2026-02-19 01:03:17.737373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_info_object_id()] [Null Object ID] Can state::get_price_info_object_id() return null/zero object ID if price_feed_id is invalid, and will this cause vault to reference default object or abort? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1487c7db-3b64-423c-83a2-2a81d99e444d?mode=deep",
+    "timestamp": "2026-02-19 01:03:31.952655",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_info_object_id()] [ID Resolution Timing] Can object ID returned from get_price_info_object_id() become invalid between resolution and actual price fetch, causing race condition where vault uses wrong or deleted object? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f93d9b31-14f2-4926-afa3-f712cec14c0b?mode=deep",
+    "timestamp": "2026-02-19 01:03:47.509083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_info_object_id()] [Feed ID Format Mismatch] Does get_price_info_object_id() validate that price_feed_id is in correct format for Pyth? Can attacker provide address that's valid Sui address but not valid Pyth feed ID? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8bb21436-a313-4c7e-bf85-614b50e53a1a?mode=deep",
+    "timestamp": "2026-02-19 01:04:04.551382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_info_object_id()] [Caching Vulnerability] If calling code caches result from get_price_info_object_id(), can this lead to using stale object IDs when Pyth updates feeds, causing vault to reference outdated price objects? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7ea00a7-bd88-409c-a11a-9d1c01290a51?mode=deep",
+    "timestamp": "2026-02-19 01:04:22.127887",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_info_object_id()] [Cross-Network Contamination] Can get_price_info_object_id() accidentally return object ID from different Sui network (devnet/testnet/mainnet) if State object is from wrong network? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7f8bb524-cd66-486b-9bae-0f0551b9c014?mode=deep",
+    "timestamp": "2026-02-19 01:04:40.943201",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_info_object_id()] [Object Ownership] Does get_price_info_object_id() validate that returned object ID is owned by correct entity (Pyth protocol) preventing attacker from creating fake PriceInfoObjects? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb4c5d48-7c76-4ffe-8d94-b86771a9c934?mode=deep",
+    "timestamp": "2026-02-19 01:05:01.406354",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Function] [Safe vs Unsafe Confusion] Can an attacker exploit developer confusion between get_price_native() (safe) and get_price_unsafe_native() (unsafe) by manipulating calling code to use unsafe version when safe validation is required? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f339096-aede-41b2-9afa-0d18f15c2830?mode=deep",
+    "timestamp": "2026-02-19 01:05:22.269426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Function] [Timestamp Consistency] Between get_price_native() and get_price_unsafe_native(), can timestamps diverge for same PriceInfoObject causing temporal inconsistency in vault operations if both functions are used? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f1df80d3-996b-4f35-aa82-bc65983dc338?mode=deep",
+    "timestamp": "2026-02-19 01:05:44.503890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Function] [Decimal Conversion Bypass] Can attacker call get_price_unsafe_native() directly and bypass decimal conversion, then inject raw price values into vault calculations causing decimal mismatch errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f10f8c1b-7539-486e-9cda-210bf7c0942a?mode=deep",
+    "timestamp": "2026-02-19 01:06:07.660338",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Function] [Price Feed Switching] If vault switches between using get_price_to_target_decimal() (validated) and get_price_unsafe_to_target_decimal() (unvalidated) based on conditions, can attacker trigger switch at malicious timing to exploit unsafe path? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2d275dd-90a2-415d-9e25-84e43a33cb41?mode=deep",
+    "timestamp": "2026-02-19 01:06:31.941759",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Function] [Identifier Validation Gap] Since get_identifier_to_vector() is only called in oracle_pro when provider is Pyth, can attacker bypass this validation by manipulating provider configuration or providing wrong provider type? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e654c16f-8651-4c7f-81ab-bf793cec59de?mode=deep",
+    "timestamp": "2026-02-19 01:06:55.727433",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Function] [State Object Sharing] If multiple functions share same State object reference, can mutation or poisoning of State affect all price fetches causing systemic oracle failure? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b164a525-b711-4cc4-a78a-6d1d51efdd55?mode=deep",
+    "timestamp": "2026-02-19 01:07:19.427989",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Function] [Clock Dependency] Since get_price_native() requires Clock but get_price_unsafe_native() doesn't, can attacker exploit clock manipulation in one path while other path is unaffected, causing price divergence? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d237e57-c483-47ac-b9c4-e3c5b502780d?mode=deep",
+    "timestamp": "2026-02-19 01:07:39.728614",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Function] [Return Value Ordering] All functions return tuples in specific order (price, decimal/timestamp) - can misinterpretation of return value positions cause vault to use decimal as price or timestamp as decimal? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46f6a297-f4c6-4bc6-9df8-d08108a4480c?mode=deep",
+    "timestamp": "2026-02-19 01:07:59.654700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Function] [Parallel Price Fetching] If vault fetches multiple prices concurrently using different adaptor_pyth functions, can race conditions cause price-timestamp-decimal mismatches in vault calculations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4dc4a331-54aa-40a7-935a-09fbb28625c9?mode=deep",
+    "timestamp": "2026-02-19 01:08:21.057459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Function] [Public Function Abuse] Since all functions are public, can external malicious contracts call these functions with crafted inputs to cause side effects or DoS in shared Pyth State/PriceInfoObject? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca0080c3-22a8-489e-af05-c2c6a8ccfca1?mode=deep",
+    "timestamp": "2026-02-19 01:08:44.038442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: oracle_pro] [Pair ID Bypass] In oracle_pro::get_price_from_adaptor() line 176-177, can an attacker craft PriceInfoObject where get_identifier_to_vector() returns bytes that match pair_id stored in OracleProviderConfig but represent different asset, bypassing asset type validation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f255d4c-2927-469c-b8a7-296d6cf29dd0?mode=deep",
+    "timestamp": "2026-02-19 01:09:06.653414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: oracle_pro] [Error Handling Gap] When get_price_unsafe_to_target_decimal() is called in oracle_pro line 178, what happens if it aborts? Does oracle_pro handle this gracefully or will vault operations fail without fallback? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_73da32a6-e7e7-4ede-900f-4588ecd99649?mode=deep",
+    "timestamp": "2026-02-19 01:09:29.304600",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: oracle_pro] [Timestamp Validation Weakness] Oracle_pro checks is_oracle_price_fresh() with timestamp from get_price_unsafe_to_target_decimal() - since timestamp is unvalidated, can attacker provide future timestamp making stale price appear fresh? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b4ffd2df-7ff8-4a13-bb8a-6f638a9fe06f?mode=deep",
+    "timestamp": "2026-02-19 01:09:53.174427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: oracle_pro] [Decimal Target Mismatch] When oracle_pro passes target_decimal to get_price_unsafe_to_target_decimal(), does it verify this matches oracle::decimal() for the asset? Can mismatch cause price to be in wrong decimal format? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2456e493-ee54-4c75-b58e-28912e252a76?mode=deep",
+    "timestamp": "2026-02-19 01:10:15.696455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: oracle_pro] [Primary-Secondary Price Divergence] If both primary and secondary use Pyth via adaptor_pyth, can attacker provide same stale PriceInfoObject to both, defeating price difference validation since both prices are identically stale? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87efe91e-5fcb-4323-b7a8-6b5e975f715c?mode=deep",
+    "timestamp": "2026-02-19 01:10:37.453323",
+    "report_generated": false
+  }
+]
