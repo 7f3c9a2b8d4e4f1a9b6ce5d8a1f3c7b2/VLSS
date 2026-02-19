@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: actuate()] [Shared Object Creation] Lines 59-70 create and share an aggregator - can unlimited shared object creation be used to DoS the network by bloating global state or causing consensus performance degradation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_df9c2f24-9f79-4698-8202-c37fd630d2a7?mode=deep",
+    "timestamp": "2026-02-19 00:19:26.694543",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Name Squatting] name parameter at line 84 is unrestricted - can an attacker register aggregators with names like 'ETH/USD' or 'Official BTC Price' to confuse users and redirect oracle queries to malicious feeds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3f5022f-93a2-4a61-b09e-48fb8cb45717?mode=deep",
+    "timestamp": "2026-02-19 00:19:39.682509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Resource Exhaustion via String] name is String type at line 84 with no length limit - can an attacker pass gigabyte-sized strings to exhaust transaction gas or storage, causing DoS during aggregator creation or event emission? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c87613c2-73a3-4ca5-947b-407daf463c40?mode=deep",
+    "timestamp": "2026-02-19 00:19:53.696281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: actuate()] [Event Emission Cost] AggregatorCreated event at lines 73-77 is emitted for every creation - can an attacker exploit free aggregator creation to spam events, degrading indexer/RPC performance for monitoring legitimate price feeds? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e786ed9f-b65a-4af2-bfa4-bc54cafa8f87?mode=deep",
+    "timestamp": "2026-02-19 00:20:07.565488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: actuate()] [Event Before Sharing] AggregatorCreated event is emitted at line 77 but aggregator sharing happens in aggregator::new() at line 59 - if sharing fails, is the event still emitted, creating false success signals that confuse monitoring systems? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a82e572-e12f-4e68-a630-95099a41aa4d?mode=deep",
+    "timestamp": "2026-02-19 00:20:22.690960",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: actuate()] [Aggregator ID Extraction Timing] aggregator_id is obtained from aggregator::new() at line 59 but we don't see the return signature - if this function can fail after ID assignment, can partial state lead to ID leakage or orphaned aggregators? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e3e15195-f647-4975-ba19-c0bf6519ef90?mode=deep",
+    "timestamp": "2026-02-19 00:20:39.882848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: actuate()] [Name Not Validated for Duplicates] name at line 75 is emitted in event without uniqueness check - can multiple aggregators with identical names cause indexer confusion, making it impossible to distinguish between legitimate and malicious oracles? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2366c541-c1e2-48f7-9a69-f950a1b5998a?mode=deep",
+    "timestamp": "2026-02-19 00:20:58.375878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Transaction Failure After Validation] validate() succeeds at lines 93-100 but actuate() could fail at lines 101-112 - can this create a state where parameters are checked but aggregator creation fails silently, wasting gas and creating ambiguity? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4187219b-a6e4-4f52-be65-6725010629a8?mode=deep",
+    "timestamp": "2026-02-19 00:21:17.582651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: actuate()] [Unchecked aggregator::new Return] aggregator::new() is called at line 59 with no error handling visible - if this function has internal validation or can panic, can an attacker craft inputs that pass validate() but cause aggregator::new() to abort, creating DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b0b4317-1b54-4061-81e7-84504fe636cd?mode=deep",
+    "timestamp": "2026-02-19 00:21:38.843585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: actuate()] [Queue ID Extraction] queue.id() is called at line 60 - if Queue object state is corrupted or id() returns incorrect/stale ID, can aggregators be created referencing non-existent or malicious queues? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb8092b0-4d26-487d-828d-8847048f155a?mode=deep",
+    "timestamp": "2026-02-19 00:22:00.258908",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Queue Version Trust] Line 37 trusts queue.version() return value - if a malicious Queue struct implements this to always return 1, can attackers bypass queue legitimacy checks entirely? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cdeb18d0-c401-4b01-b2bf-e565b652708f?mode=deep",
+    "timestamp": "2026-02-19 00:22:22.586675",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: actuate()] [Parameter Order Mismatch] Parameters passed to aggregator::new() at lines 59-70 - if the function signature changes or parameters are reordered, can silent bugs cause authority to be set to feed_hash or other dangerous mismatches? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_386884b1-6b45-44e1-b7e2-46f979bec61f?mode=deep",
+    "timestamp": "2026-02-19 00:22:47.082287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: actuate()] [Context Manipulation] ctx is passed at line 69 - if aggregator::new() uses ctx.sender() for any authorization, can the entry function caller impersonate the intended authority since authority is a separate parameter? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4d7ed5c5-393c-4cd0-90c4-068fceb44a00?mode=deep",
+    "timestamp": "2026-02-19 00:23:10.218527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [U64 Max Values] All numeric parameters are u64/u32 with only lower bounds - if downstream aggregator logic performs arithmetic (variance * samples, staleness + timestamp), can u64::MAX values cause overflow leading to incorrect staleness or variance calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_99d371fd-2cf9-4653-ab4d-2c704aee0e00?mode=deep",
+    "timestamp": "2026-02-19 00:23:30.800787",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: actuate()] [Timestamp Arithmetic] clock.timestamp_ms() at line 68 is u64 - when added to max_staleness_seconds (also unbounded u64), can overflow occur in future staleness checks, causing all data to appear fresh or all data to appear stale? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_16bb29fc-52b2-4492-98bc-226514331bb2?mode=deep",
+    "timestamp": "2026-02-19 00:23:49.499766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Min Responses U32 Max] min_responses is u32 at line 35 - if set to u32::MAX (4.2 billion), can this cause downstream arithmetic overflow when aggregator attempts to wait for or count responses? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ad3a3414-07d2-4296-a5fc-20869ef75c0b?mode=deep",
+    "timestamp": "2026-02-19 00:24:09.395250",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Sample Size Multiplication] min_sample_size at line 32 unchecked - if aggregator multiplies this by data size or count operations, can large values cause overflow, panic, or excessive gas consumption? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3e22e029-4119-44c6-a944-d1c759390b9b?mode=deep",
+    "timestamp": "2026-02-19 00:24:29.923435",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Variance Calculation Overflow] max_variance at line 34 - if variance is calculated as (max-min)*scale/mean, can max_variance near u64::MAX combined with extreme prices cause overflow in variance validation logic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e2b2d98-31ed-47f7-ad42-9fda94f188a3?mode=deep",
+    "timestamp": "2026-02-19 00:24:51.131227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Feed Hash Type Safety] feed_hash is vector<u8> at line 31 - beyond length check at line 40, can non-cryptographic content like all-zeros or sequential bytes create security issues if downstream code assumes cryptographic properties? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fdbd18ce-de46-41ce-b89a-3ea1d9431452?mode=deep",
+    "timestamp": "2026-02-19 00:25:13.336531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [String Name Injection] name parameter is String at line 84 with no sanitization - can injecting control characters, unicode exploits, or extremely long strings break indexers, UIs, or event parsers consuming AggregatorCreated events? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c8cab32a-6c6a-43be-869e-82198746b4f9?mode=deep",
+    "timestamp": "2026-02-19 00:25:33.388588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Vector Length vs Capacity] feed_hash.length() == 32 check at line 40 - does this verify actual content length or underlying capacity? Can a vector with capacity 32 but length 0 pass validation causing downstream crashes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea03bb58-0674-488e-86fc-c30daad72f4f?mode=deep",
+    "timestamp": "2026-02-19 00:25:55.250156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: actuate()] [Clock Type Verification] Clock reference at line 54 is not verified to be canonical Sui Clock - can a custom Clock struct with manipulated timestamp_ms() be passed to create backdated aggregators? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bf922bed-526f-4154-9273-5f47d7ca757e?mode=deep",
+    "timestamp": "2026-02-19 00:26:18.063752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Vault Oracle Poisoning] If Volo Vault uses these aggregators for asset pricing, can an attacker create aggregators with max_variance=MAX, min_responses=1, max_staleness=MAX, then manipulate a single oracle to report false prices, causing Vault to accept mispriced deposits/withdrawals and lose funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f92d7f2b-8802-47cf-9bdc-ab23d114cde2?mode=deep",
+    "timestamp": "2026-02-19 00:26:41.149799",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Health Limiter Bypass] If health limiter relies on these aggregators for Navi health factor calculations, can an attacker create loose aggregators accepting stale/manipulated prices, then borrow beyond safe limits without triggering health checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d86f24e-95fa-4a21-8125-58d0a6b27a2b?mode=deep",
+    "timestamp": "2026-02-19 00:27:05.613280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Liquidation Price Manipulation] Can an attacker create aggregators with extreme staleness for specific assets, wait for price crashes, then use stale high prices in liquidation checks to avoid being liquidated or to liquidate others unfairly? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e15d6ba8-1e88-40b8-a61b-e1dabfc01d82?mode=deep",
+    "timestamp": "2026-02-19 00:27:31.910246",
+    "report_generated": false
+  }
+]
