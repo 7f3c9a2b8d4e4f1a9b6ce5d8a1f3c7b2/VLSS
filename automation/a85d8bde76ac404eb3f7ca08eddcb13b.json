@@ -1,0 +1,92 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Partial Export Strategy] Multiple calls to export_stakes() with max_iterations batching could lead to inconsistent snapshots if validator balances change between calls. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_80fae754-2498-452f-b239-3b12ca2d5ad3?mode=deep",
+    "timestamp": "2026-02-19 04:08:03.947405",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: take_unclaimed_fees()] [Fee Calculation] collected_rewards is used directly as fee_amount at line 145, but this doesn't account for potential accrued fees during export_stakes() batching. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3db074e4-9bdf-496b-b845-d9ad15499003?mode=deep",
+    "timestamp": "2026-02-19 04:08:17.407684",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: import_stakes()] [Import Strategy] Why is import_amount a parameter instead of automatically importing all remaining balance from migration_storage? This adds complexity and potential for error. (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f46e05e-1180-4888-a5f4-9e1848dcfa1a?mode=deep",
+    "timestamp": "2026-02-19 04:08:31.269129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: destroy_migration_cap()] [Finalization Check] The function checks exported_count but not imported_count - how do we verify all exported stakes were actually imported? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a509d7df-035f-4727-af88-25c96e805e2e?mode=deep",
+    "timestamp": "2026-02-19 04:08:45.822926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Empty Native Pool] If NativePool has no staked SUI, exported_sui could be zero balance, but the function still proceeds - should this be allowed? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f617b142-9f9d-40ef-8f20-625bce72db63?mode=deep",
+    "timestamp": "2026-02-19 04:09:01.254502",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: import_stakes()] [Zero Import with Rebalance] If import_amount = 0 due to empty migration_storage, rebalance() still executes - could this redistribute stakes incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a698f77e-562c-42af-8c47-ae69436faf8a?mode=deep",
+    "timestamp": "2026-02-19 04:09:18.650308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: deposit_sui()] [Depositing During Migration] deposit_sui() can be called at any point during migration - what if it's called after destroy_migration_cap()? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_67ef1bae-f74b-4dc7-aa09-6b1a322c493f?mode=deep",
+    "timestamp": "2026-02-19 04:09:37.203547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Overall Flow] [Non-Atomic Migration] The entire migration is split across multiple function calls - could the chain state change between calls causing inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b5ff481-f76d-417b-aff7-7bf3d90c1337?mode=deep",
+    "timestamp": "2026-02-19 04:09:58.764516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Epoch Transitions] If an epoch transition happens during export_stakes() execution, could validator rewards be distributed inconsistently? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6c9f527c-dd27-4f54-b92d-e88fa4826b29?mode=deep",
+    "timestamp": "2026-02-19 04:10:22.165835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: import_stakes()] [System State Race] SuiSystemState is accessed during rebalance - if another transaction modifies it concurrently, could import stakes to wrong validators? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_737bd17e-14d4-44c3-b72d-7360ac5b8599?mode=deep",
+    "timestamp": "2026-02-19 04:10:45.565385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: init_objects()] [Balance Type] Balance<SUI> is created at line 79 - is there any validation that this is the correct coin type for the network? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a21226fa-a7ee-4320-b443-25d4d57562b7?mode=deep",
+    "timestamp": "2026-02-19 04:11:09.072026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: export_stakes()] [Balance Compatibility] exported_sui from export_stakes_from_v1 is joined to sui_balance - are these guaranteed to be the same SUI type? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6855031b-4587-4c2a-afe6-b54a08849133?mode=deep",
+    "timestamp": "2026-02-19 04:11:33.977216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: take_unclaimed_fees()] [Coin Conversion] Line 147 converts Balance to Coin via into_coin(ctx) - is there any precision loss in this conversion? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90ddd19b-6b26-43f4-b35c-feeaa8342dd1?mode=deep",
+    "timestamp": "2026-02-19 04:11:59.980034",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: import_stakes()] [LST Supply] Metadata<CERT> is passed to import operations - does importing stakes mint new LST tokens? If so, to whom? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_44ba7e7f-ca54-4b86-b109-405ee4c807ef?mode=deep",
+    "timestamp": "2026-02-19 04:12:27.052357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: import_stakes()] [Supply Inflation] If rebalance() mints LST tokens during migration, could this dilute existing V2 holders if migration happens slowly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29b56715-3f95-4461-8802-099d04391a6b?mode=deep",
+    "timestamp": "2026-02-19 04:12:54.964477",
+    "report_generated": false
+  }
+]
