@@ -1,0 +1,20 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: validate()] [Configuration Validation Gap] Does validate() check parameter relationships (e.g., min_attestations vs available oracles), or only individual parameter validity? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2cc7f9f-91f9-4957-878f-94f482105770?mode=deep",
+    "timestamp": "2026-02-19 05:48:26.007093",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: actuate()] [last_queue_override_ms Initialization] If last_queue_override_ms starts at 0, can attacker immediately perform guardian queue override without waiting, bypassing time-based protection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a46dda5b-079c-4420-a309-a6af2dd3e77e?mode=deep",
+    "timestamp": "2026-02-19 05:48:39.012683",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move] [Function: validate()] [Timestamp\n\n### Citations\n\n**File:** volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/oracle_queue_init_action.move (L1-94)\n```text\nmodule switchboard::oracle_queue_init_action;\n\nuse sui::event;\nuse std::string::String;\nuse switchboard::queue::{Self, Queue};\n\nconst EXPECTED_QUEUE_VERSION: u8 = 1;\n\n#[error]\nconst EInvalidOracleValidityLength: vector<u8> = b",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_37e28662-d592-4c9d-ac37-c150717cd3bf?mode=deep",
+    "timestamp": "2026-02-19 05:48:53.167529",
+    "report_generated": false
+  }
+]
