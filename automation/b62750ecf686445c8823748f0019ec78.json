@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_normalized_asset_price()] [Inconsistent Precision] Normalization to 9 decimals may not match vault's internal precision expectations - can this mismatch cause value calculation errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a3ba4d1-954f-421d-b36a-fbd34fa61918?mode=deep",
+    "timestamp": "2026-02-19 05:00:36.584600",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: coin_decimals()] [Unchecked Access] Directly accesses aggregators[asset_type].decimals without checking existence - can this panic if called for removed aggregators? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e04bcd6-f39a-4c75-ae1b-7dcb4672c842?mode=deep",
+    "timestamp": "2026-02-19 05:00:49.962615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: add_switchboard_aggregator()] [Duplicate Prevention] The function checks !config.aggregators.contains(asset_type) but doesn't prevent adding the same aggregator address for different asset types - can this cause confusion? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_628c9c3a-b0e9-4f73-84e8-103b2f1c4e7c?mode=deep",
+    "timestamp": "2026-02-19 05:01:03.622248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: add_switchboard_aggregator()] [Price Initialization] Calls get_current_price() for init_price which has its own staleness check - can an attacker add an aggregator with stale initial price if timing is manipulated? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a1c65c78-dfd1-4905-bf88-d36bc29f6699?mode=deep",
+    "timestamp": "2026-02-19 05:01:17.750303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: add_switchboard_aggregator()] [Missing Validation] No validation that decimals is within reasonable bounds (0-18) - can extreme decimals cause normalization issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c342101b-bd62-46da-98e7-5264c4935815?mode=deep",
+    "timestamp": "2026-02-19 05:01:32.870723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: add_switchboard_aggregator()] [Aggregator Verification] The function doesn't verify that the aggregator address is valid or that it actually exists - can adding a fake aggregator address cause future operations to fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b41e9173-1c4d-4b59-bf7c-691cd6a1fb1a?mode=deep",
+    "timestamp": "2026-02-19 05:01:50.793218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: add_switchboard_aggregator()] [Asset Type Collision] No validation of asset_type format or collision with existing types - can an attacker add malicious asset types that conflict with legitimate ones? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8696c6eb-e0a0-4a02-a85a-60aec1b65bdf?mode=deep",
+    "timestamp": "2026-02-19 05:02:09.851386",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: add_switchboard_aggregator()] [Clock Manipulation] Uses clock.timestamp_ms() for last_updated without validation - can clock manipulation allow backdated price entries? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b69a29e-b49d-435b-9fca-fa5b18f314f1?mode=deep",
+    "timestamp": "2026-02-19 05:02:30.663898",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: add_switchboard_aggregator()] [Event Emission Only] Only emits event but doesn't verify the operation succeeded - can failed additions appear successful in event logs? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_81148091-4770-4ccb-b33d-069d073b2232?mode=deep",
+    "timestamp": "2026-02-19 05:02:52.898383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: remove_switchboard_aggregator()] [Active Usage Check] Doesn't verify if the aggregator is currently in use by vault operations - can removing an active aggregator cause vault operations to fail mid-transaction? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6bdf4a50-5a0a-4d45-baa3-bcd9ff44b174?mode=deep",
+    "timestamp": "2026-02-19 05:03:15.467921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: remove_switchboard_aggregator()] [Price Persistence] After removal, can cached prices in vault logic still reference the removed aggregator, causing inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_10ecbc00-d22d-4073-9486-4b7f22750310?mode=deep",
+    "timestamp": "2026-02-19 05:03:39.825137",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: remove_switchboard_aggregator()] [Event Timing] Emits event before actual removal - if removal fails, will the event mislead external observers? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5f272945-71b6-45d0-a89e-61b6951beb26?mode=deep",
+    "timestamp": "2026-02-19 05:04:06.028229",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: remove_switchboard_aggregator()] [Reentrancy] Can an attacker call remove during an active price update, causing the update to reference a partially-removed aggregator? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e13831de-f307-42ee-bf77-0c32fefec0ab?mode=deep",
+    "timestamp": "2026-02-19 05:04:28.276994",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: remove_switchboard_aggregator()] [Missing Cleanup] Removes aggregator but doesn't clean up any references in other parts of the vault - can this cause dangling references? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0152b890-62d9-4ec0-9d75-a5c77dceb632?mode=deep",
+    "timestamp": "2026-02-19 05:04:48.778879",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: change_switchboard_aggregator()] [Price Discontinuity] Changes aggregator and immediately sets new price from get_current_price() - can this cause dramatic price jumps that violate vault's price movement limits? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_44e5b107-7bd2-4c65-b489-8988b8a51eff?mode=deep",
+    "timestamp": "2026-02-19 05:05:09.348817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: change_switchboard_aggregator()] [Atomic Operation] If get_current_price() fails, the aggregator address is already changed - can this leave the oracle in an inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b100623-390a-4491-9a4d-1f86d415bce8?mode=deep",
+    "timestamp": "2026-02-19 05:05:32.213333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: change_switchboard_aggregator()] [Event Order] Emits event with old_aggregator before price_info is fully updated - can this create race conditions in event processing? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c4e431c-ef5f-4681-bdc8-194a621e929f?mode=deep",
+    "timestamp": "2026-02-19 05:05:54.206638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: change_switchboard_aggregator()] [Decimal Mismatch] Doesn't verify that the new aggregator has the same decimals as the old one - can changing to an aggregator with different decimals cause value calculation errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5ab99437-7324-4fe0-9727-fc95b3190a13?mode=deep",
+    "timestamp": "2026-02-19 05:06:16.472942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: change_switchboard_aggregator()] [Price Manipulation] An operator can change to a malicious aggregator with manipulated prices - what prevents this attack vector? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3c49e8b-5f9c-45db-bc23-88a4a4167ce6?mode=deep",
+    "timestamp": "2026-02-19 05:06:38.590407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: change_switchboard_aggregator()] [Active Operations] Doesn't check if vault operations are in progress - can changing aggregators mid-operation cause value calculation inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3dbadf6a-7846-4ceb-99be-54783ee462d9?mode=deep",
+    "timestamp": "2026-02-19 05:07:00.812728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: change_switchboard_aggregator()] [Staleness Reset] Sets last_updated to current timestamp, effectively resetting staleness tracking - can this be abused to make old prices appear fresh? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db4cf5d6-c7ba-4be5-bb4c-d0b0d77b0edf?mode=deep",
+    "timestamp": "2026-02-19 05:07:24.519778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: update_price()] [Public Access] Function is public, allowing anyone to update prices - can an attacker spam price updates to manipulate vault operations or DoS the system? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0da0f58-9801-4bf7-b375-bd8301c6a4e4?mode=deep",
+    "timestamp": "2026-02-19 05:07:47.402895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: update_price()] [Aggregator Verification] Checks price_info.aggregator == aggregator.id().to_address() but doesn't verify the aggregator object is valid - can a malicious aggregator object be passed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c446d0d2-c839-4aef-9224-e76cce8a9b02?mode=deep",
+    "timestamp": "2026-02-19 05:08:10.056615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: update_price()] [Price Source Trust] Fully trusts get_current_price() result without additional validation - can compromised Switchboard aggregators inject malicious prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f64964cf-ad28-4b5d-a3e9-bde7b0e294e0?mode=deep",
+    "timestamp": "2026-02-19 05:08:32.242226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: update_price()] [Race Condition] Between get_current_price() and updating price_info, can another transaction change the aggregator, causing mismatch? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cd14eed2-ecbc-4c1c-999b-a013569e228e?mode=deep",
+    "timestamp": "2026-02-19 05:08:55.910388",
+    "report_generated": false
+  }
+]
