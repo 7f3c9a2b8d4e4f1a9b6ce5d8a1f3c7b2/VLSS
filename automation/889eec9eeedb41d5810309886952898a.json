@@ -1,8 +1,0 @@
-[
-  {
-    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/comparator.move] [All Functions] [Dependency Risk] If the Volo Vault or other components depend on this comparator module for ordering operations (e.g., price comparisons, sorting validators, comparing asset values), all such operations would abort and cause complete system failure. What is the impact if vault operations or adaptor logic calls any of these comparison functions? (Critical)",
-    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fab5837e-4903-4951-a583-2fffa94230ef?mode=deep",
-    "timestamp": "2026-02-19 02:43:51.344193",
-    "report_generated": false
-  }
-]
