@@ -1,0 +1,128 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [No Bounds Checking] Loop variable i and reserve indices have no bounds validation - can i-1 underflow or access out-of-bounds reserves causing panic or data corruption? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d702ca2f-d34b-4dee-be5d-b1acb070dbc4?mode=deep",
+    "timestamp": "2026-02-19 07:31:44.511798",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [No Event Emission] Function doesn't emit any events - can attacker manipulate values without any on-chain record, making forensics impossible after exploit? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7021a502-c799-4246-b369-871750034137?mode=deep",
+    "timestamp": "2026-02-19 07:31:57.360854",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [No Debugging] Function has no intermediate value logging - if position value is calculated incorrectly, how can operators debug which reserve or calculation step failed? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c1e4a9a5-4bbf-429f-9c01-b27a61bbda92?mode=deep",
+    "timestamp": "2026-02-19 07:32:10.769228",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Gas Griefing] Attacker can create positions in all reserves to maximize loop iterations at line 43 - can this cause update_navi_position_value() to exceed block gas limit? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_559f067e-18e0-46e6-8a00-7877605fd864?mode=deep",
+    "timestamp": "2026-02-19 07:32:25.548585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Inefficient Loop] Loop checks supply==0 && borrow==0 at line 58 after expensive operations (lines 44-56) - can reordering checks reduce gas cost and attack surface? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98636d4d-6151-4672-8a45-a0c4530d1305?mode=deep",
+    "timestamp": "2026-02-19 07:32:40.018048",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Cross-Asset Risk] Function values all reserves in same account together - if one reserve is compromised or has exploit, does it contaminate valuation of all other reserves in same position? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_032eb127-1e57-43ae-9afa-051e73c7f418?mode=deep",
+    "timestamp": "2026-02-19 07:32:55.930383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Asset Correlation] Function treats all assets independently - if multiple correlated assets (e.g., stablecoins) depeg simultaneously, can total value calculation be incorrect due to oracle lag? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8aae368-8a34-4c13-9777-62d403133638?mode=deep",
+    "timestamp": "2026-02-19 07:33:14.210072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: update_navi_position_value()] [Generic Type Constraint] PrincipalCoinType has no trait bounds (line 13) - can caller instantiate with non-coin type to bypass type safety checks in vault operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4cac9337-0059-4e5f-b671-a69467cc22cb?mode=deep",
+    "timestamp": "2026-02-19 07:33:33.650100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [U256 Semantics] All calculations use u256 (lines 36, 39, 40, 65, 66) - if values should be signed (e.g., net PnL), can overflow produce positive value when actual position is negative? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_313f4168-d637-4224-a942-c1e6e5af1a8f?mode=deep",
+    "timestamp": "2026-02-19 07:33:54.547360",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Zero Supply Positive Borrow] If total_supply_usd_value is 0 but total_borrow_usd_value is positive at line 74, function returns 0 - can this hide debt and allow vault to operate with negative net value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee74152e-7b98-4e6a-bbef-945827cef2a1?mode=deep",
+    "timestamp": "2026-02-19 07:34:16.149939",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [All Reserves Skipped] If all reserves have supply==0 && borrow==0 (line 58), loop never accumulates values - does returning 0 at line 78 correctly represent empty position vs error state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e29ce1e-2ba0-4a0d-b951-5a8720d95ab5?mode=deep",
+    "timestamp": "2026-02-19 07:34:38.550984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Partial Reserve Failure] If some reserves fail to price (oracle error) but others succeed, does function panic and lose all progress or can it partially succeed with incorrect total? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_df3ebacf-3331-427c-b868-8e2a0dbbd795?mode=deep",
+    "timestamp": "2026-02-19 07:35:01.772615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Ray Math Vulnerability] If ray_math::ray_mul() at lines 53-54 has rounding bug favoring supply over borrow, can attacker exploit this to artificially inflate net position value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bdf60346-fae8-4d38-b135-bd0d2b0ca88a?mode=deep",
+    "timestamp": "2026-02-19 07:35:25.498409",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Dynamic Calculator Trust] Function trusts dynamic_calculator::calculate_current_index() at line 48 - if calculator has bug or is exploitable, can it return manipulated indices that inflate/deflate positions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1221ad23-ca75-485c-b1b2-50151a18dd3c?mode=deep",
+    "timestamp": "2026-02-19 07:35:49.665965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Vault Utils Dependency] vault_utils::mul_with_oracle_price() is critical for valuation at lines 65-66 - if this function has precision bug, does it propagate to all Navi position valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83116f3c-b7b8-4bcb-b3ec-e535e36d2475?mode=deep",
+    "timestamp": "2026-02-19 07:36:15.005056",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [TODO Production Risk] Line 46-47 has TODO comment about index selection - is current dynamic index choice production-ready or placeholder that could be incorrect for actual Navi protocol? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b0f3f824-90b1-44b9-93c8-cb90a5d9adc4?mode=deep",
+    "timestamp": "2026-02-19 07:36:39.901620",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Module: volo_vault::navi_adaptor] [Missing Documentation] No module-level documentation - are there unstated assumptions about when/how to call these functions that could lead to misuse? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_40dc6dd8-448d-400f-b668-951dba96784c?mode=deep",
+    "timestamp": "2026-02-19 07:37:05.741697",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Exact Zero Comparison] Line 58 checks supply==0 and borrow==0 - if values are dust amounts (e.g., 1 wei), are they included in valuation and does this cause precision issues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eae3a458-7fbe-4a81-971b-9d05ab21c408?mode=deep",
+    "timestamp": "2026-02-19 07:37:32.184074",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Comparison Order] Line 74 checks total_supply_usd_value < total_borrow_usd_value - if values are equal (position exactly break-even), is returning positive net value correct? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ed508cc8-f774-4f86-8af4-a5c85156e89e?mode=deep",
+    "timestamp": "2026-02-19 07:37:59.550485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Reverse Iteration] Loop counts DOWN from reserves_count to 1 (lines 43, 59, 71) - is there semantic meaning to this order or can forward iteration introduce different results due to state changes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86b336e7-022b-496f-95ea-49b33d2e323e?mode=deep",
+    "timestamp": "2026-02-19 07:38:27.950121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/navi_adaptor.move] [Function: calculate_navi_position_value()] [Index Offset] Using i-1 for asset_id (lines 44, 51, 56) when i starts at reserves_count - if reserves are 1-indexed in Navi, does this skip the last reserve? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3faf1a36-49a6-4d7c-8a3a-1610793cea9f?mode=deep",
+    "timestamp": "2026-02-19 07:38:55.109942",
+    "report_generated": false
+  }
+]
