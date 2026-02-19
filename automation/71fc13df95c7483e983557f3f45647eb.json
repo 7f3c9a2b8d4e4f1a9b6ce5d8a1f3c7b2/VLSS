@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_balance()] [Minimum Check Bypass] At line 357, minimum is calculated as mul_with_oracle_price(total_shares, 1) - can an attacker add rewards when total_shares is manipulated to be low? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a10f2cc7-2667-48a3-9b32-dc32d0eae7a0?mode=deep",
+    "timestamp": "2026-02-19 01:35:08.863719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Actual Amount Calculation] At lines 515-519, actual_reward_amount is set based on minimum threshold - can this logic be exploited to prevent reward distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8376665f-2e79-4e9f-9a01-11520c8f3d5a?mode=deep",
+    "timestamp": "2026-02-19 01:35:22.200585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_new_reward_type()] [Bag Add Failure] At line 245, bag.add might fail if TypeName already exists - is this properly checked or can it cause state inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3bafaa4e-5af1-48b5-ac05-7a7f28863986?mode=deep",
+    "timestamp": "2026-02-19 01:35:35.767389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: remove_reward_buffer_distribution()] [Table Remove] At line 326, table.remove is called - does this properly clean up all associated state or leave dangling references? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9f075c3-c6a2-40c8-a525-b73615d7fb63?mode=deep",
+    "timestamp": "2026-02-19 01:35:50.081432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: reward_balance()] [Bag Borrow Safety] At line 717, bag.borrow is called without checking if TypeName exists - can this panic if reward type wasn't added? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a6f3297-e881-478a-b8e6-eb91f533ce01?mode=deep",
+    "timestamp": "2026-02-19 01:36:05.284967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: reward_amount()] [Table Access] At line 724, table.borrow is called directly - is there error handling if the reward type doesn't exist? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a44b7536-73b4-4cdc-81f3-f70bc13f012f?mode=deep",
+    "timestamp": "2026-02-19 01:36:22.666256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_new_reward_type()] [VecMap Insert] At line 247, reward_indices.insert adds new entry - can duplicate inserts cause overwrite or does it fail safely? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48175010-a013-4814-927c-1af00ca18e2e?mode=deep",
+    "timestamp": "2026-02-19 01:36:40.357576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: remove_reward_buffer_distribution()] [VecMap Remove] At line 327, distributions.remove is called - does this maintain order consistency for other operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d2899e4-c734-4b90-9209-5b93f3f4094e?mode=deep",
+    "timestamp": "2026-02-19 01:37:00.387864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_indices()] [VecMap Get/Mut] At lines 578 and 580, both get and get_mut are used - can this cause issues with borrow checker or state consistency? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa70cb7c-5e6e-4644-82a3-b58b0ee6447e?mode=deep",
+    "timestamp": "2026-02-19 01:37:22.545004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_receipt_reward()] [Keys Iteration] At line 654, reward_indices.keys() returns vector for iteration - is this gas-efficient for many reward types? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_71ee5dd9-f474-4abd-a2d7-840089329a4c?mode=deep",
+    "timestamp": "2026-02-19 01:37:45.542100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_balance()] [Freeze Check Order] At line 349, assert_operator_not_freezed is called after vault_id check - should freeze check come first to prevent any state reading? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dffe3f5e-d7b5-4afb-bfac-be76dd9a9173?mode=deep",
+    "timestamp": "2026-02-19 01:38:10.089111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: set_reward_rate()] [Freeze Bypass] At line 425, freeze check is done but rate update happens at line 437 - can operator status change between these lines? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e15708b-8ab6-4d31-8b88-1ae2efe5a192?mode=deep",
+    "timestamp": "2026-02-19 01:38:34.395694",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Vault Enable Check] At line 603, vault.assert_enabled() checks vault status - but what if vault becomes disabled during the claim execution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_43444efb-0734-4dd7-a7e1-81962d437bed?mode=deep",
+    "timestamp": "2026-02-19 01:38:59.335121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: create_reward_manager()] [Vault Association] At line 174, vault.set_reward_manager links them - can this be called multiple times to change reward_manager_id? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_32880cb7-6624-41a9-9346-b4378d6d9d11?mode=deep",
+    "timestamp": "2026-02-19 01:39:22.926630",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_balance()] [Vault ID Check] At line 348, vault_id matching is checked - but is the vault_id immutable or can it be changed maliciously? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4179fca5-3631-43d4-90a9-b16efacfb066?mode=deep",
+    "timestamp": "2026-02-19 01:39:47.925908",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Vault Coupling] Multiple functions check vault_id at lines 318, 348, 388, 424, 455, 473, 605, 673 - is this check sufficient or can vault be swapped? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_edb4638f-2a04-471c-a773-f3aca8d5ea28?mode=deep",
+    "timestamp": "2026-02-19 01:40:13.257985",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Rate Zero Handling] At line 483, if rate is 0, only last_updated changes - can this be exploited to skip reward periods without distributing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ff25de8c-7cb5-4e17-b9f5-6670a49f3989?mode=deep",
+    "timestamp": "2026-02-19 01:40:33.455713",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Rate Calculation] At line 498, new_reward uses rate * time_delta - is there overflow protection for extremely large rates or time gaps? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b40f635-d588-4b8c-ad2c-44a385d50ec8?mode=deep",
+    "timestamp": "2026-02-19 01:40:54.234017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: set_reward_rate()] [Rate Upper Bound] At line 428, rate must be < u256::max / 86_400_000 - but is this tight enough to prevent all overflow scenarios in line 498? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca02473d-c12c-4bb8-ab81-e9706e5375e7?mode=deep",
+    "timestamp": "2026-02-19 01:41:14.378824",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: set_reward_rate()] [Rate Zero Setting] Can rate be set to 0 at line 437, and does this permanently stop distribution even if buffer has rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a1a97bb4-557c-46a0-84ed-c1af2892376f?mode=deep",
+    "timestamp": "2026-02-19 01:41:34.660987",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_indices()] [Share Check] At line 568, total_shares must be > 0 - but what if all shares are burned after this check but before index calculation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_595d1166-d565-4add-af82-35355c249aa7?mode=deep",
+    "timestamp": "2026-02-19 01:41:54.711526",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_balance()] [Share Minimum] At line 356, minimum reward depends on total_shares - can an attacker manipulate shares to bypass the minimum? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22f5cb43-c3de-44e1-87c7-10f006f34243?mode=deep",
+    "timestamp": "2026-02-19 01:42:14.663781",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Zero Shares Skip] At line 524, if total_shares is 0, update_reward_indices is skipped - can rewards accumulate indefinitely when vault has no shares? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_928d470a-68c7-4db7-a313-0e628e9c8340?mode=deep",
+    "timestamp": "2026-02-19 01:42:36.386935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffers()] [Multi-Type Update] At lines 457-462, all buffer types are updated - if one type update fails, does it revert all or leave partial updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1f33e751-0e9d-4b61-8c0c-8e03793369fc?mode=deep",
+    "timestamp": "2026-02-19 01:42:59.354677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_receipt_reward()] [Multi-Type Reward] At lines 656-659, all reward types are processed - can iteration order affect reward calculations or cause inconsistencies? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b3f4554-ae71-426d-8c0b-a7b4bfbd92c7?mode=deep",
+    "timestamp": "2026-02-19 01:43:22.139550",
+    "report_generated": false
+  }
+]
