@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_div()] [Division by WAD] When dividing by exactly WAD, does wad_div behave correctly or does the rounding logic cause unexpected results? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f2d38e15-633d-42b3-9335-c65a2a940da6?mode=deep",
+    "timestamp": "2026-02-19 08:36:25.774799",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: ray_div()] [Division by RAY] When b = RAY, does ray_div correctly return a value equivalent to a, or does rounding alter the result? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_003b66b4-1ac9-46f8-b706-ff93962e6491?mode=deep",
+    "timestamp": "2026-02-19 08:36:38.724349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_mul()] [Near-Overflow] For values just below the overflow threshold in the assertion at line 49, does wad_mul produce correct results or can near-overflow cause unexpected behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b313bbd7-533e-4def-8dd2-7ec45546ea20?mode=deep",
+    "timestamp": "2026-02-19 08:36:52.168336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: ray_mul()] [Near-Overflow] When inputs approach the limit checked at line 76, can the final calculation still produce correct ray values? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d626050b-6753-42e4-bba1-aa8f9096adbe?mode=deep",
+    "timestamp": "2026-02-19 08:37:06.922279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_to_ray()] [Maximum Convertible] What is the maximum wad value that can safely convert to ray, and is this limit documented or enforced elsewhere in the vault logic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2506a5fe-5f45-420b-9a65-086bc9167c2b?mode=deep",
+    "timestamp": "2026-02-19 08:37:22.488811",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: ray_to_wad()] [Minimum Convertible] For very small ray values, does ray_to_wad return 0, and could this break minimum balance invariants in vault accounting? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ef3f847b-9a5c-4d29-8507-3d8c7eea0d42?mode=deep",
+    "timestamp": "2026-02-19 08:37:38.837269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_mul()] [Rounding Direction] Does the HALF_WAD addition at line 51 always round up (ceiling) or does it round to nearest, and can this be exploited in asymmetric operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63152caa-48ce-42a0-8e5f-48a9180c83e4?mode=deep",
+    "timestamp": "2026-02-19 08:37:54.816649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: ray_mul()] [Rounding Direction] Does HALF_RAY at line 78 provide banker's rounding or ceiling, and can the rounding direction be exploited in repeated operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a8fb4e3-f7b9-4939-967e-6c5a2b80e0e4?mode=deep",
+    "timestamp": "2026-02-19 08:38:12.510996",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_div()] [Rounding Direction] Does the halfB addition at line 64 round up or to nearest, and can users benefit from predictable rounding in withdrawal calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_692454c5-4d37-460c-9fd6-1368848b1409?mode=deep",
+    "timestamp": "2026-02-19 08:38:31.408165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: ray_div()] [Rounding Direction] With halfB addition at line 91, does the division round consistently for all input ranges, or can certain ranges produce biased results? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d579d99c-bf2e-414c-b074-4399d7713da4?mode=deep",
+    "timestamp": "2026-02-19 08:38:50.893364",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: ray_to_wad()] [Rounding Direction] Does halfRatio at line 98 cause ray_to_wad to round up, and is this appropriate for all vault operations or could it favor one side? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28170cc1-b1c0-4136-aaad-27f5cf71abf1?mode=deep",
+    "timestamp": "2026-02-19 08:39:11.768648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_mul() vs ray_mul()] [Precision Mismatch] When comparing results from wad_mul and ray_mul after appropriate conversions, can rounding differences cause equality checks to fail unexpectedly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_26f1607a-64d0-4949-ac16-c02067ba95b4?mode=deep",
+    "timestamp": "2026-02-19 08:39:33.496917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_div() vs ray_div()] [Division Inequality] For the same logical operation in different precisions, can wad_div and ray_div produce results that don't maintain expected mathematical relationships? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_61a3ec48-93c8-4b1c-aecc-7f7d58ae0f03?mode=deep",
+    "timestamp": "2026-02-19 08:39:56.719594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_to_ray() + ray_to_wad()] [Idempotence] Is converting wad→ray→wad idempotent (returns original value), or do rounding errors accumulate preventing exact equality checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5d94adf0-ac3d-440c-97b4-4df6451b7a3f?mode=deep",
+    "timestamp": "2026-02-19 08:40:20.511194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: Multiple] [Associativity] For operations like (a * b) * c vs a * (b * c) using wad_mul or ray_mul, do rounding errors cause non-associative results exploitable in vault calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f139f2f-3a63-42cb-8ae8-2ea3ff92b377?mode=deep",
+    "timestamp": "2026-02-19 08:40:44.668689",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: Multiple] [Commutativity] Are wad_mul and ray_mul commutative (a * b = b * a), or can rounding cause slightly different results based on argument order? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc603fba-99cd-49cb-a92e-0c66f9c1067d?mode=deep",
+    "timestamp": "2026-02-19 08:41:08.496382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_div()] [Gas Griefing] Can an attacker force expensive operations by calling wad_div with b close to 0, causing the division at line 64 to become gas-intensive? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3170de5-031b-456d-b9be-a2dec136ad51?mode=deep",
+    "timestamp": "2026-02-19 08:41:31.845941",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: ray_div()] [DoS via Zero] By manipulating protocol state to cause b=0 in ray_div, can an attacker cause repeated aborts at line 86, DoSing vault operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5c10861-b51b-4ee6-820f-3baf66cadef9?mode=deep",
+    "timestamp": "2026-02-19 08:41:54.703146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: Multiple] [Assertion Failures] Can an attacker craft inputs that repeatedly trigger overflow assertions, causing transaction failures that prevent legitimate users from interacting with the vault? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_078442aa-9d0e-4731-b855-96dafb5c3630?mode=deep",
+    "timestamp": "2026-02-19 08:42:15.245347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: All] [Pure Functions] Are all ray_math functions pure (no state reads/writes), preventing reentrancy attacks, or could external calls during these operations enable reentrancy? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ae61e55e-39d2-42b8-a608-7e85f5651c5f?mode=deep",
+    "timestamp": "2026-02-19 08:42:36.092288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: Multiple] [State Consistency] If vault operations use ray_math functions between state reads and writes, can an attacker exploit the time gap to cause state inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f58e4ca-45bb-4cf2-877f-3032ce3a38dd?mode=deep",
+    "timestamp": "2026-02-19 08:42:58.015545",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_mul()] [Specification Gap] The comment at line 40 says 'rounding half up to the nearest wad' - is this banker's rounding (round half to even) or always round up, and does implementation match? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_259c3068-a3f3-4893-8ed6-9a5843ccf082?mode=deep",
+    "timestamp": "2026-02-19 08:43:20.376714",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: ray_mul()] [Specification Gap] Does 'rounding half up to the nearest ray' at line 67 match the implementation, and could misunderstanding lead to incorrect usage in vault logic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3bc81882-771d-46de-8d28-a0fe5295d010?mode=deep",
+    "timestamp": "2026-02-19 08:43:42.021595",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: ray_to_wad()] [Documentation] Comment at line 96 says 'rounded half up' - is this accurate for all input ranges, or are there edge cases where rounding behaves differently? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_572261b9-2c08-4de2-bd12-d669f7e38180?mode=deep",
+    "timestamp": "2026-02-19 08:44:02.850445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_mul()] [Type Confusion] Can vault code accidentally pass ray values to wad_mul, causing massive overflow or incorrect results due to the 1e9 precision difference? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_45dc1d2c-2bf8-4e6b-b508-4c9941157a86?mode=deep",
+    "timestamp": "2026-02-19 08:44:24.670631",
+    "report_generated": false
+  }
+]
