@@ -1,3 +1,0 @@
-[
-  "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [All Functions] [DoS / Logic Missing] Does any Volo Vault production code path call these stub functions (add_delta, get_amount_x_for_liquidity, get_amount_y_for_liquidity, get_amounts_for_liquidity, get_liquidity_for_amount_x, get_liquidity_for_amount_y, get_liquidity_for_amounts, check_is_fix_coin_a)? If yes, all such paths will abort causing complete denial of service for affected vault operations. (Critical)"
-]
