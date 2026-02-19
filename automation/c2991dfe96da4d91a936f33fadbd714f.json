@@ -1,0 +1,14 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: run()] [Queue Capacity Limits] If the new guardian queue has insufficient capacity or different operational limits than the old queue, could this cause oracle update failures or degraded performance? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af19a390-2692-4276-84ce-4611785e58d1?mode=deep",
+    "timestamp": "2026-02-19 05:30:30.439102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_guardian_queue_id_action.move] [Function: actuate()] [Guardian Reward Distribution] When guardian_queue_id changes, how are pending guardian rewards from the old queue handled - could guardians lose rewards, creating incentive misalignment? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4056d825-49b1-44e4-ae97-dec124580cc5?mode=deep",
+    "timestamp": "2026-02-19 05:30:43.702123",
+    "report_generated": false
+  }
+]
