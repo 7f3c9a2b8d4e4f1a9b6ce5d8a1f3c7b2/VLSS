@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: to_shares()] [Share Rounding Error] to_shares uses math::to_shares which may round down. Can an attacker stake 1 wei SUI repeatedly when ratio > 1 to receive 0 shares, locking SUI in pool without issuing CERT? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b61bfd17-4089-4b11-bc4d-23f1f501a86a?mode=deep",
+    "timestamp": "2026-02-19 08:55:30.880483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: from_shares()] [Amount Rounding Error] from_shares uses math::from_shares which may round down. Can an attacker burn 1 wei CERT repeatedly to extract more SUI than entitled, draining pool via rounding theft? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e734076d-b3a3-40a2-bfc4-72970477fb25?mode=deep",
+    "timestamp": "2026-02-19 08:55:43.503122",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: get_ratio()] [Pending Balance Inclusion] get_total_staked includes pending balance. Can an attacker inflate pending before ratio snapshot to dilute existing CERT holders when rewards are added? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_66e2ba01-ef8d-4736-bfe7-6cb410253e34?mode=deep",
+    "timestamp": "2026-02-19 08:55:56.598342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: get_ratio()] [Epoch-Stale Total Staked] get_total_staked uses staked_update_epoch which may be old. Can an attacker stake large amount, wait for epoch transition without updating staked_update_epoch, then unstake at old ratio to extract profit? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e0785e2e-6b18-47ce-901a-98bc7e4fb61e?mode=deep",
+    "timestamp": "2026-02-19 08:56:10.323413",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: set_rewards_unsafe()] [Reward Override Attack] set_rewards_unsafe directly sets total_rewards without validation. If called via package-level mutation, can an attacker set total_rewards to MAX_UINT_64 to hyperinflate ratio? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8400973f-fac1-49fa-bd68-6b3a3e510e4d?mode=deep",
+    "timestamp": "2026-02-19 08:56:24.911211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: sub_rewards_unsafe()] [Underflow Protection Insufficient] sub_rewards_unsafe caps underflow by setting to 0 if value > total_rewards. Can an attacker exploit this to zero out total_rewards, deflating ratio and allowing cheap CERT purchase before rewards are re-added? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e1fd1950-981e-4047-97de-0c2b627c42b4?mode=deep",
+    "timestamp": "2026-02-19 08:56:41.738457",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: calculate_reward_fee()] [Fee Calculation Overflow] calculate_reward_fee uses math::mul_div(value, base_reward_fee, MAX_PERCENT). If value * base_reward_fee overflows u64, can this cause incorrect fee calculation or panic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0ad67f0-fae5-4f3a-bb5d-1aa5b4c48da0?mode=deep",
+    "timestamp": "2026-02-19 08:56:58.385803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Reward Fee Cap Logic] The function caps collectable_reward at self.collected_rewards. If collected_rewards is manipulated to 0 via mut_collected_rewards, can the pool fail to collect any fees on unstake, losing protocol revenue? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_47297936-6aa0-4e19-b01a-3b597c1bc18c?mode=deep",
+    "timestamp": "2026-02-19 08:57:16.448998",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Reward Fee Double Count] collectable_reward is accumulated from multiple validators then deducted from collected_rewards. Can rounding errors cause collected_rewards to underflow if sum of fees slightly exceeds collected_rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63817dcb-859b-4e35-80d8-f7d1718e5110?mode=deep",
+    "timestamp": "2026-02-19 08:57:36.717724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: get_total_rewards()] [Negative Rewards] get_total_rewards returns (total_rewards - collected_rewards). If collected_rewards > total_rewards, this underflows. Can an attacker use mut_collected_rewards to set collected_rewards > total_rewards, causing ratio to use MAX_UINT_64 as rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ded9e24-900d-463d-acfc-ae3728942225?mode=deep",
+    "timestamp": "2026-02-19 08:57:56.399631",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: sub_rewards_unsafe()] [Zero Rewards State] When sub_rewards_unsafe sets total_rewards to 0, collected_rewards may still be non-zero. Can this create inconsistent state where collected > total, breaking get_total_rewards calculation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_791e1816-bf7f-4f72-9861-b041bdb497b5?mode=deep",
+    "timestamp": "2026-02-19 08:58:16.338998",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: calculate_unstake_fee()] [Fee Precision Loss] calculate_unstake_fee uses math::mul_div(value, base_unstake_fee, MAX_PERCENT) where MAX_PERCENT=10000. If value < MAX_PERCENT/base_unstake_fee, result is 0. Can an attacker unstake amounts just below fee threshold to avoid fees? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b65d13e5-77ef-4700-b7c3-95505601b680?mode=deep",
+    "timestamp": "2026-02-19 08:58:37.195555",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: calculate_reward_fee()] [Fee Rate Manipulation] base_reward_fee is stored in pool but deprecated update functions abort. Can an attacker with package-level access modify base_reward_fee directly via unsafe mutations to zero out protocol fees? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa85771c-a732-4bb0-8546-cc02d9452544?mode=deep",
+    "timestamp": "2026-02-19 08:58:58.296528",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: calculate_unstake_fee()] [Fee Overflow] If base_unstake_fee is set to MAX_PERCENT (10000), calculate_unstake_fee returns full value as fee. Can an attacker manipulate base_unstake_fee to 10000 to confiscate all unstakes? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5de9054-440e-469a-affb-3c8b219b423c?mode=deep",
+    "timestamp": "2026-02-19 08:59:19.770514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Fee Balance Check] The function asserts balance >= fee + collectable_reward but calculates these separately. Can rounding in fee calculations cause assertion failure, DoSing unstakes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_153acb1b-0752-49e1-9c16-d2342622f917?mode=deep",
+    "timestamp": "2026-02-19 08:59:42.073055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Constants: MAX_PERCENT] [Fee Basis Point Mismatch] MAX_PERCENT is 10000 (100.00%) but fee values like base_unstake_fee=5 represent 0.05%. Can inconsistent interpretation cause off-by-100x fee charges? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb31e803-05a7-444f-a39a-10d12a0366d9?mode=deep",
+    "timestamp": "2026-02-19 09:00:03.046502",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Validator Loop Underflow] The loop uses i = length - 1 and i = i - 1 with check if i == 0 then break. Can off-by-one error cause loop to skip validator at index 0, leaving funds inaccessible? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78fa15a5-6b22-476a-909c-6b2ff4d3a550?mode=deep",
+    "timestamp": "2026-02-19 09:00:24.524263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Insufficient Unstake Amount] The loop breaks when total_removed_value >= amount_to_unstake. If last validator doesn't have enough stake, can this exit with total_removed_value < amount_to_unstake, shortchanging user? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e9218e8-a98a-47a9-a96f-1709ccb13843?mode=deep",
+    "timestamp": "2026-02-19 09:00:46.993420",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Pending Balance Consumption] The function starts by consuming all pending balance. If pending is large and exceeds amount_to_unstake, can this over-unstake and require unnecessary restaking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d4ebb8a4-bc2b-4e17-9e61-cad50430d1b1?mode=deep",
+    "timestamp": "2026-02-19 09:01:10.005732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Collectable Reward Subtraction] total_removed_value is calculated as balance minus collectable_reward. Can manipulation of collectable_reward calculation cause total_removed_value to be artificially low, triggering excess unstaking from validators? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b74df4db-1cbb-4834-87f9-3591224455ec?mode=deep",
+    "timestamp": "2026-02-19 09:01:32.699199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Excess Restaking Logic] After extracting fees, if total_removed_value > amount_to_unstake, excess is joined to pending and restaked via stake_pool. Can this trigger infinite recursion if stake_pool calls functions that trigger more unstakes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_14ff6873-3fbb-4b81-9f57-36c06742689a?mode=deep",
+    "timestamp": "2026-02-19 09:01:54.685717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Reward Fee Before Principal Tracking] The function calls sub_total_staked_unsafe(principals) but sub_rewards_unsafe(rewards) is called after. Can epoch transition between these calls cause misalignment between staked and rewards accounting? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5bacaa52-078f-4808-8be4-f287cef72e56?mode=deep",
+    "timestamp": "2026-02-19 09:02:15.886042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Fee Balance Assertion Timing] The assertion for fee balance happens after all unstaking. If mid-loop balance becomes insufficient, can the loop over-unstake before detecting insufficient funds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a8ab4410-cd59-456f-82e4-705de2a0a2ec?mode=deep",
+    "timestamp": "2026-02-19 09:02:38.361193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Collectable Fee Join Reentrancy] After calculating fees, coin::join is called on collectable_fee. Can reentrancy during join allow attacker to double-extract fees? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ee1accf-d59f-4312-b1e8-d84ffa41f01b?mode=deep",
+    "timestamp": "2026-02-19 09:03:02.552252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: collect_fee()] [Fee Drainage] collect_fee transfers entire collectable_fee balance to owner. Can an attacker with OwnerCap drain all accumulated fees, including fees needed for unstake operations in progress? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_408d0ca3-ed9d-42d2-93ca-f9d19b2810d0?mode=deep",
+    "timestamp": "2026-02-19 09:03:25.580610",
+    "report_generated": false
+  }
+]
