@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: zero()] [Critical DoS] All public functions contain 'abort 0' causing immediate transaction failure - if any Volo vault operation depends on i64 arithmetic, can an attacker trigger vault operations requiring signed integer math to permanently DoS the entire vault system? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2712ed3-b1b8-4e07-9ee2-765561c85ea2?mode=deep",
+    "timestamp": "2026-02-19 02:31:09.392303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: from_u64()] [Critical DoS] Function aborts unconditionally - if vault price calculations or adaptor position tracking use from_u64() to convert unsigned balances to signed values, can all vault deposits/withdrawals be permanently blocked? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86b4357b-a352-4baa-b58b-13ef21bd2116?mode=deep",
+    "timestamp": "2026-02-19 02:31:22.790961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: add()] [Critical DoS] Addition operation aborts unconditionally - if vault PnL calculations or adaptor balance reconciliation require signed addition, can an attacker force all vault operations into permanent failure state? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a22ede3-ddd9-4ed1-b298-939907733987?mode=deep",
+    "timestamp": "2026-02-19 02:31:36.420813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: sub()] [Critical DoS] Subtraction operation aborts unconditionally - if vault loss calculations or fee deductions use signed subtraction, can all vault accounting operations be permanently disabled? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22851d4b-a63b-404d-9907-33d1e55d49e1?mode=deep",
+    "timestamp": "2026-02-19 02:31:50.630874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: mul()] [Critical DoS] Multiplication operation aborts unconditionally - if vault share price calculations or adaptor leverage ratios require signed multiplication, can an attacker brick all vault math operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a12c12bc-9638-4ca2-b16f-5bc8c4057c92?mode=deep",
+    "timestamp": "2026-02-19 02:32:06.097436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: div()] [Critical DoS] Division operation aborts unconditionally - if vault APY calculations or adaptor position sizing use signed division, can all vault performance tracking be permanently disabled? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_38f93f93-0999-4fb6-bbf2-95d741c9a3ec?mode=deep",
+    "timestamp": "2026-02-19 02:32:22.837610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: cmp()] [Critical DoS] Comparison operation aborts unconditionally - if vault health checks or adaptor risk limits compare signed values, can an attacker prevent all vault risk management from functioning? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_284f7f1d-f3e2-430e-b880-8e1e27aa472e?mode=deep",
+    "timestamp": "2026-02-19 02:32:41.416459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: neg_from()] [Critical DoS] Negative number creation aborts unconditionally - if vault loss tracking or adaptor debt accounting requires negative value representation, can all vault loss scenarios become unhandleable? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3744e932-f11c-48a8-a0e8-c5fa0445366b?mode=deep",
+    "timestamp": "2026-02-19 02:33:01.218416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: abs()] [Critical DoS] Absolute value operation aborts unconditionally - if vault tolerance checks or adaptor position magnitude calculations use abs(), can all vault safety checks be bypassed through DoS? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_84ed7106-d71c-4a87-ad2b-5ac248dbfb52?mode=deep",
+    "timestamp": "2026-02-19 02:33:21.760617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: mod()] [Critical DoS] Modulo operation aborts unconditionally - if vault epoch calculations or adaptor periodic settlement logic require modulo with signed values, can all time-based vault operations fail? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb48c43a-0627-4b8c-b38f-21132cafc0af?mode=deep",
+    "timestamp": "2026-02-19 02:33:44.671310",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: add()] [Integer Overflow] Test shows add(MAX_AS_U64, 1) should abort - if implemented without overflow check and vault PnL accumulation adds maximum positive value + 1, can an attacker cause silent overflow wrapping to minimum negative value, falsely showing catastrophic loss? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f3f2763-b801-4a3c-bc0c-c35d4fe75adc?mode=deep",
+    "timestamp": "2026-02-19 02:34:08.921559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: add()] [Integer Underflow] Test shows add(neg_from(MIN_AS_U64), neg_from(1)) should abort - if implemented without underflow check and vault loss tracking adds minimum negative + negative 1, can silent underflow wrap to maximum positive, hiding total vault insolvency? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_abd26af9-9e57-48b2-a75f-941b06e43cd3?mode=deep",
+    "timestamp": "2026-02-19 02:34:35.045727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: wrapping_add()] [Wrapping Overflow] Test shows wrapping_add(MAX_AS_U64, 1) wraps to MIN_AS_U64 - if vault uses wrapping addition for PnL and attacker causes MAX profit + 1 gain, can wrapping to MIN cause vault to report maximum loss instead of overflow, enabling attacker to steal all funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d88a7d4-a220-40e2-8dbe-81b8338d702c?mode=deep",
+    "timestamp": "2026-02-19 02:35:01.669133",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: wrapping_add()] [Silent Underflow] If vault uses wrapping_add for loss accumulation and two large negative values wrap past minimum, can the vault silently report positive balance when actually insolvent, allowing continued operations despite insolvency? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90d61f7b-d26c-47b5-9b25-799ad28245f6?mode=deep",
+    "timestamp": "2026-02-19 02:35:28.611467",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: add()] [Positive Overflow Edge] Test validates add(MAX_AS_U64-1, 1) == MAX_AS_U64 succeeds but add(MAX_AS_U64, 1) aborts - if vault PnL calculation is at exactly MAX-1 and receives 2 units of profit, does missing boundary check allow overflow into negative range? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_32c1108f-2bfd-4a39-814d-6d5ad60c3717?mode=deep",
+    "timestamp": "2026-02-19 02:35:54.920411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: add()] [Negative Underflow Edge] Test validates add(neg_from(MIN_AS_U64-1), neg_from(1)) == MIN_AS_U64 succeeds but next step aborts - if vault loss tracking is at MIN+1 and suffers 2 units loss, can missing boundary check cause underflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5f918dbf-fc8d-4147-914c-2190d82824de?mode=deep",
+    "timestamp": "2026-02-19 02:36:21.771138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: add()] [Mixed Sign Addition] Test shows add(neg_from(MIN_AS_U64), from(1)) works correctly - but if implementation error treats MIN_AS_U64 incorrectly due to sign bit, can adding small positive to minimum negative cause unexpected overflow behavior in vault reconciliation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c345afe5-a0e7-40eb-9333-34222b6defb8?mode=deep",
+    "timestamp": "2026-02-19 02:36:48.404978",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: add()] [Zero Boundary] Tests show add(0,0), add(0,positive), add(0,negative) all work - but if implementation has special-case bug for zero handling and vault PnL starts at exactly zero, can first profit/loss update cause arithmetic error? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b5f477f-928b-4b5a-aea2-66c797f8408a?mode=deep",
+    "timestamp": "2026-02-19 02:37:13.438522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: sub()] [Subtraction Overflow] Test shows sub(MAX_AS_U64, neg_from(1)) should abort - if vault calculates profit = currentValue - (-debt) and currentValue is MAX, can subtracting negative (equivalent to adding positive) overflow into negative range, showing false loss? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_faa20cba-ff06-4da9-b44b-ed281ee4b1c5?mode=deep",
+    "timestamp": "2026-02-19 02:37:36.601996",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: sub()] [Subtraction Underflow] Test shows sub(neg_from(MIN_AS_U64), from(1)) should abort - if vault calculates loss = currentValue - benchmark where currentValue is minimum negative, can subtracting positive underflow past representable range? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_14f05869-2205-4da6-85f7-78d5c450498e?mode=deep",
+    "timestamp": "2026-02-19 02:37:57.104446",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: wrapping_sub()] [Wrapping Subtraction] Test shows wrapping_sub(MAX_AS_U64, neg_from(1)) wraps to negative MIN_AS_U64 - if vault uses wrapping subtraction for balance adjustments and subtracts negative from MAX, can wrapping cause vault to report massive loss when actually at maximum profit? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_048af300-48f3-4f49-9ef4-7cc469197cae?mode=deep",
+    "timestamp": "2026-02-19 02:38:16.828494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: wrapping_sub()] [Underflow Wrapping] Test shows wrapping_sub(neg_from(MIN_AS_U64), from(1)) wraps to MAX_AS_U64 - if vault loss calculation wraps minimum negative minus positive to maximum positive, can vault hide insolvency and continue operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78950ae5-1334-409c-963a-7a459ff077b9?mode=deep",
+    "timestamp": "2026-02-19 02:38:36.741734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: sub()] [Self Subtraction] Tests show sub(MAX, MAX) == 0 and sub(MIN, MIN) == 0 - but if implementation has floating point-style precision loss at extremes, can vault PnL calculation of position - position return non-zero when should be zero? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_04369891-d731-4742-89a0-e4b259de62e3?mode=deep",
+    "timestamp": "2026-02-19 02:38:56.546960",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: sub()] [Sign Flip in Subtraction] Test shows sub(from(1), from(1000000)) correctly returns negative - but if implementation incorrectly handles sign bit during borrow in subtraction, can vault balance calculations show wrong sign when withdrawals exceed deposits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1c830ad3-ad73-4620-891a-15c1d458be15?mode=deep",
+    "timestamp": "2026-02-19 02:39:18.248925",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: mul()] [Multiplication Overflow] Test shows mul(MIN_AS_U64/2, from(1)) and mul(neg_from(MIN_AS_U64/2), neg_from(2)) should abort - if vault share price calculation multiplies large position size by leverage factor without overflow check, can attacker trigger overflow to wrap to opposite sign value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6376eb60-ae1b-4c94-bbe1-dc77a039e856?mode=deep",
+    "timestamp": "2026-02-19 02:39:39.917927",
+    "report_generated": false
+  }
+]
