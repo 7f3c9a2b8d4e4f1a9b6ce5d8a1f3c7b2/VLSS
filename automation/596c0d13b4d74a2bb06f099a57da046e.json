@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: pre_vault_check()] [Authorization Bypass] Can an attacker exploit the commented-out `vault.assert_enabled()` check to perform operations on a disabled vault, bypassing the intended safety mechanism? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e1524111-67fc-4b5a-905a-b255289936a0?mode=deep",
+    "timestamp": "2026-02-19 00:08:41.941072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: pre_vault_check()] [Status Race Condition] If `pre_vault_check()` is called concurrently from multiple transactions, can the vault status be set to VAULT_DURING_OPERATION_STATUS multiple times before any operation completes, leading to parallel operations that violate single-operation invariant? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_70c46eeb-8a36-443d-a8db-9b0280ca4740?mode=deep",
+    "timestamp": "2026-02-19 00:08:54.613501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: pre_vault_check()] [Loss Tolerance Bypass] If `try_reset_tolerance()` fails silently or has a bug, can an attacker perform operations that exceed the epoch loss tolerance without the tolerance being properly reset, allowing unbounded losses? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc177f73-2077-4e64-bfc2-45ec4510c800?mode=deep",
+    "timestamp": "2026-02-19 00:09:08.727316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: pre_vault_check()] [Status Transition Attack] Can an attacker call functions that invoke `pre_vault_check()` without corresponding `end_op_value_update_with_bag()` to permanently lock the vault in VAULT_DURING_OPERATION_STATUS, causing DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9b7724c-0193-40fb-bde2-f03a069e0f74?mode=deep",
+    "timestamp": "2026-02-19 00:09:22.707012",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: pre_vault_check()] [Epoch Boundary Exploit] Can an attacker time operations at epoch boundaries to bypass tolerance reset checks, allowing loss accumulation across epoch transitions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6a79cc3f-c986-4821-911e-ca6a5c563d19?mode=deep",
+    "timestamp": "2026-02-19 00:09:37.616983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [Authorization Bypass] Can a malicious operator whose OperatorCap was frozen in another operation still call `start_op_with_bag()` if the freeze check `assert_operator_not_freezed()` has race conditions or doesn't properly validate cap ownership? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cdc5595d-d4e6-49d2-a332-533faee2cdb1?mode=deep",
+    "timestamp": "2026-02-19 00:09:54.786219",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [Type Confusion Attack] If `defi_asset_types` contains duplicate TypeNames or types not handled by the if-statement chain (lines 118-159), can an attacker cause assets to be borrowed but not tracked in the defi_assets bag, leading to asset loss? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_024ebb97-8651-4010-b6cd-d4993663f714?mode=deep",
+    "timestamp": "2026-02-19 00:10:11.363712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [Array Length Mismatch] While `defi_asset_ids.length() == defi_asset_types.length()` is checked, can an attacker provide malformed vectors where IDs don't correspond to types, causing `vault_utils::parse_key()` to return wrong asset keys and borrow incorrect assets? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ffd4a77d-1ab2-41e1-bb6a-361eb274f870?mode=deep",
+    "timestamp": "2026-02-19 00:10:30.144976",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [Bag Key Collision] Can an attacker craft defi_asset_ids that result in identical String keys from `vault_utils::parse_key()`, causing the second `bag.add()` to fail or overwrite the first asset, leading to asset loss? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_43117042-2827-4351-acbc-e03476b75b24?mode=deep",
+    "timestamp": "2026-02-19 00:10:50.081822",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [Missing Type Handling] If a valid DeFi asset type is added to the vault but not handled in the if-statement chain (lines 118-159), can it be borrowed from the vault but never added to defi_assets bag, allowing theft? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_015b7472-835f-41f2-9571-b7a5fddbf8bf?mode=deep",
+    "timestamp": "2026-02-19 00:11:10.590251",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [Integer Overflow] Can `principal_amount` or `coin_type_asset_amount` be set to u64::MAX causing overflow in subsequent balance operations or accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ecf5386-f18a-4eb1-b915-135e077f1d50?mode=deep",
+    "timestamp": "2026-02-19 00:11:32.518493",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [Free Principal Drain] If `principal_amount` exceeds available free principal, does `borrow_free_principal()` properly revert, or can an attacker drain more than available, affecting vault solvency? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_144a6331-5263-40d7-a565-75a5eee81b22?mode=deep",
+    "timestamp": "2026-02-19 00:11:56.032433",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [CoinType Asset Drain] If `coin_type_asset_amount` exceeds the vault's balance of that CoinType, can `borrow_coin_type_asset()` be exploited to borrow non-existent funds or cause underflow? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4680ba88-245b-4586-96ef-613951362ba5?mode=deep",
+    "timestamp": "2026-02-19 00:12:19.836595",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [USD Value Manipulation] Can an attacker manipulate the clock or oracle data passed to `get_total_usd_value()` to record an artificially low total_usd_value, then perform profitable operations that appear as gains instead of losses? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6daf71ab-fbd6-41e7-a0e0-c94049c44688?mode=deep",
+    "timestamp": "2026-02-19 00:12:42.790832",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [Share Supply Snapshot Attack] If `total_shares()` can be manipulated between the snapshot (line 179) and later share operations, can an attacker exploit share accounting discrepancies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_455ecf6b-ff82-4a01-b848-6fa76f1f4f20?mode=deep",
+    "timestamp": "2026-02-19 00:13:05.963052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [TxBag ID Mismatch] Can an attacker pass a vault reference but use a different vault_id in the TxBag structs, causing vault ID confusion in `end_op_with_bag()`? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9c64714-25f6-40e7-9775-9b5c2e989141?mode=deep",
+    "timestamp": "2026-02-19 00:13:30.364238",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [Event Data Manipulation] Can incorrect data in the OperationStarted event mislead off-chain monitoring systems, hiding malicious operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8d92882-aca8-4a4f-bb78-193476007b70?mode=deep",
+    "timestamp": "2026-02-19 00:13:54.870385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [ObligationType Generic Exploit] Can an attacker provide wrong ObligationType generic parameter causing type mismatch when borrowing SuilendObligationOwnerCap, leading to borrowing wrong obligations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e8f964a-bff9-437e-904b-664dd99a0411?mode=deep",
+    "timestamp": "2026-02-19 00:14:19.799393",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [Balance Zero Edge Case] If both principal_amount=0 and coin_type_asset_amount=0, are zero balances properly handled in all downstream operations without causing panics or accounting errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cd9a13a2-87ce-4915-b13f-d5809fc4ac8b?mode=deep",
+    "timestamp": "2026-02-19 00:14:43.460890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: start_op_with_bag()] [Multiple Asset ID Reuse] Can the same defi_asset_id appear multiple times in the vector, causing double-borrowing of the same asset and bag corruption? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28c1fe8b-f735-4c34-b9d3-91ef2b638d8c?mode=deep",
+    "timestamp": "2026-02-19 00:15:07.724036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: end_op_with_bag()] [Asset Return Bypass] If an attacker modifies the defi_assets bag between start and end operations, can they return different assets than borrowed, stealing high-value assets? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3fb6860-8b71-4500-b54c-0020325e8f6e?mode=deep",
+    "timestamp": "2026-02-19 00:15:32.004194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: end_op_with_bag()] [Type Mismatch Attack] If the defi_asset_types in TxBag don't match actual types in the bag, can the remove operations fail silently or return wrong assets, leaving assets unreturned? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_94920260-480d-442b-a779-06329ba18148?mode=deep",
+    "timestamp": "2026-02-19 00:15:55.094835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: end_op_with_bag()] [Vault ID Verification Bypass] Can an attacker pass a TxBag from one vault but execute end_op on a different vault, bypassing the vault_id check through ID collision or manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b697fda4-5c7d-401b-b351-e69c840526b3?mode=deep",
+    "timestamp": "2026-02-19 00:16:18.450219",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: end_op_with_bag()] [Incomplete Asset Return] If one of the asset types doesn't match any if-statement condition (lines 235-271), is the asset left in the bag causing `destroy_empty()` to fail, or worse, causing asset loss? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02994be2-9430-495b-b177-01cf2cba3eab?mode=deep",
+    "timestamp": "2026-02-19 00:16:42.758466",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: end_op_with_bag()] [Principal Balance Overflow] If the returned principal_balance is larger than what was borrowed, can this cause accounting overflow and allow operators to mint principal tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28b2da1f-0b9d-4074-8241-9b0ce730dc98?mode=deep",
+    "timestamp": "2026-02-19 00:17:07.514889",
+    "report_generated": false
+  }
+]
