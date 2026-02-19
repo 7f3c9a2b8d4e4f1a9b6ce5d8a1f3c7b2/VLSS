@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_linear_interest()] [Edge Case] When timestamp_difference is 0, the function returns ray() + 0 = ray() (1.0x multiplier) correctly - but is there any check that timestamp_difference is actually the difference between current and last timestamp and not negative? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9658df4-b128-4972-8ebc-19991ba38597?mode=deep",
+    "timestamp": "2026-02-18 23:51:54.283960",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_linear_interest()] [Missing Validation] No validation that rate is in reasonable bounds or matches the expected rate precision (RAY) - can mismatched rate units cause 1000x or 0.001x interest errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8900a17f-abff-4e2b-8f68-074a9c16449d?mode=deep",
+    "timestamp": "2026-02-18 23:52:07.125541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_linear_interest()] [Formula Correctness] Linear interest formula is simple ray() + rate * time / year - but if rate is annual and not adjusted to per-second, does this double-count the time conversion? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e174a7b2-3877-4992-b973-70065d83c3cb?mode=deep",
+    "timestamp": "2026-02-18 23:52:21.265190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_linear_interest()] [Comparison to Compound] This function is simpler than calculate_compounded_interest but may be used interchangeably - can an attacker force use of linear instead of compound to underpay interest in long-term positions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2cf46847-3e4e-4cba-8e08-b5294650f8b2?mode=deep",
+    "timestamp": "2026-02-18 23:52:35.375082",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_value()] [Oracle Manipulation] The function asserts is_valid but doesn't check price freshness or staleness - can an attacker use stale oracle prices to convert amounts at incorrect values for profit? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_05ca2943-7416-4dfc-bc28-1893c8102212?mode=deep",
+    "timestamp": "2026-02-18 23:52:50.961414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_value()] [Division by Zero] If decimal is so large that sui::math::pow(10, decimal) overflows or if it equals 0, will the division amount * price / pow(...) fail or produce incorrect values? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c7a61d4-d116-43fb-84a8-65454516d800?mode=deep",
+    "timestamp": "2026-02-18 23:53:07.623578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_value()] [Integer Overflow] When amount * price overflows u256 before dividing by the decimal adjustment, does this cause wrapped values enabling attackers to report tiny values for huge amounts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2c024cc7-8e71-454f-80d3-94106a0c913b?mode=deep",
+    "timestamp": "2026-02-18 23:53:25.269126",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_value()] [Precision Loss] The division amount * price / pow(10, decimal) truncates - with small amounts or large decimals, does this round down to zero incorrectly reporting no value for non-zero amounts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa7b2fa8-4a77-487a-9559-fba45390e306?mode=deep",
+    "timestamp": "2026-02-18 23:53:44.518465",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_value()] [Price Manipulation] If an attacker can front-run oracle updates or manipulate the PriceOracle object, can they pass inflated/deflated prices to convert amounts at wrong values for liquidation or collateral manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a1dee38-e731-4618-98fc-708c2cb4f52f?mode=deep",
+    "timestamp": "2026-02-18 23:54:04.705247",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_value()] [Decimal Mismatch] If oracle decimal doesn't match the asset's actual decimals, the conversion is wrong - is there validation that oracle_id corresponds to the correct asset with matching decimals? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d487d962-5017-44b4-abf5-53c34a794dd2?mode=deep",
+    "timestamp": "2026-02-18 23:54:27.177440",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_value()] [Oracle ID Manipulation] If an attacker can pass wrong oracle_id for an asset, can they use a different asset's price (e.g., using BTC price for USD) to massively misvalue amounts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fafc35c7-7bff-4273-807e-64b15fa1007c?mode=deep",
+    "timestamp": "2026-02-18 23:54:48.259755",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_value()] [U8 Overflow] The oracle_id is u8 (max 255) - is there validation that it's within valid oracle ID range, or can overflow/invalid IDs cause unexpected oracle behavior? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e7264f4-20aa-460c-9dd0-a2129d214e82?mode=deep",
+    "timestamp": "2026-02-18 23:55:11.516535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_value()] [Missing Bounds Check] There's no check that the calculated value is reasonable (e.g., not > protocol TVL) - can overflow or manipulation cause nonsensical values that break downstream calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f0d7cffc-7337-4b7c-baf8-6f5a60153e88?mode=deep",
+    "timestamp": "2026-02-18 23:55:34.316853",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_value()] [Price Zero] If oracle returns price = 0 (due to malfunction or manipulation), amount * 0 / pow = 0 incorrectly valuing all amounts as worthless - should there be a minimum price check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2fe9e438-20e8-41db-9728-c2efa3ac4de6?mode=deep",
+    "timestamp": "2026-02-18 23:55:57.136235",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_amount()] [Division by Zero] If oracle returns price = 0, the division value * pow / 0 fails causing DoS - can oracle manipulation force zero prices to halt amount calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7baadbe6-cc03-4ba4-a5e9-46abe1453160?mode=deep",
+    "timestamp": "2026-02-18 23:56:17.576146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_amount()] [Integer Overflow] When value * sui::math::pow(10, decimal) overflows u256 before dividing by price, does this cause wrapped amounts enabling attackers to receive massive token amounts for small values? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a047f9b4-ad23-4177-a0df-a1613f9ce529?mode=deep",
+    "timestamp": "2026-02-18 23:56:39.194447",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_amount()] [Precision Loss] The division value * pow(10, decimal) / price truncates - with small values or low prices, does this round down to zero incorrectly returning zero amount for non-zero value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_164677ee-1de6-4aaf-9896-21c6e06f55ce?mode=deep",
+    "timestamp": "2026-02-18 23:57:01.512604",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_amount()] [Oracle Manipulation] Like calculate_value, this trusts is_valid but not freshness - can stale prices enable attackers to convert values to amounts at outdated rates for arbitrage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18872346-0a6c-44bc-97d7-fefffed5ee5e?mode=deep",
+    "timestamp": "2026-02-18 23:57:26.029961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_amount()] [Price Manipulation] If an attacker can temporarily deflate price in the oracle, value * pow / tiny_price returns huge amount, enabling them to extract more tokens than their value justifies? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_93454a85-2c11-401a-a45e-3901253b7051?mode=deep",
+    "timestamp": "2026-02-18 23:57:48.054049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_amount()] [Decimal Mismatch] Similar to calculate_value, if oracle decimal doesn't match asset decimals, the conversion is systematically wrong - is there enforcement of correct oracle_id usage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fceb4f40-785c-4326-93c4-a18a786b1ea9?mode=deep",
+    "timestamp": "2026-02-18 23:58:12.305924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_amount()] [Oracle ID Manipulation] Can an attacker pass wrong oracle_id to use incorrect asset prices (e.g., using cheap asset price to calculate amount for expensive asset) and drain funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b108ed00-9608-479a-8179-23a10f872f96?mode=deep",
+    "timestamp": "2026-02-18 23:58:37.340943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_amount()] [Inverse Relationship] This function is inverse of calculate_value - is there validation that amount = calculate_amount(calculate_value(amount)) to prevent rounding exploits? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d50b03df-dc06-4492-8dc8-969d4abb70d4?mode=deep",
+    "timestamp": "2026-02-18 23:59:00.904361",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_amount()] [Missing Bounds Check] No validation that calculated amount is reasonable - can overflow or manipulation produce amounts exceeding total asset supply enabling minting attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca93db69-5812-4f6f-88a8-827772ba2ace?mode=deep",
+    "timestamp": "2026-02-18 23:59:24.573474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Function: calculate_amount()] [Price Spike] If price temporarily spikes to u256::MAX, the division value * pow / huge_price rounds to zero or tiny amount - can this be exploited during flash price manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_14c50ed1-012f-4a3c-9015-90c814faedca?mode=deep",
+    "timestamp": "2026-02-18 23:59:49.952506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/calculator.move] [Integration: caculate_utilization + calculate_borrow_rate] [Stale Data] If storage is updated between these two function calls, can inconsistent utilization cause borrow rate calculation to use wrong parameters, enabling rate arbitrage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c53f75fb-888b-448e-8c2a-5201c552e866?mode=deep",
+    "timestamp": "2026-02-19 00:00:16.878887",
+    "report_generated": false
+  }
+]
