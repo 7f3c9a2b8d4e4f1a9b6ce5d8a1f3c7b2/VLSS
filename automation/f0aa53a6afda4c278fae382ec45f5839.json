@@ -1,0 +1,80 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: mul() + div() + floor()] [Compound Precision Loss] Three operations losing precision: mul() loses remainder, div() loses remainder, floor() truncates decimals. In complex vault calculations, does compound loss allow attackers to gain significant value via many operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb53ba55-a8c2-4d53-a253-500197a641ea?mode=deep",
+    "timestamp": "2026-02-19 08:45:27.567649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Constant: WAD = 1e18] [Decimal Precision Choice] WAD is 1e18, providing 18 decimals. For SUI with 9 decimals native, this means 9 extra decimals. If vault handles assets with > 18 decimals, precision is lost. Could high-decimal assets be incorrectly valued? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6cbf05be-bda0-4c83-8764-1ca018ef0274?mode=deep",
+    "timestamp": "2026-02-19 08:45:40.560007",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Constant: U64_MAX] [Hardcoded Constant vs Standard] U64_MAX is hardcoded as 18446744073709551615 instead of using Move's std::u64::max_value(). If the constant has a typo or Move's u64 definition changes, inconsistency arises. Could incorrect constant cause subtle overflow bugs? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b55b17a-5f2e-4c1d-9f4d-d1a7755f4348?mode=deep",
+    "timestamp": "2026-02-19 08:45:54.387603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Constant: WAD in from_percent()] [Denominator Hardcoding] from_percent() divides by 100 (hardcoded). If protocol wants to change percentage representation, the constant is embedded. Could changing percentage conventions elsewhere cause mismatches? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b6469946-ad0d-47da-8d2c-aa40fc23de84?mode=deep",
+    "timestamp": "2026-02-19 08:46:08.283055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Constant: 10000 in from_bps()] [BPS Definition] from_bps() divides by 10000 (basis points definition). If external protocols use different BPS definitions (e.g., 1000), could integration cause 10x fee errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b7f8fb8-bd83-4259-ab92-73a0340fadf2?mode=deep",
+    "timestamp": "2026-02-19 08:46:23.252160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Struct: Decimal] [No Validation on Construction] Decimal struct has no constructor validation. from_scaled_val() allows creating Decimal with any u256 value. Could this enable creation of invalid Decimal values that break invariants elsewhere? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_40b92f74-a032-490f-bee3-c48d0e46f99a?mode=deep",
+    "timestamp": "2026-02-19 08:46:39.930187",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Struct: Decimal abilities] [Copy + Drop + Store] Decimal has copy, drop, store abilities. Copy means values are duplicated freely. In vault accounting, could copied Decimal values be used twice (double-counting assets)? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_25798baa-7047-4b48-a8a6-37af00a4ccb8?mode=deep",
+    "timestamp": "2026-02-19 08:46:57.839113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Struct: value field] [Direct Field Access] value field is public but there are no direct accessors except to_scaled_val(). If external code uses pattern matching to access value directly, could this bypass intended abstractions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cb14a715-1cba-448d-bc0b-181f9fc0f629?mode=deep",
+    "timestamp": "2026-02-19 08:47:16.938383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: from() + mul() + floor()] [Vault Share Minting] If shares = floor(mul(from(deposit), price)), the sequence: from() scales by WAD, mul() multiplies and divides by WAD, floor() truncates. Could this specific sequence have accumulated error patterns that favor/disfavor protocol? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab1cea28-e56a-4e8e-9882-ed11611252c4?mode=deep",
+    "timestamp": "2026-02-19 08:47:37.232119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div() + ceil() + mul()] [Withdrawal Amount Calculation] If amount = mul(ceil(div(shares, total_shares)), total_assets), ceil() rounds up the ratio, then mul() applies it. Could this systematically over-pay withdrawals, draining vault? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ad1d795f-9bbc-4cfe-ac92-65180ff107c7?mode=deep",
+    "timestamp": "2026-02-19 08:47:58.542870",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: sub() + div() + mul()] [Loss Calculation Chain] If loss_ratio = div(sub(before, after), before) then loss_amount = mul(total, loss_ratio), three operations compound error. Could this cause incorrect loss tolerance enforcement? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_021b11e3-8375-4fde-8cfd-60de890bfa3a?mode=deep",
+    "timestamp": "2026-02-19 08:48:19.201533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: add() + add() + ...] [Sequential Addition Overflow] If vault value is sum of many assets via sequential add() calls, and some intermediate sums overflow, the final result wraps. Could this cause total_usd_value to wrap to small value, breaking all checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50cdfafe-6875-4405-83e1-91fa219de51b?mode=deep",
+    "timestamp": "2026-02-19 08:48:40.995954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: pow() + mul()] [Compound Interest with Fees] If final_balance = mul(pow(from(rate), periods), initial) where rate includes fees, pow() precision loss + mul() precision loss compounds. Over long periods, could this significantly underestimate interest? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_66006a86-55ca-46df-8f2e-97101535a1f2?mode=deep",
+    "timestamp": "2026-02-19 08:49:03.718226",
+    "report_generated": false
+  }
+]
