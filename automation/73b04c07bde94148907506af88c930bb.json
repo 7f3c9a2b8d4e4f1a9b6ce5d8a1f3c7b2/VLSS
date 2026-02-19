@@ -1,0 +1,116 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: check_is_fix_coin_a()] [Amount Adjustment Logic] If the function adjusts returned amounts to match optimal ratio, can rounding in the adjustment cause vault to accept less of one token than required for the position? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4090f3ae-a6c2-4ac6-8e83-5e74e4d0c0c5?mode=deep",
+    "timestamp": "2026-02-19 01:40:00.817322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: check_is_fix_coin_a()] [Boolean Return Exploit] If is_fix_a=true means vault should only adjust amount_b to match amount_a, but implementation does the reverse, can users mint shares with insufficient collateral? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02ca0f72-4e76-4e2e-920c-7866f9c2f41b?mode=deep",
+    "timestamp": "2026-02-19 01:40:13.786679",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: check_is_fix_coin_a()] [Price at Exact Bounds] When current_sqrt_price == lower_sqrt_price or == upper_sqrt_price, will check_is_fix_coin_a() make consistent token selection decisions, or can boundary conditions cause flipping behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_575f3119-0782-48d2-b9a5-0b9dfb736e1a?mode=deep",
+    "timestamp": "2026-02-19 01:40:27.893953",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: check_is_fix_coin_a()] [Ratio Imbalance] If amount_a / amount_b ratio is far from the optimal ratio for current price, can check_is_fix_coin_a() return adjusted amounts that still result in unbalanced positions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f2949deb-a9ef-4bb3-b42d-a98af7d30a19?mode=deep",
+    "timestamp": "2026-02-19 01:40:41.669965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Module: mmt_v3::liquidity_math] [Cross-Function Consistency] If get_amounts_for_liquidity(L) returns (x, y), then get_liquidity_for_amounts(x, y) should return L. If rounding breaks this invariant, can repeated conversions drain vault value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_84325234-95b8-4f92-9efc-e9512a8f5aa7?mode=deep",
+    "timestamp": "2026-02-19 01:40:56.814646",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Module: mmt_v3::liquidity_math] [Rounding Direction Global Policy] If different functions use inconsistent rounding (some favor vault, some favor user), can attackers exploit the inconsistency by choosing optimal function call orders? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b433e570-2926-4f99-b031-c991687f646f?mode=deep",
+    "timestamp": "2026-02-19 01:41:13.267137",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Module: mmt_v3::liquidity_math] [Price Input Validation] Do any functions validate that sqrt prices are in valid ranges (> 0, < u128::max, properly ordered), or can vault operations pass invalid prices causing silent failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b006642d-30c6-48ee-9a5b-9fc5ce05e471?mode=deep",
+    "timestamp": "2026-02-19 01:41:31.482037",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Module: mmt_v3::liquidity_math] [Type Conversion Safety] Since functions convert between u64 amounts and u128 liquidity/prices, are all conversions checked for overflow/truncation, or can edge cases cause silent value loss? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1e68298-bdbf-4add-a571-3ad9acfaadff?mode=deep",
+    "timestamp": "2026-02-19 01:41:50.901970",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Module: mmt_v3::liquidity_math] [Precision Constant Q64] If implementation uses Q64 (2^64) fixed-point math, are all multiplications/divisions properly sequenced to avoid overflow, or can intermediate overflows occur? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c859689a-3bd8-404e-ba87-5868e0911622?mode=deep",
+    "timestamp": "2026-02-19 01:42:12.380916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: add_delta()] [Integration with Vault] When vault calls add_delta() to adjust liquidity in a Cetus position, if the function aborts, will vault properly handle the error or could it leave positions in inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_136101e7-fe89-4600-8612-a1034b7b3c67?mode=deep",
+    "timestamp": "2026-02-19 01:42:33.989513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_amount_x_for_liquidity()] [Integration with Vault] When vault uses get_amount_x_for_liquidity() to calculate withdrawal amounts, if round_up=true but vault uses result as minimum received, can users receive less than expected? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec60008e-2ee0-41f7-8685-2a0bc186635a?mode=deep",
+    "timestamp": "2026-02-19 01:42:56.272573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: get_liquidity_for_amounts()] [Integration with Vault] When processing deposits, if vault calls get_liquidity_for_amounts() and then get_amounts_for_liquidity() for validation, can rounding discrepancies cause transaction to abort unnecessarily? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_04e66ba8-81b1-44b9-a8e1-ffb1cf33c039?mode=deep",
+    "timestamp": "2026-02-19 01:43:18.666381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Module: mmt_v3::liquidity_math] [Oracle Price Integration] Since sqrt prices come from oracles (Switchboard), if oracle returns stale/manipulated prices, will these functions detect invalid prices or proceed with incorrect calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_26dcf532-d0c3-424b-8b49-18dd5dc22bdc?mode=deep",
+    "timestamp": "2026-02-19 01:43:41.441583",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Module: mmt_v3::liquidity_math] [Vault Operation Lifecycle] If vault starts an operation, calls multiple liquidity_math functions, and some abort mid-operation, can this leave borrowed assets stuck in external protocols? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_88165b2a-c481-491f-a329-28c2d991bbee?mode=deep",
+    "timestamp": "2026-02-19 01:44:03.197902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Module: mmt_v3::liquidity_math] [Liquidity Conservation] For any liquidity value L, get_amounts_for_liquidity(L) → (x, y), then total_value(x, y) should equal L * sqrt_price. Can this invariant be violated by rounding errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e15b7ed-8873-46e3-92ae-56e03134e0f9?mode=deep",
+    "timestamp": "2026-02-19 01:44:25.136269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Module: mmt_v3::liquidity_math] [Price Monotonicity] As sqrt_price increases, get_amount_x_for_liquidity() should decrease and get_amount_y_for_liquidity() should increase for constant L. Can implementation errors violate this? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3422a064-b6c8-4ec8-adc2-76813c0d9c87?mode=deep",
+    "timestamp": "2026-02-19 01:44:46.117892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Module: mmt_v3::liquidity_math] [Liquidity Positivity] For non-zero amounts, get_liquidity_for_amounts() should always return non-zero liquidity. Can rounding cause legitimate amounts to map to zero liquidity? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b650df36-aa64-41f9-be41-3262bd33a446?mode=deep",
+    "timestamp": "2026-02-19 01:45:07.680394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Module: mmt_v3::liquidity_math] [Amount Positivity] For non-zero liquidity in valid price range, get_amounts_for_liquidity() should return at least one non-zero amount. Can edge cases violate this? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6dac5c57-4e7f-4b54-8841-6b74283b7b8a?mode=deep",
+    "timestamp": "2026-02-19 01:45:29.510867",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/liquidity_math.move] [Function: add_delta()] [Delta Symmetry] If add_delta(L, +D) succeeds, then add_delta(L+D, -D) should return L. Can signed integer handling or rounding break this symmetry? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8fbbe28f-5df2-4bb1-a121-220d4a77a36b?mode=deep",
+    "timestamp": "2026-02-19 01:45:52.760280",
+    "report_generated": false
+  }
+]
