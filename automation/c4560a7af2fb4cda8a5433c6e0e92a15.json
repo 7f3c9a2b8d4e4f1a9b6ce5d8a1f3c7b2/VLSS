@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: create_obligation()] [Initialization Vulnerability] Can an attacker create multiple obligations with the same lending_market_id and manipulate the system by having inconsistent state across obligations, potentially bypassing health checks or accumulating excessive borrows across multiple obligation objects? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9ff2267-adea-4c39-ba8c-c34748dc57e3?mode=deep",
+    "timestamp": "2026-02-19 05:37:27.387234",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: create_obligation()] [State Initialization] Are all Decimal fields (deposited_value_usd, weighted_borrowed_value_usd, etc.) properly initialized to zero, or could uninitialized memory lead to incorrect health calculations immediately after creation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e62f8306-23ff-46a8-b4b1-069105f74809?mode=deep",
+    "timestamp": "2026-02-19 05:37:40.991986",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: refresh()] [Oracle Staleness] The function returns Option<ExistStaleOracles> but operations can proceed if exist_stale_oracles is true - can an attacker exploit stale oracle prices by timing their borrows/withdrawals when price data is outdated, effectively borrowing more than allowed or withdrawing when they should be liquidatable? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08ae9ca3-5185-4e98-a70a-53c5aca95c25?mode=deep",
+    "timestamp": "2026-02-19 05:37:54.272650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: refresh()] [Interest Compounding Timing] The refresh() function calls reserve::compound_interest() for each deposit and borrow - can an attacker manipulate the order of refresh calls across multiple reserves to exploit interest accrual timing, potentially compounding interest multiple times or skipping compounding to avoid debt increases? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4130fd44-684e-49a6-a96d-176e4953990b?mode=deep",
+    "timestamp": "2026-02-19 05:38:08.623757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: refresh()] [Value Calculation Order] The function calculates deposited_value_usd, allowed_borrow_value_usd, and unhealthy_borrow_value_usd in separate loops - could a race condition or reentrancy between deposit and borrow loops allow manipulation where deposit values are counted before being updated, enabling over-borrowing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_782df6c2-27a3-4034-82d1-8b8492e62e84?mode=deep",
+    "timestamp": "2026-02-19 05:38:24.021641",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: refresh()] [Market Value Bounds] The function uses both market_value and market_value_lower_bound for deposits (lines 193-200) - can price oracle manipulation create a large spread between these values, allowing an attacker to deposit at lower_bound pricing but withdraw at higher market_value pricing for profit? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e6604cd5-fb94-4ac8-b7b2-069d0e905bad?mode=deep",
+    "timestamp": "2026-02-19 05:38:40.846776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: refresh()] [Borrow Weight Multiplication] Weighted_borrowed_value_usd multiplies market_value by borrow_weight (lines 253-260) - if borrow_weight is misconfigured to be less than 1.0, could this allow borrowing more than the actual market value, breaking the collateralization invariant? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_33f014d5-9618-4e83-ba58-64136ce046bd?mode=deep",
+    "timestamp": "2026-02-19 05:38:58.554121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: refresh()] [Upper Bound Manipulation] The function calculates weighted_borrowed_value_upper_bound_usd using market_value_upper_bound (lines 261-268) - can an attacker exploit the difference between market_value and market_value_upper_bound to borrow using the lower market_value check but have health calculated with upper_bound, effectively bypassing health limits? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e7937180-2d8a-4f5e-846b-68e1b779109b?mode=deep",
+    "timestamp": "2026-02-19 05:39:16.953584",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: refresh()] [Isolated Asset Flag Race] The borrowing_isolated_asset flag is set during refresh (line 270-272) - can an attacker front-run the refresh() call and add a non-isolated borrow before the flag is set, violating the isolated asset invariant that should restrict to single borrows? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a8be9266-7726-4f57-9b28-e5a2b6f63e20?mode=deep",
+    "timestamp": "2026-02-19 05:39:38.320771",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: refresh()] [Decimal Overflow in Sum] The loops accumulate deposited_value_usd and borrowed values without overflow checks - can an attacker create many small deposits/borrows that individually pass checks but whose sum overflows Decimal limits, causing health calculations to wrap around and show healthy when actually over-leveraged? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1a44b26a-2124-4092-9931-65c8dbbb964c?mode=deep",
+    "timestamp": "2026-02-19 05:39:59.037629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: refresh()] [Stale Oracle Return Value] If exist_stale_oracles is true, an Option<ExistStaleOracles> hot potato is returned - but what prevents a caller from simply destroying this hot potato in a wrapper function without proper validation, allowing stale price operations to proceed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_452c07c4-2fcd-4722-94de-117f468e49fb?mode=deep",
+    "timestamp": "2026-02-19 05:40:20.670077",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: refresh()] [Reserve Array Index Bounds] Deposit and borrow objects store reserve_array_index - if this index is out of bounds or points to a different reserve than expected, could vector::borrow_mut panic or access wrong reserve data, causing incorrect health calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29b6d2e0-cd37-4c2f-adaf-c117b7be3731?mode=deep",
+    "timestamp": "2026-02-19 05:40:43.338073",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: deposit()] [MAX_DEPOSITS Bypass] The function checks MAX_DEPOSITS (5) after calling find_or_add_deposit() (line 299) - can an attacker exploit this by calling deposit() concurrently from multiple transactions, racing to exceed MAX_DEPOSITS before the check is enforced? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ba9797b1-3b47-4066-9270-2790ae407f89?mode=deep",
+    "timestamp": "2026-02-19 05:41:05.001803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: deposit()] [Same Asset Check] The function asserts that borrow_index equals vector length to prevent depositing and borrowing the same asset (lines 301-305) - but what if an attacker deposits, borrows a different asset, then tries to borrow the deposited asset - does the reverse check exist in borrow()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_137baf10-a4ca-4814-9b3a-86adaeb0d7dc?mode=deep",
+    "timestamp": "2026-02-19 05:41:26.779497",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: deposit()] [CToken Amount Overflow] The deposited_ctoken_amount is incremented without overflow check (line 309) - can an attacker deposit repeatedly with max u64 amounts to overflow this field, causing the deposit amount to wrap to zero and enabling withdrawal of ctokens they never deposited? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_953ffdc1-940c-41c1-a76a-881be407ff19?mode=deep",
+    "timestamp": "2026-02-19 05:41:46.782540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: deposit()] [Health Value Update Without Refresh] The function updates allowed_borrow_value_usd and unhealthy_borrow_value_usd without enforcing price freshness (lines 318-333) - can an attacker deposit with stale prices showing high collateral value, then immediately borrow against inflated collateral before prices refresh? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18b15a72-2d9e-48d5-b7dd-60e4aadc3f80?mode=deep",
+    "timestamp": "2026-02-19 05:42:08.121973",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: deposit()] [Lower Bound vs Normal Value] For allowed_borrow_value_usd, the function uses ctoken_market_value_lower_bound, but for unhealthy_borrow_value_usd it uses regular market_value (lines 321-332) - can price oracle manipulation create situations where lower_bound is artificially high while market_value is low, enabling over-borrowing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b98bd4d-dd7b-4b31-a8c2-e1941f58c19c?mode=deep",
+    "timestamp": "2026-02-19 05:42:30.028924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: deposit()] [Reward Manager Index] The function uses deposit.user_reward_manager_index without validating it's within bounds (lines 335-337) - can an invalid index cause out-of-bounds access to user_reward_managers vector, leading to panic or incorrect reward accounting? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1579e634-41c0-4821-b521-baab8c938aaa?mode=deep",
+    "timestamp": "2026-02-19 05:42:52.078572",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: deposit()] [Market Value Double Count] If deposit() is called twice in quick succession before refresh(), does market_value get added correctly both times, or could the second deposit double-count the first deposit's value due to stale deposit.market_value from line 316? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_792bf6af-d2d1-4576-a90b-52ab448be6c5?mode=deep",
+    "timestamp": "2026-02-19 05:43:13.105893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: deposit()] [Open LTV Zero] If open_ltv for a reserve is zero, the allowed_borrow_value_usd won't increase - but can an attacker deposit zero-LTV collateral to inflate deposited_value_usd metrics while not actually providing borrowing capacity, potentially manipulating liquidation calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ef84f977-9459-4363-8006-527d604baf77?mode=deep",
+    "timestamp": "2026-02-19 05:43:34.350440",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: borrow()] [Health Check Timing] The function checks is_healthy() at the end (line 402) after updating all values - can an attacker exploit the window between value updates and health check by front-running with a deposit in another transaction to make the health check pass? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ccda98e-a5f6-4b18-b342-15ab613979fa?mode=deep",
+    "timestamp": "2026-02-19 05:43:56.269328",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: borrow()] [MAX_BORROWS Race] Similar to deposits, MAX_BORROWS check (line 356) happens after find_or_add_borrow() - can concurrent borrow() calls exceed the limit of 5 borrows before the check enforces it? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_504a2db1-31ef-44b1-b802-d35c6b18e115?mode=deep",
+    "timestamp": "2026-02-19 05:44:19.960675",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: borrow()] [Borrowed Amount Overflow] The borrowed_amount is incremented with add() (line 365) - while Decimal has internal checks, can an attacker borrow maximum amounts repeatedly to overflow the Decimal representation, causing borrowed amount to wrap to zero and enabling unlimited borrowing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f62d8245-7c5b-4c7f-80e8-3bc87f9733b2?mode=deep",
+    "timestamp": "2026-02-19 05:44:41.896535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: borrow()] [Market Value vs Upper Bound] The function updates both market_value and market_value_upper_bound separately (lines 368-372) - can price manipulation create a scenario where the health check passes with upper_bound but actual market_value is much higher, enabling over-borrowing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cb5d3572-4995-4a12-a2bb-8adc226231c5?mode=deep",
+    "timestamp": "2026-02-19 05:45:05.225984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: borrow()] [Borrow Weight Exploit] If borrow_weight is less than 1.0, weighted_borrowed_value_usd will be less than actual market value - can this be exploited to borrow more than the unweighted value should allow, breaking liquidation calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_40c3a2e0-a969-423c-8426-45f58b358c81?mode=deep",
+    "timestamp": "2026-02-19 05:45:29.715685",
+    "report_generated": false
+  }
+]
