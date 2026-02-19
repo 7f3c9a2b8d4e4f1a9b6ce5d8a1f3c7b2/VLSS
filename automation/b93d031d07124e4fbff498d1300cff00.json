@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: deposit_incentive_v3_reward_fund()] [Balance Mismatch] If deposit_coin value < amount due to race condition, can the split at line 107 fail, causing DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56b7771e-c85a-40d2-8d5d-3d16a0e09936?mode=deep",
+    "timestamp": "2026-02-19 05:07:04.256518",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: deposit_incentive_v3_reward_fund()] [Type Mismatch] Can generic T not match reward_fund's actual type, causing deposit_reward_fund to fail or deposit wrong token? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63b6acb1-1a5a-40d2-a2b9-2e2c5acc9efc?mode=deep",
+    "timestamp": "2026-02-19 05:07:17.335191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: deposit_incentive_v3_reward_fund()] [Overflow Risk] If reward_fund balance + amount > u64::MAX, can deposit cause overflow in balance tracking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7205bf23-6b95-4d06-8ee6-ed9affac88bf?mode=deep",
+    "timestamp": "2026-02-19 05:07:31.136460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: deposit_incentive_v3_reward_fund()] [Cap Bypass] Can IncentiveOwnerCap requirement be bypassed if cap is shared or duplicated across multiple transactions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_64b541a5-41fe-4d10-8647-eb322a213ede?mode=deep",
+    "timestamp": "2026-02-19 05:07:46.129968",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: deposit_incentive_v3_reward_fund()] [Remaining Coin Loss] If sender can't receive the remaining deposit_coin (e.g., no receive function), can funds be locked? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9e6a70a-b2fb-4139-8260-cb5d4b91197d?mode=deep",
+    "timestamp": "2026-02-19 05:08:01.657152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_incentive_v3_reward_fund()] [Amount Validation] Does withdraw_reward_fund at line 115 validate that amount <= balance, or can excessive amount cause underflow panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3620c681-885d-4529-816a-d8856f396643?mode=deep",
+    "timestamp": "2026-02-19 05:08:18.378898",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_incentive_v3_reward_fund()] [Recipient Validation] Can recipient at line 117 be zero address or invalid address causing fund loss? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5ab9d74-fce9-4aa1-926d-28bd2a93b1cb?mode=deep",
+    "timestamp": "2026-02-19 05:08:35.542065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_incentive_v3_reward_fund()] [Unauthorized Withdrawal] If StorageAdminCap is compromised, can attacker drain all reward funds to their address? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f5fb5f5-0b22-457d-9f50-b5f44fe950c8?mode=deep",
+    "timestamp": "2026-02-19 05:08:53.283110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_incentive_v3_reward_fund()] [Withdrawal During Distribution] Can the admin withdraw reward funds while incentives are actively distributing, breaking reward calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7fd4776a-99e1-4e5c-949b-ad824ad174e4?mode=deep",
+    "timestamp": "2026-02-19 05:09:10.454859",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_incentive_v3_reward_fund()] [Type Confusion] Can generic T mismatch actual fund type, causing wrong token withdrawal? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8c2db4fa-fe10-4d3f-84aa-9a4caf6cad07?mode=deep",
+    "timestamp": "2026-02-19 05:09:27.853193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_incentive_v3_reward_fund()] [Reentrancy] Can recipient's receive hook at line 117 reenter withdraw_incentive_v3_reward_fund before balance update? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6fcb00e4-eff5-4c47-a4e5-cbafe89c7f6e?mode=deep",
+    "timestamp": "2026-02-19 05:09:46.025794",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_incentive_v3_reward_fund()] [Complete Drain] Can amount = total_balance drain entire reward fund, leaving no rewards for distribution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_39be1899-1136-4a59-9434-0e02cb76f597?mode=deep",
+    "timestamp": "2026-02-19 05:10:06.070152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_incentive_v3_reward_fund()] [Zero Withdrawal] Can amount = 0 be used to spam events or cause unnecessary state changes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_76e54cc9-e030-4d8e-828c-bace892244da?mode=deep",
+    "timestamp": "2026-02-19 05:10:26.924288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3()] [Duplicate Creation] Can create_incentive_v3 be called multiple times to create multiple IncentiveV3 objects, causing conflicts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e1b554bb-1425-4c3f-ae46-9c72877181c1?mode=deep",
+    "timestamp": "2026-02-19 05:10:48.206263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3()] [Cap Validation] Can IncentiveOwnerCap be forged or obtained by non-owner, allowing unauthorized incentive creation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c1bbb873-3941-45cd-8e91-27b7a14c5b0a?mode=deep",
+    "timestamp": "2026-02-19 05:11:10.560377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3()] [Object Sharing] Does create_incentive_v3 share the IncentiveV3 object globally, and can this be exploited for unauthorized access? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d87b778-dd5f-411c-95e8-51051a67c9ad?mode=deep",
+    "timestamp": "2026-02-19 05:11:32.849892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3()] [Version Initialization] Is the IncentiveV3 object initialized with correct version, or can it be created with wrong version causing migration issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_481d1b4d-1906-40c7-a65e-408b2d5e3107?mode=deep",
+    "timestamp": "2026-02-19 05:11:53.770217",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_pool()] [Asset ID Validation] Can asset_id exceed storage's reserve count, causing out-of-bounds access? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dee534c9-99f3-474f-87dc-a8eb6715a0fd?mode=deep",
+    "timestamp": "2026-02-19 05:12:15.994607",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_pool()] [Type Mismatch] Can generic T not match the coin type for asset_id in storage, creating pool for wrong asset? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e7ebda31-a7c2-45f7-a9c5-2bc8d8ad45f1?mode=deep",
+    "timestamp": "2026-02-19 05:12:36.717025",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_pool()] [Duplicate Pool] Can the same asset_id be used to create multiple pools, causing reward distribution conflicts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46eceb83-24d5-48c4-911a-e3a4e917c537?mode=deep",
+    "timestamp": "2026-02-19 05:12:57.528965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_pool()] [Storage Mismatch] If storage is from different protocol version, can mismatched asset_id cause incorrect pool initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d4cb3e59-0f15-409b-8f6e-1d4cf5779251?mode=deep",
+    "timestamp": "2026-02-19 05:13:20.727145",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_pool()] [Pool Collision] Can asset_id collision between different storage instances cause cross-contamination? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa365696-3284-48c5-ba50-8d9748082ef7?mode=deep",
+    "timestamp": "2026-02-19 05:13:44.588416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_rule()] [Option Validation] Can option parameter be invalid value (e.g., > max valid option), causing undefined behavior in rule creation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_427724ef-a1c2-44a1-9767-a0a091d8cb6b?mode=deep",
+    "timestamp": "2026-02-19 05:14:09.674069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_rule()] [Type Mismatch] Can RewardCoinType not match available reward funds, causing rule to fail during distribution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c3688f44-5824-46bc-b669-6c821922a66a?mode=deep",
+    "timestamp": "2026-02-19 05:14:33.686719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_rule()] [Timestamp Manipulation] Can attacker manipulate Clock at line 128 to create rules with incorrect start times? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d84609f0-674f-4225-863e-fe474e6bc5a5?mode=deep",
+    "timestamp": "2026-02-19 05:14:54.813454",
+    "report_generated": false
+  }
+]
