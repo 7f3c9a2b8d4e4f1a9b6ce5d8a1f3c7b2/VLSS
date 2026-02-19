@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: normal_amount()] [Target Decimal Hardcoding] Why is target_decimal hardcoded to 9 instead of 18 (common DeFi standard), and can this mismatch with other protocols cause integration issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7acf1c21-1531-44fb-a7b5-23a3af5de458?mode=deep",
+    "timestamp": "2026-02-19 00:41:49.005497",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: unnormal_amount()] [Source Decimal Hardcoding] Similarly, why assume source is always 9 decimals, and what happens if unnormal_amount() is called on amounts not previously normalized? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c2769a1-aafd-4610-b9f1-2db6772f0a84?mode=deep",
+    "timestamp": "2026-02-19 00:42:02.179862",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Amount Modification] Since amount is reassigned in the loop, can this cause issues if the function is inlined and the original amount variable is expected to remain unchanged? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6321c9bb-5dc2-4226-962b-9bf4f43db254?mode=deep",
+    "timestamp": "2026-02-19 00:42:16.779742",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Decimal Increment Safety] Is cur_decimal + 1 safe from overflow since cur_decimal is u8 and max value is 255? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ba53360-7204-4ebf-a699-2f47a4df2c31?mode=deep",
+    "timestamp": "2026-02-19 00:42:31.373673",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Decimal Decrement Safety] Is cur_decimal - 1 safe from underflow since cur_decimal might be 0? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_844a9e57-a994-433e-bbe4-2c79285fc491?mode=deep",
+    "timestamp": "2026-02-19 00:42:47.277711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: normal_amount()] [Composability] Can normal_amount() be safely called multiple times on the same amount without compounding errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e60c052d-47de-41b4-9bd1-ca5a25da239c?mode=deep",
+    "timestamp": "2026-02-19 00:43:03.441254",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: unnormal_amount()] [Composability] Can unnormal_amount() be safely called multiple times on the same amount without compounding errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a2302e64-38cf-4f37-b1a7-34d2d8113c9e?mode=deep",
+    "timestamp": "2026-02-19 00:43:21.234111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Type Confusion] Does convert_amount() work correctly for all CoinType parameters, or can custom coin implementations break the decimal logic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fd0edc8e-4e89-4616-96cf-b2170ef21d43?mode=deep",
+    "timestamp": "2026-02-19 00:43:41.272558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: get_coin_decimal()] [Type Parameter] Can get_coin_decimal() be called with a different CoinType than the pool was created with, returning incorrect decimal values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e567cda3-1b38-47d4-aa88-9f91a8c5a39f?mode=deep",
+    "timestamp": "2026-02-19 00:44:00.940569",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Mathematical Correctness] Is the conversion mathematically correct for all valid inputs, or are there edge cases where amount * 10^delta != original_amount * 10^(target - cur)? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eea427aa-bd38-4312-a3a6-c5d6321cb7d7?mode=deep",
+    "timestamp": "2026-02-19 00:44:22.064250",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw()] [Reentrancy] Can the transfer::public_transfer() call be exploited for reentrancy if the recipient is a contract that calls back into pool operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab2fa66b-7651-4a16-b9a8-130954cd120c?mode=deep",
+    "timestamp": "2026-02-19 00:44:42.518840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw_balance()] [Return Value Handling] If the caller of withdraw_balance() does not properly handle the returned Balance<CoinType>, can funds be lost or locked? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_49905fdf-1af1-4070-918a-02fc69c84dbd?mode=deep",
+    "timestamp": "2026-02-19 00:45:04.597393",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw_treasury()] [Recipient Control] Can the PoolAdminCap holder withdraw treasury funds to an arbitrary recipient, enabling fund extraction to attacker-controlled addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_344f636e-f248-4997-bfb7-563963bb5d88?mode=deep",
+    "timestamp": "2026-02-19 00:45:25.755641",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw_reserve_balance()] [Friend+Cap Requirement] Does requiring both friend access and PoolAdminCap provide meaningful additional security, or is one of these checks redundant? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22da9899-71a8-49cf-988b-47f799d781bf?mode=deep",
+    "timestamp": "2026-02-19 00:45:48.530399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw()] [Amount Validation] Does withdraw() validate that amount > 0, or can zero-value withdrawals waste gas and pollute event logs? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_de084ba4-5e07-4f0b-b983-fed73f0b2237?mode=deep",
+    "timestamp": "2026-02-19 00:46:11.484505",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw_balance()] [Early Return Bypass] The early return for amount == 0 creates a zero balance - can this zero balance be used maliciously in subsequent operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_95acb4bc-473b-4f56-a843-9ea99c689d11?mode=deep",
+    "timestamp": "2026-02-19 00:46:35.168224",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw_treasury()] [Balance Check Timing] Is the assertion on treasury_balance checked atomically with the balance::split() operation, or can a race condition cause insufficient balance after the check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e66b49fe-c6bc-40b4-a666-b2a4e382ff5d?mode=deep",
+    "timestamp": "2026-02-19 00:46:58.526471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw_reserve_balance()] [Balance Check Timing] Similarly, can the assertion on pool.balance be bypassed through timing attacks in concurrent transactions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a988827a-0a49-4fcd-8e5e-212cd1bff147?mode=deep",
+    "timestamp": "2026-02-19 00:47:21.017520",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw()] [Balance Split Safety] Does balance::split(&mut pool.balance, amount) provide overflow protection, or can extreme amount values cause issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19ff30d3-49ee-4fd8-9dfb-e07ffa089557?mode=deep",
+    "timestamp": "2026-02-19 00:47:43.854384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw_balance()] [Balance Split Safety] Can balance::split() in withdraw_balance() fail silently if pool.balance is insufficient, returning an incorrect balance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a51d354c-8e0c-4b62-a1ae-5098227ca956?mode=deep",
+    "timestamp": "2026-02-19 00:48:05.868551",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw()] [Coin Creation] Does coin::from_balance() always succeed, or can it fail for certain CoinType implementations, locking the withdrawn balance? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0d14909-4642-4303-8d6b-403863edfdc5?mode=deep",
+    "timestamp": "2026-02-19 00:48:28.517652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw_treasury()] [Coin Creation] Similarly, can coin::from_balance() fail in withdraw_treasury(), leaving treasury funds in an intermediate state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d17a7f58-c298-497b-8102-3c201f2b2de6?mode=deep",
+    "timestamp": "2026-02-19 00:48:50.457204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw()] [Transfer Safety] Does transfer::public_transfer() guarantee delivery to the recipient, or can it fail if recipient is invalid/destroyed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_65aa359a-d49c-467e-929e-b33c353e09aa?mode=deep",
+    "timestamp": "2026-02-19 00:49:12.745801",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw_reserve_balance()] [Transfer Safety] Can transfer::public_transfer() in withdraw_reserve_balance() fail, locking admin-withdrawn funds? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2bf3acec-f8fd-441f-a96f-a89d2af98899?mode=deep",
+    "timestamp": "2026-02-19 00:49:35.235664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: withdraw_balance()] [Balance Leak] If the returned Balance<CoinType> is never joined to another balance or converted to a coin, can it cause a balance leak in the system? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b63f0dc7-4258-48ba-b727-56479f18212f?mode=deep",
+    "timestamp": "2026-02-19 00:49:56.168390",
+    "report_generated": false
+  }
+]
