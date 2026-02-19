@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Account State] No snapshot of account state is taken. Can the account modify their Navi position mid-transaction to pass health checks then immediately degrade it? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dae9d033-1e65-41f0-88cb-af102b8b577a?mode=deep",
+    "timestamp": "2026-02-19 06:47:24.525783",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Position Flash] Can an attacker use flash loans to temporarily boost their Navi position health, pass this check, then unwind the position in the same transaction? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_123ec0ac-b639-4f25-a5ff-2dccf153a54b?mode=deep",
+    "timestamp": "2026-02-19 06:47:37.441177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: is_navi_position_healthy()] [State Consistency] The boolean check doesn't lock state. Can position state change between the boolean check and subsequent vault operation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e2b5d4e-d765-4389-a84c-95c53dd52043?mode=deep",
+    "timestamp": "2026-02-19 06:47:51.447050",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Multi-Account] The function checks a single account. Can vault operations involve multiple accounts, and does checking only one account miss systemic risks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83f2f860-4cbb-4994-9068-53539c20c9bf?mode=deep",
+    "timestamp": "2026-02-19 06:48:05.912622",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Account Collusion] Can multiple accounts controlled by one attacker coordinate to pass individual health checks while creating systemic risk across all accounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e6414cd3-5f90-41bc-93e7-5645a9c2c751?mode=deep",
+    "timestamp": "2026-02-19 06:48:21.128753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Vault Integration] No context about which vault operation triggered the check. Can health checks pass for deposit operations but fail for withdrawal, creating asymmetric risks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51fc2262-3540-4fc5-bff0-3e3554232c0d?mode=deep",
+    "timestamp": "2026-02-19 06:48:37.958281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Operation Atomicity] Health check is separate from vault operation. Can an attacker pass the health check, then have the vault operation fail, leaving inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f71b925-d4e6-45b7-bb33-5d0f02a44b42?mode=deep",
+    "timestamp": "2026-02-19 06:48:55.977293",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: is_navi_position_healthy()] [Integration Gap] The boolean function returns health status but doesn't enforce it. Can calling code ignore the return value and proceed with unsafe operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_47ede7d6-64da-45fa-bb52-c0ecbf809614?mode=deep",
+    "timestamp": "2026-02-19 06:49:14.624857",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Pre-Check Timing] If called as a pre-check before vault operations, can the time delay between check and operation allow position degradation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_663a1708-3d16-49a3-8c98-b7c5157e93f8?mode=deep",
+    "timestamp": "2026-02-19 06:49:34.389177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Post-Check Timing] If called as a post-check after vault operations, can the operation itself cause health factor to drop below threshold after passing pre-check? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_34addf57-bb0b-43fd-8d86-1e5b1fa2526a?mode=deep",
+    "timestamp": "2026-02-19 06:49:55.498259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Liquidation Race] During rapid price movements, can an attacker exploit the lag between health check and liquidation to extract value before being liquidated? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_345c0372-f2a9-45aa-89a4-9fa1687dfac7?mode=deep",
+    "timestamp": "2026-02-19 06:50:18.155267",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Emergency Shutdown] No emergency shutdown mechanism exists. Can the health limiter be bypassed during system-wide emergency states in the vault? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ee71786-4438-4021-9fc1-c55515248345?mode=deep",
+    "timestamp": "2026-02-19 06:50:40.786121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: is_navi_position_healthy()] [Liquidation Check] The boolean function could be used in liquidation logic. Can griefing attacks spam this function to prevent legitimate liquidations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_24783357-a418-4a64-a6a9-39eb34659a9a?mode=deep",
+    "timestamp": "2026-02-19 06:51:05.318109",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Cascading Failures] If multiple positions become unhealthy simultaneously, can sequential health checks cause cascading failures and system-wide DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_470f5039-4c48-4470-94e7-cfd9dd933033?mode=deep",
+    "timestamp": "2026-02-19 06:51:30.126721",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Gas Griefing] The function calls external lending_core logic with mutable Storage. Can an attacker craft transactions that consume excessive gas during health factor calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb11fd2d-0ef5-472c-8e67-92f7120acc14?mode=deep",
+    "timestamp": "2026-02-19 06:51:56.715777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [DoS via Revert] An unhealthy position causes the entire transaction to revert. Can an attacker intentionally maintain unhealthy positions to DoS vault operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c1d60031-329a-4712-855a-9cfc8aeeb5ea?mode=deep",
+    "timestamp": "2026-02-19 06:52:23.948940",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: is_navi_position_healthy()] [Gas Cost] The function queries lending_core for health factor. Can the gas cost be manipulated by adding many small positions to the account? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_11d2e484-8ad9-4088-8df2-e008c5debbd6?mode=deep",
+    "timestamp": "2026-02-19 06:52:52.203195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Event Gas] Event emission at line 27 costs gas. Can an attacker repeatedly trigger health checks to drain gas from legitimate operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8c651465-c2cc-4a48-9669-228c1b091df9?mode=deep",
+    "timestamp": "2026-02-19 06:53:21.447778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Config Management] min_health_factor is passed as parameter without central configuration. Can different callers use different thresholds, creating inconsistent risk profiles? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5398b519-d6a9-4ab9-bc0f-522f86f62578?mode=deep",
+    "timestamp": "2026-02-19 06:53:48.004898",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Threshold Update] No mechanism to update min_health_factor globally. Can outdated thresholds remain in use during market volatility, causing under-collateralization? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd07e364-9162-4c71-a597-a867ed3295b6?mode=deep",
+    "timestamp": "2026-02-19 06:54:11.754798",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: is_navi_position_healthy()] [Threshold Consistency] Both functions accept min_health_factor as parameter. Can caller pass different values to the two functions, creating logic inconsistencies? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d56fb7d-84de-4ab5-9996-1893d80a19d3?mode=deep",
+    "timestamp": "2026-02-19 06:54:34.359528",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Conservative Threshold] No guidance on what min_health_factor value should be. Can setting it too low (e.g., 1.0e27) allow risky positions that are technically 'healthy' but near liquidation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e50c163-5683-4f84-b27e-952fa47869de?mode=deep",
+    "timestamp": "2026-02-19 06:54:57.870740",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Aggressive Threshold] Can setting min_health_factor too high (e.g., 5.0e27) unnecessarily restrict legitimate vault operations and reduce capital efficiency? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_de48ba3a-d953-4d62-99a3-279430e382bb?mode=deep",
+    "timestamp": "2026-02-19 06:55:20.126835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Constants] [Decimal Clarity] DECIMAL_E18 and DECIMAL_E9 are defined but no comments explain which is Navi's native base. Can developers misuse these constants in caller code? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3cbd7f99-c34f-49f7-b4a0-4edb16f692c7?mode=deep",
+    "timestamp": "2026-02-19 06:55:43.577756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Decimal Assumption] The code assumes health_factor from Navi uses E27 decimals (based on comments). Can changes in Navi's implementation break this assumption silently? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b0bfe435-609f-4447-a3d9-99c14290f69c?mode=deep",
+    "timestamp": "2026-02-19 06:56:05.468889",
+    "report_generated": false
+  }
+]
