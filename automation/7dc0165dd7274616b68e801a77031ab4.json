@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_on_demand_package_id()] [Authorization Bypass] The setter function has public(package) visibility without AdminCap requirement - can any module in the switchboard package call this to replace the on_demand_package_id with a malicious package ID, breaking oracle integrity and allowing price manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e3007cbc-9a6e-4fbb-a8b5-5e394d7583ba?mode=deep",
+    "timestamp": "2026-02-19 02:09:44.018289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_guardian_queue_id()] [Authorization Bypass] The guardian_queue setter is public(package) without capability check - can a malicious module in the same package replace the guardian queue with an attacker-controlled queue to bypass guardian protections? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_94b6b6ae-0416-48f7-b0f9-340df2c96b6e?mode=deep",
+    "timestamp": "2026-02-19 02:09:57.092303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_oracle_queue_id()] [Authorization Bypass] The oracle_queue setter lacks AdminCap enforcement and is public(package) - can an attacker deploy a malicious module in the switchboard package to replace the oracle queue with a fake one returning manipulated prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a267d2ea-8314-431f-a682-9cf0053be5cf?mode=deep",
+    "timestamp": "2026-02-19 02:10:10.870486",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Struct: AdminCap] [Unused Capability] AdminCap is created in init() and transferred to sender but never used in any function - does this indicate incomplete access control implementation where critical setters should require AdminCap but don't? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b04be30-a7e7-4351-bc99-57e190abaf8c?mode=deep",
+    "timestamp": "2026-02-19 02:10:24.933354",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: init()] [Privilege Escalation] AdminCap is transferred to ctx.sender() without any restrictions - if init() is called during package upgrade or by a different deployer, could an attacker gain admin privileges over the existing State object? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5ad724fb-2ef1-432d-bc39-08d1b40f8737?mode=deep",
+    "timestamp": "2026-02-19 02:10:40.357659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_on_demand_package_id()] [Missing Access Control] There is no check that the caller owns AdminCap before allowing package ID updates - can any package module immediately after deployment call this to hijack the oracle system before legitimate setup? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7fc6870-dc5f-4cf5-92b1-af6707c7ec2d?mode=deep",
+    "timestamp": "2026-02-19 02:10:57.086826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_guardian_queue_id()] [Cross-Module Attack] If a vulnerable or malicious module exists in the switchboard package with public entry functions, can an external attacker trigger that module to call set_guardian_queue_id() and corrupt the guardian queue? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7aa652c1-0b10-4e9b-bdd2-6d6bfebaca55?mode=deep",
+    "timestamp": "2026-02-19 02:11:15.290559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_oracle_queue_id()] [Package Visibility Exploit] The public(package) visibility means any future module added to switchboard package can call this - if package upgrades add new modules with vulnerabilities, can those be exploited to manipulate oracle queue ID? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b84109e5-e654-436e-a119-2278d7c89f98?mode=deep",
+    "timestamp": "2026-02-19 02:11:35.319558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: init()] [Insecure Initialization] All three IDs (oracle_queue, guardian_queue, on_demand_package_id) are initialized to zero address (0x0000...0000) - if setters are not called immediately, will oracle-dependent operations fail or accept zero address as valid, enabling DoS or bypass? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_794e8318-4abc-4a79-af68-287634844b7a?mode=deep",
+    "timestamp": "2026-02-19 02:11:56.817405",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: init()] [Two-Step Initialization Risk] State is shared immediately but with zero addresses - is there a window between init() and setter calls where Volo Vault could read these zero addresses and accept invalid oracle data? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db943b43-0220-4b0f-a846-2cacaab9e3cb?mode=deep",
+    "timestamp": "2026-02-19 02:12:20.183492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: oracle_queue()] [Zero Address Dereference] The getter returns state.oracle_queue which starts as zero address - if caller code assumes non-zero and dereferences this ID, will it cause runtime errors or silently accept invalid oracle state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_395d09e5-929c-4eb9-9679-f35abb1797af?mode=deep",
+    "timestamp": "2026-02-19 02:12:43.251188",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: guardian_queue()] [Invalid Guardian Reference] Guardian queue ID is zero by default - can this cause guardian checks to be skipped if consuming code treats zero address as 'no guardian' rather than 'invalid state'? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_01ebc91b-b19d-439e-bba6-94a4845bf078?mode=deep",
+    "timestamp": "2026-02-19 02:13:06.473916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: on_demand_package_id()] [Package Verification Bypass] The on_demand_package_id starts as zero address - if Volo Vault uses this to verify oracle package authenticity, will zero address bypass all checks and accept any oracle data? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_840875e1-ae53-4e7a-9cdc-503f347198df?mode=deep",
+    "timestamp": "2026-02-19 02:13:28.843328",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: init()] [Race Condition] Between State object being shared and setters being called, can an attacker front-run legitimate setup by calling Volo Vault operations that read these zero addresses and exploit uninitialized state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_087f56a0-63a9-43e1-87de-a1bc0758b5b5?mode=deep",
+    "timestamp": "2026-02-19 02:13:50.745225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_on_demand_package_id()] [No ID Validation] The setter accepts any ID without verifying it points to a valid package object - can an attacker pass a random object ID, user-owned object ID, or deleted object ID to corrupt the oracle system? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f7189fb4-e54e-4a4d-b949-0be2dba6b684?mode=deep",
+    "timestamp": "2026-02-19 02:14:13.241424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_oracle_queue_id()] [Type Safety Bypass] There is no runtime check that oracle_queue_id actually points to an oracle queue object - can an attacker pass an ID of a different object type (e.g., a Coin, NFT, or malicious struct) to cause type confusion in consuming code? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d5e69820-c9da-4b32-ad97-bbb580671868?mode=deep",
+    "timestamp": "2026-02-19 02:14:35.312835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_guardian_queue_id()] [Duplicate ID Attack] Nothing prevents setting guardian_queue to the same ID as oracle_queue - if consuming code assumes they are distinct for security separation, can this confusion enable oracle manipulation bypassing guardian checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b92e3bf-3e54-449f-b384-709fb885efa4?mode=deep",
+    "timestamp": "2026-02-19 02:14:59.431542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_on_demand_package_id()] [Self-Reference Vulnerability] Can the on_demand_package_id be set to point to this module's own package, creating circular reference that breaks upgrade logic or package verification in consuming modules? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b6d844dd-b2f8-4059-bffa-223425cc5e36?mode=deep",
+    "timestamp": "2026-02-19 02:15:24.751544",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_oracle_queue_id()] [Immutability Violation] The setter allows oracle_queue_id to be changed multiple times without restrictions - if Volo Vault caches this ID or makes assumptions about immutability, can repeated updates cause stale reference vulnerabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3b429a6-435b-4349-9750-4537a80187fe?mode=deep",
+    "timestamp": "2026-02-19 02:15:48.355287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_guardian_queue_id()] [No Deletion Check] The setter doesn't verify the guardian_queue_id object still exists on-chain - can passing an ID of a deleted object cause runtime failures when Volo Vault tries to access the guardian queue? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_de7e33c0-780b-4e8d-ab8b-9616d3963b7d?mode=deep",
+    "timestamp": "2026-02-19 02:16:11.210466",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Struct: State] [Missing Versioning] State struct has no version field - if package upgrade requires new fields or logic, can old State objects become incompatible causing oracle system failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9cfda7d-2ebf-4548-b3a2-897037dcf833?mode=deep",
+    "timestamp": "2026-02-19 02:16:38.171649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_on_demand_package_id()] [No Ownership Verification] The setter doesn't check if the package ID is owned by the expected publisher or has valid upgrade cap - can an attacker point to a package they control to inject malicious oracle logic? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_58104276-29bc-49fb-ac80-ca4226ead086?mode=deep",
+    "timestamp": "2026-02-19 02:17:02.265516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_oracle_queue_id()] [Oracle Replacement Attack] An attacker with package visibility can replace oracle_queue with a malicious queue returning manipulated prices - if Volo Vault reads prices from this queue for vault value calculations, can this enable massive vault theft through artificial price inflation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c8f9fdf-7927-4b51-9844-ff709c9df079?mode=deep",
+    "timestamp": "2026-02-19 02:17:27.881546",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: oracle_queue()] [No Staleness Check] The getter returns oracle_queue ID without any timestamp or staleness validation - if the oracle queue has been inactive or compromised, will consuming code blindly trust stale or malicious price data? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eccbe7af-5549-4512-8a4b-081741b48a9c?mode=deep",
+    "timestamp": "2026-02-19 02:17:52.512388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/on_demand.move] [Function: set_oracle_queue_id()] [Price Manipulation Window] The oracle queue can be replaced atomically - can an attacker call this setter in the same transaction as a Volo Vault operation to manipulate prices for that specific operation then revert the queue? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_43936918-0c17-4714-9a76-99f39d26f6f7?mode=deep",
+    "timestamp": "2026-02-19 02:18:16.858518",
+    "report_generated": false
+  }
+]
