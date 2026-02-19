@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Authorization Vulnerability] Can the treasury capability transferred to ctx.sender() be exploited if the deployer account is compromised, allowing unlimited minting of SPRUNGSUI tokens without any access control or multi-sig requirements? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a2911b13-3d4e-4cfc-87bd-e5b5a75e7089?mode=deep",
+    "timestamp": "2026-02-19 03:10:41.387396",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Custody Vulnerability] Does the unconditional transfer::public_transfer of the treasury to ctx.sender() create a single point of failure where loss of the deployer's private key results in permanent inability to mint tokens for the Suilend protocol? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fca67f11-bc4c-42e6-896e-51bb8d1a2fbd?mode=deep",
+    "timestamp": "2026-02-19 03:10:54.401237",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Access Control Bypass] Since there are no additional minting or burning functions defined in this module, can an attacker who gains access to the treasury capability mint arbitrary amounts of SPRUNGSUI without any rate limiting or caps? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02a5c28b-ea06-4a51-bbb9-e4b3a12708d3?mode=deep",
+    "timestamp": "2026-02-19 03:11:08.987709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Configuration Error] The coin is created with empty name (b",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b4c58319-8844-4ca3-9d17-feaa7ff3045f?mode=deep",
+    "timestamp": "2026-02-19 03:11:24.219405",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Metadata Vulnerability] The metadata object is made publicly shared via transfer::public_share_object. Can malicious actors exploit the shared metadata to perform denial-of-service attacks or cause display/integration issues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_41b533ec-629f-4d72-8a5b-4c4352e7db58?mode=deep",
+    "timestamp": "2026-02-19 03:11:40.307600",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Decimal Precision Issue] The token uses 9 decimals matching SUI's native precision. If SPRUNGSUI represents staked SUI at a ratio different from 1:1, could precision loss occur in conversions between SUI and SPRUNGSUI when calculating staking rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_88679cae-a655-4985-a55e-d555be81e6ab?mode=deep",
+    "timestamp": "2026-02-19 03:11:57.419150",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Icon URI Vulnerability] The icon URL is set to option::none(), providing no visual identifier. Could this enable phishing attacks where malicious actors create fake SPRUNGSUI tokens that users cannot distinguish from the legitimate one? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5223672-3c4c-444a-81cd-a56a6f738350?mode=deep",
+    "timestamp": "2026-02-19 03:12:15.900428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Supply Management] The module provides no functions for minting or burning SPRUNGSUI tokens. Does this mean all minting/burning logic exists elsewhere, and if so, how is coordination ensured to prevent supply manipulation or accounting mismatches with the actual staked SUI? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bbb074db-7b62-4a69-8f42-a295fd47076c?mode=deep",
+    "timestamp": "2026-02-19 03:12:35.674240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [One-Time Execution] The init function runs only once at module publication. If the treasury transfer fails or goes to the wrong address, is there any recovery mechanism, or does this permanently break the protocol's ability to mint tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2197ad3f-0cea-4396-9bc0-8de261820cd6?mode=deep",
+    "timestamp": "2026-02-19 03:12:55.824116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Missing Cap Management] There is no TreasuryCap wrapper or admin capability structure. Does this mean the raw TreasuryCap is directly used, and if so, how does the broader Volo protocol prevent unauthorized minting if this capability is not properly secured? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ecd7950f-b10a-4e93-ac10-22456ea3362d?mode=deep",
+    "timestamp": "2026-02-19 03:13:16.177669",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Witness Pattern] The SPRUNGSUI witness is consumed in coin::create_currency but has the 'drop' ability. Could an attacker somehow recreate or duplicate the witness to create multiple currency instances, causing confusion or token impersonation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fee3922f-4a8e-418d-9d8a-aa90f22c3a42?mode=deep",
+    "timestamp": "2026-02-19 03:13:37.710105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Integration Risk] This module appears to be a local dependency from Suilend. If Suilend updates their sprungsui module with breaking changes, could this cause incompatibilities with Volo's liquid staking mechanism that expects specific SPRUNGSUI token behavior? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_59445d7d-68a6-4ea2-88c9-bf4d2186e973?mode=deep",
+    "timestamp": "2026-02-19 03:14:00.927886",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Decimal Mismatch] The 9-decimal precision matches SUI but may not match Volo's internal accounting if Volo uses different precision for LST ratios. Could this cause rounding errors when converting between SUI amounts and SPRUNGSUI shares? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_274c6d2f-0d9f-4a63-bc19-04f34d6ac2a3?mode=deep",
+    "timestamp": "2026-02-19 03:14:22.570442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Missing Pause Mechanism] There is no pause functionality in this coin module. If a critical bug is found in the broader Volo protocol that requires halting SPRUNGSUI operations, how can transfers or usage be stopped without this capability? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56806ac4-731e-49f4-922a-cf053fb1cc7c?mode=deep",
+    "timestamp": "2026-02-19 03:14:45.687740",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Missing Upgrade Path] The module has no upgrade capability or version field. If Volo needs to migrate to a new SPRUNGSUI token with additional features (like rebasing or fee-on-transfer), how will existing holders be migrated without built-in migration logic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_07cb2ba6-895c-44b1-89e7-185c23ab42ae?mode=deep",
+    "timestamp": "2026-02-19 03:15:09.662115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Metadata Immutability] Once the metadata is shared, can it be updated if the protocol needs to change the name, symbol, or add an icon? If not, this creates inflexibility in branding and user experience improvements. (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4b628273-58e4-477a-9cf1-b78df47ab032?mode=deep",
+    "timestamp": "2026-02-19 03:15:32.995131",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Missing Supply Cap] There is no maximum supply cap defined for SPRUNGSUI. Could the treasury holder mint unlimited tokens, potentially causing inflation that doesn't match the actual SUI backing in Volo's stake pool? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_38ec2bff-4a9e-4959-ab97-322fdae45ef8?mode=deep",
+    "timestamp": "2026-02-19 03:15:56.298888",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Missing Burn Mechanism] Without explicit burn functions in this module, how does Volo handle unstaking? If burning is done via the TreasuryCap externally, are there safeguards to ensure burned SPRUNGSUI matches released SUI to maintain the peg? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63b72613-74ac-43f9-9708-fd6cf570459d?mode=deep",
+    "timestamp": "2026-02-19 03:16:19.813390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Transfer Recipient Validation] The treasury is transferred to ctx.sender() without validation. Could this be exploited during deployment if the transaction is front-run or if the deployer address is maliciously constructed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f87010b4-1b84-4b12-b288-6e02b30bfa0c?mode=deep",
+    "timestamp": "2026-02-19 03:16:43.851844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Missing Events] The module emits no events for treasury creation or transfer. How will off-chain systems track the treasury holder or audit minting operations without event logs? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fd989ff7-4a59-4c61-a577-4ef4662113cc?mode=deep",
+    "timestamp": "2026-02-19 03:17:08.026728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Dependency Risk] This appears to be copied from Suilend's implementation. If Volo modifies this local copy, could divergence from the original Suilend code cause integration issues with other Suilend modules that expect specific SPRUNGSUI behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9721b212-219a-441d-90e6-a801291588a5?mode=deep",
+    "timestamp": "2026-02-19 03:17:33.924603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Shared Object Exposure] The metadata is made into a shared object accessible to all. Could malicious actors abuse this by spamming reads or writes to the shared metadata object, causing performance degradation or increased gas costs for legitimate users? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4b849667-8e31-4399-ad3f-d428da63491c?mode=deep",
+    "timestamp": "2026-02-19 03:18:01.026169",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Missing Rate Limiting] Since minting logic is not in this module, is there rate limiting elsewhere? Without caps in this base module, could an attacker who compromises the treasury mint tokens at a rate that breaks oracle price feeds or liquidity pool ratios? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db360705-589b-48eb-b5d5-4ea35e0e3de6?mode=deep",
+    "timestamp": "2026-02-19 03:18:28.919563",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Missing Blacklist] There is no address blacklist functionality. If Volo needs to freeze malicious actors' SPRUNGSUI holdings due to exploits, how can this be achieved without such mechanisms in the token itself? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3860371-7dbd-431f-82f7-4fcdda5454b0?mode=deep",
+    "timestamp": "2026-02-19 03:18:56.382653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Missing Fee Mechanism] The token has no transfer fee mechanism. If Volo's economic model requires fees on SPRUNGSUI transfers to fund operations or rewards, how will this be implemented without modifying this base coin module? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_777ee28e-9d62-42e2-960e-abb82c24ca78?mode=deep",
+    "timestamp": "2026-02-19 03:19:22.938623",
+    "report_generated": false
+  }
+]
