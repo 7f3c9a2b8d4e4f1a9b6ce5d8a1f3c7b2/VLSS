@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Oracle Manipulation] Can an attacker manipulate the oracle price feed between price_a and price_b fetches (lines 50-51) to pass slippage validation while extracting value through arbitrage when the actual pool price differs significantly? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bf05b8b0-a712-41ba-896a-f3501d546d2e?mode=deep",
+    "timestamp": "2026-02-18 23:55:20.788743",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Stale Price] Does vault_oracle::get_asset_price() enforce staleness checks, or can outdated oracle prices (lines 50-51) be used to value positions incorrectly, allowing deposits/withdrawals at manipulated rates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_15dd1791-8784-48b3-9163-ca451786a006?mode=deep",
+    "timestamp": "2026-02-18 23:55:33.875912",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Price Atomicity] If price_a is fetched at timestamp T and price_b at T+1 during high volatility (lines 50-51), can the non-atomic reads create arbitrage opportunities where relative_price_from_oracle (line 52) misrepresents the true price ratio? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_002efcb6-7444-4d57-bc05-74066169afd5?mode=deep",
+    "timestamp": "2026-02-18 23:55:48.185417",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Oracle Decimals Mismatch] If config.coin_decimals() returns incorrect decimals for CoinTypeA or CoinTypeB (lines 46-47), can this cause massive valuation errors in value_a/value_b calculations (lines 71-72) leading to vault share inflation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_05489b7a-9bf6-46c8-8682-bde3e3313415?mode=deep",
+    "timestamp": "2026-02-18 23:56:02.369210",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: update_cetus_position_value()] [Timestamp Manipulation] Can clock.timestamp_ms() be manipulated or does it use block timestamps that can be slightly adjusted by validators, potentially allowing stale prices to appear fresh in finish_update_asset_value() (line 29)? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1242fe3b-f587-459f-920e-215c704d4224?mode=deep",
+    "timestamp": "2026-02-18 23:56:17.475500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Zero Price] What happens if vault_oracle::get_asset_price() returns 0 for price_a or price_b (lines 50-51)? Would this cause division by zero at line 52 or allow free minting of shares through zero-valued positions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5aba46d4-a22f-4a60-b3b1-07c2e8a58169?mode=deep",
+    "timestamp": "2026-02-18 23:56:34.438303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Price Overflow] Can extremely high oracle prices cause overflow when computing relative_price_from_oracle = price_a * DECIMAL / price_b (line 52), especially if price_a is near u256::max and DECIMAL = 1e18? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca6f33bb-e808-4fb9-80a7-4aca067647d0?mode=deep",
+    "timestamp": "2026-02-18 23:56:52.573422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Normalized Price Inconsistency] If get_normalized_asset_price() (lines 68-69) returns different decimals or calculation method than get_asset_price() (lines 50-51), can this create accounting discrepancies in value_a/value_b that allow draining funds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7dc11485-2643-461f-8117-c94c3a57c9e7?mode=deep",
+    "timestamp": "2026-02-18 23:57:12.645187",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Slippage Bypass - Zero Config] If config.dex_slippage() returns 0 (line 62), does the assertion at line 63-66 become impossible to pass (since pool_price.diff() would need to be 0), causing DoS on all position valuations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5df9bf6d-e759-4da6-a51b-a77497b0e53a?mode=deep",
+    "timestamp": "2026-02-18 23:57:34.649119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Slippage Bypass - Max Config] If config.dex_slippage() is set to SLIPPAGE_BASE (10000 = 100%, line 62), does this disable price validation entirely, allowing positions to be valued even when pool_price differs arbitrarily from oracle prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b8b4cca8-ba9b-4cfa-9bff-b02bd053591b?mode=deep",
+    "timestamp": "2026-02-18 23:57:56.945900",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Slippage Math Overflow] In the assertion (pool_price.diff(relative_price_from_oracle) * DECIMAL / relative_price_from_oracle) < (DECIMAL * slippage / SLIPPAGE_BASE) (lines 64-65), can the left side overflow if pool_price.diff() returns a very large value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9f19b676-110c-43b4-8439-418ca7142f34?mode=deep",
+    "timestamp": "2026-02-18 23:58:21.185371",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Slippage Precision Loss] Does the slippage calculation (DECIMAL * slippage / SLIPPAGE_BASE) at line 64 lose precision when slippage is small (e.g., 1 bps), allowing price deviations larger than intended? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_64229042-c3e3-44e3-b0ec-df189ffd0ba4?mode=deep",
+    "timestamp": "2026-02-18 23:58:46.094158",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Diff Function Behavior] What does pool_price.diff(relative_price_from_oracle) return (line 64)? If it returns absolute difference instead of percentage difference, can this make the slippage check meaningless for different price magnitudes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fc6d107a-3614-46d4-baf4-66b6962d571d?mode=deep",
+    "timestamp": "2026-02-18 23:59:12.714205",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Slippage Division by Zero] If relative_price_from_oracle becomes 0 due to price_b being extremely large or price_a being 0 (line 52), would the division at line 64 revert, causing DoS on position valuation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a62c254c-2858-4a31-b044-8aa519dd4785?mode=deep",
+    "timestamp": "2026-02-18 23:59:39.188329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Slippage Timing Attack] Can an attacker front-run the slippage check by manipulating the Cetus pool price right before calculate_cetus_position_value() is called, then back-run to restore the price, extracting value through the brief manipulation window? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_df0ff16b-fe46-4b49-8018-6372a0a05688?mode=deep",
+    "timestamp": "2026-02-19 00:00:05.612450",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Sqrt Price Overflow] When converting sqrt_price_x64 to u256 and multiplying by DECIMAL (line 79), can this overflow if sqrt_price_x64 is near u128::max, causing incorrect pool price calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eba696d9-48f1-4bc0-81ca-10bca168f6f7?mode=deep",
+    "timestamp": "2026-02-19 00:00:33.786166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Squaring Overflow] At line 80-81, sqrt_price_u256_with_decimals is squared and divided by DECIMAL. Can this intermediate calculation overflow before the division, especially for high sqrt prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b643bcc-9d82-444d-8652-5edaaba8bedb?mode=deep",
+    "timestamp": "2026-02-19 00:01:01.481790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Decimal Adjustment Overflow] If decimals_a > decimals_b and the difference is large (e.g., 18), multiplying price_u256_with_decimals by pow(10, decimals_a - decimals_b) at line 84 could overflow, causing pool price to be incorrectly computed as a wrapped value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d570a543-252b-4a8b-8863-db43c20b4ae4?mode=deep",
+    "timestamp": "2026-02-19 00:01:27.255117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Division Precision Loss] When dividing by pow(10, decimals_b - decimals_a) at line 86 for decimals_b > decimals_a, can significant precision be lost for small price values, causing slippage checks to fail incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9db9755a-0513-45ed-9be2-944be024e853?mode=deep",
+    "timestamp": "2026-02-19 00:01:51.850176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Zero Sqrt Price] If pool.current_sqrt_price() returns 0 (line 61), would sqrt_price_x64_to_price() return 0, causing either division by zero in slippage calculation or allowing positions to be valued at 0 regardless of holdings? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aa319771-3105-4054-98ee-09c77749faa0?mode=deep",
+    "timestamp": "2026-02-19 00:02:15.557207",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Pow Function Overflow] Does pow(2, 64) at line 79 or pow(10, decimals_difference) at lines 84/86 handle large exponents safely, or can they overflow/revert causing DoS on price calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8c5bb60-4762-4ade-956d-4988d93aaa8b?mode=deep",
+    "timestamp": "2026-02-19 00:02:39.080194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Pool Price Manipulation] Can an attacker manipulate pool.current_sqrt_price() through flash swaps or large trades in the Cetus pool right before valuation (line 61), passing the slippage check but causing incorrect position valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b18886f9-7c96-4d00-a0ff-bd3203d531fc?mode=deep",
+    "timestamp": "2026-02-19 00:03:05.513145",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: sqrt_price_x64_to_price()] [Decimal Order Assumption] The function assumes decimals_a and decimals_b are always valid (lines 83-87). What if one is 0 or both are 0? Could this cause division by 1 (pow(10,0)) leading to incorrect price scaling? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_95f8cb99-d6b0-4b87-901e-fdc26638b935?mode=deep",
+    "timestamp": "2026-02-19 00:03:31.657511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Position Amount Manipulation] Can pool.get_position_amounts() be manipulated by providing a fake position_id or can the pool itself be in an inconsistent state, returning inflated amount_a/amount_b values (line 41)? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_134c9a68-e127-4aee-85f4-d438a972834b?mode=deep",
+    "timestamp": "2026-02-19 00:03:57.589363",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Zero Position Amounts] If both amount_a and amount_b are 0 (line 41), would the function return 0 USD value? Could this be exploited to bypass vault value checks by temporarily withdrawing liquidity before valuation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_322d7452-faa6-4e45-914f-c3ff02ac7f1d?mode=deep",
+    "timestamp": "2026-02-19 00:04:23.975088",
+    "report_generated": false
+  }
+]
