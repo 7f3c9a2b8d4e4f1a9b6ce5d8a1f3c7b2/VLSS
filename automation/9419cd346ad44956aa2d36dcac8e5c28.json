@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Constants: LT/EQ/GT] [Comparison Results] Used as return values for cmp() - if implementation returns wrong constant or caller expects different encoding, can comparison-based vault logic make inverted decisions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_125802cb-c044-4a89-9a86-c1a643e90a80?mode=deep",
+    "timestamp": "2026-02-19 03:15:56.864169",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Struct: I64] [Copy Ability] Has copy, drop, store abilities - if vault stores I64 values and copies them assuming by-value semantics, can reference bugs cause unintended aliasing? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8aae1ee0-59a4-4191-9fa2-3bad4ef57ab6?mode=deep",
+    "timestamp": "2026-02-19 03:16:09.803617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Struct: I64] [Store Ability] Can be stored in global storage - if vault stores signed values on-chain and attacker directly modifies storage bypassing arithmetic functions, can accounting be corrupted? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d1f7fc21-f977-4c01-8858-f8f950fe90f6?mode=deep",
+    "timestamp": "2026-02-19 03:16:23.214374",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Struct: I64] [Drop Ability] Can be dropped without cleanup - if vault creates temporary I64 values in operations and drops them, can improper cleanup cause resource leaks or state inconsistency? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b0fb2aca-00ad-4896-8bbc-948ee369cdbc?mode=deep",
+    "timestamp": "2026-02-19 03:16:37.091578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Test: test_from_ok] [Boundary Test] Tests from(0) and from(10) - but doesn't test from(MAX_AS_U64-1), can off-by-one errors near maximum be missed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0b8e753-5f86-4880-9af0-187eb137daed?mode=deep",
+    "timestamp": "2026-02-19 03:16:52.009297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Test: test_from_overflow] [Overflow Test] Tests overflow at MIN_AS_U64 - but what about MIN_AS_U64+1 through MAX_U64, are all invalid conversions properly rejected? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b83b3b9-1c90-462d-8bda-29925546db0b?mode=deep",
+    "timestamp": "2026-02-19 03:17:09.078249",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Test: test_neg_from] [Negation Test] Tests several values - but doesn't test mid-range values, can implementation have bugs in the middle of valid range? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d70ce28c-83fe-47ec-a388-9bef8fdde87b?mode=deep",
+    "timestamp": "2026-02-19 03:17:26.248700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Test: test_wrapping_add] [Comprehensive Coverage] Extensive wrapping_add tests - but if actual implementation deviates from test expectations, can vault operations using wrapping math produce wrong results? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a996ae65-a16e-44fd-808a-6fd3f891735b?mode=deep",
+    "timestamp": "2026-02-19 03:17:45.362236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Tests: Multiple] [Stub vs Real] All tests call functions that abort - are these tests meant for a real implementation linked at runtime? If linking fails or wrong implementation linked, can vault use broken i64 math? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_14417a87-cf43-4bfb-bac2-1907a75162c2?mode=deep",
+    "timestamp": "2026-02-19 03:18:05.385146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Module: mmt_v3::i64] [MMT Integration] Part of mmt_v3 (likely Momentum AMM math) - if vault adaptors for Momentum use this i64 module for liquidity calculations and all functions abort, can all Momentum adaptor operations be DoS'd? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a4df4819-c78f-4a54-ad9f-c294079ed692?mode=deep",
+    "timestamp": "2026-02-19 03:18:26.649499",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Module: mmt_v3::i64] [Price Calculations] AMMs often use signed integers for price deltas - if Momentum adaptor calculates price impact using i64 and all functions abort, can vault never interact with Momentum pools? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_73000d26-9b63-4eb1-b6c0-06459378d30e?mode=deep",
+    "timestamp": "2026-02-19 03:18:48.143930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Module: mmt_v3::i64] [Liquidity Math] Concentrated liquidity math may use signed ticks - if vault operations require signed tick calculations and i64 aborts, can this prevent liquidity provision/removal? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_05e74220-d4ca-4be2-8e9c-26befa092e1e?mode=deep",
+    "timestamp": "2026-02-19 03:19:10.725291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Module: mmt_v3::i64] [External Dependency] This is a local dependency copy - if original mmt_v3 implementation is updated but this stub isn't, can vault use outdated/broken math? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3c43c78d-e995-4c87-8bd0-9114c37d7d33?mode=deep",
+    "timestamp": "2026-02-19 03:19:33.914728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Module: mmt_v3::i64] [Build Configuration] Functions abort - is this placeholder for native implementation or conditional compilation? If build misconfiguration causes stub to be used in production, can entire vault be bricked? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb2779e1-7f58-4fa2-a125-5bda4c0655aa?mode=deep",
+    "timestamp": "2026-02-19 03:19:56.215679",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: wrapping_add()] [Intentional Wrapping] Wrapping operations are dangerous - if vault mistakenly uses wrapping_add() instead of add() for balance accounting, can silent overflow hide accounting errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74d671ac-4ef6-4303-8b59-034cd6c2df09?mode=deep",
+    "timestamp": "2026-02-19 03:20:19.844077",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: wrapping_sub()] [Intentional Wrapping] Wrapping subtraction - if vault uses wrapping_sub() for loss calculations expecting overflow detection, can losses wrap to profits silently? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3f1b0edb-d954-4107-9835-05a091c0b61a?mode=deep",
+    "timestamp": "2026-02-19 03:20:42.663840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function Pairs] [Checked vs Wrapping] Duplicate functions with/without overflow checks - if vault code inconsistently chooses checked vs wrapping variants, can some code paths have safety while others don't? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1f8bdd26-c16b-41fd-bbf2-917ad5aea504?mode=deep",
+    "timestamp": "2026-02-19 03:21:06.003573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [All Functions] [Error Handling] All functions abort with code 0 - if implementation uses abort codes to distinguish error types but vault catches all aborts equally, can vault mishandle different overflow scenarios? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74b2ae22-48c3-4fce-a592-16951dbe7857?mode=deep",
+    "timestamp": "2026-02-19 03:21:30.232401",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: zero()] [Constructor Pattern] Provides zero() constructor - but if vault code uses from(0) instead of zero() and implementations diverge, can initialization inconsistencies occur? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_542fb510-86ee-4413-905a-3f5d62b1630d?mode=deep",
+    "timestamp": "2026-02-19 03:21:54.548143",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Multiple Functions] [DoS Attack] If attacker can trigger any vault operation requiring i64 math and all functions abort, can attacker permanently DoS vault by forcing transactions through code paths using this module? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_62755ea2-17ab-4039-ab5e-3c55db1721ec?mode=deep",
+    "timestamp": "2026-02-19 03:22:18.745122",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: add()/sub()] [Precision Attack] If actual implementation has precision loss at extremes and vault accumulates many small operations, can attacker perform dust attacks to slowly drain value through rounding? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d98c091-f570-4d27-8ebf-601771879ae6?mode=deep",
+    "timestamp": "2026-02-19 03:22:44.119861",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: mul()/div()] [Manipulation Attack] If vault uses signed math for share pricing and attacker can manipulate values to cause overflow, can attacker mint shares for free by wrapping share price to negative? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ab355af-882f-4b4f-adec-1d4e1a70a987?mode=deep",
+    "timestamp": "2026-02-19 03:23:10.821723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: cmp()] [Comparison Attack] If vault uses i64 comparisons for access control (e.g., balance >= threshold) and comparison implementation is flawed, can attacker bypass restrictions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b905407-66d1-475b-977e-19919334a4d5?mode=deep",
+    "timestamp": "2026-02-19 03:23:33.222401",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: abs()] [Magnitude Attack] If vault calculates fees based on absolute value of PnL and abs() overflows for MIN, can attacker trigger MAX loss but pay zero fees? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_71cf3aa1-20d1-4e78-8131-a945a39ac454?mode=deep",
+    "timestamp": "2026-02-19 03:23:55.626726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [All Functions] [Native Implementation] If functions are implemented as native Move runtime functions linked at deploy time but linking fails, can vault deploy succeed but fail at runtime when i64 operations are needed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fdedc973-dca1-420f-ba1d-d6bfef74335a?mode=deep",
+    "timestamp": "2026-02-19 03:24:16.934299",
+    "report_generated": false
+  }
+]
