@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: Multi-Asset Vault] [Total Value Sum] When summing values across multiple assets using repeated add() calls, can overflow in intermediate steps cause incorrect total_usd_value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5eb965fe-3061-4200-8889-aa331dce176c?mode=deep",
+    "timestamp": "2026-02-19 08:53:57.639862",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: Migration] [Balance Transfer] When migrating balances using add(v1_balance, v2_balance), can overflow cause migration to fail and lock funds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b6d74f7-ce98-4975-907a-fa8a1c844a4d?mode=deep",
+    "timestamp": "2026-02-19 08:54:10.398102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Integration: Operation Status] [Value Update Check] When verifying vault value increased after operation using sub(post_value, pre_value), can underflow indicate failed operation but not revert? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ff204f9e-8f84-4d14-881c-d9df0efbc5a1?mode=deep",
+    "timestamp": "2026-02-19 08:54:23.714016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Advanced Attack] [Precision Sandwich] Can attacker sandwich user transaction between two operations that cause precision loss in div() operations, stealing value through rounding? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c86fa87e-41bc-4d43-98a8-6486a1dbd07d?mode=deep",
+    "timestamp": "2026-02-19 08:54:37.830077",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Advanced Attack] [Overflow Timing] Can attacker time operations to cause overflows during high-value periods (high oracle prices, large deposits) to DoS the protocol? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f91688fc-8b69-4e34-8f71-7daa1df01339?mode=deep",
+    "timestamp": "2026-02-19 08:54:52.909339",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Advanced Attack] [Dust Accumulation] Can attacker exploit precision loss in div() to accumulate dust amounts that eventually sum to significant value? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_737e2886-e1d1-4be7-862e-f7eafeea90d1?mode=deep",
+    "timestamp": "2026-02-19 08:55:10.014359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Advanced Attack] [Math Library Bypass] Can other modules bypass safe_math functions and use raw arithmetic, introducing vulnerabilities? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_678232b4-d38a-4eab-a7be-f90b93398345?mode=deep",
+    "timestamp": "2026-02-19 08:55:28.320124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Advanced Attack] [Assertion Gas Limit] Can attacker craft inputs that cause assertions to be evaluated but fail, consuming gas without reverting early enough? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_40484bee-9dc2-4293-a95a-5c6b720ab386?mode=deep",
+    "timestamp": "2026-02-19 08:55:47.382391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Advanced Attack] [Cross-Module Overflow] When value flows between modules using safe_math in one but raw arithmetic in another, can overflow be introduced at module boundary? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca58e0b9-212f-44f2-bec5-fecbd6372eb6?mode=deep",
+    "timestamp": "2026-02-19 08:56:08.432011",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Advanced Attack] [Rounding Direction] Can attacker exploit consistent rounding direction in div() to slowly drain vault value over many operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fbf1ff14-3897-4fd8-9fa7-8b05073e1515?mode=deep",
+    "timestamp": "2026-02-19 08:56:29.548211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Advanced Attack] [Fee Griefing] Can attacker make deposits that result in calculated fees rounding to zero due to div() truncation, avoiding fees repeatedly? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90795778-46ff-4308-9216-17fc8f10ed09?mode=deep",
+    "timestamp": "2026-02-19 08:56:51.388181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Advanced Attack] [Share Dilution] By exploiting precision loss in share calculation using mul() and div(), can attacker dilute existing shareholders? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_febbde20-1c84-49bb-a203-64d295c3832a?mode=deep",
+    "timestamp": "2026-02-19 08:57:14.912261",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Advanced Attack] [Oracle Manipulation] Can attacker submit oracle prices that cause overflow in value calculations using mul(), forcing operations to fail at critical moments? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_691f0d17-56ee-4d43-ad7c-67598c1561ed?mode=deep",
+    "timestamp": "2026-02-19 08:57:38.863021",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Type Safety] [u256 Max Value] Are there assumptions that u256::MAX will never be reached that could be violated in extreme market conditions or through deliberate attack? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_89d332dd-4a0e-4167-abe8-208014ea9efc?mode=deep",
+    "timestamp": "2026-02-19 08:58:03.267803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Type Safety] [Implicit Conversion] Can implicit type conversions between u64, u128, and u256 in calling code introduce overflow that safe_math doesn't catch? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ede535f-49dc-40ce-9a8e-67fc006ee59a?mode=deep",
+    "timestamp": "2026-02-19 08:58:26.713556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Type Safety] [Negative Numbers] Since Move doesn't have native signed integers, can misuse of safe_math to emulate negative numbers cause logic errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_304fbcb8-3ce5-4aca-a5fb-4d89247d2e57?mode=deep",
+    "timestamp": "2026-02-19 08:58:50.361353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Type Safety] [Zero Representation] Are there edge cases where zero could be represented differently (0u256 vs cast from 0u64) causing comparison failures? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b475e430-efaf-4d0c-ac06-4808074d69e0?mode=deep",
+    "timestamp": "2026-02-19 08:59:13.502679",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Move Semantics] [Assertion Timing] Does Move guarantee assertions execute before arithmetic operations, or can compiler optimization change order? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a585a1c0-1bf7-4334-968c-7bb8a50b3646?mode=deep",
+    "timestamp": "2026-02-19 08:59:37.209906",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Move Semantics] [Abort Behavior] When assertion fails, does Move properly roll back all state changes, or can partial state corruption occur? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2a301ac9-b085-4a17-823a-438360e6cbf9?mode=deep",
+    "timestamp": "2026-02-19 09:00:02.190537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Move Semantics] [Public Function Safety] Are public functions callable by malicious modules that could provide unexpected inputs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98d121ec-387c-4f4f-b03e-02652f8a3f15?mode=deep",
+    "timestamp": "2026-02-19 09:00:25.343845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Move Semantics] [Inline Optimization] Can Move compiler inline these functions in ways that bypass safety checks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5959bb00-8cac-44ec-b657-a256dac790da?mode=deep",
+    "timestamp": "2026-02-19 09:00:48.678353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Business Logic] [First Deposit Attack] In vault's first deposit, using div(total_assets, total_shares) when both are zero or very small, can attacker manipulate share price by donating assets before second user deposits? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d309d9c-ecf5-45d5-8788-dc8599c0a3bd?mode=deep",
+    "timestamp": "2026-02-19 09:01:12.384351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Business Logic] [Withdrawal Queue Math] When processing withdrawals from request queue, can accumulated precision losses from repeated div() operations cause queue to become insolvent? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e52eb373-bb5c-4556-ba64-ab2217e31982?mode=deep",
+    "timestamp": "2026-02-19 09:01:35.882290",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Business Logic] [Epoch Rollover] During epoch rollover when calculating new stake ratios using div(), can precision loss cause LST to slowly depeg from SUI? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_47d623b2-4633-42db-8d6f-bd510f277585?mode=deep",
+    "timestamp": "2026-02-19 09:02:01.837435",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/safe_math.move] [Business Logic] [Fee Compounding] When fees are reinvested and calculated using mul() and div() repeatedly, can compounding errors accumulate? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_24511885-b15e-4908-bb1b-d30cda75952a?mode=deep",
+    "timestamp": "2026-02-19 09:02:28.275964",
+    "report_generated": false
+  }
+]
