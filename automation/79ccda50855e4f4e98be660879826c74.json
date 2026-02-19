@@ -1,0 +1,32 @@
+[
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: remove_reward_buffer_distribution()] [Partial Removal] At lines 326-327, buffer entries are removed but reward type remains - can this cause issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_028112e3-0f78-42fa-9173-9f6c994506fe?mode=deep",
+    "timestamp": "2026-02-19 02:00:45.553417",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_new_reward_type()] [Double Addition] Is there protection against adding the same reward type twice, which could overwrite indices or balances? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_828c124b-910c-48f8-b749-675f1b4b8698?mode=deep",
+    "timestamp": "2026-02-19 02:00:58.456518",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Subtraction Underflow] At line 533, remaining_reward_amount - actual_reward_amount is computed - can underflow occur? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3063fa7-21c6-4e4f-9a82-1195ea1e33f8?mode=deep",
+    "timestamp": "2026-02-19 02:01:11.792103",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_to_buffer()] [Addition Overflow] At line 399, buffer_reward_amount + reward_amount is computed - can this overflow u256? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d177ff9-02ad-455e-a594-7599fe91dcb4?mode=deep",
+    "timestamp": "2026-02-19 02:01:25.789451",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_indices()] [Index Addition] At line 578, current index + add_index could overflow - is there protection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3cfdaefa-c39d-4a72-b9f3-97ac9f710610?mode=deep",
+    "timestamp": "2026-02-19 02:01:40.810606",
+    "report_generated": false
+  }
+]
