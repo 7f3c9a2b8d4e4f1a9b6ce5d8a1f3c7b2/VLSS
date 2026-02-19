@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_deposit()] [Reentrancy] Can an attacker call execute_deposit multiple times before state updates complete, exploiting the delay between update_state_of_all and increase_supply_balance to deposit with stale indices and receive inflated scaled amounts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3bb37e78-896a-4cf4-897c-1480a56bd6a8?mode=deep",
+    "timestamp": "2026-02-19 04:56:50.963525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_deposit()] [Integer Overflow] If amount parameter approaches u256::MAX, can ray_div in increase_supply_balance (line 329) cause overflow when computing scaled_amount, allowing attacker to mint unlimited supply tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f7cbce11-9e3e-4e64-8fac-cf46f306c3aa?mode=deep",
+    "timestamp": "2026-02-19 04:57:03.372680",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_deposit()] [Index Manipulation] Can attacker deposit immediately after update_state_of_all but before supply_index increases from interest accrual, getting more scaled tokens than deserved by exploiting timing window? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d34579e7-14cd-4140-8d43-28b714ac2740?mode=deep",
+    "timestamp": "2026-02-19 04:57:16.490715",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_deposit()] [Validation Bypass] Does validate_deposit check for zero amount deposits? Can attacker spam zero-amount deposits to manipulate user_collaterals list or trigger DoS via excessive storage operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_32b7a887-82f6-42bc-9fc4-42540d6e1b18?mode=deep",
+    "timestamp": "2026-02-19 04:57:30.656002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_deposit()] [State Inconsistency] If is_collateral returns false but storage::update_user_collaterals fails or reverts, can user have deposited funds without being tracked in collateral list, enabling loss of funds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e0045ae7-1148-4842-bb4d-53eac9e4e0d9?mode=deep",
+    "timestamp": "2026-02-19 04:57:44.683807",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_deposit()] [Supply Index Race] If supply_index is updated between validation and increase_supply_balance, can attacker receive incorrect scaled_amount due to index mismatch? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21171c0c-b523-4b86-9476-593d15002881?mode=deep",
+    "timestamp": "2026-02-19 04:57:59.945741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_deposit()] [Interest Rate Manipulation] After deposit, update_interest_rate changes rates - can attacker immediately borrow at old rate before rate update propagates to avoid higher borrowing costs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0030ea72-fd0b-47ef-844f-0668cf32eb2c?mode=deep",
+    "timestamp": "2026-02-19 04:58:16.720762",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_deposit()] [Collateral List DoS] Can attacker repeatedly add/remove same asset from collaterals list by depositing/withdrawing minimum amounts to cause storage bloat or gas griefing? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a33dbf9-0f8c-4fd3-884d-8fad186e0226?mode=deep",
+    "timestamp": "2026-02-19 04:58:34.217796",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_deposit()] [Treasury Inflation] Since treasury balance increases in update_state, can attacker deposit massive amount right after state update to dilute treasury's proportional share of supply? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5db1d4d-f1a2-4c49-bad8-63ccae550219?mode=deep",
+    "timestamp": "2026-02-19 04:58:53.193046",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_deposit()] [Rounding Error Accumulation] With small deposits using ray_div for scaled_amount calculation, can attacker exploit rounding to receive more scaled tokens than actual deposit warrants over many transactions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ce570f2-621d-4868-8a7c-a24e5d983fd3?mode=deep",
+    "timestamp": "2026-02-19 04:59:13.153882",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_withdraw()] [Health Check Bypass] After decrease_supply_balance but before is_health check, can attacker's collateral be externally manipulated to pass health check despite being unhealthy? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_842d4dc1-c5ec-480c-84e2-58a6ecbecd10?mode=deep",
+    "timestamp": "2026-02-19 04:59:33.204365",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_withdraw()] [Tiny Balance Treasury Drain] If token_amount - actual_amount <= 1000, balance goes to treasury - can attacker intentionally create many accounts with 999 unit balances to drain protocol via forced treasury transfers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5fbd0eb6-9c7d-4fd6-9459-4244d791171e?mode=deep",
+    "timestamp": "2026-02-19 04:59:53.018643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_withdraw()] [Collateral Removal Race] Between checking token_amount == actual_amount and remove_user_collaterals, can concurrent operation change balance causing incorrect collateral list state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_39b8151c-3685-4e3d-a1de-1eca7aefc8fb?mode=deep",
+    "timestamp": "2026-02-19 05:00:11.514921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_withdraw()] [Amount Capping Exploit] Since actual_amount = min(amount, token_amount), can attacker request u256::MAX to always withdraw full balance bypassing any intended withdrawal limits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f828070-1240-4645-8dfd-be327394ede8?mode=deep",
+    "timestamp": "2026-02-19 05:00:30.361765",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_withdraw()] [Health Factor Timing] Is health check performed with stale oracle prices? Can attacker withdraw when oracle is outdated, becoming unhealthy before prices update? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a2fbc5c3-5b77-42f3-9c71-651af5d339e9?mode=deep",
+    "timestamp": "2026-02-19 05:00:50.624444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_withdraw()] [u64 Downcasting Risk] Return value casts actual_amount from u256 to u64 - can large withdrawals overflow u64, causing returned value mismatch and fund loss? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d4fb5aa-5992-43d6-b901-21ba6c3693da?mode=deep",
+    "timestamp": "2026-02-19 05:01:12.113538",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_withdraw()] [Tiny Balance Threshold Abuse] The 1000 unit threshold for tiny balance - is this checked against raw or scaled balance? Can attacker exploit scale factor differences to avoid threshold? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ce258957-3e44-4837-9441-1d622b6419c5?mode=deep",
+    "timestamp": "2026-02-19 05:01:33.877884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_withdraw()] [State Update Ordering] update_state_of_all called before withdraw but interest_rate updated after - can attacker exploit stale rates between these calls for arbitrage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_84364596-879c-484a-9670-79eaccc92f63?mode=deep",
+    "timestamp": "2026-02-19 05:01:54.798708",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_withdraw()] [Collateral List Corruption] If is_collateral check and remove_user_collaterals are non-atomic, can user end up with zero balance but still in collateral list or vice versa? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_662e9693-f143-48e2-b252-d2e0901bccc0?mode=deep",
+    "timestamp": "2026-02-19 05:02:15.713923",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_withdraw()] [Assert Failure DoS] If user_collateral_balance returns 0, assert at line 76 prevents withdrawal - can attacker force user balance to 0 to DoS legitimate withdrawals? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f2ff642-85af-4859-b33a-f3c4e9f46c5f?mode=deep",
+    "timestamp": "2026-02-19 05:02:37.096370",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_borrow()] [Health Factor Calculation Error] Lines 150-155 calculate health_factor_in_borrow and compare with user_health_factor - can rounding in ray_div cause incorrect comparison allowing undercollateralized borrowing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_07598e32-1879-469b-8590-0a2db5827398?mode=deep",
+    "timestamp": "2026-02-19 05:02:58.503209",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_borrow()] [LTV Threshold Bypass] Assert at line 152 requires avg_ltv > 0 and avg_threshold > 0, but what if avg_ltv is minimal (e.g., 1)? Can attacker borrow with negligible collateral? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa0d7894-6a50-4fb6-b4ee-ebe59feea21c?mode=deep",
+    "timestamp": "2026-02-19 05:03:19.652000",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_borrow()] [Oracle Manipulation] calculate_avg_ltv and calculate_avg_threshold use oracle prices - can attacker manipulate oracle within single transaction to inflate collateral value and over-borrow? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50fe8e7b-0698-4391-91d4-b239e82b3f59?mode=deep",
+    "timestamp": "2026-02-19 05:03:41.135734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_borrow()] [Loan List Update Race] Between increase_borrow_balance and update_user_loans, can concurrent transaction cause loan tracking inconsistency? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7c9bb83-949c-452f-b33f-224055d8bd4d?mode=deep",
+    "timestamp": "2026-02-19 05:04:02.644784",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: execute_borrow()] [Division by Zero] In ray_div(avg_threshold, avg_ltv) at line 153, if avg_ltv is extremely small but non-zero, can this cause precision loss allowing unhealthy borrows? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb2664cd-203d-4e0c-87f5-942c6b9903bd?mode=deep",
+    "timestamp": "2026-02-19 05:04:25.079730",
+    "report_generated": false
+  }
+]
