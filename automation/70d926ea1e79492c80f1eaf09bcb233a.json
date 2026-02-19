@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_to_target_decimal()] [Max Target Decimal] If target_decimal=255 is passed, will the scaling loop in to_target_decimal_value_safe() cause excessive iterations leading to gas exhaustion DoS, or overflow causing price corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_000a5e3a-86d4-4a02-9f56-e1ce0d676535?mode=deep",
+    "timestamp": "2026-02-19 01:30:57.828566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_to_target_decimal()] [Decimal Mismatch] Since get_price_to_target_decimal() is marked public, can external contracts call it with wrong target_decimal value and use the incorrectly scaled price in ways that break vault accounting assumptions about price precision? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_27ecba19-4f6b-439a-b8da-bc574d0d1cb8?mode=deep",
+    "timestamp": "2026-02-19 01:31:10.327688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_to_target_decimal()] [Timestamp Propagation] Does timestamp returned from get_price_to_target_decimal() maintain same security properties as the input price's timestamp? Can timestamp be stale even if price conversion succeeds, causing temporal mismatch in vault operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9c4271fa-bff3-4def-a4cf-452a2ae8b331?mode=deep",
+    "timestamp": "2026-02-19 01:31:24.543618",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_to_target_decimal()] [Decimal-Expo Mismatch] Can an attacker exploit confusion between Pyth's expo (negative exponent) and the target_decimal parameter to cause double scaling or inverse scaling, resulting in price being 10^N times too high or low? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f05b36a3-a310-453a-b603-171228b0d8e4?mode=deep",
+    "timestamp": "2026-02-19 01:31:38.485042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_to_target_decimal()] [Scaling Direction Error] In to_target_decimal_value_safe(), if decimal < target_decimal it scales up by multiplying, else scales down by dividing - can edge cases where decimal == target_decimal but price is already wrong cause bypass of scaling that should have occurred? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_322fd107-a2da-40c2-8306-a2a037df2cc2?mode=deep",
+    "timestamp": "2026-02-19 01:31:53.318178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_to_target_decimal()] [Critical Combined Attack Vector] Since this function combines both unsafe price fetching AND decimal conversion, can an attacker exploit BOTH stale price injection AND decimal overflow in a single call to oracle_pro::get_price_from_adaptor(), maximizing damage to vault valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98fd809b-77a1-42ba-8d65-0fc9e17ebdcf?mode=deep",
+    "timestamp": "2026-02-19 01:32:09.471157",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_to_target_decimal()] [Primary Oracle Exploit] Since oracle_pro calls get_price_unsafe_to_target_decimal() for primary price feed (line 178), can an attacker exploit this to manipulate the primary price source, and if secondary oracle is unavailable, force vault to accept manipulated prices without any validation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_14b1ecde-99e5-4641-be2b-6bf7a19ad753?mode=deep",
+    "timestamp": "2026-02-19 01:32:27.315832",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_to_target_decimal()] [Secondary Oracle Bypass] When both primary and secondary oracles use Pyth via get_price_unsafe_to_target_decimal(), can an attacker manipulate the PriceInfoObject once to affect both price feeds, defeating the dual-oracle protection mechanism? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18534810-95b8-4fd2-8c3a-af18e043d929?mode=deep",
+    "timestamp": "2026-02-19 01:32:45.596815",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_to_target_decimal()] [Price Difference Validation Bypass] Can an attacker craft stale prices from get_price_unsafe_to_target_decimal() that are close enough to pass price_diff_threshold checks in oracle_pro but still exploitably different from real market prices, extracting value through arbitrage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_17b60a73-7dbb-40f3-97e7-6e20dfa55bae?mode=deep",
+    "timestamp": "2026-02-19 01:33:04.770381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_to_target_decimal()] [Historical Price Manipulation] Since get_price_unsafe_to_target_decimal() can return arbitrarily old prices, can an attacker use this to manipulate the historical_price validation in oracle_pro::update_single_price(), making extreme price movements appear normal? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a167fab-7ef8-4f6b-a333-9e61d30774ca?mode=deep",
+    "timestamp": "2026-02-19 01:33:25.048435",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_to_target_decimal()] [Vault Operation Timing] Can an attacker monitor when vault operations are about to execute, provide stale Pyth price via get_price_unsafe_to_target_decimal() at precisely timed moment to cause vault to use outdated valuation for deposits/withdrawals/liquidations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52c0d546-7648-499b-8f56-e3c3ced2f404?mode=deep",
+    "timestamp": "2026-02-19 01:33:51.433714",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_to_target_decimal()] [Decimal Conversion on Stale Data] When get_price_unsafe_to_target_decimal() converts stale price to target decimal, can precision errors compound with staleness to create even larger mispricing, as old price data gets inappropriately scaled? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c819134d-1dee-45ea-939a-f908441788b6?mode=deep",
+    "timestamp": "2026-02-19 01:34:13.271009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_to_target_decimal()] [No Confidence Interval] Does get_price_unsafe_to_target_decimal() check Pyth confidence interval before conversion? Can wide confidence bands on stale prices cause the converted price to be far from true value, breaking vault risk calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b5001f5-2dd9-4494-9fb8-207416784559?mode=deep",
+    "timestamp": "2026-02-19 01:34:35.688744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_to_target_decimal()] [Timestamp Inflation] Can an attacker inflate the timestamp returned from get_price_unsafe_to_target_decimal() to make stale price appear fresh, bypassing max_timestamp_diff check while actual price data is outdated? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e2ba5553-c8d9-4bef-b724-ab02f93d6aa5?mode=deep",
+    "timestamp": "2026-02-19 01:34:59.286970",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_to_target_decimal()] [Zero Decimal Edge Case] If Pyth returns decimal=0 and target_decimal>0, will to_target_decimal_value_safe() scale up price correctly or can this edge case cause incorrect multiplication factors breaking price calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7336dead-c4a8-4879-946a-db89d0a4a6c7?mode=deep",
+    "timestamp": "2026-02-19 01:35:22.881267",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_identifier_to_vector()] [Feed ID Substitution Attack] In oracle_pro::get_price_from_adaptor(), get_identifier_to_vector() is used to validate pair_id match (line 176-177) - can an attacker provide a PriceInfoObject with manipulated identifier bytes that passes equality check but represents wrong asset, causing vault to use price for asset A while treating it as asset B? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e62dff3b-576f-407f-9ddd-2078c7b13e50?mode=deep",
+    "timestamp": "2026-02-19 01:35:48.506121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_identifier_to_vector()] [Bytes Conversion Attack] Can price_identifier::get_bytes() return malformed or truncated byte vector that passes validation but represents incorrect feed ID, causing vault to accept prices from wrong Pyth feed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c51c7ad-7aef-47c6-888d-1cafb4594741?mode=deep",
+    "timestamp": "2026-02-19 01:36:13.248244",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_identifier_to_vector()] [Case Sensitivity Bypass] If Pyth feed IDs have case sensitivity or encoding issues, can get_identifier_to_vector() return bytes that match stored pair_id but represent different feed due to encoding mismatch? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_17fba29a-7389-4cd5-843f-553185b0c8ce?mode=deep",
+    "timestamp": "2026-02-19 01:36:40.057432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_identifier_to_vector()] [Empty Identifier] Can price_info_object have empty/null identifier causing get_identifier_to_vector() to return empty vector that passes equality check if pair_id is also misconfigured as empty, bypassing feed validation entirely? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a2f48c27-4ece-4bf5-9195-79ee55e13040?mode=deep",
+    "timestamp": "2026-02-19 01:37:06.481837",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_identifier_to_vector()] [Collision Attack] Can two different Pyth price feeds have identifier bytes that collide after conversion, causing vault to incorrectly accept price from wrong feed believing it matches configured pair_id? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1c673c3-2462-438f-b3ea-8869a9da11e0?mode=deep",
+    "timestamp": "2026-02-19 01:37:32.026910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_identifier_to_vector()] [Test vs Production Feeds] Can an attacker exploit differences between Pyth testnet and mainnet feed IDs to provide testnet price data that passes get_identifier_to_vector() validation on mainnet configuration? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c1dbfe45-262b-44cb-99d7-9aa8308fac99?mode=deep",
+    "timestamp": "2026-02-19 01:37:56.457309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_identifier_to_vector()] [Deprecated Feed IDs] If Pyth deprecates/changes feed IDs, can old PriceInfoObjects with legacy identifiers still pass get_identifier_to_vector() validation but provide stale/incorrect prices from deprecated feeds? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5df06e8-8e91-468d-b1cd-0a0d5b23b3ac?mode=deep",
+    "timestamp": "2026-02-19 01:38:21.466203",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_identifier_to_vector()] [Length Validation Missing] Does get_identifier_to_vector() validate that returned vector has correct length (32 bytes for Pyth IDs)? Can shorter/longer byte vectors cause matching errors or buffer issues in comparison? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_673201ff-58d1-4b18-8b12-4455a2a0a932?mode=deep",
+    "timestamp": "2026-02-19 01:38:46.573394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_identifier_to_vector()] [Reference vs Value Semantics] Can the PriceInfoObject reference be manipulated after get_identifier_to_vector() returns identifier but before price is fetched, causing ID-price mismatch? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d0be8f1-fff7-4a6b-9736-5bd2248fb666?mode=deep",
+    "timestamp": "2026-02-19 01:39:10.814344",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_identifier_to_vector()] [Multiple Feed Handling] If vault needs prices from multiple Pyth feeds, can get_identifier_to_vector() return same identifier for different PriceInfoObjects causing vault to use same price for multiple assets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe1c881d-015a-4788-ae89-fe2a25c21335?mode=deep",
+    "timestamp": "2026-02-19 01:39:35.036531",
+    "report_generated": false
+  }
+]
