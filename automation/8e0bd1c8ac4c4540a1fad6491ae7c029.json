@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_flash_loan_asset_min()] [Dust Threshold] Can min be set to 0 or 1, allowing dust flash loans that could spam the network or exploit rounding errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d46f08a-5154-439e-b1a1-016d4d444c1e?mode=deep",
+    "timestamp": "2026-02-19 02:54:06.045048",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_flash_loan_asset_max()] [Liquidity Drain] Can max be set to u64::MAX regardless of pool liquidity, allowing flash loans that attempt to borrow more than available balance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d173e4d-ffba-4f6f-9abe-d8720dd2cee4?mode=deep",
+    "timestamp": "2026-02-19 02:54:19.018088",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_flash_loan_asset_max()] [Constraint Violation] Can max be set below existing min, creating impossible constraints that DoS flash loan functionality? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4453fa37-ee2e-41c4-b4f6-f9276232f0e7?mode=deep",
+    "timestamp": "2026-02-19 02:54:32.948022",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_flash_loan_asset_max()] [Flash Loan Cap Bypass] If max is updated during active flash loan execution, can borrower exceed old max by timing the transaction? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0424aeea-65a4-43ca-b9ed-4cb993aa776d?mode=deep",
+    "timestamp": "2026-02-19 02:54:46.949389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_borrow_fee()] [Amount Validation] Does the function validate that amount <= available_borrow_fee_balance before withdrawal at line 89, preventing revert-based DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6c01c8b5-f987-46e6-ae7b-210a713158f7?mode=deep",
+    "timestamp": "2026-02-19 02:55:00.433880",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_borrow_fee()] [Recipient Manipulation] Can the recipient address at line 91 be an attacker-controlled address if StorageAdminCap is compromised, enabling fee theft? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e29c52ca-1030-4492-bf3a-0a601a26bc64?mode=deep",
+    "timestamp": "2026-02-19 02:55:16.755235",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_borrow_fee()] [Reentrancy Risk] Can the public_transfer at line 91 trigger recipient's receive hook, allowing reentrancy to withdraw_borrow_fee again before state updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_62df6ccb-30f4-4dc0-9862-4b8c6421e74b?mode=deep",
+    "timestamp": "2026-02-19 02:55:34.716903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_borrow_fee()] [Type Safety] If generic T doesn't match the actual fee token type in incentive, can withdraw_borrow_fee fail or withdraw wrong token? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b885fd0b-5162-47db-bfb9-39a37571e8fb?mode=deep",
+    "timestamp": "2026-02-19 02:55:52.997663",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_borrow_fee()] [Zero Amount Withdrawal] Can amount=0 be passed to trigger unnecessary transactions or emit misleading events? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48315a7a-96e3-40c2-964b-7dde7c20571b?mode=deep",
+    "timestamp": "2026-02-19 02:56:11.428351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_borrow_fee()] [Self-Transfer] Can recipient be the sender's address, causing self-transfer that may bypass accounting logic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1cd4bf92-58f7-404e-bebe-07a1da20899d?mode=deep",
+    "timestamp": "2026-02-19 02:56:31.117882",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_borrow_fee()] [Balance Underflow] If incentive_v3::withdraw_borrow_fee doesn't check balance, can amount > balance cause underflow panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fae55caf-e8b2-4557-8327-a8c30521ecb3?mode=deep",
+    "timestamp": "2026-02-19 02:56:50.929857",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: withdraw_borrow_fee()] [Multiple Withdrawals] Can the admin call this function multiple times in the same transaction to drain all fees, bypassing any per-call limits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e1c0919-c96f-4646-8235-43b3feaab302?mode=deep",
+    "timestamp": "2026-02-19 02:57:10.820109",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: incentive_v3_version_migrate()] [Version Rollback] Can the version check at line 95 be bypassed to downgrade incentive version, potentially re-enabling old vulnerabilities? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4db90138-9a5f-4b28-b3e7-5404ef37dcbb?mode=deep",
+    "timestamp": "2026-02-19 02:57:31.735860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: incentive_v3_version_migrate()] [Version Skipping] Can the function be called to skip intermediate versions (e.g., v1 -> v3 directly), missing critical migration logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3c7787f0-e91e-4b2d-ad9f-decc877df204?mode=deep",
+    "timestamp": "2026-02-19 02:57:52.912260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: incentive_v3_version_migrate()] [Repeated Migration] Can this function be called multiple times on the same incentive object, causing duplicate state transitions or corrupting data? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a2fd277a-c7c1-410c-ad93-66a8a6d18b94?mode=deep",
+    "timestamp": "2026-02-19 02:58:15.293558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: incentive_v3_version_migrate()] [Version Mismatch] If version::this_version() returns an unexpected value, can the assert at line 95 cause DoS preventing legitimate migrations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b950bc86-707e-4721-850f-037d6c897e29?mode=deep",
+    "timestamp": "2026-02-19 02:58:37.682324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: incentive_v3_version_migrate()] [State Corruption] Does version_migrate at line 97 properly handle all state fields, or can partial migration leave incentive in inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_85918ec5-8b51-42ea-b6c2-ba9a54c5eadb?mode=deep",
+    "timestamp": "2026-02-19 02:59:01.354857",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: incentive_v3_version_migrate()] [Missing Validation] Does the function validate that incentive is not actively distributing rewards during migration, preventing mid-distribution version changes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a9993e2-3645-41af-8422-264844b2c732?mode=deep",
+    "timestamp": "2026-02-19 02:59:25.546048",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_reward_fund()] [Cap Validation] Can IncentiveOwnerCap be forged, duplicated, or transferred to unauthorized parties to create reward funds for malicious tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ccb9d298-cc70-431b-8f44-5ef379f37613?mode=deep",
+    "timestamp": "2026-02-19 02:59:50.882893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_reward_fund()] [Duplicate Fund Creation] Can the same reward token type T be used to create multiple RewardFund instances, causing confusion in reward distribution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_408c58b6-c62b-4085-9074-2e0e1ca23715?mode=deep",
+    "timestamp": "2026-02-19 03:00:17.782012",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_reward_fund()] [Malicious Token] Can an attacker create reward funds for tokens they control, injecting malicious transfer hooks or minting logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a1d0df1b-7f7b-4d2a-b620-be9cc6bb5e1c?mode=deep",
+    "timestamp": "2026-02-19 03:00:45.874156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_reward_fund()] [Type Confusion] Can generic T be a non-coin type or incompatible type that causes runtime errors in reward distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78f2c82d-2a46-4e0d-85a8-206d357772fc?mode=deep",
+    "timestamp": "2026-02-19 03:01:14.438956",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: deposit_incentive_v3_reward_fund()] [Amount Validation] The assert at line 106 checks coin::value(&deposit_coin) >= amount, but can amount be 0, allowing no-op deposits that spam events? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c43c00b4-2985-4a29-9507-eb151a7e1c39?mode=deep",
+    "timestamp": "2026-02-19 03:01:44.245083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: deposit_incentive_v3_reward_fund()] [Partial Deposit] After splitting amount at line 107, the remaining deposit_coin is transferred back at line 111, but can this self-transfer be exploited to bypass accounting? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5b1c737-8846-4943-858e-53ad0ef1635b?mode=deep",
+    "timestamp": "2026-02-19 03:02:15.114906",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: deposit_incentive_v3_reward_fund()] [Reentrancy] Can the self_transfer at line 111 trigger sender's receive hook, allowing reentrant deposit before split_coin is consumed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5b22a7e-38cc-4f78-a91b-c1e82e4fc3cb?mode=deep",
+    "timestamp": "2026-02-19 03:02:47.099888",
+    "report_generated": false
+  }
+]
