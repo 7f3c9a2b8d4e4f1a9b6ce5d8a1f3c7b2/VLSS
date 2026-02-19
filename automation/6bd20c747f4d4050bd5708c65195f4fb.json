@@ -1,0 +1,116 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Operation Status] Can oracle_queue_id be changed while vault status is 'during_operation', potentially causing the operation to use inconsistent oracle data halfway through? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_96b9c4a8-9e30-4f35-8914-0492069c493d?mode=deep",
+    "timestamp": "2026-02-19 01:13:31.187002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Fee Calculation] Does changing oracle_queue_id affect how vault fees are calculated in USD terms? Can this be exploited to underpay or overpay fees? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bba4c9a0-7847-49c2-9d3a-c45d49da715c?mode=deep",
+    "timestamp": "2026-02-19 01:13:44.389074",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [LST Ratio Impact] Can oracle_queue_id changes affect SUI/LST exchange ratio calculations if liquid staking relies on oracle prices for any validation or accounting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68f457ff-c376-4e8e-9b31-d42426c6aeb7?mode=deep",
+    "timestamp": "2026-02-19 01:13:58.743011",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Epoch Rollover] If oracle_queue_id changes during liquid staking epoch rollover, can this cause reward calculation errors or validator delegation issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c41a537b-1538-4233-b658-2373264da270?mode=deep",
+    "timestamp": "2026-02-19 01:14:13.370182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Validator Weights] If validator weight calculations use oracle price data, can oracle_queue_id changes cause incorrect weight updates or delegation imbalances? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf499155-c472-4fea-b624-cc9ca56a3984?mode=deep",
+    "timestamp": "2026-02-19 01:14:29.245452",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Operator Confusion] Does the system distinguish between operator and admin roles? Can an operator mistakenly be granted AdminCap and call run() when they should only have limited vault operation privileges? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_03f35fc4-349d-49cf-b4db-f6d1e7db02da?mode=deep",
+    "timestamp": "2026-02-19 01:14:46.603147",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Cap Transfer] If AdminCap is transferred to a new address, can the old admin still have a pending transaction calling run() that executes after the transfer, bypassing the intended access revocation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b85ebe6-e1fa-4f9c-833a-140260161ab7?mode=deep",
+    "timestamp": "2026-02-19 01:15:04.255908",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Social Engineering] Can an attacker social engineer an admin into signing a transaction calling run() with a malicious oracle_queue_id by disguising it as a legitimate oracle upgrade? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_62ee55c6-add0-45bb-8823-7fb203a95401?mode=deep",
+    "timestamp": "2026-02-19 01:15:24.100161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Event-State Mismatch] Can there be a scenario where OracleQueueIdSet event shows different oracle_queue_id values than what actually got written to State due to race conditions or transaction ordering issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f02c53ed-6dae-4d70-845c-eea5b19cd2da?mode=deep",
+    "timestamp": "2026-02-19 01:15:46.184678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Struct: OracleQueueIdSet] [ID Size] Are there any constraints on ID type size or format? Can extremely large or specially crafted IDs cause overflow or parsing errors in event processing? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_757b5bbb-1796-40c4-a06b-1f1faf53eda7?mode=deep",
+    "timestamp": "2026-02-19 01:16:08.904917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Getter Reliability] Does state.oracle_queue() always return the current value, or could it be stale due to caching? Can this cause old_oracle_queue_id in events to be incorrect? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_85ea6b72-a77c-43b9-ba0c-f88c2538d0c4?mode=deep",
+    "timestamp": "2026-02-19 01:16:32.391065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Module: set_oracle_queue_id_action] [Package Upgrade] If the switchboard package is upgraded, can the new version break compatibility with this action module, causing run() to fail or behave incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b8a2074-40f7-4287-b1a5-f1e3c1d09def?mode=deep",
+    "timestamp": "2026-02-19 01:16:57.673880",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Migration Path] During a migration from old to new Switchboard oracle system, can run() safely handle transitioning between different Queue implementations or versions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e1f870d-4768-4a74-bc06-fa1eb63a2503?mode=deep",
+    "timestamp": "2026-02-19 01:17:23.062070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Deprecation] If this action module is deprecated, can old oracle_queue_id values still be read correctly by new code, or will migration cause data loss? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_24a6964c-b4e2-4415-ae24-c2f6cf79e0ad?mode=deep",
+    "timestamp": "2026-02-19 01:17:45.833134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Flash Loan Attack] Can an attacker use a flash loan to temporarily obtain assets that allow them to gain AdminCap access (through a complex exploit chain), call run(), then return the assets all in one transaction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_89418742-b707-4772-8200-c8cb0b7e94d3?mode=deep",
+    "timestamp": "2026-02-19 01:18:04.599902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Cross-Contract Call] Can run() be called from within another contract's function in a way that bypasses expected authorization flows or creates unexpected state transitions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_71d5e2e5-beba-4017-b2ec-a8244fd19734?mode=deep",
+    "timestamp": "2026-02-19 01:18:22.935227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Callback Exploit] If any part of run(), actuate(), or on_demand::set_oracle_queue_id() triggers callbacks to external contracts, can those callbacks reenter and call run() again with different parameters? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d42f342-8777-4915-ac95-f86b774bd279?mode=deep",
+    "timestamp": "2026-02-19 01:18:44.143114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Queue Hijacking] Can an attacker create a malicious Queue with the same interface as legitimate Switchboard queues but return manipulated prices, and trick an admin into setting oracle_queue_id to this malicious queue? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c291ec6-5c18-4c17-a6f3-86ec149c0b1b?mode=deep",
+    "timestamp": "2026-02-19 01:19:05.403083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [No Rollback Protection] Since validate() is empty, can oracle_queue_id be changed back and forth rapidly (A→B→A→B) to create arbitrage opportunities or exploit price feed transitions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48737a71-9c66-4111-ae10-6a8ed258d8c8?mode=deep",
+    "timestamp": "2026-02-19 01:19:27.450017",
+    "report_generated": false
+  }
+]
