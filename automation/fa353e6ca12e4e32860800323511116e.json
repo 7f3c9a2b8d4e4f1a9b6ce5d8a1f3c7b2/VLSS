@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_repay()] [Repay Amount Overflow] If amount parameter at line 76 is u256::MAX, can it cause overflow in subsequent repayment logic not visible in this validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7224ce80-1536-4dfe-857b-d4197b92129d?mode=deep",
+    "timestamp": "2026-02-19 09:20:29.280491",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_repay()] [Missing Supply Balance Update] validate_repay doesn't check if repayment will exceed maximum supply after adding back to pool - can it bypass supply caps? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_772c3476-389f-42a7-b3a0-632db4e243dd?mode=deep",
+    "timestamp": "2026-02-19 09:20:41.998775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_liquidate()] [Dual Type Confusion] Can LoanCointype and CollateralCoinType generics at line 81 be manipulated to match string checks at lines 82-83 but represent wrong assets? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ca3d1932-56a7-43aa-a9c7-e97f4e7b0daf?mode=deep",
+    "timestamp": "2026-02-19 09:20:55.181859",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_liquidate()] [Loan Type Mismatch] If type_name comparison for LoanCointype at line 82 passes with manipulated string, can attacker liquidate with wrong debt asset? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2636467c-9345-4ae8-a354-fd2439f9e87f?mode=deep",
+    "timestamp": "2026-02-19 09:21:09.710326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_liquidate()] [Collateral Type Exploit] If CollateralCoinType at line 83 matches string but is wrapped/different asset, can liquidator seize wrong collateral? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a79be3e0-2597-410d-b5b1-9d82a01f1244?mode=deep",
+    "timestamp": "2026-02-19 09:21:24.130750",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_liquidate()] [Same Asset Liquidation] Does validate_liquidate allow debt_asset == collateral_asset at lines 82-83? Can this enable same-asset liquidation exploits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6271207e-8e32-440e-be5c-6aa5efe18cc6?mode=deep",
+    "timestamp": "2026-02-19 09:21:40.268278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_liquidate()] [No Health Factor Check] validate_liquidate doesn't verify target position is underwater - can healthy positions be liquidated? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82154d90-4da9-428f-a6c6-dc3ada01db5a?mode=deep",
+    "timestamp": "2026-02-19 09:21:56.821952",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_liquidate()] [No Liquidation Threshold] No check for liquidation threshold or LTV ratio - can over-liquidation occur beyond allowed percentage? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b94d788-1f9c-422e-a8ab-679cbe3748e4?mode=deep",
+    "timestamp": "2026-02-19 09:22:14.723025",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_liquidate()] [No Collateral Value Check] validate_liquidate doesn't verify collateral value vs debt amount - can liquidator seize disproportionate collateral? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_64570d45-50ad-4847-b528-0d8d2d14f87a?mode=deep",
+    "timestamp": "2026-02-19 09:22:34.643292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_liquidate()] [No Liquidation Bonus Validation] No check for liquidation bonus/penalty boundaries - can liquidators extract excessive value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_816bcd8d-4c25-42ad-956f-f6d6714bbfc2?mode=deep",
+    "timestamp": "2026-02-19 09:22:55.049797",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_liquidate()] [Zero Amount Liquidation] Line 84 blocks zero amount, but can amount=1 minimal liquidations be used for griefing or front-running? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3795c14d-d92d-4d90-a6a0-18e7232a193f?mode=deep",
+    "timestamp": "2026-02-19 09:23:14.873434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_liquidate()] [No Liquidator Authorization] validate_liquidate doesn't check if liquidator is authorized - can anyone liquidate any position? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9bffa27-7abb-4893-b594-24a4aec32d0c?mode=deep",
+    "timestamp": "2026-02-19 09:23:37.765637",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_liquidate()] [Amount Overflow] If amount at line 81 is u256::MAX, can it overflow in liquidation value calculations not visible in validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4829e0aa-4a84-43ba-bb47-aea9fe44c595?mode=deep",
+    "timestamp": "2026-02-19 09:24:00.984492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Function: validate_liquidate()] [No Close Factor] No check for close factor limiting liquidation size - can entire position be liquidated at once? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_14e7b9a4-c523-42ba-9315-9ce3ed918d2f?mode=deep",
+    "timestamp": "2026-02-19 09:24:25.270297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Cross-Function] [Index Consistency] Do all functions (validate_deposit, validate_withdraw, validate_borrow) use consistent index values from storage::get_index(), or can index updates between calls cause inconsistency? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_79763a85-702e-432d-9caa-b7ea77c5cef3?mode=deep",
+    "timestamp": "2026-02-19 09:24:47.573857",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Cross-Function] [Storage Mutation Safety] All validation functions take &mut Storage but only read - can concurrent transactions mutate storage during validation causing race conditions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d542767-cd37-4e43-bc28-83025d607726?mode=deep",
+    "timestamp": "2026-02-19 09:25:09.651513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Cross-Function] [Type Name String Comparison] All functions use string comparison for type validation - can type_name::into_string produce non-unique strings for different types? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ee045ad-670f-4215-9abb-e6e21613be39?mode=deep",
+    "timestamp": "2026-02-19 09:25:32.086330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Cross-Function] [Amount Parameter Type] All functions use u256 for amount - can extremely large u256 values cause overflow in ray_math operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_53d78fc5-3472-415a-ab46-97e2d3452d48?mode=deep",
+    "timestamp": "2026-02-19 09:25:55.395403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Cross-Function] [Error Handling] Functions use assert! for validation - can error propagation be exploited or DoS-ed by intentionally triggering errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fddff8dc-bfd1-4029-b17b-90dac312708d?mode=deep",
+    "timestamp": "2026-02-19 09:26:18.676468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Cross-Function] [Ray Math Library] All functions depend on ray_math::ray_mul and ray_math::ray_div - can bugs in ray_math module bypass all validations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6a1ca614-8178-4908-b585-42b85eaa8a38?mode=deep",
+    "timestamp": "2026-02-19 09:26:42.769312",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Cross-Function] [Supply Balance Tracking] validate_deposit and validate_withdraw use supply_balance differently - can their accounting diverge over time? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a607ca29-1fb8-46ab-a5dd-6a5056815698?mode=deep",
+    "timestamp": "2026-02-19 09:27:05.441182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Cross-Function] [Borrow Balance Tracking] validate_withdraw and validate_borrow both check borrow_balance - can they have race conditions if executed concurrently? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2509bf9-d894-474e-9d2b-26a6e635f38d?mode=deep",
+    "timestamp": "2026-02-19 09:27:27.844151",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Ray Math] [Ray Value Constant] Lines 23, 29, 42-43, 64-65 use ray_math::ray() - if this constant is wrong or manipulated, can all validations be bypassed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ead520ac-86f2-481a-91b8-b328c04c9f12?mode=deep",
+    "timestamp": "2026-02-19 09:27:48.695058",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Ray Math] [Ray Mul Implementation] ray_math::ray_mul used in lines 23, 42-43, 64-65 - can its implementation cause rounding errors that accumulate to significant deviations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5ff239e-dd70-4ca1-bcd5-077c3745437e?mode=deep",
+    "timestamp": "2026-02-19 09:28:10.682498",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/validation.move] [Ray Math] [Ray Div Implementation] ray_math::ray_div at line 70 - can division precision loss allow bypassing borrow ratio cap over multiple transactions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50e2edd2-d1f8-4c6e-820e-b73adb89f932?mode=deep",
+    "timestamp": "2026-02-19 09:28:32.101364",
+    "report_generated": false
+  }
+]
