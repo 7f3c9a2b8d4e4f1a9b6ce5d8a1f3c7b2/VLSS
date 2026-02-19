@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 98] [Boolean Check] Checking !migration_cap.pool_created could be bypassed if migration_cap is a different instance. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4fb0204d-5e24-43bb-9d99-8d684f15cb1d?mode=deep",
+    "timestamp": "2026-02-19 07:22:09.258659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 106] [Unused Parameter] MigrationCap is marked with _ (unused) - why require it if not validated? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cac876eb-bde6-4d9b-9913-1a6fc73effd2?mode=deep",
+    "timestamp": "2026-02-19 07:22:21.779682",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 116] [Balance Join Order] Joining exported_sui before pending_sui - does order matter for accounting? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f6845ce-8ff0-4c26-bed9-c481e7a655c4?mode=deep",
+    "timestamp": "2026-02-19 07:22:34.947216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 117] [Count Addition] Direct addition without overflow check - could overflow with enough iterations. (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e618e3a-ed58-4500-89bc-0704f5cf8653?mode=deep",
+    "timestamp": "2026-02-19 07:22:48.329321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 121] [Mut Pending Access] Getting mutable pending balance - could this conflict with other operations on pending? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7332a72d-ff93-4313-9114-fa9a9b1374e0?mode=deep",
+    "timestamp": "2026-02-19 07:23:02.402211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 122] [Withdraw All] withdraw_all() empties pending - what if new deposits arrive between calls? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0bf025d8-0e24-4f0d-b3cb-781d0ba8c693?mode=deep",
+    "timestamp": "2026-02-19 07:23:17.327615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 140] [Recipient Parameter] recipient address is a function parameter - no validation it's authorized. (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b8b75f5-5712-475d-bc40-338ec79720c5?mode=deep",
+    "timestamp": "2026-02-19 07:23:33.841316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 145] [Mut Pointer Deref] *unclaimed_fees dereference at line 145 then mutation at line 148 - race condition risk? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_119eedad-5549-4c5a-8213-a480ff5832d5?mode=deep",
+    "timestamp": "2026-02-19 07:23:51.275006",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 146] [Split Before Check] Splitting balance before setting unclaimed_fees to 0 - if split fails, fees aren't zeroed. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_182a166d-2953-4a6a-a2ec-dffe767c11cd?mode=deep",
+    "timestamp": "2026-02-19 07:24:09.821324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 147] [Transfer Timing] public_transfer before state updates - non-atomic operation. (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f18734ff-4eaa-4b60-9612-b90e680bf0ee?mode=deep",
+    "timestamp": "2026-02-19 07:24:27.665725",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 161] [Unused Parameter] AdminCap passed at line 161 but used - is this proper authorization? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3261b93-2b4a-4cef-b395-6c0e70792342?mode=deep",
+    "timestamp": "2026-02-19 07:24:46.374861",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 169] [Min Function] Using min() allows partial import - is remaining balance handled correctly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ebcbfde2-6c04-4a58-b528-51279803560a?mode=deep",
+    "timestamp": "2026-02-19 07:25:05.322239",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 172] [Unpause Scope] Temporarily unpausing for operations - what's the risk window? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_60668c42-cbed-4636-a9fa-f7c90aad3337?mode=deep",
+    "timestamp": "2026-02-19 07:25:26.099239",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 173] [Split in Unpause] Splitting balance while unpaused - could other transactions interfere? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ca04ca1-77fb-4ba4-a8ca-bf7ad3f80f74?mode=deep",
+    "timestamp": "2026-02-19 07:25:48.119670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 174] [Rebalance Timing] Rebalancing during migration - could this delegate to wrong validators? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ad3f3f6-810a-4a57-8b4c-d7bc33def291?mode=deep",
+    "timestamp": "2026-02-19 07:26:10.051541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 175] [Repause] Re-pausing after operations - if this fails, pool remains open. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e20fea1-c7cd-46b9-8d8b-c1acf6fbbad7?mode=deep",
+    "timestamp": "2026-02-19 07:26:32.828273",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 178] [Get Ratio Timing] Getting ratio after all operations - could it drift from expected? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a022e2a-a21f-469a-87ec-f7d7d07b86d4?mode=deep",
+    "timestamp": "2026-02-19 07:26:54.645533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 179] [Ratio Comparison] <= comparison allows equality - should it be strict <? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e63ac486-5786-43a5-b1e6-22bb74d3b06e?mode=deep",
+    "timestamp": "2026-02-19 07:27:15.775704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 193] [Count Equality] Exact equality check - what if target_exported_count is set incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee44d5d9-e3a9-4998-bab3-ce0778540fb8?mode=deep",
+    "timestamp": "2026-02-19 07:27:37.114665",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 194] [Balance Zero] Exact zero check - dust amounts would fail this. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3acc7c9c-767d-45da-ae74-bd2f4ba0efb9?mode=deep",
+    "timestamp": "2026-02-19 07:27:59.405834",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 196] [Destructure Timing] Destructuring before all checks - if checks fail, cap is lost. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1c3c28c-b028-4dd9-baf2-85bcd4bf1501?mode=deep",
+    "timestamp": "2026-02-19 07:28:21.038479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 199] [ID Deletion] Deleting UID - is this safe if cap was in another object? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b9ae7d3-f43f-406e-bdfc-12a66ad34a00?mode=deep",
+    "timestamp": "2026-02-19 07:28:41.785091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 210] [Balance Join] Joining deposit without checks - could overflow? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_77cf5f1d-bfbe-4295-9141-e9372e18740c?mode=deep",
+    "timestamp": "2026-02-19 07:29:03.720678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Line 211] [Split Amount] Splitting exact amount - what if coin balance < amount? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec697509-a1c5-404c-9c9b-f7eff1bb66cb?mode=deep",
+    "timestamp": "2026-02-19 07:29:24.242951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Function: init_objects()] [Migration Uniqueness] The check at line 74 for collected_rewards != 0 assumes fees exist before migration, but what if V1 had zero fees? Migration could be blocked permanently. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d5142b32-96a4-43a8-b9db-046643c61e55?mode=deep",
+    "timestamp": "2026-02-19 07:29:45.863555",
+    "report_generated": false
+  }
+]
