@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_decimal()] [Decimal Unpacking] Can the decimal::unpack() function return invalid (value, neg) pairs that bypass validation, allowing incorrect oracle price feeds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c4ec884a-fa62-434c-b21d-91740a56ddde?mode=deep",
+    "timestamp": "2026-02-19 01:33:37.853209",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_decimal()] [Price Manipulation] Can an attacker craft Decimal values with specific mantissa/exponent combinations that hash identically but represent different prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_12e35835-e607-41bc-8c06-a2e82c652a85?mode=deep",
+    "timestamp": "2026-02-19 01:33:53.698235",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_decimal()] [Copy vs Reference] Since Decimal is passed by reference but unpacked with copy (*value), could this create issues with large decimal structures? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bae993f4-f87e-48f9-ae53-6fb13db3d7f2?mode=deep",
+    "timestamp": "2026-02-19 01:34:06.907953",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_decimal_le()] [Oracle Price Format] Does the little-endian decimal encoding exactly match Switchboard's off-chain format, or could precision loss during conversion allow stale prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9874fbe-2a1b-4857-a508-5fa81214ea66?mode=deep",
+    "timestamp": "2026-02-19 01:34:20.981649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_decimal_le()] [Negative Zero] Can negative zero decimals (neg=true, value=0) hash differently from positive zero, creating oracle signature rejection? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c18f9d0f-325a-4f73-ba30-8bfa4ae76bca?mode=deep",
+    "timestamp": "2026-02-19 01:34:36.104168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_bytes()] [Buffer Injection] Can an attacker inject arbitrary bytes that collide with legitimate encoded integers/decimals, forging oracle signatures? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4926ee16-b2a9-437b-801b-2a36b307f6c9?mode=deep",
+    "timestamp": "2026-02-19 01:34:52.680374",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_bytes()] [Length Prefix Missing] Since push_bytes doesn't prepend length information, can variable-length fields create ambiguous message parsing where bytes from one field bleed into another? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d764dc63-5cb6-405d-86d0-59d78aa2a14e?mode=deep",
+    "timestamp": "2026-02-19 01:35:09.472373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_bytes()] [Empty Vector Handling] Does pushing an empty vector create any hash state changes, or are empty fields silently ignored, potentially causing verification mismatches? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_41e9c6ca-9dc2-4007-a311-42270e7c71cb?mode=deep",
+    "timestamp": "2026-02-19 01:35:26.069299",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_bytes()] [Vector Ownership] Does append() consume the bytes vector or copy it, and could this affect subsequent operations if the caller expects to reuse the vector? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_102a2309-53b1-402e-98cf-368cbc21d617?mode=deep",
+    "timestamp": "2026-02-19 01:35:43.537057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Queue Key Validation] The assertion checks queue_key.length() == 32, but can an attacker pass a valid-length key with all zeros or invalid data to bypass access control? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e14f31a6-5c2e-4746-bc35-6f5c40ef2f8a?mode=deep",
+    "timestamp": "2026-02-19 01:36:02.533180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Feed Hash Collision] Can two different oracle feeds with colliding 32-byte hashes cause cross-feed signature replay, allowing price manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_230914dc-2168-4473-a251-f39fe67fb237?mode=deep",
+    "timestamp": "2026-02-19 01:36:23.167427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Slothash Zero Value] The test uses all-zero slothash, indicating it's optional; can attacker omit slothash verification by passing zeros to bypass Solana slot validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c74ef5a-8a0f-44ca-98d3-e49fad26711a?mode=deep",
+    "timestamp": "2026-02-19 01:36:45.437390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Max Variance Overflow] If max_variance is set to MAX_U64, can subsequent operations overflow when computing acceptable price ranges, allowing out-of-bound prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4dad9be9-de3d-4e5c-bb56-ea7ae29deda4?mode=deep",
+    "timestamp": "2026-02-19 01:37:07.577119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Min Responses Underflow] Can min_responses=0 be used to accept oracle updates with no actual responses, creating unverified price data? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d6069fd3-c4db-4b8a-bffe-caa72da5df9c?mode=deep",
+    "timestamp": "2026-02-19 01:37:29.159322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Timestamp Manipulation] Can attacker use future timestamps to make oracle updates appear fresher than reality, bypassing staleness checks in consuming contracts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b976834c-754d-4770-8a6a-4263b9afffac?mode=deep",
+    "timestamp": "2026-02-19 01:37:50.037797",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Message Field Order] Does the specific order (queue_key, feed_hash, value, slothash, max_variance, min_responses, timestamp) match off-chain implementations exactly, or could reordering cause verification failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f231b815-056f-4a7a-b5dc-e58d3b9e3d18?mode=deep",
+    "timestamp": "2026-02-19 01:38:12.140157",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Value Decimal Precision] Can the push_decimal_le call lose precision for very large or very small decimal values, causing hash mismatches with off-chain signatures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68ab1168-1d2e-4916-a170-847d22993efe?mode=deep",
+    "timestamp": "2026-02-19 01:38:31.878541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Buffer Return via Destructuring] The function destructures Hasher to return buffer directly; could this pattern accidentally expose internal state or cause memory issues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b8ded786-8c2e-480c-a22c-dcd6d07444a2?mode=deep",
+    "timestamp": "2026-02-19 01:38:51.787606",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Length Assertion Bypass] Can an attacker pass vectors with length > 32 that are then truncated, allowing them to bypass the length assertions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e32b9616-7887-4963-8a4e-dc7eeba47c7f?mode=deep",
+    "timestamp": "2026-02-19 01:39:13.437450",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_update_msg()] [Parameter Injection] Can null bytes or special characters in the 32-byte keys cause parsing errors when the message is verified off-chain? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9840f115-53b2-489d-961b-ea2086eadd20?mode=deep",
+    "timestamp": "2026-02-19 01:39:35.191313",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Oracle Key Forgery] Can an attacker register a malicious oracle by crafting an oracle_key that collides with a legitimate oracle's key hash? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f31d9451-dceb-4678-b4d3-0f06d9520d74?mode=deep",
+    "timestamp": "2026-02-19 01:39:56.435528",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [MR Enclave Manipulation] Can attacker provide a tampered mr_enclave value that passes validation but represents compromised SGX enclave code? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28c29426-3dae-4be0-a2f1-2f90dba078f1?mode=deep",
+    "timestamp": "2026-02-19 01:40:17.783330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Secp256k1 Key Length] The assertion checks for exactly 64 bytes, but can attacker pass compressed or uncompressed public keys interchangeably to cause verification confusion? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_789b6d5a-bf86-4726-8694-00fbb2318e3e?mode=deep",
+    "timestamp": "2026-02-19 01:40:40.979407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Queue Authorization] Does the function verify that oracle_key is authorized for the given queue_key, or can rogue oracles attest for queues they shouldn't access? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9143d3f-1369-499a-a475-f4d8fc4147b4?mode=deep",
+    "timestamp": "2026-02-19 01:41:03.561345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: generate_attestation_msg()] [Timestamp Replay] Can old attestation messages be replayed if timestamp validation is insufficient in the calling contract, allowing expired oracles to continue operating? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_42f9d5e0-42c1-417d-ad9d-eabef915fd10?mode=deep",
+    "timestamp": "2026-02-19 01:41:25.673112",
+    "report_generated": false
+  }
+]
