@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: actuate()] [No Deactivation] This module only creates queues but has no deactivation logic - if a guardian queue is compromised, can it be disabled, or does it remain active indefinitely polluting the oracle space? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_01d67c10-b69b-4c4b-94be-83571b74681f?mode=deep",
+    "timestamp": "2026-02-19 08:15:02.654095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: run()] [Immutable Parameters] Once created, can queue parameters like min_attestations or oracle_validity_length_ms be updated, or are malicious queues permanent? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1f1ce2a8-45bb-4966-83a2-b10614bdd814?mode=deep",
+    "timestamp": "2026-02-19 08:15:15.326176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: actuate()] [Event Spamming] Since anyone can call run() and emit GuardianQueueCreated events, can an attacker flood the event stream to DoS off-chain indexers or hide legitimate queue creation in noise? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b684252-e875-43b3-9e4a-587e468bc746?mode=deep",
+    "timestamp": "2026-02-19 08:15:28.495945",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: actuate()] [Event Ordering] If multiple queues are created in the same transaction or block, does event ordering guarantee correct tracking, or could race conditions cause off-chain systems to miss queues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b8326e4-6698-42f7-a61c-30fbba68e537?mode=deep",
+    "timestamp": "2026-02-19 08:15:43.037659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: actuate()] [Address Conversion] object::id_from_address(@0x0) performs address-to-ID conversion - could this conversion be unsafe or produce unexpected IDs in edge cases? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d5c0ad2a-585d-406e-ac3c-1ff72def6ba4?mode=deep",
+    "timestamp": "2026-02-19 08:15:57.658934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: run()] [Type Confusion] If queue_key vector contains unexpected byte patterns, could it cause type confusion when deserialized or used as a map key elsewhere? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_47ef45f2-fdc6-41f7-a790-5001cd24adca?mode=deep",
+    "timestamp": "2026-02-19 08:16:14.319462",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: run()] [Atomic Creation] Is queue creation atomic? If the system crashes between queue::new() and event emission, could there be orphaned queues or inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7212d151-8f53-407e-befb-f90518fdf369?mode=deep",
+    "timestamp": "2026-02-19 08:16:31.352896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: actuate()] [Consistency Check] No verification that the returned queue_id matches expected properties - could queue::new() return an incorrect ID that doesn't match the queue_key? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3cb9516f-0f28-42d7-b00e-46cc4ab21aef?mode=deep",
+    "timestamp": "2026-02-19 08:16:50.039723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: run()] [Time Travel] If oracle_validity_length_ms is very small (1ms) and system clocks are not perfectly synchronized, could timestamp mismatches cause valid oracle data to be rejected as stale? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a6cfce84-6be5-465b-a067-735f7d6728f7?mode=deep",
+    "timestamp": "2026-02-19 08:17:09.326189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: run()] [Epoch Sensitivity] Does queue creation depend on current epoch? If so, could queues created near epoch boundaries have inconsistent behavior or fail validation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_575a5b31-7519-47e6-95cb-ae319371bee8?mode=deep",
+    "timestamp": "2026-02-19 08:17:30.273872",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: run()] [Key Format] The queue_key is raw bytes with no validation - should it be a hash, public key, or specific format? Could arbitrary bytes cause security issues in key comparison or signing operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ce3e84b-88fb-4c8d-af7e-2cfcc5b32e2b?mode=deep",
+    "timestamp": "2026-02-19 08:17:52.677075",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: actuate()] [Key Entropy] If queue_key has low entropy or is predictable, could attackers generate collisions to hijack queue lookups or impersonate legitimate queues? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b74a8f1f-7be3-42e7-9f49-db51369c8bce?mode=deep",
+    "timestamp": "2026-02-19 08:18:13.850576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: run()] [Upgrade Path] If this module is upgraded to add access controls, can existing malicious queues created via the old permissionless version remain active and exploit the system? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fecd45fe-b30e-4fce-86b6-4651df9bb21a?mode=deep",
+    "timestamp": "2026-02-19 08:18:34.498566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: actuate()] [Governance Bypass] If protocol governance expects to control queue creation, does this permissionless entry point bypass intended governance processes? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1523d85c-6165-4314-bdd4-28d3b3d313d0?mode=deep",
+    "timestamp": "2026-02-19 08:18:55.794311",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: run()] [Front-Running] Can an attacker observe pending queue creation transactions and front-run them to create a queue with the same key but malicious parameters, griefing the legitimate creator? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e606f91-e699-4e77-beb9-16177417e2d7?mode=deep",
+    "timestamp": "2026-02-19 08:19:15.595105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: run()] [MEV Extraction] Could validators/searchers profit by reordering queue creation transactions to ensure their malicious queue is created first and becomes the canonical one? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_26caf6de-c95d-4135-b0db-783753489b95?mode=deep",
+    "timestamp": "2026-02-19 08:19:35.073004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: run()] [KYC Bypass] If the protocol requires KYC/AML for queue operators, does this permissionless creation bypass those requirements? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aa1b354c-4e2e-4fb3-899f-10b08f75fc2d?mode=deep",
+    "timestamp": "2026-02-19 08:19:56.020567",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: actuate()] [Audit Trail] Are queue creations logged sufficiently for audit/compliance? Could an attacker create queues that are hard to trace back to them? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_754fa46d-4181-427c-ad61-54dcabc6b106?mode=deep",
+    "timestamp": "2026-02-19 08:20:17.163712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: actuate()] [Guardian Set] The hardcoded true flag might indicate this is a guardian queue - if true means 'is_guardian', does this allow anyone to create guardian-level privileged queues? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6fef722d-ab58-4577-beae-003c33f4e1bd?mode=deep",
+    "timestamp": "2026-02-19 08:20:38.868911",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: run()] [Queue Hierarchy] If guardian queues are meant to validate other queues, can creating rogue guardian queues break the trust hierarchy and allow attacker-controlled oracles to appear legitimate? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e2c5f1c6-5b94-4531-a9ab-2a2b878b41ca?mode=deep",
+    "timestamp": "2026-02-19 08:21:00.181824",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: actuate()] [Event Data Integrity] The event contains queue_id and queue_key but not other parameters - could off-chain systems reconstructing queue state from events have incomplete information leading to desync? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be5ff03d-d774-431a-9d55-e935ec2ebd32?mode=deep",
+    "timestamp": "2026-02-19 08:21:23.054043",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: run()] [Parameter Persistence] Are all parameters passed to queue::new() stored in the queue object? If not, could important settings be lost, making queue behavior unpredictable? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a744a6c1-0b19-487b-8ccf-6c23d2643f35?mode=deep",
+    "timestamp": "2026-02-19 08:21:46.702349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: run()] [Replay Attack] If queue_key is reused across different networks or forks, could the same queue creation be replayed on multiple chains, causing confusion? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9d0ed810-3a84-4fa6-ad60-417e8a8eab4f?mode=deep",
+    "timestamp": "2026-02-19 08:22:09.739087",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: actuate()] [Nonce Missing] No nonce or counter prevents creating identical queues - could this be exploited in cross-chain or multi-environment scenarios? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_de1984db-813c-4517-b397-9cdb4746a26c?mode=deep",
+    "timestamp": "2026-02-19 08:22:32.885590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/guardian_queue_init_action.move] [Function: run()] [Version Mismatch] If the queue module expects different parameters in a future version, could calling this init action create incompatible queues that fail in unexpected ways? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c9c66e8-5c3e-4aa1-9c8d-3d0684eab51f?mode=deep",
+    "timestamp": "2026-02-19 08:22:54.773723",
+    "report_generated": false
+  }
+]
