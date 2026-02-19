@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_price_feed()] [Duration Underflow] Can max_duration_within_thresholds be set to 1ms or extremely small value causing diff_threshold2_timer logic to trigger immediately, disabling threshold protection? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52e743bf-d2c2-4dd9-85ef-2a62df2c0e2c?mode=deep",
+    "timestamp": "2026-02-19 09:08:27.541532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_max_timestamp_diff_to_price_feed()] [Staleness Bypass] Can an attacker call set_max_timestamp_diff_to_price_feed() with value=type(u64).max to accept infinitely stale prices, allowing exploitation of outdated price data? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3c0f0416-40a9-43a2-8606-9da6f806ea9d?mode=deep",
+    "timestamp": "2026-02-19 09:08:40.501151",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_max_timestamp_diff_to_price_feed()] [Zero Timestamp] Can setting max_timestamp_diff=0 cause all price feeds to be immediately considered stale, denying service to all oracle consumers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b04c3303-ba9e-43ef-baee-a196e4edcf77?mode=deep",
+    "timestamp": "2026-02-19 09:08:54.614394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_max_timestamp_diff_to_price_feed()] [Race Condition] Can max_timestamp_diff be changed while price validation is occurring, causing some prices to pass staleness checks that should have failed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3644762-9c60-47e1-9a70-8eac5f025be6?mode=deep",
+    "timestamp": "2026-02-19 09:09:08.596203",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_historical_price_ttl_to_price_feed()] [History Invalidation] Can set_historical_price_ttl_to_price_feed() be called with value=0 to immediately invalidate all historical prices, breaking vault operations that compare current vs historical prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a665147-1cc8-4fd1-aecb-6b4a9247a02b?mode=deep",
+    "timestamp": "2026-02-19 09:09:23.873125",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_historical_price_ttl_to_price_feed()] [TTL Manipulation] Can an attacker reduce historical_price_ttl to 1ms forcing constant price history refreshes, causing DoS or allowing price manipulation through selective history deletion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4971c364-8f05-443a-8205-45d4b88ee74d?mode=deep",
+    "timestamp": "2026-02-19 09:09:41.065579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_price_diff_threshold1_to_price_feed()] [Threshold Bypass] Can an attacker set price_diff_threshold1 to type(u64).max to disable first-level price deviation checks, allowing significant price jumps to pass undetected? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_176b7be6-6a0f-4846-bd5a-28f079d9e058?mode=deep",
+    "timestamp": "2026-02-19 09:09:58.385987",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_price_diff_threshold2_to_price_feed()] [Threshold Bypass] Can price_diff_threshold2 be set to type(u64).max to disable second-level price deviation checks, bypassing the two-tier protection system? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e7a53c6e-b20a-470d-8566-0a1d6aacd6a5?mode=deep",
+    "timestamp": "2026-02-19 09:10:17.616248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_price_diff_threshold1_to_price_feed()] [Zero Threshold] Can setting price_diff_threshold1=0 cause every price update to trigger threshold violation logic, creating DoS by constant threshold checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ca2da64-663d-4239-ade4-a0c98d5ea5c2?mode=deep",
+    "timestamp": "2026-02-19 09:10:38.366893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_price_diff_threshold2_to_price_feed()] [Invariant Violation] Does config::set_price_diff_threshold2_to_price_feed() properly validate that threshold2 >= threshold1, or can threshold2 be set lower creating logic errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_94276931-583c-4d9d-bb78-4c5f8888e298?mode=deep",
+    "timestamp": "2026-02-19 09:10:59.391829",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_price_diff_threshold1_to_price_feed()] [Order Dependency] Can threshold1 and threshold2 be updated in wrong order (threshold1 increased above threshold2) between transactions, temporarily violating the invariant and allowing bad prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_700c0c7d-c967-485c-92a0-ab76bfdbfb96?mode=deep",
+    "timestamp": "2026-02-19 09:11:20.432709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_max_duration_within_thresholds_to_price_feed()] [Timer Bypass] Can max_duration_within_thresholds be set to 0, causing diff_threshold2_timer to immediately expire and disabling extended threshold protection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9cc4e2e7-d3ef-415d-9c3b-0b6c6df65748?mode=deep",
+    "timestamp": "2026-02-19 09:11:42.031447",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_max_duration_within_thresholds_to_price_feed()] [Timer Overflow] Can max_duration_within_thresholds be set to type(u64).max, making the threshold2 timer never expire and allowing prices to stay in threshold2 range indefinitely? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_468f8f1e-a690-44f2-96cb-b660b7fa2d81?mode=deep",
+    "timestamp": "2026-02-19 09:12:04.809317",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_maximum_effective_price_to_price_feed()] [Price Cap Removal] Can maximum_effective_price be set to type(u256).max to effectively remove the upper price bound, allowing arbitrarily high prices that could inflate vault valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8098d5a8-6534-49b0-aa0f-64e36b9f6458?mode=deep",
+    "timestamp": "2026-02-19 09:12:28.312400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_minimum_effective_price_to_price_feed()] [Price Floor Removal] Can minimum_effective_price be set to 0 to remove the lower price bound, allowing zero or near-zero prices that could drain vault value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8fbd7ef8-6b97-43ec-9383-007fb2cfe356?mode=deep",
+    "timestamp": "2026-02-19 09:12:51.865482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_maximum_effective_price_to_price_feed()] [Bound Inversion] Can maximum_effective_price be set lower than minimum_effective_price, creating an impossible price range that rejects all valid prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_03bd3c40-c513-4a28-b589-e4c736476bf7?mode=deep",
+    "timestamp": "2026-02-19 09:13:17.047214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_minimum_effective_price_to_price_feed()] [Decimal Mismatch] Can minimum_effective_price be set with wrong decimal precision (e.g., 1e9 when system expects 1e18) causing all prices to be rejected or accepted incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_65a07e15-a40f-4565-94bf-7309b55c38ac?mode=deep",
+    "timestamp": "2026-02-19 09:13:39.337704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_maximum_effective_price_to_price_feed()] [Validation Check] Does config::set_maximum_effective_price_to_price_feed() validate value >= minimum_effective_price before updating, or can bounds be temporarily inverted during state changes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f23a4972-bfd8-4d39-a61c-29f4e1c5c2a4?mode=deep",
+    "timestamp": "2026-02-19 09:14:01.752454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_minimum_effective_price_to_price_feed()] [Conditional Check] Does the check 'if (price_feed.maximum_effective_price > 0)' in config allow setting minimum > maximum when maximum=0, violating the invariant? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e63c4a07-1198-4222-a63e-68d907a3811c?mode=deep",
+    "timestamp": "2026-02-19 09:14:23.891515",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_maximum_allowed_span_percentage_to_price_feed()] [Span Bypass] Can maximum_allowed_span_percentage be set to type(u64).max (or >= 10000) to disable span-based price validation, allowing unlimited price jumps? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be5b545a-8952-430b-917f-19352809b671?mode=deep",
+    "timestamp": "2026-02-19 09:14:48.642594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_maximum_allowed_span_percentage_to_price_feed()] [Zero Span] Can maximum_allowed_span_percentage be set to 0, causing any price change to violate the span check and rejecting all price updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e68a017-7669-4bd5-a150-5e2cbc22c61a?mode=deep",
+    "timestamp": "2026-02-19 09:15:13.857008",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_maximum_allowed_span_percentage_to_price_feed()] [Decimal Confusion] Is maximum_allowed_span_percentage validated to be in basis points (x * 10000 format) where 10% = 1000, or can incorrect values like 100 (interpreted as 1%) be set causing overly restrictive validation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ed5bc30-7697-41a9-9c23-8140d90e3997?mode=deep",
+    "timestamp": "2026-02-19 09:15:39.975542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_pyth_oracle_provider_config()] [Duplicate Provider] Can create_pyth_oracle_provider_config() be called multiple times for the same feed_id to create duplicate Pyth configs, causing ambiguity in which config to use? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_49221f30-1939-4aec-9cad-1387a3c5ccb7?mode=deep",
+    "timestamp": "2026-02-19 09:16:07.565711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_pyth_oracle_provider_config()] [Invalid Pair ID] Can create_pyth_oracle_provider_config() be called with an empty or malformed pair_id vector that doesn't correspond to a valid Pyth price feed, causing failures when prices are fetched? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e34eb37f-7492-4352-9b71-ea67c1cf2b90?mode=deep",
+    "timestamp": "2026-02-19 09:16:34.566733",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_pyth_oracle_provider_config()] [Enable Flag] Can a provider config be created with enable=false, then never properly enabled, leaving the feed without valid providers? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4cc92c06-cf44-4059-b74e-2c020d1dd172?mode=deep",
+    "timestamp": "2026-02-19 09:17:02.724556",
+    "report_generated": false
+  }
+]
