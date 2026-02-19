@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: new_price_feed()] [Event Timing] Line 255 emits PriceFeedCreated after state changes - can the event be emitted even if subsequent operations fail? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_076f0aec-61ec-445f-8043-41cf52208069?mode=deep",
+    "timestamp": "2026-02-19 07:55:22.790642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: set_oracle_id_to_price_feed()] [Event Accuracy] Line 381 emits before_value - but the value was just changed, is before_value captured correctly? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ce8002e-64b0-43ff-b351-9fcf690be540?mode=deep",
+    "timestamp": "2026-02-19 07:55:35.881867",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: new_config()] [Table Initialization] Line 201 creates new table - can table creation fail and leave OracleConfig in inconsistent state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e68d566-a4f9-46e8-b840-bd1bf010c4c0?mode=deep",
+    "timestamp": "2026-02-19 07:55:49.626037",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: new_price_feed()] [Table Add] Line 252 uses table::add which aborts if key exists - but is_price_feed_exists() checks a different condition. Can duplicates slip through? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e3b2c244-c2d8-4569-8b02-a94d1b21d4e1?mode=deep",
+    "timestamp": "2026-02-19 07:56:05.066529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: new_price_feed()] [Nested Table] Line 247 creates oracle_provider_configs table - can this fail and cause state inconsistency? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5f8bdd06-71f0-4fb3-be37-56c75f91cdec?mode=deep",
+    "timestamp": "2026-02-19 07:56:20.610731",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: new_price_feed()] [Type String] Line 244 converts CoinType to String - can malicious types with long names cause DoS or overflow? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9320452b-feda-4e8d-9989-cb38052bf24a?mode=deep",
+    "timestamp": "2026-02-19 07:56:38.090182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: is_price_feed_exists()] [Type Comparison] Line 266 compares coin_type strings - are type strings guaranteed unique across all types? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2e63958-d9e5-418d-b333-06629c200d8e?mode=deep",
+    "timestamp": "2026-02-19 07:56:54.931002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: new_config()] [UID Exposure] Lines 193-194 create UID and immediately convert to address for event - can this expose object internals? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb31abc4-efb3-4dd1-aed1-f0d829f126bb?mode=deep",
+    "timestamp": "2026-02-19 07:57:11.494216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: new_price_feed()] [UID Uniqueness] Lines 230-231 create UID for PriceFeed - is there a guarantee this UID won't collide with other objects? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_15d01f02-1335-4b5f-bfca-282acb76ef0d?mode=deep",
+    "timestamp": "2026-02-19 07:57:30.726957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: get_price_feed_id_from_feed()] [UID Conversion] Lines 527-529 convert UID to address - can this create address collisions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_695655fe-76b4-448c-beb8-e87dd68c4825?mode=deep",
+    "timestamp": "2026-02-19 07:57:50.406544",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: new_config()] [Shared Object] Line 203 calls transfer::share_object - can multiple OracleConfigs be created and shared, causing conflicts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e4b369e-ca93-41d1-88db-2eff3adf4a14?mode=deep",
+    "timestamp": "2026-02-19 07:58:11.935695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: new_config()] [Initialization Race] Between lines 192-203, can concurrent access occur before object is fully initialized? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd6bd1ca-8176-4867-b9c7-a080f9bc45c1?mode=deep",
+    "timestamp": "2026-02-19 07:58:32.749042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: version_verification()] [Version Check] Line 184 calls version::pre_check_version - but what happens if version check fails? Does it abort all operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e0e10768-836a-4dec-8800-d4b77dd648f7?mode=deep",
+    "timestamp": "2026-02-19 07:58:55.001862",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: version_migrate()] [Version Downgrade] Line 188 only checks version <= this_version - can an attacker downgrade version to exploit old vulnerabilities? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_554ab9cd-3f51-447d-ac4f-3bfeb577d95b?mode=deep",
+    "timestamp": "2026-02-19 07:59:18.196369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: new_config()] [Version Initialization] Line 198 sets version to this_version - but is this consistent with other oracle components? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7d39a37-e0a3-43da-a9e8-de1de4f310d2?mode=deep",
+    "timestamp": "2026-02-19 07:59:42.153698",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: get_max_timestamp_diff() vs get_max_timestamp_diff_from_feed()] [Inconsistent Access] Why have both cfg-based and feed-based getters? Can this cause confusion and security issues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a1c3288a-e70b-4566-918b-cd31ee56bff8?mode=deep",
+    "timestamp": "2026-02-19 08:00:04.618649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: get_oracle_provider_config() vs get_oracle_provider_config_from_feed()] [Error Handling] Both check table::contains and abort - but error conditions might differ. Can this cause inconsistent behavior? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56bf71ae-d3a2-4c6c-b76f-e117fb10fb8d?mode=deep",
+    "timestamp": "2026-02-19 08:00:26.314968",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: is_secondary_oracle_available()] [Empty Check] Line 727-729 checks if secondary is empty and returns false - but what if secondary is not empty but invalid? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_188a460d-748e-444d-ba7c-952520d0e9c4?mode=deep",
+    "timestamp": "2026-02-19 08:00:48.142814",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: is_secondary_oracle_available()] [Same Provider] Line 731-733 checks if secondary equals primary - but this check happens AFTER empty check. Can both be empty and equal? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a15e96e0-8d88-43d0-a7a5-1f08eb5e8916?mode=deep",
+    "timestamp": "2026-02-19 08:01:09.178780",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: is_secondary_oracle_available()] [Enable Check] Line 735-736 checks if secondary config is enabled - but if secondary doesn't exist in configs, will line 735 abort? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_72cc6b06-72f1-4bee-886f-edb557ca4fdc?mode=deep",
+    "timestamp": "2026-02-19 08:01:29.545153",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: get_price_feed_mut_for_testing()] [Test Exposure] Lines 740-742 expose mutable access in test mode - can test code accidentally be included in production? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eaccf992-331b-4e64-9bf7-ea6353212420?mode=deep",
+    "timestamp": "2026-02-19 08:01:50.639975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: keep_history_update_for_testing()] [Test Backdoor] Lines 745-747 allow bypassing normal history update logic in tests - can this create inconsistent states if tests are not properly isolated? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1878651a-e77f-46c2-8c55-72d10aaafb4b?mode=deep",
+    "timestamp": "2026-02-19 08:02:10.774801",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: start_or_continue_diff_threshold2_timer_for_testing()] [Timer Manipulation in Tests] Lines 750-752 allow arbitrary timer manipulation - can this be exploited if test functions are accessible? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4961cc88-ce7d-4bbc-82aa-89c67d2fa789?mode=deep",
+    "timestamp": "2026-02-19 08:02:30.723159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: new_price_feed()] [Invariant: Threshold Ordering] Can price_diff_threshold1 ever be greater than price_diff_threshold2 after initialization but before setters are called? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28f881e5-94dc-49d8-afe9-5ea7b940206b?mode=deep",
+    "timestamp": "2026-02-19 08:02:52.711732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/config.move] [Function: new_price_feed()] [Invariant: Price Bounds] Can minimum_effective_price ever exceed maximum_effective_price if both are set to 0 during initialization? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7f23e982-d981-406c-94ab-ef8a78be9a04?mode=deep",
+    "timestamp": "2026-02-19 08:03:15.723812",
+    "report_generated": false
+  }
+]
