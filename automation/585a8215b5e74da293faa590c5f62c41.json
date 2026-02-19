@@ -1,0 +1,116 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: oracle_pro] [Provider Type Confusion] Can attacker manipulate OracleProviderConfig to report provider as pyth_provider() when it should be supra_provider(), causing oracle_pro to call wrong adaptor function on wrong data structure? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19e3873a-72ce-413c-99fc-4a89f4549c0d?mode=deep",
+    "timestamp": "2026-02-19 00:03:32.397452",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: oracle_pro] [Assertion Abuse] The assert at line 177 in oracle_pro only checks pair_id match - can attacker satisfy this check while providing PriceInfoObject with wrong price data, wrong timestamp, or wrong confidence? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3c7199b0-af20-4755-aca5-d2666af87906?mode=deep",
+    "timestamp": "2026-02-19 00:03:45.005019",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: oracle_pro] [Historical Price Manipulation] Can attacker use get_price_unsafe_to_target_decimal() to gradually shift historical_price in oracle_pro config, then exploit with large price jump that appears normal due to manipulated history? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_025021bd-0ff2-4da8-a94b-8907015d4b23?mode=deep",
+    "timestamp": "2026-02-19 00:03:58.408078",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: oracle_pro] [Diff Threshold Timer Bypass] Can attacker use precisely timed stale prices from get_price_unsafe_to_target_decimal() to reset diff_threshold2_timer in oracle_pro, preventing price regulation warnings that should fire? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78f6fe24-09f5-4422-abb7-b0700bfd480f?mode=deep",
+    "timestamp": "2026-02-19 00:04:11.976442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: oracle_pro] [Event Emission Gap] When InvalidOraclePrice or OracleUnavailable events are emitted in oracle_pro, do they reflect that price came from 'unsafe' Pyth path? Can this hide the source of bad price data from monitors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f2d1696a-c1d7-4ec5-9c56-ddbe76159a34?mode=deep",
+    "timestamp": "2026-02-19 00:04:26.855107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: Vault] [Deposit Price Manipulation] Can attacker time vault deposits to use stale low price from get_price_unsafe_to_target_decimal(), depositing when market price is higher, then withdraw using fresh price to extract profit? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a9be5f4c-3e4c-4a3e-95b1-612fbb4d6355?mode=deep",
+    "timestamp": "2026-02-19 00:04:43.856369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: Vault] [Withdrawal Price Manipulation] Can attacker time vault withdrawals to use stale high price from adaptor_pyth, withdrawing more value than entitled based on true market prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_64dfd466-cea8-4457-ab6d-10e9a48485d7?mode=deep",
+    "timestamp": "2026-02-19 00:05:00.798631",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: Vault] [Share Calculation Attack] Since vault share prices depend on asset valuations from oracle prices, can attacker manipulate adaptor_pyth price timing to mint shares when undervalued or burn shares when overvalued? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4c197e8c-de3a-46f4-a6bf-bfa6ffe9f28c?mode=deep",
+    "timestamp": "2026-02-19 00:05:18.752495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: Vault] [Loss Tolerance Bypass] Can attacker use stale prices from get_price_unsafe_to_target_decimal() to make vault loss appear within tolerance when actual loss exceeds limit, bypassing operation safety checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e4f3a06a-ddff-42a2-9013-f59c7e29bfeb?mode=deep",
+    "timestamp": "2026-02-19 00:05:39.249414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: Vault] [Health Factor Manipulation] In navi_limiter adaptor, can attacker use stale Pyth prices to falsely inflate health factor, enabling unsafe borrowing that should be blocked by health checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5249e2a-f547-4018-994f-1ac2b972e74b?mode=deep",
+    "timestamp": "2026-02-19 00:05:59.863114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: Vault] [Operation Status Bypass] Can attacker use price staleness to manipulate vault's assessment of whether operation is safe, bypassing status gates (normal/during_operation/disabled)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02b3cb6b-9fae-4e58-a6c8-45f89d9d16bb?mode=deep",
+    "timestamp": "2026-02-19 00:06:21.816467",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: Vault] [Multi-Asset Valuation] If vault holds multiple assets all using Pyth via adaptor_pyth, can attacker provide stale prices for subset of assets causing total portfolio valuation to be incorrect? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_15cc71a5-0de0-4d5e-ae58-506931b2ce4e?mode=deep",
+    "timestamp": "2026-02-19 00:06:43.957765",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: Vault] [Request Buffer Exploitation] Can attacker submit deposit/withdrawal requests when adaptor_pyth prices are stale, locking in favorable prices that execute later when market has moved? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83d7bb47-9bc6-4781-acf6-565981f91b0e?mode=deep",
+    "timestamp": "2026-02-19 00:07:07.505612",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: Vault] [Fee Collection Impact] Since vault fees are calculated based on USD values from oracle prices, can stale Pyth prices cause under/over collection of fees harming protocol or users? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_96ccac1b-1c99-4e1f-990c-140eb8746d81?mode=deep",
+    "timestamp": "2026-02-19 00:07:31.302372",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Integration: Vault] [Liquidation Timing] Can attacker prevent or force liquidations by manipulating timing of Pyth price updates through adaptor_pyth, causing vault to liquidate at wrong times? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a617d424-c069-43e0-a80c-22f4bb69c33e?mode=deep",
+    "timestamp": "2026-02-19 00:07:55.794647",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Math] [u64 to u256 Cast Overflow] When casting price from u64 to u256 in get_price_to_target_decimal() line 42, if subsequent multiplication in to_target_decimal_value_safe() causes result to exceed u256::MAX due to large scaling factor, will this abort or wrap? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_baea8bb6-4f4d-4040-b77b-f8c06b442aa4?mode=deep",
+    "timestamp": "2026-02-19 00:08:20.324825",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Math] [Timestamp Arithmetic] When multiplying timestamp by 1000 in lines 19 and 32, if input timestamp is greater than (u64::MAX / 1000) = 18446744073709551, will overflow wrap to small value or abort? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b1abb6f-b7fd-4e82-99dc-a189d257c7e6?mode=deep",
+    "timestamp": "2026-02-19 00:08:45.393365",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Math] [Decimal Scaling Loop] In to_target_decimal_value_safe() called by get_price_to_target_decimal(), if decimal=0 and target_decimal=255, will 255 iterations of multiply-by-10 cause computational DoS or overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_60a4047e-e867-4236-9bd5-b64016ee0b13?mode=deep",
+    "timestamp": "2026-02-19 00:09:12.323802",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Math] [Division Precision Loss] When scaling down (decimal > target_decimal), can repeated division by 10 in to_target_decimal_value_safe() cause cumulative precision loss making price significantly inaccurate? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b882275-e87a-42fe-b9e9-d4b6720d20f0?mode=deep",
+    "timestamp": "2026-02-19 00:09:39.352838",
+    "report_generated": false
+  }
+]
