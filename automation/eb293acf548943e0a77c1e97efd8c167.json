@@ -1,0 +1,38 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [State Corruption: OracleHolder Poisoning] If the OracleHolder reference is updated to point to a malicious oracle, would all subsequent price queries return attacker-controlled prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_61c63bdf-5a6a-4ae7-9b59-443ec5162504?mode=deep",
+    "timestamp": "2026-02-19 08:25:58.290776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [State Corruption: Decimal Drift] If the Supra oracle changes its decimal format over time without this adaptor being updated, could all prices become systematically wrong by powers of 10? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_39300a55-59d7-43fb-bbbd-99e1726e8f68?mode=deep",
+    "timestamp": "2026-02-19 08:26:11.084884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Critical Priority] Given that this adaptor has NO input validation, NO price bounds checking, NO staleness validation, and NO access control, should it be considered production-ready, or does it require significant hardening before mainnet deployment? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_10156ab1-eb68-4525-8d52-d1a3466af19c?mode=deep",
+    "timestamp": "2026-02-19 08:26:24.470747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Critical Priority] The entire 30-line adaptor lacks any `assert!()` statements - is this intentional minimalism, or a fundamental security gap that could enable multiple attack vectors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8c408214-7bae-4099-ace0-b5001656f5ec?mode=deep",
+    "timestamp": "2026-02-19 08:26:38.503192",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Critical Priority] Should there be a circuit breaker or price deviation check that halts operations if Supra prices move beyond reasonable bounds, protecting against oracle manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c04fc2f2-2a45-410f-9829-4f295d5198d9?mode=deep",
+    "timestamp": "2026-02-19 08:26:53.257119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_supra.move] [Critical Priority] Is there monitoring and alerting for when Supra prices significantly diverge from other oracle sources, allowing quick response to oracle failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_07e4fd62-3aa4-4226-8224-515cf2ea81e2?mode=deep",
+    "timestamp": "2026-02-19 08:27:12.008523",
+    "report_generated": false
+  }
+]
