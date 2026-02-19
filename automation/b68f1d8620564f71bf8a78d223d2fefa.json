@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: batch_execute_withdraw()] [Zero Address Batch Handling] If multiple withdrawals have zero addresses, can claimable_principal accounting become corrupted? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d90ca648-396b-430f-9952-ffbc20fc9824?mode=deep",
+    "timestamp": "2026-02-19 05:02:16.958088",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: batch_execute_withdraw()] [Partial Execution] If one withdrawal fails mid-batch, what happens to already-executed withdrawals? Can this be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f549f66c-2c63-4634-b19b-1c56b3fe4b6e?mode=deep",
+    "timestamp": "2026-02-19 05:02:29.618786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: batch_execute_withdraw()] [Index_of Failure Handling] If request_id not found in vector, does the function panic leaving vault in inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ba633d0-dc6f-4d61-865d-21d2cd539087?mode=deep",
+    "timestamp": "2026-02-19 05:02:43.390247",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: batch_execute_withdraw()] [Gas Limit Attack] Can large batches cause out-of-gas preventing withdrawals and locking user funds? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ea83f9b-1439-4655-9b42-d3c4a8b5b897?mode=deep",
+    "timestamp": "2026-02-19 05:02:57.075642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: cancel_user_withdraw()] [Share Return Manipulation] Since function returns u256 shares, can this value be used to exploit share accounting if caller ignores the return value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1a96904c-acdf-4502-917e-0fdf65ba898b?mode=deep",
+    "timestamp": "2026-02-19 05:03:11.457078",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: cancel_user_withdraw()] [Receipt ID Bypass] Can operator provide wrong receipt_id to cancel withdrawals for other users, stealing their shares? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aca560f2-f1b6-403e-8127-37630f7e93ce?mode=deep",
+    "timestamp": "2026-02-19 05:03:26.692444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: cancel_user_withdraw()] [Recipient Address Manipulation] Can operator redirect cancelled shares to wrong recipient address? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3f397c2e-e262-4155-8899-e69ada27957a?mode=deep",
+    "timestamp": "2026-02-19 05:03:43.545936",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: cancel_user_withdraw()] [Locking Window Bypass] Can cancellation occur during locking windows when it should be prevented? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a2ac5bda-12a5-4d12-b3c2-938f62f9567d?mode=deep",
+    "timestamp": "2026-02-19 05:04:01.895979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: cancel_user_withdraw()] [Clock Parameter Manipulation] Can wrong clock parameter allow cancellation outside allowed time windows? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b50cd2c0-3564-4956-bfd6-330691735d64?mode=deep",
+    "timestamp": "2026-02-19 05:04:20.805104",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: deposit_by_operator()] [Share Minting Exploit] Can operator deposit and receive shares at manipulated oracle prices, diluting other shareholders? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_055dee1d-20eb-4927-a5ce-23b7261ae3e8?mode=deep",
+    "timestamp": "2026-02-19 05:04:40.493022",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: deposit_by_operator()] [Oracle Timing Attack] Can operator time deposits when oracle prices are stale or manipulated to get favorable share rates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_000dddbb-05d3-42ad-961c-49cc4d7fa296?mode=deep",
+    "timestamp": "2026-02-19 05:05:01.689600",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: deposit_by_operator()] [Zero Amount Deposit] Can operator deposit 0 amount coins causing accounting issues or bypassing certain checks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3d69783-b3a0-40be-b3fc-b3c85a440356?mode=deep",
+    "timestamp": "2026-02-19 05:05:22.722914",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: deposit_by_operator()] [Frozen Operator Timing] Can operator execute deposit right before being frozen, or does freeze check have race conditions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f7c9db82-61c5-4918-9ef7-1060dd17cefb?mode=deep",
+    "timestamp": "2026-02-19 05:05:45.105090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: add_new_coin_type_asset()] [Type Collision Attack] Can operator add asset types that collide with existing types, corrupting vault state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_992a9403-50f3-40d9-9468-5025806a4138?mode=deep",
+    "timestamp": "2026-02-19 05:06:07.440508",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: add_new_coin_type_asset()] [Malicious Asset Type] Can operator add malicious coin types that have hooks or reentrancy vectors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_31b6de09-de91-479f-af0b-0b20fd1373d7?mode=deep",
+    "timestamp": "2026-02-19 05:06:29.394513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: add_new_coin_type_asset()] [Frozen Operator Check] Can a frozen operator still add new asset types through timing or race conditions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da6ffa12-c151-4c29-b787-2ec2bd668f1c?mode=deep",
+    "timestamp": "2026-02-19 05:06:51.075957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: remove_coin_type_asset()] [Asset Balance Check] Can operator remove coin type asset while vault still holds balance of that type, causing locked funds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e8ea7ae-0999-4484-89d0-fbdda8b18f5e?mode=deep",
+    "timestamp": "2026-02-19 05:07:13.364028",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: remove_coin_type_asset()] [Active Position Removal] If DeFi protocols hold positions with this asset type, can removal cause loss of access? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_31ee1121-fd11-458e-8732-215e23af57db?mode=deep",
+    "timestamp": "2026-02-19 05:07:36.009287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: remove_coin_type_asset()] [Type Confusion] Can removing and re-adding same asset type cause accounting confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f77ab84-c07c-49bd-a383-df1e7c007687?mode=deep",
+    "timestamp": "2026-02-19 05:07:56.150015",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: add_new_defi_asset()] [Index Collision] Can operator add defi asset with idx that already exists, overwriting existing asset and causing loss? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_00f57104-8224-42bb-8a21-bf169f49f2b6?mode=deep",
+    "timestamp": "2026-02-19 05:08:17.898562",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: add_new_defi_asset()] [Asset Ownership] Does function verify that operator owns the asset being added, or can they add assets they don't control? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2fb764d0-ed22-49d1-be1d-2216bdea61cf?mode=deep",
+    "timestamp": "2026-02-19 05:08:40.776935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: add_new_defi_asset()] [Type Constraint Bypass] Can operator add assets that don't meet the `key + store` constraint through generics manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_833fc29f-efdd-4c75-9999-d6b839f0d5db?mode=deep",
+    "timestamp": "2026-02-19 05:09:03.250860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: add_new_defi_asset()] [Malicious Asset Object] Can operator add malicious objects that exploit vault when accessed later? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac6f758f-b87b-426b-8aa0-08aa0c52637e?mode=deep",
+    "timestamp": "2026-02-19 05:09:25.956167",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: remove_defi_asset_support()] [Asset in Use] Can operator remove DeFi asset while it's being used in an active operation, causing operation failure? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e40497ad-c599-44fe-86f0-a366b90231e7?mode=deep",
+    "timestamp": "2026-02-19 05:09:49.150591",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/operation.move] [Function: remove_defi_asset_support()] [Index Out of Bounds] Can providing invalid idx cause panic or return wrong asset? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3fb76804-272a-468a-a140-d0db1c07701e?mode=deep",
+    "timestamp": "2026-02-19 05:10:12.791036",
+    "report_generated": false
+  }
+]
