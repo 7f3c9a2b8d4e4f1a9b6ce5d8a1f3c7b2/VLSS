@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: vault_receipt] [Share Mismatch] If receipt shares are updated after WithdrawRequest creation, can the request's fixed shares value become invalid, causing execution failures or over-withdrawals? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db83da57-95de-4535-92fc-74e79046e8cf?mode=deep",
+    "timestamp": "2026-02-19 02:52:17.731027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: vault_receipt] [Receipt Deletion] Can a receipt be deleted or transferred after WithdrawRequest creation, leaving a dangling receipt_id that causes undefined behavior during execution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a05277a-e7e4-4754-8412-2decfb63d9c5?mode=deep",
+    "timestamp": "2026-02-19 02:52:30.894500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: vault_receipt] [Cross-Receipt Attack] Can an attacker create multiple WithdrawRequest objects from different receipts totaling more shares than they own, exploiting lack of global share tracking? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ee19c2a-c2ca-401f-979a-27ecdf5d22e4?mode=deep",
+    "timestamp": "2026-02-19 02:52:44.848716",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: vault_receipt] [Status Manipulation] Can receipt status be manipulated after WithdrawRequest creation to bypass status checks during cancellation or execution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be8fce98-17a3-4528-a83b-2308b1f28740?mode=deep",
+    "timestamp": "2026-02-19 02:52:59.915118",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: share_ratio] [Stale Ratio] Can share ratio change significantly between WithdrawRequest creation and execution, causing the fixed expected_amount to become irrelevant and bypassing slippage protection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_477c8c7b-f607-4024-8b71-4040b95b20c8?mode=deep",
+    "timestamp": "2026-02-19 02:53:15.879995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: execution] [Execution Order] Can attackers manipulate execution order of WithdrawRequest objects to execute their requests when vault conditions are favorable and delay others? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b3ba297-dd04-401d-af7d-6e43c3906543?mode=deep",
+    "timestamp": "2026-02-19 02:53:33.013033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: execution] [Partial Execution] If vault has insufficient free_principal, can WithdrawRequest execution fail partially, leaving request in inconsistent state with shares deducted but funds not transferred? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_234ac4a1-0963-491f-81c9-c396b688aeff?mode=deep",
+    "timestamp": "2026-02-19 02:53:51.354738",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: execution] [Fee Calculation] Can the withdraw_fee_rate change between WithdrawRequest creation and execution, causing users to pay more fees than expected based on expected_amount? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af89dd16-ae4f-4d9f-9805-6cf7753aabf3?mode=deep",
+    "timestamp": "2026-02-19 02:54:12.077026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: execution] [Max Amount Override] Can the operator-provided max_amount_received parameter in execution override user's expected_amount, enabling unauthorized slippage expansion? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5306b69-e237-46f1-a892-baa8e8efdc0c?mode=deep",
+    "timestamp": "2026-02-19 02:54:34.250080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: oracle] [Price Staleness] Can expected_amount be based on stale oracle prices at request creation, then execution uses current prices, causing systematic slippage check failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_71bbdb31-21d5-4b44-b543-3312fcc6e1bf?mode=deep",
+    "timestamp": "2026-02-19 02:54:57.757569",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: oracle] [Price Manipulation] Can an attacker manipulate oracle prices between WithdrawRequest creation and execution to maximize withdrawal amounts beyond expected_amount? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6dc8e57c-1b77-4e28-9d26-9b8a8448448a?mode=deep",
+    "timestamp": "2026-02-19 02:55:21.313984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: oracle] [Decimal Mismatch] If oracle prices use different decimals (1e9 vs 1e18), can expected_amount calculations be incorrect, leading to systematic over or under-withdrawals? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3d9b74b-8422-4aac-b654-04312b81ad98?mode=deep",
+    "timestamp": "2026-02-19 02:55:47.722127",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: oracle] [Price Precision] Can low-precision oracle prices cause expected_amount to be significantly different from actual withdrawal amounts, bypassing slippage checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3c1338e-96de-4afc-aebe-83565f8aec0d?mode=deep",
+    "timestamp": "2026-02-19 02:56:14.616640",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: locking_time] [Lock Bypass] Can locking_time_for_cancel_request be zero, allowing immediate cancellation of WithdrawRequest objects and negating the purpose of withdrawal windows? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b70cfec7-eb18-4a2b-a14a-d3b09b7b5d92?mode=deep",
+    "timestamp": "2026-02-19 02:56:43.373212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: cancellation] [Cancel After Execution] Can a WithdrawRequest be cancelled after execution has begun, causing double-spending where shares are both withdrawn and returned? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee35725a-a3cc-4fd8-9931-2bc7e4e5c618?mode=deep",
+    "timestamp": "2026-02-19 02:57:12.130023",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: cancellation] [Recipient Bypass] Since cancellation checks 'recipient == address::from_u256(0)' as valid, can anyone cancel requests with zero recipient, griefing legitimate users? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19b32f40-8cd3-40ce-af4e-02bfee1279bf?mode=deep",
+    "timestamp": "2026-02-19 02:57:39.452574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: cancellation] [Partial Cancellation] Can WithdrawRequest shares be partially cancelled, or must entire request be cancelled, potentially forcing all-or-nothing withdrawal strategy? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9516873f-ee5f-45fe-99ff-3b9a58216cf4?mode=deep",
+    "timestamp": "2026-02-19 02:58:07.027498",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Missing Validation] [Total Shares Check] Does new() lack verification that shares doesn't exceed vault's total_shares, allowing creation of impossible withdrawal requests? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa28414a-fc26-4628-acae-0df887ad353b?mode=deep",
+    "timestamp": "2026-02-19 02:58:36.540656",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Missing Validation] [Receipt Ownership] Does new() lack verification that receipt_id is actually owned by the transaction sender or receipt holder? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_77dd44f3-e535-485c-aef7-f495dbbdec53?mode=deep",
+    "timestamp": "2026-02-19 02:59:07.316182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Missing Validation] [Address Validation] Does new() lack checks that receipt_id, recipient, and vault_id are non-zero and point to valid objects? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_32021067-0bfb-4c45-895e-c4d8b6ef753a?mode=deep",
+    "timestamp": "2026-02-19 02:59:35.220450",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Missing Validation] [Circular Reference] Can vault_id equal receipt_id, creating circular references that could cause infinite loops or stack overflows in nested lookups? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c01b919f-fd24-43f7-9b06-a0a409dea557?mode=deep",
+    "timestamp": "2026-02-19 03:00:03.183390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Missing Validation] [Duplicate Prevention] Does the module lack mechanisms to prevent duplicate WithdrawRequest creation for the same shares, enabling double-spending attempts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f25bded2-cdcd-47da-9e9c-680d80e96da1?mode=deep",
+    "timestamp": "2026-02-19 03:00:31.704115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Missing Invariant] [Share Conservation] Is there an invariant ensuring sum of all WithdrawRequest.shares never exceeds vault's total_shares? Where is this enforced? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c1836af-1d10-4772-b0e5-2fbfb7c1e967?mode=deep",
+    "timestamp": "2026-02-19 03:00:59.116361",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Missing Invariant] [Request Uniqueness] Is there an invariant ensuring request_id uniqueness across all WithdrawRequest objects in the buffer? Where is this verified? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2f6ca84b-fb9c-4bb9-a48b-96b22692efb4?mode=deep",
+    "timestamp": "2026-02-19 03:01:28.469306",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Missing Validation] [Economic Rationality] Does new() lack checks that expected_amount is within reasonable bounds relative to shares and current share ratio? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b49eda5-3c50-46e0-8d37-457560d21459?mode=deep",
+    "timestamp": "2026-02-19 03:01:55.716808",
+    "report_generated": false
+  }
+]
