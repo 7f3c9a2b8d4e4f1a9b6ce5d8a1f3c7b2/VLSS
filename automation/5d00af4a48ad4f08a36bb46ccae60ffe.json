@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Authorization Bypass] Can an attacker call validate() with a malicious aggregator object that returns true for has_authority() without actually owning it, bypassing authority checks before deletion? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c384b78d-1353-4996-aad2-7e4f3cd0458c?mode=deep",
+    "timestamp": "2026-02-19 00:31:15.044765",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Authorization Bypass] If has_authority() checks ctx.sender() against aggregator.authority, can an attacker manipulate the TxContext or spoof the sender to pass validation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_076c2ffd-35c8-42d1-a6af-66aa913a97d1?mode=deep",
+    "timestamp": "2026-02-19 00:31:28.142247",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Access Control] Does run() being a public entry function allow any external caller to attempt deletion if they can obtain an Aggregator object reference, enabling unauthorized deletion attempts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_faa74314-2d38-4e25-9621-4e90af7eb188?mode=deep",
+    "timestamp": "2026-02-19 00:31:41.831024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Authority Check] Can the authority field of an aggregator be modified after creation but before deletion, allowing a former authority to delete an aggregator they no longer control? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2f9a964d-58e2-4943-b874-d22f0e81f243?mode=deep",
+    "timestamp": "2026-02-19 00:31:56.222257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Authorization] If aggregator.authority is set to a multisig or contract address, can any member bypass consensus and unilaterally call run() to delete the aggregator? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec601c44-514e-4517-9f7b-a1dac1dbe066?mode=deep",
+    "timestamp": "2026-02-19 00:32:11.248798",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Version Check Bypass] Since EXPECTED_AGGREGATOR_VERSION is hardcoded to 1, can an attacker create a version 0 or version 2+ aggregator that bypasses deletion restrictions or security checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_933d3351-fac8-427b-97a2-a2eb4781173c?mode=deep",
+    "timestamp": "2026-02-19 00:32:28.097936",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Version Mismatch] If aggregator.version() returns a different value than EXPECTED_AGGREGATOR_VERSION, the deletion fails - can this be exploited to create un-deletable aggregators that cause resource leaks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18f8eadc-4bc5-419c-be11-f4f7ac6cded6?mode=deep",
+    "timestamp": "2026-02-19 00:32:46.312216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Version Validation] Does the version check at line 18 protect against future aggregator versions being deleted by old action modules, potentially leaving state inconsistencies? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7bd2efdf-f5a1-44d6-af55-7650991f48bd?mode=deep",
+    "timestamp": "2026-02-19 00:33:06.004117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Constant: EXPECTED_AGGREGATOR_VERSION] [Upgrade Path] If VERSION in aggregator.move is updated to 2 but EXPECTED_AGGREGATOR_VERSION remains 1, will all newer aggregators become un-deletable, causing permanent resource locks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4144ed6e-d1b9-4c44-91bb-b4e72fdb4490?mode=deep",
+    "timestamp": "2026-02-19 00:33:27.159442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Object Deletion] Does aggregator.delete() at line 26 properly clean up all nested resources (UpdateState, CurrentResult) or can dangling references cause memory leaks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52a9f46f-4dfd-4039-b392-e69152bd75dc?mode=deep",
+    "timestamp": "2026-02-19 00:33:50.230659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Ownership Transfer] Since run() takes aggregator by value, can an attacker front-run a legitimate deletion by transferring ownership of the aggregator object just before the transaction executes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7944dc8-c4f3-4450-8b08-4590f72b01c3?mode=deep",
+    "timestamp": "2026-02-19 00:34:10.679980",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Resource Cleanup] If the aggregator object contains a UID with dynamic fields or child objects, does delete() at line 26 cascade deletion or leave orphaned objects? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29fe6bcc-6784-48bc-9ce5-8af210ecfe51?mode=deep",
+    "timestamp": "2026-02-19 00:34:32.227131",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Object Consumption] After validate() passes with a reference, can the aggregator object be modified or transferred before actuate() consumes it, violating validation assumptions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d56d85a6-4d16-4cbe-8aa0-3704f77b8a11?mode=deep",
+    "timestamp": "2026-02-19 00:34:52.223140",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Shared Object] If aggregator is a shared object, can multiple concurrent deletion attempts race, causing double-deletion or event emission without actual deletion? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e9c4c246-d1ae-481b-8bf7-c56adbb63c77?mode=deep",
+    "timestamp": "2026-02-19 00:35:12.318446",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Event Ordering] Event emission at line 27 occurs AFTER aggregator.delete() at line 26 - if delete() fails silently, can the AggregatorDeleted event be emitted without actual deletion? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9f17cfa-49c9-4491-a96e-a71cfe94ce67?mode=deep",
+    "timestamp": "2026-02-19 00:35:34.248468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Event Emission] Can an attacker call actuate() multiple times with the same aggregator_id to emit duplicate AggregatorDeleted events, confusing off-chain indexers? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e4b6e9d5-ecd8-42b1-89b7-b478e0e4e459?mode=deep",
+    "timestamp": "2026-02-19 00:35:56.309065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Event Data] The AggregatorDeleted event at lines 23-25 only stores aggregator_id - should it also store authority, timestamp, or deletion reason for audit trail completeness? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e58a2979-8be2-4a32-80d5-38bbf9c0c46f?mode=deep",
+    "timestamp": "2026-02-19 00:36:18.554672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Event Ordering] Since event::emit() is called after delete(), can external listeners observe stale aggregator state if they query by ID before event processing completes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_677e6976-211b-435b-a1c0-c44fa27436bb?mode=deep",
+    "timestamp": "2026-02-19 00:36:41.259411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Reentrancy] Between validate() and actuate() calls, can a malicious aggregator implementation trigger callbacks that modify state or perform recursive deletions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2576a42e-d4fd-44cd-b56a-74c32d99607d?mode=deep",
+    "timestamp": "2026-02-19 00:37:03.315540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [TOCTOU] Time-of-check-time-of-use vulnerability: can aggregator.version() or aggregator.has_authority() return different values between validate() check and actuate() execution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d595248-9520-46cc-9e03-cd1c74f491a1?mode=deep",
+    "timestamp": "2026-02-19 00:37:26.532155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Race Condition] If multiple transactions call run() concurrently for the same aggregator, can the first deletion succeed while later ones fail with cryptic errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a15889ac-3910-4178-b66f-3547a448f4ab?mode=deep",
+    "timestamp": "2026-02-19 00:37:51.328377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [State Mutation] Can has_authority() or version() checks at lines 18-19 have side effects that modify aggregator state, causing inconsistent validation results? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_288240b2-b4da-44e7-a0d4-d7ffd2293612?mode=deep",
+    "timestamp": "2026-02-19 00:38:14.670509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [External Dependency] Does aggregator.delete() from the aggregator module properly handle deletion of aggregators that are referenced by other contracts (queues, oracles, vaults)? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0272e77-b43d-4dfd-b168-6d80212a6a75?mode=deep",
+    "timestamp": "2026-02-19 00:38:34.261968",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Volo Vault Integration] If Volo Vault relies on this aggregator for oracle prices, can an authority maliciously delete it mid-operation to freeze vault operations or manipulate pricing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_67f3c529-7247-4494-8a2e-882ba4ec37a6?mode=deep",
+    "timestamp": "2026-02-19 00:38:55.008346",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: validate()] [Oracle Integrity] Can an aggregator be deleted while price updates are in flight, causing the vault's assets_value_updated timestamp to become stale and violate loss_tolerance checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_455592fb-bacb-4862-9a08-0452fbd53fba?mode=deep",
+    "timestamp": "2026-02-19 00:39:15.602348",
+    "report_generated": false
+  }
+]
