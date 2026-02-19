@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: run()] [Authorization Bypass] The entry function has no authority checks - can any caller create oracles on any Queue without queue authority approval, violating the queue authority model and enabling unauthorized oracle registration? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3a406507-4380-47f6-9f1e-b63c838f89cb?mode=deep",
+    "timestamp": "2026-02-19 01:39:14.493186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: run()] [Authorization Bypass] Since run() is a public entry function with no sender verification against queue.authority, can a malicious actor spam oracle creation to exhaust the Queue's existing_oracles table storage, causing DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_828614a4-3920-4b28-afac-c711c2148e00?mode=deep",
+    "timestamp": "2026-02-19 01:39:27.965176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: validate()] [Authorization Gap] The validate function only checks oracle_key existence but not caller permissions - can this allow front-running of legitimate oracle registrations by malicious actors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98332ddd-0356-4061-bd3f-4f6704800aa1?mode=deep",
+    "timestamp": "2026-02-19 01:39:41.772289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: actuate()] [Visibility Issue] The actuate function is private (fun, not public) but lacks authority checks - if exposed through other modules, could this bypass intended access controls? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_33d51030-425d-46e9-bc8c-07aecdaac68b?mode=deep",
+    "timestamp": "2026-02-19 01:39:56.210143",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: validate()] [Input Validation] The oracle_key parameter is a vector<u8> with no length, format, or cryptographic validity checks - can empty vectors, excessively long keys, or malformed keys cause oracle creation issues or table corruption? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ade6a041-01b0-4f9d-a2f2-b17265b5f987?mode=deep",
+    "timestamp": "2026-02-19 01:40:12.024797",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: validate()] [Collision Attack] The existing_oracles_contains check at line 25 only validates key uniqueness - can an attacker create multiple oracles with similar but distinct keys to confuse oracle resolution or exhaust storage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f798fb43-5b88-464d-8ea7-2c80d701c6e4?mode=deep",
+    "timestamp": "2026-02-19 01:40:29.161316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: run()] [Key Reuse] After an oracle is removed from the queue (if such functionality exists elsewhere), can the same oracle_key be reused via run() to create a new oracle with the same key but different ID, breaking oracle identity assumptions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8c9d875c-40c5-4fbf-8e54-eaf8f18d4770?mode=deep",
+    "timestamp": "2026-02-19 01:40:47.523784",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: validate()] [Unicode/Encoding] The oracle_key vector<u8> has no encoding validation - can non-UTF8 or null-byte injection in oracle_key cause parsing issues in downstream oracle operations or event indexers? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_11435432-5886-426d-86fe-01bf9fb2af73?mode=deep",
+    "timestamp": "2026-02-19 01:41:08.011025",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: validate()] [Version Hardcoding] EXPECTED_QUEUE_VERSION is hardcoded to 1 at line 7 - if Queue is upgraded to version 2, will all oracle creation fail until this module is also upgraded, causing protocol-wide DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e09f06c8-3bc7-4dbe-a74c-3684a68481d8?mode=deep",
+    "timestamp": "2026-02-19 01:41:31.856534",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: validate()] [Version Mismatch] The version check at line 24 uses strict equality (==) - can this prevent forward compatibility if Queue supports multiple versions, and is there a version upgrade migration path? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_029d5794-8629-4eca-9e94-b63285852f0d?mode=deep",
+    "timestamp": "2026-02-19 01:41:55.350210",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Constant: EXPECTED_QUEUE_VERSION] [Upgrade Risk] With EXPECTED_QUEUE_VERSION fixed at compile time, can a queue version upgrade strand this module, preventing new oracle creation even for valid queues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2077fc96-ec43-4435-9475-e86aaf154f73?mode=deep",
+    "timestamp": "2026-02-19 01:42:20.586884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: run()] [TOCTOU] Between validate() checking !existing_oracles_contains at line 25 and actuate() calling add_existing_oracle at line 39, can a concurrent transaction insert the same oracle_key, causing add_existing_oracle to abort with table key collision? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_778ac81f-573c-4dac-8086-54aaa4a8da0e?mode=deep",
+    "timestamp": "2026-02-19 01:42:47.961087",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: actuate()] [Reentrancy] The oracle::new call at line 33 creates a shared object - can this trigger callbacks that re-enter the Queue before add_existing_oracle completes, violating state consistency? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_413379a9-4e23-45ce-9176-f5da7f5cdb34?mode=deep",
+    "timestamp": "2026-02-19 01:43:15.653986",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: actuate()] [State Ordering] Oracle creation at line 33 happens before add_existing_oracle at line 39 - if oracle::new fails after object creation but before sharing, is there an orphaned oracle ID that's never tracked in the queue? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d327ff6-4990-4868-99a7-d78c7e0fcf6a?mode=deep",
+    "timestamp": "2026-02-19 01:43:44.383986",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: run()] [Concurrent Creation] Multiple concurrent calls to run() with the same oracle_key - can they both pass validate() and race to actuate(), potentially creating duplicate oracles or causing table insertion failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe6090d6-b9b5-4fd1-9f9f-694dbed52751?mode=deep",
+    "timestamp": "2026-02-19 01:44:12.856043",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: actuate()] [Oracle Initialization] The oracle::new call at line 33-38 passes queue.id() and queue.queue_key() - if these values are mutable in Queue, can oracle creation bind to stale/incorrect queue references? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_965602b8-ff42-4e3e-85d5-1d98518207ea?mode=deep",
+    "timestamp": "2026-02-19 01:44:41.503109",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: actuate()] [ID Verification] The oracle_id returned from oracle::new at line 33 is immediately stored at line 39 - is there verification that the oracle was actually created and shared, or can a malicious oracle::new return an arbitrary ID? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7887598-b013-47f3-bc02-f0cb0bc86dab?mode=deep",
+    "timestamp": "2026-02-19 01:45:12.018627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: actuate()] [Queue Coupling] The actuate function tightly couples oracle creation with queue registration - if oracle::new succeeds but add_existing_oracle fails, is there an orphaned Oracle object that's shared but not tracked? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_53b30075-63b2-4c12-b579-230592809e99?mode=deep",
+    "timestamp": "2026-02-19 01:45:35.430005",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: actuate()] [Context Dependency] The TxContext is passed to oracle::new but not validated - can ctx manipulation (e.g., sender spoofing in tests) create oracles with incorrect ownership or authority? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e729542-468a-4a98-b9c7-cd3aa4468002?mode=deep",
+    "timestamp": "2026-02-19 01:45:54.983950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: actuate()] [Event Integrity] The OracleCreated event at lines 42-46 is emitted after state mutation - if the transaction aborts after add_existing_oracle but event emission fails, can oracle creation succeed without event notification? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_de7a400e-c91b-4182-8671-fcecfcffa961?mode=deep",
+    "timestamp": "2026-02-19 01:46:16.157511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Struct: OracleCreated] [Event Data] The event contains oracle_id, queue_id, and oracle_key - can event listeners rely on this data, or is there risk of event emission with incorrect IDs if oracle::new returns wrong values? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7a512014-2ecd-4562-b34c-c2b684a97602?mode=deep",
+    "timestamp": "2026-02-19 01:46:39.294589",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: actuate()] [Event Timing] Event emission happens at the end of actuate() - can off-chain systems miss oracle creation if they query the oracle before the event is indexed? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d3e518b-5301-4ac4-9f19-202e33a38c80?mode=deep",
+    "timestamp": "2026-02-19 01:47:02.399494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: actuate()] [Table Insertion] The add_existing_oracle call at line 39 adds to Queue's existing_oracles table - can unbounded oracle creation exhaust table storage limits, causing DoS for legitimate oracle additions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5f3c706-fc85-471e-892b-627a5b317916?mode=deep",
+    "timestamp": "2026-02-19 01:47:23.974771",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: validate()] [Table Lookup] The existing_oracles_contains check reads from a Table - can gas costs for table lookup increase linearly with table size, making validation prohibitively expensive for large queues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_13ccf549-4aca-4095-914c-c1c021750c2d?mode=deep",
+    "timestamp": "2026-02-19 01:47:46.469434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_init_action.move] [Function: actuate()] [Storage Invariant] After add_existing_oracle, the table should contain oracle_key -> ExistingOracle mapping - can this invariant be violated if the oracle_key is modified between lines 30 and 39? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_787d2306-c92c-4ce0-b984-dad0340c7686?mode=deep",
+    "timestamp": "2026-02-19 01:48:10.184250",
+    "report_generated": false
+  }
+]
