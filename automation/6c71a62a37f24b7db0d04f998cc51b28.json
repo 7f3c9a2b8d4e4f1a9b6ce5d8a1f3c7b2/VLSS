@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Integer Overflow] Can the multiplication amount * 10 in the decimal conversion loop overflow u64 when converting small decimals to large decimals with large amounts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_58f1e522-8b6d-4f45-99aa-4f87828e2e94?mode=deep",
+    "timestamp": "2026-02-19 01:15:39.798603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Integer Underflow] Can the division amount / 10 in the decimal conversion loop result in precision loss when converting large decimals to small decimals? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b578d79-2f61-4869-8392-b2b447ccb8f2?mode=deep",
+    "timestamp": "2026-02-19 01:15:53.149068",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Infinite Loop] If cur_decimal is manipulated to never equal target_decimal, can the while loop run indefinitely, causing DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_870d5677-d30c-48f3-a0b0-8310b14da4db?mode=deep",
+    "timestamp": "2026-02-19 01:16:08.257008",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Precision Loss] When converting from decimal 18 to decimal 6, does repeated division by 10 cause significant rounding errors that accumulate over multiple operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_40a52025-78ac-4f95-98b5-6774226b77d1?mode=deep",
+    "timestamp": "2026-02-19 01:16:23.350800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Decimal Bounds] Are cur_decimal and target_decimal validated to be within 0-18 range, or can extreme values cause unexpected behavior in the conversion logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5dda1a3a-f402-4660-86a0-bcd6ecaa0e65?mode=deep",
+    "timestamp": "2026-02-19 01:16:39.683390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: normal_amount()] [Hardcoded Target] The function hardcodes target_decimal = 9 - what if the protocol needs to support different normalization targets, and can this limitation be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f77f7f0-a533-4513-84c4-4779c536db38?mode=deep",
+    "timestamp": "2026-02-19 01:16:56.632568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: unnormal_amount()] [Hardcoded Source] Similarly, unnormal_amount() assumes source decimal is 9 - can mismatched assumptions between normal_amount() and unnormal_amount() cause conversion errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5010ec5-07f8-45d9-8176-e8e1b9c61ed7?mode=deep",
+    "timestamp": "2026-02-19 01:17:14.994695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: normal_amount()] [Overflow Risk] If pool.decimal = 0 and amount is large, can normal_amount() overflow by multiplying amount by 10^9? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_34152cbe-df42-488b-863e-780d495321a0?mode=deep",
+    "timestamp": "2026-02-19 01:17:35.978561",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: unnormal_amount()] [Underflow Risk] If pool.decimal = 18 and amount is normalized to 9 decimals, can unnormal_amount() underflow by dividing multiple times? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1264b504-844e-4e1f-82ba-c069f0e59892?mode=deep",
+    "timestamp": "2026-02-19 01:17:58.127528",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Zero Amount] Does convert_amount() handle amount = 0 correctly in all decimal conversion scenarios, or can it produce non-zero results? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_928e1902-69ce-4573-92f4-124699c0f691?mode=deep",
+    "timestamp": "2026-02-19 01:18:21.246614",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Max Amount] Does convert_amount() handle amount = u64::MAX correctly without overflow, especially when multiplying by 10? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5e1a9d9-1816-4739-aeae-84b600136c99?mode=deep",
+    "timestamp": "2026-02-19 01:18:45.576404",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Decimal Equality] What happens if cur_decimal == target_decimal initially - does the loop exit immediately, or is there an off-by-one error? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_97151a35-c6d3-4d5f-aa69-81792385fc3d?mode=deep",
+    "timestamp": "2026-02-19 01:19:12.357418",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Mutable Parameters] The function modifies amount, cur_decimal inside the loop - can this cause unintended side effects if parameters are reused? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5f561a1e-370e-40f9-a8f4-c72f65b3d21c?mode=deep",
+    "timestamp": "2026-02-19 01:19:38.806413",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Upscale Overflow] When cur_decimal < target_decimal, can repeated amount * 10 operations overflow before cur_decimal reaches target_decimal? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3fd5e2f5-b1bb-4c87-a97f-fe104021944e?mode=deep",
+    "timestamp": "2026-02-19 01:20:06.390597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Downscale Precision] When cur_decimal > target_decimal, does repeated amount / 10 truncate remainders, potentially losing significant value for large amounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c7a1b81-cfeb-44a1-b3b9-f9fdd994934c?mode=deep",
+    "timestamp": "2026-02-19 01:20:30.276691",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: normal_amount()] [Pool Decimal Trust] Does normal_amount() trust that pool.decimal is correctly initialized, or can a corrupted decimal value cause conversion errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c2581f2a-7fae-4d5b-a862-262d9da209f8?mode=deep",
+    "timestamp": "2026-02-19 01:20:50.226975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: unnormal_amount()] [Pool Decimal Trust] Similarly, can a manipulated pool.decimal in unnormal_amount() cause incorrect denormalization and value loss? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bf427981-f62e-49b4-b32c-84bdb160ad24?mode=deep",
+    "timestamp": "2026-02-19 01:21:09.565176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: create_pool()] [Decimal Initialization] Is the decimal parameter validated when creating a pool, or can an admin create a pool with decimal > 18, breaking convert_amount() logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3e536ccd-f049-498a-ad8b-ce0e550473b3?mode=deep",
+    "timestamp": "2026-02-19 01:21:28.886413",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: get_coin_decimal()] [Decimal Immutability] Once set in create_pool(), is pool.decimal immutable, or can it be changed through struct manipulation, breaking existing conversions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0070cdb8-160c-45ef-8e35-96ce5f0ff024?mode=deep",
+    "timestamp": "2026-02-19 01:21:51.004651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Conversion Reversibility] If amount_normalized = normal_amount(pool, amount_original), does unnormal_amount(pool, amount_normalized) == amount_original, or is there precision loss? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_421a4a17-beb7-4a45-98ae-5576c2cc9384?mode=deep",
+    "timestamp": "2026-02-19 01:22:12.953875",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Large Decimal Differences] When converting between extreme decimals (e.g., 0 to 18), can the loop execute 18 times with potential overflow on each iteration? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_72605a0e-dedb-4bc7-b7a2-d02d233a36c2?mode=deep",
+    "timestamp": "2026-02-19 01:22:36.118509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Negative Decimal] Although u8 cannot be negative, can wraparound (255 + 1 = 0) occur in cur_decimal operations, breaking loop termination? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_16ab6516-8575-4c91-9c4b-91030a10ef6f?mode=deep",
+    "timestamp": "2026-02-19 01:23:01.690580",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: normal_amount()] [Call Chain Safety] If dependent modules chain multiple normal_amount() and unnormal_amount() calls, can accumulated precision loss become significant? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7ffba91-e801-41c5-885a-94ef9e7e9914?mode=deep",
+    "timestamp": "2026-02-19 01:23:28.095558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Division Before Multiplication] Does the downscaling path (amount / 10) execute before any upscaling, potentially losing precision unnecessarily? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_04d5620a-ff24-4283-9f41-8360d51be930?mode=deep",
+    "timestamp": "2026-02-19 01:23:53.097548",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/pool.move] [Function: convert_amount()] [Loop Bounds] Is there a maximum number of iterations (max decimal difference of 18) to prevent excessive gas consumption? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c13552b0-bdc5-4259-b748-6d9d6e63caa0?mode=deep",
+    "timestamp": "2026-02-19 01:24:19.678669",
+    "report_generated": false
+  }
+]
