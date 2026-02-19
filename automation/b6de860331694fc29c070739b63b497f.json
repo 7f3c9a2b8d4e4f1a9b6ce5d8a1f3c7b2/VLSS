@@ -1,0 +1,122 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: level_critical()] [Constant Semantics] Could the critical alert level value of 0 be confused with default/uninitialized values in calling modules, allowing critical price deviations to be ignored as 'not set'? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e44ae0f-efdf-481b-84f2-4347cf41b27b?mode=deep",
+    "timestamp": "2026-02-19 05:02:57.735190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: level_critical()] [Alert Level Ordering] Does the inverse ordering where 0=critical and 3=normal contradict typical severity hierarchies, potentially causing comparison logic errors (e.g., `if level > threshold`) in price validation modules? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c136ef7d-e2e8-40a2-bb66-9d38c125c239?mode=deep",
+    "timestamp": "2026-02-19 05:03:10.739622",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: no_available_prices()] [Constant Collision] The no_available_prices() returns 0, identical to level_critical() - could modules conflate these two distinct error conditions when checking for 0, treating 'no prices' as merely 'critical deviation' and proceeding with stale data? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_abb7c5b8-6335-424a-9c09-d35771fad9ba?mode=deep",
+    "timestamp": "2026-02-19 05:03:24.258570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: unavailable_prices()] [Alert Level Collision] The unavailable_prices() returns 1, identical to level_major() - could this collision cause price filtering errors to be misinterpreted as price deviation alerts, bypassing health factor checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e9e4192f-594f-428a-bf23-69a9de30d03b?mode=deep",
+    "timestamp": "2026-02-19 05:03:39.359977",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: multiple()] [Precision Constant] The multiple() constant of 10000 suggests basis point representation (1 = 0.01%) - if vault fee calculations use this assuming 100% = 10000 bps, could price oracle modules incorrectly apply this scaling, causing 100x valuation errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87edca60-c165-42d0-bf9e-7438b4d4745c?mode=deep",
+    "timestamp": "2026-02-19 05:03:54.261732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: default_update_interval()] [Staleness Window] The 30-second default update interval - if health limiter or vault value updates accept prices within this window without checking actual oracle freshness timestamps, could attackers exploit stale prices during flash crashes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_60d85870-02ff-4f25-9de8-967e315b8ecc?mode=deep",
+    "timestamp": "2026-02-19 05:04:10.383098",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: default_decimal_limit()] [Decimal Precision] The decimal limit of 16 - if Switchboard prices are 18 decimals but this constant is used for truncation, could precision loss accumulate in multi-asset vault valuations, enabling loss_tolerance bypass through rounding errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b2e788f-cc5d-45d6-b288-cb436243cbe3?mode=deep",
+    "timestamp": "2026-02-19 05:04:27.393597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: version()] [Version Mismatch] The hardcoded version 2 - if oracle data structures or external adaptors expect version validation but this constant is never updated during upgrades, could incompatible oracle formats cause incorrect price parsing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b70f28f-0380-42e4-8bb1-0a74e7db7cea?mode=deep",
+    "timestamp": "2026-02-19 05:04:46.340785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: success()] [Success Flag Semantics] The success code of 1 instead of boolean true - if calling modules use boolean context (`if success()`) this evaluates to true, but could bitwise or equality checks accidentally fail if expecting 0 for success? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_70b3cbb6-ef4c-40ab-b2be-35a6048c0b05?mode=deep",
+    "timestamp": "2026-02-19 05:05:05.127661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: primary_type(), secondary_type(), both_type()] [Type Discrimination] With primary=0, secondary=1, both=2, if oracle selection logic uses simple numeric comparison instead of equality, could `type < secondary_type()` accidentally include primary oracles when only secondary is safe? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b279d628-cb2e-4cd8-a96e-6af3320e3bb9?mode=deep",
+    "timestamp": "2026-02-19 05:05:25.216793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Module Visibility] All functions are public - could malicious modules import these constants and redefine them locally with different values, then pass manipulated 'constant' values to vault operations expecting canonical constants? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa839ab3-8920-467f-b4da-5354c7d0044a?mode=deep",
+    "timestamp": "2026-02-19 05:05:46.545245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: level_major(), level_warning(), level_normal()] [Alert Escalation] The 4-level severity system (0-3) - if vault operations check `level <= level_warning()` to proceed, could this inadvertently allow critical (0) and major (1) alerts to pass, violating safety invariants? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e9f974ce-65f1-4d46-a7a7-4da40fa18533?mode=deep",
+    "timestamp": "2026-02-19 05:06:09.493809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: multiple()] [Fee-Price Confusion] If the 10000 multiple constant is shared between fee calculations (basis points) and price scaling, could modules mixing these contexts apply 100x or 0.01x multipliers incorrectly when converting between USD values and shares? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_377b5861-0f33-4103-9728-1112cc86c662?mode=deep",
+    "timestamp": "2026-02-19 05:06:33.126260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: default_update_interval()] [Time Unit Ambiguity] The 30000 value with comment '30s' - if this is milliseconds but consuming modules assume seconds, could a 30ms staleness check allow prices up to 30 seconds old, exposing vault to arbitrage during volatile periods? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_561235ac-2174-44bf-b30e-59576be1d43e?mode=deep",
+    "timestamp": "2026-02-19 05:06:58.265231",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: default_decimal_limit()] [Cross-Chain Precision] With decimal limit 16 but Sui using 9 decimals for SUI and external tokens potentially using 6/8/18, could this constant cause incorrect normalization when converting oracle prices to vault asset values? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_472c31d9-2b5f-4f45-b451-5f476d0ed2c8?mode=deep",
+    "timestamp": "2026-02-19 05:07:22.835210",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Constant Immutability] All constants are hardcoded with no upgrade mechanism - if Switchboard changes staleness requirements or decimal standards, could the protocol be forced to redeploy entirely instead of updating configuration? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_df054744-6803-4a32-b9d4-53a87e918e88?mode=deep",
+    "timestamp": "2026-02-19 05:07:48.050661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: level_critical()] [Comment Ambiguity] The comment mentions 'price difference exceeds x2' but doesn't define x2 - if different modules interpret x2 differently (200% vs 2x vs doubling), could inconsistent critical thresholds cause some paths to accept 3x deviations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_989a3a19-ecf4-4b3d-9a44-02c33a0580d7?mode=deep",
+    "timestamp": "2026-02-19 05:08:13.938309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: no_available_prices()] [Highest Level Claim] Comment states this is 'Highest level' with value 0, contradicting typical severity scales - could modules implementing panic/revert on 'highest' numeric values miss this critical condition? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56f32d10-4fff-45e3-a054-dec6a5847486?mode=deep",
+    "timestamp": "2026-02-19 05:08:38.340683",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Function: both_type()] [Type Aggregation] The both_type() suggests using both primary and secondary oracles - if modules incorrectly treat this as bitwise OR of primary|secondary (1) instead of distinct type (2), could oracle redundancy be bypassed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c61e37a0-9c2e-4165-a40b-8ea0eddc9a49?mode=deep",
+    "timestamp": "2026-02-19 05:09:03.636394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_constants.move] [Type System] All constants return primitives (u8/u64) without phantom types - could modules accidentally compare alert levels with oracle types (both are u8) or version with interval (both u64), creating logic bugs in price validation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_556401bd-5991-43c3-80be-31a3eb06fbd5?mode=deep",
+    "timestamp": "2026-02-19 05:09:29.043965",
+    "report_generated": false
+  }
+]
