@@ -1,6 +1,0 @@
-[
-  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan()] [Treasury Revenue] Fee split between suppliers and treasury - can rate_to_treasury be set too low, starving protocol treasury of revenue? (Low)",
-  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Interest Rate Manipulation] Line 190 updates interest rate after fees - can large flash loan amounts artificially spike interest rates to grief borrowers? (Medium)",
-  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: loan() + repay()] [Transaction Atomicity] Loan and repay must occur in same transaction - can transaction be split across multiple PTBs (Programmable Transaction Blocks) to break atomicity? (Critical)",
-  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/flash_loan.move] [Function: repay()] [Partial Repay] Receipt is consumed in full at line 176 - can attacker partially repay and keep receipt for later reuse? (Critical)"
-]
