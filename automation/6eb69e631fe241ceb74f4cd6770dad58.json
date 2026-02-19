@@ -1,0 +1,80 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: ray_mul()] [Type Confusion] Can wad values be mistakenly passed to ray_mul, causing results to be off by a factor of 1e9 in share calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_018b6556-ee51-4159-8424-11900de9ef9e?mode=deep",
+    "timestamp": "2026-02-19 01:26:36.832370",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: Multiple] [Unit Confusion] If vault code mixes raw u256 values, wad, and ray without proper conversions, can this cause catastrophic calculation errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_16a0037e-e4e0-4756-bcb5-16a5c0b31766?mode=deep",
+    "timestamp": "2026-02-19 01:26:50.315860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Constants] [Upgrade Safety] If WAD or RAY constants are changed in a protocol upgrade, would existing vault positions become corrupted due to precision changes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fd8bfa92-01b9-41cf-b1b5-6d730991ce1b?mode=deep",
+    "timestamp": "2026-02-19 01:27:04.185469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_to_ray()] [Migration] During migration from volo_v1, if old code used different wad/ray definitions, can conversion via wad_to_ray corrupt migrated balances? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e1cdb91-87f6-488e-9734-92db12f31615?mode=deep",
+    "timestamp": "2026-02-19 01:27:18.738200",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: Multiple] [Version Compatibility] Are ray_math functions compatible across different versions of the protocol, or could version mismatches cause calculation inconsistencies? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50315da8-7c10-49b1-a489-937d6bdd15ba?mode=deep",
+    "timestamp": "2026-02-19 01:27:35.166618",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_mul()] [Distributivity] Does wad_mul maintain distributivity (a * (b + c) = a * b + a * c), or do rounding errors break this property enabling arbitrage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f0d742d8-57ee-44c1-9b9c-2a68868b1829?mode=deep",
+    "timestamp": "2026-02-19 01:27:52.696352",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_div() + wad_mul()] [Inverse Operation] Is wad_div the exact inverse of wad_mul (wad_div(wad_mul(a, b), b) = a), or does rounding prevent this equality? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_32026c61-3f4c-4a9b-8aaa-ecc3668c726a?mode=deep",
+    "timestamp": "2026-02-19 01:28:11.518434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: ray_mul() + ray_div()] [Inverse Operation] For ray operations, is ray_div(ray_mul(a, b), b) always equal to a, or can rounding cause drift enabling value extraction? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a5cd277-c2fb-4f4b-b3f2-f785e3103a1a?mode=deep",
+    "timestamp": "2026-02-19 01:28:32.421891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_mul()] [Monotonicity] Is wad_mul monotonic (if a1 < a2, then wad_mul(a1, b) < wad_mul(a2, b)), or can rounding violate monotonicity in edge cases? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_36c3c34d-f761-4753-949f-c865d1b251c2?mode=deep",
+    "timestamp": "2026-02-19 01:28:56.166115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_div()] [Monotonicity] Is wad_div monotonic in its first argument, and can violation of monotonicity be exploited in vault ordering logic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b6e8aa9-72bd-42f3-9217-7803a0c34f81?mode=deep",
+    "timestamp": "2026-02-19 01:29:20.879595",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: ray_to_wad()] [Price Feed] If Switchboard oracle returns prices in ray but vault expects wad, can ray_to_wad precision loss cause systematic undervaluation of assets? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0570ccc4-5c3e-4efa-9ac4-5f885970b2cd?mode=deep",
+    "timestamp": "2026-02-19 01:29:47.593587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: wad_to_ray()] [Price Comparison] When comparing wad-denominated vault prices to ray-denominated external prices, can conversion errors trigger incorrect health factor calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4cad2f19-7023-4c69-adc4-1d320595e168?mode=deep",
+    "timestamp": "2026-02-19 01:30:15.186774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/math/sources/ray_math.move] [Function: ray_to_wad()] [Oracle Staleness] If stale oracle prices in ray are converted to wad, can precision loss hide that prices haven't updated, bypassing staleness checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46e21c49-862e-4193-a36c-41fb5f402ca4?mode=deep",
+    "timestamp": "2026-02-19 01:30:43.052357",
+    "report_generated": false
+  }
+]
