@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest.expected_amount] [Negative Slippage] Does expected_amount validation allow values higher than fair share value, enabling users to grief the vault by demanding more than their shares are worth? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1c5c0842-3128-4bd9-aa51-168a6c5656ae?mode=deep",
+    "timestamp": "2026-02-19 02:54:48.615841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest.request_time] [Time Manipulation] Can an attacker manipulate the clock/timestamp input to new() to set request_time in the past, immediately satisfying locking_time_for_cancel_request and canceling requests before execution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cb2bd227-f4d0-4ba6-a8bd-452114e6eab0?mode=deep",
+    "timestamp": "2026-02-19 02:55:01.100675",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest.request_time] [Future Timestamp] Can request_time be set to far future, preventing cancellation for an extended period and locking user funds unnecessarily? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_295f82cb-9835-4e1f-87cf-fba140cf2db4?mode=deep",
+    "timestamp": "2026-02-19 02:55:15.314321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest.request_time] [Clock Drift] If different nodes have clock drift, can request_time comparisons with clock.timestamp_ms() produce inconsistent results for locking time verification? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_44226872-4428-4867-818f-2fcc145ccb70?mode=deep",
+    "timestamp": "2026-02-19 02:55:28.644975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest.request_time] [Timestamp Overflow] Can request_time + locking_time_for_cancel_request overflow u64 if request_time is near max value, causing underflow in comparison and bypassing time locks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_660a7e62-e15c-4384-a8d2-9353f0d9683b?mode=deep",
+    "timestamp": "2026-02-19 02:55:43.196814",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest.request_time] [Zero Timestamp] Can request_time be zero, causing arithmetic underflows when calculating elapsed time or comparing against locking periods? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c27a9a3f-fbf9-4e0d-b219-cc816067053a?mode=deep",
+    "timestamp": "2026-02-19 02:55:59.771426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest.request_time] [Request Ordering] Does request_time enable request reordering attacks where older requests are executed after newer ones, potentially exploiting temporal vault state changes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ae38c1b-2091-49a9-ada2-0fa05fa519ec?mode=deep",
+    "timestamp": "2026-02-19 02:56:16.500322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: request_id()] [Information Disclosure] Does the public request_id getter allow attackers to enumerate all withdrawal requests and analyze request patterns for front-running opportunities? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_57d646b1-427f-437e-839d-22e36ecc55a4?mode=deep",
+    "timestamp": "2026-02-19 02:56:33.725270",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: receipt_id()] [Information Disclosure] Can the public receipt_id getter expose users' receipt addresses, enabling targeted attacks on specific high-value receipts? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1bba7113-1b7a-4b3f-ba81-f66a429a2efc?mode=deep",
+    "timestamp": "2026-02-19 02:56:51.748553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: recipient()] [Privacy Leakage] Does the public recipient getter leak withdrawal destination addresses, compromising user privacy and enabling transaction graph analysis? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7f11c934-87e7-4c9f-a433-21e9291d3cbb?mode=deep",
+    "timestamp": "2026-02-19 02:57:10.649379",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: vault_id()] [Information Disclosure] Can the public vault_id getter expose vault addresses that should remain private, aiding attacks on specific vault instances? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6cdcd39b-bf5a-4b35-a510-933ea9e4660b?mode=deep",
+    "timestamp": "2026-02-19 02:57:30.734214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: shares()] [MEV Exploitation] Does the public shares getter enable MEV bots to calculate exact withdrawal amounts and sandwich legitimate withdrawals with their own requests? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab9d028e-77db-43ea-ae0d-2916ab129b7a?mode=deep",
+    "timestamp": "2026-02-19 02:57:50.015042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: expected_amount()] [Front-Running] Can the public expected_amount getter reveal users' slippage tolerance, allowing attackers to front-run withdrawals by manipulating vault value just below expectations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fd41b433-2f24-47ae-90f5-267efb74d492?mode=deep",
+    "timestamp": "2026-02-19 02:58:10.314335",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Function: request_time()] [Timing Attack] Does the public request_time getter enable attackers to calculate exactly when requests become cancellable, allowing sniping of about-to-unlock requests? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_37e3155e-ee76-4c72-9eed-d6d4aec0a5b6?mode=deep",
+    "timestamp": "2026-02-19 02:58:32.205050",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest abilities] [Unauthorized Duplication] Since WithdrawRequest has 'copy' ability, can an attacker duplicate a legitimate request and replay it multiple times to drain excess funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50c19051-124e-4fc9-8331-ea42cb7470c7?mode=deep",
+    "timestamp": "2026-02-19 02:58:53.527532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest abilities] [Memory Corruption] Does the 'drop' ability allow WithdrawRequest objects to be dropped without proper cleanup, leaving orphaned shares that can never be recovered? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1231853-7a81-4cc6-8138-df70c03f378b?mode=deep",
+    "timestamp": "2026-02-19 02:59:13.368229",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest abilities] [Unauthorized Storage] Can the 'store' ability be exploited to store WithdrawRequest objects in attacker-controlled data structures outside the official request buffer? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_06449312-1014-4361-8a38-eebb7a29e9b2?mode=deep",
+    "timestamp": "2026-02-19 02:59:34.250709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest abilities] [Copy Exploit] Can an attacker copy a WithdrawRequest, modify the vault's request buffer to remove the original, but still execute the copy, double-spending shares? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d18c2db4-4978-4ab1-ba34-0be94bf33b18?mode=deep",
+    "timestamp": "2026-02-19 02:59:55.415388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest abilities] [Storage Proliferation] Does the 'store' ability enable attackers to create unlimited WithdrawRequest copies in various storage locations, causing state bloat and gas DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_23fefa91-ff76-4965-a3c9-640c0efb2047?mode=deep",
+    "timestamp": "2026-02-19 03:00:15.213733",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: request_buffer] [Buffer Overflow] Can the request buffer become full if too many WithdrawRequest objects are created, causing DoS for new withdrawal requests? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_baef1e1d-9b3d-4b29-879d-be70defed394?mode=deep",
+    "timestamp": "2026-02-19 03:00:36.437289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: request_buffer] [Buffer Corruption] If WithdrawRequest objects are stored in a VecMap or Table, can key collisions corrupt the buffer when request_id wraps or duplicates occur? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7a73c04-2fd4-4d0c-8ded-56036406597b?mode=deep",
+    "timestamp": "2026-02-19 03:00:58.067402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: request_buffer] [Orphaned Requests] Can WithdrawRequest objects remain in the buffer indefinitely if execution/cancellation fails, accumulating and wasting storage space? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4c3c743e-b548-4e2e-8cd3-849a9c93ee79?mode=deep",
+    "timestamp": "2026-02-19 03:01:20.566069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: request_buffer] [Race Condition] Can concurrent creation of WithdrawRequest objects cause race conditions in buffer updates, leading to inconsistent request_id increments or missing requests? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_536a3f1d-205d-46cf-8ead-a4897c63924e?mode=deep",
+    "timestamp": "2026-02-19 03:01:43.079129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: request_buffer] [Access Pattern] If the request buffer allows random access by request_id, can attackers selectively execute favorable requests while ignoring unfavorable ones? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e15650cf-4f0c-4970-9d50-838fabf7e8d2?mode=deep",
+    "timestamp": "2026-02-19 03:02:05.346978",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Integration: vault_receipt] [Receipt Status Desync] Can a WithdrawRequest be created when receipt status is not NORMAL_STATUS, bypassing status checks if validation occurs before request creation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b6f2f61-74dd-4c0c-a9dc-3c7e53b83db7?mode=deep",
+    "timestamp": "2026-02-19 03:02:26.413435",
+    "report_generated": false
+  }
+]
