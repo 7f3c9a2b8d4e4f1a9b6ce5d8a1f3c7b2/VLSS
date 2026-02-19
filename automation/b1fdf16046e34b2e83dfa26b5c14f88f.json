@@ -1,0 +1,140 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Empty Type Parameter] Can run<>() be called without type parameter, causing compilation or runtime errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_91094ad0-d2c5-4f4e-8ed1-42402c5ce8bd?mode=deep",
+    "timestamp": "2026-02-19 04:43:49.208121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Max Fee Types] Is there a maximum number of fee types that can be added before vector operations become too expensive or storage limits are hit? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e9384ad-57b2-43f5-bf80-053f7082f0ac?mode=deep",
+    "timestamp": "2026-02-19 04:44:01.940960",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Type Name Length] Can extremely long type names (deeply nested generics) cause buffer overflows or DoS in type_name::get<Coin<T>>()? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0947d88d-52b0-433b-9b9c-62e2c0a3981a?mode=deep",
+    "timestamp": "2026-02-19 04:44:15.769015",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Null Queue] Can validate() handle a null or uninitialized queue reference, or will it panic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b99c63a8-2cdd-4184-8c32-bae79e4d08e3?mode=deep",
+    "timestamp": "2026-02-19 04:44:29.420719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Recursive Type] Can T be a recursive type definition that causes infinite loop in type_name resolution? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c658940a-3597-49ce-8239-de18550eddba?mode=deep",
+    "timestamp": "2026-02-19 04:44:43.930669",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Event Before State Change] The event is emitted after add_fee_type() which may early return - should event emission be conditional on actual addition? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_06e5f0f6-8556-476f-8381-2482c2bf076d?mode=deep",
+    "timestamp": "2026-02-19 04:44:59.636264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Validation Completeness] Only version and authority are validated - should there be additional checks for queue health, capacity, or operational status? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_96ca4f86-faad-40c8-9243-5eafbe16e56f?mode=deep",
+    "timestamp": "2026-02-19 04:45:16.134878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Return Value] The run() function returns nothing - should it return success/failure status for better error handling? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d822966-f87f-4045-accb-46473aa43a89?mode=deep",
+    "timestamp": "2026-02-19 04:45:34.027963",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Idempotency] The function is idempotent (adding existing type is no-op) but emits event anyway - is this intended behavior or oversight? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6a9f1194-a57a-47ce-b215-ffaf0c9bb075?mode=deep",
+    "timestamp": "2026-02-19 04:45:53.228154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Assertion Strength] Using assert! for validation may not be sufficient - should there be explicit access control objects or capabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_58f08871-c392-4189-9e38-28671fd55962?mode=deep",
+    "timestamp": "2026-02-19 04:46:11.673434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Oracle Fee Manipulation] Can adding specific fee types enable oracle operators to manipulate which fees they collect, affecting oracle incentives? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_120a9974-e090-408d-8f00-c3dda6052508?mode=deep",
+    "timestamp": "2026-02-19 04:46:29.735065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Fee Type Incompatibility] If oracle update mechanisms expect specific fee types, can adding incompatible types cause oracle updates to fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ce50b1c-eda7-4e29-8c2c-864cf2c3362f?mode=deep",
+    "timestamp": "2026-02-19 04:46:48.158312",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Price Feed Dependency] If added fee types require price feeds that don't exist, can this create circular oracle dependencies? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec773d2c-f1be-4af7-8b42-f897e3724595?mode=deep",
+    "timestamp": "2026-02-19 04:47:06.403573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Oracle Incentive Distortion] Can malicious fee type additions distort oracle operator incentives to prioritize certain data feeds? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_527484c0-2a6b-44b7-b9aa-b3749ea8af89?mode=deep",
+    "timestamp": "2026-02-19 04:47:23.996428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Metadata Injection] Can malicious type metadata in Coin<T> be injected to exploit downstream consumers of fee_types list? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_33fb67e3-ac9c-4cf5-8954-4e7565d6ce2b?mode=deep",
+    "timestamp": "2026-02-19 04:47:42.367622",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Vector Mutation] After add_fee_type modifies fee_types vector, can other concurrent operations on the same queue cause vector corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f0737e1-ee98-4b1f-8933-99830752fbfd?mode=deep",
+    "timestamp": "2026-02-19 04:48:01.189291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Authority Spoofing] If has_authority() implementation is weak, can addresses similar to queue authority spoof authorization? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_971eeca2-a5c0-4844-ba71-c7b57b0ab415?mode=deep",
+    "timestamp": "2026-02-19 04:48:21.400144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Type Erasure] Can Move's type erasure at runtime cause fee types to lose critical type information after addition? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cfa6ce6f-f6c7-4f9e-b116-db789461ab08?mode=deep",
+    "timestamp": "2026-02-19 04:48:42.506814",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Module Structure] [Package Boundary] Since actuate() is package-internal, can compromised package modules bypass all validation and add arbitrary fee types? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a1995034-dbcb-47fb-8b60-ab7b5da54abb?mode=deep",
+    "timestamp": "2026-02-19 04:49:04.441817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Capability Confusion] If multiple queue action modules exist, can capabilities be confused allowing wrong action modules to modify fee types? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0018fa8c-e6c6-412e-8759-46ade3091482?mode=deep",
+    "timestamp": "2026-02-19 04:49:26.080004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Context Injection] Can TxContext be manipulated or injected by upstream callers to bypass authority checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_df0678ec-ff7c-4733-a02b-6a5ededef040?mode=deep",
+    "timestamp": "2026-02-19 04:49:48.691600",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [State Invariant] After adding fee type, are all queue invariants maintained (e.g., fee_types uniqueness, max capacity)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c4739d75-88a8-4e4b-8b8a-4a24081ed6ae?mode=deep",
+    "timestamp": "2026-02-19 04:50:10.467712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Denial of Service] Can repeated calls with invalid types exhaust queue resources even if add_fee_type early returns? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2b35fc7-885a-4ea6-aa92-2a0411665e8f?mode=deep",
+    "timestamp": "2026-02-19 04:50:30.517398",
+    "report_generated": false
+  }
+]
