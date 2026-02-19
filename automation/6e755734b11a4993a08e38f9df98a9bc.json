@@ -1,0 +1,80 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Empty Symbol Field] The symbol field is set to empty bytes (b",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d8e9705-9fbb-4d3e-a8bc-cde4ca658c13?mode=deep",
+    "timestamp": "2026-02-19 01:25:57.777429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Reentrancy Risk] While this module has no complex logic, when integrated with Volo's vault operations that mint/burn SPRUNGSUI, could reentrancy in the external minting logic exploit the lack of reentrancy guards in this base module? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_45935936-e814-4341-b28d-753896126cbd?mode=deep",
+    "timestamp": "2026-02-19 01:26:11.004552",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Missing Total Supply Tracking] This module relies on Sui's native coin supply tracking. If Volo needs custom supply accounting (e.g., excluding certain addresses), how will it be implemented without additional state in this module? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f89b7ca7-03ee-43a0-8a25-a3800d829e04?mode=deep",
+    "timestamp": "2026-02-19 01:26:24.396932",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Single Point of Control] The treasury is controlled by a single address (ctx.sender()). Without multi-sig or timelock requirements in this module, could this create centralization risks where the deployer has unilateral control over token supply? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9ed5e853-3790-41ec-9537-f0c17dda2e4f?mode=deep",
+    "timestamp": "2026-02-19 01:26:38.377746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Missing Snapshot Mechanism] For governance or airdrop purposes, snapshots of SPRUNGSUI holders may be needed. Without built-in snapshot functionality, could historical balance queries be impossible or require expensive off-chain indexing? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b800a08-4122-4386-b255-73031a27c91e?mode=deep",
+    "timestamp": "2026-02-19 01:26:53.282778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Type Confusion Risk] The SPRUNGSUI type is used as a witness. Could other modules in the Volo ecosystem misuse this type in ways that violate the intended semantics of being a staked SUI representation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a072c921-42ea-4d33-89e7-e3fd51eb0c45?mode=deep",
+    "timestamp": "2026-02-19 01:27:10.013927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Missing Compliance Hooks] Modern DeFi often requires compliance hooks (KYC checks, jurisdictional restrictions). Without such hooks in this base token module, how will Volo handle regulatory requirements if needed in the future? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3fa138eb-afa5-4604-9fe1-a793b3e2e77f?mode=deep",
+    "timestamp": "2026-02-19 01:27:27.865795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Function: init()] [Initialization Parameter Hardcoding] All parameters (decimals, name, symbol) are hardcoded. Could this lack of configurability cause issues if Volo needs to deploy multiple versions of staked SUI tokens with different parameters? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_896ca47d-d072-4563-8d78-d4b5193d867c?mode=deep",
+    "timestamp": "2026-02-19 01:27:47.598687",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Cross-Chain Bridge Risk] If SPRUNGSUI is bridged to other chains, does this simple module provide sufficient metadata and hooks for bridge contracts to properly represent the token's staked nature and backing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c86fdf35-6678-45c4-a330-9f4003f6985c?mode=deep",
+    "timestamp": "2026-02-19 01:28:07.499212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Missing Delegation] Unlike some liquid staking tokens, this module has no delegation or voting power tracking. If Volo's governance requires SPRUNGSUI holders to vote on validator selection, how will voting power be tracked without delegation logic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dfd3eb70-8499-4673-be0b-b11521ae8101?mode=deep",
+    "timestamp": "2026-02-19 01:28:29.215140",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Rebasing Not Supported] This is a standard coin without rebasing. If Volo's LST economic model requires balances to automatically adjust to reflect staking rewards (like stETH), how will this fundamental limitation be addressed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19616309-c3ab-4516-b6c2-20dd9d083075?mode=deep",
+    "timestamp": "2026-02-19 01:28:50.190556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Missing Vesting Logic] For team or investor token allocations, vesting is typically required. Without vesting mechanisms in this token module, how will Volo implement time-locked SPRUNGSUI distributions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa1af6b9-2318-4f05-894e-1c71dbdb4b13?mode=deep",
+    "timestamp": "2026-02-19 01:29:12.423423",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/sprungsui/sources/sprungsui.move] [Module Design] [Oracle Integration] Does the lack of built-in price oracle references mean Volo's vault must maintain external SPRUNGSUI price feeds, and could this create arbitrage opportunities if the price feed lags the true backing ratio? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_15ca76da-7746-42e4-a780-aead6e8606aa?mode=deep",
+    "timestamp": "2026-02-19 01:29:35.524918",
+    "report_generated": false
+  }
+]
