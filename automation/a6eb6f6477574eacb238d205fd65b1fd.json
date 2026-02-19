@@ -1,0 +1,134 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: create_metadata()] [Singleton Enforcement] Does calling module enforce single Metadata instance, or can multiple Metadata objects fragment state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_957b6049-d697-49eb-aeca-9851bcbba0d3?mode=deep",
+    "timestamp": "2026-02-19 04:02:12.538013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Module Boundary] Can attacker create malicious module in liquid_staking package to abuse public(package) functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_454e2b0b-cf4f-47b9-8f13-a99f9179b911?mode=deep",
+    "timestamp": "2026-02-19 04:02:25.001824",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Zero Epoch] What happens if tx_context::epoch returns 0 at line 100, can it cause table key conflicts or underflow in get_max_supply_for_2epochs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b57159d7-1535-48b0-a92b-9bd7c800eba3?mode=deep",
+    "timestamp": "2026-02-19 04:02:38.358926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: get_max_supply_for_2epochs()] [Epoch Transition] At epoch boundary, can race conditions between current_epoch reads at lines 82, 85, 89 cause inconsistent results? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_88dea227-cdc8-4119-90b7-ff43a0bfb978?mode=deep",
+    "timestamp": "2026-02-19 04:02:51.693193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Empty Ticket] Can ticket with value=0 and unstake_fee=0 be created and burned, causing meaningless state changes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da7cd2c5-08c7-4182-b4de-fc43c563d901?mode=deep",
+    "timestamp": "2026-02-19 04:03:06.803846",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: add_to_epoch()] [First Epoch] When max_history_value table is empty, does first add operation at line 106 work correctly? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_634636fb-6aa4-4a93-977b-10034b2dd8f1?mode=deep",
+    "timestamp": "2026-02-19 04:03:23.010057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: get_max_supply_for_2epochs()] [Empty Table] If max_history_value is empty, does get_max_supply_for_2epochs return 0 correctly at line 83? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_541f30f7-dd91-4c38-b230-d6a8ff506089?mode=deep",
+    "timestamp": "2026-02-19 04:03:39.562624",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Total Supply Inflation] Since add_to_epoch at line 112 is permanent but unwrap doesn't decrement epoch values, does total_supply track actual outstanding tickets correctly? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_011bbde3-6453-4a9a-b871-b711a90efacd?mode=deep",
+    "timestamp": "2026-02-19 04:03:57.201818",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Fee Accounting] Are unstake fees at line 155 properly tracked elsewhere, or can they be lost if caller ignores return value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f209fabd-2a30-424d-96e4-4d6df9fe5151?mode=deep",
+    "timestamp": "2026-02-19 04:04:16.641257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: get_max_supply_for_2epochs()] [Supply Calculation] Does returning sum of 2 epochs at lines 81-94 match actual outstanding tickets that can be burned? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46f32ef1-b593-4f78-b344-de33aedfff2b?mode=deep",
+    "timestamp": "2026-02-19 04:04:35.634661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Value Semantics] Does 'value' at line 36 represent SUI amount, CERT amount, or something else? Can confusion enable accounting errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5ce43f8e-2fc3-4b79-af0e-69774bc9460e?mode=deep",
+    "timestamp": "2026-02-19 04:04:55.467831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Return Validation] Can caller of unwrap_unstake_ticket misuse returned (value, unstake_fee) at line 155 by swapping them? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02f15d08-63c1-4af4-83ea-b21aa36dfdfe?mode=deep",
+    "timestamp": "2026-02-19 04:05:15.270350",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: add_to_epoch()] [Table Growth] Can unbounded table growth at lines 102-107 cause gas exhaustion when accessing max_history_value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98e3eed9-09ff-4cf6-8af9-3ddc229aa1ec?mode=deep",
+    "timestamp": "2026-02-19 04:05:34.777456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: get_max_supply_for_2epochs()] [Gas Cost] As max_history_value grows, does table::contains and borrow at lines 85-90 become prohibitively expensive? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fb180b7-e592-420f-ae1d-d7cc2a923d07?mode=deep",
+    "timestamp": "2026-02-19 04:05:54.055477",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Event Spam] Can attacker create millions of tickets to spam events at lines 122-127, causing indexer DoS? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9f38d3ab-bc35-4462-9d32-00586b34c801?mode=deep",
+    "timestamp": "2026-02-19 04:06:12.230241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Burn DoS] If total_supply underflows at line 145, do all subsequent burns fail, locking all tickets permanently? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_deb783fc-4007-45c8-95d2-bb6e8d084df3?mode=deep",
+    "timestamp": "2026-02-19 04:06:31.117956",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Struct: Metadata] [Storage Cost] Does max_history_value table at line 45 have storage refund mechanism, or does it grow indefinitely? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d7f7a45-6aff-4fce-81b6-36efa52bf50a?mode=deep",
+    "timestamp": "2026-02-19 04:06:51.109179",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: add_to_epoch()] [Memory Leak] Are old epoch entries in max_history_value ever cleaned, or do they leak storage permanently? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_263508e4-3209-40e0-b602-748a845e5e59?mode=deep",
+    "timestamp": "2026-02-19 04:07:11.421276",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: create_metadata()] [Table Initialization] Does table::new at line 54 allocate storage correctly, or can it fail in low-storage conditions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5cd8ccf-4abd-47a2-bddd-791941e45a90?mode=deep",
+    "timestamp": "2026-02-19 04:07:32.757747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Comment Line 10] [Friend Module] Why is friend liquid_staking::native_pool commented out? Does this indicate missing access control enforcement? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ee0e6b8-bb62-40e6-90a7-d9c0fdc46f42?mode=deep",
+    "timestamp": "2026-02-19 04:07:53.696627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Comment Line 32] [Documentation] Comment says 'Special ticket gives ability to make unstake after timestamp' but code uses epochs - is this confusion exploitable? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08bbfc48-17b4-4309-859e-cbe8375c3b94?mode=deep",
+    "timestamp": "2026-02-19 04:08:13.649144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Comment Line 40] [Pool Reference] Comment mentions 'Liquid staking pool object' but Metadata isn't a pool - does this indicate misuse? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a8c72cdb-ed69-4f4d-844d-43b6e367c69f?mode=deep",
+    "timestamp": "2026-02-19 04:08:32.776650",
+    "report_generated": false
+  }
+]
