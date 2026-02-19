@@ -1,0 +1,140 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Resource Leak] Does aggregator.delete() at line 26 properly clean up all nested resources (UpdateState.results vector, CurrentResult), or can deletion leave orphaned memory/storage consuming chain resources? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf66a586-f6fb-4089-8de9-33297784953f?mode=deep",
+    "timestamp": "2026-02-19 03:36:37.103394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [UID Destruction] Does aggregator.delete() call id.delete() to destroy the UID, or can improper UID cleanup leave ghost objects that prevent ID reuse and consume storage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_47500a0c-d043-42f8-be26-f4eba35adbb3?mode=deep",
+    "timestamp": "2026-02-19 03:36:49.653613",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Circular Reference] If Aggregator holds references to Queue and Queue references Aggregator, can deletion create dangling references where Queue still points to deleted aggregator, causing access violations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_670a0000-5fef-44ac-8c91-c0533e1285c9?mode=deep",
+    "timestamp": "2026-02-19 03:37:04.648704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Update Vector Cleanup] Aggregator contains UpdateState with results vector (up to MAX_RESULTS=16 items)—does delete() at line 26 properly drop all vector elements, or can large vectors cause gas exhaustion during cleanup? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6b2725a-efd9-442e-9845-b5e596195c46?mode=deep",
+    "timestamp": "2026-02-19 03:37:18.011161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Oracle Reference Staleness] After deletion, can Volo Vault's OracleConfig still reference the deleted aggregator address, causing get_asset_price() calls to fail or return zero, breaking vault operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_96cecae9-e4a5-4cd0-be18-754b2b854949?mode=deep",
+    "timestamp": "2026-02-19 03:37:32.389021",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Feed Hash Orphan] Does deletion clean up references in the Queue's feed_hash mapping, or can deleted aggregator's feed_hash remain registered, preventing new aggregators from using the same feed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0cc093ff-36a5-49b9-973a-ea3e5ccd63c6?mode=deep",
+    "timestamp": "2026-02-19 03:37:48.648455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Shared Object Cleanup] Since Aggregator is a shared object (transfer::share_object), does calling delete() properly remove it from shared object storage, or can ghost entries persist causing storage leaks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fdb138ba-9241-4068-9246-dc6a7cc02bd2?mode=deep",
+    "timestamp": "2026-02-19 03:38:04.281364",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [CurrentResult Nested Data] CurrentResult contains multiple Decimal fields (result, min_result, max_result, stdev, range, mean)—does delete() recursively clean these up, or can Decimal internal state leak? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fc127764-414b-4407-817e-af223dd2740b?mode=deep",
+    "timestamp": "2026-02-19 03:38:20.521979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Queue Consistency] After deleting aggregator, does the parent Queue update its aggregator count or list, or can Queue maintain stale references causing queue operations to fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3aa1741-bfc5-4e51-8bdc-fe1ba7a783eb?mode=deep",
+    "timestamp": "2026-02-19 03:38:39.558763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Oracle ID Reuse] After aggregator.delete() destroys the UID, can the same oracle ID be immediately reused for a new aggregator, causing confusion in update tracking since old Update entries reference the same oracle ID? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da8edc19-6e8d-43e7-aac4-08b389962e56?mode=deep",
+    "timestamp": "2026-02-19 03:38:55.953085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Deletion During Update] If aggregator.add_result() is being called concurrently with run(), can partial updates corrupt state before deletion completes, or can deletion fail due to locked resources? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd904bda-b3ae-4191-a855-844e7a5d50c1?mode=deep",
+    "timestamp": "2026-02-19 03:39:14.209381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Authority Transfer Residue] If authority was recently transferred via set_authority(), can old authority metadata remain after deletion, leaking sensitive access control information? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02d6b218-f197-4159-a558-7ea5cdd6cc48?mode=deep",
+    "timestamp": "2026-02-19 03:39:33.099648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Price Data Loss] Can deletion permanently lose historical price data stored in UpdateState if there's no backup mechanism, causing audit or compliance issues for Volo Vault? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f00111be-d36a-4342-8177-7d1df8d48c13?mode=deep",
+    "timestamp": "2026-02-19 03:39:51.409776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Config Cleanup] Does deletion trigger cleanup in aggregator configs (min_sample_size, max_staleness_seconds, max_variance, min_responses), or can stale config remain in memory? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2710f9c9-e225-42b2-baec-e211594c3b45?mode=deep",
+    "timestamp": "2026-02-19 03:40:10.821380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Dependent Object Cascade] If other contracts hold references to this aggregator (e.g., Volo Vault's PriceInfo), does deletion cascade to clean those references, or do they become dangling pointers? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48a07074-396d-4e69-85a2-1222cfa46769?mode=deep",
+    "timestamp": "2026-02-19 03:40:30.398313",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [String Memory Leak] Aggregator contains a String field (name)—does delete() at line 26 properly deallocate the string bytes, or can string storage leak? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9548259b-85be-4479-a2cf-90616033fef0?mode=deep",
+    "timestamp": "2026-02-19 03:40:50.286941",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Timestamp Cleanup] Does deletion reset created_at_ms timestamp to prevent confusion if an aggregator with same ID is recreated with different creation time? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b89b199-9a05-4882-ab7e-de84f86eacf5?mode=deep",
+    "timestamp": "2026-02-19 03:41:11.423851",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Vector Capacity Leak] If UpdateState.results vector has allocated capacity > length, does delete() reclaim unused capacity or only drop stored elements, leaking allocated memory? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4d6d878e-872a-4d1a-b734-7e9b0e5b7c04?mode=deep",
+    "timestamp": "2026-02-19 03:41:32.765418",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Feed Hash Collision] After deletion, can a new aggregator reuse the same feed_hash, causing oracle subscribers to confuse new feed with deleted one, feeding wrong prices to Volo Vault? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c02660d9-4ffc-450e-b86f-38b333c479de?mode=deep",
+    "timestamp": "2026-02-19 03:41:55.067371",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [VecSet Cleanup] Does UpdateState use vec_set for oracle tracking—if so, does delete() properly clear the set, or can zombie oracle IDs persist? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b33b9363-9cec-47f1-8bae-d9451437302e?mode=deep",
+    "timestamp": "2026-02-19 03:42:17.574476",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: run()] [Deletion Finality] Is aggregator deletion final and irreversible, or can some recovery mechanism resurrect deleted aggregators, causing state confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d93fa54d-b0f2-440d-ba6f-719e59954962?mode=deep",
+    "timestamp": "2026-02-19 03:42:41.220494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move] [Function: actuate()] [Decimal Resource Cleanup] Decimal struct may hold u128/u256 values internally—does delete() handle large decimal cleanup without arithmetic overflow during deallocation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ffa6820a-ca39-46fe-8d48-cbc641208579?mode=deep",
+    "timestamp": "2026-02-19 03:43:04.087651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/\n\n### Citations\n\n**File:** volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_delete_action.move (L1-37)\n```text\nmodule switchboard::aggregator_delete_action;\n \nuse sui::event;\nuse switchboard::aggregator::Aggregator;\n\nconst EXPECTED_AGGREGATOR_VERSION: u8 = 1;\n\n#[error]\nconst EInvalidAuthority: vector<u8> = b",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_94e8ecce-dc91-4812-b809-fbf67f88c491?mode=deep",
+    "timestamp": "2026-02-19 03:43:26.335945",
+    "report_generated": false
+  }
+]
