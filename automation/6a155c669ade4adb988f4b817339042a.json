@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: run()] [Address Type Validation] Does new_authority parameter accept any address type including contract addresses - can this lead to authority being controlled by immutable contracts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9464e1a6-f29e-49fe-b34f-31fb8d67a3f2?mode=deep",
+    "timestamp": "2026-02-19 01:07:45.926709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: run()] [Aggregator Type Validation] Can a malicious aggregator-like object be passed to run() that mimics the Aggregator interface but has malicious behavior? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b513de0-6177-4e45-ad51-dc3160d574b3?mode=deep",
+    "timestamp": "2026-02-19 01:07:58.750723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: actuate()] [Authority Equality Check Missing] Why doesn't actuate() check if new_authority == existing_authority to prevent no-op state changes and event spam? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8616b655-e003-44c9-adf2-adb811675554?mode=deep",
+    "timestamp": "2026-02-19 01:08:12.723853",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: run()] [Null Address Check] Is there validation to prevent new_authority from being a null/zero address (@0x0) that would lock the aggregator? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d311b6e1-6c21-41df-900c-8ff36ff88b0f?mode=deep",
+    "timestamp": "2026-02-19 01:08:26.464211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: run()] [Context Validity] Is the TxContext ctx validated to ensure it represents a legitimate transaction context? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0bfca706-2c48-455d-8585-a46d8d936a32?mode=deep",
+    "timestamp": "2026-02-19 01:08:41.012588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: run()] [Transaction Reversion] If validate() passes but actuate() fails mid-execution, is the entire transaction reverted or can partial state changes persist? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ebd961c-e4bb-41ca-821a-7ee67a6513f4?mode=deep",
+    "timestamp": "2026-02-19 01:08:56.534097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: run()] [Gas Optimization] Does the function check the cheapest conditions first (like version) before expensive authority checks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2896ecb1-d747-46d8-a78e-81f1180dc95e?mode=deep",
+    "timestamp": "2026-02-19 01:09:13.390507",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: validate()] [Assert Order] Why is version checked before authority - could reordering prevent unnecessary authority checks on wrong versions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_91672588-9be9-42f8-96ce-d59894066fc4?mode=deep",
+    "timestamp": "2026-02-19 01:09:31.796679",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: run()] [Transaction Batching] Can multiple run() calls be batched in one transaction to change authority on multiple aggregators atomically? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cd516fce-5bf7-495a-9df2-94552f46220d?mode=deep",
+    "timestamp": "2026-02-19 01:09:51.418730",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: run()] [Execution Context] Does the function execution context inherit any special privileges that could be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b4c5eda-402b-417b-a501-0e401b71901e?mode=deep",
+    "timestamp": "2026-02-19 01:10:11.134345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: actuate()] [State Consistency] Between calling aggregator.authority() and aggregator.set_authority(), can another transaction modify the authority state? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fa49c8b-980b-4506-8cce-df3a60f00409?mode=deep",
+    "timestamp": "2026-02-19 01:10:30.665110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: validate()] [Invariant Violation] Does validate() check any other aggregator invariants beyond version and authority (e.g., aggregator not deleted)? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d98cee8-7742-41bb-b0ff-9def0e2c0c7d?mode=deep",
+    "timestamp": "2026-02-19 01:10:49.122627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: actuate()] [Authority Chain Integrity] After set_authority(), is there validation that the new authority is actually set correctly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2907060f-d832-4b19-be9d-26666098ffa1?mode=deep",
+    "timestamp": "2026-02-19 01:11:09.139064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: run()] [State Rollback] If the transaction fails after actuate() emits the event, is the event still visible even though authority didn't change? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_406cd137-ee90-4d6a-851e-258c7f6d733b?mode=deep",
+    "timestamp": "2026-02-19 01:11:25.999968",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: validate()] [Version Immutability] Is EXPECTED_AGGREGATOR_VERSION immutable - can it be changed mid-execution to bypass checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fc693d49-5762-484f-a6f5-1337dee13b57?mode=deep",
+    "timestamp": "2026-02-19 01:11:44.619706",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: validate()] [Multi-Sig Authority] Does has_authority() support multi-sig authorities, and if so, can partial signatures bypass validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f006f7fa-f60e-4c3b-82c7-dccf2cfb95e7?mode=deep",
+    "timestamp": "2026-02-19 01:12:03.800453",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: run()] [Authority Delegation] Can authority be delegated to a proxy contract that then changes authority, bypassing single-step transfer restrictions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a40d13b-90a0-44aa-9f66-b8a727d8fb45?mode=deep",
+    "timestamp": "2026-02-19 01:12:23.508616",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: validate()] [Temporary Authority] Can an attacker gain temporary authority through flash loans or similar mechanisms to bypass validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_89e128d5-8615-4173-bea9-3b8fd1d3e966?mode=deep",
+    "timestamp": "2026-02-19 01:12:42.637774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: run()] [Authority Transfer Cooldown] Is there any cooldown period for authority transfers to prevent rapid flipping attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d095109-7ce9-49ab-82cb-87819be94c52?mode=deep",
+    "timestamp": "2026-02-19 01:13:03.137149",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: validate()] [Authority Revocation] Can authority be revoked (set to null) as opposed to transferred, and what security implications does this have? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0112c76d-d129-488f-8b4f-95d8fc4431c0?mode=deep",
+    "timestamp": "2026-02-19 01:13:24.529992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: run()] [Oracle Result Corruption] After authority transfer via run(), can stale oracle results from the old authority be used by consumers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6557467e-6b6b-48a7-8ccc-0e672eaee689?mode=deep",
+    "timestamp": "2026-02-19 01:13:44.381522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: actuate()] [Oracle Queue Dependency] Does authority change affect the aggregator's association with its queue, potentially orphaning it from updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_830fe178-a066-4b7e-b8e2-5e35ed6ac1dc?mode=deep",
+    "timestamp": "2026-02-19 01:14:04.472601",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: run()] [Feed Hash Manipulation] Can the new authority immediately change feed_hash to point to malicious data sources? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_710ffd0b-a486-4dc4-a89e-a7b4c7f9282c?mode=deep",
+    "timestamp": "2026-02-19 01:14:23.773360",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: run()] [Oracle Configuration Attack] Post authority transfer, can the new authority change min_sample_size to 1 or max_staleness to infinity to accept any data? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a6d2f640-ddba-40cb-8fca-07424dd86c0f?mode=deep",
+    "timestamp": "2026-02-19 01:14:45.253132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_set_authority_action.move] [Function: actuate()] [Update State Preservation] Is the aggregator's update_state preserved after authority change, or can it be manipulated? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a213f245-264b-4436-812d-d5d3936eb150?mode=deep",
+    "timestamp": "2026-02-19 01:15:07.718733",
+    "report_generated": false
+  }
+]
