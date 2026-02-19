@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [State Consistency] Can concurrent calls to run() from the legitimate authority for different fee types T1 and T2 create race conditions where the fee_types vector becomes corrupted or contains partial updates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_09734322-1ca1-48b0-ad7c-9a031c9559d1?mode=deep",
+    "timestamp": "2026-02-19 02:48:10.798093",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [State Corruption] If the Queue module allows fee_types vector to grow unbounded, can an attacker with authority repeatedly call run() to add fee types until the vector reaches maximum capacity, causing DoS for all queue operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b4b1143c-486f-437b-a38a-f752a32c0eb5?mode=deep",
+    "timestamp": "2026-02-19 02:48:23.292539",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Event Manipulation] Can an attacker exploit the fact that QueueFeeTypeAdded event is emitted after add_fee_type() to create a time window where off-chain indexers see an inconsistent state, potentially allowing double-spend or incorrect fee calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b824c569-bde2-427c-bc29-9797f2347189?mode=deep",
+    "timestamp": "2026-02-19 02:48:36.599959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Struct: QueueFeeTypeAdded] [Event Forgery] If an attacker can call event::emit() directly with a forged QueueFeeTypeAdded event (without calling run()), can they trick off-chain systems into believing a fee type was added when it wasn't? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d4ddd924-33e8-410d-826f-11ff29608542?mode=deep",
+    "timestamp": "2026-02-19 02:48:50.744470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Event Data Integrity] If type_name::get<Coin<T>>() returns a different TypeName than what's actually added to fee_types due to a bug, will the emitted event contain incorrect fee_type data that misleads monitoring systems? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_330179e3-bba0-484d-957a-0e09828656d8?mode=deep",
+    "timestamp": "2026-02-19 02:49:05.200232",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Event Replay] Can an attacker record a legitimate QueueFeeTypeAdded event and replay it in a different transaction context to confuse event listeners or trigger unintended state changes in dependent systems? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a36f209-a83a-4deb-880a-7f9e0cb2eef6?mode=deep",
+    "timestamp": "2026-02-19 02:49:20.824478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Missing Event] If queue.add_fee_type<T>() returns early due to the fee type already existing, no event is emitted - can this lack of event for no-op calls allow attackers to hide repeated attempts to add fee types that should trigger rate limiting or monitoring? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0bbf8260-d3c3-4d1a-acfa-10eb261f8cbe?mode=deep",
+    "timestamp": "2026-02-19 02:49:38.532114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Event Order] If multiple run() calls are batched in a single transaction, can the order of QueueFeeTypeAdded events be manipulated to misrepresent the actual sequence of fee type additions to off-chain systems? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_421e88c8-a9a8-4262-ba2b-eac7d8dfe6d4?mode=deep",
+    "timestamp": "2026-02-19 02:49:56.949637",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Module Integration] If queue.add_fee_type<T>() in the Queue module has a bug where it doesn't actually add the fee type to fee_types despite returning successfully, will the emitted event create a false record of fee type addition? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ec07e9c-4930-4405-b690-47352e3204c3?mode=deep",
+    "timestamp": "2026-02-19 02:50:15.102137",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Module Integration] If the Queue module's has_authority() function can be bypassed through capability objects or friend modules, does run() provide sufficient protection against unauthorized fee type additions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0809dc73-31f6-403b-83b0-546f1aeb71a9?mode=deep",
+    "timestamp": "2026-02-19 02:50:34.574390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Module Integration] Can an attacker exploit inconsistencies between queue.id() returning the object ID and the actual queue's identity if the Queue module allows ID spoofing or collision? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_00dc9f2b-61b4-449f-9fde-65848f145c8a?mode=deep",
+    "timestamp": "2026-02-19 02:50:53.161526",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Module Integration] If queue.version() can be manipulated through reflection or dynamic field access without triggering security checks in the Queue module, can validate() be bypassed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e47a7aa6-fd1b-4f5a-9a84-d4df77d30e78?mode=deep",
+    "timestamp": "2026-02-19 02:51:11.265025",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Module Integration] If the Queue module allows the fee_types vector to be modified through package-level friend functions while run() is executing, can this create race conditions leading to duplicate fee types? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c718330e-62e6-4c88-baf9-56e2f2c9f62f?mode=deep",
+    "timestamp": "2026-02-19 02:51:29.115999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Context Manipulation] Can an attacker manipulate the TxContext (e.g., by calling from a different module that modifies ctx.sender()) to bypass the authority check in has_authority()? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3309c105-ab93-4958-8006-272ed417c49c?mode=deep",
+    "timestamp": "2026-02-19 02:51:45.908903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Context Exploit] If ctx is passed to validate() by reference but modified after validation before actuate() uses the queue, can the authority check be bypassed through context mutation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b7e9b0e1-57ac-466d-a91d-2798b6b07714?mode=deep",
+    "timestamp": "2026-02-19 02:52:04.099050",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Context Spoofing] Can an attacker create a custom TxContext object with a spoofed sender address and pass it to run() if the function doesn't properly validate that ctx comes from the Sui runtime? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_862e3ba2-2e17-4825-b379-dc977f0b7be5?mode=deep",
+    "timestamp": "2026-02-19 02:52:21.443831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Transaction Batching] Can an attacker batch multiple run() calls in a single transaction with different queue references where the first call legitimately passes validation but subsequent calls operate on queues they shouldn't have access to? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_60546d88-af57-4cda-9175-21371410b26a?mode=deep",
+    "timestamp": "2026-02-19 02:52:40.465074",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Reentrancy] Can an attacker exploit reentrancy by having queue.add_fee_type<T>() call back into run() through a malicious type T's constructor or method, bypassing validation checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_24140b25-ed43-44ee-914b-38e7294fe74f?mode=deep",
+    "timestamp": "2026-02-19 02:53:00.332590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: actuate()] [Cross-Function Reentrancy] If actuate() is called directly by another module while run() is executing, can this create state inconsistencies where validation is bypassed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_24b4f4d9-35c3-44d9-bfaf-4d3df398326b?mode=deep",
+    "timestamp": "2026-02-19 02:53:21.157916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: run()] [Concurrency] Can multiple transactions calling run() for the same queue simultaneously cause the fee_types vector to be corrupted if Sui's consensus doesn't properly serialize writes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c679e212-e98e-4eb9-913b-4d3d475cbf82?mode=deep",
+    "timestamp": "2026-02-19 02:53:41.928818",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Read-Write Race] Can an attacker exploit a time-of-check to time-of-use (TOCTOU) vulnerability where queue.version() or queue.has_authority() returns valid values during validate() but are changed before actuate() executes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ee72f502-8518-45dc-9c90-bcf895afef19?mode=deep",
+    "timestamp": "2026-02-19 02:54:04.602475",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Error Handling] If queue.version() throws an exception or panics instead of returning a value, does the assert at line 24 catch it properly, or can an attacker exploit uncaught exceptions to bypass validation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_67fa7e7b-64ee-4feb-a756-087a526c5428?mode=deep",
+    "timestamp": "2026-02-19 02:54:27.689576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Error: EInvalidAuthority] [Error Bypass] Can an attacker suppress the EInvalidAuthority error through transaction failure handling or exception catching mechanisms to continue execution after failed authority check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab7ff4f2-a9ca-4bd1-8ad1-7b9731fc044f?mode=deep",
+    "timestamp": "2026-02-19 02:54:52.210566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Error: EInvalidQueueVersion] [Error Bypass] If the EInvalidQueueVersion error message is used by off-chain systems to detect invalid operations, can an attacker manipulate error messages to hide malicious activity? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_577caafc-eb13-452e-86b8-6adee4c8ea1e?mode=deep",
+    "timestamp": "2026-02-19 02:55:16.689241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_add_fee_coin_action.move] [Function: validate()] [Edge Case] If queue.version() returns a value that equals EXPECTED_QUEUE_VERSION through integer overflow (e.g., 256 wrapping to 0 then incremented to 1), can this bypass version checking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fcef83b1-19bf-4eba-9921-b8fb29a6ede3?mode=deep",
+    "timestamp": "2026-02-19 02:55:43.135238",
+    "report_generated": false
+  }
+]
