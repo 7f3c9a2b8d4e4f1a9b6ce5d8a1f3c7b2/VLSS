@@ -1,8 +1,0 @@
-[
-  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Volo Vault] [Request Buffer] If AccountCap is in vault request buffer, can it be deleted breaking request fulfillment? (Critical)",
-  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Volo Vault] [Share Accounting] Does vault share math account for AccountCap value? Could cap deletion cause share price manipulation? (High)",
-  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Volo Vault] [Operation Status] During vault operations, if AccountCap is borrowed/returned via adaptors, does this bypass operation status checks? (High)",
-  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Volo Vault] [Locking Window] Can AccountCap withdrawal respect vault locking windows? Or can instant withdrawal bypass vault security? (High)",
-  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Volo Vault] [Loss Tolerance] If AccountCap lending position loses value, does this trigger vault loss tolerance checks? (Medium)",
-  "[File: volo-vault/local_dependencies/protocol/lending_core/sources/account.move] [Volo Vault] [Fee Calculation] Does vault charge fees on AccountCap operations? Can fee calculation be manipulated? (Medium)"
-]
