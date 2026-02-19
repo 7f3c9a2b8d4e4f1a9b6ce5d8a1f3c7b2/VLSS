@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: run()] [Object Liveness] If oracle, queue, or guardian objects are deleted/wrapped between validation and actuation, can this cause undefined behavior? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_85be8708-665f-45ea-b294-c9b08de5ae4d?mode=deep",
+    "timestamp": "2026-02-19 02:29:02.978588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Shared Object] If oracle is a shared object, can concurrent run() calls create race conditions in attestation counting or oracle enabling? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ba561bbf-5f8c-42aa-9ef2-efd20af9cd03?mode=deep",
+    "timestamp": "2026-02-19 02:29:16.121301",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Guardian Reference] Guardian is passed by reference but its ID is stored in attestation at line 105 - can the guardian object be destroyed/moved after attestation creation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5ca232bc-6673-4026-b04b-e886f4cc2289?mode=deep",
+    "timestamp": "2026-02-19 02:29:30.332849",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Hash Collision] The generate_attestation_msg call at lines 78-85 combines multiple inputs - can an attacker craft colliding hashes using different input combinations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2c0212de-fbd1-4085-bb3f-34ae72b9f77b?mode=deep",
+    "timestamp": "2026-02-19 02:29:44.478448",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Key Extraction] The oracle_key and queue_key extracted at lines 76-77 - can these be manipulated if oracle object is maliciously constructed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_220d6111-8ae1-4abe-9010-30579af4aa39?mode=deep",
+    "timestamp": "2026-02-19 02:29:59.406700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Zero Bytes] The hardcoded 32 zero bytes at line 82 - what is this field's purpose and can non-zero values here be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_293a0f5a-4cd2-445d-85b5-7405ac358de6?mode=deep",
+    "timestamp": "2026-02-19 02:30:16.138132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Message Length] Is there a maximum length validation for mr_enclave and secp256k1_key parameters before hashing to prevent resource exhaustion? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cfa17341-e144-43be-b549-2d4bb13230f9?mode=deep",
+    "timestamp": "2026-02-19 02:30:34.233984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Oracle Module Trust] The code calls oracle.version(), oracle.queue(), etc. - can a malicious oracle module return incorrect values to bypass validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_94a2707b-8901-47dd-919f-f8753f939306?mode=deep",
+    "timestamp": "2026-02-19 02:30:54.008086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Queue Module Trust] Queue methods like guardian_queue_id() and min_attestations() are trusted - can a malicious queue implementation return values that bypass security checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ea8808d-759c-4351-a288-89b0dbc76617?mode=deep",
+    "timestamp": "2026-02-19 02:31:15.294353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Oracle Module State] The add_attestation() call at line 109 - does the oracle module properly validate attestation data or can malformed attestations be added? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_beb1d806-e073-405a-953f-1541fd6685c9?mode=deep",
+    "timestamp": "2026-02-19 02:31:38.345821",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Attestation Factory] The oracle::new_attestation() call at lines 104-108 - can an attacker forge attestations by calling this function directly if it's public? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_690602e6-e54d-41c7-aead-1ca17025627f?mode=deep",
+    "timestamp": "2026-02-19 02:32:01.337650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Vector Length] The signature length check at line 70 uses vector.length() - can this be spoofed if vector is not properly validated? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_13464a3b-bcc0-4aa4-a5f8-1818d881bfa5?mode=deep",
+    "timestamp": "2026-02-19 02:32:25.412859",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [MR Enclave Length] There's no length validation for mr_enclave parameter - can very large or empty mr_enclave vectors cause issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fbeec20-3b0d-411f-a79f-0f73eb95b6ef?mode=deep",
+    "timestamp": "2026-02-19 02:32:48.519308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Secp256k1 Key Length] The secp256k1_key parameter has no length validation - can incorrect key lengths bypass signature verification? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a0916375-9d98-408e-9bdd-a7fbf3a8e281?mode=deep",
+    "timestamp": "2026-02-19 02:33:13.528158",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Pubkey Substring Check] The check_subvec at line 92 starting from index 1 - what if guardian.secp256k1_key() is less than 2 bytes causing out of bounds access? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a38f55b6-1aac-4204-806e-5dd3b54b8de5?mode=deep",
+    "timestamp": "2026-02-19 02:33:37.951951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Recovered Pubkey Length] After decompression at line 89, is there validation that recovered_pubkey has expected length before substring comparison? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_654a99c8-db27-4574-badd-c2c4ed91f7c7?mode=deep",
+    "timestamp": "2026-02-19 02:34:00.459883",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: run()] [Gas Griefing] Can an attacker submit many valid attestations to consume gas and increase storage costs for oracle object? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e59cdd3-dcc1-496c-9bde-63177131f8b2?mode=deep",
+    "timestamp": "2026-02-19 02:34:18.953433",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Storage Bloat] Repeated add_attestation calls at line 109 - is there a maximum number of attestations to prevent storage bloat attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8c3e9348-cc1e-48c2-b6f7-7bf233289aec?mode=deep",
+    "timestamp": "2026-02-19 02:34:37.470091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Expensive Operations] The ECDSA recovery at line 88 and decompression at line 89 are expensive - can an attacker spam invalid signatures to cause DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d84be07f-b07d-4195-855a-a0f9210d976b?mode=deep",
+    "timestamp": "2026-02-19 02:34:58.541111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: run()] [Failed Validation Cost] If validate() fails after expensive crypto operations, does the attacker still pay gas or is there a griefing vector? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f673fba7-8505-42e5-a472-50a4f56e6df5?mode=deep",
+    "timestamp": "2026-02-19 02:35:20.781525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Comparison Operator] Line 67 uses > for expiration check - should this be >= to prevent oracle usage at exact expiration time? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9f521d96-1fcd-4ec0-886f-cab5c5038768?mode=deep",
+    "timestamp": "2026-02-19 02:35:44.179246",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Timestamp Equality] Line 73 uses >= for timestamp validity - can an attacker use exact boundary timestamp that's technically expired? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_26fac6c7-33a6-4c6b-9d58-bcc85d49c486?mode=deep",
+    "timestamp": "2026-02-19 02:36:07.457797",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Threshold Boundary] Line 121 uses >= for min_attestations check - is off-by-one error possible if exact threshold is security-critical? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f00c581a-1b4b-4b6d-b76a-173a4bbe578a?mode=deep",
+    "timestamp": "2026-02-19 02:36:31.736617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: validate()] [Empty Vectors] What happens if mr_enclave or secp256k1_key are empty vectors - do hash and crypto functions handle this safely? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_93236960-7f47-4fc6-a940-4b7ff6d42a42?mode=deep",
+    "timestamp": "2026-02-19 02:36:55.487516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/oracle/oracle_attest_action.move] [Function: actuate()] [Zero Attestations] If valid_attestation_count returns 0 and min_attestations is also 0, can oracle be enabled without any attestations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e3732b8d-547e-4d13-b8aa-dc6864ddc801?mode=deep",
+    "timestamp": "2026-02-19 02:37:22.416929",
+    "report_generated": false
+  }
+]
