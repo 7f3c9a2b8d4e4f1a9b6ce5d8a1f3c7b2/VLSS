@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: from_u64()] [Invalid Input Validation] from_u64() should reject values with sign bit set - could accepting 0x8000000000000000 or higher create ambiguous I64 values causing comparison errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7441fc98-ddbf-4e48-a552-9d25c13a5f8e?mode=deep",
+    "timestamp": "2026-02-19 00:44:41.445918",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: sign()] [Sign Bit Extraction] sign(neg_from(10)) should return 1u8, sign(from(10)) returns 0u8 - could incorrect sign bit check cause negative values to be treated as positive in loss checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9778b86-cabd-4613-a624-7969ecda3033?mode=deep",
+    "timestamp": "2026-02-19 00:44:54.608082",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: sign()] [Zero Sign] No test for sign(from(0)) or sign(neg_from(0)) - could zero have ambiguous sign affecting conditional logic in profit/loss categorization? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_47a20acd-499f-4612-8ca2-e107b3145b1a?mode=deep",
+    "timestamp": "2026-02-19 00:45:08.772787",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: is_neg()] [Negative Check] is_neg() should return true for values with high bit set - could incorrect bit check allow negative amounts to pass positive-only validation guards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68db2267-2a1c-446b-a5df-abdfbf78162a?mode=deep",
+    "timestamp": "2026-02-19 00:45:23.041427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: is_neg()] [Zero Negativity] Should is_neg(from(0)) return false and is_neg(neg_from(0)) return false? Missing test could allow zero to be treated as negative? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ced8c426-d0fa-4231-89d7-eaa669100f61?mode=deep",
+    "timestamp": "2026-02-19 00:45:38.701943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: cmp()] [Mixed Sign Comparison] cmp(from(0), neg_from(1)) should equal GT - could comparison of positive with negative use unsigned comparison producing incorrect ordering? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb9c5312-7af3-4c90-9ee5-d417a319963c?mode=deep",
+    "timestamp": "2026-02-19 00:45:56.293356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: cmp()] [Boundary Comparison] cmp(neg_from(MIN_AS_U64), from(MAX_AS_U64)) should equal LT - could boundary comparison incorrectly handle MIN as less negative than other values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_371b2954-a2e6-4e02-a359-aae7f021cc62?mode=deep",
+    "timestamp": "2026-02-19 00:46:15.909016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: cmp()] [Adjacent Boundary] cmp(from(MAX_AS_U64), from(MAX_AS_U64-1)) should equal GT - could off-by-one near boundaries break comparison invariants? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c0d745a-862d-44a4-9294-d5bc32508689?mode=deep",
+    "timestamp": "2026-02-19 00:46:35.668836",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: eq()] [Equality Check] eq() should return true only for bit-identical values - could eq(from(0), neg_from(0)) incorrectly return false if zero has multiple representations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c817a630-9039-4842-ad61-c654e70d212a?mode=deep",
+    "timestamp": "2026-02-19 00:46:57.752475",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: gt()] [Greater Than] gt() should be consistent with cmp() returning GT - could standalone gt() differ from cmp() breaking sorting and ordering logic? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_47c50d86-f6d3-482a-82cb-6de0ba1aa634?mode=deep",
+    "timestamp": "2026-02-19 00:47:19.186154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: gte()] [Greater Than or Equal] gte() should return true for gt() or eq() - could incorrect implementation allow gte(X, Y) && lt(X, Y) to both be true? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b4638327-cda1-4adc-83c4-f27889e3293a?mode=deep",
+    "timestamp": "2026-02-19 00:47:41.307523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: lt()] [Less Than] lt() should handle negative vs positive correctly - could lt(neg_from(1), from(1)) return false due to unsigned comparison? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28cd5863-ba6b-4a87-9452-d78eae2b5b0e?mode=deep",
+    "timestamp": "2026-02-19 00:48:03.816104",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: lte()] [Less Than or Equal] lte() should be transitive - could non-transitive lte() break sorting algorithms used in validator weight ordering? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_58570e97-fc9c-426c-9133-ffca1fee8876?mode=deep",
+    "timestamp": "2026-02-19 00:48:25.137479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: or()] [Bitwise OR] or() should perform bitwise OR on bits field - could OR operation on signed values produce unexpected results when sign bits interact? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dbb57a86-4c19-42a0-b1fd-902c5fba2ab6?mode=deep",
+    "timestamp": "2026-02-19 00:48:47.296944",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: or()] [Sign Bit OR] or(from(X), neg_from(Y)) could set sign bit creating negative result - could bitwise OR be misused to corrupt sign in flag-based calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a97f1396-7159-452d-abce-d6e145e60bca?mode=deep",
+    "timestamp": "2026-02-19 00:49:09.335901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: and()] [Bitwise AND] and() should perform bitwise AND - could AND of two negative values produce positive result if sign bits are cleared? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e985c334-b371-4ca3-8155-61cde19a7fb0?mode=deep",
+    "timestamp": "2026-02-19 00:49:28.207304",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: and()] [Mask Operations] and() could be used for bit masking - could improper masks corrupt sign bit when extracting fields from signed values? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3469915a-d6e0-43fd-a6bd-8c536c839120?mode=deep",
+    "timestamp": "2026-02-19 00:49:49.418128",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: u64_neg()] [Two's Complement] u64_neg() should compute two's complement negation - could incorrect implementation return bitwise NOT instead of NOT+1 breaking neg_from()? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ce75f804-847a-4c8d-8995-e1cf61e8705b?mode=deep",
+    "timestamp": "2026-02-19 00:50:10.573068",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: u8_neg()] [Byte Negation] u8_neg() used for shift amount negation presumably - could incorrect u8 negation affect shift operations producing wrong bit positions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e6905204-3f31-43a3-8f06-16a1a77094f1?mode=deep",
+    "timestamp": "2026-02-19 00:50:33.098218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Integration: Volo Vault] [Accounting Errors] If Volo vault uses I64 for profit/loss tracking and wrapping_add() wraps silently, could vault PnL overflow go undetected causing incorrect loss_tolerance enforcement? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a605df97-5ccf-43ae-8cf2-6c72b5107583?mode=deep",
+    "timestamp": "2026-02-19 00:50:53.401702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Integration: Share Calculations] [Precision Loss] If vault share price delta uses I64 division with truncation, could repeated rounding errors accumulate allowing share inflation attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_71648747-2623-4140-9749-462d4e58f29d?mode=deep",
+    "timestamp": "2026-02-19 00:51:12.105114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Integration: Oracle Prices] [Sign Misinterpretation] If oracle price changes are computed as I64 but converted via as_u64() for comparison, could negative price changes appear as huge positive values bypassing sanity checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d69e24d-987f-4078-881d-34c8a491a620?mode=deep",
+    "timestamp": "2026-02-19 00:51:31.716955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Integration: Fee Calculations] [Overflow in BPS] If basis point fees are multiplied as I64 values and overflow, could wrapping_mul() cause fees to wrap from positive to negative appearing as refunds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_27c40e7e-54cc-4ce9-8352-bf5257aec69b?mode=deep",
+    "timestamp": "2026-02-19 00:51:51.631003",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Integration: Loss Tolerance] [Comparison Errors] If loss_tolerance threshold uses I64 and comparison with actual loss uses incorrect sign handling, could losses exceeding tolerance be accepted? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b50aaaa1-bef3-4b42-976d-3f1cb8a54ef4?mode=deep",
+    "timestamp": "2026-02-19 00:52:12.630677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Integration: Reward Distribution] [Negative Rewards] If boosted_rewards use I64 and computation results in negative due to overflow, could users receive debt instead of rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3b11583-d622-4690-afbd-4acbe3c80017?mode=deep",
+    "timestamp": "2026-02-19 00:52:34.238062",
+    "report_generated": false
+  }
+]
