@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_rule()] [Type Pair] Can RewardCoinType be set to same as T, creating circular reward dependencies? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_707148d2-33aa-4cb2-8d5f-30c2cea9592e?mode=deep",
+    "timestamp": "2026-02-19 08:46:41.974716",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [All Generic Functions] [Type Witness] Do any functions require type witness pattern to prevent unauthorized type instantiation, or can attacker instantiate with arbitrary types? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6968f731-df08-429a-9a6c-e6db9c6aef76?mode=deep",
+    "timestamp": "2026-02-19 08:46:54.878456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_asset()] [Object Reference] Is pool reference validated to be owned/shared correctly, or can attacker pass pool they don't own? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ce1b8a1c-a29d-4f4a-af50-cb5fb08f4d9e?mode=deep",
+    "timestamp": "2026-02-19 08:47:08.905672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_asset()] [Pool Address] Can pool_address extraction at line 40 be manipulated if pool object is deleted/wrapped after extraction? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e3e47db-8f96-4ff1-b3fe-fb1eb37c6e21?mode=deep",
+    "timestamp": "2026-02-19 08:47:22.922664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [All Functions with &mut] [Concurrent Access] Can multiple transactions modify config/incentive objects simultaneously causing race conditions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3fe8dc2c-1c54-4401-bea7-0f5db055a4b2?mode=deep",
+    "timestamp": "2026-02-19 08:47:38.376532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [deposit_incentive_v3_reward_fund()] [Coin Ownership] After splitting coin, if balance conversion fails, is the split coin properly cleaned up or leaked? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0fd542b2-3661-4c0d-a740-21515f1a638b?mode=deep",
+    "timestamp": "2026-02-19 08:47:55.112511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_asset()] [Error Code] Does error::reserve_not_found() at line 35 expose sensitive information about reserve existence? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7541977b-a4c2-4643-bd9b-1ac8aed6ea55?mode=deep",
+    "timestamp": "2026-02-19 08:48:13.806261",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_asset()] [Error Handling] If flash_loan::create_asset fails at line 42, is there proper rollback of the reserve count check? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db351247-e813-418b-9a9b-eb0429688b6a?mode=deep",
+    "timestamp": "2026-02-19 08:48:33.656868",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: incentive_v3_version_migrate()] [Error Propagation] If version_migrate fails after passing version check, can this leave incentive in partially migrated state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c348f207-292e-4ac3-b44b-b33d540b9039?mode=deep",
+    "timestamp": "2026-02-19 08:48:55.284130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: deposit_incentive_v3_reward_fund()] [Assertion Failure] Line 106 assertion can fail if coin value changes between check and split - is this a TOCTOU vulnerability? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e16cf571-5e49-4550-bf65-bb8ef9e1cae7?mode=deep",
+    "timestamp": "2026-02-19 08:49:17.006691",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [All StorageAdminCap Functions] [Cap Theft] If StorageAdminCap is transferred or compromised, can attacker gain complete control over flash loans and incentives? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_051f7c14-95c0-422c-b226-2cd8599c2b3d?mode=deep",
+    "timestamp": "2026-02-19 08:49:38.513489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [All IncentiveOwnerCap Functions] [Cap Duplication] Can IncentiveOwnerCap be duplicated or multiple instances created, bypassing single-owner assumption? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aff09143-0f6a-42b2-9d5b-d37b953fa9b0?mode=deep",
+    "timestamp": "2026-02-19 08:49:57.359062",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Mixed Cap Functions] [Privilege Separation] Is there proper separation between StorageAdminCap and IncentiveOwnerCap privileges, or can one be used to escalate to the other? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bde6e102-4a9f-4836-97e9-8fd122396e50?mode=deep",
+    "timestamp": "2026-02-19 08:50:15.924240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [All Functions] [Module Dependency] Can underlying modules (flash_loan, incentive_v3, storage) be upgraded independently causing version mismatch attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_389cdd68-7ae2-416b-b255-b384e077499f?mode=deep",
+    "timestamp": "2026-02-19 08:50:35.574159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_asset()] [Storage Consistency] If storage::get_coin_type returns stale data, can type validation be bypassed? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ac13007-19e6-4eee-a2bc-4cde1c35f43c?mode=deep",
+    "timestamp": "2026-02-19 08:50:55.120180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_pool()] [Storage Reference] Does passing &Storage allow unintended read access to sensitive reserve data? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7db6042f-e545-44a9-a7d1-76e1d70d9efb?mode=deep",
+    "timestamp": "2026-02-19 08:51:14.780309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_incentive_v3_reward_rate_by_rule_id()] [Mutable Storage] Why does this function take &mut Storage while others take &Storage - can this be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ca66cd5-721d-42a4-91ec-91ae61196794?mode=deep",
+    "timestamp": "2026-02-19 08:51:35.639414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Flash Loan Rate Functions] [MEV] Can admin observe mempool for large flash loan requests and front-run with rate increases to extract MEV? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1bc59d5c-e7aa-4a0d-b21a-6ab689369526?mode=deep",
+    "timestamp": "2026-02-19 08:51:57.784914",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Incentive Rate Functions] [Reward Manipulation] Can admin time reward rate changes to benefit specific stakers who are coordinating? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51629b76-94e1-4041-a948-f52e09c5a7d7?mode=deep",
+    "timestamp": "2026-02-19 08:52:21.814117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [withdraw_borrow_fee() + withdraw_incentive_v3_reward_fund()] [Fee Extraction] Can admin drain all fees and rewards to colluding address immediately before protocol pause/shutdown? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c76c593f-f464-4bec-948d-0d539713d674?mode=deep",
+    "timestamp": "2026-02-19 08:52:45.674235",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: deposit_incentive_v3_reward_fund()] [Sender Validation] Is tx_context::sender() at line 111 the expected depositor, or can contract-initiated deposits confuse ownership? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90123939-ca85-4768-be70-0c804efbcd64?mode=deep",
+    "timestamp": "2026-02-19 08:53:08.051257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3_rule()] [Clock Dependency] Can Clock parameter be stale or manipulated to create rules with incorrect timing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_342b8cc1-3da6-4c18-9cec-49527e18a243?mode=deep",
+    "timestamp": "2026-02-19 08:53:29.973159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: set_incentive_v3_reward_rate_by_rule_id()] [Clock Usage] Is clock parameter used for atomic timestamp validation, or can it be mismatched with actual block time? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4278d7b4-6f9d-4395-b05e-2fd9c46ca8e9?mode=deep",
+    "timestamp": "2026-02-19 08:53:51.079938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_flash_loan_config()] [Config Singleton] Can multiple flash loan configs be created, causing config fragmentation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_14ee0ada-be0c-4bdb-b48b-caf291737103?mode=deep",
+    "timestamp": "2026-02-19 08:54:14.848984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/manage.move] [Function: create_incentive_v3()] [Incentive Singleton] Can multiple IncentiveV3 objects exist, splitting reward distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4dc15a59-44c4-4adf-8024-9b85530f1f63?mode=deep",
+    "timestamp": "2026-02-19 08:54:38.976885",
+    "report_generated": false
+  }
+]
