@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: open_position()] [Denial of Service - CRITICAL] All calls to open_position() will abort with code 0, causing any Volo vault adaptor that attempts to open MMT v3 CLMM positions to fail completely. If Cetus or Momentum adaptors call this function, the entire vault operation will revert, locking user funds and preventing deposits/withdrawals. What is the impact if vault operations depend on this function during normal operation mode? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3ba5c26-8ce1-4f80-a7d8-47e24caf835d?mode=deep",
+    "timestamp": "2026-02-19 04:01:37.459516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: close_position()] [Denial of Service - CRITICAL] The close_position() function always aborts, preventing any vault adaptor from closing MMT v3 positions. If a vault operation borrowed a Position object and must return it by closing, the abort will cause the entire operation to fail, potentially leaving borrowed assets unreturned and corrupting vault state. Can this lead to permanent asset lock? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c2950ae9-2a40-45f4-b77d-0fb7fea2973c?mode=deep",
+    "timestamp": "2026-02-19 04:01:50.262931",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: add_liquidity()] [Denial of Service - CRITICAL] The add_liquidity() function aborts unconditionally, meaning any vault strategy attempting to provide liquidity to MMT v3 pools will fail. If the vault's op_start() has already modified state (status = DURING_OPERATION, borrowed assets), the abort will revert everything but may leave inconsistent external state if non-transactional operations occurred. What cleanup happens on abort? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18d52a7a-2028-4f6e-a18b-f2de36ead0ce?mode=deep",
+    "timestamp": "2026-02-19 04:02:03.961164",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: remove_liquidity()] [Denial of Service - CRITICAL] Calling remove_liquidity() always aborts, preventing vault operations from withdrawing liquidity from MMT v3 positions to rebalance or fulfill user withdrawal requests. If the vault must remove liquidity to free up capital during op_end(), this abort causes the operation to fail, potentially violating the vault's loss_tolerance or leaving the vault unable to process withdrawals. How does this affect withdrawal request fulfillment? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2b52edc-a5c7-4fb7-bc2f-363048064081?mode=deep",
+    "timestamp": "2026-02-19 04:02:17.715134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: open_position()] [Authorization Bypass] The function signature shows no capability or authorization check - any caller can theoretically open positions if this were implemented. If a malicious actor calls this through a vault adaptor with vault assets, could they open positions with arbitrary tick ranges that benefit them (e.g., tick_lower=tick_upper creating zero-width positions)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c465a740-bd43-4d0d-a0bf-770c8d686abc?mode=deep",
+    "timestamp": "2026-02-19 04:02:32.466160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: close_position()] [Missing Ownership Validation] The close_position() function accepts a Position object but shows no check that ctx.sender() owns the position or has authority to close it. If implemented without validation, an attacker could close positions owned by the vault by transferring a stolen position ID, causing loss of liquidity and fees. Does Position have built-in ownership checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_13a7bc57-2ada-4035-a4d5-9ff209245f6c?mode=deep",
+    "timestamp": "2026-02-19 04:02:48.493133",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: add_liquidity()] [Authorization Bypass] The function allows any caller to add liquidity to any Position without verifying ownership. If implemented, an attacker could add their own coins to a vault-owned position, diluting the vault's share of fees or manipulating the position's liquidity in ways that harm the vault's strategy. Is there position ownership validation in the Position module? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b12e6d6-a43a-403c-8825-b28af472cab3?mode=deep",
+    "timestamp": "2026-02-19 04:03:05.846066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: remove_liquidity()] [Missing Authorization] No capability or ownership check exists on remove_liquidity(). If implemented, anyone could remove liquidity from positions they don't own by passing a reference, stealing the vault's LP tokens and breaking the vault's liquidity strategy. What prevents unauthorized position modification? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29910b50-241e-4815-92de-9b54c0072f76?mode=deep",
+    "timestamp": "2026-02-19 04:03:24.414893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: open_position()] [Invalid Tick Range] The function accepts tick_lower and tick_upper parameters but shows no validation that tick_lower < tick_upper. If tick_lower >= tick_upper, the position would be invalid or zero-width, causing funds to be locked in an unusable position. Can an attacker open inverted tick ranges to DoS the vault's liquidity strategy? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fb20b41-adb3-46ac-8ef6-6c79b376129a?mode=deep",
+    "timestamp": "2026-02-19 04:03:43.815131",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: open_position()] [Tick Spacing Violation] There's no check that tick_lower and tick_upper respect the pool's tick_spacing. If the pool requires tick_spacing=10 but the caller passes tick_lower=5, the position might be invalid or fail to earn fees. Could misaligned ticks cause the vault to deploy capital inefficiently? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4d0ede4a-5d57-4734-8312-f08dc6617af4?mode=deep",
+    "timestamp": "2026-02-19 04:04:04.275088",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: open_position()] [Extreme Tick Bounds] No validation prevents tick_lower from being MIN_TICK or tick_upper from being MAX_TICK, creating an unbounded liquidity position across the entire price range. This dilutes concentrated liquidity rewards and may cause the vault to earn minimal fees. Can an attacker force wide-range positions to reduce vault APY? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98cdbfd1-1838-4fae-94d4-6c8559a5c826?mode=deep",
+    "timestamp": "2026-02-19 04:04:26.157055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: open_position()] [Tick Overflow] The tick parameters are I32 (signed 32-bit integers) but there's no check for overflow/underflow when passing extreme values. If tick indices overflow during pool operations or math calculations, the position could be opened at incorrect price ranges, causing capital loss. Are I32 bounds enforced? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c40031d3-6199-4e08-9e17-63e500de499d?mode=deep",
+    "timestamp": "2026-02-19 04:04:48.042979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: add_liquidity()] [Insufficient Slippage Check] The function accepts min_amount_x and min_amount_y parameters but if these are set to 0, the vault could add liquidity at any price including extremely unfavorable ratios during frontrunning attacks. An MEV bot could manipulate the pool price, causing the vault to deposit at a 99% loss ratio. Who sets min_amount values in the vault adaptor? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_00b98bad-d26d-46b6-bf9c-7a68ba9df115?mode=deep",
+    "timestamp": "2026-02-19 04:05:10.956256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: remove_liquidity()] [Slippage Bypass] The min_amount_x and min_amount_y checks could be bypassed if set to 0 by a malicious or buggy vault operator. During removal, if the pool has been sandwiched, the vault might receive 1 wei of each token while the position's value is stolen through swaps. Does the vault enforce minimum slippage parameters? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a3f49f2-0d36-4ffc-8ec3-980dabcfb63c?mode=deep",
+    "timestamp": "2026-02-19 04:05:33.875167",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: add_liquidity()] [Front-Running Vulnerability] Without atomic price checks or MEV protection, an attacker could front-run the vault's add_liquidity() call with a large swap that moves the pool price, causing the vault to add liquidity at a terrible ratio, then back-run to profit from the vault's loss. The min_amount parameters might not protect against sophisticated sandwich attacks. What slippage tolerance does the vault use? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f263d93c-ded7-430f-b374-ceeb1ef94961?mode=deep",
+    "timestamp": "2026-02-19 04:05:56.361337",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: remove_liquidity()] [Sandwich Attack Vector] A MEV searcher could sandwich the vault's remove_liquidity() by: (1) front-run with swap to move price, (2) vault removes at bad ratio, (3) back-run swap to restore price and profit. The vault's min_amount checks may be calibrated for normal conditions but fail under attack. Can the vault's loss_tolerance absorb sandwich losses? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6c85fda5-6a08-4a46-9b30-6ac921261346?mode=deep",
+    "timestamp": "2026-02-19 04:06:19.363380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: add_liquidity()] [Zero Liquidity Addition] There's no visible check preventing liquidity=0 from being added (based on the return value). If the function calculates liquidity from coin inputs and both coins have value but result in 0 liquidity due to rounding, the vault loses the coin deposits with no position increase. Does the pool module enforce minimum liquidity? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cbe813cd-34a5-48b6-9851-263484d333f0?mode=deep",
+    "timestamp": "2026-02-19 04:06:40.962544",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: remove_liquidity()] [Excessive Liquidity Removal] The liquidity parameter has no upper bound check against position.liquidity. If liquidity > position.liquidity, the function should fail but if implemented incorrectly could underflow, allowing removal of more liquidity than exists and breaking the pool's accounting. Is this validated in position::remove_liquidity()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22840263-9bae-4a04-a108-0812f9dbd873?mode=deep",
+    "timestamp": "2026-02-19 04:07:02.652195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: remove_liquidity()] [Full Liquidity DoS] If liquidity equals the entire position's liquidity, removing it empties the position. If the vault strategy requires maintaining some liquidity at all times, a malicious operator could fully drain positions, violating the strategy and preventing fee accumulation. Should partial removal be enforced? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1eddeeda-9f05-4ad1-8715-20102c8ed404?mode=deep",
+    "timestamp": "2026-02-19 04:07:23.301845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: add_liquidity()] [Coin Balance Mismatch] The function accepts Coin<X> and Coin<Y> but doesn't show balance checks. If coin_x has 0 balance or coin_y has 0 balance, the function should reject it, but if implemented incorrectly might accept zero-value coins and fail silently or add unbalanced liquidity. Does Sui's Coin module prevent 0-balance coins? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a2f35565-5a55-4bd4-aab6-31ff43b0f746?mode=deep",
+    "timestamp": "2026-02-19 04:07:44.315357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: open_position()] [Pool Type Mismatch] The function creates a Position but doesn't show validation that the Position's pool_id matches the provided pool parameter. If a malicious adaptor passes pool_id_A but uses Pool<X,Y> from pool_id_B, the position could be associated with the wrong pool, breaking accounting and fee tracking. Is pool_id stored in Position? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56b62392-9617-49d9-ba4a-f16f1202fb0a?mode=deep",
+    "timestamp": "2026-02-19 04:08:04.669357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: add_liquidity()] [Type Parameter Confusion] The generic types <X, Y> on Pool and Coin must match, but there's no compile-time guarantee that the Pool<X,Y> corresponds to the correct pool instance. If a vault adaptor mistakenly passes Pool<SUI,USDC> but Coin<USDT>, the type system might allow it if there's a Pool<SUI,USDT>, causing funds to be added to the wrong pool. How does the vault ensure type consistency? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd108077-69e7-4f31-88de-890c79ab7cd1?mode=deep",
+    "timestamp": "2026-02-19 04:08:26.583220",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: remove_liquidity()] [Position-Pool Mismatch] If position.pool_id != pool.id(), the function should abort, but if this check is missing, liquidity could be removed from pool_A using a position from pool_B, causing pool_A to incorrectly reduce reserves while pool_B's position shows decreased liquidity. Is pool_id cross-checked? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_01d265e1-bb9d-4e9a-be87-ee8a5b504e3b?mode=deep",
+    "timestamp": "2026-02-19 04:08:48.249288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: add_liquidity()] [Position Ownership by Wrong Pool] The position parameter might not belong to the passed pool parameter. If the vault has multiple pools and an operator passes the wrong pool reference, liquidity could be added to pool_X while the position belongs to pool_Y, corrupting both pools' state. Does Position enforce pool ownership? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8dc63678-0356-499a-8aa2-7f23998dab57?mode=deep",
+    "timestamp": "2026-02-19 04:09:10.703982",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/liquidity.move] [Function: add_liquidity()] [Refund Coin Loss] The function returns (Coin<X>, Coin<Y>) representing refunds, but if the vault adaptor doesn't handle these properly (e.g., destroys them instead of returning to the vault), excess coins are lost permanently. The comment says 'adds liquidity and returns refund amount if any' but who validates refunds are returned to the vault? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5168ea9d-1d14-4d1e-bd45-7cfbd5559613?mode=deep",
+    "timestamp": "2026-02-19 04:09:33.348764",
+    "report_generated": false
+  }
+]
