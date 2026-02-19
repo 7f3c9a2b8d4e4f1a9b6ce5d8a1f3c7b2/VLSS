@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_loss_tolerance()] [Tolerance Bypass] Can set_loss_tolerance() be called to u256::MAX immediately before a risky operation to bypass all loss checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83ab9428-37ce-4231-8b3e-f40456348223?mode=deep",
+    "timestamp": "2026-02-19 08:18:43.664671",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_loss_tolerance()] [Epoch Manipulation] If set_loss_tolerance() is called after cur_epoch_loss exceeds old tolerance but before epoch rollover, does this retroactively allow the loss? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b7c6ccb-4aa5-4da4-9dc5-bd344498fdd6?mode=deep",
+    "timestamp": "2026-02-19 08:18:56.388988",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_loss_tolerance()] [Overflow Risk] Can setting loss_tolerance to extreme values cause overflow in loss_limit calculation (cur_epoch_loss_base_usd_value * loss_tolerance)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9eeaa471-fecc-41a5-af36-2d1c5e905744?mode=deep",
+    "timestamp": "2026-02-19 08:19:10.425242",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_loss_tolerance()] [Zero Tolerance] What happens if set_loss_tolerance(0) is called? Does this brick all operations that could cause any loss, including normal DeFi yield fluctuations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd070cd2-1f4b-4dfb-9098-7ca67e9fcbfc?mode=deep",
+    "timestamp": "2026-02-19 08:19:24.140414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_loss_tolerance()] [Racing Operations] Can operator start a risky operation, then admin calls set_loss_tolerance() to increase tolerance before end_op(), allowing higher losses than intended? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d77b6ae7-6832-4d48-9022-625698cf8603?mode=deep",
+    "timestamp": "2026-02-19 08:19:38.553859",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_cancel_request()] [Bypass Locking] Can setting locking_time to 0 allow instant cancellation of withdrawal requests, enabling flash-loan style share price manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_39d7a737-9624-4f31-85df-f0b9a482e1c5?mode=deep",
+    "timestamp": "2026-02-19 08:19:54.087241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_cancel_request()] [Extreme Locking] Can setting locking_time to u64::MAX permanently lock users out of canceling their requests, causing griefing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b329366d-d64e-4c71-b39e-e2928e0912a6?mode=deep",
+    "timestamp": "2026-02-19 08:20:10.717659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_cancel_request()] [Retroactive Change] If locking_time is changed after user submits request, which timestamp+locking_time is used? Can this be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd1e55ae-ee02-4482-b79d-f23c99679c54?mode=deep",
+    "timestamp": "2026-02-19 08:20:29.218214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_cancel_request()] [Timestamp Overflow] Can setting very large locking_time cause timestamp arithmetic overflow when checking (request_timestamp + locking_time)? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_93b78731-8733-4829-85a1-1d5d9ee49b6b?mode=deep",
+    "timestamp": "2026-02-19 08:20:48.992866",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_withdraw()] [Immediate Withdraw] Can setting locking_time_for_withdraw to 0 allow execute_withdraw immediately after request_withdraw, bypassing operation lifecycle checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9f6bc6b-c880-46f7-ae3f-56017674a2b9?mode=deep",
+    "timestamp": "2026-02-19 08:21:09.463075",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_withdraw()] [Withdrawal DoS] Can admin set locking_time_for_withdraw to extremely high value to prevent users from withdrawing for extended periods? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_62014749-8bc8-44fa-8bb9-3514f9adc813?mode=deep",
+    "timestamp": "2026-02-19 08:21:31.172232",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_withdraw()] [Clock Manipulation] Does locking_time_for_withdraw validation use Clock object? Can clock.timestamp() be manipulated to bypass locking checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b7b9371-cd2b-4c05-a752-393384e600a9?mode=deep",
+    "timestamp": "2026-02-19 08:21:53.430137",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_withdraw()] [Request Timing] If locking_time is reduced after request but before execution, can user execute earlier than originally intended? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83ee4fb7-12af-42eb-a70c-a96291df8fac?mode=deep",
+    "timestamp": "2026-02-19 08:22:16.103963",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: create_operator_cap()] [Unlimited Creation] Can create_operator_cap() be called unlimited times by admin to create multiple OperatorCap objects, diluting security model? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ea0515d-6942-4d08-8a2c-7ca1c8003ec9?mode=deep",
+    "timestamp": "2026-02-19 08:22:40.181096",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: create_operator_cap()] [Cap Tracking] Is there any tracking of created OperatorCap IDs? If not, can admin create caps and lose track, leaving zombie operators? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f407d191-8c06-4a58-b845-b184bb87f64b?mode=deep",
+    "timestamp": "2026-02-19 08:23:02.589088",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: create_operator_cap()] [Transfer Risk] After create_operator_cap(), can the OperatorCap be transferred to untrusted addresses since it's not bound to creator? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b7fcd70-1eda-47c6-93d1-e2f32c492408?mode=deep",
+    "timestamp": "2026-02-19 08:23:24.008177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: create_operator_cap()] [Freeze Bypass] Can newly created OperatorCap bypass operator freeze checks since it's not in the freeze map initially? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_24c6f7d1-555c-4230-99c4-1b6443ca3720?mode=deep",
+    "timestamp": "2026-02-19 08:23:44.900128",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: create_operator_cap()] [Cap Lifecycle] Is there any revocation mechanism for OperatorCap? If not, compromised operator caps remain valid forever? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a78dea9f-ecb3-449c-8828-dd99c7aaf580?mode=deep",
+    "timestamp": "2026-02-19 08:24:05.707559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_operator_freezed()] [Wrong Operation] Can set_operator_freezed() be called on wrong Operation object (different vault), causing freeze state desync? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f013ae4e-57df-4cba-acae-18f34b68cf49?mode=deep",
+    "timestamp": "2026-02-19 08:24:27.233135",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_operator_freezed()] [Freeze During Op] If operator is frozen via set_operator_freezed(true) while their operation is active, can they still end_op() to corrupt state? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ccea5337-6b01-4f64-ae5c-1a31d4a417ef?mode=deep",
+    "timestamp": "2026-02-19 08:24:48.849383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_operator_freezed()] [Address Confusion] Can op_cap_id parameter accept wrong address type or unrelated address to freeze innocent operators? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b0f01ad4-2e88-4ded-a31c-0c41750d4462?mode=deep",
+    "timestamp": "2026-02-19 08:25:10.474642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_operator_freezed()] [Unfreeze Timing] Can admin unfreeze operator (freezed=false) immediately before their malicious operation starts, bypassing intended freeze? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da0b6ae6-20dd-48e2-84f3-d8551f400687?mode=deep",
+    "timestamp": "2026-02-19 08:25:32.150024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_operator_freezed()] [Missing Validation] Does set_operator_freezed() validate that op_cap_id actually corresponds to an existing OperatorCap? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd9bce78-4ce3-4eeb-9252-821f7f52a93a?mode=deep",
+    "timestamp": "2026-02-19 08:25:53.805121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: add_switchboard_aggregator()] [Duplicate Asset] Can add_switchboard_aggregator() be called twice for same asset_type, causing oracle lookup confusion or DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2a046a33-6042-4e7e-b864-ebe1afc825a7?mode=deep",
+    "timestamp": "2026-02-19 08:26:16.850237",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: add_switchboard_aggregator()] [Wrong Decimals] Can admin specify incorrect decimals parameter that doesn't match aggregator's actual decimals, causing price calculation errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22faefd5-7ae6-4233-8273-e403e17e684d?mode=deep",
+    "timestamp": "2026-02-19 08:26:39.039069",
+    "report_generated": false
+  }
+]
