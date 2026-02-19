@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: update_cetus_position_value()] [Asset Type String Manipulation] Can the asset_type parameter (line 23) contain special characters or escape sequences that bypass vault storage key checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f68897c8-c59b-4517-a5bb-ff67c6d950ef?mode=deep",
+    "timestamp": "2026-02-19 03:52:53.280443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Position Reference Lifetime] Is there a guarantee that the position reference remains valid throughout the calculation, or could it be deleted/transferred mid-execution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa57cf14-84e9-4185-b29c-f0164ac5aa6f?mode=deep",
+    "timestamp": "2026-02-19 03:53:05.678443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: update_cetus_position_value()] [Get Defi Asset Type Safety] Does get_defi_asset<PrincipalCoinType, CetusPosition>() validate that the asset is actually a CetusPosition, or could it return a different type causing runtime errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_11afabf0-7d6e-4fc2-8057-4785e092d15a?mode=deep",
+    "timestamp": "2026-02-19 03:53:19.112273",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: update_cetus_position_value()] [Finish Update Asset Value Validation] Does finish_update_asset_value() check that the asset_type matches the previously borrowed asset, or could this update the wrong asset's value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52d4319c-4ab7-416d-a9a9-26324713550d?mode=deep",
+    "timestamp": "2026-02-19 03:53:32.288197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: update_cetus_position_value()] [Vault Mutation Safety] Since vault is passed as &mut (line 20), could calculate_cetus_position_value() or finish_update_asset_value() perform unexpected state changes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_624e2e23-261a-4162-b660-6379ef3067a4?mode=deep",
+    "timestamp": "2026-02-19 03:53:46.221285",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: update_cetus_position_value()] [Asset Borrowing Lock] Does get_defi_asset() lock the asset for the duration of the update, or could another transaction modify/remove the position before finish_update_asset_value() is called? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_299e507c-9817-4089-b1c4-7d86dd948277?mode=deep",
+    "timestamp": "2026-02-19 03:54:01.355297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Value Calculation Order] Does the order of operations matter in value_a + value_b (line 74)? Could different orderings produce different results due to overflow/rounding? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa869e11-d68d-40c5-9699-3a8466ea6a15?mode=deep",
+    "timestamp": "2026-02-19 03:54:17.325590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Intermediate Value Storage] Are value_a and value_b (lines 71-72) computed atomically, or could external state changes between these calculations cause inconsistencies? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ebad74a-f1a9-42d7-926f-72f11dc3885e?mode=deep",
+    "timestamp": "2026-02-19 03:54:34.898522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Repeated Calculation Consistency] If calculate_cetus_position_value() is called twice in quick succession, should it return identical values? Could oracle price updates or pool state changes cause divergence? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e1252a1-5f4e-43b3-be2c-ad9f16420c85?mode=deep",
+    "timestamp": "2026-02-19 03:54:53.536296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Extreme Price Deviation] If pool_price deviates from relative_price_from_oracle by exactly the slippage threshold (line 64), is the assertion inclusive or exclusive? Could off-by-one errors allow slightly out-of-bounds prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_514d8136-2940-43ca-bc91-4fde84139292?mode=deep",
+    "timestamp": "2026-02-19 03:55:12.918509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Inverse Price Handling] Does the code correctly handle cases where price_a < price_b vs price_a > price_b, especially in the slippage calculation (lines 52-66)? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d2eff4c-eae1-44ae-9bcf-7d66a9ac6680?mode=deep",
+    "timestamp": "2026-02-19 03:55:33.528155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Price Ratio Extremes] If relative_price_from_oracle is extremely small (near 0) or extremely large (near u256::max), could this cause the slippage calculation to misbehave? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c93f89a2-0077-4496-bc30-167e8ee979c9?mode=deep",
+    "timestamp": "2026-02-19 03:55:54.661436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Asymmetric Position Values] If value_a >> value_b or vice versa, could this indicate an attack or misconfiguration that should be detected but isn't? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_652ae391-3602-41fd-b9f2-3486b614e5c5?mode=deep",
+    "timestamp": "2026-02-19 03:56:16.272291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Single-Sided Position] If a position has amount_a > 0 but amount_b = 0 (or vice versa), is this valid in Cetus CLMM? If not, should there be validation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_60d9f6b9-0ab1-4bdc-b66a-78a8e2ffb3c4?mode=deep",
+    "timestamp": "2026-02-19 03:56:39.603084",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Position Out of Range] For concentrated liquidity positions, if the current pool price is outside the position's range, should amount_a and amount_b be 0? If not, could this lead to misvaluations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c56beb69-a23a-4768-ace5-0e853071d3ee?mode=deep",
+    "timestamp": "2026-02-19 03:57:03.221501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: update_cetus_position_value()] [Clock Timestamp Reliability] Does Sui's Clock object provide tamper-proof timestamps, or could validators manipulate clock.timestamp_ms() (line 29) within consensus bounds? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_411728c8-cc7d-406a-a6d2-430f747afb3c?mode=deep",
+    "timestamp": "2026-02-19 03:57:27.051763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Oracle Timestamp Check] Do vault_oracle::get_asset_price() calls (lines 50-51) validate that the oracle timestamp is recent relative to the clock parameter, or could stale oracle data be used? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_41c37f54-d254-4010-abb2-426462986895?mode=deep",
+    "timestamp": "2026-02-19 03:57:49.508728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: update_cetus_position_value()] [Timestamp Monotonicity] If clock.timestamp_ms() somehow decreases between calls (e.g., due to chain reorg), could this corrupt vault value update logic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90b0053f-2b09-4077-abb6-4ef745612ed9?mode=deep",
+    "timestamp": "2026-02-19 03:58:11.783797",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Error Code Collision] Is ERR_INVALID_POOL_PRICE = 6_001 (line 17) unique across the entire Volo codebase, or could it collide with other error codes causing ambiguity? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c900ae9d-8618-4b1a-9bd9-8e97bfa1d6df?mode=deep",
+    "timestamp": "2026-02-19 03:58:35.035378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Insufficient Error Context] Does the ERR_INVALID_POOL_PRICE assertion (line 63) provide enough context for debugging? Could adding events or error messages help operators respond to slippage violations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bcfd3d5d-c74a-42ab-b1d4-6494fb4591ac?mode=deep",
+    "timestamp": "2026-02-19 03:58:58.515115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Type Name Format] Does into_string(get<CoinType>()) (lines 43-44) return fully qualified type names (e.g., '0x2::sui::SUI') consistently, or could different formats cause config lookups to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46ff8191-f01d-4f5c-ae25-3d8c22d41dea?mode=deep",
+    "timestamp": "2026-02-19 03:59:22.252589",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: calculate_cetus_position_value()] [Type Name Injection] Could a maliciously named package create coin types whose string representation matches legitimate coins, causing config lookups to return wrong decimals/prices? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_91bc6a78-cc13-4705-a8a7-6be66cc6297e?mode=deep",
+    "timestamp": "2026-02-19 03:59:45.092655",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: update_cetus_position_value()] [Asset Type Uniqueness] Can multiple Cetus positions be stored under different asset_type strings, and if so, does this allow selective valuation updates to manipulate total vault value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83a8cd9b-4213-4d0c-b899-4a7092b9b330?mode=deep",
+    "timestamp": "2026-02-19 04:00:08.637391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: update_cetus_position_value()] [Asset Removal Race] If a position is removed from the vault between get_defi_asset() (line 26) and finish_update_asset_value() (line 29), what happens? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46e3beb0-ad4e-4732-8c59-e8d2ccabc50e?mode=deep",
+    "timestamp": "2026-02-19 04:00:31.640481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/adaptors/cetus_adaptor.move] [Function: update_cetus_position_value()] [Asset Type Validation] Does the vault validate that asset_type corresponds to an actual Cetus position, or could arbitrary strings be passed causing lookups to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4013bf50-24d6-45c6-a4e4-24b8a2307c5c?mode=deep",
+    "timestamp": "2026-02-19 04:00:52.812886",
+    "report_generated": false
+  }
+]
