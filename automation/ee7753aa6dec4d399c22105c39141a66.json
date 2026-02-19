@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [DoS] [Max Iterations] Can attacker set max_iterations to u64::MAX causing export_stakes() to run out of gas? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_866af022-a3d0-4216-b137-833064cd88fc?mode=deep",
+    "timestamp": "2026-02-19 08:35:21.665236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [DoS] [Excessive Exports] Can repeatedly calling export_stakes() with small iterations DoS migration process? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af6dbf88-ae9f-4c3e-958d-8e10c78ab58c?mode=deep",
+    "timestamp": "2026-02-19 08:35:33.919809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [DoS] [Balance Dust] Can depositing tiny amounts prevent destroy_migration_cap() balance == 0 check? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9de5a9fd-b214-4ccd-9755-11aedd93a885?mode=deep",
+    "timestamp": "2026-02-19 08:35:47.279004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [DoS] [Fee Extraction] Can extracting all balance as fees prevent import_stakes() from executing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1a3ecbad-4332-4c95-aa48-56891941353e?mode=deep",
+    "timestamp": "2026-02-19 08:36:00.477758",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [DoS] [Ratio Manipulation] Can manipulating ratio to exceed min_ratio prevent import_stakes()? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ffbca44-c87b-4cbd-83e7-544f841af791?mode=deep",
+    "timestamp": "2026-02-19 08:36:14.550289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [DoS] [Cap Destruction] Can refusing to call destroy_migration_cap() leave migration in limbo? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_33759c20-3690-4d5d-ba51-fc7306577e66?mode=deep",
+    "timestamp": "2026-02-19 08:36:30.334152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Griefing] [Wrong Target Count] Can providing incorrect target_exported_count prevent cap destruction? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c61aa9f9-fdc4-4773-9bdc-5115a1644234?mode=deep",
+    "timestamp": "2026-02-19 08:36:46.293433",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Data Integrity] [Event Values] Can ExportedEvent values at lines 126-132 mismatch actual state changes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c8afa2cd-a2e5-4189-8a8e-2d7cc637590f?mode=deep",
+    "timestamp": "2026-02-19 08:37:03.570625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Data Integrity] [Count Consistency] Can exported_count differ from sum of all export event counts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b7f29bf7-0758-403a-b619-8cc284dc4404?mode=deep",
+    "timestamp": "2026-02-19 08:37:22.633959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Data Integrity] [Balance Tracking] Can total_sui_balance in events differ from actual storage balance? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da1eab13-7804-48fb-ab54-0ce9fa1634e4?mode=deep",
+    "timestamp": "2026-02-19 08:37:41.950554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Data Integrity] [Epoch Recording] Can epoch in ExportedEvent be manipulated or outdated? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d4319d4-de54-4f27-9495-a9a3d22b1c4f?mode=deep",
+    "timestamp": "2026-02-19 08:38:02.056669",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Data Integrity] [Ratio in Event] Can ratio in ImportedEvent at line 183 differ from actual pool ratio? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_00b4d7f3-b385-4403-9d4d-1d28ba896794?mode=deep",
+    "timestamp": "2026-02-19 08:38:24.135801",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Flow] [Skip Step 2] Can import_stakes() be called without calling export_stakes(), using old balance? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd8740ab-d77e-45d9-9659-7e7126f7de6e?mode=deep",
+    "timestamp": "2026-02-19 08:38:44.527208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Flow] [Skip Step 3] Can destroy_migration_cap() succeed even if fees_taken is false by manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1685044d-c6ee-454e-a4d0-8b5a1e0c3428?mode=deep",
+    "timestamp": "2026-02-19 08:39:04.937932",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Flow] [Repeat Steps] Can steps 2-4 be repeated multiple times in wrong order? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ca5b7e9-ae3e-41c5-bb15-3389e65b40e5?mode=deep",
+    "timestamp": "2026-02-19 08:39:26.339496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Flow] [Parallel Flows] Can multiple migration flows execute in parallel for same pool? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0d99687-3eac-4d80-80e1-93f2e0ec03d1?mode=deep",
+    "timestamp": "2026-02-19 08:39:47.591021",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Flow] [Incomplete Migration] Can migration be left in intermediate state indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac232eeb-3c5d-4017-a4ed-1541fdc78943?mode=deep",
+    "timestamp": "2026-02-19 08:40:08.009125",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Object] [UID Deletion] After id.delete() at line 199, can UID be reconstructed? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02cbadaa-b04a-4023-b4b1-396ee3493568?mode=deep",
+    "timestamp": "2026-02-19 08:40:28.463184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Object] [Storage Persistence] MigrationStorage persists after migration - can it be misused? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63242ee9-d9ad-491f-ba16-57f9499dd900?mode=deep",
+    "timestamp": "2026-02-19 08:40:48.971967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Object] [Object Creation] Can object::new() at lines 78, 84 fail or return duplicate UIDs? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_749bba1c-7c70-4cc5-89ea-b53ef687224d?mode=deep",
+    "timestamp": "2026-02-19 08:41:10.166541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Object] [Transfer Safety] Is public_transfer at line 90 safe from frontrunning? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bde14cee-0788-499c-9a58-ad45f28b060a?mode=deep",
+    "timestamp": "2026-02-19 08:41:32.083139",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Object] [Shared Object Access] Can shared MigrationStorage be frozen or deleted? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c8bc87b4-0f98-4d33-bbd3-052f8ac1eb03?mode=deep",
+    "timestamp": "2026-02-19 08:41:54.204739",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Type Safety] [Balance Type] Can Balance<SUI> be confused with other balance types? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9bc536f1-e809-4ee9-88eb-aa8bd5ed1981?mode=deep",
+    "timestamp": "2026-02-19 08:42:16.262705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Type Safety] [Cap Type Confusion] Can MigrationCap be confused with AdminCap or OwnerCap? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cdbec6e5-ae97-4d0c-85f4-f3e61bb319c4?mode=deep",
+    "timestamp": "2026-02-19 08:42:39.191955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/migration/migrate.move] [Type Safety] [Generic Instantiation] Are all generic types properly instantiated with correct type parameters? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a8aaebb6-fa1f-4a0b-86aa-5ae67f5472d3?mode=deep",
+    "timestamp": "2026-02-19 08:43:01.113059",
+    "report_generated": false
+  }
+]
