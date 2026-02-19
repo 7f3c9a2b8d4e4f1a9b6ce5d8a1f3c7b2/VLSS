@@ -1,0 +1,14 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: zero_out_rewards_if_looped()] [Loop Detection Bypass] If is_looped() has false negatives, can attackers earn rewards on looped positions that should have rewards zeroed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f67145ae-9dee-4786-9d9f-1ce3b61fa8af?mode=deep",
+    "timestamp": "2026-02-19 09:28:24.718022",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/obligation.move] [Function: zero_out_rewards_if_looped()] [Public Package Visibility] The function is public(package) - can it be called from other modules to maliciously zero out rewards for legitimate users? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_32f71cee-d57a-48dd-ac5c-ae268cbc1539?mode=deep",
+    "timestamp": "2026-02-19 09:28:38.517144",
+    "report_generated": false
+  }
+]
