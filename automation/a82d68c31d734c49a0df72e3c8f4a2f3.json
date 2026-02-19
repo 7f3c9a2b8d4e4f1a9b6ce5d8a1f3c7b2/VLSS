@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: add()] [Arithmetic Overflow] Can add() overflow when summing two large Decimal values (each near u256::MAX), causing wrap-around where total_value < individual_values, breaking vault TVL calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_865210a1-e5ed-443c-8adf-3e8f04ddefb8?mode=deep",
+    "timestamp": "2026-02-19 04:07:23.274985",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: add()] [No Saturation] Does add() abort on overflow rather than saturating, allowing attackers to DoS vault operations by forcing overflows during deposit aggregation or reward accumulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1f2c273c-b025-4a6c-98a4-01bf03ae5a37?mode=deep",
+    "timestamp": "2026-02-19 04:07:35.721481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: add()] [Cumulative Error] When adding multiple small Decimals in sequence (e.g., per-epoch rewards), can accumulated rounding errors cause total to diverge from expected sum, enabling theft through precision manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_31e0794c-c44e-4ea3-8e80-c3ad118d33f5?mode=deep",
+    "timestamp": "2026-02-19 04:07:48.849912",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: add()] [Commutativity] Is add() commutative and associative given u256 arithmetic, or can different orderings of additions yield different results due to overflow behavior, causing non-deterministic vault states? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_127021c4-88b7-48f1-a4d8-22ae29e7d9bf?mode=deep",
+    "timestamp": "2026-02-19 04:08:02.352095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: sub()] [Arithmetic Underflow] Can sub(a, b) underflow when b > a, causing abort and DoS of withdrawal operations, or does it wrap to a huge value enabling inflation attacks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9986087f-5ce4-4931-92a3-21342f5d21c1?mode=deep",
+    "timestamp": "2026-02-19 04:08:16.621905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: sub()] [No Validation] Does sub() lack pre-check that a >= b, allowing negative balance calculations to wrap to large positive values, breaking accounting invariants in vault balance tracking? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_75100e9f-4e2a-4d9c-a3da-fbb4f91607ae?mode=deep",
+    "timestamp": "2026-02-19 04:08:32.848210",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: sub()] [Sign Representation] Since Decimal lacks sign bit, can negative results from sub() wrap around, causing logical errors where debt is represented as large positive values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b4a6d18-c64f-4535-91bd-80be4d2b33e1?mode=deep",
+    "timestamp": "2026-02-19 04:08:49.243634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: sub()] [DoS Vector] If vault fee calculation uses sub(total_amount, fee_amount) and fee > total due to misconfiguration, does abort in sub() brick all withdrawals until admin intervention? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b7e3033-d018-4075-93df-b7f2cd896f74?mode=deep",
+    "timestamp": "2026-02-19 04:09:07.420771",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: saturating_sub()] [Silent Underflow] Does saturating_sub() return 0 when a < b without emitting events, allowing silent loss of precision in reward calculations where users lose entitled rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7f2dfda6-7210-49de-b81b-d907b557a60d?mode=deep",
+    "timestamp": "2026-02-19 04:09:27.257931",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: saturating_sub()] [Invariant Violation] Can saturating_sub() violate conservation laws where total_deposits - total_withdrawals should never be negative, but saturation masks the error allowing vault insolvency? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_53a83835-4bfd-447f-87e9-c11d0acef372?mode=deep",
+    "timestamp": "2026-02-19 04:09:46.155515",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: saturating_sub()] [Incorrect Usage] If developers use saturating_sub() where sub() abort is desired to catch errors, can this hide critical bugs where calculations go negative, enabling gradual fund drainage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c880984-be3c-477f-832f-e73c4af67cb8?mode=deep",
+    "timestamp": "2026-02-19 04:10:06.904397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: saturating_sub()] [Comparison Logic] Does the comparison a.value < b.value correctly handle edge case where a == b, returning 0 instead of error, and is this intended behavior for all use cases? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f700fa68-6974-4d99-9d7a-24d9210531a2?mode=deep",
+    "timestamp": "2026-02-19 04:10:29.569867",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: mul()] [Arithmetic Overflow] Can mul(a, b) overflow in the intermediate step (a.value * b.value) before division by WAD, causing abort or wrap-around in critical price calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_75379234-e6a6-4334-95ff-18a7d348786a?mode=deep",
+    "timestamp": "2026-02-19 04:10:52.370318",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: mul()] [Precision Loss] Does mul() lose precision when (a.value * b.value) < WAD, causing the result to round to zero and enabling attackers to drain funds through repeated small multiplications? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ad184cb3-4f83-4961-9557-a81d0cc54dde?mode=deep",
+    "timestamp": "2026-02-19 04:11:14.614967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: mul()] [Order of Operations] Does mul() perform multiplication before division, and can attackers exploit this to cause overflow in intermediate calculation even when final result would fit in u256? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8891e531-00e3-4063-b09d-ac2b9fd9375a?mode=deep",
+    "timestamp": "2026-02-19 04:11:35.855002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: mul()] [Rounding Direction] Does integer division by WAD always round down, systematically biasing all multiplications toward lower values and enabling gradual value extraction through repeated operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bf31ff39-c1a1-4a0d-b408-e7e006ab04f5?mode=deep",
+    "timestamp": "2026-02-19 04:11:57.779660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: mul()] [Zero Handling] When mul(0, x) or mul(x, 0) is called, does the division by WAD after getting 0 product cause any edge cases, or is zero handled correctly in all contexts? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3138ff8d-9348-4588-8c0c-cc768246e06c?mode=deep",
+    "timestamp": "2026-02-19 04:12:19.438566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: mul()] [Commutativity] Is mul() commutative (mul(a,b) == mul(b,a)) given potential overflow differences, or can order-dependent overflow cause non-deterministic results in vault calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e3c0174-7739-4841-b4ca-8083384c74a1?mode=deep",
+    "timestamp": "2026-02-19 04:12:41.764247",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: mul()] [Chain Multiplication] When chaining multiple mul() calls for compound interest calculations, do cumulative rounding errors cause significant deviation from expected value, enabling arbitrage? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_748729dc-8f59-4bf6-952e-029a08dbdca1?mode=deep",
+    "timestamp": "2026-02-19 04:13:03.267197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div()] [Division by Zero] Can div(a, 0) where b.value == 0 cause abort, creating DoS vector in vault share price calculations when total shares could temporarily be zero? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48caece3-0f24-4c6a-affa-37a67f852cae?mode=deep",
+    "timestamp": "2026-02-19 04:13:24.486724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div()] [Arithmetic Overflow] Can div(a, b) overflow in the intermediate step (a.value * WAD) when a is very large, causing abort even when final result would fit, breaking price oracle queries? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_80db4fbf-2631-46b8-ae84-381a14112e26?mode=deep",
+    "timestamp": "2026-02-19 04:13:45.597206",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div()] [Precision Loss] When a.value < b.value, does div() return a value less than WAD that gets truncated to very small Decimal, enabling attackers to exploit exchange rates by engineering tiny ratio conditions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ebeaa53a-ab25-4822-b47f-f49196dbd58c?mode=deep",
+    "timestamp": "2026-02-19 04:14:07.246995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div()] [Rounding Bias] Does div() systematically round down due to integer division, allowing attackers to exploit this bias in repeated division operations to extract value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7a09092b-4f81-440d-9a88-49917b417b2e?mode=deep",
+    "timestamp": "2026-02-19 04:14:28.593660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div()] [Inverse Precision] When computing reciprocals div(1, x), does precision loss become more severe for large x values, causing incorrect inverse calculations in leverage ratio computations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6316c14a-8636-4783-96ac-f5e8da5efd5d?mode=deep",
+    "timestamp": "2026-02-19 04:14:49.944301",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/decimal.move] [Function: div()] [Order Sensitivity] Can div(div(a,b),c) yield different results than div(a, mul(b,c)) due to different rounding in intermediate steps, causing arbitrage opportunities? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5a689cb-6cc9-4fdb-a8e0-5bdc4d50f57e?mode=deep",
+    "timestamp": "2026-02-19 04:15:11.124242",
+    "report_generated": false
+  }
+]
