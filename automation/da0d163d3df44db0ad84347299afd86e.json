@@ -1,0 +1,38 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_calculate_supply_rate()] [Reserve Factor Manipulation] At line 365, reserve_factor is fetched and used at line 370. Can manipulating reserve_factor allow extracting more fees than intended? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d07bc38-2dad-42ab-b80e-1d0c7cc8d5fb?mode=deep",
+    "timestamp": "2026-02-19 07:27:05.316843",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_calculate_supply_rate()] [Underflow Risk] At line 370, (ray() - reserve_factor) can underflow if reserve_factor > ray(). Can this wrap to max value causing inflated supply rates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea637fd8-1202-45a1-be95-e961ed4b8e22?mode=deep",
+    "timestamp": "2026-02-19 07:27:18.455588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_calculate_supply_rate()] [Utilization Manipulation] The function uses dynamic_caculate_utilization at line 366. Can the same utilization manipulation attacks that affect borrow rate also affect supply rate? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_393a200a-ceb7-4692-b92f-16962740bdb2?mode=deep",
+    "timestamp": "2026-02-19 07:27:33.315034",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_calculate_supply_rate()] [Ray Math Chain] The function chains three ray_mul operations at lines 368-371. Can precision loss accumulate significantly across these operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cce9c216-6f31-44f8-b087-9adc0dbf1338?mode=deep",
+    "timestamp": "2026-02-19 07:27:47.668919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_calculate_supply_rate()] [Borrow Rate Dependency] The function uses borrow_rate parameter passed in. Can an attacker provide incorrect borrow_rate to manipulate supply_rate? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f521e5a4-aa4a-42a7-8894-cd904c054b93?mode=deep",
+    "timestamp": "2026-02-19 07:28:03.067623",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/dynamic_calculator.move] [Function: dynamic_calculate_supply_rate()] [Zero Utilization] If utilization is 0, the entire calculation at lines 368-371 returns 0 supply rate. Is this intended behavior or can it be exploited? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c09c4a82-a6a1-482f-b010-b1f2285c0017?mode=deep",
+    "timestamp": "2026-02-19 07:28:21.332739",
+    "report_generated": false
+  }
+]
