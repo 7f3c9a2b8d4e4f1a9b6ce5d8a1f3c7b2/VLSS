@@ -1,0 +1,128 @@
+[
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_request_withdraw()] [Address Conversion] Does address::from_u256(0) reliably produce the zero address, or can implementation differences cause incorrect status assignment? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f774cf47-42d4-401f-9dec-bf4be219b40b?mode=deep",
+    "timestamp": "2026-02-19 05:38:37.636682",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: new_vault_receipt_info()] [Table Ownership] Are the Tables passed to new_vault_receipt_info() properly owned and validated, or can shared/borrowed tables cause concurrent modification issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_85aa7ba0-eae1-46fa-94d2-74508eec9ffd?mode=deep",
+    "timestamp": "2026-02-19 05:38:50.351291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_execute_deposit()] [Maximum u64] If pending_deposit_balance is at u64::MAX and update_after_execute_deposit() is called with executed_deposit_balance > 0, can this cause issues with subsequent deposit requests? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_302af77f-54fa-4d3b-8090-c65fa00fe6f3?mode=deep",
+    "timestamp": "2026-02-19 05:39:08.021509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_execute_withdraw()] [Maximum u256] If shares is at u256::MAX, can update_after_execute_withdraw() properly decrease it, or do edge cases near maximum values cause issues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1f4745a2-6b87-4c55-bd51-c8608cbe717e?mode=deep",
+    "timestamp": "2026-02-19 05:39:21.904361",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_reward()] [Zero Shares Edge Case] When self.shares = 0, update_reward() calculates acc_reward as 0 even if reward index increases—can this cause first depositors to lose accumulated global rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e08d6a3-dcd8-49d6-b08c-641787246126?mode=deep",
+    "timestamp": "2026-02-19 05:39:36.887443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_claim_principal()] [Claim All Principal] If amount equals claimable_principal exactly, does the subtraction leave claimable_principal at 0 properly, or can precision issues leave dust amounts? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3478e4a-be18-4390-8ea0-f3e1e98a5ff3?mode=deep",
+    "timestamp": "2026-02-19 05:39:54.461233",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_request_withdraw()] [Maximum Pending Shares] Can pending_withdraw_shares reach u256::MAX through repeated requests, and does this block further withdrawal requests? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_896bbe1a-9130-4bcc-8444-11782688b93e?mode=deep",
+    "timestamp": "2026-02-19 05:40:11.766206",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Functions: update_after_execute_deposit() & update_after_execute_withdraw()] [Share Balance] Can shares become negative (underflow to large u256) through a sequence of deposits and withdrawals, breaking accounting invariants? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f10c48f6-d971-49ab-8b06-e403b3fb4d29?mode=deep",
+    "timestamp": "2026-02-19 05:40:29.944813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_execute_withdraw()] [Pending vs Total Shares] Can pending_withdraw_shares exceed shares, and if so, does update_after_execute_withdraw() handle this edge case properly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb4b8e6c-9af8-4db9-a103-4c39a34514fd?mode=deep",
+    "timestamp": "2026-02-19 05:40:49.807565",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_execute_deposit()] [Pending Deposit Underflow] If multiple concurrent executions try to decrease pending_deposit_balance, can race conditions cause underflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_297a18ef-9c61-4cbe-877c-408093c51cc1?mode=deep",
+    "timestamp": "2026-02-19 05:41:11.065627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Struct: VaultReceiptInfo] [Total Accounting] Does the sum (shares + pending_deposit_balance - pending_withdraw_shares + claimable_principal) represent total user entitlement, and can this be manipulated? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_61df5ab7-1b18-4f4f-9022-97839cff2d45?mode=deep",
+    "timestamp": "2026-02-19 05:41:32.659048",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_reward()] [Oracle Price Manipulation] Can an attacker manipulate the oracle price used in vault_utils::mul_with_oracle_price() to inflate their acc_reward calculation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_13eda7fa-2483-435b-ac2f-6e0e81d80213?mode=deep",
+    "timestamp": "2026-02-19 05:41:54.165713",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_reward()] [Stale Oracle Price] If vault_utils::mul_with_oracle_price() uses a stale oracle price, can rewards be calculated incorrectly, benefiting or harming users? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c150c5af-5543-4059-9985-60c99ee64f62?mode=deep",
+    "timestamp": "2026-02-19 05:42:16.229474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_reward()] [Price Decimal Mismatch] If reward index uses different decimals than expected by vault_utils::mul_with_oracle_price(), can this cause orders-of-magnitude errors in reward calculation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e3b35b02-8e8b-4a53-a9fc-3814d98c5846?mode=deep",
+    "timestamp": "2026-02-19 05:42:38.760539",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_execute_deposit()] [Timestamp Overflow] Can last_deposit_time overflow if set to u64::MAX or near it, causing comparisons with current time to fail? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d35eb81-8ad1-411b-b27b-8afb1311a071?mode=deep",
+    "timestamp": "2026-02-19 05:43:01.246077",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: update_after_execute_deposit()] [Timestamp Regression] Can last_deposit_time be set to a value in the past, allowing users to bypass time-based locking windows immediately? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0728929a-1094-4120-aae4-5e7f777da4cc?mode=deep",
+    "timestamp": "2026-02-19 05:43:24.135308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Function: last_deposit_time()] [Time-Based Attacks] Can an attacker repeatedly deposit and cancel to update last_deposit_time without actual fund commitment, manipulating time-locked operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ef51bb13-b4cf-41c2-b65d-a9eaed1f8a3a?mode=deep",
+    "timestamp": "2026-02-19 05:43:47.140849",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Functions: Multiple] [Sandwich Attack] Can an attacker front-run a large deposit execution with their own deposit request, then back-run with withdrawal to profit from share price changes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_061145f7-2e12-4183-b68a-d8d5814c640f?mode=deep",
+    "timestamp": "2026-02-19 05:44:11.281635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Functions: Multiple] [Griefing Attack] Can an attacker spam tiny deposit/withdraw requests to bloat storage and make legitimate operations gas-inefficient? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d50a1f26-cc5a-40e5-af2a-5cbc17f3fdca?mode=deep",
+    "timestamp": "2026-02-19 05:44:36.518505",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Functions: update_after_execute_deposit() & update_reward()] [Reward Dilution Attack] Can an attacker deposit large amounts just before reward distribution, then immediately request withdrawal to dilute rewards for long-term stakers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_877e6036-cfb2-4402-93fb-410c92c96850?mode=deep",
+    "timestamp": "2026-02-19 05:45:01.632988",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/vault_receipt_info.move] [Functions: update_after_request_deposit() & update_after_cancel_deposit()] [Request Spam] Can an attacker repeatedly request and cancel deposits to manipulate status transitions and potentially bypass operational locks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2567376b-95e9-44d0-9c72-38fdf7288a27?mode=deep",
+    "timestamp": "2026-02-19 05:45:25.008716",
+    "report_generated": false
+  }
+]
