@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: set_reward_rate()] [Rate Overflow Check] At line 428, rate is checked against max_value / 86_400_000, but can attacker set rate just under this limit causing overflow in subsequent multiplications at line 498? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8fd67981-a59c-4c08-96e6-69fd3ed9384c?mode=deep",
+    "timestamp": "2026-02-19 01:31:43.974513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Time Delta Manipulation] At line 498, time delta is calculated as (now - last_updated) - can attacker manipulate clock timestamp to cause overflow or underflow? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_03fe2d69-aff7-4277-b1f0-73cbf7af5853?mode=deep",
+    "timestamp": "2026-02-19 01:31:56.309472",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: create_reward_buffer_distribution()] [Initial Last Updated] At line 298, last_updated is set to current timestamp - can attacker exploit timing by adding rewards immediately after creation to skip distribution period? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dcc05384-b371-4ae3-95af-e6342b66bf41?mode=deep",
+    "timestamp": "2026-02-19 01:32:09.356134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Rate Zero Handling] At line 483, if rate == 0, only last_updated is modified - can this be exploited to freeze rewards while advancing time? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_38b57e6e-5707-4c9f-b236-2601e9ec06f0?mode=deep",
+    "timestamp": "2026-02-19 01:32:23.734134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_to_buffer()] [Buffer Update Before Addition] At line 395, update_reward_buffer is called before adding new rewards at line 398 - can this ordering be exploited to manipulate distribution state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_62df574a-f788-48c2-9567-e05b31a1ed54?mode=deep",
+    "timestamp": "2026-02-19 01:32:37.655518",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Remaining Reward Zero] At line 504, if remaining_reward_amount == 0, only timestamp updates - can attacker repeatedly trigger this to advance time without distributing rewards? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fee53a54-c33f-4c8f-a70a-55fbd7e6ffc3?mode=deep",
+    "timestamp": "2026-02-19 01:32:53.258346",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Min vs New Reward] At line 512, reward_amount = min(remaining, new_reward) - can attacker exploit when remaining < new_reward to cause permanent reward lock? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_07a02fce-cb87-40ac-8330-778286330812?mode=deep",
+    "timestamp": "2026-02-19 01:33:09.110911",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: set_reward_rate()] [Rate Update Without Distribution] At line 433, buffer is updated before rate change - can old rate be exploited for extra rewards before new rate takes effect? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0f67736-bfa7-4073-b35b-a7befa6ef22c?mode=deep",
+    "timestamp": "2026-02-19 01:33:26.818490",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Last Updated Modification] At line 536, last_updated is set to now - can this be manipulated to skip distribution periods by controlling transaction timing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_750de132-d95b-4d6c-b066-907380b1209f?mode=deep",
+    "timestamp": "2026-02-19 01:33:48.950470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: remove_reward_buffer_distribution()] [Pre-Removal Update] At line 321, update_reward_buffer is called before checking remaining == 0 at line 324 - can this cause unexpected reward distribution during removal? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_76a2e904-97c6-4600-83ea-a906d06498e6?mode=deep",
+    "timestamp": "2026-02-19 01:34:08.388437",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffers()] [Multi-Buffer Update] At lines 459-461, all buffer types are updated in loop - can gas limits cause partial updates leaving system in inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_75a55da4-b7b2-4b7a-ba89-8cdf9064f866?mode=deep",
+    "timestamp": "2026-02-19 01:34:27.395838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Timestamp Comparison] At line 482, only updates if now > last_updated - can equal timestamps cause missed distributions in same-block transactions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_263976bc-dd13-4564-90a1-9050b01d8ac6?mode=deep",
+    "timestamp": "2026-02-19 01:34:46.710906",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_to_buffer()] [No Rate Validation] Function add_reward_to_buffer doesn't validate distribution rate exists - can rewards be added to zero-rate buffer causing permanent lock? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3469041-48c4-4011-be29-ec990a1324f4?mode=deep",
+    "timestamp": "2026-02-19 01:35:06.787511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Actual Reward Zero] At line 518, actual_reward_amount can be 0 if below minimum - can repeated zero distributions cause timestamp to advance while rewards accumulate? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_27e12eae-d528-4c7e-b3d0-23a7581909cd?mode=deep",
+    "timestamp": "2026-02-19 01:35:26.773880",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: set_reward_rate()] [Rate Precision] Rate at line 437 is u256 with no decimal specification - can precision loss in rate calculation cause reward distribution inaccuracies? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e91a511-1cfa-4980-a256-3d6b933f4372?mode=deep",
+    "timestamp": "2026-02-19 01:35:47.487379",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Distribution Table Mutation] At line 484 and 505, distributions table is mutated - can concurrent modifications cause race conditions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e72a4d53-e298-4516-aa8b-acad1a7ad958?mode=deep",
+    "timestamp": "2026-02-19 01:36:08.203668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: create_reward_buffer_distribution()] [Buffer Table Addition] At line 291, buffer.reward_amounts.add is called - can this fail if reward type already exists in main rewards but not buffer? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5cb3b618-57c2-46c8-b471-13c8a6796c5c?mode=deep",
+    "timestamp": "2026-02-19 01:36:29.852388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [New Reward Calculation] At line 498, new_reward = rate * time_delta - if time_delta is very large (system downtime), can this overflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_54c70c8e-79a6-45c3-9280-1c4e6bb26079?mode=deep",
+    "timestamp": "2026-02-19 01:36:50.528349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_new_reward_type()] [Buffer Creation Timing] At lines 249-260, buffer distribution can be created with_buffer flag - can attacker control timing to manipulate initial distribution state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e85d5571-fe5c-4645-8dcd-676897e08898?mode=deep",
+    "timestamp": "2026-02-19 01:37:10.492247",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: retrieve_undistributed_reward()] [Buffer Update Before Retrieval] At line 678, update_reward_buffer is called before amount check - can this distribute rewards that operator intended to retrieve? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f8bce372-a813-4aaf-a0b8-e7fe8fffbd75?mode=deep",
+    "timestamp": "2026-02-19 01:37:31.860660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Multiple Distribution Checks] Function checks rate==0, remaining==0, and minimum at different points - can edge cases where all three conditions interact cause unexpected behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_72166c13-3855-4736-824d-face436c93a1?mode=deep",
+    "timestamp": "2026-02-19 01:37:50.658141",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: set_reward_rate()] [Max Rate Constant] At line 428, max rate uses hardcoded 86_400_000 (milliseconds per day) - can future timestamp changes invalidate this constraint? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4886f630-2128-4a78-9027-c18114bbd898?mode=deep",
+    "timestamp": "2026-02-19 01:38:08.241367",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Minimum Reward Timing] At line 513, minimum is calculated with current total_shares - can attacker manipulate shares just before update to bypass minimum? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48d6a0b1-0263-435d-83b8-a73082c83db0?mode=deep",
+    "timestamp": "2026-02-19 01:38:26.790529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_to_buffer()] [Buffer vs Balance Sync] Rewards added to buffer at line 398 and balance at line 405 separately - can partial transaction failure cause desynchronization? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d687bb5f-ca77-4154-b159-117e78c63802?mode=deep",
+    "timestamp": "2026-02-19 01:38:45.724476",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Zero Share Distribution] At lines 524-534, if total_shares == 0, indices aren't updated but timestamp advances - can this permanently lock rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8fdf784b-9b3c-4e08-b593-31b4e18abcb9?mode=deep",
+    "timestamp": "2026-02-19 01:39:05.690443",
+    "report_generated": false
+  }
+]
