@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Timing: No Refresh] [Stale State Operations] If withdraw() or claim_fees() is called without calling refresh() first in current epoch, can severely stale exchange rates cause users to receive wrong amounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_935285aa-e6ce-4e8c-b42b-caa65715a20b?mode=deep",
+    "timestamp": "2026-02-19 03:24:15.877538",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Access: Package Scope] [Package-Level Access] All mutative functions are public(package) at lines 54, 75, 80, 99, 131, meaning any module in suilend package can call them - can malicious co-modules exploit this? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d3ee7d5-f35f-43b6-891d-a54fdc3b828d?mode=deep",
+    "timestamp": "2026-02-19 03:24:28.733523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Access: Admin Cap] [Admin Cap Usage] Only rebalance() uses admin cap at line 123, but if admin cap is compromised or shared, can attacker call increase_validator_stake() with malicious parameters? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3b4c9301-8a02-4218-8238-ee096f655d03?mode=deep",
+    "timestamp": "2026-02-19 03:24:41.999139",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Access: No Pause Mechanism] [Emergency Stop] There's no pause flag or emergency withdrawal mechanism - if a critical bug is found, can operations be stopped before exploitation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68dde98c-dde4-4c9a-a72e-122fefd720cb?mode=deep",
+    "timestamp": "2026-02-19 03:24:56.497402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Access: View Functions] [Information Leakage] View functions at lines 32-51 are public(package) but expose internal state - can this information be used to front-run operations or perform MEV attacks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b208d234-93f4-4907-827e-0de9531fd958?mode=deep",
+    "timestamp": "2026-02-19 03:25:11.019079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Economic: Fee Extraction] [Yield Theft] If claim_fees() can be called by any package module, can a malicious module extract all accrued rewards before legitimate users withdraw, stealing yield? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f31807bc-679d-46dc-a74b-18f4fab477cd?mode=deep",
+    "timestamp": "2026-02-19 03:25:27.541026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Economic: Exchange Rate Manipulation] [Rate Gaming] If an attacker can manipulate liquid_staking exchange rate (via large stakes/unstakes), can they profit by calling withdraw() at favorable rates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8873de44-1b6c-4e46-8a9e-46d000cdae39?mode=deep",
+    "timestamp": "2026-02-19 03:25:44.007909",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Economic: Minimum Stake] [Small Deposit Attack] If MIN_DEPLOY_AMOUNT is 1 SUI, but minimum liquid_staking mint is higher, can deposits accumulate in sui_balance without earning yield, reducing overall APY? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6c8bc37a-6c92-4f00-97a2-1fa041dabfcd?mode=deep",
+    "timestamp": "2026-02-19 03:26:02.307155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Economic: Validator Commission] [Commission Changes] If SUILEND_VALIDATOR changes commission from 0% to 100%, all staking rewards are lost - is there monitoring or protection against this? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e90582e9-bad5-4d8d-ac5d-12da9090b1bb?mode=deep",
+    "timestamp": "2026-02-19 03:26:20.683708",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Economic: Rounding Accumulation] [Death by Thousand Cuts] The ceiling rounding in unstake_n_sui() at line 177-178 causes slight over-unstaking - over thousands of transactions, does this accumulated loss become significant? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a4e022e-d5b6-4c31-aba1-455ad1bf2956?mode=deep",
+    "timestamp": "2026-02-19 03:26:40.861922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [DoS: Division by Zero] [Total Supply Zero] If all LST is unstaked and total_sui_supply becomes 0, unstake_n_sui() will panic at line 178 - can an attacker force this state to DoS all withdrawals? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c2eb181-3703-447a-ab31-bf80df96d535?mode=deep",
+    "timestamp": "2026-02-19 03:27:01.217148",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [DoS: LST Balance Depletion] [Insufficient LST] If lst_balance is depleted through operations but withdrawals are still owed, can users be unable to withdraw because unstake_n_sui() panics at line 179? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3fff177-ad8a-4137-9d95-67677003da88?mode=deep",
+    "timestamp": "2026-02-19 03:27:21.946972",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [DoS: Validator Jailed] [Validator Unavailable] If SUILEND_VALIDATOR is jailed or removed, can increase_validator_stake() at line 121-128 fail, preventing all rebalance() operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_85506d16-9606-4156-96f3-f0ad84ccb81d?mode=deep",
+    "timestamp": "2026-02-19 03:27:42.323434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [DoS: Gas Griefing] [Excessive Refresh] If refresh() is gas-expensive and must be called before each operation, can an attacker force many refresh calls to DoS the protocol via gas costs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d1ea2d3c-7dfa-4bda-a6ff-5c52e347cff9?mode=deep",
+    "timestamp": "2026-02-19 03:28:03.537688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [DoS: Invariant Lock] [Assertion Failures] If the invariant check at line 154 fails during claim_fees(), the transaction aborts - can an attacker manipulate state to make this assertion always fail, locking fee claims? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d83ed17e-7e85-4180-8f5a-081efec86e4c?mode=deep",
+    "timestamp": "2026-02-19 03:28:26.424474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Precision: Ceiling Division] [Over-Redemption] The ceiling calculation at line 177-178 always rounds up lst_to_redeem, meaning users get slightly more SUI than proportional - does this cause lst_balance to deplete faster than liabilities? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e5ee2ab-4e4f-48ce-8b4e-745e2efbb32d?mode=deep",
+    "timestamp": "2026-02-19 03:28:48.042596",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Precision: U128 Casting] [Precision Loss] When casting u64 to u128 at lines 173-174, then back to u64 at line 179, can precision be lost in the intermediate calculations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f2e002e-969d-4c48-b873-9452da13cf57?mode=deep",
+    "timestamp": "2026-02-19 03:29:11.267934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Precision: Ratio Calculation] [Exchange Rate Precision] The ratio (sui_amount_out * total_lst_supply) / total_sui_supply at line 178 may lose precision if numbers are small - can this cause users to receive 0 LST for small withdrawals? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fc62f1ad-8d79-48ae-b8e7-626eb1fee407?mode=deep",
+    "timestamp": "2026-02-19 03:29:33.526582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Precision: Buffer Amount] [1 SUI Buffer] The MIST_PER_SUI buffer in claim_fees() at line 141 is a fixed 1 SUI - if protocol grows to billions of SUI, is this buffer too small or too large? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_06b49f9a-002e-434b-b039-7c63b34c5528?mode=deep",
+    "timestamp": "2026-02-19 03:29:56.776045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Lifecycle: Initialization] [Treasury Cap Bypass] If create_staker() checks treasury_cap has zero supply at line 58, but the cap can be manipulated between check and use, can initialization be corrupted? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_764d84ee-4fec-41ca-b9b1-c09088d9acc0?mode=deep",
+    "timestamp": "2026-02-19 03:30:19.688665",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Lifecycle: First Deposit] [Zero State Operations] If deposit() is called before any rebalance(), all SUI stays in sui_balance earning no yield - should there be automatic rebalancing? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c349d9d3-3b03-415d-8dfd-4a5505dd5db1?mode=deep",
+    "timestamp": "2026-02-19 03:30:42.239659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Lifecycle: Final Withdrawal] [Exit Strategy] If all users withdraw, liabilities drops to 0, but can some dust remain in lst_balance or sui_balance that's irrecoverable? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_de6c0101-0255-4654-a4bd-ed56ce230443?mode=deep",
+    "timestamp": "2026-02-19 03:31:06.741054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Lifecycle: Upgrade Path] [Migration] If staker needs to be upgraded, is there a safe way to migrate state (admin, balances, liabilities) to a new contract? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cd4de1ef-f94f-4ec6-9624-defd2eb0ee00?mode=deep",
+    "timestamp": "2026-02-19 03:31:30.282975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Validator: Hardcoded Address] [No Validator Rotation] SUILEND_VALIDATOR at line 16-17 is immutable - if this validator misbehaves or stops validating, there's no way to switch validators? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da486bf0-c8cf-4eba-b9f9-eeb4152c75b0?mode=deep",
+    "timestamp": "2026-02-19 03:31:54.743961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move] [Validator: U64_MAX Stake] [Max Delegation] Using U64_MAX as stake amount at line 126 intends to stake all LST, but can\n\n### Citations\n\n**File:** volo-vault/local_dependencies/suilend_d/suilend/sources/staker.move (L1-190)\n```text\n/// Stake unlent Sui.\nmodule suilend::staker {\n    use liquid_staking::fees;\n    use liquid_staking::liquid_staking::{Self, LiquidStakingInfo, AdminCap};\n    use sui::balance::{Self, Balance};\n    use sui::coin::{Self, TreasuryCap};\n    use sui::sui::SUI;\n    use sui_system::sui_system::SuiSystemState;\n\n    // errors\n    const ETreasuryCapNonZeroSupply: u64 = 0;\n    const EInvariantViolation: u64 = 1;\n\n    // constants\n    const U64_MAX: u64 = 18446744073709551615;\n    const SUILEND_VALIDATOR: address =\n        @0xce8e537664ba5d1d5a6a857b17bd142097138706281882be6805e17065ecde89;\n\n    // This is mostly so i don't hit the",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ec6cea6-0965-4131-a505-24ab86d742f5?mode=deep",
+    "timestamp": "2026-02-19 03:32:21.329732",
+    "report_generated": false
+  }
+]
