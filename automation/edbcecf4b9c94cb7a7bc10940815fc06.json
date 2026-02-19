@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: new()] [Resource Exhaustion] Can an attacker create unlimited Hasher instances without cleanup since the struct has 'drop' and 'copy' abilities, potentially leading to memory exhaustion in a loop? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f62b03dc-4b2b-40f3-8392-effc9e5371dd?mode=deep",
+    "timestamp": "2026-02-19 08:33:45.738708",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: new()] [State Initialization] Does the empty buffer initialization guarantee sufficient capacity for large messages, or could vector reallocation overhead be exploited in DoS scenarios? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_445df4d5-2c8f-4bf4-aa60-d4eaec414d5c?mode=deep",
+    "timestamp": "2026-02-19 08:33:58.392189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: finalize()] [Hash Collision] Can an attacker craft different input sequences that produce identical SHA2-256 hashes by manipulating the order of push operations, bypassing signature verification? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48a3f792-6a25-4d21-b995-564e6e412b9b?mode=deep",
+    "timestamp": "2026-02-19 08:34:11.603538",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: finalize()] [Reference Safety] Does the function take a reference to self instead of consuming it, allowing the same Hasher to be finalized multiple times with different signatures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ecfda8b3-22b9-4fe9-9241-b6d16f5ab482?mode=deep",
+    "timestamp": "2026-02-19 08:34:25.347540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: finalize()] [Malleability] Can the buffer be modified between finalize() calls if the Hasher is copied before finalization, creating signature malleability issues? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a95b76a-633f-4ca1-8404-acef5bdeb610?mode=deep",
+    "timestamp": "2026-02-19 08:34:39.812035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u8()] [Buffer Overflow] Can repeated push_u8 calls exceed maximum vector capacity, causing runtime panic or undefined behavior in the underlying VM? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f74aa47a-0db5-4fd7-bb99-a5fe2c6fc8b1?mode=deep",
+    "timestamp": "2026-02-19 08:34:55.636764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u8()] [Type Confusion] Can push_u8 be used to manually construct malformed multi-byte values that would differ from using push_u32/push_u64, creating hash collision opportunities? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f201014d-fe3a-40da-8208-3481e1ae85cc?mode=deep",
+    "timestamp": "2026-02-19 08:35:12.764362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u32()] [Endianness Confusion] Does the big-endian conversion via vector::reverse() correctly handle BCS encoding edge cases, or can attacker craft inputs where reversed bytes create unintended values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56839679-98ed-4ac5-81e5-4df6c0517a18?mode=deep",
+    "timestamp": "2026-02-19 08:35:31.316198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u32()] [BCS Dependency] If bcs::to_bytes() changes its encoding format in future Sui versions, could existing signed messages become invalid, breaking oracle verification? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e8dec92-ccb6-41db-a985-19b5af22e215?mode=deep",
+    "timestamp": "2026-02-19 08:35:51.200686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u32()] [Byte Order Attack] Can an attacker exploit the difference between push_u32() and push_u32_le() to create colliding hashes by swapping endianness in different parts of the message? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6953e675-9a8b-4639-a186-e7d0ca796a2e?mode=deep",
+    "timestamp": "2026-02-19 08:36:11.371580",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u32_le()] [Consistency Violation] Since push_u32_le uses little-endian while push_u32 uses big-endian, can mixing these in message generation cause verification failures with off-chain oracle signers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4eddc1e6-3ad5-4297-8154-fec93ac50217?mode=deep",
+    "timestamp": "2026-02-19 08:36:32.405064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u32_le()] [Vector Mutation] Does append() safely handle the bytes vector, or could concurrent modifications (if possible) corrupt the buffer state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dfdd472b-cfcd-4337-a79d-e2acb0fa7ef1?mode=deep",
+    "timestamp": "2026-02-19 08:36:53.300474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u64()] [Integer Overflow] Can u64 values near MAX_U64 cause overflow during BCS encoding or vector reverse operations, producing incorrect hash inputs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb0c5179-5786-40a4-9c88-dafc9884d6b6?mode=deep",
+    "timestamp": "2026-02-19 08:37:14.080835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u64()] [Timestamp Manipulation] For timestamp fields, can an attacker exploit endianness differences to create future-dated or past-dated signatures by manually reversing bytes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f7137e0-fb5b-4c49-b454-33cdae5d3f34?mode=deep",
+    "timestamp": "2026-02-19 08:37:34.935157",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u64_le()] [BCS Format Dependency] Does the little-endian format exactly match off-chain oracle implementations, or could subtle encoding differences cause valid signatures to fail verification? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b5a7559-65be-4c33-b0d7-7457d68adc09?mode=deep",
+    "timestamp": "2026-02-19 08:37:55.863094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u64_le()] [Replay Attack Vector] If timestamps use push_u64_le but are not monotonically increasing, can old oracle signatures be replayed with manipulated timestamp bytes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f19f57fd-b35b-40f8-af70-988873f5c792?mode=deep",
+    "timestamp": "2026-02-19 08:38:16.259453",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u128()] [Large Value Handling] Can u128 values exceeding 2^127 cause issues in subsequent signed integer operations when misinterpreted as negative values? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e60b22e9-afad-4326-8631-63f5b94b06d0?mode=deep",
+    "timestamp": "2026-02-19 08:38:35.912346",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u128()] [BCS Encoding Overflow] Does BCS encoding of maximum u128 values (2^128-1) correctly produce 16 bytes, or could padding issues create incorrect hashes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa49c886-643a-4877-83a4-78995fa9980c?mode=deep",
+    "timestamp": "2026-02-19 08:38:55.619698",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_u128()] [Vector Reverse Safety] Can vector::reverse() on 16-byte u128 encoding fail or produce unexpected results for certain bit patterns? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_309522c1-be24-402c-b894-9938f01cc771?mode=deep",
+    "timestamp": "2026-02-19 08:39:14.871372",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_i128()] [Two's Complement Overflow] In the calculation 'u128::max_value!() - value + 1' for negative numbers, can overflow occur if value is 0, creating incorrect signed representation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e499f7d0-590f-4ba2-98b8-b162f6d5a429?mode=deep",
+    "timestamp": "2026-02-19 08:39:36.094098",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_i128()] [Sign Bit Manipulation] Can an attacker flip the 'neg' boolean to convert positive values to negative (or vice versa) in hash calculation, creating signature forgery opportunities? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98789849-f529-4545-95f8-db2281ec3feb?mode=deep",
+    "timestamp": "2026-02-19 08:39:57.699655",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_i128()] [Zero Handling] Does neg=true with value=0 produce the same hash as neg=false with value=0, or could this create distinct but semantically identical oracle updates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_816fd07b-4f15-405b-915b-33bf22de9ecd?mode=deep",
+    "timestamp": "2026-02-19 08:40:18.438684",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_i128()] [Edge Case: MIN_I128] If value equals 2^127 and neg=true, does the two's complement calculation wrap around correctly, or produce incorrect hash input? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9178e44d-0492-49d2-a732-d2673d6b9685?mode=deep",
+    "timestamp": "2026-02-19 08:40:40.900469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_i128_le()] [Endianness Mismatch] Can mixing big-endian and little-endian signed integers in the same message create verification failures with off-chain oracle implementations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_96fb7c0e-ed57-4e58-b4bd-aa20e9d24e24?mode=deep",
+    "timestamp": "2026-02-19 08:41:02.109898",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/utils/hash.move] [Function: push_i128_le()] [Two's Complement Consistency] Does the little-endian version produce identical two's complement representation as off-chain signers expect, or could byte order affect sign interpretation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_705bdcba-5fa2-4ad1-81ba-5bc03ef86f4d?mode=deep",
+    "timestamp": "2026-02-19 08:41:24.829052",
+    "report_generated": false
+  }
+]
