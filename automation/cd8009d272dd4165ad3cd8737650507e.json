@@ -1,0 +1,20 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Code Quality] [Stub Deployment] If this stub code with all abort 0 statements is deployed to mainnet, would it indicate incomplete development and pose systemic risk to Volo Protocol? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f8bbb954-c84e-4cf8-94f4-205c9b635af7?mode=deep",
+    "timestamp": "2026-02-19 06:05:22.438065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Documentation] [Missing Spec] Without documentation or function comments, how do Volo Protocol developers know the intended behavior of version functions when implemented? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f66cb34c-f26e-4016-9335-f96d975c0034?mode=deep",
+    "timestamp": "2026-02-19 06:05:35.212369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Technical Debt] [Commented Code] The presence of commented-out init_() function suggests work-in-progress - could this indicate other incomplete aspects of MMT v3 integration? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4d2ecf5d-877b-4385-93db-9924d82d5ada?mode=deep",
+    "timestamp": "2026-02-19 06:05:49.672980",
+    "report_generated": false
+  }
+]
