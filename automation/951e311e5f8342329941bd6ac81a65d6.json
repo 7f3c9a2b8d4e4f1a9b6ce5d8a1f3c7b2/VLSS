@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [No Price Continuity Check] The validate() function does not verify price continuity between old and new oracle queues. Can switching queues cause sudden price jumps (e.g., old queue shows $100, new queue shows $1), triggering unintended liquidations or value transfers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b031a22-ac5b-4b2e-a960-afe09d8c14b2?mode=deep",
+    "timestamp": "2026-02-19 03:18:41.826943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [No Staleness Tolerance Check] The validate() function does not verify staleness parameters of the new oracle queue. Can switching to a queue with lax staleness checks allow Volo vault to accept outdated prices, enabling stale price exploitation attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_636f69ca-ef68-43cd-996b-822d3b78de4d?mode=deep",
+    "timestamp": "2026-02-19 03:18:54.303652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [No Minimum Oracle Count] The validate() function does not enforce a minimum number of oracles in the queue. Can switching to a single-oracle queue eliminate decentralization benefits and enable single-point-of-failure price manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b3d52563-9184-43d6-97b1-c6b53d227d64?mode=deep",
+    "timestamp": "2026-02-19 03:19:07.669642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [No Geographic Diversity Check] The validate() function does not verify oracle geographic or operator diversity. Can switching to a queue with co-located oracles increase censorship or manipulation risk? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac6dd0df-d37f-45eb-8098-5700f36f43da?mode=deep",
+    "timestamp": "2026-02-19 03:19:21.617522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [No Uptime History Check] The validate() function does not verify historical uptime or reliability of the new oracle queue. Can switching to an unreliable queue cause frequent price feed failures and vault operation DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e77dad81-6f53-4635-8a07-6ba719d4c417?mode=deep",
+    "timestamp": "2026-02-19 03:19:36.419159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [No Deviation Threshold Check] The validate() function does not verify acceptable price deviation parameters. Can switching to a queue with high deviation tolerance allow manipulated prices that would be rejected by stricter queues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a332b3cd-422c-48eb-aeaa-4ccec0964941?mode=deep",
+    "timestamp": "2026-02-19 03:19:51.852699",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [No Update Frequency Check] The validate() function does not verify minimum update frequency. Can switching to a slowly-updating queue cause Volo vault to operate on stale data during volatile market conditions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_64d5d3f7-26a8-429c-b24e-113ef698058b?mode=deep",
+    "timestamp": "2026-02-19 03:20:08.768181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [First-Time Setup Risk] The run() function can be called immediately after State initialization when oracle_queue is 0x0. Can an attacker front-run the legitimate initialization, setting a malicious oracle queue before the protocol is properly configured? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b4d9a67a-3bfa-4eb5-a77e-0da49f01c065?mode=deep",
+    "timestamp": "2026-02-19 03:20:27.069387",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Migration Attack] The run() function allows changing oracle queues during system migration. Can an attacker exploit the migration window to temporarily set a malicious queue, execute profitable trades, then have the migration complete with legitimate queue? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5d2c50c0-33d5-415d-84dc-d6d38958d216?mode=deep",
+    "timestamp": "2026-02-19 03:20:46.463054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Upgrade Race Condition] The run() function can be called during package upgrades. Can an attacker call run() between upgrade transactions, setting a malicious queue that's incompatible with the new package version? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d812efab-c9b5-4b60-ba93-13bddbd204e2?mode=deep",
+    "timestamp": "2026-02-19 03:21:05.871418",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Guardian Queue Inconsistency] The actuate() function only changes oracle_queue but not guardian_queue. Can having mismatched oracle and guardian queues from different providers cause security issues where oracle updates aren't properly validated? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a53e84de-cdf5-4ed6-a7e4-c28681326d1a?mode=deep",
+    "timestamp": "2026-02-19 03:21:26.843526",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Package ID Mismatch] The actuate() function doesn't verify consistency with on_demand_package_id. Can setting an oracle queue from a different package version cause version mismatch errors in oracle queries? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_433148ac-a907-460a-898f-5bb9f2f1ed65?mode=deep",
+    "timestamp": "2026-02-19 03:21:49.408425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Circular Dependency] The run() function modifies State that may be used by the oracle queue itself. Can this create circular dependencies where the oracle queue depends on State configuration that's being modified? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_baaae530-b21a-4fdc-80af-b8310d827a34?mode=deep",
+    "timestamp": "2026-02-19 03:22:13.397662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Permanent DoS via Invalid Queue] The run() function can set an invalid oracle_queue_id with no recovery mechanism. If the new queue is completely broken, can the entire Volo vault system be permanently DoS'd with no way to restore oracle functionality? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86888750-5e7a-4bca-af14-e8f2dde8bc91?mode=deep",
+    "timestamp": "2026-02-19 03:22:36.866177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Cascading Failure] The run() function changes a critical system component that many modules depend on. Can setting a faulty oracle queue cause cascading failures across liquid staking, vault operations, adaptors, and health limiters simultaneously? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5084447d-8991-48bb-ba0f-90bbceddf398?mode=deep",
+    "timestamp": "2026-02-19 03:22:59.840909",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Resource Exhaustion] The run() function allows unlimited oracle queue changes. Can rapid switching between queues exhaust gas, storage, or event resources, causing system-wide DoS? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_21b89744-b1d4-4679-8aa2-4ed62deef796?mode=deep",
+    "timestamp": "2026-02-19 03:23:22.341934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Deadlock Scenario] The run() function modifies shared State that other operations may be accessing. Can concurrent oracle price queries and oracle queue changes create deadlock scenarios where transactions cannot proceed? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_791d67a6-02b0-4704-b13d-75522a3e7222?mode=deep",
+    "timestamp": "2026-02-19 03:23:45.795570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [No Testnet/Mainnet Check] The validate() function does not verify network environment. Can production systems accidentally use testnet oracle queues or vice versa, causing invalid price data? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_11f9ccb9-aecc-4361-b497-74b33844919f?mode=deep",
+    "timestamp": "2026-02-19 03:24:09.566727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: validate()] [No Dry-Run Capability] The validate() function has no way to test if a new oracle queue will work before committing the change. Can blind oracle queue switches cause unexpected failures that could have been caught with testing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7a080c2-dec1-4c57-bf44-8834829c0c4e?mode=deep",
+    "timestamp": "2026-02-19 03:24:33.325927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [No Rollback Mechanism] The run() function permanently changes the oracle queue with no automatic rollback. If the new queue causes issues, how long will it take to manually revert, and what damage can occur in that window? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ca02f04-1050-4809-8826-30f56849eb37?mode=deep",
+    "timestamp": "2026-02-19 03:24:53.920392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Same Value Assignment] The actuate() function does not check if oracle_queue_id equals current state.oracle_queue. Can setting the same value repeatedly waste gas, spam events, or create confusion in event logs? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1f50d773-ca7f-4a29-bd5e-4a3f605ddf3b?mode=deep",
+    "timestamp": "2026-02-19 03:25:15.742389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Event Emission Order] The actuate() function emits event after state change. If a reentrant call reads the state between modification and event emission, can it observe inconsistent state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_842075e9-09a1-4506-8b67-547b85c75e33?mode=deep",
+    "timestamp": "2026-02-19 03:25:38.579870",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Transaction Size Limit] The run() function includes all parameters in a single transaction. Can very large or specially crafted oracle_queue_id values cause transaction size limits to be exceeded? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e2dc3069-fa9b-4bbb-a909-bc56e010b5bb?mode=deep",
+    "timestamp": "2026-02-19 03:26:01.354559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: run()] [Gas Estimation Error] The run() function's gas cost varies with event emission. Can incorrect gas estimation cause transactions to fail unpredictably during oracle queue changes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b5d3bf1-1668-4c5f-b1fe-ec3a7bf70551?mode=deep",
+    "timestamp": "2026-02-19 03:26:23.707241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/state/set_oracle_queue_id_action.move] [Function: actuate()] [Old Value Staleness] The actuate() function reads state.oracle_queue() for the event before making the change. In a concurrent environment, can this old value be stale if another transaction modified it between read and write? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_92ce516e-f1f9-4427-abe2-ec2fb227399e?mode=deep",
+    "timestamp": "2026-02-19 03:26:46.866407",
+    "report_generated": false
+  }
+]
