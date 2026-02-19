@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Authorization Bypass] Can an attacker call split_coin() directly to extract coins from vault operations by providing a malicious coin object, bypassing vault access controls since the function is public with no capability checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e9591e6a-7f22-47f8-be24-0240599fa6a9?mode=deep",
+    "timestamp": "2026-02-19 00:50:21.923426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Authorization Bypass] If split_coin() is called within a vault operation context, can an attacker front-run the transaction to manipulate tx_context::sender() and redirect the remainder coin transfer to their address instead of the legitimate user? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a0f21cfe-4cc8-4cbb-9924-096b1ecc8020?mode=deep",
+    "timestamp": "2026-02-19 00:50:34.707812",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance()] [Authorization Bypass] Can split_coin_to_balance() be exploited by malicious vault adaptors to split user coins and redirect remainders to attacker addresses since it lacks capability-based access control? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_397e08cc-62c0-43d5-8d1d-39036cd5c195?mode=deep",
+    "timestamp": "2026-02-19 00:50:47.785675",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Caller Validation] Does the public_transfer on line 24 create a vulnerability where an attacker can call this function with another user's coin object if they gain temporary access, causing the remainder to be sent to the current caller instead of the original coin owner? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5f0cdb6-2a1c-4bbc-90bf-b09ef3e33485?mode=deep",
+    "timestamp": "2026-02-19 00:51:01.436603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Access Control] Can an operator with vault privileges abuse split_coin() to extract partial amounts from deposit/withdrawal request coins and redirect remainders to their own address via tx_context manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e43e2ced-dd6b-461e-8c00-2bf4d2a13340?mode=deep",
+    "timestamp": "2026-02-19 00:51:15.703396",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Integer Overflow] If amount parameter equals u64::MAX and coin_value also equals u64::MAX, does the assertion on line 14 pass but cause overflow in subsequent coin::split() operation leading to incorrect value splits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7d1bae1d-0fc8-4761-ab95-a48af6a42ecd?mode=deep",
+    "timestamp": "2026-02-19 00:51:30.952807",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Amount Validation] Can an attacker pass amount = coin_value to split the entire coin, causing line 18's check to evaluate true and destroy the original coin, but potentially breaking vault accounting if the vault expects the remainder to exist? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_77729328-d9bd-4fa6-ab66-5b2b8a97a3de?mode=deep",
+    "timestamp": "2026-02-19 00:51:47.665907",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Zero Amount Check] The assertion on line 13 rejects amount = 0, but what if amount = 1 and this causes dust amounts that break vault share calculations or fee collection when repeatedly called? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fc5da28b-4b60-41da-ac19-fe02b92bfe29?mode=deep",
+    "timestamp": "2026-02-19 00:52:05.893124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Boundary Condition] If amount = coin_value - 1, leaving only 1 unit as remainder, does transferring this dust amount on line 24 create gas griefing vectors or break minimum balance requirements in vault operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe568aa2-3567-4204-a815-3ca4a41b1254?mode=deep",
+    "timestamp": "2026-02-19 00:52:26.713184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Amount Precision] Can repeated calls to split_coin() with small amounts cause precision loss or rounding errors that compound in vault share calculations, leading to share inflation/deflation vulnerabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb76ebd7-369c-489a-ad36-58f6e586061e?mode=deep",
+    "timestamp": "2026-02-19 00:52:46.706392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Coin Destruction] If coin::value(&split_coin) == 0 on line 18 after split, the function destroys the coin with coin::destroy_zero(), but what if the vault expects this coin object to persist for tracking purposes, breaking vault state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8bed858d-377f-416a-99aa-12d0c6db2954?mode=deep",
+    "timestamp": "2026-02-19 00:53:08.569766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Zero Coin Handling] Can an attacker craft a scenario where coin::split() on line 17 leaves split_coin with zero value, triggering destroy_zero on line 19, but the returned split_ coin is also manipulated to cause accounting errors in vault deposit tracking? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1a735c9a-71f0-4787-a825-cd27f2cd0072?mode=deep",
+    "timestamp": "2026-02-19 00:53:31.648963",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [State Consistency] After coin::destroy_zero() executes on line 19, does the vault lose reference to the original coin object ID, potentially breaking deposit receipt matching or request buffer tracking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52603bbd-c323-4124-851e-8973f2f8804c?mode=deep",
+    "timestamp": "2026-02-19 00:53:54.422010",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Coin Lifecycle] If the zero-value branch executes (line 18-21), does early return bypass any cleanup logic that caller modules expect, causing state inconsistency in vault operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f83e41b-9bc7-4f41-8450-242a07396760?mode=deep",
+    "timestamp": "2026-02-19 00:54:17.154348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Transfer Recipient] On line 24, public_transfer sends remainder to tx_context::sender(ctx), but if this is called from a vault adaptor contract, does sender() resolve to the adaptor address instead of the end user, causing fund loss? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ab6b3e04-5e95-4232-bd7a-20a847274187?mode=deep",
+    "timestamp": "2026-02-19 00:54:41.026485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Recipient Confusion] If split_coin() is invoked by a vault operator on behalf of a user, does the remainder transfer to operator (sender) instead of user, enabling operator to steal excess funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4913ebd7-4517-4e82-b706-2fbc08bae0d3?mode=deep",
+    "timestamp": "2026-02-19 00:55:03.731024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Multi-Sig Context] In a multi-sig vault setup, if split_coin() executes within a shared transaction, which signer becomes tx_context::sender() for the remainder transfer, and can this be exploited to redirect funds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_38c7ae3b-99fb-4777-80c0-ee3501f4a8c2?mode=deep",
+    "timestamp": "2026-02-19 00:55:27.758690",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Cross-Module Transfer] When vault modules call split_coin(), does public_transfer on line 24 create a re-entrancy vector if the recipient (sender) is a malicious contract that can execute code upon receiving coins? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be3c019b-426f-48fb-9b7f-fa8de1e85e1a?mode=deep",
+    "timestamp": "2026-02-19 00:55:50.219584",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Transfer Finality] Is there a timing window between coin::split() on line 17 and public_transfer on line 24 where an attacker can manipulate transaction context or exploit race conditions to redirect the remainder? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_79b9fa44-8bea-4762-b3d4-4c254d61ce33?mode=deep",
+    "timestamp": "2026-02-19 00:56:11.639515",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance()] [Balance Conversion] Does coin::into_balance() on line 33 perform any validation, or can it convert a zero-value coin into a Balance object that breaks vault accounting when added to deposit buffers? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_49b72e44-3fb3-428a-986d-ecd558d91075?mode=deep",
+    "timestamp": "2026-02-19 00:56:32.282630",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance()] [State Transition] If split_coin() on line 30 transfers the remainder to sender, but the returned split coin is converted to Balance on line 33, does this create inconsistency where vault expects full coin value but only receives split amount? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5d677099-f2d9-4653-af88-e30b6e03dbd5?mode=deep",
+    "timestamp": "2026-02-19 00:56:52.751808",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance()] [Balance Tracking] After into_balance() converts the coin on line 33, does the vault lose ability to track the original coin object for receipt matching or withdrawal fulfillment? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6daba9af-4684-41fb-8927-0b32a7c8fc11?mode=deep",
+    "timestamp": "2026-02-19 00:57:12.930434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin_to_balance()] [Type Conversion] Can the Balance returned on line 34 be exploited if vault code assumes it receives a Coin object instead of Balance, causing type confusion in subsequent operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af739925-f85d-4d76-994d-529457a029a8?mode=deep",
+    "timestamp": "2026-02-19 00:57:34.304698",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Reentrancy] If split_coin() is called during a vault deposit operation and the remainder transfer on line 24 triggers a callback to a malicious contract, can the attacker re-enter vault functions before the original deposit completes? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_baef92c7-0a43-493d-ab19-14f95579ff47?mode=deep",
+    "timestamp": "2026-02-19 00:57:54.612547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/utils/sources/utils.move] [Function: split_coin()] [Transaction Context] Can an attacker manipulate the TxContext passed to split_coin() to change sender() resolution, causing remainder transfers to unintended recipients in vault workflows? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_199829ea-d6dd-452e-b4db-18f9105b3c43?mode=deep",
+    "timestamp": "2026-02-19 00:58:15.311951",
+    "report_generated": false
+  }
+]
