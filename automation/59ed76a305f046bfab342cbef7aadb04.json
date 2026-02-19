@@ -1,0 +1,122 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_collateral_balance()] [Stale Index Risk] Uses current supply_index without update - can stale index cause incorrect balance calculation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be4f1fc5-5b9b-4f8c-ae02-d14f23ef28b7?mode=deep",
+    "timestamp": "2026-02-19 00:10:10.503327",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_loan_balance()] [Borrow Index Timing] Uses borrow_index from storage - if index not updated, can return incorrect loan balance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63e81a47-1c97-41a8-bd42-a3c324662fc2?mode=deep",
+    "timestamp": "2026-02-19 00:10:24.261174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: user_loan_balance()] [Interest Calculation] Multiplies scaled balance by index to include interest - can attacker avoid interest by preventing index updates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_84d200ca-03a8-4000-b86c-0d1c7a26dbec?mode=deep",
+    "timestamp": "2026-02-19 00:10:38.047031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: is_collateral()] [Vector Contains Performance] Uses vector::contains which is O(n) - can attacker create many collateral entries to DoS this check? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_09b83f4b-fae9-41da-a10b-4962273170d1?mode=deep",
+    "timestamp": "2026-02-19 00:10:53.966863",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: is_loan()] [List Manipulation] Checks if asset in loans list - can list be corrupted causing incorrect loan tracking? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_826bb428-b66d-4fbb-8333-950844e99c1c?mode=deep",
+    "timestamp": "2026-02-19 00:11:10.344397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_liquidation()] [Liquidation Ratio Manipulation] liquidation_ratio from storage - can attacker manipulate ratio configuration to maximize liquidation bonus? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9d9f3e8-4c02-4e6b-8111-6cd930eca659?mode=deep",
+    "timestamp": "2026-02-19 00:11:27.675969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_liquidation()] [Liquidation Bonus Exploit] liquidation_bonus applied to liquidable_value - can attacker trigger liquidation with inflated bonus values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_20abff13-0163-41d3-a10c-a67a1bbcc4b1?mode=deep",
+    "timestamp": "2026-02-19 00:11:46.285152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_liquidation()] [Treasury Factor Application] treasury_factor applied to bonus - can low treasury_factor allow liquidator to extract more value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3edf5d2f-4b30-44c9-aeee-a576bf0ddca4?mode=deep",
+    "timestamp": "2026-02-19 00:12:07.966768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_liquidation()] [Excess Value Calculation] Complex logic for excess_value with multiple conditionals - can edge cases in conditions be exploited? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_77e89d2f-3080-4eba-b416-f260895f1934?mode=deep",
+    "timestamp": "2026-02-19 00:12:32.257443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_liquidation()] [Liquidable Value Caps] liquidable_value capped by liquidation_ratio - can attacker liquidate in multiple small transactions to bypass cap? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fcbf4fb8-bb8c-44cf-8ec9-0da7161e4574?mode=deep",
+    "timestamp": "2026-02-19 00:12:56.696809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_liquidation()] [Oracle Price Consistency] Multiple oracle calls for different assets - can prices change between calls causing inconsistent liquidation calculation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_788b259c-3eeb-49fa-963b-3ace13ca5724?mode=deep",
+    "timestamp": "2026-02-19 00:13:22.482090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_liquidation()] [Max Loan Value Flag] is_max_loan_value determines loan removal - can attacker manipulate to avoid full loan clearance? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ce519baf-f378-4948-8789-33b39029049d?mode=deep",
+    "timestamp": "2026-02-19 00:13:50.631754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_liquidation()] [Repay Amount Overflow] If repay_amount near u256::MAX, can repay_value calculation overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5e6163d-057f-490d-af00-7f5baaaa4ef1?mode=deep",
+    "timestamp": "2026-02-19 00:14:17.875950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_liquidation()] [Collateral Amount Conversion] calculate_amount converts values to amounts - can rounding cause liquidator to receive less collateral than calculated? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_94cd5ee4-9cb5-4ed2-b960-a33a69142b93?mode=deep",
+    "timestamp": "2026-02-19 00:14:45.671680",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_liquidation()] [Executor Bonus Rounding] executor_bonus_value = total_bonus_value - treasury_value - can rounding cause executor to receive more than intended? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_37bf2e09-129a-48b2-b51a-f371f4673c7a?mode=deep",
+    "timestamp": "2026-02-19 00:15:12.034540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_avg_ltv()] [Division by Zero] If total_value is 0, returns 0 - can this cause issues in borrow health checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3e3fd36e-e973-479f-a102-5cd831976e33?mode=deep",
+    "timestamp": "2026-02-19 00:15:36.515872",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_avg_ltv()] [LTV Weighting Manipulation] LTV weighted by collateral value - can attacker deposit high-LTV assets to inflate average? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_99d6e9f6-1803-4e11-97a2-d6ff9023681c?mode=deep",
+    "timestamp": "2026-02-19 00:15:58.304101",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_avg_ltv()] [Oracle Manipulation During Loop] Oracle queried per asset in loop - can attacker manipulate oracle during iteration? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ba5d68c-d71f-41cd-b838-c78ae6a2a1bd?mode=deep",
+    "timestamp": "2026-02-19 00:16:21.941001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_avg_ltv()] [Ray Math Precision Loss] ray_mul(ltv, user_collateral_value) accumulated - can precision loss accumulate with many assets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa838a34-f722-4d2d-9fcb-b195836c32e9?mode=deep",
+    "timestamp": "2026-02-19 00:16:44.924653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/logic.move] [Function: calculate_avg_ltv()] [Collateral Value Inflation] Relies on user_collateral_value - can attacker inflate values to increase avg LTV? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e1338f9f-81f0-42f2-b5fe-fca5176e9e96?mode=deep",
+    "timestamp": "2026-02-19 00:17:09.870074",
+    "report_generated": false
+  }
+]
