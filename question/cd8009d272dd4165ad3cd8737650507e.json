@@ -1,5 +1,0 @@
-[
-  "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Code Quality] [Stub Deployment] If this stub code with all abort 0 statements is deployed to mainnet, would it indicate incomplete development and pose systemic risk to Volo Protocol? (Critical)",
-  "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Documentation] [Missing Spec] Without documentation or function comments, how do Volo Protocol developers know the intended behavior of version functions when implemented? (Low)",
-  "[File: volo-vault/local_dependencies/mmt_v3/sources/version.move] [Technical Debt] [Commented Code] The presence of commented-out init_() function suggests work-in-progress - could this indicate other incomplete aspects of MMT v3 integration? (Low)"
-]
