@@ -1,6 +1,0 @@
-[
-  "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: version_migrate()] [Migration Attack] Can a compromised admin use version_migrate() to upgrade to a malicious version that removes security checks, then execute exploits before anyone notices? (Critical)",
-  "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_pause()] [Emergency Response] If the oracle is paused during an emergency, can admin unpause it before the issue is resolved, exposing the system to continued exploitation? (High)",
-  "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_price_feed()] [Threshold Logic] If price_diff_threshold1 is set very high and price_diff_threshold2 is at max value, can all price changes be accepted as within thresholds, defeating deviation protection? (High)",
-  "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_maximum_allowed_span_percentage_to_price_feed()] [Span Attack] Can an attacker set span percentage to 100% (10000 in basis points), then manipulate first price update to set a high baseline, allowing subsequent prices to vary wildly within that span? (High)"
-]
