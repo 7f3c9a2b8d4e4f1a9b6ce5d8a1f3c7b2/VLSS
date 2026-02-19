@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Boolean Logic] The is_healthy boolean is calculated but only used for assertion context. Can the assertion at line 48 be reached with is_healthy = true if logic errors exist? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e6312c2-2e4c-487d-9958-e46b7a64304b?mode=deep",
+    "timestamp": "2026-02-19 07:50:51.933547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Boundary Case] For health_factor exactly equal to min_health_factor, the position is deemed unhealthy. Can this cause legitimate positions at the exact threshold to be incorrectly rejected? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_59386407-3e96-4259-aae3-9f5980ff00fb?mode=deep",
+    "timestamp": "2026-02-19 07:51:04.931356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Error Code] The assert at line 48 uses hf_normalized as u64 as the error code. Can this create collisions with other error codes in the system if hf_normalized happens to match existing error constants? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_161a0e62-bf9c-44ca-bbe5-65b221bf6b2f?mode=deep",
+    "timestamp": "2026-02-19 07:51:19.144879",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Error Code Ceiling] The hf_normalized is capped at DECIMAL_E9 (1e9) before casting to u64. Can this cause all health factors >= 1.0 to return the same error code 1000000000, losing diagnostic granularity? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_742af53b-3a78-431e-9118-0b2aff1e60e4?mode=deep",
+    "timestamp": "2026-02-19 07:51:32.981763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Error Code Cast] Casting u256 to u64 at line 48. Can overflow occur if hf_normalized > u64::MAX due to logic errors, causing a different error or panic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1df14221-eacc-4752-9905-de06609a14d8?mode=deep",
+    "timestamp": "2026-02-19 07:51:47.596896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Error Interpretation] Off-chain systems must interpret error codes as health factors with 9 decimals. Can ambiguity in error code interpretation lead to incorrect liquidation decisions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d1e40a64-8f0e-422f-b5ad-4e894084494a?mode=deep",
+    "timestamp": "2026-02-19 07:52:04.380375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Normalization Ceiling] The if-statement at line 44 caps hf_normalized at DECIMAL_E9. Can this cause all extremely healthy positions (HF > 1.0) to be indistinguishable, hiding risk concentration? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1f663548-16d8-4219-bde8-0d33048d7c02?mode=deep",
+    "timestamp": "2026-02-19 07:52:22.151657",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Normalization Order] The normalization happens after the is_healthy check. Can the order of operations cause incorrect error codes to be emitted for edge cases? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_939b2242-8220-451b-aed1-d5ca686f6b5c?mode=deep",
+    "timestamp": "2026-02-19 07:52:40.586226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Normalization Bypass] If health_factor is exactly DECIMAL_E18, hf_normalized becomes 1. Can positions at HF = 1.0 (critical threshold) bypass strict health checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_91560468-0639-4286-a1d1-4b08ce0f580e?mode=deep",
+    "timestamp": "2026-02-19 07:53:01.124782",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Normalization Mutation] The hf_normalized variable is mutable. Can reentrancy or logic errors cause it to be modified after calculation but before assertion? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_15708a4e-fd77-45e6-a722-f58f45eec83b?mode=deep",
+    "timestamp": "2026-02-19 07:53:22.828060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Event Front-Running] The NaviHealthFactorVerified event is emitted at line 27 before the health check assertion. Can attackers listen to events to front-run liquidations or vault operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9852221f-d00c-4107-a90c-8fed1cd3b294?mode=deep",
+    "timestamp": "2026-02-19 07:53:44.297951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Event Spam] No rate limiting exists on event emission. Can an attacker spam verify_navi_position_healthy calls to flood event logs and obscure legitimate health factor changes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1cec7357-335f-4e0d-82b1-4e58bef6d939?mode=deep",
+    "timestamp": "2026-02-19 07:54:05.873700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Event Ordering] Events are emitted before the assertion. If the assertion fails, the event still exists. Can this create false positives in off-chain monitoring where events show 'verified' but transaction reverts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a25a3dca-757f-4907-81fa-00db8a2ce01b?mode=deep",
+    "timestamp": "2026-02-19 07:54:27.775194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Event: NaviHealthFactorVerified] [Data Leakage] The event exposes account, health_factor, and safe_check_hf publicly. Can competitors use this to track vault positions and front-run rebalancing operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9d022170-5795-4448-8f7a-bbafa4849bdb?mode=deep",
+    "timestamp": "2026-02-19 07:54:49.416922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: is_navi_position_healthy()] [Event Missing] This function doesn't emit events. Can the lack of event emission create monitoring blind spots where health checks pass silently without audit trails? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_593d30c5-ec61-4afe-a6f0-2be1c7c49ba3?mode=deep",
+    "timestamp": "2026-02-19 07:55:11.968472",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Parameter Validation] No validation on min_health_factor parameter. Can caller pass 0 or extremely large values to bypass or over-restrict health checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_987586c3-ca09-46ba-b149-7dedaa9da0ac?mode=deep",
+    "timestamp": "2026-02-19 07:55:34.334068",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Parameter Validation] No validation on account parameter. Can caller pass zero address or invalid addresses to cause unexpected behavior in lending_core? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b34f8405-f8e5-453d-9b45-05b8c11e9dbd?mode=deep",
+    "timestamp": "2026-02-19 07:55:57.184759",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Parameter Validation] min_health_factor is u256 but health factor normalization uses DECIMAL_E18. Can decimal base mismatches cause min_health_factor to be interpreted incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cec4fb3b-b0d2-40bf-b319-1f16309ae7ca?mode=deep",
+    "timestamp": "2026-02-19 07:56:19.542790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: is_navi_position_healthy()] [Parameter Validation] Same lack of min_health_factor validation. Can passing u256::MAX cause all comparisons to fail, effectively disabling health checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b72d65f3-c39f-46ac-a3e4-0dc67fed8694?mode=deep",
+    "timestamp": "2026-02-19 07:56:39.423487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Parameter Type] min_health_factor is u256 but error code is u64. Can type conversion issues arise if min_health_factor > u64::MAX? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_824068e8-baff-4ec7-8d79-c070ac649f39?mode=deep",
+    "timestamp": "2026-02-19 07:56:58.775246",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [External Call] Calls lending_core::logic::user_health_factor at line 25. Can malicious implementations of this external function return manipulated health factors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5d4b332-c2ad-43e8-8f55-9b698bb80336?mode=deep",
+    "timestamp": "2026-02-19 07:57:20.284165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Module Trust] The function trusts lending_core module completely. Can a compromised or upgraded lending_core module bypass health checks by returning u256::MAX? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3c1d23ca-18c5-4921-a634-587d9025ab68?mode=deep",
+    "timestamp": "2026-02-19 07:57:42.704686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: verify_navi_position_healthy()] [Return Value] No bounds checking on the returned health_factor value. Can lending_core return invalid values (0, u256::MAX) that break comparison logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_80df79b7-23a2-414b-8993-689274e88e9f?mode=deep",
+    "timestamp": "2026-02-19 07:58:04.667662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Function: is_navi_position_healthy()] [External Call] Also calls lending_core::logic::user_health_factor. Can inconsistent return values between two calls in the same transaction cause TOCTOU vulnerabilities? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_307c9f6e-bb92-485e-94de-3f651c371bd3?mode=deep",
+    "timestamp": "2026-02-19 07:58:28.456750",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/health-limiter/sources/adaptors/navi_limiter.move] [Import] [Dependency Risk] The module imports lending_core::logic, lending_core::storage, and oracle::oracle. Can version mismatches or ABI incompatibilities cause health factor miscalculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e6ea5ce8-3b49-4168-aac6-dc91e814cd20?mode=deep",
+    "timestamp": "2026-02-19 07:58:52.651538",
+    "report_generated": false
+  }
+]
