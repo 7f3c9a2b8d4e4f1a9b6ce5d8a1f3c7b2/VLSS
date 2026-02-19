@@ -1,0 +1,56 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_secondary_oracle_provider()] [Secondary Manipulation] Can an attacker set secondary provider to one they control, then manipulate primary to fail, forcing fallback to attacker's manipulated secondary prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_441d1c17-758d-4cc8-bb95-30bc1b8f55f3?mode=deep",
+    "timestamp": "2026-02-19 04:12:16.992528",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_secondary_oracle_provider()] [Empty Secondary Attack] Can an attacker set secondary to empty, then attack primary provider, leaving no fallback and causing price unavailability? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_66fbc5f3-158f-44fd-9747-e7e660265ea4?mode=deep",
+    "timestamp": "2026-02-19 04:12:28.939232",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: version_migrate()] [Partial Migration] If version_migrate succeeds for oracle_config but fails for price_oracle, can the system operate with mismatched versions causing undefined behavior? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9c5d145a-0ea2-4916-bb98-52bded876b45?mode=deep",
+    "timestamp": "2026-02-19 04:12:43.267751",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: version_migrate()] [Migration Replay] Can an attacker call version_migrate multiple times to cause version number overflow or reset version checks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c7530c2f-e74c-4720-8678-c14e2f5aa621?mode=deep",
+    "timestamp": "2026-02-19 04:12:56.161820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: version_migrate()] [Migration Without Pause] Can an attacker exploit the fact that version_migrate doesn't pause the oracle, allowing operations to continue during migration with inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd0aa60f-4867-4ed3-a064-c4d720b2a32b?mode=deep",
+    "timestamp": "2026-02-19 04:13:10.222610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_pyth_oracle_provider_config()] [Empty Pair ID] Can an attacker provide empty vector<u8> for pair_id, causing Pyth lookups to fail silently or return zero prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_65f7fb00-8180-42c2-88a1-d6d44cdc3247?mode=deep",
+    "timestamp": "2026-02-19 04:13:26.720232",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_pyth_price_oracle_provider_pair_id()] [Pair ID Swap During Active Use] Can an attacker change pair_id while the provider is actively being queried, causing mid-transaction price source switch? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9d32fde-f768-4d22-9daa-1d479bfb3a53?mode=deep",
+    "timestamp": "2026-02-19 04:13:44.605332",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_supra_oracle_provider_config()] [Invalid u32 Pair ID] Can an attacker provide u32 pair_id that doesn't correspond to any Supra feed, causing queries to fail or return garbage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb01042b-6935-445a-801b-985cd945c6e6?mode=deep",
+    "timestamp": "2026-02-19 04:14:03.717842",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_supra_price_source_pair_id()] [Vector<u8> Manipulation] Can an attacker provide vector<u8> that encodes to valid but wrong Supra pair_id after conversion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_110a638a-ed1e-4aea-bf25-a9206ebfa302?mode=deep",
+    "timestamp": "2026-02-19 04:14:25.646640",
+    "report_generated": false
+  }
+]
