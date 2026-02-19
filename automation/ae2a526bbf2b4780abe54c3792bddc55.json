@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools()] [Vector Length Manipulation] At line 38, pool_length from vector::length—if the objs vector is modified externally during execution, can pool_length become stale and cause out-of-bounds access? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7fe18273-d801-4205-bce9-dbaf7683bf01?mode=deep",
+    "timestamp": "2026-02-19 04:28:37.133814",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Vector Iteration DoS] At lines 121-176, nested while loops iterate through all pools—if an attacker creates thousands of active pools, can this cause transaction to exceed gas limits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02115229-bb77-4897-91bd-dfe73a7a3ef2?mode=deep",
+    "timestamp": "2026-02-19 04:28:49.660019",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Vector Borrow Panic] At line 273, vector::borrow with pool_length-1—if objs vector is concurrently modified to be shorter, can this cause borrow to panic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_724b8464-8db4-4ab3-976a-d387e05fd3e8?mode=deep",
+    "timestamp": "2026-02-19 04:29:02.872391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Empty Vector Continue] At lines 114-117, if pool_length is 0, continue is used—can many empty assets cause excessive continue operations and waste gas? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dbf5776a-b316-4811-86fb-7c67d1c1d962?mode=deep",
+    "timestamp": "2026-02-19 04:29:16.911182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Coin Type Deduplication Bypass] At lines 171-173, vector::contains checks if coin type already exists before adding—if two pools have the same token with slightly different type names (e.g., different addresses), can they be treated as different tokens? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0fa08302-42c7-40ec-8981-14834f6a260f?mode=deep",
+    "timestamp": "2026-02-19 04:29:31.492908",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Type Name String Comparison] At line 172, type_name::into_string converts type to string for comparison—can type name collisions (same string representation for different types) cause incorrect deduplication? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ba0ff286-0c97-4d56-b228-ba091ec18a1c?mode=deep",
+    "timestamp": "2026-02-19 04:29:48.500429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Single Coin Type Wrapping] At line 251, vector::singleton is used for single coin type—if the same pool is queried multiple times, can duplicate entries accumulate in a larger context? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b07b0e9-abe0-4717-8981-b28e12ffd0fd?mode=deep",
+    "timestamp": "2026-02-19 04:30:05.044724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [APY Formula Manipulation] At lines 159-168, APY = (incentive_usd / duration) * MsPerYear / supply_usd—if duration is very short (e.g., 1 second), can this produce astronomically high APY values that mislead users? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6bd8c2ab-51b2-41d7-9e33-0071dd07cde4?mode=deep",
+    "timestamp": "2026-02-19 04:30:23.242913",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Annual Multiplication Overflow] At line 242, multiplying by MsPerYear (31536000000) can cause overflow if incentive amount is large—can this cause APY calculation to wrap around or abort? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e124b21-d17f-4d7d-bd9d-901fa4bc78a2?mode=deep",
+    "timestamp": "2026-02-19 04:30:41.228965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [APY Accumulation Error] At line 170, total_apy += apy for multiple pools—if some pools have negative APY due to calculation errors, can total APY become negative or incorrect? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_582a89ad-8209-4867-94ac-a91d68446a1e?mode=deep",
+    "timestamp": "2026-02-19 04:30:59.861962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Short Duration Amplification] At line 163, dividing by (end_at - start_at) means shorter durations amplify APY—can a 1-millisecond pool show 1000000x higher APY than it should? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da21bc2a-8a0d-463c-ac1e-5a7444abf2de?mode=deep",
+    "timestamp": "2026-02-19 04:31:17.747915",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Constant: MsPerYear] [Time Constant Accuracy] At line 14, MsPerYear is defined as 1000*60*60*24*365 = 31536000000—this doesn't account for leap years, can this cause 0.25% APY calculation error over 4-year periods? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5154bd18-9859-4d0d-ad84-32169b8763a8?mode=deep",
+    "timestamp": "2026-02-19 04:31:36.398308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Constants: PoolStatus] [Status Value Collision] At lines 261-263, PoolStatusEnabled=1, PoolStatusClosed=2, PoolStatusNotStarted=3—if these values overlap with other status constants in the system, can status filtering return wrong pools? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87ae06c2-18c4-4395-a2d9-8e39342fe52e?mode=deep",
+    "timestamp": "2026-02-19 04:31:56.791591",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy_one()] [Hardcoded Decimal 6] At line 229, decimal value 6 is hardcoded—can this function only work correctly for USDC-like tokens and fail for all others? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fec9a5ae-8309-47d3-bd1b-90d136cc166c?mode=deep",
+    "timestamp": "2026-02-19 04:32:17.990955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools()] [User Balance Exposure] At line 39, any caller can query user_supply_balance and user_borrow_balance for any address—can this leak sensitive financial information about users' positions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dcc2920c-1a38-4d48-a886-4cd2e10266db?mode=deep",
+    "timestamp": "2026-02-19 04:32:39.458921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [Funds Address Exposure] At line 277, funds address is exposed in pool info—can this reveal admin wallet addresses or protocol treasury information? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68a68f97-97ee-4b8b-b37c-3f97e4c65975?mode=deep",
+    "timestamp": "2026-02-19 04:32:59.391260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Protocol TVL Disclosure] At lines 144-153, protocol total supply and value calculations expose TVL—can competitors or attackers use this to identify vulnerable or attractive pools? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3b72d9f-4fb5-4bd8-b86c-c453bf190f9b?mode=deep",
+    "timestamp": "2026-02-19 04:33:20.591697",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Module: incentive_v2] [External Dependency Trust] At line 12, lending_core::incentive_v2 is imported—if incentive_v2 has vulnerabilities in calculate_one_from_pool or get_pool_info, can those propagate to this UI module? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4b2882c-9da0-4b5e-bfc8-c9b6e80e751a?mode=deep",
+    "timestamp": "2026-02-19 04:33:42.013134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Module: calculator] [Calculation Dependency] At line 10, lending_core::calculator is used for value calculations—if calculator has rounding errors or overflow bugs, can this corrupt APY calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a741b6d8-cba5-4c24-a791-d6598e245e4f?mode=deep",
+    "timestamp": "2026-02-19 04:34:03.314924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Module: oracle] [Oracle Module Trust] At line 8, oracle::oracle is used for prices—if the oracle module accepts stale prices or has manipulation vulnerabilities, can this propagate to APY calculations here? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c7fa45e3-e228-4365-82e8-3f647dd2ab7c?mode=deep",
+    "timestamp": "2026-02-19 04:34:26.022066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Module: storage] [Storage Module Side Effects] At line 11, lending_core::storage functions take mutable references—if storage module has bugs that modify state unexpectedly, can view functions inadvertently change protocol state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b1727cc-a8b4-4dba-b010-4ab9865f48a5?mode=deep",
+    "timestamp": "2026-02-19 04:34:46.192185",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools()] [Empty Pool Vector] At line 37, if get_pool_from_asset_and_option returns empty objs vector, the while loop at line 46 never executes—can this cause users to see no incentives even when pools exist? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_995bb0a2-118c-439f-beb1-6a1ac753ae4a?mode=deep",
+    "timestamp": "2026-02-19 04:35:07.959577",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_apy()] [Zero Reserve Count] At line 102, if reserves_count is 0, the while loop never executes—can this return empty APY info even when incentive pools exist? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5c4f1bf-2dae-4401-b6a1-2c70a320e9b7?mode=deep",
+    "timestamp": "2026-02-19 04:35:29.881403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: get_incentive_pools_group_by_phase()] [All Pools Filtered] At lines 295-302, if all pools are filtered out by status/option conditions, empty result is returned—can this hide valid pools from users due to overly strict filtering? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3bfb7cd3-ebc7-424f-baa7-de3cc30712f4?mode=deep",
+    "timestamp": "2026-02-19 04:35:51.617570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/incentive.move] [Function: insert_pools()] [Empty Pools Vector] At line 340, if pools vector is empty initially, the while loop doesn't execute and new phase is added—is the is_exist flag correctly handled for first insertion? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d05f459d-5550-4800-a28d-251a6d6abc3f?mode=deep",
+    "timestamp": "2026-02-19 04:36:12.608730",
+    "report_generated": false
+  }
+]
