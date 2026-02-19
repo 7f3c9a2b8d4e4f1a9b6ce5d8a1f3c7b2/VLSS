@@ -1,3 +1,0 @@
-[
-  "[File: volo-vault/local_dependencies/mmt_v3/sources/pool.move] [Function: protocol_fee_share()] [Fee Share Query Exploitation] If protocol_fee_share() returns a different value than the actual protocol_fee_share used in fee calculations, can this cause discrepancies in expected vs actual fees? (Medium)"
-]
