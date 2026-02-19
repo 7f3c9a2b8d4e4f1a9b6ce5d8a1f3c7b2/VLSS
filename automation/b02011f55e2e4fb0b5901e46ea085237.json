@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [MEV] Can an attacker who controls pause timing manipulate LST/SUI price on DEXs by pausing immediately after large stake events, creating arbitrage opportunities? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_69f4676d-b50d-4c5c-b5f8-62618bd4af62?mode=deep",
+    "timestamp": "2026-02-19 04:37:18.581622",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Market Impact] If version check causes widespread transaction failures during upgrade, can this crash LST price due to perceived protocol failure, enabling market manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d048cf33-08af-45ff-aa86-55df9e88ac2d?mode=deep",
+    "timestamp": "2026-02-19 04:37:31.807655",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [V1 to V2] During volo_v1 to v2 migration, is set_paused() called correctly in sequence, or can import_stakes() execute with paused=false permanently, bypassing intended safety checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1c5b26c9-a053-42a9-a22f-1bca3a09a3e5?mode=deep",
+    "timestamp": "2026-02-19 04:37:45.801129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Export/Import Race] Can an attacker stake between export_stakes() and import_stakes(), and does this create duplicate LST minting since new stakes aren't included in migration accounting? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_731008fc-bd4f-4728-adf9-4efefb21ad8b?mode=deep",
+    "timestamp": "2026-02-19 04:38:00.339969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Migration Window] The 172-175 pause toggles in migrate.move - can an attacker monitor chain state and inject malicious transactions precisely during unpause window? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6968475e-75da-417c-8127-e10d3cd94c12?mode=deep",
+    "timestamp": "2026-02-19 04:38:15.719286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Migration Incomplete] If migration partially completes (some stakes imported but not all), does check_version() still pass, allowing operations on incomplete state that violate ratio invariants? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c8846d1a-8f43-4b71-ae9b-2542093008d9?mode=deep",
+    "timestamp": "2026-02-19 04:38:32.791270",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Admin Only] Is migrate_version() truly gated by AdminCap in all call paths, or can OperatorCap holder trigger migration via alternate entry points? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_07054d3f-080a-4e1d-94b7-9699c8501a79?mode=deep",
+    "timestamp": "2026-02-19 04:38:51.015236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Operator Override] Can OperatorCap holder effectively bypass pause by calling operator-gated functions like rebalance() that don't check_not_paused()? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_791bb1fd-25db-4af7-8765-aae7d9eb9c92?mode=deep",
+    "timestamp": "2026-02-19 04:39:11.134587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: new()] [Cap Creation] When StakePool is created with new Manage, are AdminCap and OperatorCap properly initialized, or can pool exist without caps, making it ungovernable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_abb534b4-cad2-4983-8570-416c89d86df9?mode=deep",
+    "timestamp": "2026-02-19 04:39:32.902611",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Version Overflow] Although version is u64, if VERSION constant somehow overflows in distant future, does <= comparison still work correctly or can it wrap around? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fd9494c1-c1e0-419a-8b75-4d40a2ae912a?mode=deep",
+    "timestamp": "2026-02-19 04:39:54.338479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Comparison Logic] Is == comparison sufficient, or should it be self.version >= VERSION to allow forward compatibility with future client versions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ae70ce8-1ed4-4f0f-ac42-2d4fc7c2303f?mode=deep",
+    "timestamp": "2026-02-19 04:40:18.231240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Missing Event] Does migrate_version() emit an event, and if not, can off-chain systems miss critical version upgrades and operate on stale protocol assumptions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db0a62c7-5384-48f4-ac7c-9b38a471fe2d?mode=deep",
+    "timestamp": "2026-02-19 04:40:41.691674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Silent Failure] When version check fails, does it provide enough context in error to distinguish between which version was expected vs found for debugging? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6625720c-8f3d-4c4f-8c40-66f728412634?mode=deep",
+    "timestamp": "2026-02-19 04:41:06.451484",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_not_paused()] [Event Spam] If attacker repeatedly calls functions that fail on check_not_paused(), can they spam events/logs to mask real security incidents? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90765cb6-e352-46d6-89fa-2e4150600672?mode=deep",
+    "timestamp": "2026-02-19 04:41:31.614724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Gas Waste] Does every stake/unstake incur unnecessary gas for version check when version hasn't changed in months, and can this be optimized without compromising security? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ba64863-5f52-4d3d-88b0-ba73a23bf865?mode=deep",
+    "timestamp": "2026-02-19 04:41:58.196474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [High Gas] If StakePool has massive validator_pool or extra_fields bag, does migration consume excessive gas, potentially causing transaction to fail and leaving protocol stuck? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aeb4b6f6-6e6c-4c53-becb-99a02906ee08?mode=deep",
+    "timestamp": "2026-02-19 04:42:24.429153",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Struct: Manage] [Storage] With only `store` ability, is Manage properly encapsulated within StakePool, or can it be extracted and manipulated via sui::dynamic_field operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4bca6fe6-d48c-48a1-bf18-933dbc5436dd?mode=deep",
+    "timestamp": "2026-02-19 04:42:49.872608",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: new()] [Bag Storage] StakePool has extra_fields bag - can malicious code store fake Manage struct in bag and bypass real manage field checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bcd1d85c-8042-4a00-b83e-00f2008533c8?mode=deep",
+    "timestamp": "2026-02-19 04:43:13.108133",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Bridge] If LST tokens are bridged to another chain, can bridged tokens be minted on chains that don't enforce version checks, creating unbacked supply? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98d12e57-0f58-4a2f-8d98-f4e96fd82e14?mode=deep",
+    "timestamp": "2026-02-19 04:43:34.637090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Bridge Pause] If Sui chain is paused but bridge operates on stale state, can users mint LST on other chains while Sui-side pool is frozen? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cd466435-e6fc-4d1b-8a84-9c1e57de7338?mode=deep",
+    "timestamp": "2026-02-19 04:43:53.154431",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Breaking Change] If VERSION 3 introduces breaking changes to StakePool layout, does migrate_version() handle data migration or just increment version number, corrupting existing fields? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b30748a4-cf1f-43a1-9eb6-af24abf6813d?mode=deep",
+    "timestamp": "2026-02-19 04:44:14.359062",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Backwards Compat] Can old client code (expecting VERSION 1) still read StakePool data after migration to VERSION 2, or does version mismatch cause read failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c21bf322-311e-4f78-b7dd-18b36ec3482d?mode=deep",
+    "timestamp": "2026-02-19 04:44:34.738895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Constants: VERSION] [Upgrade Path] Is there a documented upgrade path from VERSION 2 to 3, or can admin arbitrarily increment VERSION without proper migration code? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_57b30986-8ca5-4ffe-a736-f717d6c8c036?mode=deep",
+    "timestamp": "2026-02-19 04:44:56.763500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_not_paused()] [Validator Exit] If a validator exits network while pool is paused, can users' delegated stakes be lost since rebalance() to rescue stakes may also be paused? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7fdc5339-4ad3-4bd5-a6b5-451bad8752ca?mode=deep",
+    "timestamp": "2026-02-19 04:45:21.003461",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Slashing] If validators get slashed during pause period, do users bear the loss proportionally, and can admin pause strategically to avoid their own exposure? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a9266762-dd97-4723-bbf0-21851d56ef34?mode=deep",
+    "timestamp": "2026-02-19 04:45:46.932540",
+    "report_generated": false
+  }
+]
