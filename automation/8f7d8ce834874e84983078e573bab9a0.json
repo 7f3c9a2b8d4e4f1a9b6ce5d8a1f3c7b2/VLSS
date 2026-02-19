@@ -1,0 +1,32 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Struct: CToken<P, T>] [Phantom Type Parameter P] The P parameter represents the protocol/pool. Can two different pools have ctokens that are indistinguishable at type level, causing cross-contamination? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eac44212-b3f6-49b3-b4c3-9ee11f1b8205?mode=deep",
+    "timestamp": "2026-02-19 02:59:34.170937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Struct: Reserve<P>] [Single Phantom Parameter] Reserve only has phantom P, not T. Can this allow a Reserve to handle multiple coin types incorrectly if functions don't validate coin_type field? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c78147a2-fd9f-4e98-a507-939d48891aad?mode=deep",
+    "timestamp": "2026-02-19 02:59:47.323933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: balances()] [Type Parameter Mismatch] Function signature requires correct T but implementation uses dynamic field borrow. Can type system be bypassed to borrow wrong Balances<P, T>? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_542b2471-6eb7-477b-9ceb-31d0b27e8119?mode=deep",
+    "timestamp": "2026-02-19 03:00:01.719812",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: market_value()] [Decimal Division Order] Divides mul(price, liquidity_amount) by pow(10, decimals). Can alternative orderings reduce precision loss or prevent overflow? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0692c691-c558-40c6-9cdf-d14901be7c4d?mode=deep",
+    "timestamp": "2026-02-19 03:00:16.266736",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/reserve.move] [Function: compound_interest()] [APR Calculation Precision] Divides APR by seconds_in_year then uses pow. Can this lose precision compared to calculating (1 + APR)^(time/year)? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_15b6beb8-d822-436b-97d8-9d433f6397dc?mode=deep",
+    "timestamp": "2026-02-19 03:00:32.394214",
+    "report_generated": false
+  }
+]
