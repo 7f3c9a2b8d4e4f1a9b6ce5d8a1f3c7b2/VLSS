@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: run()] [Type Confusion] Can the Queue parameter be substituted with a different type that implements similar methods, bypassing the intended queue module's security checks? Precondition: Weak type enforcement. Violated invariant: Queue type must be exact, not duck-typed. Impact: Authority set on wrong object types. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_49874bd2-c0b1-43b2-a493-d213496a7e92?mode=deep",
+    "timestamp": "2026-02-19 01:22:24.255626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: actuate()] [Reference Safety] The queue parameter is &mut Queue—can multiple mutable references exist simultaneously, allowing concurrent modifications that violate Rust's borrowing rules? Precondition: Unsafe code or reference aliasing. Violated invariant: Only one mutable reference should exist. Impact: Data races, state corruption. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_13915598-4358-46af-864c-082c5db8327d?mode=deep",
+    "timestamp": "2026-02-19 01:22:37.133566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: validate()] [Inconsistent Validation] Do queue_set_configs_action, queue_override_oracle_action, and other queue actions use identical validation logic, or can inconsistencies be exploited? Precondition: Different validation across actions. Violated invariant: All queue actions should have consistent security checks. Impact: Exploiting weakest action's validation. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb5622ff-5b8b-43e2-97d5-48eb6fb126eb?mode=deep",
+    "timestamp": "2026-02-19 01:22:50.614112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: run()] [Action Composition] Can an attacker combine run() with other queue actions in a single transaction to create exploitable state transitions? Precondition: Multiple actions callable in one transaction. Violated invariant: Action composition should be safe. Impact: Complex attack chains via action chaining. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0960c4c-e8ad-476d-a86f-00d67a8bae3b?mode=deep",
+    "timestamp": "2026-02-19 01:23:04.822940",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: validate()] [Boolean Logic] Can the assert!() conditions be satisfied through unexpected boolean algebra, such as short-circuiting or operator precedence issues? Precondition: Complex boolean expressions. Violated invariant: Assertions should be unambiguous. Impact: Logic bypasses. (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6cd1fa6c-ae4c-424e-8134-2be28544ad84?mode=deep",
+    "timestamp": "2026-02-19 01:23:19.745159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: validate()] [Equality Check] The version check uses ==—can version values be crafted (e.g., via overflow/underflow) to equal EXPECTED_QUEUE_VERSION while actually being different? Precondition: Arithmetic manipulation possible. Violated invariant: Version comparison should be robust. Impact: Version check bypass via arithmetic tricks. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e4b8b01c-51e2-4af5-b8a5-b5cc3b2c4aa0?mode=deep",
+    "timestamp": "2026-02-19 01:23:36.040882",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: run()] [Object Ownership] If Queue is a shared object, can ownership/authority semantics be confused between Sui's object ownership model and application-level authority? Precondition: Sui object model complexity. Violated invariant: Ownership and authority should align. Impact: Confused deputy attacks via ownership/authority mismatch. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a32f4e4f-40b4-44ef-b55f-7fff9ae56210?mode=deep",
+    "timestamp": "2026-02-19 01:23:54.345987",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: validate()] [TxContext Manipulation] Can the TxContext parameter be manipulated or spoofed by malicious validators or through transaction replay attacks? Precondition: Weak TxContext integrity. Violated invariant: TxContext must be trustworthy. Impact: Context manipulation enabling authority bypass. (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a13a6b8f-23ea-4f5c-b622-d53589d9bb6c?mode=deep",
+    "timestamp": "2026-02-19 01:24:13.009701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: run()] [Programmable Transaction Blocks] In Sui's PTB model, can an attacker chain multiple run() calls in a single PTB to rapidly cycle authority and exploit intermediate states? Precondition: PTBs allow complex transaction graphs. Violated invariant: Authority should be stable within transaction. Impact: Authority cycling attacks via PTB. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2a231f80-eac6-47f1-9089-7833ae407a22?mode=deep",
+    "timestamp": "2026-02-19 01:24:33.179943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: actuate()] [ID Stability] queue.id() returns an ID—can this ID change or be manipulated between validate() and actuate() calls, causing event logging issues? Precondition: Object IDs are mutable. Violated invariant: Object IDs should be immutable. Impact: Event data corruption. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_39924c21-2d34-4b40-89ed-b1f5b0544050?mode=deep",
+    "timestamp": "2026-02-19 01:24:52.327891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: validate()] [Upgrade Compatibility] If this module is upgraded to add new validation checks, will existing in-flight transactions fail or succeed with old validation logic? Precondition: Module upgrade during transaction execution. Violated invariant: Upgrades should not break in-flight transactions. Impact: Transaction failures, inconsistent behavior. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_99c9b08f-4965-4e92-ae11-98548f58b016?mode=deep",
+    "timestamp": "2026-02-19 01:25:11.124886",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: run()] [Migration Path] If Queues need to migrate from version 1 to version 2, does this action provide a safe migration path for authority transfers during the upgrade window? Precondition: Version migration in progress. Violated invariant: Authority should remain transferable during migrations. Impact: Authority transfer DoS during upgrades. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4c0a9f87-2258-4ffe-a5a3-60af4d4d74f1?mode=deep",
+    "timestamp": "2026-02-19 01:25:31.421504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: validate()] [Signature Replay] If has_authority() relies on signatures, can an attacker replay old authority transfer signatures after authority has changed? Precondition: Signature-based auth without nonces. Violated invariant: Signatures should be non-replayable. Impact: Replay attacks enabling unauthorized transfers. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0aa26dcd-93dc-489d-9240-ac381c0b0ff1?mode=deep",
+    "timestamp": "2026-02-19 01:25:51.569146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: run()] [Key Rotation] If the current authority's keys are compromised and they try to transfer authority to a new secure address, can the attacker front-run and transfer to themselves first? Precondition: Compromised keys, public mempool. Violated invariant: Key rotation should be protected from front-running. Impact: Permanent authority loss. (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ff38296a-4128-4660-9842-98a181d078bf?mode=deep",
+    "timestamp": "2026-02-19 01:26:13.285215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: run()] [Self-Transfer] Can authority be transferred to the same address it currently has (authority = new_authority), and if so, does this have any unintended side effects? Precondition: new_authority == existing_authority. Violated invariant: Self-transfers should be idempotent or disallowed. Impact: Unnecessary events, potential side effects. (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e6e98598-eb3b-462d-a801-337baa5e6854?mode=deep",
+    "timestamp": "2026-02-19 01:26:33.468958",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: actuate()] [Authority Chain] If authority is rapidly transferred A→B→C→A, can this create circular references or confusion in dependent systems tracking authority history? Precondition: Rapid authority cycling. Violated invariant: Authority changes should maintain clear lineage. Impact: Authority tracking confusion. (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eea7fb64-0126-4dc8-a598-7716f613b864?mode=deep",
+    "timestamp": "2026-02-19 01:26:53.797378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: run()] [Multi-Queue Management] If an authority manages multiple queues and tries to transfer them all in a batch, can partial failures leave queues in inconsistent authority states? Precondition: Batch authority transfers. Violated invariant: Batch operations should be atomic or clearly partial. Impact: Inconsistent multi-queue states. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be75279d-ed04-4c44-8816-c2f44d40d1be?mode=deep",
+    "timestamp": "2026-02-19 01:27:10.457891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: run()] [Fee Manipulation] If Queue has fee structures and authority controls fee settings, can an attacker temporarily gain authority, change fees to extract value, then transfer authority back? Precondition: Authority controls fees. Violated invariant: Authority transfers should not enable fee manipulation attacks. Impact: Economic exploitation via temporary authority. (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6eaadb83-ecad-4ae0-8eaf-cc84be22d515?mode=deep",
+    "timestamp": "2026-02-19 01:27:32.534049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: run()] [Gas Griefing] Can an attacker who has authority repeatedly transfer it back and forth to drain gas from a multi-sig or DAO wallet trying to maintain authority? Precondition: Authority held by organization with limited gas budget. Violated invariant: Authority transfers should not be gas weaponizable. Impact: Financial DoS via gas exhaustion. (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e17470a-2bc0-4e8d-ba3e-1b73a66043c0?mode=deep",
+    "timestamp": "2026-02-19 01:27:54.790741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: actuate()] [Event Data Race] If queue.authority() and queue.id() are read at slightly different times, can a concurrent modification cause event to log inconsistent data? Precondition: Concurrent Queue modifications possible. Violated invariant: Event data must be snapshot-consistent. Impact: Event data corruption. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_16faab6d-fb45-4c50-880f-0bf1fb2be9a1?mode=deep",
+    "timestamp": "2026-02-19 01:28:18.325175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: actuate()] [Struct Copying] QueueAuthorityUpdated has 'copy' ability—can unintended copying of this event struct lead to duplicate or manipulated events? Precondition: Event struct copied maliciously. Violated invariant: Events should only be emitted once per change. Impact: Duplicate events confusing off-chain systems. (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a4a46c94-d2ae-4550-b731-796412a44294?mode=deep",
+    "timestamp": "2026-02-19 01:28:40.921459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: run()] [Shared Object Contention] If Queue is shared and multiple transactions try to call run() simultaneously, can Sui's object versioning cause unexpected transaction ordering or conflicts? Precondition: High contention on Queue object. Violated invariant: Authority changes should have deterministic ordering. Impact: Non-deterministic authority updates. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6fef6e29-0cc8-4b72-a961-0cf280a598fd?mode=deep",
+    "timestamp": "2026-02-19 01:29:02.443885",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: validate()] [Consensus Timing] Can validate() pass at consensus time but state change between consensus and execution, making actuate() operate on stale assumptions? Precondition: Consensus-execution gap. Violated invariant: Validation should be valid at execution time. Impact: TOCTOU between consensus and execution. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9dcd603e-8c0c-418e-b568-6e6780e60f5e?mode=deep",
+    "timestamp": "2026-02-19 01:29:23.778132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: run()] [Volo Vault Dependency] If Volo Vault's health limiter or oracle price feeds depend on this queue's authority being secure, can authority compromise cascade to vault exploits? Precondition: Vault trusts queue authority. Violated invariant: Queue authority compromise should be isolated. Impact: Cross-protocol exploitation. (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_291e38b1-f707-4673-90c3-1ac7c6d216b4?mode=deep",
+    "timestamp": "2026-02-19 01:29:44.489134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/queue/queue_set_authority_action.move] [Function: run()] [Oracle Feed Manipulation] Given Switchboard provides on-demand oracle data, can malicious authority manipulation enable price feed attacks on Volo's liquid staking or vault operations? Precondition: Queue provides critical price feeds. Violated invariant: Oracle data must remain tamper-proof. Impact: Vault/LST price manipulation, fund theft. (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_67feef34-3f46-4a72-ab48-8a690c210b57?mode=deep",
+    "timestamp": "2026-02-19 01:30:04.297038",
+    "report_generated": false
+  }
+]
