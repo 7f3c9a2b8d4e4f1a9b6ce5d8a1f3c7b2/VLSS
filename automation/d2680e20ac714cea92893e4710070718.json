@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: deposit_on_behalf_of_user()] [Authorization] Can deposit_on_behalf_of_user() at line 555 be exploited to deposit minimal amounts to many users, causing storage bloat or accounting issues? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b329a99c-ecd8-473a-9698-01e38b1c1115?mode=deep",
+    "timestamp": "2026-02-19 07:01:41.273199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: deposit_on_behalf_of_user()] [Front-Running] Can an attacker front-run deposit_on_behalf_of_user() to deposit for target user, then immediately borrow against that position? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e2b75613-44bb-4ea0-b64b-75c64bca0f23?mode=deep",
+    "timestamp": "2026-02-19 07:01:53.734115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: repay_on_behalf_of_user()] [Authorization] Does repay_on_behalf_of_user() at line 567 allow anyone to repay any user's debt, potentially to prevent legitimate liquidations or manipulate positions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe887aa5-5eac-462f-901e-315dad283e3e?mode=deep",
+    "timestamp": "2026-02-19 07:02:07.595649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: deposit_on_behalf_of_user()] [Event Emission] Does DepositOnBehalfOfEvent at line 559 correctly track who provided the funds vs who received the deposit for audit purposes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c27c5d18-5116-4c3c-8f17-9001733ef603?mode=deep",
+    "timestamp": "2026-02-19 07:02:21.373568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: repay_on_behalf_of_user()] [Event Emission] Can the RepayOnBehalfOfEvent at line 572 emit incorrect amount due to excess_balance handling, hiding actual repayment amounts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86ec8733-a4b8-4adc-a47f-7f7ccb28d0ea?mode=deep",
+    "timestamp": "2026-02-19 07:02:36.088564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: deposit_on_behalf_of_user()] [Dust Attack] Can deposit_on_behalf_of_user() be used to deposit dust amounts to many addresses, causing gas exhaustion for legitimate users? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c9e33b8d-69ee-4b4e-a50c-2130ef79d527?mode=deep",
+    "timestamp": "2026-02-19 07:02:52.892802",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: repay_on_behalf_of_user()] [Liquidation Prevention] Can malicious actors use repay_on_behalf_of_user() to repay just enough debt to prevent liquidation of underwater positions, harming protocol? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b47e893-b4ba-43ec-8d93-dc6a1e236c45?mode=deep",
+    "timestamp": "2026-02-19 07:03:09.441650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: deposit_on_behalf_of_user()] [Accounting Mismatch] Does deposit_on_behalf_of_user() properly handle the case where 'value' parameter differs from actual deposit_coin balance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ffc94ed-5bd5-4b20-be22-6e2f9e0192c5?mode=deep",
+    "timestamp": "2026-02-19 07:03:27.390092",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: repay_on_behalf_of_user()] [Excess Handling] If repay_on_behalf_of_user() returns excess balance at line 579, who receives it - the caller or the user whose debt was repaid? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dfb20bc6-5a55-4aa7-8098-09d0507d42e5?mode=deep",
+    "timestamp": "2026-02-19 07:03:46.533300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: deposit_on_behalf_of_user()] [Friend Restriction] Why is deposit_on_behalf_of_user() marked public(friend) - can this restriction be bypassed through other public entry points? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2cfcf7c-43c1-47c9-a737-8a9c2b6e9969?mode=deep",
+    "timestamp": "2026-02-19 07:04:06.962650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_withdraw()] [Oracle Required] Why does base_withdraw() require oracle at line 218 but base_deposit() doesn't - can this asymmetry be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1e10ebb8-b834-46c1-bbd0-9f893f58fb38?mode=deep",
+    "timestamp": "2026-02-19 07:04:28.129018",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_borrow()] [Price Staleness] Does base_borrow() at line 266 verify oracle price freshness before allowing borrow, or can stale prices enable over-borrowing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c8ed7811-015a-4984-bb5e-889ba08b3629?mode=deep",
+    "timestamp": "2026-02-19 07:04:50.310231",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_repay()] [Price Manipulation] Can an attacker manipulate oracle prices between repay at line 310 and execute_repay at line 327 to repay less debt than actually owed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_616d7d1c-f8d3-4c21-be1c-2b4554abc0d1?mode=deep",
+    "timestamp": "2026-02-19 07:05:12.669360",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Price Fetch Timing] Are prices fetched at lines 456-457 after liquidation already executed, allowing liquidation at different prices than calculation used? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ab38f84-d62c-4834-83c5-ff396c48a21e?mode=deep",
+    "timestamp": "2026-02-19 07:05:35.157477",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Collateral Price Manipulation] Can liquidator manipulate collateral_price at line 456 to report lower price in event while calculating with higher price? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4382cd3d-7e6b-4cce-aa53-356bf414b790?mode=deep",
+    "timestamp": "2026-02-19 07:05:58.014246",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_liquidation_call()] [Debt Price Manipulation] Can debt_price at line 457 be manipulated to show higher debt value than actual for liquidation bonus calculation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ad24fa3a-bab4-4afe-9a5a-39efb0694058?mode=deep",
+    "timestamp": "2026-02-19 07:06:20.949987",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: withdraw_coin()] [Oracle Timing] Does withdraw_coin() at line 201 check oracle price at withdrawal time or can cached prices be used, enabling price arbitrage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_94a9780a-8875-4ef8-a4d8-522a98e8620b?mode=deep",
+    "timestamp": "2026-02-19 07:06:46.231902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: borrow_coin()] [Health Factor Calculation] Can borrow_coin() at line 251 be exploited by borrowing multiple assets simultaneously before oracle updates, exceeding safe health factor? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e7fb360c-4735-48db-a2b4-1ecedf8d1fc5?mode=deep",
+    "timestamp": "2026-02-19 07:07:09.423546",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: repay_coin()] [Oracle DoS] If oracle is temporarily unavailable, does repay_coin() at line 292 allow repayment without price checks, potentially at unfavorable rates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5ff6a2d-d640-462a-bc95-bb26b55142b0?mode=deep",
+    "timestamp": "2026-02-19 07:07:32.131964",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_withdraw()] [Price Decimal Handling] Does base_withdraw() properly handle oracle price decimals when calling logic::execute_withdraw() at line 229? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bbb4dd45-f186-43f6-b0c5-6dd8ddb56900?mode=deep",
+    "timestamp": "2026-02-19 07:07:52.949521",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_deposit()] [Zero Deposit] Can base_deposit() be called with zero deposit_balance to manipulate pool state or indexes without providing funds? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_55a3017a-de82-4774-9c70-b2d62041b706?mode=deep",
+    "timestamp": "2026-02-19 07:08:12.884307",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_withdraw()] [Zero Withdrawal] Does base_withdraw() handle zero amount withdrawals correctly, or can this cause accounting errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87938594-8935-434c-b73e-7b8165e562a9?mode=deep",
+    "timestamp": "2026-02-19 07:08:30.978694",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_borrow()] [Maximum Borrow] Can base_borrow() be called with amount equal to entire pool balance, causing DoS for other borrowers? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28d3b115-3d06-4c0e-94cf-7ce9c13cb41c?mode=deep",
+    "timestamp": "2026-02-19 07:08:49.770712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_repay()] [Over-Repayment] If user repays more than debt at line 318, is excess properly returned or can it be lost? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2885e5a-55ee-411c-b9cf-2082e3ac8299?mode=deep",
+    "timestamp": "2026-02-19 07:09:09.192454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/lending.move] [Function: base_repay()] [Excess Zero Check] Does the excess_amount > 0 check at line 336 properly handle the case where excess_amount = 0 but rounding caused loss? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5ddd819e-962a-473e-9f6e-53d7ae878835?mode=deep",
+    "timestamp": "2026-02-19 07:09:29.346408",
+    "report_generated": false
+  }
+]
