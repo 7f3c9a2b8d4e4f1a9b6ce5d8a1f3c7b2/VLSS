@@ -1,0 +1,20 @@
+[
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Exact DECIMALS] Does div_d(x, DECIMALS) correctly recover original value, or introduce rounding? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a8094553-3de6-4d28-b40b-c5f175c82334?mode=deep",
+    "timestamp": "2026-02-19 09:32:32.698607",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: decimals()] [Constant Usage] Can calling decimals() in tight loops cause gas issues vs. hardcoding 1e9? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d30c8b7-e699-4b37-aecf-f4c9b2f66b1c?mode=deep",
+    "timestamp": "2026-02-19 09:32:45.028123",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [Empty Type] Can generic type with empty name produce invalid keys like '0', '1' that collide? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fdd14989-e23b-4b7d-a1f2-48c9ebb64883?mode=deep",
+    "timestamp": "2026-02-19 09:32:58.005733",
+    "report_generated": false
+  }
+]
