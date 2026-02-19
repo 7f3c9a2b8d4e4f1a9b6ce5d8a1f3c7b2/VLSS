@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: clone_vecmap_table()] [Iteration Direction] Does backward iteration (i-- from length) have semantic meaning, or is it arbitrary? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90ef8d64-3672-44ca-8e82-a5372d925b3b?mode=deep",
+    "timestamp": "2026-02-19 05:20:51.292459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Zero Check] Does div_d() check for v2=0 before dividing, or can it panic on zero denominator? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_130738fe-7e0d-4039-bf00-8307e03c14fa?mode=deep",
+    "timestamp": "2026-02-19 05:21:04.943314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_with_oracle_price()] [Zero Price] Does div_with_oracle_price() validate v2 > 0, or can zero price cause panic? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b5f77c4-3743-4434-b7ed-f7b015f8863f?mode=deep",
+    "timestamp": "2026-02-19 05:21:18.846183",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Overflow Check] Does mul_d() check for overflow before computing v1*v2, or can it silently wrap? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fc8c315a-cacb-40de-9d10-b5f4cda648fd?mode=deep",
+    "timestamp": "2026-02-19 05:21:33.713999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_with_oracle_price()] [Overflow Validation] Does mul_with_oracle_price() prevent v1*v2 overflow, or rely on panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_048ef9dd-dcaa-4e11-b88a-b0d2ade7e776?mode=deep",
+    "timestamp": "2026-02-19 05:21:49.579485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: to_oracle_price_decimals()] [Overflow Guard] Does to_oracle_price_decimals() check v*1e18 won't overflow before multiplying? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b0bee4ab-2e4a-409b-b103-7cfa8225b7a4?mode=deep",
+    "timestamp": "2026-02-19 05:22:07.912621",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: to_decimals()] [Input Validation] Does to_decimals() validate v < 2^247 to prevent overflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_348473c0-e009-4676-9f77-b3bf970c7fe1?mode=deep",
+    "timestamp": "2026-02-19 05:22:25.219635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: clone_vecmap_table()] [Empty Check] Does clone_vecmap_table() handle empty VecMap correctly, or create invalid table? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1856567a-38fb-4e66-a052-133064948f57?mode=deep",
+    "timestamp": "2026-02-19 05:22:44.140122",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [String Length] Does parse_key() limit output string length to prevent storage bloat or parsing DoS? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6dd0017-63d0-47c5-b9bc-03a0d3713641?mode=deep",
+    "timestamp": "2026-02-19 05:23:05.484348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d() chain] [Chained Operations] Can mul_d(mul_d(x, y), z) accumulate rounding errors differently than mul_d(x, mul_d(y, z))? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_344b960f-a617-46a1-9780-52a50d4f62f5?mode=deep",
+    "timestamp": "2026-02-19 05:23:29.872348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d() chain] [Division Chain] Does div_d(div_d(x, y), z) = div_d(x, mul_d(y, z)), or can ordering create exploitable differences? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_76274931-214b-4826-a5f4-c7eecd605fd5?mode=deep",
+    "timestamp": "2026-02-19 05:23:54.879509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: Mixed Decimals] [Decimal Mixing] Can code mix to_decimals() and to_oracle_price_decimals() outputs, creating 1e9 factor errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48443a1a-be95-43fb-99c0-ae8763817ea9?mode=deep",
+    "timestamp": "2026-02-19 05:24:20.246154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: Oracle + Vault Math] [Cross-System] Can mul_d(mul_with_oracle_price(balance, price), share_price) introduce double rounding errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a2fd8fe-8831-4b6f-9ecd-45460a8f49f1?mode=deep",
+    "timestamp": "2026-02-19 05:24:46.750882",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: clone_vecmap_table()] [Storage Corruption] Can clone_vecmap_table() create table in different storage than source, breaking access patterns? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98479cd2-abc6-45a7-bfbb-acc4c0f7a517?mode=deep",
+    "timestamp": "2026-02-19 05:25:13.925709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [Key Stability] Can parse_key() output change between calls with same inputs due to type_name changes across upgrades? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f2e2bd72-9a7a-409a-a8bc-8a36a42230ce?mode=deep",
+    "timestamp": "2026-02-19 05:25:40.641802",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Constants] [Upgrade Safety] Can module upgrade change DECIMALS or ORACLE_DECIMALS, breaking compatibility with existing vault state? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_15cd7edf-4c3a-438d-a621-6e0cd7cc592e?mode=deep",
+    "timestamp": "2026-02-19 05:26:08.241660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Rounding Direction] Does mul_d() always round down, and can attacker profit by exploiting consistent rounding direction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_053447b7-e4da-4c52-b2e0-b43f9b9a87ab?mode=deep",
+    "timestamp": "2026-02-19 05:26:35.377314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Dust Profit] Can attacker repeatedly deposit/withdraw to collect rounding dust, profiting from truncation errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e9f2bb4-0011-4e88-a9ec-c39d87cdda61?mode=deep",
+    "timestamp": "2026-02-19 05:27:01.784134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_with_oracle_price()] [Price Timing] Can attacker time operations to exploit specific oracle price values that maximize rounding errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_36a0826e-8520-4cf7-9620-9aaa1aedf7b4?mode=deep",
+    "timestamp": "2026-02-19 05:27:29.682083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: from_decimals()] [Truncation Profit] Can attacker craft withdrawal amounts that maximize truncation, stealing dust from other users? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ffb4045-5b26-4f7a-8563-e3bca9c262d8?mode=deep",
+    "timestamp": "2026-02-19 05:27:56.999071",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d() + div_d()] [Invariant: Reversibility] Can div_d(mul_d(shares, price), price) < shares, violating share preservation invariant? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22cd5f50-fef4-4a5f-adcb-025719b8572c?mode=deep",
+    "timestamp": "2026-02-19 05:28:22.912912",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: to_decimals() + from_decimals()] [Invariant: Identity] Can from_decimals(to_decimals(amount)) lose precision, breaking deposit/withdraw parity? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e9539e9-f72c-46a6-b618-8883fb0a9ea8?mode=deep",
+    "timestamp": "2026-02-19 05:28:51.453432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_with_oracle_price() + div_with_oracle_price()] [Invariant: USD Balance] Can round-trip conversion change USD value, breaking total_usd_value invariant? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b0140dd-ec22-433f-ba63-de0659841f97?mode=deep",
+    "timestamp": "2026-02-19 05:29:21.197299",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: clone_vecmap_table()] [Invariant: Key Preservation] Can clone lose or duplicate keys, breaking asset custody tracking? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02226873-7959-4b57-9d89-50c5167adbff?mode=deep",
+    "timestamp": "2026-02-19 05:29:52.264525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Exact DECIMALS] Can mul_d(DECIMALS, DECIMALS) overflow or produce unexpected result? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a0c052b8-6fe2-4a65-b6b9-acd22dbc7aee?mode=deep",
+    "timestamp": "2026-02-19 05:30:23.977165",
+    "report_generated": false
+  }
+]
