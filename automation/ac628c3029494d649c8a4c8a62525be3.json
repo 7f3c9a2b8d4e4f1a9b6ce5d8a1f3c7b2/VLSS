@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: valid_update_indices()] [Early Termination Attack] At lines 573-576, loop breaks if remaining_max_iterations == 0 OR element is stale - can attacker position stale update early in iteration to terminate loop before processing all valid updates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b76820b-ce6e-4872-8789-337ee6605e05?mode=deep",
+    "timestamp": "2026-02-19 04:19:20.778884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Welford Algorithm Overflow] In Welford's algorithm at lines 382-386, delta calculation uses sub_i128() but result is u128 - if delta is negative and very large, can conversion/multiplication at line 386 overflow u256? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4fda1fa6-4445-4142-b96b-bf3749b6f057?mode=deep",
+    "timestamp": "2026-02-19 04:19:33.320107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Division by Zero] At line 395, variance = m2 / ((count - 1) as u256) - if count == 1 (shouldn't happen due to line 348 check), does this cause division by zero panic? What if count is corrupted to 0? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b39eeac-7722-4487-9324-ba135258ee90?mode=deep",
+    "timestamp": "2026-02-19 04:19:46.798288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Mean Calculation Error] At line 383, mean is updated with 'delta / count' integer division - does this lose precision causing mean to drift from true value over many updates, enabling price manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a2144c83-0ad7-4691-9e03-644f36e3519b?mode=deep",
+    "timestamp": "2026-02-19 04:20:00.305830",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [M2 Accumulation Overflow] At line 386, m2 is updated with '(delta as u256) * (delta2 as u256)' - for extreme price values, can this product overflow u256, wrapping to small value and producing incorrect stdev? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd15da13-79ab-4a33-9134-7d51f0ceea12?mode=deep",
+    "timestamp": "2026-02-19 04:20:14.574613",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Signed Arithmetic Bypass] At line 386, delta_neg != delta2_neg determines sign of m2 addition - can attacker manipulate value signs to always produce positive m2, hiding true variance? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_857142f4-4dc2-4cc5-8402-1ed04a7857d7?mode=deep",
+    "timestamp": "2026-02-19 04:20:29.947755",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Sum Overflow] At line 388, sum = sum + value as u128 - for many large decimal values, can sum overflow u128, wrapping and corrupting mean calculation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_268e62ca-4339-408c-a1e4-342e525f4769?mode=deep",
+    "timestamp": "2026-02-19 04:20:46.474560",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Min/Max Initialization] At lines 365-368, min_result initialized to max_value() and max_result to zero() - if all oracle values are negative (Decimal with neg flag), does min() comparison work correctly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d141e193-26bb-4564-8d02-30f5ea36890a?mode=deep",
+    "timestamp": "2026-02-19 04:21:02.911329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Timestamp Bounds Error] At lines 391-392, min_timestamp_ms starts at u64::max_value!() - if no updates have valid timestamps, does this leave min_timestamp_ms at MAX, causing downstream timestamp validation failures? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_28fe76d7-7e37-4a7a-b18d-421f4f93c637?mode=deep",
+    "timestamp": "2026-02-19 04:21:22.782771",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Range Calculation] At line 397, range = max_result.sub(&min_result) - if max_result < min_result due to comparison error, does sub() panic or return negative Decimal with wrong value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a7c9974e-06be-4348-942d-367ca3b3cac6?mode=deep",
+    "timestamp": "2026-02-19 04:21:42.392817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Stdev Calculation] At line 396, stdev = sqrt(variance) returns u128 but variance is u256 - can large variance values produce sqrt() result > u128::MAX, causing truncation/overflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e79c84d-d60d-49af-97c0-4b656ab4fae9?mode=deep",
+    "timestamp": "2026-02-19 04:22:01.771059",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: sqrt()] [Precision Loss] sqrt() implementation at lines 416-469 uses bit-shifting approximation - for variance values near u256::MAX, does iterative refinement converge to correct value or can it produce sqrt with >1% error? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_43ec6252-870e-484b-8839-65db634ac9c7?mode=deep",
+    "timestamp": "2026-02-19 04:22:21.689801",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: sqrt()] [Division by Zero] At line 461, r1 = x / r - if r converges to 0 during refinement (shouldn't happen), does this cause division by zero panic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_362cc6bc-f7b7-40e2-9155-f961a69d458e?mode=deep",
+    "timestamp": "2026-02-19 04:22:41.062036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: sqrt()] [Return Type Truncation] At lines 464-468, function returns (r as u128) or (r1 as u128) - for r or r1 > u128::MAX, does cast truncate high bits, returning incorrect sqrt? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0958830b-bdfe-4917-a314-43170c986039?mode=deep",
+    "timestamp": "2026-02-19 04:23:00.859085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: sqrt()] [Early Termination] At line 417-419, if x == 0 returns 0 immediately - but for very small x (0 < x < 1), does algorithm produce incorrect result due to integer arithmetic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2ed457d1-f800-4b1b-9981-c668d460242c?mode=deep",
+    "timestamp": "2026-02-19 04:23:19.163258",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: sqrt()] [Refinement Loop Fixed Iterations] At lines 453-459, refinement loop runs exactly 7 iterations - for certain input ranges, can 7 iterations be insufficient, producing inaccurate sqrt used in stdev? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d5b20bc-14cc-4110-b0aa-1f72c15e23bc?mode=deep",
+    "timestamp": "2026-02-19 04:23:38.405429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: add_i256()] [Sign Logic Error] In add_i256() at lines 472-488, when a_neg && b_neg, returns (a + b, true) - can a + b overflow u256 for extreme negative values, wrapping and producing incorrect positive result? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7c441ad5-ae34-4ceb-88d4-9932ee5fd42b?mode=deep",
+    "timestamp": "2026-02-19 04:23:59.110161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: add_i256()] [Subtraction Underflow] At lines 474-479, when !a_neg && b_neg and a < b, returns (b - a, true) - is this logic correct for all edge cases, or can specific (a, b) combinations produce wrong sign? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_53f7e918-cbd0-4ca3-9a80-fec8a57450e9?mode=deep",
+    "timestamp": "2026-02-19 04:24:20.589732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: add_i256()] [Zero Handling] If a=0 with a_neg=true (negative zero) and b=5 with b_neg=false, does add_i256() correctly return (5, false) or does negative zero flag corrupt result? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7624f88d-b22c-4a5a-9ff9-9465918d2d7d?mode=deep",
+    "timestamp": "2026-02-19 04:24:41.632615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: add_i128()] [Overflow in Addition] At lines 493-494 and 508-509, when both positive, returns (a + b, false) - can a + b overflow u128, wrapping to small positive value with wrong sign flag? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_98ff4929-ba01-422c-a42f-4cc7844c69a6?mode=deep",
+    "timestamp": "2026-02-19 04:25:01.854760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: sub_i128()] [Negation Error] At line 513, sub_i128() calls add_i128(a, a_neg, b, !b_neg) to negate b - is this correct for b=0 with b_neg=true, or does double negation introduce errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c6d67f2d-d348-4af3-88ed-f5c2a87f5f17?mode=deep",
+    "timestamp": "2026-02-19 04:25:23.097101",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: add_i128()] [Comparison Edge Case] At lines 495-499, logic checks 'if (a < b)' to determine sign - for a=u128::MAX and b=u128::MAX, does comparison work correctly or can it produce inconsistent results? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_81a00b4c-8610-482b-b091-8129613d1f76?mode=deep",
+    "timestamp": "2026-02-19 04:25:44.543070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: median_result()] [Quickselect Infinite Loop] In median_result() at lines 525-547, while (lo < hi) loop - if pivot selection and swapping logic fails, can lo and hi converge incorrectly causing infinite loop or panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_24a0528e-5fb7-4ed6-870a-102127617d02?mode=deep",
+    "timestamp": "2026-02-19 04:26:06.761375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: median_result()] [Index Out of Bounds] At line 526, pivot = update_indices[hi] - if hi >= update_indices.length() due to logic error, does this panic with out-of-bounds access? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_313e1620-8839-4cdb-ac73-e9b1975d6812?mode=deep",
+    "timestamp": "2026-02-19 04:26:27.897969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: median_result()] [Pivot Selection Bias] At line 526, pivot is always update_indices[hi] - does this deterministic selection enable attacker to craft update order that produces biased median favoring specific oracle? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc9bfe76-9371-4d7f-a3e6-55dc45b03049?mode=deep",
+    "timestamp": "2026-02-19 04:26:49.832131",
+    "report_generated": false
+  }
+]
