@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_oracle_info()] [Oracle Price Manipulation] If oracle::get_token_price() returns stale prices with valid=true, could an attacker exploit outdated oracle data in downstream vault operations to manipulate asset valuations and extract value through liquidations or arbitrage? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b20b7214-1fc7-4549-bc7e-93f80f9bac7d?mode=deep",
+    "timestamp": "2026-02-19 03:50:11.238865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_oracle_info()] [Input Validation] Can an attacker pass duplicate oracle IDs in the ids vector to cause redundant oracle queries, potentially creating DoS conditions or exploiting oracle rate limits that could affect protocol operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0880e697-b010-4739-836e-5d7101d8694c?mode=deep",
+    "timestamp": "2026-02-19 03:50:24.349201",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_oracle_info()] [Integer Underflow] In the while loop condition at line 19, if length starts at 0 or vector::length(&ids) returns 0, could this cause an underflow when computing length-1 at line 20, leading to incorrect array access or panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4e1b77d9-cac9-491a-8c66-8f65b5d18399?mode=deep",
+    "timestamp": "2026-02-19 03:50:38.413049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_oracle_info()] [Oracle Decimals Inconsistency] If different oracle IDs return different decimal values (e.g., 1e9 vs 1e18), and these are used without normalization in vault USD value calculations, could this lead to catastrophic mis-pricing and fund loss? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_70111030-9000-477f-aff5-bcfcf92b0641?mode=deep",
+    "timestamp": "2026-02-19 03:50:52.604002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_oracle_info()] [Unchecked valid Flag] The function returns OracleInfo with valid field but doesn't enforce any action on invalid prices - could downstream consumers ignore this flag and use invalid prices for critical operations like liquidations or collateral calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_72dfb630-1eda-414e-8e83-6a3dea3de5b6?mode=deep",
+    "timestamp": "2026-02-19 03:51:07.638858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_oracle_info()] [Vector Order Manipulation] The loop processes IDs in reverse order (length-1 downward), which means returned info vector has reversed order compared to input ids - could this ordering mismatch cause index-based confusion in callers leading to wrong asset pricing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3e10b1ba-d1d9-4df3-a5cf-0b82cb035b24?mode=deep",
+    "timestamp": "2026-02-19 03:51:23.707032",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_oracle_info()] [Price Overflow] If oracle::get_token_price() returns a u256 price value that approaches MAX_U256, could multiplication operations in vault value calculations overflow and wrap around, causing massive under-valuation of assets? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b8cbdc8-2b6d-4821-8977-91ced06b4cb6?mode=deep",
+    "timestamp": "2026-02-19 03:51:41.028590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_oracle_info()] [Clock Manipulation] The function accepts a Clock reference - if the clock timestamp is manipulated or stale, could oracle price queries return incorrect time-weighted prices that attackers exploit for MEV or liquidation manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e970cff-760b-44dd-9a22-72fa74733f56?mode=deep",
+    "timestamp": "2026-02-19 03:51:58.658618",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_oracle_info()] [Empty Vector Edge Case] If ids vector is empty (length=0), the function returns an empty info vector - could callers fail to handle this edge case and proceed with zero oracle data, leading to division by zero or invalid vault operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ecf0ea76-f7f8-42ed-8aee-48469a706359?mode=deep",
+    "timestamp": "2026-02-19 03:52:18.516815",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_oracle_info()] [Oracle ID Bounds] No validation exists on oracle ID values - could an attacker pass oracle_id values outside valid range causing oracle::get_token_price() to panic or return malicious data registered at invalid IDs? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6683fa4b-fc1b-4387-aec5-c86e572c89ec?mode=deep",
+    "timestamp": "2026-02-19 03:52:39.170690",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_user_state()] [Mutable Storage Reference] Function takes &mut Storage despite being read-only getter - could this enable reentrancy if storage::get_user_balance() has side effects that modify state, allowing attacker to exploit inconsistent state reads? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f36ea1bd-ef8b-43c4-a2df-e7e64ef822b9?mode=deep",
+    "timestamp": "2026-02-19 03:53:00.417606",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_user_state()] [Asset ID Underflow] Loop processes length-1 for asset_id at line 50 - if reserves_count is 0, could this cause underflow or incorrect asset_id=255 (u8 max) being recorded, poisoning user balance data structures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d0bbacf-2464-4947-aded-bee9eb5c32a2?mode=deep",
+    "timestamp": "2026-02-19 03:53:22.641951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_user_state()] [Balance Precision Loss] If storage::get_user_balance() returns u256 values but downstream systems use lower precision types, could truncation during conversion lead to users losing dust balances or accounting mismatches accumulating to significant value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd61f207-7c0e-4f8d-a7c7-e4dd16610b0f?mode=deep",
+    "timestamp": "2026-02-19 03:53:46.353606",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_user_state()] [Zero Balance Filtering] Function includes all reserves even with zero balances - could this cause UI/off-chain systems to incorrectly assume user has positions in all assets, leading to failed transactions or gas waste when operating on non-existent positions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d78a25ff-450c-4079-9f19-8d6bea869ec3?mode=deep",
+    "timestamp": "2026-02-19 03:54:11.324962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_user_state()] [Supply/Borrow Index Mismatch] Function returns raw supply and borrow balances without including current indices - could callers miscalculate actual owed/supplied amounts if they don't multiply by indices, leading to incorrect health factor calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b5a9164-7255-4a38-80c1-32bb743d767b?mode=deep",
+    "timestamp": "2026-02-19 03:54:37.438746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_user_state()] [Address Spoofing] Function accepts any address parameter - could an attacker query victim addresses to extract sensitive position data and use it for targeted liquidation attacks or front-running strategies? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_129e30cb-b563-4583-a0fb-2e3eaf66766b?mode=deep",
+    "timestamp": "2026-02-19 03:55:03.444284",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_user_state()] [Reserve Count Race Condition] If storage::get_reserves_count() can change during execution due to concurrent reserve additions, could the loop access invalid reserve indices causing panic or returning partial/corrupted state data? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_42bce70a-2461-4608-aade-c47d08150659?mode=deep",
+    "timestamp": "2026-02-19 03:55:31.454942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_user_state()] [Timestamp Omission] User state info doesn't include last_update timestamp - could callers use stale balance data without realizing interest hasn't been accrued, leading to incorrect borrowing capacity or liquidation threshold calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_16f9a5f2-f883-4d29-b5ae-bb4751036a5c?mode=deep",
+    "timestamp": "2026-02-19 03:55:58.567316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_user_state()] [Vector Memory DoS] For users with positions in all reserves, the info vector grows unbounded - could an attacker create positions in maximum reserves count to cause memory exhaustion or transaction size limits when retrieving state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8bd95d9a-a95c-4051-9c6e-b6f762cd20fe?mode=deep",
+    "timestamp": "2026-02-19 03:56:26.293896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_user_state()] [Interest Accrual State] Function doesn't trigger interest accrual before reading balances - could this return outdated balance values that don't reflect recent interest accumulation, causing liquidation timing attacks or incorrect collateral assessments? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a026176b-d9fb-412d-842d-e8e93f1a0772?mode=deep",
+    "timestamp": "2026-02-19 03:56:53.860478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_reserve_data()] [Mutable Storage Reference] Function takes &mut Storage for read-only operation - if any storage getter has side effects (interest updates, index recalculation), could this enable reentrancy or state manipulation through what appears to be a safe view function? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_57f95898-bfb1-4ccd-a5a9-2304b35f8fb4?mode=deep",
+    "timestamp": "2026-02-19 03:57:19.603587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_reserve_data()] [Reserve ID Arithmetic] Loop uses length-1 for reserve_id at line 92 - if reserves_count is 0, could underflow cause accessing invalid reserve_id=255, returning malicious data or panicking and DoS'ing reserve data queries? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb4a0127-0da7-4afa-93e1-f178f0cc1190?mode=deep",
+    "timestamp": "2026-02-19 03:57:42.819770",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_reserve_data()] [Rate Calculation Inconsistency] Function calls storage::get_current_rate() without ensuring storage is updated first - could stale rates be returned that don't reflect recent utilization changes, enabling arbitrage through rate prediction attacks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3efffb71-a3b8-440e-89cd-f4b1a8de6a47?mode=deep",
+    "timestamp": "2026-02-19 03:58:07.764134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_reserve_data()] [Supply Cap Overflow] If storage::get_supply_cap_ceiling() returns values near u256::MAX and total_supply approaches this, could supply cap checks overflow when comparing total_supply + new_deposit > cap, allowing unlimited minting? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78d14fe2-1335-43b4-86a3-2c2e6afe3486?mode=deep",
+    "timestamp": "2026-02-19 03:58:34.793608",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_ui/sources/getter.move] [Function: get_reserve_data()] [Borrow Cap Ratio Confusion] Function returns borrow_cap from get_borrow_cap_ceiling_ratio() - if this is a ratio rather than absolute cap, could callers misinterpret it as absolute value and allow unbounded borrowing exceeding intended limits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f6e85a59-22ab-48de-99e3-402eb25cb2d8?mode=deep",
+    "timestamp": "2026-02-19 03:58:57.809043",
+    "report_generated": false
+  }
+]
