@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Missing Validation Event] Since unlock_epoch isn't validated before burn, should TicketBurnedEvent at line 147 include is_unlocked status for off-chain monitoring? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a6abc9a6-d475-4567-95e6-5c04e24a5eac?mode=deep",
+    "timestamp": "2026-02-19 04:35:04.778347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Event Spam] Can attacker create thousands of zero-value tickets to spam TicketMintedEvent at line 122, causing off-chain indexer DoS? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f047053b-ef3f-4639-a9a9-5fa7b1495c2e?mode=deep",
+    "timestamp": "2026-02-19 04:35:17.231404",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: unwrap_unstake_ticket()] [Epoch Mismatch] Does TicketBurnedEvent emit current epoch at line 150 instead of unlock_epoch, making it unclear if ticket was properly unlocked? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3907d17-ad96-4c05-b331-40724e622420?mode=deep",
+    "timestamp": "2026-02-19 04:35:30.455746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: transfer()] [Unrestricted Transfer] Since transfer at line 163 has no restrictions, can tickets be transferred to zero address or invalid addresses causing fund loss? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_131a309b-d155-4e47-8240-352ca2b961ff?mode=deep",
+    "timestamp": "2026-02-19 04:35:44.223934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: transfer()] [Frontrunning] Can malicious actor monitor mempool for unwrap_unstake_ticket transactions and transfer ticket away before burn, griefing legitimate redemptions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e70f7f72-b54d-4031-9ebf-9a70809e74ec?mode=deep",
+    "timestamp": "2026-02-19 04:35:58.271757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: transfer()] [Ownership Tracking] Since UnstakeTicket has 'key' ability, can transferred tickets become orphaned if sent to non-existent addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc9f0746-e979-4822-8d9c-6334dd95d24e?mode=deep",
+    "timestamp": "2026-02-19 04:36:14.140146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Initial Ownership] After ticket creation at line 116, who owns the UnstakeTicket? Can it be stolen before proper transfer to intended recipient? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_56121e8d-56fe-419e-8b90-39cad4a1a7a6?mode=deep",
+    "timestamp": "2026-02-19 04:36:31.443636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: transfer()] [Package Visibility] Since transfer is public(package) at line 163, can malicious package modules force-transfer tickets to attacker addresses? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9c08ad94-aeec-497f-97b2-6197fc96fd1e?mode=deep",
+    "timestamp": "2026-02-19 04:36:49.653990",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: wrap_unstake_ticket()] [Return vs Transfer] Should wrap_unstake_ticket return the ticket or directly transfer it to recipient to prevent intermediary theft? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_872614a5-8918-4515-ad90-21cece5be03a?mode=deep",
+    "timestamp": "2026-02-19 04:37:07.151789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Struct: UnstakeTicket] [Missing Store] Why doesn't UnstakeTicket have 'store' ability at line 33? Does this prevent tickets from being stored in collections or wrapped in other objects? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0912cd8a-3353-4ec4-b6c9-ca4881334bd6?mode=deep",
+    "timestamp": "2026-02-19 04:37:25.925906",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Struct: UnstakeTicket] [Key Only] With only 'key' ability, can UnstakeTicket objects be lost if there's no proper transfer mechanism after creation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bbd4c9d4-c85d-47f5-8093-42cf8a09d28b?mode=deep",
+    "timestamp": "2026-02-19 04:37:44.935292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Struct: Metadata] [Store Ability] Does 'store' ability on Metadata at line 41 allow it to be stored in attacker-controlled objects, enabling metadata manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_03cf8edf-20c2-412e-9455-8eb40d2a39c4?mode=deep",
+    "timestamp": "2026-02-19 04:38:05.134044",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Struct: Metadata] [Shared Object] Should Metadata be a shared object to prevent concurrent modification issues, or does current design allow race conditions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2df2dcba-c749-408c-91d3-28f728eefa40?mode=deep",
+    "timestamp": "2026-02-19 04:38:25.074304",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Struct: UnstakeTicket] [Field Visibility] Are all fields in UnstakeTicket at lines 34-38 properly private, preventing direct field modification by other modules? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_81443c48-cace-467f-b8a2-b26666fc60ba?mode=deep",
+    "timestamp": "2026-02-19 04:38:45.284265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Struct: Metadata] [Version Field] Is version field at line 43 checked anywhere? Can outdated Metadata objects at VERSION=2 interact with newer code expecting VERSION=3+? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc63f4cb-efc2-46bf-a856-4ebbf9b88574?mode=deep",
+    "timestamp": "2026-02-19 04:39:08.587657",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Struct: Metadata] [Table Lifetime] Does max_history_value Table at line 45 get properly destroyed when Metadata is deleted, or can it leak storage? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b1da859-36c3-459c-b16b-d217d5c080e3?mode=deep",
+    "timestamp": "2026-02-19 04:39:29.538392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Constant: VERSION] [Version Check] Is VERSION constant at line 12 validated anywhere? Can mismatched versions between Metadata and code logic cause unexpected behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e7dfa6f-909b-4ecc-a14c-22bebecae459?mode=deep",
+    "timestamp": "2026-02-19 04:39:50.129926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: create_metadata()] [Version Init] Is version initialized to VERSION at line 53 checked during operations to prevent version mismatch attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5d33a382-ee0d-44e1-9bdb-cf837dae7590?mode=deep",
+    "timestamp": "2026-02-19 04:40:09.154501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Migration] Can Metadata objects with old version values be migrated to VERSION=2, or will they remain stuck with incompatible state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8b49817-f649-4b9b-8eb3-60cd415dc06b?mode=deep",
+    "timestamp": "2026-02-19 04:40:29.327353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Constant: VERSION] [Backward Compatibility] If VERSION increases to 3, can old tickets with VERSION=2 Metadata still be unwrapped, or will version checks cause failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3f6ba92-aade-4946-a92e-61885f76cde0?mode=deep",
+    "timestamp": "2026-02-19 04:40:49.685407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: get_value()] [Return Type] Can get_value at line 69-71 be called with invalid ticket reference, returning corrupted value data? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_292cd0a4-d640-4c01-90ad-5ba67794e24d?mode=deep",
+    "timestamp": "2026-02-19 04:41:08.096597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: get_unstake_fee()] [Fee Exposure] Does exposing unstake_fee via getter at line 73-75 allow attackers to identify and target high-fee tickets for exploitation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e30af56-38b2-4356-8997-182d7a714d00?mode=deep",
+    "timestamp": "2026-02-19 04:41:27.747424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: get_unlock_epoch()] [Timing Oracle] Can get_unlock_epoch at line 77-79 be used to identify soon-to-unlock tickets for frontrunning attacks? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1582ef18-ee76-40f7-9f79-e7cef74f4e1c?mode=deep",
+    "timestamp": "2026-02-19 04:41:47.426603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: is_unlocked()] [Incorrect Logic] Does is_unlocked at line 65-67 properly handle epoch wrap-around or extreme values like u64::MAX for unlock_epoch? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c898bb6d-267e-44fa-970d-4e97633e5dc1?mode=deep",
+    "timestamp": "2026-02-19 04:42:07.565189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/unstake_ticket.move] [Function: get_total_supply()] [Atomicity] Can get_total_supply at line 60-62 return inconsistent values during concurrent wrap/unwrap operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6a70339a-c561-4af0-93e3-b91a3ac7192a?mode=deep",
+    "timestamp": "2026-02-19 04:42:29.526183",
+    "report_generated": false
+  }
+]
