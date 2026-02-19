@@ -1,0 +1,122 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: actuate()] [Vault Price Dependency] Actuate updates aggregator used by Volo Vault for pricing. If malicious oracle submits price right before vault operation, could this enable sandwich attacks on vault deposits/withdrawals? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ddb45125-b1a5-4501-b198-b0298d48360b?mode=deep",
+    "timestamp": "2026-02-19 00:40:21.275354",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: run()] [Price Feed Manipulation Timing] Entry function is publicly callable. Could attacker observe pending vault operations and front-run with manipulated price submissions to profit from vault mispricing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_705a2fd5-fa19-4001-9284-0b95d6c84bd8?mode=deep",
+    "timestamp": "2026-02-19 00:40:33.676132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: actuate()] [Multi-Oracle Collusion] If vault relies on aggregator and min_responses is low, could colluding oracles submit coordinated false prices within variance bounds to manipulate vault asset valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a4a77cde-7e18-4641-8c55-b89ca17f1cc4?mode=deep",
+    "timestamp": "2026-02-19 00:40:46.788239",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Lines: 13-14] [Version Hardcoding] EXPECTED_AGGREGATOR_VERSION and EXPECTED_QUEUE_VERSION are hardcoded to 1. If versions need upgrade, is there migration path or would this break all existing deployments? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29e4a5d5-5f5a-4357-97a6-87f87351150c?mode=deep",
+    "timestamp": "2026-02-19 00:41:00.223962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Lines: 16-33] [Error Code Collision] Multiple error constants defined. Could error code collisions with other modules cause confusion in debugging or monitoring systems? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b374a209-1476-4892-85d5-6c8a2a29d57f?mode=deep",
+    "timestamp": "2026-02-19 00:41:15.435756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Missing Aggregator State] Validation doesn't check if aggregator is paused or disabled. Could updates continue on disabled aggregators causing stale data propagation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d6b93284-0f1c-4a5c-8abb-fdc83ad1a07f?mode=deep",
+    "timestamp": "2026-02-19 00:41:32.038856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Missing Value Bounds] No validation that submitted value is within reasonable bounds for asset type. Could extreme values (e.g., 1e100 for SUI price) cause downstream calculation failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fed921e-1305-4e95-84f0-dd6b2f546910?mode=deep",
+    "timestamp": "2026-02-19 00:41:49.206182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Missing Rate Limiting] No check on submission frequency per oracle. Could single oracle spam updates within staleness window causing computational DoS or event spam? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_52d23215-ca75-42d9-a6e6-3893845dba0c?mode=deep",
+    "timestamp": "2026-02-19 00:42:06.916009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [No Duplicate Prevention] No check preventing exact same (value, timestamp, oracle) tuple from being submitted multiple times causing redundant storage? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b070db2-d908-4ed0-84f9-48adbc560488?mode=deep",
+    "timestamp": "2026-02-19 00:42:26.665301",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: actuate()] [State-Event-Transfer Order] Line 112 mutates state, line 123 emits event, line 120 transfers fee. If transfer fails, are state and event rolled back atomically? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b7fb016-433e-4a0f-948c-15bab64841c6?mode=deep",
+    "timestamp": "2026-02-19 00:42:46.928576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: actuate()] [Event Before Transfer] Event emitted at line 123 before fee transfer at line 120. Could observers act on event while transfer fails causing inconsistent state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1c3c0627-9aa2-4093-b6bf-d5f0e5411a04?mode=deep",
+    "timestamp": "2026-02-19 00:43:06.400680",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Compressed Key Format] Line 83 recovers compressed pubkey. Could invalid compressed points bypass validation if decompression doesn't fail safely at line 88? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_049d4320-acf6-443b-ae35-aa377886ad0b?mode=deep",
+    "timestamp": "2026-02-19 00:43:26.612659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Decompressed Key Length] After decompression at line 88, is recovered_pubkey length validated before check_subvec at line 91? Could short/long keys cause out-of-bounds access? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c642165f-26a1-4321-9db3-536c66218c8a?mode=deep",
+    "timestamp": "2026-02-19 00:43:48.372013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Key Format Mismatch] oracle.secp256k1_key() format compared with decompressed key at line 91. If oracle stores compressed format, would comparison fail for all valid signatures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8ed2be7b-82ca-446f-82bb-e1862a53c977?mode=deep",
+    "timestamp": "2026-02-19 00:44:09.001480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Update Message Prefix] Does hash::generate_update_msg include proper prefix/domain separator? Without it, could signatures be replayed from other contexts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8cd98bf-46b8-43f2-a24d-737537d98973?mode=deep",
+    "timestamp": "2026-02-19 00:44:30.879614",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Message Component Order] Lines 72-80 pass 7 parameters to generate_update_msg. If order is not canonical, could rearranged parameters produce same hash enabling signature confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_02bd3395-a01a-43bf-8c60-f08173ec816a?mode=deep",
+    "timestamp": "2026-02-19 00:44:52.824318",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: validate()] [Hash Collision] If hash::generate_update_msg uses weak hashing, could attacker find collision where different (value, timestamp) pairs produce same hash for replay? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_31141f4f-5861-48e9-804b-c9ec22354a57?mode=deep",
+    "timestamp": "2026-02-19 00:45:14.586500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: actuate()] [Result Deduplication] add_result at lines 112-117 may not deduplicate. Could submitting same result multiple times skew aggregation math toward attacker-favorable price? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e7d066e8-834a-464f-8d41-92cd52eae543?mode=deep",
+    "timestamp": "2026-02-19 00:45:35.482805",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move] [Function: actuate()] [Result Pruning] Does add_result bound result history size? Without pruning, could unbounded growth cause storage exhaustion attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51f4db26-dd1b-48cf-a1ba-f4a091661188?mode=deep",
+    "timestamp": "2026-02-19 00:45:57.376071",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-\n\n### Citations\n\n**File:** volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_submit_result_action.move (L1-147)\n```text\nmodule switchboard::aggregator_submit_result_action;\n\nuse sui::clock::Clock;\nuse sui::coin::Coin;\nuse sui::ecdsa_k1;\nuse switchboard::decimal::{Self, Decimal};\nuse switchboard::hash;\nuse switchboard::aggregator::Aggregator;\nuse switchboard::oracle::Oracle;\nuse switchboard::queue::Queue;\nuse sui::event;\n\nconst EXPECTED_AGGREGATOR_VERSION: u8 = 1;\nconst EXPECTED_QUEUE_VERSION: u8 = 1;\n\n#[error]\nconst EOracleInvalid: vector<u8> = b",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5d89be8b-cfc8-4e7d-a98d-e4a58e672e84?mode=deep",
+    "timestamp": "2026-02-19 00:46:19.346713",
+    "report_generated": false
+  }
+]
