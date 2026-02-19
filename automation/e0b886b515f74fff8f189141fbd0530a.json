@@ -1,0 +1,146 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Business Logic: Asset Whitelist] If vault whitelists assets based on working oracle feeds, can attacker add asset with problematic price feed (negative price, positive expo) to DoS vault operations or force unfavorable asset de-listing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dcc39349-dd49-487c-a695-7eb754d41e77?mode=deep",
+    "timestamp": "2026-02-19 07:45:12.550381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Business Logic: Emergency Mode] If vault enters emergency mode and switches to unsafe oracle functions for speed, can attackers exploit the window to perform operations at stale favorable prices before normal mode resumes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a5e589f9-77e3-4ce3-beae-7221d83fdc33?mode=deep",
+    "timestamp": "2026-02-19 07:45:25.079449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Business Logic: Fee Calculation Timing] If vault calculates performance fees based on oracle prices at epoch boundaries, can operators manipulate oracle function choice at snapshot time to show inflated/deflated performance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_51546c8f-596f-4e55-97cd-72e2280d62db?mode=deep",
+    "timestamp": "2026-02-19 07:45:39.292658",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Business Logic: Share Price Oracle] If vault's share price (for external DeFi integrations) is based on oracle-priced assets, can attackers flash-crash the share price by exploiting oracle lag, then buy shares cheap and wait for correction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_54b47321-7557-43c1-87ea-93051c5877bf?mode=deep",
+    "timestamp": "2026-02-19 07:45:52.637280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_info_object_id()] [Address Conversion Security] Line 62-63 converts address to bytes then to ObjectID. If sui::address::to_bytes() encoding differs from expected, can this cause object ID mismatch, querying wrong price feeds? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b8c31b8-0a41-4967-80c3-399ed5f310b9?mode=deep",
+    "timestamp": "2026-02-19 07:46:06.565839",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_identifier_to_vector()] [Identifier Length] Returns vector<u8> identifier. If downstream code assumes fixed length but Pyth changes format, can variable-length identifiers cause buffer issues or indexing errors in vault's asset mapping? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ff58ecc-e12f-43ae-8c8d-2ec8a245cddc?mode=deep",
+    "timestamp": "2026-02-19 07:46:21.984718",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Module: adaptor_pyth] [No Price Confidence] Pyth provides price confidence intervals but adaptor doesn't expose them. If price has wide confidence band (high uncertainty), can vault unknowingly use unreliable prices for critical decisions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b823f6dc-dc82-4c7c-b1c2-eb805cc6cb40?mode=deep",
+    "timestamp": "2026-02-19 07:46:37.812205",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Module: adaptor_pyth] [No EMA Price] Pyth provides exponential moving average prices for smoothing. Adaptor only uses spot prices. During manipulation, can attackers benefit from spot price spikes while EMA would show attack? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d6f628e7-bb75-4942-8874-636274955254?mode=deep",
+    "timestamp": "2026-02-19 07:46:56.397449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_native()] [Price Status Ignored] Pyth price objects have status field (trading/halted/unknown). Adaptor doesn't check status. Can vault use prices from halted markets, enabling exploitation of frozen prices while real market moves? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c06e73f0-5183-4dfe-9f12-78aca42a3798?mode=deep",
+    "timestamp": "2026-02-19 07:47:14.884279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_native()] [No Confidence Check] Without timestamp validation, also skips confidence interval checks. Can attacker use moment of extreme price uncertainty (wide confidence) to execute operations at favorable tail of confidence range? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_df58ffa4-a205-4d6d-b4f1-4e41d3d24c20?mode=deep",
+    "timestamp": "2026-02-19 07:47:33.904277",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Module: adaptor_pyth] [Pyth Upgrade Compatibility] If Pyth network upgrades price feed format or adds new validation, existing adaptor may become incompatible. Can this create state where vault's oracle calls fail, freezing operations until adaptor upgrade? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cae39580-920b-4f30-b99d-8d8c07258c73?mode=deep",
+    "timestamp": "2026-02-19 07:47:54.825470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Module: adaptor_pyth] [Price Feed Migration] If Pyth deprecates old price feeds and requires migration to new IDs, adaptor has no migration logic. Can this orphan vault assets using old feeds, making them unpriceable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b66beb5d-1f80-4c68-852e-528c349dce55?mode=deep",
+    "timestamp": "2026-02-19 07:48:16.952435",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_info_object_id()] [Object ID Stability] If Pyth changes how price_feed_id maps to object IDs across upgrades, cached mappings become stale. Can this cause vault to query wrong objects or fail operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e6a35e2d-d503-4af4-b9ab-7b9a9011e2e5?mode=deep",
+    "timestamp": "2026-02-19 07:48:39.388141",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Module: adaptor_pyth] [Backward Compatibility] No version checks for Pyth modules. If Pyth makes breaking changes to i64, price, or state modules, can adaptor silently use wrong data structures, corrupting price extraction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c0ad9ba0-cb64-4caf-9a72-3fd898ac0f0a?mode=deep",
+    "timestamp": "2026-02-19 07:49:02.451290",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Module: Navi Limiter] If navi_limiter calls get_price_unsafe_to_target_decimal() for health checks (to avoid clock dependency), does this bypass Pyth's staleness validation, enabling health check manipulation via stale prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b496555-e736-48fa-8db3-08a9f224566f?mode=deep",
+    "timestamp": "2026-02-19 07:49:26.392295",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Module: Vault Adaptors] If Navi/Suilend/Cetus adaptors each choose different oracle functions (safe vs unsafe) for asset pricing, can attacker exploit inconsistent pricing across adaptors to arbitrage or manipulate collateral ratios? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_daaa57db-34ae-4a10-9e7d-45a1f8946892?mode=deep",
+    "timestamp": "2026-02-19 07:49:50.447668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Module: Request Buffers] If deposit request validation uses safe oracle but execution uses unsafe, can attacker submit request with current prices then execute after favorable price movement using stale prices, profiting from the lag? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_60d100f1-d7aa-4c4d-bbe1-b0ad81f10e30?mode=deep",
+    "timestamp": "2026-02-19 07:50:14.705541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Module: Fee Config] If fee_config module calculates fees using oracle prices and adaptor choice varies by operation type, can operators systematically choose unsafe (stale favorable) prices for fee calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5619622b-be69-40da-85b7-7373fddf204e?mode=deep",
+    "timestamp": "2026-02-19 07:50:39.345161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Cross-Module: Validator Rewards] If liquid staking reward distribution uses oracle-priced assets and adaptor allows stale prices, can operators inflate rewards by using old high prices or deflate by using old low prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9f1af2e0-11c0-46e2-871f-cde79fdcedc3?mode=deep",
+    "timestamp": "2026-02-19 07:51:04.266635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Module: adaptor_pyth] [No Price Staleness Events] Functions don't emit events when returning prices. If price is critically stale (hours old) but within Pyth tolerance, can external monitors detect this before exploitation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac08b74f-c30e-4c7e-a485-b0f662535333?mode=deep",
+    "timestamp": "2026-02-19 07:51:29.783664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Module: adaptor_pyth] [No Function Usage Tracking] No distinction in output whether safe or unsafe function was called. Can vault auditors detect if unsafe functions are being misused without examining all caller code? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0ef86bf9-37cc-462d-993a-354d1accbd56?mode=deep",
+    "timestamp": "2026-02-19 07:51:56.115129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_native(), get_price_unsafe_to_target_decimal()] [No Warning Mechanism] Unsafe functions have no capability requirement or warning. Can developers accidentally use them thinking they're equivalent to safe versions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e00c9a2-3cfa-40ce-bde4-d06851c7569b?mode=deep",
+    "timestamp": "2026-02-19 07:52:23.303994",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Module: adaptor_pyth] [No Price Deviation Checks] No validation that price hasn't moved beyond threshold since last read. Can gradual staleness accumulate undetected if each individual read seems reasonable? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_16019c71-40d1-481b-a0e7-9bf8263df2ca?mode=deep",
+    "timestamp": "2026-02-19 07:52:50.039179",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_native()] [Clock Dependency Cost] Requires Clock object passed. If vault operations need prices for many assets, does repeated Clock passing increase gas costs significantly, incentivizing use of unsafe no-clock functions? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5655886d-645d-47a2-80cb-871d489b8a39?mode=deep",
+    "timestamp": "2026-02-19 07:53:17.657946",
+    "report_generated": false
+  }
+]
