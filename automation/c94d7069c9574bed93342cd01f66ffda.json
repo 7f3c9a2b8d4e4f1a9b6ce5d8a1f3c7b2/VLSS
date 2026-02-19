@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: update_price()] [Event Accuracy] Emits AssetPriceUpdated with current_price, but what if the update partially fails - can events reflect incorrect state? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cf4b382a-09bf-472f-9394-6a00cae119f1?mode=deep",
+    "timestamp": "2026-02-19 05:53:31.261476",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: update_price()] [Missing Bounds] No validation that current_price is within reasonable bounds (non-zero, not extreme) - can zero or MAX_U256 prices be set? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_284e20a7-c570-4936-a95c-2921e65dbe19?mode=deep",
+    "timestamp": "2026-02-19 05:53:44.578614",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: update_price()] [Asset Type Validation] Doesn't validate asset_type before accessing aggregators[asset_type] - can this panic for non-existent types? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d68e7af4-3600-4cfe-b99e-cf9e2c60d135?mode=deep",
+    "timestamp": "2026-02-19 05:53:58.222228",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: update_price()] [Clock Manipulation] Uses clock.timestamp_ms() directly - can clock rollbacks or fast-forwards manipulate price update timing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_95abe6bf-0728-469d-9bc9-2467ca49cf29?mode=deep",
+    "timestamp": "2026-02-19 05:54:12.575712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_current_price()] [Staleness Logic Bug] The condition if (now >= max_timestamp) only checks staleness if now >= max_timestamp, but what if max_timestamp > now? Is the price accepted as fresh? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e8d4c09-b993-486d-990a-7bc8fcc79705?mode=deep",
+    "timestamp": "2026-02-19 05:54:27.974196",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_current_price()] [Integer Overflow] now - max_timestamp can overflow if max_timestamp > now due to clock manipulation - can this bypass the staleness check? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_20dcfc21-5d10-4f9d-9532-c4a92c38716d?mode=deep",
+    "timestamp": "2026-02-19 05:54:45.972799",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_current_price()] [Switchboard Trust] Directly casts aggregator.current_result().result().value() to u256 without validation - can Switchboard return invalid values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_10153ff7-c4ee-4b96-9aaa-29e645652fee?mode=deep",
+    "timestamp": "2026-02-19 05:55:03.956486",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_current_price()] [Missing Error Handling] If current_result() fails or returns invalid data, the function will panic - can this be weaponized for DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_176eb062-fbbb-44d7-9e39-0a023c418db1?mode=deep",
+    "timestamp": "2026-02-19 05:55:22.025514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_current_price()] [Type Cast Safety] Casts result().value() as u256 without checking bounds - can overflow occur if value is negative or exceeds u256? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d65ed932-6f7a-4258-b26b-cf76f9bcbf1c?mode=deep",
+    "timestamp": "2026-02-19 05:55:42.708540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_current_price()] [Timestamp Source] Uses max_timestamp_ms() from Switchboard - can manipulated Switchboard data provide future timestamps that bypass staleness checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_17fd2763-e82e-41e8-8de5-7aa7a7d78501?mode=deep",
+    "timestamp": "2026-02-19 05:56:04.789537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_current_price()] [Missing Version Check] Doesn't call check_version() before accessing config.update_interval - can this be called on unupgraded configs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c62d2600-b94c-44d5-b2ac-eaa11f295a17?mode=deep",
+    "timestamp": "2026-02-19 05:56:27.694665",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: init()] [Single Call Assumption] init() creates and shares OracleConfig, but Move doesn't prevent multiple init() calls - can multiple OracleConfig objects exist, causing confusion? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4948248b-528b-4eef-92a3-e5f34f810068?mode=deep",
+    "timestamp": "2026-02-19 05:56:52.283832",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: init()] [Default Values] Initializes with MAX_UPDATE_INTERVAL (60s) and DEFAULT_DEX_SLIPPAGE (1%) - are these safe defaults for mainnet deployment? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87dc422a-f39a-47df-a53c-1b07d4a7501f?mode=deep",
+    "timestamp": "2026-02-19 05:57:18.492540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: init()] [Shared Object] Uses transfer::share_object() making OracleConfig globally accessible - can this be exploited if access controls are insufficient elsewhere? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_77000140-e4a9-4bb0-80c2-21442d874089?mode=deep",
+    "timestamp": "2026-02-19 05:57:44.022870",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: update_interval()] [No Validation] Returns raw update_interval without validation - can callers misuse extreme values? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1047254a-74b4-49c2-a0f7-57ed4d1e870e?mode=deep",
+    "timestamp": "2026-02-19 05:58:09.183241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: coin_decimals()] [Unchecked Table Access] Uses aggregators[asset_type].decimals without checking contains() - will this panic for removed assets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cba2ba7b-3465-402a-b512-728fbf249ead?mode=deep",
+    "timestamp": "2026-02-19 05:58:35.689080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: dex_slippage()] [No Bounds] Returns raw dex_slippage which could be 0 or u256::MAX - can downstream code handle these edge cases? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_705608cf-5717-4e82-8dba-628023c28c96?mode=deep",
+    "timestamp": "2026-02-19 05:59:02.960225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Module: vault_oracle] [Access Control Model] Most critical functions are public(package) - can any module in the package call these without proper authorization checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b2f1889b-7a4a-48bc-a3bc-bd7210375e17?mode=deep",
+    "timestamp": "2026-02-19 05:59:31.247359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Module: vault_oracle] [Price Source Trust] Fully relies on Switchboard aggregators without backup oracles or sanity checks - what if Switchboard is compromised? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_04975da9-d77d-45ba-86bb-5ea0353f9b39?mode=deep",
+    "timestamp": "2026-02-19 05:59:58.960648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Module: vault_oracle] [No Circuit Breaker] No emergency pause mechanism if oracle data becomes unreliable - can price manipulation propagate to vault unchecked? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1356fba1-1859-49cc-9a10-591361d492d9?mode=deep",
+    "timestamp": "2026-02-19 06:00:25.457623",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Module: vault_oracle] [Missing Price Bounds] No minimum or maximum price bounds per asset - can zero or extremely high prices be accepted? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ed49846-c36f-4e0b-9476-14e739bc00a8?mode=deep",
+    "timestamp": "2026-02-19 06:00:49.730331",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Module: vault_oracle] [Table Size Limits] Table<String, PriceInfo> can grow unbounded - can an attacker DoS by adding thousands of aggregators? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_193b4e9b-9437-4bc6-b064-e34ef4aa985f?mode=deep",
+    "timestamp": "2026-02-19 06:01:12.864361",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Module: vault_oracle] [No Asset Type Registry] No whitelist of valid asset types - can arbitrary strings be used as asset types? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_532da076-d4fc-4b39-b236-29bde4aec7b9?mode=deep",
+    "timestamp": "2026-02-19 06:01:36.267388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Module: vault_oracle] [Event Replay] Events can be emitted multiple times in different transactions - can this confuse off-chain systems? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a1a5995f-58b4-4d2c-8a5b-70c47dff4d55?mode=deep",
+    "timestamp": "2026-02-19 06:01:59.430514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/oracle.move] [Function: get_asset_price() + update_price()] [Atomicity] get_asset_price() reads while update_price() writes - can race conditions cause inconsistent price reads? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eea4a1ae-ddf8-425d-80a2-8238143ac254?mode=deep",
+    "timestamp": "2026-02-19 06:02:23.109613",
+    "report_generated": false
+  }
+]
