@@ -1,0 +1,110 @@
+[
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Fees] [Double Retrieval] Can retrieve_deposit_withdraw_fee be called by both admin and operator simultaneously for same fees? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_662aaf3b-a5e1-4a18-997e-37b4f32dbf2d?mode=deep",
+    "timestamp": "2026-02-19 03:22:00.962134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Locking] [Zero Lock Time] Can locking times be set to 0 to enable instant cancellation and withdrawal, removing all safety delays? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eab82b43-8afe-4119-86ae-f79f5130ffff?mode=deep",
+    "timestamp": "2026-02-19 03:22:13.525017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Locking] [Excessive Lock Time] Can locking times be set to u64::MAX to permanently lock user funds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d778c206-add4-49ef-b76d-ca2a577bcd0b?mode=deep",
+    "timestamp": "2026-02-19 03:22:27.436033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Locking] [Retroactive Application] Are locking time changes applied retroactively to existing requests/receipts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a509d1c-8314-4e90-bcf6-89303dfad676?mode=deep",
+    "timestamp": "2026-02-19 03:22:41.247113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Locking] [Inconsistent Locks] Can locking_time_for_withdraw and locking_time_for_cancel_request be set to conflicting values causing logic errors? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e8b4571b-40bc-4152-bbff-8275ebdecb7b?mode=deep",
+    "timestamp": "2026-02-19 03:22:56.132047",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Loss Tolerance] [100% Loss Allowed] Can loss_tolerance be set to RATE_SCALING (10000 = 100%) allowing complete principal loss? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83d024f2-094e-41e6-9753-fc8489ea5779?mode=deep",
+    "timestamp": "2026-02-19 03:23:12.055052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Loss Tolerance] [Epoch Boundary Exploit] Can reset_loss_tolerance be called at epoch boundary to double the loss allowance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_00da2d77-e60d-4067-b403-9fb160a46d98?mode=deep",
+    "timestamp": "2026-02-19 03:23:28.938392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Loss Tolerance] [Base Value Manipulation] Can cur_epoch_loss_base_usd_value be manipulated through oracle changes to allow more losses? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1e423c6-e1f6-4a35-95f9-d5c785ce961c?mode=deep",
+    "timestamp": "2026-02-19 03:23:47.391531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Loss Tolerance] [Tolerance Reset Spam] Can reset_loss_tolerance be called repeatedly to cause event spam or state thrashing? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_877533ad-75bf-41cc-948d-914b82e9e915?mode=deep",
+    "timestamp": "2026-02-19 03:24:06.005819",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Upgrade] [Forced Upgrade] Can upgrade functions be called on active vault with pending operations, corrupting request buffers? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8a40795-38a6-4e5f-ba87-0891f8d378b7?mode=deep",
+    "timestamp": "2026-02-19 03:24:26.633769",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Upgrade] [Partial Upgrade] Can vault be upgraded without upgrading reward_manager and oracle_config, causing version mismatch? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2bdb59fc-20e0-497f-8abf-7b687cda079a?mode=deep",
+    "timestamp": "2026-02-19 03:24:48.183376",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Upgrade] [Version Rollback] Can VERSION constant be decreased in future to allow downgrade attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d3ff7fc1-c754-4521-ab68-59a42806aaf6?mode=deep",
+    "timestamp": "2026-02-19 03:25:11.223201",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Upgrade] [State Migration] Do upgrade functions properly migrate all tables, bags, and nested structures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90967213-6955-456e-ac0d-671ead53b011?mode=deep",
+    "timestamp": "2026-02-19 03:25:34.050676",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Operator] [Unlimited Operators] Can admin create unlimited operator caps, proliferating access points? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c30fa74e-d8a0-4efc-8530-772d4b39af09?mode=deep",
+    "timestamp": "2026-02-19 03:25:55.867143",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Operator] [Freeze Bypass] Can frozen operator still access retrieve_deposit_withdraw_fee_operator function? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_301fd4b6-f5c6-44ba-af16-c59865555c3a?mode=deep",
+    "timestamp": "2026-02-19 03:26:16.262255",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Operator] [Freeze Race] Can operator execute malicious operation immediately before being frozen? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83f9dbff-f18f-470d-a77c-5b9ff0d791b2?mode=deep",
+    "timestamp": "2026-02-19 03:26:37.702200",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Operator] [Wrong Operation Object] Can set_operator_freezed be called with wrong Operation shared object, corrupting freeze state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b216f43-50cd-49b6-a8c8-3639447d813e?mode=deep",
+    "timestamp": "2026-02-19 03:26:59.328846",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Operator] [Unfreeze Timing] Can malicious operator be unfrozen at strategic time to execute harmful operation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_27defef9-2827-42f8-8479-e3e068da5c39?mode=deep",
+    "timestamp": "2026-02-19 03:27:21.952409",
+    "report_generated": false
+  }
+]
