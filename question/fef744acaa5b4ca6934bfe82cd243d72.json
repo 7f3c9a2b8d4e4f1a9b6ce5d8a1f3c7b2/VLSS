@@ -1,8 +1,0 @@
-[
-  "[File: liquid_staking/sources/validator_pool.move] [Struct: ValidatorInfo.exchange_rate] The exchange_rate field at line 61 is updated at line 233 when available - but what is the default/initial value, and could stale exchange rates cause economic issues? (High)",
-  "[File: liquid_staking/sources/validator_pool.move] [Struct: ValidatorInfo.total_sui_amount] The total_sui_amount field at line 62 is recalculated in refresh_validator_info - but is this value ever validated against the actual stake amounts, or just computed from exchange_rate? (Medium)",
-  "[File: liquid_staking/sources/validator_pool.move] [Struct: ValidatorInfo.assigned_weight] The assigned_weight field at line 63 determines stake allocation - if this is set to 0, does the validator effectively become disabled, and is this intended behavior? (Low)",
-  "[File: liquid_staking/sources/validator_pool.move] [Struct: ValidatorInfo.last_refresh_epoch] The last_refresh_epoch field at line 64 is updated at line 234 when exchange_rate is updated - could this validator-specific epoch differ from the pool-level last_refresh_epoch, causing inconsistencies? (Low)",
-  "[File: liquid_staking/sources/validator_pool.move] [Struct: ValidatorInfo.extra_fields] The extra_fields Bag at line 65 for ValidatorInfo - similar concern as ValidatorPool extra_fields about potential exploits? (Low)",
-  "[File: liquid_staking/sources/validator_pool.move] [Function: sui_pool()] Public view function at line 81 returns reference to Balance<SUI> - could exposing this reference enable read-only attacks or information leakage that aids exploits? (Low)"
-]
