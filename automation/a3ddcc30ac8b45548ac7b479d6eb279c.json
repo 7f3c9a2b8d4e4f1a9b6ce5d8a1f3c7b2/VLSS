@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: request_id()] [Visibility] All getter functions are public allowing external modules to read request details - could exposing request_id enable frontrunning attacks where attacker observes pending requests and executes them first if execute_deposit lacks proper authorization? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5f2c3700-fdef-4cf4-a70e-98cc776b3fcc?mode=deep",
+    "timestamp": "2026-02-19 03:57:09.757375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: receipt_id()] [Visibility] The receipt_id getter is public - could external attacker enumerate all receipt_ids by querying deposit_requests Table, then target high-value receipts for attack? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_36c8675b-f5ba-490f-9e36-190fb277567e?mode=deep",
+    "timestamp": "2026-02-19 03:57:22.914333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: recipient()] [Visibility] The recipient getter is public - could exposing recipient addresses enable social engineering or phishing attacks against pending request owners? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eac95e9f-545e-4eac-822f-77f92be51a8f?mode=deep",
+    "timestamp": "2026-02-19 03:57:36.312076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: vault_id()] [Visibility] The vault_id getter is public - could attackers use this to map requests to specific vaults and identify high-value vault targets? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e60bf3d8-7ce1-4b2f-b596-0adffb7cd6f6?mode=deep",
+    "timestamp": "2026-02-19 03:57:50.229646",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: amount()] [Visibility] The amount getter is public - could exposing deposit amounts enable MEV attacks where bots frontrun large deposits to exploit share price changes? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9b82b71-ad27-4922-b054-735a30aa23b2?mode=deep",
+    "timestamp": "2026-02-19 03:58:05.022569",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: expected_shares()] [Visibility] The expected_shares getter is public - could exposing expected slippage tolerance enable sandwich attacks where attacker manipulates vault value before execution to extract maximum slippage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_77b6157a-2ba9-4dcf-81bb-ae17a72dcc96?mode=deep",
+    "timestamp": "2026-02-19 03:58:20.611362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: request_time()] [Visibility] The request_time getter is public - could exposing request creation time enable timing attacks where attacker waits for locking_time_for_cancel_request to expire then griefs by canceling victim's request? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_26ef221c-50ee-459c-aefc-80fa6d6f5d32?mode=deep",
+    "timestamp": "2026-02-19 03:58:37.620225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Integration] The struct stores receipt_id and vault_id as addresses but doesn't enforce object existence - could stale requests with deleted receipt_id or vault_id cause execute_deposit to panic or behave unexpectedly? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ed42e925-097f-4b96-b224-b964c6c5498e?mode=deep",
+    "timestamp": "2026-02-19 03:58:56.957123",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Integration] The amount field must match coin value in deposit_coin_buffer but no cryptographic binding exists - could attacker exploit TOCTOU race by modifying coin buffer between request creation and execution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87f11200-0aad-4f78-98a3-ef26150eb6c9?mode=deep",
+    "timestamp": "2026-02-19 03:59:17.671962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Integration] The expected_shares is set at request time based on current share ratio - could vault operations between request and execution change share ratio such that expected_shares is always violated, DoSing all pending deposits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1f545ae3-8dfc-4b07-9d73-0323a150a55f?mode=deep",
+    "timestamp": "2026-02-19 03:59:39.274610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Integration] The struct doesn't store principal coin type - could generic type erasure in Vault<T> allow request created for Vault<CoinA> to be executed in Vault<CoinB> if vault_id check passes? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_db4dcf0f-e2ea-48d0-96d2-0464b6216f9b?mode=deep",
+    "timestamp": "2026-02-19 04:00:00.661863",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Integration] The constructor doesn't validate that receipt_id corresponds to actual Receipt<T> object - could creating request with receipt_id pointing to non-Receipt object cause type confusion in vault_receipt updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aecf57c0-1fc1-4585-92a3-8eea7eb98d81?mode=deep",
+    "timestamp": "2026-02-19 04:00:24.056291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Integration] The constructor is called from vault.request_deposit() which adds to deposit_requests Table - could failure after Table.add but before coin buffer add create inconsistent state with request but no coin? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb1a12d1-f252-4fb5-93d9-a0af289c9d14?mode=deep",
+    "timestamp": "2026-02-19 04:00:48.120940",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Integration] The request_id is auto-incremented counter deposit_id_count - could counter overflow after u64::MAX requests cause ID collision with early requests still in buffer? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_72c1ba85-0cb4-4ea0-9252-7be440dd3c8c?mode=deep",
+    "timestamp": "2026-02-19 04:01:10.579370",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Integration] The recipient field is only checked in cancel_deposit, not execute_deposit - could operator execute deposit and transfer shares to wrong vault receipt if receipt ownership changed between request and execution? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f4eba4ad-e584-4c79-b207-3b0f69347dd9?mode=deep",
+    "timestamp": "2026-02-19 04:01:34.209235",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Integration] The struct is copied (*deposit_request) during execute_deposit - could modification of original request in Table after copy but before deletion enable request replay attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ef86930c-4c39-432a-bd74-ab6676f4af00?mode=deep",
+    "timestamp": "2026-02-19 04:01:57.921954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Integration] No expiration timestamp or max_execution_time field - could requests remain in buffer indefinitely, and stale requests with outdated expected_shares always fail execution causing permanent coin lock? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_591e7852-bb3e-4509-af38-7c96d31069d0?mode=deep",
+    "timestamp": "2026-02-19 04:02:22.069371",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Missing Validation] No validation that receipt_id != vault_id - could passing same address for both cause confusion in receipt lookup and vault operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a47bb8ab-864b-4155-aec7-fd4fe4fcb7d3?mode=deep",
+    "timestamp": "2026-02-19 04:02:42.671152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Missing Validation] No validation that recipient != address(0) - could zero recipient address be exploited if cancel_deposit uses recipient for coin transfer destination? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a43f545e-a784-42ed-897a-64d4c19a03d3?mode=deep",
+    "timestamp": "2026-02-19 04:03:08.056610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Missing Validation] No validation on expected_shares upper bound - could setting expected_shares = u256::MAX cause all executions to fail slippage check (user_shares <= max_shares_received), permanently locking deposits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d178147-3727-4267-a285-28a306d5625d?mode=deep",
+    "timestamp": "2026-02-19 04:03:34.584448",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Missing Validation] No validation that amount * deposit_fee_rate won't overflow - could large amount cause overflow in fee calculation during execute_deposit? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_36514a6f-2f8b-4509-859a-137e3fe4efdd?mode=deep",
+    "timestamp": "2026-02-19 04:03:59.551487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Missing Validation] No min_amount threshold - could dust deposits with amount = 1 cause precision loss in share calculations or waste gas? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_77629b38-2e5c-4d6f-bf3e-1463515bb161?mode=deep",
+    "timestamp": "2026-02-19 04:04:25.272399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Missing Validation] No max_amount threshold - could depositing u64::MAX amount cause overflow in vault's total_shares calculation (total_shares + user_shares)? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2dd6afa4-34a1-489d-958c-2a0c62f6bfa4?mode=deep",
+    "timestamp": "2026-02-19 04:04:51.084322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Function: new()] [Missing Validation] No check that request_id is strictly increasing - could non-sequential request_ids break pagination or iteration logic in off-chain indexers? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8b38697-fd3f-4653-bf98-3eaf01c0706d?mode=deep",
+    "timestamp": "2026-02-19 04:05:15.903733",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/deposit_request.move] [Struct: DepositRequest] [Missing Field] No slippage tolerance percentage field - how is slippage calculated and could max_shares_received parameter in execute_deposit be manipulated if it's not part of immutable request? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e13b4eb3-9722-414b-b008-8124d6b955f8?mode=deep",
+    "timestamp": "2026-02-19 04:05:40.997127",
+    "report_generated": false
+  }
+]
