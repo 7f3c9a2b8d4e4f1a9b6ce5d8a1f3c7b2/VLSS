@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: set_rewards_unsafe()] [Reward Overwrite] Can set_rewards_unsafe() at line 278 be called with an artificially high value to inflate total_rewards without corresponding SUI backing, breaking the ratio invariant? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e5bc375-9f9f-4fab-a3a8-1a09a27be9d7?mode=deep",
+    "timestamp": "2026-02-19 04:53:20.810737",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: sub_rewards_unsafe()] [Reward Underflow] At line 285, if value > self.total_rewards, total_rewards is clamped to 0 - but does this properly account for collected_rewards, potentially making get_total_rewards() underflow later? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e86d3b4f-eda3-443d-9670-6eb469a542ba?mode=deep",
+    "timestamp": "2026-02-19 04:53:33.215180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: sub_rewards_unsafe()] [Inconsistent State] Does sub_rewards_unsafe() emit RewardsUpdated with self.total_rewards, but if collected_rewards is non-zero, is the effective reward calculation in get_ratio() now misaligned? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_677434d7-90e0-4408-a5ef-9423015e476c?mode=deep",
+    "timestamp": "2026-02-19 04:53:46.555723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: mut_collected_rewards()] [Direct Mutation Risk] Can mut_collected_rewards() at line 590 be abused by package functions to set collected_rewards > total_rewards, breaking the invariant and causing get_total_rewards() underflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22c156cf-2712-4374-8016-faf41267d53e?mode=deep",
+    "timestamp": "2026-02-19 04:53:59.653925",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Fee Extraction Underflow] At line 479, assert balance >= fee + collectable_reward - but if collectable_reward calculation at lines 470-476 caps it to collected_rewards, can the assertion fail on valid unstakes? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_60024af1-c0f8-471f-a19b-05c8224634cb?mode=deep",
+    "timestamp": "2026-02-19 04:54:14.463819",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Validator Loop Exploit] At lines 435-467, if validators vector is manipulated to have duplicates, can the loop double-count removals and extract more than amount_to_unstake from the pool? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9864dc45-ffcf-4b79-84b3-d940cd840151?mode=deep",
+    "timestamp": "2026-02-19 04:54:28.925240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Infinite Loop DoS] At line 463, if i==0 breaks but total_removed_value < amount_to_unstake, does the function return insufficient funds causing unstake denial? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9940194-b505-4440-abbd-9004ffb37c52?mode=deep",
+    "timestamp": "2026-02-19 04:54:46.138278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Fee Bypass] At lines 454-456, if calculate_reward_fee() returns 0 due to rounding for small reward amounts, can attackers accumulate uncollected rewards in the pool? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_53979bea-72c7-452e-b373-23d1c9e103fc?mode=deep",
+    "timestamp": "2026-02-19 04:55:04.479471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Reward Accounting Mismatch] At line 456, sub_rewards_unsafe(self, rewards) is called with gross rewards, but only reward_fee is added to collectable_reward - is there a reward leakage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68508500-8874-4bdd-8a52-5032d8f37c47?mode=deep",
+    "timestamp": "2026-02-19 04:55:23.304896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Restaking Reentrancy] At lines 484-492, if excess is restaked via stake_pool() which is deprecated, does the restake path fail silently, locking excess SUI in pending forever? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3a324d90-cc05-45ba-a1a0-af1279cad8d1?mode=deep",
+    "timestamp": "2026-02-19 04:55:43.526027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Collectable Reward Underflow] At lines 470-476, if collectable_reward > collected_rewards but collected_rewards is then set to 0, can subsequent unstakes fail the assertion at line 479? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c6f0b14-6424-436e-85b1-c79301b68fa4?mode=deep",
+    "timestamp": "2026-02-19 04:56:04.357861",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Balance Extraction Race] At line 438, total_removed_balance starts with pending - if concurrent collect_fee() drains collectable_fee, can the final balance be less than expected? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_71a705bf-466d-4323-ab43-ea3842553813?mode=deep",
+    "timestamp": "2026-02-19 04:56:26.449520",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: collect_fee()] [Fee Drainage] At line 532, collect_fee() transfers entire collectable_fee balance - can this be frontrun by attacker immediately after a large unstake to steal protocol fees? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac82c626-6f56-4c18-8740-699d8e276476?mode=deep",
+    "timestamp": "2026-02-19 04:56:48.806903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: collect_fee()] [Missing Fee Validation] Does collect_fee() verify that the transferred amount matches the emitted FeeCollectedEvent value, or can the event be misleading if coin::split() fails partially? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4871a869-1575-4e61-b4ad-1a3258373134?mode=deep",
+    "timestamp": "2026-02-19 04:57:11.624033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: stake()] [Deprecation Bypass] Although stake() aborts at line 386, if assert_version() allows VERSION-1, can unmigrated pools still accept stakes causing inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6607718d-dc56-4212-939e-1caffde21540?mode=deep",
+    "timestamp": "2026-02-19 04:57:34.734487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake()] [Deprecated Path Exploit] If unstake() at line 401 is called on a VERSION-1 pool, does E_DEPRECATED abort before or after any state changes, potentially leaving partial unstake state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_caaaf185-78d1-4efc-8411-9dfc47223950?mode=deep",
+    "timestamp": "2026-02-19 04:57:57.955060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: update_rewards()] [Operator Privilege Abuse] update_rewards() at line 269 requires OperatorCap but aborts - if this is re-enabled without proper checks, can operators arbitrarily set rewards to manipulate ratio? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_feae537b-d46d-4646-890d-7df0db0324ad?mode=deep",
+    "timestamp": "2026-02-19 04:58:21.473845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: change_min_stake()] [Config Lockout] All config change functions abort with E_DEPRECATED - can this permanently brick configuration updates, forcing a complete pool migration? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_251a2d66-54a4-4b63-b179-5b65ed1b47ca?mode=deep",
+    "timestamp": "2026-02-19 04:58:43.411549",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: update_validators()] [Validator Freeze] If update_validators() at line 260 is deprecated, can the validator set become stale with inactive validators, causing all stakes to fail? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5db34d1-f002-4158-89dc-e35afc32ed54?mode=deep",
+    "timestamp": "2026-02-19 04:59:04.307057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: stake_pool()] [Staking Halt] stake_pool() at line 395 aborts - does this mean pending SUI can never be staked, accumulating indefinitely and breaking the staking mechanism? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d14ed5c9-af03-47b7-be0e-492b25f8b615?mode=deep",
+    "timestamp": "2026-02-19 04:59:26.118843",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: mint_ticket_non_entry()] [Ticket Creation Blocked] mint_ticket_non_entry() at line 410 aborts - if ticket creation is blocked, how can users unstake their CERT tokens, causing fund lockup? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a2c4ffb5-ea74-430c-a1dd-421534385177?mode=deep",
+    "timestamp": "2026-02-19 04:59:46.376910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: burn_ticket_non_entry()] [Redemption Failure] burn_ticket_non_entry() at line 419 aborts - if users can't burn tickets, are they permanently locked out of retrieving unstaked SUI? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_151174ac-cf4e-471e-a1b5-5001a0256117?mode=deep",
+    "timestamp": "2026-02-19 05:00:07.021191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: rebalance()] [Validator Imbalance] rebalance() at line 503 is deprecated - can validator stake distribution become highly imbalanced, increasing centralization risk without rebalancing capability? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b41e38b-c7b1-44dd-82d7-920bdabccd8f?mode=deep",
+    "timestamp": "2026-02-19 05:00:26.766627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: sort_validators()] [Priority Corruption] sort_validators() at line 498 is deprecated - if validator priorities can't be sorted, can attackers manipulate validator selection to their advantage? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_baa0ef38-6287-4004-ad13-5034195a0e1e?mode=deep",
+    "timestamp": "2026-02-19 05:00:47.400503",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: stake_non_entry_for_testing()] [Test Function Exposure] If stake_non_entry_for_testing() at line 660 is compiled into production, can anyone bypass the deprecated stake() path and mint CERT without proper validation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ec6958d3-3915-4d76-9c48-066cd5c3f032?mode=deep",
+    "timestamp": "2026-02-19 05:01:06.061011",
+    "report_generated": false
+  }
+]
