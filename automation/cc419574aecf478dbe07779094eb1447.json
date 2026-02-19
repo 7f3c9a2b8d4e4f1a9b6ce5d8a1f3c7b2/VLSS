@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Struct: WithdrawRequest] [Immutability] Are all WithdrawRequest fields immutable after creation, or can package-visible functions modify them to bypass original user intent? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ed0439a7-9e3d-42a8-9e89-6cb63dbe439c?mode=deep",
+    "timestamp": "2026-02-19 06:01:38.159185",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [State Mutation] [Field Modification] Can the vault or other package modules obtain mutable references to stored WithdrawRequest objects and alter fields like recipient or expected_amount? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_29c5e3ae-282b-4384-b3d0-385020a9d1dd?mode=deep",
+    "timestamp": "2026-02-19 06:01:50.804510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [State Mutation] [Request Substitution] Can a legitimate WithdrawRequest in the buffer be replaced with a modified copy, redirecting withdrawals or changing slippage terms? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7df74085-14d8-478c-ab56-49a5456391e3?mode=deep",
+    "timestamp": "2026-02-19 06:02:04.842938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Lifecycle] [Request Expiration] Does WithdrawRequest lack an expiration time, allowing ancient requests to remain valid indefinitely even after market conditions change drastically? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fac555fd-7d42-4962-8b05-5b3c25e3d4fd?mode=deep",
+    "timestamp": "2026-02-19 06:02:19.032187",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Lifecycle] [Stale Request Execution] Can WithdrawRequest objects created months ago be executed with outdated expected_amount, bypassing current slippage protection? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a6bf19e-70b7-40d0-bc1d-eb68b114e768?mode=deep",
+    "timestamp": "2026-02-19 06:02:33.399695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Cleanup] [Memory Leak] If WithdrawRequest execution or cancellation fails, can the request remain in buffer permanently, causing storage leaks and gas exhaustion? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_208befb6-42f4-47bf-8ac0-055c4681b155?mode=deep",
+    "timestamp": "2026-02-19 06:02:49.586670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Cleanup] [Orphaned Shares] If a WithdrawRequest is dropped without cleanup, are the shares permanently locked, or is there a mechanism to recover them? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74175981-ca91-4223-802b-96a39a5c874d?mode=deep",
+    "timestamp": "2026-02-19 06:03:05.979152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Cross-Module] [Vault Status] Can WithdrawRequest be created when vault is in 'during_operation' or 'disabled' status, bypassing status gate checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_500a5d88-7a1d-4113-8868-112dbae00207?mode=deep",
+    "timestamp": "2026-02-19 06:03:24.219015",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Cross-Module] [Operator Freeze] If operator is frozen, can they still execute or cancel WithdrawRequest objects they previously created? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_10240ab0-b786-4d74-b71b-e89b369acbd1?mode=deep",
+    "timestamp": "2026-02-19 06:03:43.333092",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Cross-Module] [Adaptor Interaction] Can WithdrawRequest execution trigger adaptor operations that are unauthorized or violate health limits? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_849d2278-552a-410d-bd8b-abf306439cc0?mode=deep",
+    "timestamp": "2026-02-19 06:04:03.251314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Cross-Module] [Fee Config] Can fee_config be changed after WithdrawRequest creation, causing users to pay unexpected fees during execution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_11e269d4-cd52-47cc-ba03-f223843fc06b?mode=deep",
+    "timestamp": "2026-02-19 06:04:23.589975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Cross-Module] [Pause Flag] If vault is paused after WithdrawRequest creation, can the request still be executed or cancelled, bypassing emergency pause? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2683f01c-3948-450b-800f-c6fd5e663dad?mode=deep",
+    "timestamp": "2026-02-19 06:04:44.389120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Economic] [Front-Running] Can large WithdrawRequest objects be front-run by others who observe pending requests and execute first, depleting vault liquidity? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5670e110-0fb8-4c4e-af3d-b86b869b0316?mode=deep",
+    "timestamp": "2026-02-19 06:05:06.974712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Economic] [MEV Extraction] Can MEV bots monitor WithdrawRequest creation events and extract value by manipulating vault state before execution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_05bb4581-691c-4149-8b3f-89ba830cd982?mode=deep",
+    "timestamp": "2026-02-19 06:05:29.287378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Economic] [Withdrawal Rush] Can mass WithdrawRequest creation cause a bank run, where early executors drain vault while later requests fail due to insufficient funds? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e136ef00-fc58-4bf4-aec6-357c081e2b7a?mode=deep",
+    "timestamp": "2026-02-19 06:05:52.709488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Economic] [Liquidity Fragmentation] Can numerous small WithdrawRequest objects fragment vault liquidity, making it impossible to execute large withdrawals? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b55823db-0e86-4381-b5c8-689f5a9231e1?mode=deep",
+    "timestamp": "2026-02-19 06:06:15.428434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Game Theory] [Griefing] Can attackers create WithdrawRequest objects with impossible expected_amount to grief other users by consuming request buffer space? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d9baa12-f5ff-438c-b5fa-86d34e912007?mode=deep",
+    "timestamp": "2026-02-19 06:06:37.644015",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Type Safety] [Generic Mismatch] Does WithdrawRequest lack generic type parameter for PrincipalCoinType, enabling cross-type withdrawal requests that could drain wrong asset pools? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_58b40ad7-c4b2-48e8-aeba-abec35b91909?mode=deep",
+    "timestamp": "2026-02-19 06:07:01.769798",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Type Safety] [Address Casting] Can receipt_id, recipient, or vault_id addresses be cast to incompatible object types during execution, causing type confusion? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd8a8161-5a95-4171-af10-e33fa4cffa82?mode=deep",
+    "timestamp": "2026-02-19 06:07:25.857498",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Type Safety] [U256/U64 Conversion] Are there unchecked conversions between u256 shares and u64 amounts that could cause truncation or overflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1cfa7c07-5e74-4b7a-a5a2-9daed405ecde?mode=deep",
+    "timestamp": "2026-02-19 06:07:50.420172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Edge Case] [Zero Everything] Can a WithdrawRequest be created with all numeric fields (request_id, shares, expected_amount, request_time) set to zero? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6eb102e1-de91-4660-9618-9dadc769704a?mode=deep",
+    "timestamp": "2026-02-19 06:08:13.436329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Edge Case] [Max Values] Can a WithdrawRequest be created with all numeric fields set to maximum values (u64::max, u256::max), causing arithmetic overflows everywhere? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d4231dd-a5ea-40bc-89db-ca8b7d54ed34?mode=deep",
+    "timestamp": "2026-02-19 06:08:35.507302",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Edge Case] [Same Address] Can receipt_id, recipient, and vault_id all be the same address, creating degenerate cases in validation logic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fb46be91-2d48-40b5-967d-3c59407bde03?mode=deep",
+    "timestamp": "2026-02-19 06:08:57.448047",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Edge Case] [Request Spam] Can an attacker create millions of tiny WithdrawRequest objects (1 share each) to DoS the request buffer and execution queue? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_deb8af16-07a7-4c32-b3a6-f0fec7a3392b?mode=deep",
+    "timestamp": "2026-02-19 06:09:21.406008",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/requests/withdraw_request.move] [Edge Case] [Precision Loss] If shares is 1 and share ratio is very small, can expected_amount round to zero, causing free withdrawals or execution failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e499ed1-8517-48a9-bbe7-4b07663c0a57?mode=deep",
+    "timestamp": "2026-02-19 06:09:45.320280",
+    "report_generated": false
+  }
+]
