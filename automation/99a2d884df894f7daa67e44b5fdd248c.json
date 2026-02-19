@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: has_authority()] [Authorization Bypass] Can an attacker bypass authority check by manipulating ctx.sender() in a multi-sig or proxy context, allowing unauthorized config updates without proper authorization, leading to aggregator manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e82ecea4-d182-4691-81eb-f84443bb5396?mode=deep",
+    "timestamp": "2026-02-19 03:33:05.181283",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_authority()] [Authorization Missing] The set_authority() function is public(package) but lacks authority check - can any package module call this to transfer authority to attacker address, bypassing has_authority() checks and gaining full control? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e87dadb7-312f-458b-8aea-feb9ea815cd5?mode=deep",
+    "timestamp": "2026-02-19 03:33:18.156095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_configs()] [Authorization Missing] The set_configs() function is public(package) without authority validation - can attacker module within package call this to set malicious configs (min_sample_size=0, max_staleness_seconds=u64::MAX) enabling stale/invalid data acceptance? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f125102c-aeb0-46e9-a0c8-f342e15e96c0?mode=deep",
+    "timestamp": "2026-02-19 03:33:32.187277",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_configs()] [Config Manipulation] Can attacker with package access set min_sample_size=0 via set_configs(), bypassing minimum sample requirements and allowing single oracle update to determine price, enabling price manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c1b40da-6cee-4bf4-b50c-31ea2b77218a?mode=deep",
+    "timestamp": "2026-02-19 03:33:46.236123",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_configs()] [Config Manipulation] Can attacker set max_staleness_seconds to u64::MAX via set_configs(), allowing infinitely old oracle data to be accepted as valid, enabling use of manipulated historical prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cfa33afd-e111-4813-96f8-a1749de0e63f?mode=deep",
+    "timestamp": "2026-02-19 03:34:01.669171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_configs()] [Config Manipulation] Can attacker set max_variance=0 via set_configs(), causing all variance checks to fail or allowing any variance to pass, breaking data quality guarantees? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_55e0d740-1189-4ebe-a1cc-79227cf96362?mode=deep",
+    "timestamp": "2026-02-19 03:34:19.250889",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_configs()] [Config Manipulation] Can attacker set min_responses=0 via set_configs(), allowing aggregator to produce results without any oracle responses, breaking consensus mechanism? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f682ae51-4294-4911-949c-95b8498d23b1?mode=deep",
+    "timestamp": "2026-02-19 03:34:39.217252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: new()] [Initialization Vulnerability] During new() aggregator creation, can attacker set min_sample_size=0 initially, creating permanently broken aggregator that accepts invalid single-oracle data throughout lifetime? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5b569130-0888-4f0f-a8dc-69dd9c44a06f?mode=deep",
+    "timestamp": "2026-02-19 03:35:00.595307",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_update()] [Circular Buffer Overflow] In set_update(), curr_idx = (last_idx + 1) % MAX_RESULTS - can attacker trigger wraparound by submitting exactly MAX_RESULTS updates, causing curr_idx to overwrite oldest entry, potentially losing critical price data? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3c1202f2-13b8-4ce4-be7e-53a1156d5a44?mode=deep",
+    "timestamp": "2026-02-19 03:35:22.659707",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_update()] [Timestamp Validation Bypass] In set_update() at lines 311-314, check 'if (timestamp_ms < last_result.timestamp_ms)' only compares against last_idx, not most recent timestamp - can attacker submit out-of-order updates that are newer than position [last_idx] but older than position [last_idx-1], bypassing chronological ordering? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af92c19a-9cb8-4b99-81b9-14cb4701ca2e?mode=deep",
+    "timestamp": "2026-02-19 03:35:45.938851",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_update()] [Timestamp Validation Bypass] The timestamp check at line 312 returns silently if timestamp_ms < last_result.timestamp_ms - can attacker with multiple oracles submit older timestamps to specific positions in circular buffer, manipulating median calculation by controlling age distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b842a43-88b8-4877-b8db-75d8f44d79c0?mode=deep",
+    "timestamp": "2026-02-19 03:36:07.837492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_update()] [State Corruption] In set_update(), if results.length() == 0, function pushes and returns at line 306 without updating curr_idx - does this leave curr_idx at stale value, causing next update to overwrite wrong position? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_330e4512-3cc0-4a0e-9424-ef01dd5b945f?mode=deep",
+    "timestamp": "2026-02-19 03:36:30.837953",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_update()] [Race Condition] In set_update(), curr_idx is read at line 297 then written at line 334 - in concurrent add_result() calls on shared Aggregator, can race condition cause curr_idx updates to be lost, leading to buffer corruption? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0086b4fa-d791-46a5-b37f-2e5773c5ad0b?mode=deep",
+    "timestamp": "2026-02-19 03:36:52.669193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_update()] [Buffer Overwrite] At lines 327-331, when results.length() >= MAX_RESULTS, existing result is overwritten - can attacker time submissions to overwrite specific oracle's data right before computation, excluding it from median calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fd04aa1d-cbad-4e2f-ba87-733e83537b15?mode=deep",
+    "timestamp": "2026-02-19 03:37:16.344004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: set_update()] [Index Calculation Error] At line 298, curr_idx = (last_idx + 1) % MAX_RESULTS - if last_idx is corrupted to be >= MAX_RESULTS, does modulo still produce valid index or can it cause out-of-bounds access? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e2dd3064-b05a-4b21-9bce-11f33b47b1ac?mode=deep",
+    "timestamp": "2026-02-19 03:37:40.745158",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: add_result()] [Timestamp Manipulation] In add_result() at line 250, now_ms from clock.timestamp_ms() is used for staleness checks - can attacker manipulate Clock object or submit updates during clock manipulation to bypass max_staleness_seconds validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dd8558a2-2adc-458e-8465-078da2423824?mode=deep",
+    "timestamp": "2026-02-19 03:38:03.548920",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: add_result()] [Silent Failure] At lines 252-256, if compute_current_result() returns None, add_result() silently succeeds without updating current_result - can attacker flood with invalid updates, causing aggregator to stop producing results while appearing functional? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d8d4985-9389-45cc-a471-fa174385b422?mode=deep",
+    "timestamp": "2026-02-19 03:38:25.906172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: valid_update_indices()] [Staleness Calculation Error] At line 574, staleness check is '(results[idx].timestamp_ms + max_staleness_ms) < now_ms' - if timestamp_ms + max_staleness_ms overflows u64, does it wrap to small value causing all future updates to be considered stale, DoS attack? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_66ab8a2c-c3db-46cb-8136-fbf0459d5443?mode=deep",
+    "timestamp": "2026-02-19 03:38:44.503984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: valid_update_indices()] [Staleness Check Bypass] In valid_update_indices() at line 574, loop breaks if ANY element is stale - can attacker place one stale update at strategic position in circular buffer to prevent newer valid updates from being checked, forcing use of older subset? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af2044b9-fbb3-4941-8365-a67e26ee6fab?mode=deep",
+    "timestamp": "2026-02-19 03:39:05.032713",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: valid_update_indices()] [Oracle Deduplication Bypass] At lines 582-585, seen_oracles uses vec_set to track unique oracles - can attacker create multiple oracle IDs that collide in vec_set comparison, allowing single oracle to contribute multiple times as different 'unique' oracles? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63b86ec9-db13-445e-8d42-85c00a3b8b54?mode=deep",
+    "timestamp": "2026-02-19 03:39:27.099361",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: valid_update_indices()] [Index Wraparound Bug] At lines 588-592, if idx == 0, it wraps to results.length() - 1 - if results.length() is 0 (shouldn't happen but not validated), does this cause underflow to u64::MAX? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_40ba2811-e6d6-47e9-99ca-b8af355d6400?mode=deep",
+    "timestamp": "2026-02-19 03:39:51.221677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: valid_update_indices()] [Iteration Logic Error] At line 565, remaining_max_iterations = u64::min(MAX_RESULTS, results.length()) - if results.length() > MAX_RESULTS due to corruption, does min() cap at MAX_RESULTS leaving some valid entries unchecked? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_64bca388-bfa9-4cc0-b763-ae12e07b85cb?mode=deep",
+    "timestamp": "2026-02-19 03:40:14.018961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: valid_update_indices()] [Backwards Iteration Manipulation] The function iterates backwards from curr_idx at lines 588-592 - can attacker manipulate curr_idx to point to oldest entry, causing iteration to process updates in attacker-favorable order? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0c0c763d-5d6a-4804-a9c2-9879ae8ba67c?mode=deep",
+    "timestamp": "2026-02-19 03:40:36.985935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Sample Size Bypass] At lines 343-346, if update_indices.length() < min_sample_size, returns None - but can attacker manipulate valid_update_indices() to return exactly min_sample_size malicious updates, bypassing quality checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_81c505b4-316f-4b33-8507-6f0846b2825d?mode=deep",
+    "timestamp": "2026-02-19 03:41:00.180860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/schemas/aggregator.move] [Function: compute_current_result()] [Single Update Vulnerability] At lines 348-362, special case for single update (length == 1) returns result without variance/stdev checks - can attacker cause only 1 valid update to pass filters, bypassing all statistical validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8247611c-71be-4321-96fe-6c5320b373d4?mode=deep",
+    "timestamp": "2026-02-19 03:41:24.262745",
+    "report_generated": false
+  }
+]
