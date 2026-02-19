@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Module Integration] This module is in suilend::oracles. How does volo-vault integrate with it? If vault assumes Suilend's validation is sufficient but doesn't add its own checks, can Suilend's weaknesses be exploited in vault context? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d358d751-ca92-425d-9c91-73739335f7a7?mode=deep",
+    "timestamp": "2026-02-19 07:37:31.441395",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [No Admin Controls] The module has no admin caps or pausability. If oracle logic has a critical bug discovered post-deployment, can operations be halted, or must all dependent contracts be paused? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_38055817-0e53-47eb-b0df-4539e390897d?mode=deep",
+    "timestamp": "2026-02-19 07:37:44.187316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Timestamp Edge Case] If cur_time_s = 0 (genesis) and price_timestamp = 1, check 'cur_time_s > price_timestamp' is false, skipping staleness validation. Can early-chain operations exploit this? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b001a317-10cc-430f-ae57-872e1617d31f?mode=deep",
+    "timestamp": "2026-02-19 07:37:57.931795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Timestamp Equality] If cur_time_s exactly equals price_timestamp, condition 'cur_time_s > price_timestamp' is false. Does this mean 0-second-old prices bypass staleness check? Is this intended? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4a4f58c0-2884-45f2-9ec3-02beb5c334c8?mode=deep",
+    "timestamp": "2026-02-19 07:38:11.712313",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Max Staleness Boundary] If staleness is exactly 60 seconds, the check '60 > 60' is false, accepting the price. Is this off-by-one acceptable, or should prices older than 59 seconds be rejected? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a10fb60-0cae-42d5-b602-94074a0515fa?mode=deep",
+    "timestamp": "2026-02-19 07:38:26.355723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: parse_price_to_decimal()] [Zero Price Edge] When price_mag = 0 and expo = 0, the result is 0. Can zero prices propagate to vault logic causing division by zero in share calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2f43f45-28d2-4478-9f1c-29d56fb86ae2?mode=deep",
+    "timestamp": "2026-02-19 07:38:42.121937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: parse_price_to_decimal()] [Max u64 Price] If price_mag = u64::MAX and expo = 0, decimal::from(u64::MAX) is returned. Can extremely high prices cause overflow in downstream calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_53f9cd7c-44a2-4d5b-9220-eb7f8884384b?mode=deep",
+    "timestamp": "2026-02-19 07:38:59.041351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: parse_price_to_decimal()] [Expo Max Positive] If expo is maximum positive i64, does magnitude conversion and pow() calculation handle this gracefully, or does it overflow/panic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_911976b1-f8c4-4b0d-9146-0a6017eaaf49?mode=deep",
+    "timestamp": "2026-02-19 07:39:17.701031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: parse_price_to_decimal()] [Expo Max Negative] If expo is maximum negative i64 (e.g., -2^63), does i64::get_magnitude_if_negative correctly extract magnitude, or does it overflow when converting to absolute value? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_13520a02-47e1-4bee-8e8a-cea01b7ae7da?mode=deep",
+    "timestamp": "2026-02-19 07:39:38.699064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Constants] [MIN_CONFIDENCE_RATIO Semantics] Comment says 'min confidence ratio of X means confidence interval must be less than (100/x)% of the price'. For X=10, this is <10%. Is the check 'conf * 10 > price' correctly implementing '<10%'? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1fac8844-5ead-4e26-9883-c9b2baf68a60?mode=deep",
+    "timestamp": "2026-02-19 07:40:00.260218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Confidence Check Formula] The check is 'conf * MIN_CONFIDENCE_RATIO > price_mag', which rejects if conf/price > 1/10. This enforces conf < price/10. Is this the intended <10% check, or should it be conf <= price/10? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5f65d1e-a1c9-4036-9231-b9189b3c5987?mode=deep",
+    "timestamp": "2026-02-19 07:40:22.332603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Confidence Ratio Constant] MIN_CONFIDENCE_RATIO = 10 is hardcoded. If market conditions require dynamic confidence thresholds (e.g., tighter during volatility), can static ratio be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bf0bec35-f61a-454b-a721-9a534eb1b08f?mode=deep",
+    "timestamp": "2026-02-19 07:40:44.440271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Confidence Multiplication Order] The check multiplies conf first: 'conf * 10'. If conf is large, overflow occurs. Should it be 'conf > price_mag / 10' to avoid overflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8a2e04fc-b546-42c6-ad2a-ded05b3538dc?mode=deep",
+    "timestamp": "2026-02-19 07:41:07.920273",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Triple Return Value] The function returns three values. If caller unpacks incorrectly (e.g., swaps spot and EMA), can wrong price be used? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c6f2e713-2342-4f63-b016-f848e2e3a162?mode=deep",
+    "timestamp": "2026-02-19 07:41:31.017335",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Price Identifier Usage] The price identifier is returned but not used within this function. If caller doesn't validate identifier, can cross-asset price confusion occur? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2cdfa3de-3c0b-46d3-a6cd-4885a04b8de8?mode=deep",
+    "timestamp": "2026-02-19 07:41:52.958301",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Spot None, EMA Used] When spot is None, caller may default to EMA. If EMA is from a different asset or stale, can this be exploited? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_13626e4a-3307-440e-b70e-0f1f88bf710e?mode=deep",
+    "timestamp": "2026-02-19 07:42:15.859870",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [DOS via Invalid Prices] If attacker can influence Pyth price feed to provide prices failing confidence or staleness, can they DOS vault operations that depend on spot prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_03e1d14d-8ef5-4cdf-ad68-a5304333372f?mode=deep",
+    "timestamp": "2026-02-19 07:42:39.746842",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [DOS via Negative Prices] If attacker forces Pyth to provide negative prices, get_magnitude_if_positive() panics, DOSing all oracle calls. Can Pyth governance be manipulated to achieve this? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5c663220-ec2b-4659-9d5a-782e89bc9657?mode=deep",
+    "timestamp": "2026-02-19 07:43:03.871356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: parse_price_to_decimal()] [DOS via Large Expo] If attacker provides expo causing pow(10, large_value) to overflow, does parse_price_to_decimal panic, DOSing price parsing? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5779d9f6-06ef-44d9-b896-691a1f1a2a13?mode=deep",
+    "timestamp": "2026-02-19 07:43:29.595491",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Griefing via Staleness] If attacker delays Pyth updates beyond 60 seconds, all spot prices return None, potentially locking vault withdrawals if spot price is mandatory. (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_62bc6618-35eb-42bd-9805-1375d7bd36b8?mode=deep",
+    "timestamp": "2026-02-19 07:43:55.122582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: parse_price_to_decimal()] [Rounding in Division] When expo is negative, div() is used. Does Decimal division round down, causing systematic undervaluation of assets with negative exponents? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f094736-28ae-403e-93b5-4e9e0408ed6d?mode=deep",
+    "timestamp": "2026-02-19 07:44:19.989635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: parse_price_to_decimal()] [Rounding in Multiplication] When expo is positive, mul() is used. If Decimal multiplication has rounding, can this lead to systematic over/undervaluation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8a587a8-1ece-4c1c-b5fe-cd1f993ab261?mode=deep",
+    "timestamp": "2026-02-19 07:44:41.832074",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: parse_price_to_decimal()] [Decimal Representation] Decimal type's internal representation is unknown. If it uses fixed-point, can precision loss occur when converting very large or very small prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_153e8971-237c-43ba-8737-bf7ca49a8989?mode=deep",
+    "timestamp": "2026-02-19 07:45:02.078243",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: parse_price_to_decimal()] [Expo Precision] When dividing by pow(10, magnitude), if magnitude is large (e.g., 18 for 1e-18 multiplier), can small price_mag result in Decimal ≈ 0, losing value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5caaad07-9f2a-4eb4-b15d-b8c162e11c47?mode=deep",
+    "timestamp": "2026-02-19 07:45:25.032074",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Pyth Data Integrity] The function trusts Pyth module's price extraction. If Pyth's PriceInfoObject is compromised or incorrectly updated, can malicious prices pass validation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_22971e2d-a4bd-45df-afdb-127b0f228ea0?mode=deep",
+    "timestamp": "2026-02-19 07:45:48.360428",
+    "report_generated": false
+  }
+]
