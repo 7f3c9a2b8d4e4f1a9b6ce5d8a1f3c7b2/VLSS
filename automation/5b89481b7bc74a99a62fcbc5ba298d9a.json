@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Economic: Flash Loan] [Circular Dependency] Can flash loans from Navi be used to manipulate Volo Vault operations in same transaction, exploiting constant-based fee calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc940061-3425-47f1-ae06-c3e7a37ed512?mode=deep",
+    "timestamp": "2026-02-19 00:24:04.201937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Economic: Liquidation] [Bonus Calculation] If liquidation bonuses use percentage_benchmark(), can liquidators extract excessive value by exploiting rounding near 100% LTV? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e434167-a505-4416-a93f-b934de3c695e?mode=deep",
+    "timestamp": "2026-02-19 00:24:16.705422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Performance: Gas] [Function Call Overhead] Does calling these constant functions add gas overhead compared to inlining, and can this be exploited in gas-sensitive operations? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc7567fa-1c88-48eb-afa1-0d4ba8631378?mode=deep",
+    "timestamp": "2026-02-19 00:24:29.771161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Performance: Loops] [Reserve Iteration] Can loops up to max_number_of_reserves()==255 cause gas exhaustion in batch operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fca11e82-efe5-449b-8f47-053defa1658e?mode=deep",
+    "timestamp": "2026-02-19 00:24:44.356234",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Precision: Time] [Seconds Per Year] Can accumulated precision loss from using 31,536,000 seconds per year cause interest calculations to drift by thousands of dollars on large positions over years? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d42a3e2-5165-4b3c-b8c2-dd3d82873411?mode=deep",
+    "timestamp": "2026-02-19 00:24:58.589226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Precision: Fees] [Flash Loan Fees] For flash loans smaller than 10000 wei with FlashLoanMultiple()==10000, can all fees round to zero? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8c3872d0-2063-4d56-b806-285e7744cd32?mode=deep",
+    "timestamp": "2026-02-19 00:25:13.915193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Precision: Percentages] [Small Amounts] For amounts smaller than percentage_benchmark()==10000, can percentage calculations always round to zero? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_68dc7f28-296f-4d11-8e19-f3d9ecf43b35?mode=deep",
+    "timestamp": "2026-02-19 00:25:30.298214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Precision: Basis Points] [Sub-Basis Point] Can the protocol represent fees smaller than 1 basis point (0.01%), or does percentage_benchmark()==10000 limit precision? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_96feb511-4d17-4a82-bd31-c6b843191f0c?mode=deep",
+    "timestamp": "2026-02-19 00:25:48.078271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Option Type: Supply] [Incentive Double Claim] Can an attacker call supply operations multiple times with option_type_supply()==1 to claim incentives repeatedly for the same supply? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_654b099f-6997-4c7a-b13a-ab420edc0bf7?mode=deep",
+    "timestamp": "2026-02-19 00:26:07.918331",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Option Type: Withdraw] [Premature Withdrawal] Can option_type_withdraw()==2 bypass lock-up periods if the option type check is separate from time-lock validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_65343d55-66e3-4765-b430-d94e9cfdff29?mode=deep",
+    "timestamp": "2026-02-19 00:26:28.463432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Option Type: Borrow] [Collateral Bypass] Can borrowers use option_type_borrow()==3 without posting sufficient collateral if option type validation is decoupled from collateral checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9fc52508-56e9-41d4-8685-f0dd199cc910?mode=deep",
+    "timestamp": "2026-02-19 00:26:49.589754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Option Type: Repay] [Fake Repayment] Can option_type_repay()==4 be used to mark debt as repaid without actual token transfer? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4fcac787-d042-496c-824d-19bacea397fa?mode=deep",
+    "timestamp": "2026-02-19 00:27:11.278205",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Option Type: Enum] [Type Safety] With no proper enum type and raw u8 values, can attackers pass arbitrary values like 255 or 0 to trigger undefined behavior? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5675de26-d91b-49b9-8b58-d58977429e3d?mode=deep",
+    "timestamp": "2026-02-19 00:27:32.832269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Boundary: Max Reserves] [Exact Limit] What happens when exactly 255 reserves exist and someone tries to add the 256th? Does it fail gracefully or cause state corruption? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_077c1eb5-80a7-485b-8007-22bc4b4cc7c7?mode=deep",
+    "timestamp": "2026-02-19 00:27:54.520242",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Boundary: Zero Values] [Zero Amount Operations] If operations with zero amounts use these constants in division, can this cause transaction aborts or unexpected behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b057ee8-3439-462a-b04f-bcc78aad67c5?mode=deep",
+    "timestamp": "2026-02-19 00:28:19.037432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Boundary: Max Percentages] [Exceeding 100%] Can percentages exceed 10000 in calculations, and if so, what's the maximum safe percentage to prevent overflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c7d6e1e9-586f-4d96-8b3d-90f3bbf9a420?mode=deep",
+    "timestamp": "2026-02-19 00:28:43.518641",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Boundary: Time Wraparound] [Year 2106 Problem] Since Sui timestamps are u64 milliseconds, do calculations with seconds_per_year() correctly handle timestamp wraparound in year 2106? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6746ccab-6b6f-4f12-a100-c92884f61193?mode=deep",
+    "timestamp": "2026-02-19 00:29:08.701321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Edge Case: All Option Types] [Simultaneous Operations] Can an account trigger all four option types (supply, withdraw, borrow, repay) in one transaction to exploit state update ordering? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3d45c0e-92ed-4993-9a66-c77079d5a964?mode=deep",
+    "timestamp": "2026-02-19 00:29:31.148535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Version: Migration] [Data Structure Changes] If version 13 changes data structures from version 12, can old data be safely migrated without fund loss? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_49b70bdd-d8a0-4ef8-aae3-b73e1c02e8d9?mode=deep",
+    "timestamp": "2026-02-19 00:29:54.216232",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Version: Rollback] [Emergency Downgrade] If a critical bug is found in version 13, can the protocol safely rollback to version 12 without breaking existing positions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f3539ebf-5fcc-4843-a63e-2116dc2e1970?mode=deep",
+    "timestamp": "2026-02-19 00:30:18.277261",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Version: Cross-Module] [Version Skew] Can different modules operate on different versions simultaneously, causing inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_25f94c6d-681f-4178-8179-1d57329e13e4?mode=deep",
+    "timestamp": "2026-02-19 00:30:41.265257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Oracle: Precision] [Price Decimals] If oracle prices have different decimals than percentage_benchmark(), can this cause incorrect collateral valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_58a7cebd-23b7-47aa-8e91-e01cb6e98a38?mode=deep",
+    "timestamp": "2026-02-19 00:31:05.191979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Oracle: Staleness] [Time Calculations] Does seconds_per_year() align with oracle update frequency, or can stale prices be accepted as fresh? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_183eec36-983b-4c7b-b305-937e03e7e791?mode=deep",
+    "timestamp": "2026-02-19 00:31:28.153809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Access: Constant Modification] [Immutability] Are these constants truly immutable or can admin/operator caps modify them? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f51648f-52a7-4d52-9c0a-1fb1c2e902c0?mode=deep",
+    "timestamp": "2026-02-19 00:31:50.693128",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/constants.move] [Access: Module Upgrade] [Upgrade Authority] Who can upgrade the constants module, and can they maliciously change constant values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b24fbe49-133c-463c-a21b-b79af5ead7eb?mode=deep",
+    "timestamp": "2026-02-19 00:32:13.883311",
+    "report_generated": false
+  }
+]
