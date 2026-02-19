@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_effective_balance()] [Arithmetic Overflow] Can 'ray_mul(user_supply, supply_index)' overflow for users with maximum supply positions, causing underflow in effective supply calculation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e2c92576-563a-4d9d-96b5-e733dec212ba?mode=deep",
+    "timestamp": "2026-02-19 01:21:36.203449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_effective_balance()] [Arithmetic Underflow] Does 'user_supply - user_borrow' handle the case correctly when user_borrow > user_supply due to interest accrual timing, or does it always return 0 preventing negative effective supply? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8c7778f-09c0-4f40-affe-60bceee75f29?mode=deep",
+    "timestamp": "2026-02-19 01:21:49.247932",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_effective_balance()] [Arithmetic Underflow] Can 'user_borrow - user_supply' underflow if user_supply increases between calculation and subtraction due to concurrent transactions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b4d402ea-7e30-445e-9761-23dd8540a385?mode=deep",
+    "timestamp": "2026-02-19 01:22:03.069756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_borrow_fee()] [Arithmetic Overflow] Does 'amount * incentive.borrow_fee_rate / constants::percentage_benchmark()' overflow when amount is u64::MAX and fee_rate is maximum (10%), causing fee calculation to wrap? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4ffe71f1-0683-4bf2-9111-765d6fab0770?mode=deep",
+    "timestamp": "2026-02-19 01:22:17.591087",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_borrow_fee()] [Precision Loss] Can 'amount * fee_rate / benchmark' lose precision for small amounts, resulting in 0 fee when fee should be collected? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dfdfc37a-664f-4c47-bc9c-a7b5cd5077d5?mode=deep",
+    "timestamp": "2026-02-19 01:22:33.205062",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: entry_borrow()] [Arithmetic Overflow] Does 'amount + fee' overflow when amount is near u64::MAX and fee is non-zero, causing the borrow to request less than intended? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a88e9fe6-98a7-4e54-8027-3d7dac777b8b?mode=deep",
+    "timestamp": "2026-02-19 01:22:50.694029",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: borrow_with_account_cap()] [Arithmetic Overflow] Can 'amount + fee' in borrow_with_account_cap overflow similarly to entry_borrow, affecting total borrow amount? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c3d369a7-4a20-46e3-afe6-cb30657d441e?mode=deep",
+    "timestamp": "2026-02-19 01:23:07.590437",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: borrow()] [Arithmetic Overflow] Does borrow() have the same 'amount + fee' overflow vulnerability as other borrow functions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_12431b9d-aefb-493e-87c0-d209d4ea0770?mode=deep",
+    "timestamp": "2026-02-19 01:23:26.617187",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: withdraw_borrow_fee()] [Arithmetic Logic] Does 'std::u64::min(amount, balance::value(balance))' prevent over-withdrawal but allow partial withdrawals that could be exploited in loops to drain funds? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3c7c4e95-47f4-4aa0-bbe1-cb786df35923?mode=deep",
+    "timestamp": "2026-02-19 01:23:45.653789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: withdraw_reward_fund()] [Arithmetic Logic] Can 'std::u64::min(amount, balance::value(&reward_fund.balance))' be exploited by requesting u64::MAX to always withdraw full balance without proper authorization? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_518cbcd5-a059-485e-a544-75a357749878?mode=deep",
+    "timestamp": "2026-02-19 01:24:07.120016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: base_claim_reward_by_rule()] [Type Conversion] Does casting 'reward as u64' from u256 cause truncation when reward exceeds u64::MAX, resulting in incorrect reward payouts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f82df23b-2a51-44f1-a5ae-47083466233c?mode=deep",
+    "timestamp": "2026-02-19 01:24:28.200127",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_global_index()] [Type Conversion] Can 'duration as u256' or 'total_balance as u256' conversions lose precision or cause issues with the ray math operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0f368216-dce0-433b-a97a-c83a4e03b57e?mode=deep",
+    "timestamp": "2026-02-19 01:24:51.380655",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: set_reward_rate_by_rule_id()] [Type Conversion] Does 'total_supply as u256' and 'duration_ms as u256' properly convert u64 to u256 without introducing unexpected behavior in ray_div? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19b4d442-9ef0-4a95-a251-2ab6ef69d9d7?mode=deep",
+    "timestamp": "2026-02-19 01:25:14.724539",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: update_reward_state_by_rule_and_balance()] [Index Ordering] Can global_index + index_increased overflow u256::MAX when rates are maximum and duration is large, wrapping global_index to small value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_79060839-8e47-4a25-99d4-e39df61edf16?mode=deep",
+    "timestamp": "2026-02-19 01:25:37.273536",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_global_index()] [Precision Loss] Does '(rule.rate * (duration as u256)) / total_balance' lose precision when total_balance is very large relative to rate*duration, causing index to never increase? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3bab2e10-69e1-47ee-8ac6-a0ec7bd3d9d2?mode=deep",
+    "timestamp": "2026-02-19 01:25:59.567598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: calculate_user_reward()] [Ray Math Precision] Can ray_mul(user_balance, user_index_diff) introduce rounding errors that accumulate over time, causing reward calculation drift? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_05243226-a229-4f32-bf78-ea67b554e863?mode=deep",
+    "timestamp": "2026-02-19 01:26:22.774566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_effective_balance()] [Ray Math Precision] Does ray_mul used for supply/borrow index calculations introduce precision loss that causes supply != borrow + effective_supply invariant to break? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_caa15e54-69f4-4c46-8053-a7355b7ad010?mode=deep",
+    "timestamp": "2026-02-19 01:26:44.897627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: set_max_reward_rate_by_rule_id()] [Rate Limit Bypass] Can setting max_rate via ray_div introduce precision issues where actual rate slightly exceeds intended maximum due to rounding? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2a14e8c7-1da5-4e65-a745-8e7d728c3430?mode=deep",
+    "timestamp": "2026-02-19 01:27:08.472750",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: set_reward_rate_by_rule_id()] [Rate Validation] Does 'rule.max_rate == 0 || rate <= rule.max_rate' allow rate to equal max_rate without buffer, potentially exceeding reward fund capacity? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5a0b0f40-938b-45fe-a87a-8adb93721b03?mode=deep",
+    "timestamp": "2026-02-19 01:27:32.762231",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: base_claim_reward_by_rule()] [Reward Calculation] Can 'user_total_reward - *user_reward_claimed' underflow due to concurrent claims or state corruption causing negative rewards? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_92f5c126-a9b3-4d2a-8a27-c77dc20ef009?mode=deep",
+    "timestamp": "2026-02-19 01:27:56.043795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: base_claim_reward_by_rule()] [Conditional Branch] Does the 'if (user_total_reward > *user_reward_claimed)' check prevent underflow but allow zero rewards when total equals claimed, potentially missing legitimate rewards? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eac7d0fc-c474-4901-90b5-9ea7d6ea28ad?mode=deep",
+    "timestamp": "2026-02-19 01:28:20.793922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_user_claimable_rewards()] [Loop Arithmetic] Can nested loops in get_user_claimable_rewards cause arithmetic overflow when accumulating 'claimable_reward.user_claimable_reward + user_claimable_reward' across many rules? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b26aca6-1bdf-4542-94e1-4ce88e2aa975?mode=deep",
+    "timestamp": "2026-02-19 01:28:43.133362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: get_user_claimable_rewards()] [Accumulation] Does 'claimable_reward.user_claimed_reward + user_claimed_reward' accumulation handle overflow when user has claimed rewards from many rules? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_441a18d5-4964-4f96-a700-0ab31fd734f6?mode=deep",
+    "timestamp": "2026-02-19 01:29:06.356058",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: update_reward_state_by_rule_and_balance()] [Timestamp] Can 'clock::timestamp_ms(clock)' return timestamps that decrease or jump unexpectedly, causing 'now - rule.last_update_at' to be negative or huge? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d56bd780-8746-4ac6-b577-d94560da6274?mode=deep",
+    "timestamp": "2026-02-19 01:29:29.233759",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/lending_core/sources/incentive_v3.move] [Function: create_rule()] [Initial State] Does initializing 'global_index: 0' cause issues for first users where 'global_index - user_index' incorrectly calculates rewards before any update? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b4e5005-53a1-491e-aa34-37a5f51d292f?mode=deep",
+    "timestamp": "2026-02-19 01:29:53.709760",
+    "report_generated": false
+  }
+]
