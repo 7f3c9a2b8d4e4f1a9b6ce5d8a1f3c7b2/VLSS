@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_native()] [Oracle Staleness Bypass] If a caller uses get_price_unsafe_native() instead of get_price_native(), they bypass timestamp validation from pyth::get_price(). Can an attacker exploit stale prices during market volatility to manipulate vault valuations, drain assets via mispriced collateral, or bypass health factor checks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_92863896-292a-4d76-ac72-145d8215f068?mode=deep",
+    "timestamp": "2026-02-19 00:02:16.618264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_to_target_decimal()] [Oracle Staleness Bypass] The function uses get_price_unsafe_native() which calls pyth::get_price_unsafe() without timestamp checks. If vault operations use this for USD valuations, can an attacker execute operations with hours-old prices during market crashes to over-borrow or under-collateralize positions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cdee30c4-fe19-459c-9929-577a9f373339?mode=deep",
+    "timestamp": "2026-02-19 00:02:29.095506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_native()] [Timestamp Manipulation] Since get_price_unsafe() skips staleness validation, if the Pyth price feed hasn't been updated for hours, can an attacker use outdated prices to pass health checks that should fail, enabling unsafe leverage or preventing liquidations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1fae2745-dc7b-4d5e-ba1a-d8ff6d503ddf?mode=deep",
+    "timestamp": "2026-02-19 00:02:42.613480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_to_target_decimal()] [Market Manipulation] During extreme market events when Pyth feeds may lag, can an attacker call this unsafe function to get favorable prices for deposits/withdrawals, inflating share values or draining vault assets via arbitrage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f220d76b-bf0a-4c6c-9bf7-0f609621786e?mode=deep",
+    "timestamp": "2026-02-19 00:02:56.385642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_native(), get_price_unsafe_to_target_decimal()] [Access Control Gap] These unsafe functions are public with no capability requirements. Can any external caller invoke them to get unchecked prices for malicious integrations, or can vault adaptors mistakenly use unsafe variants instead of safe ones? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4c1e07ff-02b7-4494-810e-aa3200701adc?mode=deep",
+    "timestamp": "2026-02-19 00:03:10.781435",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_native()] [Negative Price Panic] Line 20 calls i64::get_magnitude_if_positive(&i64_price) which panics if price is negative or zero. If Pyth reports a negative price (error state or inverse pair), does this cause transaction abort, DoS of vault operations, or can it be exploited to prevent liquidations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0a729345-390c-4145-ae71-f904d7a04c2d?mode=deep",
+    "timestamp": "2026-02-19 00:03:27.533917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_native()] [Negative Price Panic] Line 33 uses i64::get_magnitude_if_positive() without validation. If a stale/corrupted Pyth feed returns negative i64_price, the panic blocks all operations using this price feed. Can an attacker trigger this by choosing specific price feeds or timing attacks during oracle updates? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4aa979dd-7673-4aaa-a7e6-4b40b908d88e?mode=deep",
+    "timestamp": "2026-02-19 00:03:44.678842",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_native()] [Zero Price Handling] If Pyth returns a zero price (valid in some error scenarios), i64::get_magnitude_if_positive() panics. Can this be exploited to DoS specific assets, prevent withdrawals, or cause vault lockup if a critical price feed goes to zero temporarily? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63a39b9f-609a-42c4-973f-f149cbd5bb14?mode=deep",
+    "timestamp": "2026-02-19 00:04:02.307419",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_to_target_decimal()] [Negative Price in Decimal Conversion] If get_price_native() panics on negative prices, but downstream code expects graceful error handling, can this create inconsistent state where some assets are priced but others cause reverts, enabling partial operation exploits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_082cb8d7-7541-4104-8f09-98ca813e1e7e?mode=deep",
+    "timestamp": "2026-02-19 00:04:20.862191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_native()] [Positive Exponent Panic] Line 21 calls i64::get_magnitude_if_negative(&i64_expo) assuming expo is always negative. If Pyth returns a positive exponent (e.g., prices in millions), this panics. Can an attacker use price feeds with positive exponents to DoS operations or manipulate which assets can be priced? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f19f2d22-81e5-4c3c-9c76-dc5606580f38?mode=deep",
+    "timestamp": "2026-02-19 00:04:40.984580",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_native()] [Positive Exponent Panic] Line 34 assumes negative expo. If a price feed is configured with positive exponent (large numbers), all operations using this asset fail. Can this be exploited in multi-asset vaults to prevent rebalancing or force unfavorable asset selections? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_408939f8-2c04-48cf-bb23-36161f81d259?mode=deep",
+    "timestamp": "2026-02-19 00:05:01.874093",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_native()] [Exponent Validation Gap] No validation that expo is within reasonable bounds (e.g., -18 to -6 for typical decimals). If Pyth returns expo = -50, can this cause underflow in decimal conversions or enable dust attacks via extreme precision? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b949790-1e49-4b1b-a1e3-52cddf183e2a?mode=deep",
+    "timestamp": "2026-02-19 00:05:22.935371",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_to_target_decimal()] [Zero Exponent Handling] If i64_expo is zero (1:1 ratio), i64::get_magnitude_if_negative() panics. Can specific price feed configurations with zero exponent DoS the vault or create pricing inconsistencies across assets? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_feaf9633-acd5-45eb-8a37-23f138815fa3?mode=deep",
+    "timestamp": "2026-02-19 00:05:45.157924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_native()] [Timestamp Overflow] Line 19 multiplies Pyth timestamp by 1000 without overflow check. If price::get_timestamp() returns a value near u64::MAX/1000, the multiplication overflows, wrapping to a small value. Can this make stale prices appear fresh, bypassing staleness checks in downstream code? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_052d189a-1675-4887-ae05-e7894f3bc045?mode=deep",
+    "timestamp": "2026-02-19 00:06:08.035221",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_native()] [Timestamp Overflow] Line 32 has same overflow risk. If timestamp wraps to near-zero, can vault operations accept ancient prices as current, enabling exploits during oracle downtime or price feed manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d0ea7cc2-75a9-41d1-bb8b-8962c8db1311?mode=deep",
+    "timestamp": "2026-02-19 00:06:32.635098",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_native()] [Timestamp Semantics] Converts seconds to milliseconds by multiplying by 1000. If downstream code expects seconds or has inconsistent time units, can this cause off-by-1000x staleness checks, accepting 1000x staler prices or rejecting valid recent prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_75ed1466-fd1b-4d1b-a3f4-2849589cf987?mode=deep",
+    "timestamp": "2026-02-19 00:06:57.802959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_to_target_decimal()] [Timestamp Consistency] Returns timestamp in milliseconds while Pyth provides seconds. If vault code mixes time units from different oracles (Switchboard vs Pyth), can attackers exploit timing windows where one oracle is stale but comparison logic fails? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_58da35ef-9567-4bd0-aac1-f9d98b1b565b?mode=deep",
+    "timestamp": "2026-02-19 00:07:23.062021",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_to_target_decimal()] [Decimal Conversion Overflow] Line 42 converts price to u256 and calls utils::to_target_decimal_value_safe(). If target_decimal is much larger than expo (e.g., target=18, expo=6), the multiplication can overflow u256 for large prices. Can an attacker trigger this with extreme price values to DoS or manipulate decimal conversions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f69a8744-af47-484c-b17f-b2ad95611468?mode=deep",
+    "timestamp": "2026-02-19 00:07:52.289693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_unsafe_to_target_decimal()] [Decimal Conversion Underflow] If target_decimal < expo, the conversion divides. For very small prices with large division, can precision loss cause asset values to round to zero, enabling free withdrawals or incorrect collateral calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_00bd449b-c103-4e69-b0d6-007236e70131?mode=deep",
+    "timestamp": "2026-02-19 00:08:18.247042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_to_target_decimal()] [Target Decimal Validation] No validation of target_decimal parameter. If caller passes target_decimal=255, can the 10^255 multiplication in decimal conversion overflow, panic, or produce incorrect results? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_62166de0-4d72-420d-a45a-60eead742ce2?mode=deep",
+    "timestamp": "2026-02-19 00:08:43.480253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_to_target_decimal()] [Target Decimal Zero] If target_decimal=0, decimal conversion attempts division by 1 (10^0). Can this cause unexpected behavior in vault accounting expecting non-zero decimals, or enable dust attacks via 1-unit prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4235c834-8833-4279-9720-07568c6c0f15?mode=deep",
+    "timestamp": "2026-02-19 00:09:07.789428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_to_target_decimal()] [Precision Loss] When converting from high precision Pyth feeds (expo=-8) to lower target_decimal (e.g., 6), precision is lost. Can attackers exploit rounding down to manipulate share prices, pay fewer fees, or extract value via repeated small operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6f3f9a74-3f63-45c9-9212-7aebdbea97c6?mode=deep",
+    "timestamp": "2026-02-19 00:09:32.147663",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_to_target_decimal()] [Type Conversion Safety] Line 42 casts u8 target_decimal to u64 without bounds checking. While u8 max is 255 (safe for u64), if utils function expects different semantics, can this cause misinterpretation of decimal places? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5e60fffe-fefb-4e4b-86ed-982dae462f7a?mode=deep",
+    "timestamp": "2026-02-19 00:09:57.405136",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_to_target_decimal()] [U64 to U256 Overflow] Line 42 casts price (u64) to u256. While this is safe upward cast, if subsequent multiplication in to_target_decimal_value_safe() assumes u64 bounds, can large u256 intermediates cause incorrect results or panics? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3f99b359-1b60-4bae-8fa7-ed1fb41ed7b2?mode=deep",
+    "timestamp": "2026-02-19 00:10:21.294501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/adaptor_pyth.move] [Function: get_price_native()] [i64 Magnitude Bounds] Extracts magnitude from i64 types without checking if magnitude fits in u64. If Pyth's i64::get_magnitude_if_positive() returns u64::MAX, can downstream arithmetic overflow when used in multiplications? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_63d1d246-c715-450a-8c67-757a0e71aad2?mode=deep",
+    "timestamp": "2026-02-19 00:10:44.413990",
+    "report_generated": false
+  }
+]
