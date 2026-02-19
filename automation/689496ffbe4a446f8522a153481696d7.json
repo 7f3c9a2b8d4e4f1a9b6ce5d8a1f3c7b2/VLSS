@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: add_reserve()] [Reserve Limit] No limit on number of reserves - can attacker add unlimited reserves to DoS operations that iterate over all reserves? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b60bb3d2-72d4-498b-8391-8ee2fd4b8128?mode=deep",
+    "timestamp": "2026-02-19 01:00:27.133730",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: add_reserve()] [Duplicate Check] Checks reserve_array_index == vector::length() to prevent duplicates but this only checks type - can same type with different price feeds or configs be added? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_281c4357-3e7b-46b8-8458-a4cb144f19fb?mode=deep",
+    "timestamp": "2026-02-19 01:00:39.847114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: update_reserve_config()] [Config Update] Owner can update config at any time with no validation - can sudden parameter changes (like fee rates, LTV) cause unexpected liquidations or insolvencies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b9c0484-cf8f-4f85-89ff-12a810724034?mode=deep",
+    "timestamp": "2026-02-19 01:00:53.902352",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: compound_interest()] [Interest Calculation] Public function allows anyone to compound interest - can attacker repeatedly call to manipulate ctoken ratios via rounding errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9c34343-0f6b-4894-a341-1f619e2bfc07?mode=deep",
+    "timestamp": "2026-02-19 01:01:08.036585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: deposit_liquidity_and_mint_ctokens()] [Interest Timing] Compounds interest before minting ctokens - can attacker front-run deposits to capture interest via ctoken ratio manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7b547aea-ec4c-40f1-bc21-46a042ad5687?mode=deep",
+    "timestamp": "2026-02-19 01:01:23.053601",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: redeem_ctokens_and_withdraw_liquidity_request()] [Interest Before Redeem] Compounds interest before redeeming - does this benefit or harm redeemer if significant time passed since last compound? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e26d805-b5e8-4873-800e-e84d66bb9c54?mode=deep",
+    "timestamp": "2026-02-19 01:01:39.704315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Lines: 241-243] [Reserve Type Check] Asserts reserve::coin_type(reserve) == type_name::get<T>() but this happens after borrowing mut reserve - can wrong index access wrong reserve briefly? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6fc77286-f006-4870-a0c7-2fc2381fddbc?mode=deep",
+    "timestamp": "2026-02-19 01:01:57.943229",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Lines: 298-301] [Type Check After Compound] Gets reserve mut, checks type, then compounds - should type check happen first to avoid compounding wrong reserve on error? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5327029d-9115-4930-96e6-15fce6287abc?mode=deep",
+    "timestamp": "2026-02-19 01:02:19.463856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: add_pool_reward()] [Reward Period] No validation that start_time_ms < end_time_ms or that times are in future - can owner create invalid reward periods causing claim failures? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5fccda6e-6561-4ba4-b5cf-ba7a42bf7892?mode=deep",
+    "timestamp": "2026-02-19 01:02:40.281365",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: add_pool_reward()] [Reward Amount] No validation that reward amount is > 0 or matches expected distribution rate - can 0-amount or dust rewards waste storage? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c47ee71a-3d8b-4c60-a644-0130d7fe0890?mode=deep",
+    "timestamp": "2026-02-19 01:03:01.613433",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: cancel_pool_reward()] [Cancellation Timing] No check when reward can be cancelled (could be during active period) - can owner cancel active rewards to prevent users from claiming? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6162d29b-a698-43be-bf00-6dc0bb9952f2?mode=deep",
+    "timestamp": "2026-02-19 01:03:22.824856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: close_pool_reward()] [Close vs Cancel] Both return unallocated_rewards but close presumably requires period ended - is there validation difference that could be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_272d904a-8b64-42dd-af6f-756382619f0f?mode=deep",
+    "timestamp": "2026-02-19 01:03:44.242616",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_rewards()] [Cap Requirement] Requires ObligationOwnerCap so only owner can claim - but claim_rewards_and_deposit is permissionless - can griefer claim and deposit rewards to prevent owner from withdrawing? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0fe31e56-da09-42a9-be86-e5079dc27980?mode=deep",
+    "timestamp": "2026-02-19 01:04:04.589804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_rewards_and_deposit()] [Repay Priority] If borrowed_amount > 0, repays before depositing - can attacker manipulate borrowed_amount to redirect user rewards to debt repayment? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e940651e-4e2a-44cd-afa5-81890217bbde?mode=deep",
+    "timestamp": "2026-02-19 01:04:27.489548",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_rewards_and_deposit()] [Expected CTokens] If expected_ctokens == 0, joins rewards to reserve fees - can this be exploited to donate user rewards to protocol via ctoken_ratio manipulation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2d2e4e17-67e3-4c82-b408-9c1ecab1b055?mode=deep",
+    "timestamp": "2026-02-19 01:04:48.547728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_rewards_by_obligation_id()] [Blacklist Check] Prevents claiming specific SUILEND_POINT_2 type but uses string comparison - can attacker deploy similar type with different address to bypass? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_04a3674d-1684-4812-a11d-502cb44df3c4?mode=deep",
+    "timestamp": "2026-02-19 01:05:09.883744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_rewards_by_obligation_id()] [Reward Period Check] Only checks fail_if_reward_period_not_over flag when true - can rewards be claimed before period ends in normal path? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c1b4a9a1-ba0e-4e5b-994c-95c1e85ff8e8?mode=deep",
+    "timestamp": "2026-02-19 01:05:30.469850",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Lines: 1282-1290] [Period Validation] Checks clock >= end_time_ms when fail_if_reward_period_not_over is true but doesn't validate start_time_ms - can rewards be claimed before period starts? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e04bec7-6972-48d4-bd32-ae28d2ff21a1?mode=deep",
+    "timestamp": "2026-02-19 01:05:52.226589",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: set_fee_receivers()] [Receivers Length] Requires receivers.length == weights.length and > 0 but no upper bound - can owner set thousands of receivers to DoS fee claims? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_88bb7223-a91e-4265-a957-b87005d60ae3?mode=deep",
+    "timestamp": "2026-02-19 01:06:15.002509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: set_fee_receivers()] [Weight Validation] Checks total_weight > 0 but doesn't check individual weights - can 0-weight receivers cause unintended behavior? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d769a21-8bd9-403d-920d-14f02a6967e3?mode=deep",
+    "timestamp": "2026-02-19 01:06:36.600714",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: set_fee_receivers()] [Dynamic Field Replace] Removes old FeeReceivers and adds new without refunding accumulated fees - can owner change receivers to prevent claiming accumulated fees? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe936dbc-9d2c-447c-bf93-b2c153352bd6?mode=deep",
+    "timestamp": "2026-02-19 01:06:56.305398",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_fees()] [Entry Function] Marked as entry so publicly callable - anyone can trigger fee distribution potentially at inopportune times for gas or front-running reasons? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b4a823c-357a-4df0-a26a-4535db3c564f?mode=deep",
+    "timestamp": "2026-02-19 01:07:18.476890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_fees()] [Fee Distribution] Last receiver gets withdraw_all() for both ctoken_fees and fees - if earlier distributions round down, last receiver captures all rounding dust - is this fair? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8e865c84-1409-4a36-80be-9b1668278da6?mode=deep",
+    "timestamp": "2026-02-19 01:07:40.931680",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_fees()] [Zero Balance Handling] Checks balance > 0 before transfer but still creates coin - can 0-balance coins cause issues in receiver wallets? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0b91dad4-b75c-4785-95f7-4bab105ecd57?mode=deep",
+    "timestamp": "2026-02-19 01:08:02.923625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_fees()] [Reentrancy] Transfers coins to each receiver in loop - can malicious receiver reenter to double-claim if transfer triggers hooks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb2bdbbf-89c4-4ffd-b059-3c6a2ce444ff?mode=deep",
+    "timestamp": "2026-02-19 01:08:23.856070",
+    "report_generated": false
+  }
+]
