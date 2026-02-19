@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: div()] [Division Overflow] div(neg_from(MIN_AS_U64), neg_from(1)) should overflow per test_div_overflow - could negating MIN_AS_U64 (most negative value) during division create MAX_AS_U64+1 overflow in ratio calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fda150e4-451c-42d8-b515-5c98e7736380?mode=deep",
+    "timestamp": "2026-02-19 00:01:20.894593",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: div()] [Division by Zero] No test for div(X, from(0)) - could missing division by zero check cause runtime abort when computing share ratios with zero supply? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8010405-8d98-48ca-88b1-6c87078fa67b?mode=deep",
+    "timestamp": "2026-02-19 00:01:33.541742",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: div()] [Special Case Division] div(neg_from(MIN_AS_U64), from(1)) should equal MIN_AS_U64 maintaining sign - could incorrect handling allow MIN_AS_U64 to become positive in loss per share calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b125cece-47c5-4fd2-aad2-6a8c6c7ab45b?mode=deep",
+    "timestamp": "2026-02-19 00:01:47.412298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: div()] [Mixed Sign Division] div(from(10), neg_from(1)) should equal neg_from(10) - could sign bit errors in division flip expected positive/negative results in price ratio computations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_236bf7f0-4373-47d4-bc83-ef776abc829a?mode=deep",
+    "timestamp": "2026-02-19 00:02:01.248014",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: div()] [Truncation Behavior] No test showing truncation direction for non-exact division - could rounding toward zero vs floor differ in sign, causing accumulating errors in fee divisions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cda5319e-2399-476a-a321-f51c3c93e8ce?mode=deep",
+    "timestamp": "2026-02-19 00:02:15.933514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: div()] [Zero Dividend] Test shows div(from(0), from(1)) == 0 but not div(from(0), neg_from(1)) - could zero dividend with negative divisor produce non-zero result? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5125891-bbbc-4f65-863a-70b27ad73183?mode=deep",
+    "timestamp": "2026-02-19 00:02:31.743302",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: abs()] [Integer Overflow] abs(neg_from(1 << 63)) must overflow per test_abs_overflow - could attempting abs(MIN_AS_U64) in loss magnitude calculations abort vault operations causing DoS? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2f721a7-e128-432b-9b9f-06d7f05362e8?mode=deep",
+    "timestamp": "2026-02-19 00:02:48.329048",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: abs()] [MIN_AS_U64 Special Case] Test shows neg_from(MIN_AS_U64) equals MIN_AS_U64 and should not be abs()'ed - could failing to validate this special case before abs() cause overflow DoS in loss reporting? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2b799528-270e-4c9e-aad9-1954bf2cee63?mode=deep",
+    "timestamp": "2026-02-19 00:03:06.506398",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: abs_u64()] [Return Type Safety] abs_u64(neg_from(MIN_AS_U64)) returns MIN_AS_U64 as u64 - could returning 0x8000000000000000 as unsigned be misinterpreted as positive value in magnitude comparisons? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ade0b616-a2e6-45a0-93bc-00ff431855b2?mode=deep",
+    "timestamp": "2026-02-19 00:03:25.223858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: abs()] [Sign Preservation] abs(from(10)) should equal from(10) preserving positive - could unnecessary negation of already positive values introduce computation overhead or errors? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0e542772-36dc-47ef-9627-fb34024e1783?mode=deep",
+    "timestamp": "2026-02-19 00:03:45.671845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: abs_u64()] [Zero Case] No explicit test for abs_u64(from(0)) or abs_u64(neg_from(0)) - could zero handling differ between signed zero representations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8eb81a39-29eb-4526-9513-7ed381c26bb6?mode=deep",
+    "timestamp": "2026-02-19 00:04:06.253167",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: shl()] [Sign Extension] shl(from(10), 63) should equal 0 per test but sign bit handling unclear - could left shift into sign bit position cause positive values to become negative in fixed-point math? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e311d50e-c6ac-4b88-82bc-7448d883a1bb?mode=deep",
+    "timestamp": "2026-02-19 00:04:29.207487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: shl()] [Overflow Behavior] shl(neg_from(10), 63) also equals 0 - could bits shifted out be lost without overflow detection, silently corrupting scaled calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2173cde9-df5a-429e-8dad-e0548a067c20?mode=deep",
+    "timestamp": "2026-02-19 00:04:50.143110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: shl()] [Large Shift] No test for shift > 63 - could shift values >= 64 cause undefined behavior or wrap modulo 64 producing unexpected results? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d98e6a90-38d7-4b43-8949-53dda4bbeec0?mode=deep",
+    "timestamp": "2026-02-19 00:05:12.855510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: shr()] [Arithmetic vs Logical] shr(neg_from(MIN_AS_U64), 63) should equal 0xffffffffffffffff (arithmetic right shift) - could implementation use logical shift instead, filling with zeros and breaking negative number representation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb0a8e47-ecf0-4e56-a618-8469aa00615e?mode=deep",
+    "timestamp": "2026-02-19 00:05:34.221445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: shr()] [Sign Preservation] shr(neg_from(10), 1) should equal neg_from(5) - could right shift of negative values lose sign bit causing negative amounts to become positive? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f0cecad7-d512-4d15-9974-52c91becce44?mode=deep",
+    "timestamp": "2026-02-19 00:05:55.455105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: shr()] [Large Shift] shr(from(MAX_AS_U64), 63) should equal 0 - could shift >= 63 on positive values produce non-zero results due to sign bit interpretation? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d09fbe41-6edd-4883-959b-2159d64bebf5?mode=deep",
+    "timestamp": "2026-02-19 00:06:13.682565",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: mod()] [Negative Dividend] mod(neg_from(2), from(5)) should equal neg_from(2) - could modulo with negative dividend use wrong sign producing incorrect remainder in cyclic calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f1b60dab-b9d1-4aa0-94d7-8f0051f6d902?mode=deep",
+    "timestamp": "2026-02-19 00:06:32.589181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: mod()] [Negative Divisor] mod(from(2), neg_from(5)) should equal from(2) - could negative divisor affect remainder sign differently than expected in epoch-based calculations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1826052b-7a6c-4e94-9de3-8316f6925949?mode=deep",
+    "timestamp": "2026-02-19 00:06:52.305382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: mod()] [Both Negative] mod(neg_from(2), neg_from(5)) should equal neg_from(2) - could both negative operands produce positive remainder breaking expected invariants? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8c222a10-5b27-48ee-b407-619feebc9f39?mode=deep",
+    "timestamp": "2026-02-19 00:07:13.814152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: mod()] [Division by Zero] No test for mod(X, from(0)) - could modulo by zero cause runtime abort in epoch boundary calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8b139c85-97d8-4ba6-a742-65ad2babf8cc?mode=deep",
+    "timestamp": "2026-02-19 00:07:35.405455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: mod()] [Large Values] No test with values near MIN/MAX bounds - could modulo near boundaries cause overflow in intermediate calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f75a2ae5-2c5a-4d1f-8bc1-5cee0bede795?mode=deep",
+    "timestamp": "2026-02-19 00:07:56.211587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: as_u64()] [Negative Value Conversion] as_u64() should preserve bit pattern for negative values (e.g., as_u64(neg_from(1)) == 0xffffffffffffffff) - could incorrect conversion cause negative amounts to be interpreted as large positive values in mixed-type calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f721c3fa-0f46-4085-abcc-312ca25e10ee?mode=deep",
+    "timestamp": "2026-02-19 00:08:16.293177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: as_u64()] [Round-trip Safety] Tests show as_u64(from(X)) should equal X for valid X - could lossy conversion break round-trip property when integrating with u64-based oracle prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8f32966e-0a72-41d9-b700-7e2217dd5822?mode=deep",
+    "timestamp": "2026-02-19 00:08:37.088501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/i64.move] [Function: as_u64()] [MIN_AS_U64 Conversion] as_u64(neg_from(MIN_AS_U64)) should return MIN_AS_U64 (0x8000000000000000) - could this bit pattern be misinterpreted as positive if not re-wrapped in I64 context? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_827c1a95-1ea8-4c43-a814-24c47c852715?mode=deep",
+    "timestamp": "2026-02-19 00:08:57.016941",
+    "report_generated": false
+  }
+]
