@@ -1,0 +1,62 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Lines: 272-282] [Two-Phase Redemption] Splits redemption into request and fulfillment phases - what prevents using request with wrong reserve in fulfill phase? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5b55d2a-f1f5-4eed-9ac0-087da7bb400d?mode=deep",
+    "timestamp": "2026-02-19 07:51:39.239282",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: reserve_array_index()] [Slow Lookup] Comment says 'slow function, use sparingly' but returns vector::length if not found - can this out-of-bounds index cause panics when used? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8511d44f-1036-4d98-b56f-c65bac26a787?mode=deep",
+    "timestamp": "2026-02-19 07:51:51.918589",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: reserve()] [Unchecked Index] Calls reserve_array_index then borrows from vector without checking if index is valid - will panic if type not found? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9df09bf8-a7c5-488f-b4cf-15f4e0f2a676?mode=deep",
+    "timestamp": "2026-02-19 07:52:05.086511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [All Functions] [Index Parameter] Most functions take reserve_array_index as u64 parameter from caller - can caller pass out-of-bounds index to panic transaction intentionally? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_20465301-2677-48d9-962f-ac5f1333af06?mode=deep",
+    "timestamp": "2026-02-19 07:52:19.753964",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: liquidate()] [Two Indices] Takes both repay_reserve_array_index and withdraw_reserve_array_index - if same index passed, what happens? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8552926c-2e6d-414b-a4bf-e6d77203f611?mode=deep",
+    "timestamp": "2026-02-19 07:52:34.223767",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Lines: 916-928] [Linear Search] reserve_array_index does linear search O(n) - can large number of reserves cause DoS via expensive lookups? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b13e9e1-3f1c-42cc-915b-2f62ebb49452?mode=deep",
+    "timestamp": "2026-02-19 07:52:49.782671",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [All Events] [Address Conversion] Events use object::id_address() for object IDs - can address collisions cause event confusion? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c69dd8dd-5b61-4043-8280-c57bde8cb9ac?mode=deep",
+    "timestamp": "2026-02-19 07:53:06.316216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: liquidate()] [Event Timing] LiquidateEvent emitted before exemption returned to liquidator - can event be used to front-run liquidator's redemption? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e5176824-8ad6-42db-991c-8c4ada46889b?mode=deep",
+    "timestamp": "2026-02-19 07:53:24.683027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: forgive()] [No Authorization Event] ForgiveEvent doesn't log who authorized forgiveness (owner cap not referenced) - can malicious owner hide responsibility? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd496cc9-e6c1-4824-9609-1e53dc155a75?mode=deep",
+    "timestamp": "2026-02-19 07:53:44.231414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/lending_market.move] [Function: claim_fees()] [No Event] Fee claiming has no event emission - can fee distributions happen without audit trail? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_671fd95b-8bb6-456a-8129-b614fe2e80a5?mode=deep",
+    "timestamp": "2026-02-19 07:54:04.654538",
+    "report_generated": false
+  }
+]
