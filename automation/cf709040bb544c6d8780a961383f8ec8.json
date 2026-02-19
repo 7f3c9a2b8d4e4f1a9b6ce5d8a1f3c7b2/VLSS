@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_max_duration_within_thresholds_to_price_feed()] [Timer Manipulation] If max_duration_within_thresholds is changed while diff_threshold2_timer is active, can an attacker exploit timestamp arithmetic to extend or reset the anomaly window? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_87d5a52c-690d-4d7a-a168-93562ad8d9b6?mode=deep",
+    "timestamp": "2026-02-19 06:50:16.720694",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_max_duration_within_thresholds_to_price_feed()] [Zero Duration Attack] Can an attacker set max_duration_within_thresholds to 0, causing immediate rejection of any price between thresholds and creating DoS on legitimate price updates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8837a679-44cd-4049-95cb-c3cf084d1068?mode=deep",
+    "timestamp": "2026-02-19 06:50:29.620811",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_maximum_allowed_span_percentage_to_price_feed()] [Span Bypass] Can an attacker set maximum_allowed_span_percentage to 0, bypassing span validation and allowing any price change magnitude? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_50b43d26-1584-42ba-b96c-3f51603adabf?mode=deep",
+    "timestamp": "2026-02-19 06:50:43.639781",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_maximum_allowed_span_percentage_to_price_feed()] [Overflow in Span Calculation] Can an attacker set maximum_allowed_span_percentage to u64::MAX, causing overflow in percentage calculations (x * 10000) and bypassing span checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eaa97ec4-ce23-4135-9945-defa1ab326ee?mode=deep",
+    "timestamp": "2026-02-19 06:50:57.194411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_maximum_allowed_span_percentage_to_price_feed()] [Basis Point Confusion] If maximum_allowed_span_percentage expects basis points (x * 10000) but an attacker sets raw percentage values, can this cause 100x larger spans than intended? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aea2e50c-1c7d-47cf-83cb-73485cb5733f?mode=deep",
+    "timestamp": "2026-02-19 06:51:11.873507",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_maximum_effective_price_to_price_feed()] [Price Ceiling Removal] Can an attacker set maximum_effective_price to u256::MAX, effectively removing the price ceiling and allowing flash loan price manipulation to bypass bounds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e81d149f-7979-49d5-9c67-dfbb5b19d921?mode=deep",
+    "timestamp": "2026-02-19 06:51:28.144584",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_maximum_effective_price_to_price_feed()] [Inversion Attack] Can an attacker set maximum_effective_price below the current minimum_effective_price, creating an invalid price range that rejects all prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3bd9af9f-014c-436a-ae85-280b6e09a4fd?mode=deep",
+    "timestamp": "2026-02-19 06:51:44.905178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_minimum_effective_price_to_price_feed()] [Price Floor Removal] Can an attacker set minimum_effective_price to 0, allowing dust prices or underflow attacks to pass validation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_817d8e18-5dda-4cd4-8096-9163de897945?mode=deep",
+    "timestamp": "2026-02-19 06:52:03.529508",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_minimum_effective_price_to_price_feed()] [Narrow Price Range Attack] Can an attacker set minimum_effective_price very close to maximum_effective_price, creating a narrow valid range that causes legitimate price updates to be rejected? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6ce1b1b0-6692-4b1f-bf83-ec2849b260a8?mode=deep",
+    "timestamp": "2026-02-19 06:52:22.793988",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_historical_price_ttl_to_price_feed()] [TTL Bypass] Can an attacker set historical_price_ttl to u64::MAX, causing the oracle to accept infinitely old historical prices and bypassing freshness checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_05c9c132-50a4-469e-8aef-428af1701f5f?mode=deep",
+    "timestamp": "2026-02-19 06:52:43.225688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_historical_price_ttl_to_price_feed()] [TTL Zero Attack] Can an attacker set historical_price_ttl to 0, causing all historical price lookups to immediately expire and forcing dependence on live prices that may be manipulatable? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f567eed2-6709-40df-ac82-7994d460fac9?mode=deep",
+    "timestamp": "2026-02-19 06:53:03.902300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_pyth_oracle_provider_config()] [Duplicate Provider] Can an attacker call create_pyth_oracle_provider_config multiple times for the same feed_id, creating duplicate provider configs and causing confusion in provider selection? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f941bb39-6ff7-469a-ae8d-bab29d13acab?mode=deep",
+    "timestamp": "2026-02-19 06:53:23.477251",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_pyth_oracle_provider_config()] [Invalid Pair ID] Can an attacker provide an empty or malformed pair_id vector, causing Pyth price lookups to fail silently or return incorrect prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1eaf23aa-62f5-42b4-a1fd-2153ac9c90da?mode=deep",
+    "timestamp": "2026-02-19 06:53:41.768917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_pyth_oracle_provider_config()] [Feed ID Mismatch] Can an attacker specify feed_id for asset A but pair_id for asset B, causing cross-asset price confusion when Pyth oracle is queried? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1870d07c-c0dd-41fd-a1ab-f7be0985d0d0?mode=deep",
+    "timestamp": "2026-02-19 06:54:01.620467",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_pyth_price_oracle_provider_pair_id()] [Pair ID Swap] Can an attacker change the pair_id of an active primary Pyth provider to a different asset's pair, causing immediate price mismatch without disabling the provider? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b122012e-4245-4aba-af75-ef496fac5570?mode=deep",
+    "timestamp": "2026-02-19 06:54:19.068334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_pyth_price_oracle_provider_pair_id()] [Malicious Pair ID] Can an attacker set pair_id to a manipulated or low-liquidity Pyth feed, redirecting price queries to attacker-controlled or easily manipulatable sources? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af98b998-f47d-4f73-84e3-f4d982092c9a?mode=deep",
+    "timestamp": "2026-02-19 06:54:37.626166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: enable_pyth_oracle_provider()] [Enable Without Validation] Can an attacker enable a Pyth provider with invalid or unconfigured pair_id, causing price queries to fail or return default values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0893970a-90db-4ecc-9360-5cec818d0f55?mode=deep",
+    "timestamp": "2026-02-19 06:54:56.359531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: disable_pyth_oracle_provider()] [Disable Primary Provider] Can an attacker disable the Pyth provider while it's set as primary, causing price feed queries to fail without automatic fallback to secondary? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_57b09538-ef07-4555-b224-bd7df03721c8?mode=deep",
+    "timestamp": "2026-02-19 06:55:15.730184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: disable_pyth_oracle_provider()] [DoS Attack] Can an attacker disable all oracle providers for critical price feeds, causing vault operations to halt due to unavailable price data? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5ef04455-a3cd-4e38-a9e1-3eb90f7c3f2b?mode=deep",
+    "timestamp": "2026-02-19 06:55:35.856122",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_supra_oracle_provider_config()] [Pair ID Type Confusion] Can an attacker exploit the conversion from u32 pair_id to vector<u8> via adaptor_supra::pair_id_to_vector to inject malformed pair identifiers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_693f052c-4446-4bd5-bb4d-56bc754ecc9e?mode=deep",
+    "timestamp": "2026-02-19 06:55:54.845205",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: create_supra_oracle_provider_config()] [Provider Conflict] Can an attacker create both Pyth and Supra configs for the same feed_id with conflicting pair_ids, causing inconsistent prices depending on which provider is queried? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c067b8f2-1cf3-4461-af66-7d014af67b11?mode=deep",
+    "timestamp": "2026-02-19 06:56:15.354980",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_supra_price_source_pair_id()] [Vector Injection] Can an attacker pass a vector<u8> that doesn't match Supra's expected pair ID format, causing price lookups to fail or return garbage data? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_110cf335-9e90-4d6b-8f4c-918235fba099?mode=deep",
+    "timestamp": "2026-02-19 06:56:35.883661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: set_supra_price_source_pair_id()] [Cross-Provider Attack] Can an attacker set Supra pair_id while the feed is using Pyth as primary, then switch providers to exploit pre-configured malicious Supra feed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d162b8fd-d231-40b5-9f91-339ae8e659b4?mode=deep",
+    "timestamp": "2026-02-19 06:56:57.548735",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: enable_supra_oracle_provider()] [Unconfigured Provider] Can an attacker enable Supra provider before calling create_supra_oracle_provider_config, causing queries to fail with provider_config_not_found error? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aa34bd77-35db-485e-976a-c7fbfa922fbb?mode=deep",
+    "timestamp": "2026-02-19 06:57:20.467183",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_manage.move] [Function: disable_supra_oracle_provider()] [Provider Switching Attack] Can an attacker disable Supra immediately after it's set as primary but before a price update, causing price queries to fail mid-operation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_65ca7829-5ea5-4fe1-a1a3-4e0cbc81d874?mode=deep",
+    "timestamp": "2026-02-19 06:57:42.706804",
+    "report_generated": false
+  }
+]
