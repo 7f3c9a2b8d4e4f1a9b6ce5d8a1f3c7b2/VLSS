@@ -1,0 +1,14 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/sqrt_price_math.move] [Module: mmt_v3::sqrt_price_math] [Critical Implementation Gap] All functions contain only 'abort 0' statements - if any Volo Vault code attempts to call these sqrt price calculation functions for Cetus CLMM position management or AMM interactions, the transactions will always abort, causing complete denial of service for any vault operations depending on MMT v3 AMM math? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0bc67abc-4e23-4178-a754-61841d7c703b?mode=deep",
+    "timestamp": "2026-02-19 03:49:24.630878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/mmt_v3/sources/utils/sqrt_price_math.move] [Module Dependencies] [Integration Risk] Since this is a stub implementation in local_dependencies, are there other actual implementations of mmt_v3::sqrt_price_math elsewhere in the codebase that should be used instead, and could module resolution ambiguity cause the wrong (stub) version to be called? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_38b39a4e-0a27-4951-901a-1b04b50ec969?mode=deep",
+    "timestamp": "2026-02-19 03:49:37.433316",
+    "report_generated": false
+  }
+]
