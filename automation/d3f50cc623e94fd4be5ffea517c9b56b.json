@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_deposit_fee()] [Front-Running] Can admin front-run user deposit transactions by calling set_deposit_fee to increase fee rate, causing users to pay higher fees than expected? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e983091c-efca-48bc-a46e-9c0d588ea91e?mode=deep",
+    "timestamp": "2026-02-19 07:09:41.901526",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_deposit_fee()] [Parameter Validation] Does set_deposit_fee validate that new fee doesn't exceed MAX_DEPOSIT_FEE_RATE in underlying vault.set_deposit_fee(), or can overflow/underflow occur? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d343054c-beda-4323-88eb-805b18ae3cb5?mode=deep",
+    "timestamp": "2026-02-19 07:09:54.454599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_deposit_fee()] [Accounting Error] If deposit_fee is changed between request_deposit and execute_deposit, can this cause mismatch in expected vs actual fee deduction? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f56729e5-66aa-4db2-94f2-9f557d849601?mode=deep",
+    "timestamp": "2026-02-19 07:10:07.460649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_deposit_fee()] [Race Condition] Can set_deposit_fee be called during batch_execute_deposit causing different deposits in same batch to have different fee rates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9a3563dc-169f-4759-b784-0ad52516f2f5?mode=deep",
+    "timestamp": "2026-02-19 07:10:20.973932",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_deposit_fee()] [Event Manipulation] Can attacker trigger multiple DepositFeeChanged events to cause off-chain indexer confusion or hide actual fee changes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9c9eef6c-c2d2-4e93-8725-e382c813cad3?mode=deep",
+    "timestamp": "2026-02-19 07:10:34.940926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_withdraw_fee()] [Fee Extraction] Can admin set withdraw_fee to MAX_WITHDRAW_FEE_RATE (500bp) immediately before large withdrawals to extract maximum fees from exiting users? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_74362cb7-63ec-4abe-9d04-2679dff85b66?mode=deep",
+    "timestamp": "2026-02-19 07:10:50.044842",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_withdraw_fee()] [Front-Running] Can admin monitor mempool for large withdraw requests and front-run with set_withdraw_fee to increase fees, causing users to receive less principal than expected? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9b0d8272-c3d3-48bf-a9a2-00ee0905a1db?mode=deep",
+    "timestamp": "2026-02-19 07:11:05.935599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_withdraw_fee()] [Slippage Bypass] If withdraw_fee changes between request_withdraw (expected_amount calculation) and execute_withdraw, can this cause slippage check failure or user receiving less than expected_amount? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9737310d-f3e7-443b-84e6-dfbde250b6b7?mode=deep",
+    "timestamp": "2026-02-19 07:11:23.232867",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_withdraw_fee()] [Accounting Error] Does set_withdraw_fee properly handle fee change during batch_execute_withdraw, ensuring consistent fee application across all withdrawals in batch? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_23ba9c1f-1803-4662-9d1d-73060c71b4ab?mode=deep",
+    "timestamp": "2026-02-19 07:11:40.844230",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_withdraw_fee()] [Parameter Validation] Can set_withdraw_fee be called with fee=0 to allow fee-free withdrawals, potentially violating protocol economic model? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3ac7522-589e-420b-a7f0-888f23e91c9d?mode=deep",
+    "timestamp": "2026-02-19 07:11:59.623964",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_loss_tolerance()] [Loss Limit Bypass] Can admin increase loss_tolerance to maximum (10000 = 100%) immediately before risky operations to bypass loss tolerance enforcement? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_88adbb4b-00cf-4fc4-85fb-547ae59b0e22?mode=deep",
+    "timestamp": "2026-02-19 07:12:19.130104",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_loss_tolerance()] [Parameter Manipulation] Does set_loss_tolerance validate tolerance <= RATE_SCALING (10000) in manage.move or only in vault.set_loss_tolerance(), allowing potential bypass? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1601b00-38a9-46e7-a809-f8a00abb9354?mode=deep",
+    "timestamp": "2026-02-19 07:12:39.055436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_loss_tolerance()] [Epoch Attack] If loss_tolerance is changed mid-epoch after losses have already occurred, can this retroactively allow previously invalid operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_777fccef-89bc-4521-8ad9-1fd258ed436c?mode=deep",
+    "timestamp": "2026-02-19 07:13:00.421113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_loss_tolerance()] [Timing Exploit] Can admin set loss_tolerance to 0 immediately after operation ends to prevent future operations, locking funds in vault? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c3262e56-4a65-4bda-8a7e-c51658b3ce2c?mode=deep",
+    "timestamp": "2026-02-19 07:13:21.840520",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_loss_tolerance()] [State Corruption] Does set_loss_tolerance reset cur_epoch_loss or cur_epoch_loss_base_usd_value, potentially allowing loss limit bypass? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_70f13316-3198-4252-aec7-c0d9ebda59ca?mode=deep",
+    "timestamp": "2026-02-19 07:13:43.268685",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_loss_tolerance()] [Front-Running] Can admin front-run end_op_value_update_with_bag by reducing loss_tolerance to cause operation to fail ERR_EXCEED_LOSS_LIMIT check? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_48697950-7989-48f6-bdfe-c042dc7e6bd2?mode=deep",
+    "timestamp": "2026-02-19 07:14:04.136996",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_cancel_request()] [Lock Bypass] Can admin set locking_time_for_cancel_request to 0 allowing instant request cancellation, bypassing intended cancellation delays? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e34cdf1-5b16-4782-9a05-584f8fd72018?mode=deep",
+    "timestamp": "2026-02-19 07:14:24.163131",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_cancel_request()] [DoS Attack] Can admin set locking_time_for_cancel_request to maximum u64 value effectively preventing all request cancellations forever? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bf652364-02f6-4a1b-8206-3fc1e3ee9bce?mode=deep",
+    "timestamp": "2026-02-19 07:14:46.072567",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_cancel_request()] [Retroactive Change] If locking time is increased after users submit requests, can this extend their lock period beyond what they agreed to? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_31a94ca7-d4eb-41b9-b292-3750d22e5e9e?mode=deep",
+    "timestamp": "2026-02-19 07:15:07.614589",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_cancel_request()] [Race Condition] Can user cancel_deposit transaction race with admin set_locking_time_for_cancel_request to exploit timing window? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_833d6125-c4fc-4605-8bc5-e6204b841bfc?mode=deep",
+    "timestamp": "2026-02-19 07:15:29.865989",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_withdraw()] [Lock Bypass] Can admin set locking_time_for_withdraw to 0 allowing instant withdrawals after deposits, bypassing intended deposit-withdraw delay? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cbbeb2d4-1894-4dae-9e12-0de0595c2fc8?mode=deep",
+    "timestamp": "2026-02-19 07:15:52.137026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_withdraw()] [DoS Attack] Can admin set locking_time_for_withdraw to extreme value (e.g., years in milliseconds) effectively locking user funds permanently? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bc077b9c-3d3d-49a9-84b9-196b3801a5c2?mode=deep",
+    "timestamp": "2026-02-19 07:16:13.871065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_withdraw()] [Retroactive Lock] If locking time is increased after users deposit, does this retroactively extend their lock period beyond last_deposit_time + original locking_time? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c29722b3-c659-4d48-84ef-469ccbef3392?mode=deep",
+    "timestamp": "2026-02-19 07:16:36.982194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_withdraw()] [Flash Loan Risk] Can attacker exploit 0 locking time to perform flash loan-like attacks: deposit -> manipulate price -> withdraw in same transaction? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b38c8706-905c-4e4d-b635-feed859e60c9?mode=deep",
+    "timestamp": "2026-02-19 07:16:58.586212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_locking_time_for_withdraw()] [Economic Attack] Can malicious admin change locking time to trap depositors when they know vault will suffer losses? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_47273106-ac58-4263-87d1-fd7cf54d5373?mode=deep",
+    "timestamp": "2026-02-19 07:17:19.089903",
+    "report_generated": false
+  }
+]
