@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Partial Pause] Can stake operations be paused while unstake remains active, or is pause always global to all operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_78db1d53-2be0-42c9-8f54-0163334c1d21?mode=deep",
+    "timestamp": "2026-02-19 07:23:41.449732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Struct: Manage] [Missing Fields] Should Manage track additional state like pause_timestamp or pause_reason for audit trails? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d4d30833-16a8-4cdc-bb51-c35d148b7256?mode=deep",
+    "timestamp": "2026-02-19 07:23:53.812241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Overflow Safety] Does Sui Move prevent u64 overflow in version comparisons, or can version arithmetic cause unexpected behavior? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1c4431ca-75b6-4a92-a5b2-a8edc8cee2d8?mode=deep",
+    "timestamp": "2026-02-19 07:24:07.885949",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Constant: VERSION] [Type Safety] Is VERSION typed as u64 consistently throughout codebase, preventing type coercion vulnerabilities? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a8667d9f-239d-47b4-9cdb-787b20e7da4d?mode=deep",
+    "timestamp": "2026-02-19 07:24:21.388825",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Struct: Manage] [Ownership] Since Manage has only 'store' ability, who owns Manage instances, and can ownership transfer cause state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f402b75f-feff-4745-812c-6e5412b993fc?mode=deep",
+    "timestamp": "2026-02-19 07:24:35.612817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: new()] [Lifetime] What is the expected lifetime of Manage instances, and are there cleanup mechanisms when pools are deprecated? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_101a3c1d-fc13-4c40-b6a5-f1b1aaf3f477?mode=deep",
+    "timestamp": "2026-02-19 07:24:51.216929",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Struct: Manage] [Drop Ability] Should Manage have 'drop' ability to enable safe cleanup, or would this introduce security risks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6e4e1525-0602-48e1-97bf-5574531daa29?mode=deep",
+    "timestamp": "2026-02-19 07:25:07.940251",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Memory Consistency] In concurrent execution, can set_paused() writes be reordered relative to check_not_paused() reads? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f113bc0d-a260-49e0-9b12-c2cfff2ffb29?mode=deep",
+    "timestamp": "2026-02-19 07:25:26.339564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Memory Consistency] Can migrate_version() writes be reordered relative to check_version() reads in concurrent transactions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5455595-6c2a-4c8a-94ec-e435e03997c3?mode=deep",
+    "timestamp": "2026-02-19 07:25:45.731893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Package Visibility] [Key Management] If package visibility is used instead of AdminCap for set_paused()/migrate_version(), what prevents compromised package modules from abuse? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eba00cc3-1512-4629-9cb4-0a12d86cc788?mode=deep",
+    "timestamp": "2026-02-19 07:26:05.032044",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Privilege Escalation] Can operator-level accounts abuse package visibility to call set_paused() without AdminCap? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea3648ad-8e78-428b-924a-d7e791679043?mode=deep",
+    "timestamp": "2026-02-19 07:26:24.626508",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Event Ordering] If events are emitted in parent modules after set_paused(), can event order be manipulated to hide pause state changes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4fbfc6b3-b919-4f1c-8e3d-4e7681ec054e?mode=deep",
+    "timestamp": "2026-02-19 07:26:44.384536",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Event Ordering] If migration events are emitted after version change, can failures between version update and event emission cause audit gaps? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_415b459e-8d35-4795-a388-481ea12e8d84?mode=deep",
+    "timestamp": "2026-02-19 07:27:03.172518",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Module Imports] [Dependency Safety] Does manage.move have minimal dependencies, and can upstream dependency changes break version or pause logic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4b87d5cd-6f65-46cb-81dc-0aaf46a79cc2?mode=deep",
+    "timestamp": "2026-02-19 07:27:23.487328",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Module Exports] [Export Safety] What modules import manage.move, and can malicious importing modules abuse exported functions? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f01daea0-44d9-40c5-96db-2fe18bc031db?mode=deep",
+    "timestamp": "2026-02-19 07:27:44.172157",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: new()] [Default Pause] Why is paused=true the default in new(), and can this cause availability issues during deployment? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2812a1b1-1fdf-4240-bb7f-28da2dd88da6?mode=deep",
+    "timestamp": "2026-02-19 07:28:04.924031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Constant: VERSION] [Default Version] Is VERSION=2 indicating prior version 1 exists, and are migration paths from v1 to v2 properly tested? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_65df7660-cddc-48ea-8433-c44c22184814?mode=deep",
+    "timestamp": "2026-02-19 07:28:24.696746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Module Level] [Documentation] Does lack of inline comments hide security-critical assumptions about version/pause behavior? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_42a048cc-4b39-46e3-909d-e9a97887bded?mode=deep",
+    "timestamp": "2026-02-19 07:28:43.663239",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Documentation] Is the <= check in migrate_version() documented to explain why equality is allowed, preventing future bugs? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9c888e5a-8595-48fa-b5f8-34a8f9416eca?mode=deep",
+    "timestamp": "2026-02-19 07:29:02.760135",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Capability Pattern] Should set_paused() take a capability parameter directly instead of relying on parent module authorization? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_dac88992-9854-4c94-a1b7-27abc7cd7f47?mode=deep",
+    "timestamp": "2026-02-19 07:29:20.858186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Capability Pattern] Should migrate_version() take a capability parameter directly instead of relying on parent module authorization? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_58672387-38a1-4126-ba0e-12b25c7c4475?mode=deep",
+    "timestamp": "2026-02-19 07:29:39.764999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Version Skip] Can migrate_version() skip versions (e.g., v1 -> v3), and does this cause missing migration logic to be skipped? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd05ab14-5221-4436-8d2d-d531f5de202e?mode=deep",
+    "timestamp": "2026-02-19 07:29:57.932227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: check_version()] [Version Requirement] Does check_version() ensure exact version match, preventing forward deployment of v3 code with v2 data? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6a248627-b7cf-4fb3-bb39-459aa86e06df?mode=deep",
+    "timestamp": "2026-02-19 07:30:17.354192",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: set_paused()] [Transaction Ordering] Can mempool transaction ordering be exploited to front-run set_paused(true) with malicious operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7055802c-b0c1-44a1-a343-34473cb3496c?mode=deep",
+    "timestamp": "2026-02-19 07:30:35.635646",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/manage.move] [Function: migrate_version()] [Transaction Ordering] Can migrate_version() be front-run with operations that would fail after migration? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d37039c2-0510-4249-9bda-6139dc1bddc9?mode=deep",
+    "timestamp": "2026-02-19 07:30:53.427949",
+    "report_generated": false
+  }
+]
