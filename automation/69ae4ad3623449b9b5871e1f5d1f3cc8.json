@@ -1,0 +1,44 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Error Codes] [Error Code Gaps] Error codes jump from E_MIN_LIMIT (100) to E_DEPRECATED (999). Can missing error codes indicate removed functionality that left security holes? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_df07cd1e-b146-4415-8528-426be19d76d0?mode=deep",
+    "timestamp": "2026-02-19 01:05:30.062275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: stake_pool()] [Restaking After Unstake] unstake_amount_from_validators calls stake_pool for excess. Since stake_pool is deprecated, can this call fail, leaving excess in pending? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1b7c8dbd-6b33-419a-9967-e5a764cfe64b?mode=deep",
+    "timestamp": "2026-02-19 01:05:42.817638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: stake_pool_for_testing()] [Test vs Prod Divergence] stake_pool_for_testing has ticket_supply check but original doesn't. Can test coverage miss bugs in production staking logic? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_46ca1e47-1ead-40ae-8f4b-ce8c169def00?mode=deep",
+    "timestamp": "2026-02-19 01:05:57.751455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Field: collectable_fee] [Fee Balance Growth] collectable_fee accumulates from unstake fees and reward fees. Can unbounded growth cause storage costs to become prohibitive? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f1443ba9-4c2c-46e4-8b43-312150062852?mode=deep",
+    "timestamp": "2026-02-19 01:06:11.771590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: unstake_amount_from_validators()] [Fee Balance Join] Fees are joined to collectable_fee after extraction. Can coin::join fail if collectable_fee is corrupted? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d79844d-5936-4540-a40d-4687c56446ee?mode=deep",
+    "timestamp": "2026-02-19 01:06:27.079971",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Field: total_staked] [Table Growth] total_staked Table grows by one entry per epoch. Can unbounded table growth cause storage bloat or lookup slowdown after years of operation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d64cec09-2925-4602-afeb-cf65948f4459?mode=deep",
+    "timestamp": "2026-02-19 01:06:43.360132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Field: total_staked] [Table Entry Leak] Table entries are added but never removed. Can old epoch entries accumulate, wasting storage? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0fc1abde-b389-4c7b-8bab-5620aea4bf12?mode=deep",
+    "timestamp": "2026-02-19 01:07:01.598398",
+    "report_generated": false
+  }
+]
