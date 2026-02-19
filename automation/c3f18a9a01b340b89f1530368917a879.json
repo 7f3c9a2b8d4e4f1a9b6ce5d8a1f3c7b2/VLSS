@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Authorization Bypass] The entry function is public and unrestricted - can any attacker create unlimited aggregators with arbitrary authority addresses, potentially impersonating legitimate oracle authorities and poisoning the oracle system with malicious price feeds? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ae001888-5591-4ef8-9693-5efa1157f411?mode=deep",
+    "timestamp": "2026-02-19 05:36:50.333481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Authority Validation Missing] The authority parameter at line 83 is user-supplied with no validation - can an attacker set authority to address(0) or their own address to gain control over aggregators meant for legitimate protocols, enabling price manipulation attacks? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e4a27a44-8508-4c03-9721-4da4af5190ac?mode=deep",
+    "timestamp": "2026-02-19 05:37:02.974193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: actuate()] [Authority Control] The authority address at line 62 is passed directly to aggregator::new() without verification - can an attacker front-run legitimate aggregator creation by registering the same feed_hash with their own authority, becoming the de facto price provider? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8376baf3-67cf-43ac-a337-c1a7933672a3?mode=deep",
+    "timestamp": "2026-02-19 05:37:16.370019",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Permissionless Creation] No access control or capability requirement exists - can malicious actors spam create aggregators to DoS the system, exhaust storage, or create confusion about which aggregator is legitimate for a given feed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7e74b7c7-d1b7-4eca-88ea-158f071f2d84?mode=deep",
+    "timestamp": "2026-02-19 05:37:30.338967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Queue Authority Not Checked] The queue parameter is accepted without verifying its authority or legitimacy - can an attacker pass a malicious Queue object they control to bypass intended restrictions or manipulate aggregator creation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_65b4ca5f-98e0-4296-bd46-0098262085d4?mode=deep",
+    "timestamp": "2026-02-19 05:37:45.646305",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Insufficient Min Sample Size] Line 38 only checks min_sample_size > 0 with no upper bound - can an attacker set min_sample_size to 1, creating an oracle that accepts a single data point, enabling price manipulation with minimal collusion? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e93de177-1e69-4256-910e-2096d2aafe92?mode=deep",
+    "timestamp": "2026-02-19 05:38:01.562076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Variance Manipulation] Line 39 only validates max_variance > 0, allowing u64::MAX - can an attacker set max_variance to maximum value (18446744073709551615) to accept wildly divergent price feeds, enabling acceptance of manipulated prices that should be rejected? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6412786d-fc94-4f72-977c-b0d19fa47195?mode=deep",
+    "timestamp": "2026-02-19 05:38:19.078895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Staleness Attack] Line 42 only checks max_staleness_seconds > 0 without upper bound - can an attacker set max_staleness_seconds to u64::MAX (584 billion years) to accept infinitely stale data, allowing use of outdated prices for market manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6296f79d-76d1-4bd3-bb9e-53ca9bda9114?mode=deep",
+    "timestamp": "2026-02-19 05:38:37.100776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Minimal Response Requirement] Line 41 only validates min_responses > 0 as u32 - can an attacker set min_responses to 1, creating an oracle dependent on a single response, enabling single-point-of-failure price manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0149a626-0184-498e-9cb7-de535e7d8258?mode=deep",
+    "timestamp": "2026-02-19 05:38:56.637518",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Feed Hash Content Not Validated] Line 40 only checks feed_hash.length() == 32 bytes, not content validity - can an attacker provide a valid-length but nonsensical or collision-prone feed_hash to create fake price feeds or hijack legitimate feed identifiers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bd83fb01-c3ff-4c24-a067-ed06c6184305?mode=deep",
+    "timestamp": "2026-02-19 05:39:17.898270",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [No Parameter Relationship Checks] Validation at lines 38-42 checks each parameter independently - can an attacker create logically inconsistent aggregators where min_sample_size exceeds available oracles, or min_responses is impossible to achieve given the feed configuration? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e40d775-b932-44a5-8ef1-51020290e19f?mode=deep",
+    "timestamp": "2026-02-19 05:39:37.524169",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Queue Version Check Only] Line 37 only checks version == 1 - if a malicious Queue object implements version() to return 1 but has compromised state, can this bypass be exploited to create aggregators on unauthorized queues? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_948c7851-e32d-470d-b4cd-836cc6acabc8?mode=deep",
+    "timestamp": "2026-02-19 05:39:58.630055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Integer Overflow on Max Variance] max_variance parameter is u64 at line 34 with only > 0 check - can setting it near u64::MAX cause overflow in downstream variance calculations when combined with price data, leading to acceptance of invalid prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_be54b07e-95d6-4e9c-9592-2b798f22811b?mode=deep",
+    "timestamp": "2026-02-19 05:40:20.063809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Integer Overflow on Sample Size] min_sample_size is u64 at line 32 with no upper bound - can an attacker set this to near u64::MAX to cause integer overflow when the aggregator attempts to collect or process samples? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_632262df-c016-47cd-86ac-7012740c1e2f?mode=deep",
+    "timestamp": "2026-02-19 05:40:42.100216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Max Staleness Seconds Overflow] max_staleness_seconds as u64 at line 33 has no upper bound - when added to timestamps, can this cause overflow in staleness checks, either rejecting all data or accepting all data regardless of age? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8fa8824-75c5-4f44-9e2c-6738ecc95b1b?mode=deep",
+    "timestamp": "2026-02-19 05:41:03.538646",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Oracle Price Manipulation] By setting min_responses=1, max_variance=MAX, and min_sample_size=1 through lines 89-99, can an attacker create a compromised aggregator that accepts any single price update, then use this in Volo Vault operations to drain funds via mispriced assets? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fe718e0c-f8ed-430c-9d40-f397edec71f9?mode=deep",
+    "timestamp": "2026-02-19 05:41:25.530744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Stale Price Acceptance] With max_staleness_seconds set to maximum value at line 87, can an attacker create aggregators accepting year-old prices, then use these in time-sensitive DeFi operations (liquidations, swaps) to gain unfair advantage? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8cf277dd-c434-4af0-98ae-1fad05ac6616?mode=deep",
+    "timestamp": "2026-02-19 05:41:48.662614",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: actuate()] [Feed Hash Collision] feed_hash at line 49 is only length-checked - can an attacker generate colliding 32-byte hashes to create duplicate aggregators for the same conceptual feed, causing confusion about which aggregator to trust? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8eed6b78-b5d4-4a63-a3be-e039786438cc?mode=deep",
+    "timestamp": "2026-02-19 05:42:12.181505",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Multiple Aggregators Same Feed] No uniqueness constraint on feed_hash exists - can an attacker create 1000 aggregators with the same feed_hash but different parameters (some loose, some strict), then selectively use the loose ones to manipulate protocol behavior? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa6778cf-ca55-449b-a3c5-a6b547cb3272?mode=deep",
+    "timestamp": "2026-02-19 05:42:36.161865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Variance as Percentage Not Validated] max_variance at line 34 is a raw u64 with unclear semantics - if it represents basis points or percentage, can extreme values (1 = 0.01% or 10000000 = 100000%) be exploited to either reject all legitimate prices or accept all fraudulent ones? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_86bd974f-34c3-4fea-8fa2-9e554df6bfae?mode=deep",
+    "timestamp": "2026-02-19 05:42:57.787592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: actuate()] [Clock Timestamp Dependency] Line 68 uses clock.timestamp_ms() without validation - if the clock is not the canonical Sui clock, can time manipulation enable creation of aggregators with backdated or future-dated initialization affecting staleness calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2c6b3212-0d10-4b0f-b6cd-7f477799ba61?mode=deep",
+    "timestamp": "2026-02-19 05:43:21.067476",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Sample Size vs Response Count Mismatch] min_sample_size at line 86 and min_responses at line 89 are validated independently - can an attacker set min_sample_size=100 and min_responses=1, creating an aggregator that requires many samples but only one response, potentially causing deadlock or unexpected behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_055872fa-caa7-4998-a9de-73d5052e0823?mode=deep",
+    "timestamp": "2026-02-19 05:43:44.032495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: validate()] [Feed Hash Not Registered Check] Line 40 validates length but not registration with queue - can an attacker use unregistered or malicious feed_hash values to create rogue aggregators that appear legitimate but serve malicious data? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_99839101-ef10-4f87-bf8d-3b7f92eaf5ee?mode=deep",
+    "timestamp": "2026-02-19 05:44:05.770038",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [Aggregator Spam Creation] Entry function at line 81 has no rate limiting or cost - can an attacker create millions of aggregators to exhaust storage, degrade indexer performance, or create confusion about which aggregators are legitimate? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8addee4f-4b12-42c3-bf67-a8831d23f225?mode=deep",
+    "timestamp": "2026-02-19 05:44:28.413682",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/switchboard_sui/on_demand/sources/actions/aggregator/aggregator_init_action.move] [Function: run()] [No Fee or Payment Required] Aggregator creation is free - can this be exploited for economic DoS by creating aggregators faster than they can be garbage collected, eventually making the system unusable? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b5e325c1-af73-4e46-885f-673349a4cb82?mode=deep",
+    "timestamp": "2026-02-19 05:44:51.810795",
+    "report_generated": false
+  }
+]
