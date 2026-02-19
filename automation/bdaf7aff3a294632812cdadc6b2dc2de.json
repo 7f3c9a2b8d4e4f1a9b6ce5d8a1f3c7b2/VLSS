@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: new_oracle_provider_config()] [Authorization Bypass] If the friend module oracle::config is compromised, can an attacker create OracleProviderConfig with enable=true and arbitrary pair_id to force the system to use malicious oracle feeds, causing incorrect price data to flow into vault valuations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_8d2794ba-8e7a-45cf-84b0-0467ab2e0d98?mode=deep",
+    "timestamp": "2026-02-19 05:19:21.775265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: set_pair_id_to_oracle_provider_config()] [Authorization Bypass] Since this function is friend-only, if oracle::config module lacks proper admin checks, can an attacker with access to that module change pair_id to point to a manipulated price feed mid-operation, causing vault asset mispricing? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c11da917-7103-461a-aa0e-37edf0316861?mode=deep",
+    "timestamp": "2026-02-19 05:19:34.644936",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: set_enable_to_oracle_provider_config()] [Authorization Bypass] Can the friend module oracle::config toggle enable flag without proper authorization checks, allowing an attacker to disable critical oracle providers during vault operations, causing DoS or forcing fallback to stale prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5616b25f-22db-4ca8-8363-b821e3d3b9a2?mode=deep",
+    "timestamp": "2026-02-19 05:19:48.139754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Module: oracle_provider] [Access Control] The friend declaration only lists oracle::config, but if that module is upgradeable or has vulnerabilities, can an attacker exploit it to bypass the friend restriction and directly manipulate OracleProviderConfig structs? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_278acf0b-b875-436d-9e95-86aa15557b35?mode=deep",
+    "timestamp": "2026-02-19 05:20:02.446382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: set_pair_id_to_oracle_provider_config()] [Input Validation] The pair_id parameter is vector<u8> with no validation - can an attacker pass empty vector, extremely long vector, or malformed data that causes oracle lookups to fail or return incorrect prices? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9e89996c-c93b-497d-a5fe-eaf8384ef17f?mode=deep",
+    "timestamp": "2026-02-19 05:20:17.887116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: new_oracle_provider_config()] [Input Validation] Can an attacker create OracleProviderConfig with pair_id pointing to a valid but incorrect trading pair (e.g., SUI/BTC instead of SUI/USD), causing systematic mispricing across all vault calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3ff04b32-0319-427a-9f91-d758390d7ff2?mode=deep",
+    "timestamp": "2026-02-19 05:20:34.911990",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: get_pair_id_from_oracle_provider_config()] [Data Integrity] Since pair_id is returned by value as vector<u8>, if the consuming module doesn't validate the returned data before using it in oracle queries, can stale or corrupted pair_ids propagate through the system? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c6ca5bd1-7561-4f27-be11-3c0c0e6bf645?mode=deep",
+    "timestamp": "2026-02-19 05:20:54.007406",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: set_pair_id_to_oracle_provider_config()] [Race Condition] If pair_id is updated while another transaction is reading it via get_pair_id_from_oracle_provider_config(), can this cause price queries to use mismatched pair IDs, leading to incorrect valuations during vault operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_04a174a6-2790-4157-9f97-dc16f442f27a?mode=deep",
+    "timestamp": "2026-02-19 05:21:13.935588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: is_oracle_provider_config_enable()] [Logic Error] If consuming modules don't check the enable flag before using oracle data, can disabled providers still feed prices into the system, allowing an attacker to force the system to use stale or unverified oracle sources? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_19bd52a5-abb2-4f7c-9466-05010db3c011?mode=deep",
+    "timestamp": "2026-02-19 05:21:34.864996",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: set_enable_to_oracle_provider_config()] [State Management] Can the enable flag be toggled to false during an active vault operation that depends on this oracle provider, causing operations to fail or use fallback pricing that an attacker can manipulate? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6a012582-749c-4ffc-95f6-4b457c72ca15?mode=deep",
+    "timestamp": "2026-02-19 05:21:56.466535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Struct: OracleProviderConfig] [Default State] If OracleProviderConfig is created with enable=false by default but consuming code assumes enable=true, can this cause the system to silently fail to fetch prices, leading to operations using zero prices or stale cached values? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2a7d0714-a722-46cf-aae3-5ae5ecb92562?mode=deep",
+    "timestamp": "2026-02-19 05:22:20.236683",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: supra_provider()] [Identity Spoofing] The provider name is just an ASCII string 'SupraOracleProvider' - can an attacker create a custom OracleProvider with the same name string to impersonate Supra, causing the system to route queries to malicious oracle contracts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f8ba905-c297-4ffc-8790-b1da4240a370?mode=deep",
+    "timestamp": "2026-02-19 05:22:43.638471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: pyth_provider()] [Identity Spoofing] Similarly for 'PythOracleProvider', if downstream modules only check the name string to determine provider type, can an attacker create fake Pyth providers that return manipulated prices? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9efe1122-09c4-47f1-90b7-32f10e4f72d3?mode=deep",
+    "timestamp": "2026-02-19 05:23:05.469177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: to_string()] [Type Safety] Since OracleProvider only contains a name string without any cryptographic verification or address binding, can an attacker register a provider with a legitimate name but point it to malicious oracle contracts? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_97449dbf-50ab-4faa-ad66-9b79eeda4079?mode=deep",
+    "timestamp": "2026-02-19 05:23:27.561172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Struct: OracleProvider] [Design Flaw] The OracleProvider struct has copy, store, drop abilities - can an attacker copy a legitimate provider, modify associated OracleProviderConfig data, and inject it into the system to cause confusion between legitimate and malicious providers? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_102d1d1d-d932-4d19-90a8-56a9d199ac33?mode=deep",
+    "timestamp": "2026-02-19 05:23:50.455438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: new_empty_provider()] [Null Handling] If an empty provider (name = '') is used in OracleProviderConfig with enable=true, can this cause oracle lookups to fail silently or return zero prices, enabling an attacker to manipulate vault operations during the failure state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6238e454-e64a-4b5d-98f9-969ea6590017?mode=deep",
+    "timestamp": "2026-02-19 05:24:14.030998",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: is_empty()] [Validation Gap] If consuming code only checks is_empty() but doesn't verify the provider is actually configured correctly, can an attacker pass a provider with name=' ' (single space) or other whitespace to bypass the empty check? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d8a729ad-b074-45ad-839d-135bf8f6f7f5?mode=deep",
+    "timestamp": "2026-02-19 05:24:36.385316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: new_empty_provider()] [Initialization Error] Can an attacker create OracleProviderConfig with new_empty_provider() and enable=true to force the system into an invalid state where it expects oracle data but has no valid provider to query? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cfcb17aa-a831-4ff2-88e3-04eafd36b070?mode=deep",
+    "timestamp": "2026-02-19 05:24:59.930984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Struct: OracleProviderConfig] [Data Consistency] If an OracleProviderConfig has enable=true but pair_id is empty vector or garbage data, can this cause oracle queries to fail in ways that allow an attacker to exploit error handling logic? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f404090e-e861-4230-8ea7-b2a661b7a905?mode=deep",
+    "timestamp": "2026-02-19 05:25:24.370756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: new_oracle_provider_config()] [Configuration Error] Can an attacker create multiple OracleProviderConfig instances with the same provider but different pair_ids, causing confusion in oracle routing logic if the system doesn't properly deduplicate or validate configs? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d9eb16e-64f9-4ebe-b55d-70b520b58762?mode=deep",
+    "timestamp": "2026-02-19 05:25:49.560998",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Struct: OracleProviderConfig] [Missing Validation] There are no constraints on the relationship between provider type (Supra/Pyth) and pair_id format - can an attacker configure a Supra provider with a Pyth-format pair_id or vice versa, causing parsing errors that lead to incorrect price retrieval? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_84f8d4f8-d807-4e9b-842a-ef5c9522139f?mode=deep",
+    "timestamp": "2026-02-19 05:26:15.082403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Module: oracle_provider] [Trust Boundary] Since this module is a dependency of oracle::config which may be called by vault operations, if oracle::config doesn't validate OracleProvider instances before using them, can malicious provider data propagate from this module into critical vault price calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_77cad947-5349-4083-861e-fd4e40587a99?mode=deep",
+    "timestamp": "2026-02-19 05:26:41.263806",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Function: get_provider_from_oracle_provider_config()] [Data Leak] The provider is returned by value with copy ability - if an attacker can intercept or observe this data in flight, can they identify which oracle providers are being used and time attacks to coincide with oracle updates or exploit known provider vulnerabilities? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_26d8d6d5-e90d-4bce-b3c0-c4e696b6f2d7?mode=deep",
+    "timestamp": "2026-02-19 05:27:06.299642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Module: oracle_provider] [Dependency Risk] If the oracle::config friend module has vulnerabilities in how it stores or manages OracleProviderConfig instances, can attackers leverage this simple oracle_provider module's lack of defensive programming to amplify attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_e014974f-d17d-4974-9720-9d83de7f87f8?mode=deep",
+    "timestamp": "2026-02-19 05:27:28.471153",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/protocol/oracle/sources/oracle_provider.move] [Struct: OracleProvider] [Ability Abuse] OracleProvider has drop ability - if an attacker can cause legitimate provider instances to be dropped during critical operations, can this lead to missing oracle data that causes operations to use default/fallback prices? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5d95acdb-dd76-44eb-ab0b-28fc276e1638?mode=deep",
+    "timestamp": "2026-02-19 05:27:52.348806",
+    "report_generated": false
+  }
+]
