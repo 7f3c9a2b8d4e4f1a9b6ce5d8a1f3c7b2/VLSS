@@ -10,5 +10,17 @@
     "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1a36d87b-a0f9-47f8-a5ea-a38387064be5?mode=deep",
     "timestamp": "2026-02-19 04:50:40.478829",
     "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [Cache Poisoning] If callers cache the returned prices, could stale cached values be used after the MAX_STALENESS_SECONDS window has passed? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_f5220981-d1e1-42b5-a369-b5fa27e5b880?mode=deep",
+    "timestamp": "2026-02-19 04:51:00.680262",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/local_dependencies/suilend_d/suilend/sources/oracles.move] [Function: get_pyth_price_and_identifier()] [TOCTOU] Between checking confidence/staleness and returning the price, could the underlying PriceInfoObject be modified in a concurrent transaction? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3fcc084e-bb10-4ddf-947b-6ab7f39ae62a?mode=deep",
+    "timestamp": "2026-02-19 04:51:14.125889",
+    "report_generated": false
   }
 ]
