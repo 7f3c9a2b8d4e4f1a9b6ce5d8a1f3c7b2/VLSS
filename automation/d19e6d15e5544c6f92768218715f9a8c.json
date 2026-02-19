@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: assert_version()] [Authorization Bypass] The version check allows both VERSION and VERSION-1, enabling interaction with outdated pool state. Can an attacker exploit stale pool version (VERSION-1) to call deprecated functions that should be blocked, bypassing migration-enforced security fixes? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ea49e112-a412-4d2b-aa34-4a7d248a6ce5?mode=deep",
+    "timestamp": "2026-02-19 06:58:52.575260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: migrate()] [Migration Logic Error] The migrate function only checks version < VERSION but doesn't validate state integrity. Can an attacker front-run migration to manipulate pool state (total_rewards, collected_rewards, pending balance) before version upgrade, locking in exploitable values? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_791a7e18-5f23-4f44-a6d8-4194d7ad57c9?mode=deep",
+    "timestamp": "2026-02-19 06:59:05.169076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: assert_version()] [Version Rollback] If version is set to VERSION-1 via test_update_version and then assert_version is called, the check passes. Can an attacker with test function access downgrade version to re-enable deprecated vulnerable functions? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82325cd1-810b-495b-b812-3518805712c9?mode=deep",
+    "timestamp": "2026-02-19 06:59:18.920250",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: migrate()] [Double Migration] The migrate function doesn't prevent calling migrate multiple times if version is manually decremented. Can repeated migrations with version manipulation cause event spam or state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c5d9a962-a1e5-4d3e-aec3-15725d2b3639?mode=deep",
+    "timestamp": "2026-02-19 06:59:32.676555",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: assert_version()] [Version Gap Exploitation] When VERSION is incremented by 2+ in an upgrade, assert_version still accepts VERSION-1. Can an attacker exploit the version gap window where deprecated functions are accessible with partially upgraded state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_9191906b-245c-46b5-b874-4145a185459d?mode=deep",
+    "timestamp": "2026-02-19 06:59:47.522184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: when_not_paused()] [Pause Bypass] Package-level functions mut_collected_rewards, mut_pending, mut_validator_set don't call when_not_paused. Can external package modules manipulate pool state while paused, bypassing emergency stop protection? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_75583ba4-96c1-4288-984b-78fe6d14c73c?mode=deep",
+    "timestamp": "2026-02-19 07:00:03.858080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: set_pause()] [Pause Timing] set_pause can be called anytime by OwnerCap. Can an attacker with OwnerCap pause during unstake_amount_from_validators execution, causing partial unstake with funds locked in intermediate state? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4d7fb913-17bd-4a80-aa05-eae237403a51?mode=deep",
+    "timestamp": "2026-02-19 07:00:20.465704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: collect_fee()] [Pause State Inconsistency] collect_fee checks when_not_paused but package functions don't. Can an attacker use package-level mutations to extract fees via mut_pending while pool is paused, violating pause invariant? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7eae9566-30af-43df-9031-ac061a639c28?mode=deep",
+    "timestamp": "2026-02-19 07:00:38.615256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: when_not_paused()] [Paused Check Missing in Test Functions] Test functions stake_non_entry_for_testing and unstake_for_testing include when_not_paused but mint_ticket_non_entry doesn't. Can test function usage in production bypass pause for ticket operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7d855cd9-5f6e-4534-bfe1-7dfd220d0c9e?mode=deep",
+    "timestamp": "2026-02-19 07:00:57.380084",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: set_pause()] [Pause Reentrancy] If set_pause is called within a transaction that also calls other functions, paused state changes mid-transaction. Can an attacker exploit pause/unpause ordering to bypass checks in the same transaction? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_129a4cec-857d-44d6-a1a0-7aca9902973a?mode=deep",
+    "timestamp": "2026-02-19 07:01:17.355765",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: add_total_staked_unsafe()] [Epoch Cursor Manipulation] When adding to next_epoch, if staked_update_epoch is updated to next_epoch, subsequent calls in same transaction use wrong base value. Can repeated add_total_staked_unsafe calls in one transaction cause staked_update_epoch to leapfrog epochs, corrupting total_staked table? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_04aa841c-6b3d-4cd9-8bcf-9f924c79f2b7?mode=deep",
+    "timestamp": "2026-02-19 07:01:37.932297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: add_total_staked_unsafe()] [Current Epoch Creation Logic] The function creates cur_epoch entry only if it doesn't exist, copying from staked_update_epoch. If staked_update_epoch > cur_epoch, can this cause incorrect base value propagation when cur_epoch is retroactively created? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d2cd0c95-bd0d-4617-9044-c841be7c6666?mode=deep",
+    "timestamp": "2026-02-19 07:01:59.627103",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: add_total_staked_unsafe()] [Overflow in Total Staked] When adding value to next_epoch total_staked, no overflow check exists. Can an attacker stake MAX_UINT_64 - current_total to overflow total_staked[next_epoch], wrapping to small value and inflating ratio? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ea5f53b-ba68-4790-959d-59d33af34f50?mode=deep",
+    "timestamp": "2026-02-19 07:02:21.819453",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: add_total_staked_unsafe()] [Double Epoch Update] If next_epoch entry exists and staked_update_epoch is still old, the function updates next_epoch value but doesn't update staked_update_epoch. Can this cause inconsistency where next_epoch has accumulated adds but cursor points to old epoch? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_23660799-4438-4778-a0c3-53f3a3252d43?mode=deep",
+    "timestamp": "2026-02-19 07:02:40.980817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: add_total_staked_unsafe()] [Epoch Boundary Race] At epoch transition, if add_total_staked_unsafe is called just as epoch increments, cur_epoch and next_epoch might be same epoch. Can this cause double-add to same epoch entry or skip epoch in table? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_535475e6-2429-4110-9548-240b05f5cb04?mode=deep",
+    "timestamp": "2026-02-19 07:03:00.275840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: add_total_staked_unsafe()] [Missing Value Validation] No check that value > 0 before adding. Can repeated add_total_staked_unsafe(0) calls spam StakedUpdated events without state change, causing DoS via event flooding? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cb7cc96d-6b4d-44bc-b544-243a23a83501?mode=deep",
+    "timestamp": "2026-02-19 07:03:19.284997",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: sub_total_staked_unsafe()] [Underflow in Current Epoch] When subtracting from cur_epoch, if value > total_staked[cur_epoch], subtraction underflows without check. Can an attacker trigger unstake exceeding staked amount to wrap total_staked to MAX_UINT_64, breaking ratio calculation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a29c2132-f8c4-40bb-bc05-ab6c10634d45?mode=deep",
+    "timestamp": "2026-02-19 07:03:37.789357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: sub_total_staked_unsafe()] [Next Epoch Underflow] When subtracting from next_epoch, if next_epoch entry doesn't exist, it copies from staked_update_epoch then subtracts. Can this cause underflow if staked_update_epoch total < value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_135b8b79-6275-44a6-9f48-24c7b14c3508?mode=deep",
+    "timestamp": "2026-02-19 07:03:57.663156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: sub_total_staked_unsafe()] [Cursor Update Inconsistency] sub_total_staked_unsafe updates staked_update_epoch to cur_epoch if entry doesn't exist, then later to next_epoch. Can this double-update corrupt cursor, causing get_total_staked to read wrong epoch? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b6714539-e57e-4b55-b710-adbc7ba6e8de?mode=deep",
+    "timestamp": "2026-02-19 07:04:18.243366",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: sub_total_staked_unsafe()] [Asymmetric Epoch Update] sub_total_staked updates both cur_epoch and next_epoch, but if only next_epoch exists, it copies staked_update_epoch value. Can this mismatch cause cur_epoch and next_epoch to diverge incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_82d0a82a-49d4-4fe1-bd83-3020051f67d0?mode=deep",
+    "timestamp": "2026-02-19 07:04:39.121087",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: sub_total_staked_unsafe()] [Double Subtraction Timing] The function subtracts value from both cur_epoch and next_epoch sequentially. If epoch transitions between the two subtractions, can this cause value to be subtracted twice from same epoch? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_14be8fae-c5e3-4004-9405-eba019868049?mode=deep",
+    "timestamp": "2026-02-19 07:05:01.424271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: sub_total_staked_unsafe()] [Zero Value Subtraction] No check prevents sub_total_staked_unsafe(0). Can repeated zero subtractions spam StakedUpdated events or cause gas griefing? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4c439636-2e5f-4258-bc71-911b07c336a5?mode=deep",
+    "timestamp": "2026-02-19 07:05:24.215319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: get_ratio()] [Ratio Denominator Zero] The ratio calculation uses (get_total_staked + get_total_rewards - ticket_supply). If total_staked + rewards = ticket_supply, denominator is zero. Can an attacker mint tickets equal to pool value to cause division by zero in math::ratio, breaking all stake/unstake operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b9fe62dc-9be4-45c0-95d1-0f8f90ea7de1?mode=deep",
+    "timestamp": "2026-02-19 07:05:47.307271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: get_ratio()] [Negative Denominator] If ticket_supply > (total_staked + total_rewards - collected_rewards), the denominator becomes negative (underflows to MAX_UINT_64). Can an attacker mint excess tickets to flip ratio, causing to_shares to return massive values and drain pool via share inflation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bfedd8f5-b389-479d-b1ac-14ee20a36ba0?mode=deep",
+    "timestamp": "2026-02-19 07:06:09.611189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: liquid_staking/sources/volo_v1/native_pool.move] [Function: get_ratio()] [Rewards Subtraction Order] get_total_rewards returns (total_rewards - collected_rewards), then ratio subtracts ticket_supply. Can an attacker manipulate collected_rewards via mut_collected_rewards to artificially inflate ratio, minting more shares per SUI? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cca71c81-3269-4334-a31a-357e2a4db2ed?mode=deep",
+    "timestamp": "2026-02-19 07:06:30.227250",
+    "report_generated": false
+  }
+]
