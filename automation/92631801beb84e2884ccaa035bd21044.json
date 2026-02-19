@@ -1,0 +1,68 @@
+[
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_balance()] [Bag vs Table Sync] At line 360-363, balance is added to Bag while amount at line 365-366 is added to Table - can these become desynchronized? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_33531f4d-9e48-4839-9b07-72cda5c79619?mode=deep",
+    "timestamp": "2026-02-19 03:06:55.131868",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: claim_reward()] [Balance Deduction] At line 638, balance is split but reward_amounts table is not decremented - can reward_amounts become inflated? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0a426aa0-004a-4d24-807d-22430668bf14?mode=deep",
+    "timestamp": "2026-02-19 03:07:08.024514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_new_reward_type()] [Multi-Structure Init] At lines 245-247, reward type is added to balances, amounts, and indices - can partial initialization cause inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3abae8bb-9c1b-4cb4-aa4d-992777bd22f0?mode=deep",
+    "timestamp": "2026-02-19 03:07:22.368152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: remove_reward_buffer_distribution()] [Partial Removal] At lines 326-327, buffer amounts and distributions are removed - can one succeed and other fail leaving inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ac5e9f81-a741-415e-ba62-0a6bee23fd25?mode=deep",
+    "timestamp": "2026-02-19 03:07:36.452526",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffer()] [Buffer to Main Sync] When buffer distributes rewards via update_reward_indices at line 530, does reward_amounts table in main rewards get updated? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_919c9cba-0710-4d50-9670-f45056394282?mode=deep",
+    "timestamp": "2026-02-19 03:07:51.809851",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_reward_to_buffer()] [Dual Amount Update] At lines 398-399, buffer amount is updated, and at line 405 balance is joined - can these be inconsistent if transaction partially fails? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af4c17a8-9293-493e-ae9e-ebf1c6480176?mode=deep",
+    "timestamp": "2026-02-19 03:08:09.276042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: retrieve_undistributed_reward()] [Buffer vs Balance Deduction] At line 684-685, buffer amount is decremented but at line 698 balance is split - can mismatch cause imbalance? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_fa3f234a-1b46-480f-ac04-baf68021f72c?mode=deep",
+    "timestamp": "2026-02-19 03:08:27.428799",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_indices()] [Index vs Amount Sync] At line 580, reward_indices are updated but reward_amounts at line 136 may not reflect distribution - can these diverge? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0eb13f1b-a51b-450d-a1d2-03cafd9de934?mode=deep",
+    "timestamp": "2026-02-19 03:08:46.379832",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: create_reward_buffer_distribution()] [Buffer Init State] At lines 291-300, buffer is initialized - can this be called after rewards already exist causing state mismatch? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_34b02680-fcec-48c8-a5d8-a5f32eed28cd?mode=deep",
+    "timestamp": "2026-02-19 03:09:08.295170",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: add_new_reward_type()] [Buffer Optional Init] At lines 249-260, buffer distribution is optionally created - can missing buffer cause issues if add_reward_to_buffer is called later? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7ff48a97-dbbd-49d7-81aa-d77817340dc3?mode=deep",
+    "timestamp": "2026-02-19 03:09:30.344829",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/reward_manager.move] [Function: update_reward_buffers()] [Partial Loop Execution] At lines 459-461, all buffers are updated in loop - if loop partially executes, are some buffers stale? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1ef54ec6-7a30-43a8-91a2-9d45b5222573?mode=deep",
+    "timestamp": "2026-02-19 03:09:52.297352",
+    "report_generated": false
+  }
+]
