@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: to_decimals() + from_decimals()] [Precision Preservation] Can repeated conversions between raw and decimal representation lose precision, breaking vault accounting over time? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_10f74780-4681-431f-9cea-3b8e3d2eaeb2?mode=deep",
+    "timestamp": "2026-02-19 09:43:26.025174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: to_oracle_price_decimals() + from_oracle_price_decimals()] [Conversion Loss] Do these conversions preserve price precision, or can important price information be lost in decimal conversions? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b43d9fd8-198a-4ec1-bceb-91ead0727b90?mode=deep",
+    "timestamp": "2026-02-19 09:43:39.220662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Constants: DECIMALS] [Precision Choice] Is 1e9 (DECIMALS) sufficient precision for all vault calculations, or can operations involving billions of tokens lose precision in share accounting? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b044cc54-a64c-46a4-8dff-c2e734af67be?mode=deep",
+    "timestamp": "2026-02-19 09:43:52.746283",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Constants: ORACLE_DECIMALS] [Precision Choice] Is 1e18 (ORACLE_DECIMALS) consistent with Switchboard oracle output format, or can decimal mismatch cause 1000x valuation errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_20c660c8-61c8-4c6b-a532-395c18d4e09e?mode=deep",
+    "timestamp": "2026-02-19 09:44:07.527380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Constants: DECIMALS vs ORACLE_DECIMALS] [Conversion Errors] Can confusion between 1e9 and 1e18 decimals in caller code cause catastrophic valuation errors when using these utility functions incorrectly? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_489bbb84-0f8a-4f0e-9d16-a99a131644af?mode=deep",
+    "timestamp": "2026-02-19 09:44:23.230046",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [Adaptor Integration] Can Navi, Suilend, Cetus, or Momentum adaptors generate conflicting keys if they use similar type names or overlapping idx ranges? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_911b1cdf-b162-4a82-97cb-bd2ff82a48f0?mode=deep",
+    "timestamp": "2026-02-19 09:44:39.807890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Share Calculation] When used in vault share minting, can rounding down in mul_d() cause share supply to be systematically undervalued, benefiting late depositors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_488ccad4-672a-49e8-9ef4-6c7a709bfc63?mode=deep",
+    "timestamp": "2026-02-19 09:44:57.670521",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Share Redemption] When used in vault share burning, can rounding down in div_d() cause users to receive fewer assets than their shares are worth? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cbc318cd-2628-4a95-befb-5469a3dd1afd?mode=deep",
+    "timestamp": "2026-02-19 09:45:17.600972",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_with_oracle_price()] [Total Value Calculation] If this function is used in total_usd_value calculation without proper overflow checks, can large portfolios cause DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_90cf0b5b-0d2b-4e86-a438-1dab6d9ecee3?mode=deep",
+    "timestamp": "2026-02-19 09:45:39.151154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_with_oracle_price()] [Asset Allocation] If used to determine asset allocation amounts, can zero prices or overflow cause vault to allocate zero or fail operations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_91ff94cd-0001-4c12-a8cc-d45d02f7e7d3?mode=deep",
+    "timestamp": "2026-02-19 09:46:02.896436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: clone_vecmap_table()] [State Migration] If used in vault migration or snapshot operations, can large state cause excessive gas costs or transaction size limits? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_57504e72-ac37-4f9f-ae2e-c00ad55b30df?mode=deep",
+    "timestamp": "2026-02-19 09:46:27.646924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [Type Parameter] Can generic type T be any type without constraints, allowing non-store types to be used incorrectly in asset key generation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1eb9c895-8dd2-4c5d-8909-37d3c03acc3a?mode=deep",
+    "timestamp": "2026-02-19 09:46:53.365596",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: clone_vecmap_table()] [Type Constraints] Are copy + drop + store constraints sufficient, or can types with custom drop logic cause issues during cloning? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_629c9e3f-4669-4fa0-b27a-3f31eb9311bd?mode=deep",
+    "timestamp": "2026-02-19 09:47:18.812164",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Edge Case: Both Zeros] When both v1 and v2 are zero, does mul_d() return zero correctly, and is this safe in all vault contexts? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_33cb22f2-e252-43c4-8404-c68a027bbd8f?mode=deep",
+    "timestamp": "2026-02-19 09:47:46.343436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Edge Case: One Max] When v1 is u256::MAX and v2 is 1, does mul_d() overflow before division even though result should fit? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_da6cee89-8599-4c03-95d0-418245ed37d4?mode=deep",
+    "timestamp": "2026-02-19 09:48:13.652827",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Edge Case: Equal Values] When v1 equals v2, does div_d() return exactly DECIMALS (1e9) or can rounding cause slight deviation? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7d81ff52-f334-44ac-adef-750ada59f5f4?mode=deep",
+    "timestamp": "2026-02-19 09:48:42.869724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Edge Case: v1 Zero] When v1 is zero, does div_d() correctly return zero regardless of v2 value (assuming v2 non-zero)? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4d40eb8f-3274-48c4-9202-02c2db258e09?mode=deep",
+    "timestamp": "2026-02-19 09:49:12.238845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_with_oracle_price()] [Edge Case: v2 is ORACLE_DECIMALS] When oracle price equals exactly 1e18 (price = $1), does result equal v1 correctly? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a8af0f3b-5623-4d81-82e2-f474b4e1271a?mode=deep",
+    "timestamp": "2026-02-19 09:49:40.995282",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_with_oracle_price()] [Edge Case: Equal to ORACLE_DECIMALS] When v1 equals v2, does result equal ORACLE_DECIMALS, or can rounding affect this? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_55c20b44-d217-4d6b-86e9-fadb1f202edc?mode=deep",
+    "timestamp": "2026-02-19 09:50:07.821604",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Invariant: Non-Zero Input, Non-Zero Output] Can mul_d() return zero when both inputs are non-zero due to precision loss, breaking vault invariants? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d370c8f9-d8cc-4db5-9ed5-7dd9376c97b0?mode=deep",
+    "timestamp": "2026-02-19 09:50:36.020759",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Invariant: Larger Input, Larger Output] If v1a > v1b, is div_d(v1a, v2) always > div_d(v1b, v2), or can rounding break monotonicity? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_caee1564-d6b0-410d-bd8c-fd412d06cf6b?mode=deep",
+    "timestamp": "2026-02-19 09:50:59.278391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_with_oracle_price()] [Invariant: Positive Balance, Positive Value] Can positive asset balance and positive price ever result in zero USD value due to rounding? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_95ae8747-dae0-4b8c-87bb-05fa422c616b?mode=deep",
+    "timestamp": "2026-02-19 09:51:17.149204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_with_oracle_price()] [Invariant: Positive Value, Positive Balance] Can positive USD value and positive price ever result in zero asset balance due to rounding? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_32db754a-9b63-4951-b70c-85845041d555?mode=deep",
+    "timestamp": "2026-02-19 09:51:36.126635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Attack: Rounding Accumulation] Can attacker repeatedly execute operations that round down in mul_d() to systematically drain vault value? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eb7c16e1-6589-411a-9dd8-703c7ec769ec?mode=deep",
+    "timestamp": "2026-02-19 09:51:55.358435",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Attack: Rounding Exploitation] Can attacker structure withdrawals to exploit rounding in div_d() to receive more assets than deserved? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aeadaa80-7ad8-4c98-ba7d-ffb87d197902?mode=deep",
+    "timestamp": "2026-02-19 09:52:14.716085",
+    "report_generated": false
+  }
+]
