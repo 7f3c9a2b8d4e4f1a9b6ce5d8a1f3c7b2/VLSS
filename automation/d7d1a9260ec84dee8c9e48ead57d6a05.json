@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: create_operator_cap()] [Unlimited Creation] Can admin create unlimited operator caps without any restrictions, proliferating operator access and increasing attack surface? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_606803ea-941b-4104-ad20-f2c593a638a5?mode=deep",
+    "timestamp": "2026-02-19 07:19:38.010779",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: create_operator_cap()] [Privilege Escalation] Can created OperatorCap be transferred to malicious address to gain operator privileges for executing deposits/withdrawals and operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_38273528-b155-40e5-a78b-da6891db22f5?mode=deep",
+    "timestamp": "2026-02-19 07:19:51.094779",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: create_operator_cap()] [No Revocation] Does create_operator_cap lack corresponding revocation mechanism, allowing compromised operator caps to remain active indefinitely? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a6adfa80-820f-4d73-bda2-1dd8a5edb1c5?mode=deep",
+    "timestamp": "2026-02-19 07:20:04.672410",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: create_operator_cap()] [Tracking Issue] Can operator caps be created without proper registry/tracking, making it impossible to audit which operators have access? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7128a9b4-17ae-4235-8962-58a019a6ea9a?mode=deep",
+    "timestamp": "2026-02-19 07:20:19.883711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_operator_freezed()] [Freeze Bypass] Can frozen operator still call functions that don't check freeze status (e.g., retrieve_deposit_withdraw_fee_operator)? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a0396dad-e7ec-4992-b505-a420cd72db77?mode=deep",
+    "timestamp": "2026-02-19 07:20:35.039180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_operator_freezed()] [Race Condition] Can operator race against set_operator_freezed(freezed=true) to complete malicious operation before being frozen? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_af40948b-8ae7-4f2d-8da7-5d6281e3e484?mode=deep",
+    "timestamp": "2026-02-19 07:20:51.400144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_operator_freezed()] [Wrong Operation Object] Does set_operator_freezed verify that Operation object passed is the correct shared object for this deployment? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d16b3919-45df-469a-b73a-f0670eb0000c?mode=deep",
+    "timestamp": "2026-02-19 07:21:09.480583",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_operator_freezed()] [State Inconsistency] Can set_operator_freezed be called for non-existent op_cap_id, adding spurious entries to freezed_operators table? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_81e76c11-9123-4018-9eb6-27acd457d8ea?mode=deep",
+    "timestamp": "2026-02-19 07:21:28.661009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_operator_freezed()] [Unfreeze Attack] Can admin unfreeze malicious operator (freezed=false) to allow them to complete pending malicious operations? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6b81a79f-f260-4c94-ab83-796a0e7d69f7?mode=deep",
+    "timestamp": "2026-02-19 07:21:50.044007",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: set_operator_freezed()] [Event Spam] Can set_operator_freezed be called repeatedly with same parameters to spam OperatorFreezed events for same operator? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_0d31faed-374f-49bf-b7c3-6e606f591dd8?mode=deep",
+    "timestamp": "2026-02-19 07:22:12.162749",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: add_switchboard_aggregator()] [Oracle Manipulation] Can admin add malicious Switchboard aggregator with incorrect decimals or stale prices to manipulate vault USD value calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b4a5e7ed-1e8f-4111-ace6-6675c3efbc6e?mode=deep",
+    "timestamp": "2026-02-19 07:22:35.110498",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: add_switchboard_aggregator()] [Decimal Confusion] Can add_switchboard_aggregator be exploited with wrong decimals parameter (e.g., decimals=6 instead of 9) causing 1000x price inflation/deflation? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1d7a0e75-8034-4436-9f9d-1bdf9582f16e?mode=deep",
+    "timestamp": "2026-02-19 07:22:59.447579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: add_switchboard_aggregator()] [Asset Type Collision] Can add_switchboard_aggregator overwrite existing asset_type oracle configuration, causing price inconsistency for active assets? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_4f6f75b7-2bd8-4035-9baa-68a9caad96c5?mode=deep",
+    "timestamp": "2026-02-19 07:23:22.592794",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: add_switchboard_aggregator()] [Timing Attack] Can admin add aggregator during active operation to change price source mid-operation, causing total_usd_value calculation errors? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ce34b387-bcc0-434d-a8d3-3bc8495c6181?mode=deep",
+    "timestamp": "2026-02-19 07:23:46.530603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: add_switchboard_aggregator()] [DoS] Can add_switchboard_aggregator be called with invalid aggregator reference that always fails on price reads, DoSing all operations? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a3dcbe73-c668-4fd5-9b1b-198535ea863a?mode=deep",
+    "timestamp": "2026-02-19 07:24:10.258531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: add_switchboard_aggregator()] [Staleness Bypass] Does add_switchboard_aggregator initialize assets_value_updated timestamp correctly or can stale prices be accepted immediately after adding? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_08d86051-9f0c-4e29-8d97-ded32c75a919?mode=deep",
+    "timestamp": "2026-02-19 07:24:31.400485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: remove_switchboard_aggregator()] [Asset Orphaning] Can remove_switchboard_aggregator be called for asset_type that vault actively holds, causing inability to price that asset in total_usd_value? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_25ce29b7-7e8e-4879-af48-735ee66dd1d8?mode=deep",
+    "timestamp": "2026-02-19 07:24:52.288542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: remove_switchboard_aggregator()] [DoS Attack] Can admin remove oracle for principal coin type, making all deposit/withdraw executions fail due to missing price feed? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_ffca0b09-9f22-4305-bd01-ebd7414b5092?mode=deep",
+    "timestamp": "2026-02-19 07:25:13.665736",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: remove_switchboard_aggregator()] [Timing Exploit] Can remove_switchboard_aggregator be called during operation while asset of that type is borrowed, causing value update failures? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_1dba5721-e0f1-4b69-b1b8-a8d541fac97b?mode=deep",
+    "timestamp": "2026-02-19 07:25:35.841112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: remove_switchboard_aggregator()] [State Corruption] Does remove_switchboard_aggregator clean up assets_value and assets_value_updated entries, or leave stale data in tables? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_58f06fd5-b795-46a4-b085-b11a4bdfff92?mode=deep",
+    "timestamp": "2026-02-19 07:25:58.520546",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: change_switchboard_aggregator()] [Price Manipulation] Can admin change aggregator to malicious one with manipulated prices to inflate/deflate vault valuation for profit? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3d8289b9-b6f0-4cd0-bf70-0ed5e3ff8b4d?mode=deep",
+    "timestamp": "2026-02-19 07:26:24.496236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: change_switchboard_aggregator()] [Decimal Mismatch] Does change_switchboard_aggregator preserve decimals setting from previous aggregator or can decimal precision change, causing price calculation errors? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5dcaacd4-d7bd-4aa0-95b9-25dea0112a5f?mode=deep",
+    "timestamp": "2026-02-19 07:26:49.420653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: change_switchboard_aggregator()] [Timing Attack] Can change_switchboard_aggregator be front-run before user deposit execution to manipulate share ratio calculation? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_067bf35f-7093-4349-8407-cef7cc8d68a0?mode=deep",
+    "timestamp": "2026-02-19 07:27:16.257951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: change_switchboard_aggregator()] [Mid-Operation Change] Can aggregator be changed while vault is VAULT_DURING_OPERATION_STATUS, causing different price sources for start_op vs end_op value checks? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_47589749-a1f3-4be4-b9d3-f4f11ef83244?mode=deep",
+    "timestamp": "2026-02-19 07:27:43.183330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/manage.move] [Function: change_switchboard_aggregator()] [Validation Missing] Does change_switchboard_aggregator verify new aggregator is valid and provides recent prices before accepting the change? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_aaa732cc-3a58-4c6e-a1f6-458b803ae3a8?mode=deep",
+    "timestamp": "2026-02-19 07:28:09.748736",
+    "report_generated": false
+  }
+]
