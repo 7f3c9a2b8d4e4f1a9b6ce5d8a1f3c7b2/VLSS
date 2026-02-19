@@ -1,8 +1,0 @@
-[
-  "[File: liquid_staking/sources/volo_v1/ownership.move] [Object Lifecycle] [Object Wrapping] Can capabilities be wrapped in a parent object that is then deleted, causing the inner capability to become inaccessible? (High)",
-  "[File: liquid_staking/sources/volo_v1/ownership.move] [Object Lifecycle] [Dynamic Fields] Could an attacker attach dynamic fields to OwnerCap/OperatorCap objects to cause storage bloat, gas DoS, or object corruption? (Medium)",
-  "[File: liquid_staking/sources/volo_v1/ownership.move] [Event Emission] [Event Ordering] If transfer_owner and transfer_operator are called in the same transaction, is event ordering guaranteed, or could off-chain systems process them inconsistently? (Low)",
-  "[File: liquid_staking/sources/volo_v1/ownership.move] [Event Emission] [Event Reliability] If event::emit fails due to node issues, does the transaction revert, or could a capability transfer complete without corresponding event causing tracking desync? (Medium)",
-  "[File: liquid_staking/sources/volo_v1/ownership.move] [Event Emission] [Event Truncation] Are there any limits on event size or count per transaction that could cause OwnerCapTransferred/OperatorCapTransferred events to be dropped if many transfers occur? (Low)",
-  "[File: liquid_staking/sources/volo_v1/ownership.move] [Event Emission] [Event Visibility] Are capability transfer events publicly visible to all observers, or could privacy settings hide ownership changes enabling stealth attacks? (Medium)"
-]
