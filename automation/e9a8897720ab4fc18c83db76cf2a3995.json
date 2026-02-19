@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_with_oracle_price()] [Value Zero] Can div_with_oracle_price(0, price) enable attacker to claim zero shares represent infinite value? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_669fc85d-6563-44f1-94bf-533e53480c12?mode=deep",
+    "timestamp": "2026-02-19 08:15:44.555944",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: to_oracle_price_decimals()] [Near-Max Value] Can to_oracle_price_decimals(2^238) cause overflow, breaking oracle integration in vault? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_b1ac4d90-2d47-42c2-b045-b0033b80a057?mode=deep",
+    "timestamp": "2026-02-19 08:15:57.203334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: from_oracle_price_decimals()] [One Wei] Can from_oracle_price_decimals(1e18-1) round to zero, causing oracle price to be ignored? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_121bc296-9627-46cd-8227-c354f9827078?mode=deep",
+    "timestamp": "2026-02-19 08:16:11.173364",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [Max Index] Can parse_key() with idx=255 create excessively long key strings, causing storage or parsing issues? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c99403cb-f15e-403f-b8ec-ad55b08af79e?mode=deep",
+    "timestamp": "2026-02-19 08:16:24.713856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: clone_vecmap_table()] [Single Entry] Can VecMap with one entry be cloned correctly, or does loop logic fail with length()=1? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c90e1562-4e53-43ad-af15-a7051872621f?mode=deep",
+    "timestamp": "2026-02-19 08:16:39.092765",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Gas Exhaustion] Can repeated mul_d() calls in loops exhaust gas when vault processes many deposit requests? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_5f040e59-9838-4f95-93e4-eb584e8a64fd?mode=deep",
+    "timestamp": "2026-02-19 08:16:54.508718",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: clone_vecmap_table()] [Large Map] Can attacker create VecMap with thousands of entries, causing clone to exceed gas limits and DoS config updates? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d9c85d31-c488-4a88-a425-5379e4daf9d2?mode=deep",
+    "timestamp": "2026-02-19 08:17:10.755447",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Panic Attack] Can attacker repeatedly call operations that trigger div_d(x, 0), causing panic and DoS? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c3525a33-8a7c-4dbe-8d1f-99b62b64639a?mode=deep",
+    "timestamp": "2026-02-19 08:17:29.511523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_with_oracle_price()] [Overflow Panic] Can orchestrated overflow in mul_with_oracle_price() cause vault valuation to panic, freezing withdrawals? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_7bc7d8a8-337a-4163-b700-e8e974db60d5?mode=deep",
+    "timestamp": "2026-02-19 08:17:49.275005",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [Generic Type T] Can attacker pass non-asset type to parse_key(), creating keys that collide with legitimate asset storage? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_cc166a7b-a247-4675-a644-f462e1531a72?mode=deep",
+    "timestamp": "2026-02-19 08:18:08.024364",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: clone_vecmap_table()] [Generic Constraints] Can T0 or T1 types without proper traits cause unexpected behavior in clone, breaking invariants? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a0e16d6c-d93e-4e47-921d-2200a2302078?mode=deep",
+    "timestamp": "2026-02-19 08:18:28.034345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: parse_key()] [Type Spoofing] Can two types with identical string representations but different origins produce same key? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_18d60476-506b-4f47-a805-c89b275a63c1?mode=deep",
+    "timestamp": "2026-02-19 08:18:48.914715",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Commutative Property] Does mul_d(a, b) = mul_d(b, a) always hold, or can ordering affect rounding? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_992dd087-1409-435b-862e-1487de162072?mode=deep",
+    "timestamp": "2026-02-19 08:19:10.312010",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Inverse Property] Does div_d(mul_d(x, y), y) perfectly recover x, or can rounding cause drift? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_d7bd4371-c729-49d9-a5bc-37de24b2c831?mode=deep",
+    "timestamp": "2026-02-19 08:19:32.909456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_with_oracle_price()] [Associative Property] Does mul_with_oracle_price(mul_with_oracle_price(x, p1), p2) = mul_with_oracle_price(x, p1*p2/1e18) hold? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_c545abc4-5ad2-43e7-b0f4-dd8378567045?mode=deep",
+    "timestamp": "2026-02-19 08:19:55.448535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: decimals()] [Getter Purity] Can decimals() be relied upon to always return 1e9, or can storage corruption change returned value? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_a558b66f-79bd-42fc-bc29-73291c3582a0?mode=deep",
+    "timestamp": "2026-02-19 08:20:19.458690",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Small Values] Can mul_d(1, 1) = 0 due to rounding, bypassing minimum operation amounts? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_6d24fddb-a92d-430f-aa96-9e9952365342?mode=deep",
+    "timestamp": "2026-02-19 08:20:42.533665",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Large Denominators] Can div_d(1e9, 1e18) = 0, causing division by zero in subsequent calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_2e8ea82d-2446-4ab3-9099-cc669a24318d?mode=deep",
+    "timestamp": "2026-02-19 08:21:04.725386",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_with_oracle_price()] [Micro Balances] Can mul_with_oracle_price(1, price) round to zero for any reasonable price, losing track of small balances? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3ee2e5c9-b731-47cc-88bf-1b13bac6f6f4?mode=deep",
+    "timestamp": "2026-02-19 08:21:27.736006",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_with_oracle_price()] [High Prices] Can div_with_oracle_price(value, 1e25) cause overflow when multiplying value by 1e18? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_03849bcf-fdda-4886-a6ee-d7980a1973f2?mode=deep",
+    "timestamp": "2026-02-19 08:21:52.217710",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: to_decimals()] [Sub-Unit Values] Can to_decimals() properly handle values < 1 native unit, or does it only work for integers? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_363aa4a9-8ac2-43db-a846-506ee02f6e27?mode=deep",
+    "timestamp": "2026-02-19 08:22:16.530761",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_d()] [Semantic Correctness] Is dividing after multiplication the correct order, or should it be (v1/DECIMALS)*v2 to prevent overflow? (High)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_3a76c21f-877d-47ec-a505-df598ab97780?mode=deep",
+    "timestamp": "2026-02-19 08:22:39.453769",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_d()] [Order Dependency] Should v1 be multiplied before dividing, or does this cause unnecessary overflow risk? (Medium)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_83cd11eb-fe21-4b7c-84a9-ac78f6a59cae?mode=deep",
+    "timestamp": "2026-02-19 08:23:02.944202",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: mul_with_oracle_price()] [Formula Correctness] Is dividing by ORACLE_DECIMALS correct, or should result be in different units? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_eeea5832-d483-41f5-9e55-beb382431fc3?mode=deep",
+    "timestamp": "2026-02-19 08:23:27.044710",
+    "report_generated": false
+  },
+  {
+    "question": "[File: volo-vault/sources/utils.move] [Function: div_with_oracle_price()] [Inverse Correctness] Is multiplying by ORACLE_DECIMALS before division the correct inverse of mul_with_oracle_price()? (Low)",
+    "url": "https://deepwiki.com/search/-volo-protocol-security-audit_bb835e56-280d-425d-b6ae-4dfa2c5bc711?mode=deep",
+    "timestamp": "2026-02-19 08:23:51.076391",
+    "report_generated": false
+  }
+]
